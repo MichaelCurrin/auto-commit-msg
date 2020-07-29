@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script is based on the prepare-commit-msg sample file in git repo.
+# This script is based on the prepare-commit-msg.sample file in a git repo.
 
 COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
