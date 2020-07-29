@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Proof of concept script to use Bash to produce report of file counts from git status.
-
+#
 # Run this as a standalone report, not as a hook.
 #
 # Get count of files added, modified, deleted and renamed/moved.
 # Note that modified and renamed/moved can both apply to the same file.
+# There also other states like C for copied.
 
 # This report uses git status and passes it do the steps below to parse it.
 # A more flexible approach (for unit tests for example) would be for this
@@ -41,3 +42,9 @@ echo
 echo 'Original:'
 echo
 echo "$CHG"
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+echo -n "$CHG" >$COMMIT_MSG_FILE
