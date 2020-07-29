@@ -1,8 +1,32 @@
 # Reference
 
+See my [git hooks](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/cheatsheets/git/hooks.md) reference.
+
+
+## Prepare commit message
+
+In `prepare-commit-msg` hook, assuming it is a Bash script.
+
+You can use echo/print lines to print out - this would be printed
+on a successful or failed git commit.
+If you want to actually write over the message you need to use the path to the commit message temp file.
+
+e.g.
+
+```sh
+COMMIT_MSG_FILE=$1
+echo -n "$CHG" >$COMMIT_MSG_FILE
+```
+
+Note writing of multi-line output to the file is needed like above.
+
+The file path will be like:
+
+```
+$HOME/path/to/repo/.git/COMMIT_EDITMSG
+```
 
 ## git status
-
 
 This will ignore untracked files and have machine-readable output (without color).
 
@@ -26,7 +50,6 @@ CHG=$(git status -s -uno --porcelain)
   output, but will remain stable across Git versions and regardless of user
   configuration.
 ```
-
 
 ## git diff
 

@@ -49,4 +49,3 @@ It generates a message that includes StackEdit in the name. e.g.
 ```
 README.md updated from https://stackedit.io/ 
 ```
- 
