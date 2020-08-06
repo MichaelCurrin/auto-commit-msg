@@ -17,6 +17,53 @@ This will probably be in Python for easy scaling and tests. And it will probably
 [Project Wiki](https://github.com/MichaelCurrin/auto-commit-msg/wiki)
 
 
+### VS Code extension
+
+Still in development.
+
+
+#### Setup
+
+Run `npm install` in terminal to install dependencies
+
+
+#### Usage
+
+Run the `Run Extension Tests` target in the Debug View. This will:
+
+- Start a task `npm: watch` to compile the code
+- Run the extension integration test in a new VS Code window
+
+#### Tests
+
+Compile first.
+
+```sh
+$ npm run pretest
+```
+
+Unit tests.
+
+```sh
+$ npm run test:unit
+```
+
+Run both the above steps in a sequence.
+
+```sh
+$ npm test
+```
+
+Run VS Code extention tests.
+
+NB. VS Code will be downloaded and run against the code. You will get errors unless you close VS Code first.
+
+```sh
+$ npm run test:extension
+```
+
+
+
 ## License
 
 Released as [MIT](/LICENSE).
