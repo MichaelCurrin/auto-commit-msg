@@ -3,7 +3,7 @@
 #
 # Run this as a standalone report, not as a hook.
 #
-# Get count of files added, modified, deleted and renamed/moved.
+# It will get count of files added, modified, deleted and renamed/moved and output it.
 # Note that modified and renamed/moved can both apply to the same file.
 # There also other states like C for copied.
 
@@ -11,6 +11,8 @@
 # A more flexible approach (for unit tests for example) would be for this
 # script to handle the status and call another script to do the parsing and result. Then
 # the script could be used separate from git and so accept a filename or stdin.
+
+# Status summary excluding untracked files using a flag.
 CHG=$(git status -s -uno --porcelain)
 
 # Note quotes and -n to preserve newlines so line count or grep for start of lines works.
