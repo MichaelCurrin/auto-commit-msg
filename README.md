@@ -36,11 +36,6 @@ Run the `Run Extension Tests` target in the Debug View. This will:
 
 #### Tests
 
-Compile first.
-
-```sh
-$ npm run pretest
-```
 
 Unit tests.
 
@@ -48,7 +43,7 @@ Unit tests.
 $ npm run test:unit
 ```
 
-Run both the above steps in a sequence.
+Run the pretest and unit test steps.
 
 ```sh
 $ npm test
@@ -59,7 +54,7 @@ Run VS Code extention tests.
 NB. VS Code will be downloaded and run against the code. You will get errors unless you close VS Code first.
 
 ```sh
-$ npm run test:extension
+$ npm run test:integration
 ```
 
 
