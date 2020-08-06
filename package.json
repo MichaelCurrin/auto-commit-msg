@@ -2,7 +2,7 @@
 	"name": "auto-commit-msg",
 	"displayName": "auto-commit-msg",
 	"description": "Auto Commit Extension - generate git commit messages",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "MichaelCurrin",
 	"repository": "https://github.com/MichaelCurrin/auto-commit-msg",
 	"engines": {
