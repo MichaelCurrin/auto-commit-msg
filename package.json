@@ -29,7 +29,7 @@
 		"lint": "eslint . --ext .ts,.tsx",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile",
-		"test:integration": "node ./out/test/runTest.js",
+		"test:integration": "node ./out/test/integration/runTest.js",
 		"test:unit": "cd out && mocha",
 		"test": "npm run test:unit"
 	},
