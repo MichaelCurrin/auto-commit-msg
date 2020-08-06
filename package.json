@@ -29,9 +29,9 @@
 		"lint": "eslint . --ext .ts,.tsx",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile",
-		"test:extension": "node ./out/test/runTest.js",
-		"test:unit": "echo 'Unit tests'",
-		"test": "npm run compile && npm run test:unit"
+		"test:integration": "node ./out/test/runTest.js",
+		"test:unit": "cd out && mocha",
+		"test": "npm run test:unit"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
