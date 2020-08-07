@@ -1,6 +1,7 @@
 # Auto Commit Message
 > Automagically generate a commit message - based on which files changed and how they changed
 
+**This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you.**
 
 ## Project plan
 
