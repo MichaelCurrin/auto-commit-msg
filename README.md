@@ -57,7 +57,10 @@ $ npm run test:integration
 ```
 
 
-
 ## License
 
 Released as [MIT](/LICENSE).
+
+This extension started off with the VS Code hello world test sample.
+
+Then it was extended to have source control button and commit flow, based on [Git Semantic Commit](https://github.com/nitayneeman/vscode-git-semantic-commit). See [LICENSE-source](LICENSE-source).
