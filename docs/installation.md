@@ -56,6 +56,13 @@ You can now run a commit in the terminal and you'll see the prepared message app
 
 ```sh
 $ git commit FILE
+$ git log
+```
+
+Remove:
+
+```sh
+$ rm .git/hooks/prepare-commit-msg
 ```
 
 For other projects using this repo's hook - use `cp` or `curl` to add the hook to your repo. Or package and an installable Zip.
