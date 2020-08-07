@@ -1,4 +1,4 @@
-mkdir -p test-temp
+mkdir test-temp
 
 cd test-temp
 
