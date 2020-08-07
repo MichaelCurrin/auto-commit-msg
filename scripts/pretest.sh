@@ -1,5 +1,2 @@
-mkdir test-temp
-
-cd test-temp
-
-git init --quiet
+#!/bin/sh
+git init test-temp --quiet
