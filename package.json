@@ -1,133 +1,138 @@
 {
-	"name": "auto-commit-msg",
-	"displayName": "Auto Commit Message",
-	"description": "VS Code extension - generate git commit messages",
-	"version": "0.3.0",
-	"publisher": "MichaelCurrin",
-	"homepage": "https://github.com/MichaelCurrin/auto-commit-msg",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/MichaelCurrin/auto-commit-msg"
-	},
-	"bugs": "https://github.com/MichaelCurrin/auto-commit-msg",
-	"keywords": [
-		"Git",
-		"Commit",
-		"Message"
-	],
-	"engines": {
-		"vscode": "^1.39.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "Git - Semantic Commit",
-			"properties": {
-				"gitSemanticCommit.commitOptions": {
-					"type": "string",
-					"default": "--quiet",
-					"markdownDescription": "Specifies which [arguments](https://git-scm.com/docs/git-commit#_options) to be passed when the commit is executed."
-				},
-				"gitSemanticCommit.preserveScope": {
-					"type": "boolean",
-					"default": false,
-					"markdownDescription": "Determines whether to preserve the last message scope that was inserted."
-				},
-				"gitSemanticCommit.scopeTemplate": {
-					"type": "string",
-					"default": "($scope)",
-					"markdownDescription": "Specifies scope template (`$scope` placeholder will be replaced with the passed scope). Check out [this](https://github.com/nitayneeman/vscode-git-semantic-commit#customize-your-scope) example."
-				},
-				"gitSemanticCommit.stageAll": {
-					"type": "boolean",
-					"default": true,
-					"markdownDescription": "Determines whether to stage all changes before the commit, in case the staging area (index) is empty."
-				},
-				"gitSemanticCommit.types": {
-					"type": "array",
-					"default": [
-						{
-							"type": "build",
-							"description": "Development changes related to the build system"
-						},
-						{
-							"type": "ci",
-							"description": "Development changes related to the continuous integration and deployment system"
-						},
-						{
-							"type": "docs",
-							"description": "Documentation changes related to the project"
-						},
-						{
-							"type": "feat",
-							"description": "Production changes related to new backward-compatible abilities or functionality"
-						},
-						{
-							"type": "fix",
-							"description": "Production changes related to backward-compatible bug fixes"
-						},
-						{
-							"type": "perf",
-							"description": "Production changes related to backward-compatible performance improvements"
-						},
-						{
-							"type": "refactor",
-							"description": "Development changes related to modifying the codebase"
-						},
-						{
-							"type": "style",
-							"description": "Development changes related to styling the codebase"
-						},
-						{
-							"type": "test",
-							"description": "Development changes related to tests"
-						}
-					],
-					"items": {
-						"type": [
-							"string",
-							"object"
-						],
-						"description": "Can be either a string, or an object. If an object, use type for the commit type, and description to give a short description for the particular commit type."
-					},
-					"minItems": 1,
-					"uniqueItems": true,
-					"markdownDescription": "Specifies the supported message types. Check out [this](https://github.com/nitayneeman/vscode-git-semantic-commit#customize-your-types) example."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint . --ext .ts,.tsx",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && ./scripts/pretest.sh",
-		"test:integration": "node ./out/test/runTest.js",
-		"test:unit": "cd out && mocha --exclude test/runTest.js,test/suite",
-		"test": "npm run test:unit",
-		"clean-out": "rm -rf ./out"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^5.2.7",
-		"@types/node": "^12.11.1",
-		"@types/vscode": "^1.39.0",
-		"@typescript-eslint/eslint-plugin": "^3.0.2",
-		"@typescript-eslint/parser": "^3.0.2",
-		"fs-extra": "^8.1.0",
-		"glob": "^7.1.4",
-		"mocha": "^6.2.3",
-		"source-map-support": "^0.5.12",
-		"tslint": "^5.20.1",
-		"typescript": "^3.6.4",
-		"vscode-test": "^1.2.0"
-	}
+  "name": "auto-commit-msg",
+  "displayName": "Auto Commit Message",
+  "description": "VS Code extension - generate git commit messages",
+  "version": "0.3.0",
+  "publisher": "MichaelCurrin",
+  "homepage": "https://github.com/MichaelCurrin/auto-commit-msg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelCurrin/auto-commit-msg"
+  },
+  "bugs": "https://github.com/MichaelCurrin/auto-commit-msg",
+  "keywords": [
+    "Git",
+    "Commit",
+    "Message"
+  ],
+  "icon": "images/logo.png",
+  "galleryBanner": {
+    "color": "#eae9e1",
+    "theme": "light"
+  },
+  "engines": {
+    "vscode": "^1.39.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Git - Semantic Commit",
+      "properties": {
+        "gitSemanticCommit.commitOptions": {
+          "type": "string",
+          "default": "--quiet",
+          "markdownDescription": "Specifies which [arguments](https://git-scm.com/docs/git-commit#_options) to be passed when the commit is executed."
+        },
+        "gitSemanticCommit.preserveScope": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Determines whether to preserve the last message scope that was inserted."
+        },
+        "gitSemanticCommit.scopeTemplate": {
+          "type": "string",
+          "default": "($scope)",
+          "markdownDescription": "Specifies scope template (`$scope` placeholder will be replaced with the passed scope). Check out [this](https://github.com/nitayneeman/vscode-git-semantic-commit#customize-your-scope) example."
+        },
+        "gitSemanticCommit.stageAll": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Determines whether to stage all changes before the commit, in case the staging area (index) is empty."
+        },
+        "gitSemanticCommit.types": {
+          "type": "array",
+          "default": [
+            {
+              "type": "build",
+              "description": "Development changes related to the build system"
+            },
+            {
+              "type": "ci",
+              "description": "Development changes related to the continuous integration and deployment system"
+            },
+            {
+              "type": "docs",
+              "description": "Documentation changes related to the project"
+            },
+            {
+              "type": "feat",
+              "description": "Production changes related to new backward-compatible abilities or functionality"
+            },
+            {
+              "type": "fix",
+              "description": "Production changes related to backward-compatible bug fixes"
+            },
+            {
+              "type": "perf",
+              "description": "Production changes related to backward-compatible performance improvements"
+            },
+            {
+              "type": "refactor",
+              "description": "Development changes related to modifying the codebase"
+            },
+            {
+              "type": "style",
+              "description": "Development changes related to styling the codebase"
+            },
+            {
+              "type": "test",
+              "description": "Development changes related to tests"
+            }
+          ],
+          "items": {
+            "type": [
+              "string",
+              "object"
+            ],
+            "description": "Can be either a string, or an object. If an object, use type for the commit type, and description to give a short description for the particular commit type."
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "markdownDescription": "Specifies the supported message types. Check out [this](https://github.com/nitayneeman/vscode-git-semantic-commit#customize-your-types) example."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint . --ext .ts,.tsx",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && ./scripts/pretest.sh",
+    "test:integration": "node ./out/test/runTest.js",
+    "test:unit": "cd out && mocha --exclude test/runTest.js,test/suite",
+    "test": "npm run test:unit",
+    "clean-out": "rm -rf ./out"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.1",
+    "@types/vscode": "^1.39.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
+    "mocha": "^6.2.3",
+    "source-map-support": "^0.5.12",
+    "tslint": "^5.20.1",
+    "typescript": "^3.6.4",
+    "vscode-test": "^1.2.0"
+  }
 }
