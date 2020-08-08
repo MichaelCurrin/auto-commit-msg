@@ -12,8 +12,8 @@ const enum ActionType {
 
 const scopeStorageKey = `${workspaceStorageKey}:scope`;
 
-export class SemanticCommitCommand extends Command {
-  identifier = 'semanticCommit';
+export class CommitMsgCommand extends Command {
+  identifier = 'commitMsg';
 
   context: ExtensionContext;
   scope: string;

@@ -1,9 +1,9 @@
 import { commands, window, Disposable, ExtensionContext } from 'vscode';
 
 import { extensionIdentifier } from '../constants';
-import { SemanticCommitCommand } from './semantic-commit';
+import { CommitMsgCommand } from './semantic-commit';
 
-const commandDefinitions = [SemanticCommitCommand];
+const commandDefinitions = [CommitMsgCommand];
 
 const createDisposables = (context: ExtensionContext): Disposable[] => {
   return commandDefinitions.map(CommandDefinition => {
