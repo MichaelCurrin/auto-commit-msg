@@ -22,9 +22,9 @@ SHA1=$3
 #
 case "$COMMIT_SOURCE,$SHA1" in
 , | template,)
-    /usr/bin/perl -i.bak -pe '
+  /usr/bin/perl -i.bak -pe '
       print "\n" . `git diff --cached --name-status -r`
 	 if /^#/ && $first++ == 0' "$COMMIT_MSG_FILE"
-    ;;
+  ;;
 *) ;;
 esac

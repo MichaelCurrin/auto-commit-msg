@@ -17,7 +17,7 @@ export class SemanticCommitCommand extends Command {
 
   context: ExtensionContext;
   scope: string;
-  types: (string | {type: string, description: string})[];
+  types: (string | { type: string, description: string })[];
 
   constructor(context: ExtensionContext) {
     super();
@@ -111,15 +111,15 @@ export class SemanticCommitCommand extends Command {
   private createQuickPickItems(): QuickPickItem[] {
     const hasScope = this.hasScope();
     const typeItems = this.types.map(item => {
-        const description = typeof item === "string" ? "" : item.description
-        const type = typeof item === "string" ? item : item.type
-        return ({
-          label: `$(git-commit) Commit with "${type}" type`,
-          alwaysShow: true,
-          actionType: ActionType.subject,
-          type,
-          description
-        })
+      const description = typeof item === "string" ? "" : item.description
+      const type = typeof item === "string" ? item : item.type
+      return ({
+        label: `$(git-commit) Commit with "${type}" type`,
+        alwaysShow: true,
+        actionType: ActionType.subject,
+        type,
+        description
+      })
     });
 
     return [

@@ -67,4 +67,9 @@ $ rm .git/hooks/prepare-commit-msg
 
 For other projects using this repo's hook - use `cp` or `curl` to add the hook to your repo. Or package and an installable Zip.
 
-Instructions to follow as this develops.
+Instructions to follow as this develops. 
+
+Part ideas:
+
+- A shell script in a repo
+- References a concatenated JS script from this repo (just the text handling and not the full extension), which is in a bin directory.
