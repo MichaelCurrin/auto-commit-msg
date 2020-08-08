@@ -1,7 +1,7 @@
 import { commands, window, Disposable, ExtensionContext } from 'vscode';
 
 import { extensionIdentifier } from '../constants';
-import { CommitMsgCommand } from './semantic-commit';
+import { CommitMsgCommand } from './commit-msg';
 
 const commandDefinitions = [CommitMsgCommand];
 
