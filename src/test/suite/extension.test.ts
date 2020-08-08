@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
 
-import { createFile, clearDirectory, getLastMessage } from "./common";
+import { createFile, clearDirectory, getLastMessage } from "./lib";
 
 suite("Extension Test Suite", () => {
   const { workspaceFolders } = vscode.workspace;
