@@ -1,7 +1,7 @@
 {
   "name": "auto-commit-msg",
   "displayName": "Auto Commit Message",
-  "description": "VS Code extension - generate git commit messages",
+  "description": "Generate git commit messages automagically",
   "version": "0.3.0",
   "publisher": "MichaelCurrin",
   "homepage": "https://github.com/MichaelCurrin/auto-commit-msg",
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/MichaelCurrin/auto-commit-msg"
   },
-  "bugs": "https://github.com/MichaelCurrin/auto-commit-msg",
+  "bugs": "https://github.com/MichaelCurrin/auto-commit-msg/issues",
   "keywords": [
     "Git",
     "Commit",
@@ -33,7 +33,7 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "Git - Semantic Commit",
+      "title": "Git - Auto Commit Message",
       "properties": {
         "autoCommitMsg.commitOptions": {
           "type": "string",
