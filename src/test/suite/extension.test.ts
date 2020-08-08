@@ -9,9 +9,9 @@ suite("Extension Test Suite", () => {
 
   suiteTeardown(() => clearDirectory(directoryPath));
 
-  test('should commit with "build" type', async () => {
+  test('should commit with "chore" type', async () => {
     const sampleSubject = "add new file";
-    const expectedMessage = `build: ${sampleSubject}`;
+    const expectedMessage = `chore: ${sampleSubject}`;
 
     await createFile(directoryPath, "Hello World");
     await vscode.env.clipboard.writeText(sampleSubject);
@@ -29,10 +29,10 @@ suite("Extension Test Suite", () => {
     assert.equal(message.includes(expectedMessage), true);
   });
 
-  test('should commit with a scope and "build" type', async () => {
+  test('should commit with a scope and "chore" type', async () => {
     const sampleScope = "scope";
     const sampleSubject = "add new file";
-    const expectedMessage = `build(${sampleScope}): ${sampleSubject}`;
+    const expectedMessage = `chore(${sampleScope}): ${sampleSubject}`;
 
     await createFile(directoryPath, "Hello World");
     await vscode.env.clipboard.writeText(sampleScope);

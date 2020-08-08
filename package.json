@@ -59,12 +59,8 @@
           "type": "array",
           "default": [
             {
-              "type": "build",
-              "description": "Development changes related to the build system"
-            },
-            {
-              "type": "ci",
-              "description": "Development changes related to the continuous integration and deployment system"
+              "type": "chore",
+              "description": "Project administration like configs, package files and renaming or moing files"
             },
             {
               "type": "docs",
@@ -77,10 +73,6 @@
             {
               "type": "fix",
               "description": "Production changes related to backward-compatible bug fixes"
-            },
-            {
-              "type": "perf",
-              "description": "Production changes related to backward-compatible performance improvements"
             },
             {
               "type": "refactor",
