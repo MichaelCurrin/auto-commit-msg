@@ -114,11 +114,11 @@
     "compile": "tsc -p ./",
     "lint": "eslint . --ext .ts,.tsx",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && ./scripts/pretest.sh",
+    "pretest": "npm run compile && git init test-temp --quiet",
     "test:integration": "node ./out/test/runTest.js",
     "test:unit": "cd out && mocha --exclude test/runTest.js,test/suite",
     "test": "npm run test:unit",
-    "clean-out": "rm -rf ./out"
+    "clean": "rm -rf ./out"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
