@@ -15,7 +15,7 @@ suite("Extension Test Suite", () => {
 
     await createFile(directoryPath, "Hello World");
     await vscode.env.clipboard.writeText(sampleSubject);
-    await vscode.commands.executeCommand("gitSemanticCommit.semanticCommit");
+    await vscode.commands.executeCommand("autoCommitMsg.semanticCommit");
     await vscode.commands.executeCommand("editor.action.clipboardPasteAction");
     await vscode.commands.executeCommand(
       "workbench.action.quickOpenSelectNext"
@@ -36,7 +36,7 @@ suite("Extension Test Suite", () => {
 
     await createFile(directoryPath, "Hello World");
     await vscode.env.clipboard.writeText(sampleScope);
-    await vscode.commands.executeCommand("gitSemanticCommit.semanticCommit");
+    await vscode.commands.executeCommand("autoCommitMsg.semanticCommit");
     await vscode.commands.executeCommand("editor.action.clipboardPasteAction");
     await vscode.commands.executeCommand(
       "workbench.action.acceptSelectedQuickOpenItem"

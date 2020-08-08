@@ -1,6 +1,6 @@
-const extensionIdentifier = 'gitSemanticCommit';
+const extensionIdentifier = 'autoCommitMsg';
 
-const workspaceStorageKey = 'gitSemanticCommit';
+const workspaceStorageKey = 'autoCommitMsg';
 
 const scopeTemplatePlaceholder = '$scope';
 

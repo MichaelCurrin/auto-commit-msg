@@ -35,27 +35,27 @@
       "type": "object",
       "title": "Git - Semantic Commit",
       "properties": {
-        "gitSemanticCommit.commitOptions": {
+        "autoCommitMsg.commitOptions": {
           "type": "string",
           "default": "--quiet",
           "markdownDescription": "Specifies which [arguments](https://git-scm.com/docs/git-commit#_options) to be passed when the commit is executed."
         },
-        "gitSemanticCommit.preserveScope": {
+        "autoCommitMsg.preserveScope": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Determines whether to preserve the last message scope that was inserted."
         },
-        "gitSemanticCommit.scopeTemplate": {
+        "autoCommitMsg.scopeTemplate": {
           "type": "string",
           "default": "($scope)",
           "markdownDescription": "Specifies scope template (`$scope` placeholder will be replaced with the passed scope). Check out [this](https://github.com/nitayneeman/vscode-git-semantic-commit#customize-your-scope) example."
         },
-        "gitSemanticCommit.stageAll": {
+        "autoCommitMsg.stageAll": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Determines whether to stage all changes before the commit, in case the staging area (index) is empty."
         },
-        "gitSemanticCommit.types": {
+        "autoCommitMsg.types": {
           "type": "array",
           "default": [
             {
