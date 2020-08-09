@@ -15,14 +15,7 @@ export function lookupAction(x: string, y: string): string {
   const actionX = (<any>ACTION)[x];
   const actionY = (<any>ACTION)[y];
 
-  let result = '';
-  if (actionY === ACTION.M) {
-    result = actionY;
-  } else {
-    return actionX;
-  }
-
-  return result;
+  return actionY === ACTION.M ? actionY : actionX;
 }
 
 export function pathToPath(oldPath: string, newPath: string): string {
