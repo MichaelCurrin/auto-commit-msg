@@ -4,6 +4,19 @@
 Warning: VS Code does actually honor a `prepare-commit-msg` hook, unfortunately the hook cannot read from the UI message box and the message is always written out with confirmation. So this this with caution.
 
 
+## Reference
+
+Here is the flow for using any `prepare-commit-msg` hook, not specific to this project:
+
+1. Edit file in your project.
+1. Commit on command-line.
+1. Prepare commit message (this internally can look for the template as per the sample).
+1. Override value with own message if desired.
+1. Exit message editor view.
+1. Commit is made.
+1. Hook runs and user see prepared message.
+
+
 ## Installation
 
 Note that in future the installation steps here will change and be split into maybe a separate installation doc. On part is installing the hook in any repo using a file built with GH actions. Another is build and using the file by hand which is simpler to set up and will be become a development doc step once actions is setup.

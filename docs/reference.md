@@ -51,6 +51,32 @@ CHG=$(git status -s -uno --porcelain)
   configuration.
 ```
 
+### Warning
+
+Note a weakness - if you rename a file and then modify it, then you can have A and M for one file.
+
+```sh
+$ git status -s
+D  src/test/main.test.ts
+AM src/test/single-file.test.ts
+```
+
+But when adding first using CLI or UI, then it will be simplified. 
+
+If the percent change is very small, then it will be converted to a rename.
+
+In this case the files are different enough to not be collapsed as a rename. Note that no code was changed - the add command changes from above.
+
+```sh
+$ git add -A
+$ git status -s
+D  src/test/main.test.ts
+A  src/test/single-file.test.ts
+```
+
+Fortunately, this status will always run _after_ staging because of the hook flow (or extension use).
+
+
 ## git diff
 
 Copied from sample hook:

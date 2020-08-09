@@ -33,10 +33,19 @@ $ npm test
 Run the VS Code extension tests. VS Code will be downloaded and run against the code in a separate window.
 
 1. Close VS Code - you will get errors unless you **close** VS Code first.
-1. Run integration tests.
+2. Run integration tests.
     ```sh
     $ npm run pretest && npm run test:ig
     ```
+
+
+## Clean
+
+This will clear the unversioned `out` directory - useful to get rid of files after renaming or deleting TS files. This will keep any hidden directories like `.vscode-test` which has a large binary for integration tests.
+
+```sh
+$ npm run clean
+```
 
 
 ## Tag
