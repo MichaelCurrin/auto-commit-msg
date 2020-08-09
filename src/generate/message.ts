@@ -1,4 +1,6 @@
-// Create a commit message from a string which is formatted as a short git status.
+/**
+ * Create a commit message from a string which is formatted as a short git status. 
+ */
 
 import { parseStatus } from './parse-git-status';
 

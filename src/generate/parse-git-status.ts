@@ -3,6 +3,10 @@
  * 
  * Convert short git status into elements.
  */
+
+/**
+ * Map Git status short symbols to long description
+ */
 export enum DESCRIPTION {
   ' ' = 'unmodified',
   M = 'modified',
