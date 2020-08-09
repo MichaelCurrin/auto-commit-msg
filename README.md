@@ -28,4 +28,4 @@ Sources:
 
 - This extension started off with the VS Code hello world test sample.
 - Then it was extended to have source control button and commit flow, based on [Git Semantic Commit](https://github.com/nitayneeman/vscode-git-semantic-commit). See [LICENSE-source](LICENSE-source).
-- The [parse-git-status](/src/generate/parse-git-status) module was based on [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status), but with some simplifications and added TS types.
+- The [parse-git-status](/src/generate/parse-git-status) module was based on [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status), but with a different approach and some functionality left out (ignored and untracked files which would not be committed) and with added TS types so it can be used here.
