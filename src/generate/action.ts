@@ -1,3 +1,6 @@
+/**
+ * Phrase commit changes in words.
+ */
 export enum ACTION {
   ' ' = '',
   M = 'update',

@@ -1,3 +1,8 @@
+/**
+ * Parse git status.
+ * 
+ * Convert short git status into elements.
+ */
 export enum DESCRIPTION {
   ' ' = 'unmodified',
   M = 'modified',
