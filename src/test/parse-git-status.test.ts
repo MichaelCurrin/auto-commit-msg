@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { parseStatus, Status } from '../generate/parse-git-status';
+import { Status, DESCRIPTION, parseStatus, describeCode } from '../generate/parse-git-status';
 
 describe('Split git status into components for an unchanged path', function() {
   describe('#parseStatus()', function() {
@@ -52,6 +52,24 @@ describe('Split git status into components for an unchanged path', function() {
         };
         assert.deepEqual(parseStatus('R  foo.txt -> fizz/foo.txt'), expected);
       });
+    });
+  });
+});
+
+describe('Get value from key', function() {
+  describe('#describeCode()', function() {
+    it('Can return the correct value for added symbol', function() {
+      assert.equal(describeCode('A'), 'added');
+
+      assert.equal(describeCode('A'), DESCRIPTION.A);
+    });
+
+    it('Can return the correct value for empty space as unmodified', function() {
+      assert.equal(describeCode(' '), 'unmodified');
+    });
+
+    it('Can return the correct value for ignored symbol', function() {
+      assert.equal(describeCode('!'), 'ignored');
     });
   });
 });
