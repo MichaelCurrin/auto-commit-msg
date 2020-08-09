@@ -1,6 +1,8 @@
 /**
  * Phrase commit changes in words.
  */
+
+/** Map git status short symbols to preferred words for commit messages. */
 export enum ACTION {
   ' ' = '',
   M = 'update',
@@ -8,6 +10,12 @@ export enum ACTION {
   D = 'delete',
   R = 'rename',
   C = 'copy'
+}
+
+export type DescriptionStrings = keyof typeof ACTION;
+
+export function describeAction(key: DescriptionStrings) {
+  return ACTION[key];
 }
 
 export function lookupAction(x: string, y: string): string {
