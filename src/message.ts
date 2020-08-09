@@ -4,6 +4,9 @@ export function one(action: string, path: string): string {
     case 'new file':
       msgAction = 'Create';
       break;
+    case 'modified':
+      msgAction = 'Update';
+      break;
     case 'delete':
       msgAction = 'Delete';
       break;
