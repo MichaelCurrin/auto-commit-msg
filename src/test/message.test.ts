@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 
-import { one } from '../message';
+import { one } from '../generate/message';
 
 describe('Generate commit message for a single changed file', function() {
   describe('#one()', function() {

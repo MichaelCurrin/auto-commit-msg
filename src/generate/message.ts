@@ -1,6 +1,6 @@
-import { parseStatus } from './generate/parse-git-status';
+import { parseStatus } from './parse-git-status';
 
-import { lookupAction, pathToPath } from './generate/action';
+import { lookupAction, pathToPath } from './action';
 
 // This is no titlecase method in JS. This works, but just for first letter.
 function title(value: string) {
