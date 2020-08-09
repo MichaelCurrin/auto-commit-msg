@@ -10,11 +10,8 @@
     "url": "https://github.com/MichaelCurrin/auto-commit-msg"
   },
   "bugs": "https://github.com/MichaelCurrin/auto-commit-msg/issues",
-  "keywords": [
-    "Git",
-    "Commit",
-    "Message"
-  ],
+  "license": "MIT",
+  "keywords": [ "Git", "Commit", "Message" ],
   "icon": "images/logo.png",
   "galleryBanner": {
     "color": "#eae9e1",
