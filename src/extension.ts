@@ -6,4 +6,5 @@ export async function activate(context: vscode.ExtensionContext) {
   registerCommands(context);
 }
 
-export function deactivate() { }
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function deactivate() {}

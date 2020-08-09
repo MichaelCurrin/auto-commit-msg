@@ -17,7 +17,7 @@ export class CommitMsgCommand extends Command {
 
   context: ExtensionContext;
   scope: string;
-  types: (string | { type: string, description: string })[];
+  types: (string | { type: string; description: string })[];
 
   constructor(context: ExtensionContext) {
     super();
@@ -47,7 +47,7 @@ export class CommitMsgCommand extends Command {
 
     quickPick.onDidChangeSelection(async (items: any) => {
       if (items.length > 0) {
-        const [{ actionType }] = items;
+        const [ { actionType } ] = items;
 
         if (actionType === ActionType.scope) {
           this.scope = quickPick.value;
@@ -56,7 +56,7 @@ export class CommitMsgCommand extends Command {
           quickPick.value = '';
           quickPick.items = this.createQuickPickItems();
         } else {
-          const [{ type }] = items;
+          const [ { type } ] = items;
           const subject = quickPick.value;
 
           await this.performCommit(type, subject);
@@ -85,13 +85,11 @@ export class CommitMsgCommand extends Command {
   }
 
   private getScope() {
-    return this.isPreserveScopeEnabled()
-      ? this.context.workspaceState.get(scopeStorageKey, '')
-      : '';
+    return this.isPreserveScopeEnabled() ? this.context.workspaceState.get(scopeStorageKey, '') : '';
   }
 
   private getTypes() {
-    return [...getConfiguration()[ConfigurationProperties.types].sort()];
+    return [ ...getConfiguration()[ConfigurationProperties.types].sort() ];
   }
 
   private getCommitOptions() {
@@ -101,7 +99,7 @@ export class CommitMsgCommand extends Command {
   private createQuickPick(items: QuickPickItem[]) {
     const quickPick = window.createQuickPick();
 
-    quickPick.items = [...items];
+    quickPick.items = [ ...items ];
     quickPick.placeholder = 'Type a value (scope or subject)';
     quickPick.ignoreFocusOut = true;
 
@@ -110,23 +108,21 @@ export class CommitMsgCommand extends Command {
 
   private createQuickPickItems(): QuickPickItem[] {
     const hasScope = this.hasScope();
-    const typeItems = this.types.map(item => {
-      const description = typeof item === "string" ? "" : item.description
-      const type = typeof item === "string" ? item : item.type
-      return ({
+    const typeItems = this.types.map((item) => {
+      const description = typeof item === 'string' ? '' : item.description;
+      const type = typeof item === 'string' ? item : item.type;
+      return {
         label: `$(git-commit) Commit with "${type}" type`,
         alwaysShow: true,
         actionType: ActionType.subject,
         type,
         description
-      })
+      };
     });
 
     return [
       {
-        label: hasScope
-          ? `$(gist-new) Change the message scope`
-          : `$(gist-new) Add a message scope`,
+        label: hasScope ? `$(gist-new) Change the message scope` : `$(gist-new) Add a message scope`,
         alwaysShow: true,
         actionType: ActionType.scope,
         type: '',
@@ -138,9 +134,7 @@ export class CommitMsgCommand extends Command {
 
   private async performCommit(type: string, subject: string) {
     if (subject.length > 0) {
-      const scope = this.hasScope()
-        ? this.scopeTemplate.replace(scopeTemplatePlaceholder, this.scope)
-        : '';
+      const scope = this.hasScope() ? this.scopeTemplate.replace(scopeTemplatePlaceholder, this.scope) : '';
       const message = `${type}${scope}: ${subject}`;
 
       if (this.isStageAllEnabled()) {
