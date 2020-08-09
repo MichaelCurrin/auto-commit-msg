@@ -24,6 +24,8 @@ This will probably be in Python for easy scaling and tests. And it will probably
 
 Released as [MIT](/LICENSE).
 
-This extension started off with the VS Code hello world test sample.
+Sources:
 
-Then it was extended to have source control button and commit flow, based on [Git Semantic Commit](https://github.com/nitayneeman/vscode-git-semantic-commit). See [LICENSE-source](LICENSE-source).
+- This extension started off with the VS Code hello world test sample.
+- Then it was extended to have source control button and commit flow, based on [Git Semantic Commit](https://github.com/nitayneeman/vscode-git-semantic-commit). See [LICENSE-source](LICENSE-source).
+- The [parse-git-status](/src/generate/parse-git-status) module was based on [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status), but with some simplifications and added TS types.
