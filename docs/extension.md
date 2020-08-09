@@ -42,38 +42,9 @@ $ code .
 Run the extension.
 
 1. Go to the Debub tab.
-1. Click _Run Extension_.
+2. Click _Run Extension_.
 
 
 This will start a sandboxes VS Code window which has the extension active in it and no other extensions. At a lower level, it runs `npm compile` and `npm watch`.
 
 The code for the extension is in [src](/src/).
-
-
-
-## Tests
-
-
-### Unit
-
-Unit tests.
-
-```sh
-$ npm run test:unit
-```
-
-Run the pretest and unit test steps.
-
-```sh
-$ npm test
-```
-
-### Integration
-
-Run VS Code extention tests. Does not cover pretest by default, so is added here.
-
-NB. VS Code will be downloaded and run against the code. You will get errors unless you close VS Code first.
-
-```sh
-$ npm run pretest && npm run test:integration
-```

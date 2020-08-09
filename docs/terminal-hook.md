@@ -6,6 +6,8 @@ Warning: VS Code does actually honor a `prepare-commit-msg` hook, unfortunately 
 
 ## Installation
 
+Note that in future the installation steps here will change and be split into maybe a separate installation doc. On part is installing the hook in any repo using a file built with GH actions. Another is build and using the file by hand which is simpler to set up and will be become a development doc step once actions is setup.
+
 
 ### Install system dependencies
 
