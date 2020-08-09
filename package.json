@@ -92,15 +92,15 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run build",
-    "build": "tsc -p ./",
     "lint": "eslint . --ext .ts,.tsx",
+    "build": "tsc -p ./",
+    "vscode:prepublish": "npm run build",
     "watch": "tsc -watch -p ./",
+    "clean": "rm -rf ./out",
     "pretest": "npm run build && git init test-temp --quiet",
     "test:integration": "node ./out/test/runTest.js",
     "test:unit": "cd out && mocha --exclude test/runTest.js,test/suite",
-    "test": "npm run test:unit",
-    "clean": "rm -rf ./out"
+    "test": "npm run test:unit"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.1",
