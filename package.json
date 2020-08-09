@@ -92,11 +92,11 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "vscode:prepublish": "npm run build",
+    "build": "tsc -p ./",
     "lint": "eslint . --ext .ts,.tsx",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && git init test-temp --quiet",
+    "pretest": "npm run build && git init test-temp --quiet",
     "test:integration": "node ./out/test/runTest.js",
     "test:unit": "cd out && mocha --exclude test/runTest.js,test/suite",
     "test": "npm run test:unit",
