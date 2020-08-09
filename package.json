@@ -56,6 +56,10 @@
               "description": "Project administration like configs, package files and renaming or moing files"
             },
             {
+              "type": "ci",
+              "description": "Tasks relating to CI-CD"
+            },
+            {
               "type": "docs",
               "description": "Documentation changes related to the project"
             },
