@@ -1,6 +1,13 @@
 # Development
 
 
+## Structure
+
+The code from the Semantic Git Commit extension was used to set up [src](/src) directory for a couple of TS files and the tests. 
+
+The [generate](/src/generate) module followed later as logic that will work standalone in the CLI for a hook.
+
+
 ## Install
 
 See installation steps in the extension and hook docs - clone the repo and install Node.js and dependencies.
