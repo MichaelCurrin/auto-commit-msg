@@ -2,7 +2,7 @@
   "name": "auto-commit-msg",
   "displayName": "Auto Commit Message",
   "description": "Generate git commit messages automagically",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "publisher": "MichaelCurrin",
   "homepage": "https://github.com/MichaelCurrin/auto-commit-msg",
   "repository": {
@@ -11,7 +11,11 @@
   },
   "bugs": "https://github.com/MichaelCurrin/auto-commit-msg/issues",
   "license": "MIT",
-  "keywords": [ "Git", "Commit", "Message" ],
+  "keywords": [
+    "Git",
+    "Commit",
+    "Message"
+  ],
   "icon": "images/logo.png",
   "galleryBanner": {
     "color": "#eae9e1",
@@ -20,8 +24,12 @@
   "engines": {
     "vscode": "^1.39.0"
   },
-  "categories": [ "Other" ],
-  "activationEvents": [ "*" ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
@@ -85,7 +93,10 @@
             }
           ],
           "items": {
-            "type": [ "string", "object" ],
+            "type": [
+              "string",
+              "object"
+            ],
             "description": "Can be either a string, or an object. If an object, use type for the commit type, and description to give a short description for the particular commit type."
           },
           "minItems": 1,
