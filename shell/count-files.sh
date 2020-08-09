@@ -9,7 +9,7 @@
 #
 # This script will get count of files added, modified, deleted and renamed/moved and output it.
 # Note that modified and renamed/moved can both apply to the same file.
-# There also other states like C for copied and ?? for untracked.
+# This does not support C (copied).
 
 # This report uses git status and passes it do the steps below to parse it.
 # A more flexible approach (for unit tests for example) would be for this
