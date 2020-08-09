@@ -16,3 +16,7 @@ export function one(action: string, path: string): string {
 
   return `${msgAction} ${path}`;
 }
+
+export function move(oldPath: string, newPath: string): string {
+  return `Rename ${oldPath} to ${newPath}`;
+}
