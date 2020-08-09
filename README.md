@@ -1,7 +1,10 @@
 # Auto Commit Message
 > Automagically generate a commit message - based on which files changed and how they changed
 
-**This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you.**
+![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)
+
+_Note: This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you._
+
 
 ## Project plan
 
