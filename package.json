@@ -4,7 +4,7 @@
   "description": "Generate git commit messages automagically",
   "version": "0.4.0",
   "publisher": "MichaelCurrin",
-  "homepage": "https://github.com/MichaelCurrin/auto-commit-msg",
+  "homepage": "https://github.com/MichaelCurrin/auto-commit-msg#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/MichaelCurrin/auto-commit-msg"
