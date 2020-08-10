@@ -39,7 +39,9 @@ async function prepareCommitMsg(repository: Repository) {
     return;
   }
   if (diffIndexLines.length > 1) {
-    vscode.window.showErrorMessage('This extension only supports working with one changed file');
+    vscode.window.showErrorMessage(
+      "This extension only supports working with ONE changed file at a time. Stage just file (or it's old and new path) and try again. Or with no files staged, ensure that is only one file covered under changed files."
+    );
     return;
   }
 
