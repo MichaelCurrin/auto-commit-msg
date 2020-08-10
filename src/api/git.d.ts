@@ -1,9 +1,14 @@
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *  Licensed under the MIT License.
+ * 
+ *  This copied from git-prefix with a notice about license.txt but I didn't find one there.
  *--------------------------------------------------------------------------------------------*/
+/**
+ * Type definitions around git, allowing use of GitExtension and Repository in extensions.ts script.
+ */
 
-import { Uri, SourceControlInputBox, Event, CancellationToken } from 'vscode';
+import { Uri, Event } from 'vscode';
 
 export interface Git {
   readonly path: string;
@@ -205,40 +210,4 @@ export interface GitExtension {
 	 * @returns API instance
 	 */
   getAPI(version: 1): API;
-}
-
-export const enum GitErrorCodes {
-  BadConfigFile = 'BadConfigFile',
-  AuthenticationFailed = 'AuthenticationFailed',
-  NoUserNameConfigured = 'NoUserNameConfigured',
-  NoUserEmailConfigured = 'NoUserEmailConfigured',
-  NoRemoteRepositorySpecified = 'NoRemoteRepositorySpecified',
-  NotAGitRepository = 'NotAGitRepository',
-  NotAtRepositoryRoot = 'NotAtRepositoryRoot',
-  Conflict = 'Conflict',
-  StashConflict = 'StashConflict',
-  UnmergedChanges = 'UnmergedChanges',
-  PushRejected = 'PushRejected',
-  RemoteConnectionError = 'RemoteConnectionError',
-  DirtyWorkTree = 'DirtyWorkTree',
-  CantOpenResource = 'CantOpenResource',
-  GitNotFound = 'GitNotFound',
-  CantCreatePipe = 'CantCreatePipe',
-  CantAccessRemote = 'CantAccessRemote',
-  RepositoryNotFound = 'RepositoryNotFound',
-  RepositoryIsLocked = 'RepositoryIsLocked',
-  BranchNotFullyMerged = 'BranchNotFullyMerged',
-  NoRemoteReference = 'NoRemoteReference',
-  InvalidBranchName = 'InvalidBranchName',
-  BranchAlreadyExists = 'BranchAlreadyExists',
-  NoLocalChanges = 'NoLocalChanges',
-  NoStashFound = 'NoStashFound',
-  LocalChangesOverwritten = 'LocalChangesOverwritten',
-  NoUpstreamBranch = 'NoUpstreamBranch',
-  IsInSubmodule = 'IsInSubmodule',
-  WrongCase = 'WrongCase',
-  CantLockRef = 'CantLockRef',
-  CantRebaseMultipleBranches = 'CantRebaseMultipleBranches',
-  PatchDoesNotApply = 'PatchDoesNotApply',
-  NoPathFound = 'NoPathFound'
 }
