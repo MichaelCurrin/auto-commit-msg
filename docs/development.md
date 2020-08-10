@@ -13,6 +13,33 @@ The [generate](/src/generate) module followed later as logic that will work stan
 See installation steps in the extension and hook docs - clone the repo and install Node.js and dependencies.
 
 
+## Run extension in sandbox mode
+
+
+## Usage
+> Start the extension for local development
+
+Open VS Code at the repo.
+
+```sh
+$ code .
+```
+
+Run the extension.
+
+1. Go to the Debub tab.
+2. Click _Run Extension_.
+
+
+This will start a sandboxed VS Code window which has the extension active in it and no other extensions. At a lower level, it runs `npm compile` and `npm watch`.
+
+You might want to use File / Open to change the sandbox window to a repo what has more content to play around it. This will be remembered on later runs.
+
+If you make a change to your source code, use the green Restart circle in the debugger overlap to reload the extension in the sandbox windo.w.
+
+The code for the extension is in [src](/src/).
+
+
 
 ##  Run checks
 

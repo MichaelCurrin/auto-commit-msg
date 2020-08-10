@@ -5,6 +5,31 @@ This project in installable as a VS Code extension.
 For now it is only available for dev testing but eventually will be installable for anyone using a download file (maybe even using the marketplace).
 
 
+## Functionality
+
+See the [gitCommands.ts](/src/gitCommands.ts) script for implementation details.
+
+- The extension button must be able to run against **staged** changes only (if any). This will be the most common flow for the initial easy functionality of only committing one file at a time.
+    - Wnat staged only. Not untracked.
+    - Command
+        - Use output from `git diff-index --name-status --cached HEAD`. That is staged but not untracked. This was based on [index.js](https://github.com/mcwhittemore/staged-git-files/blob/master/index.js) of another extension.
+        - Note `git diff` will not be appropriate here.
+- And fallback to **all** changes that would be committed. Nothing is staged then, this is everything, but excluding untracked. (There may be specific behavior here I've assumed because of my smart commit or other VS Code preferences.)
+    - Want both staged and unstaged. But not untracked.
+    - Command
+        - Use output from `git status -s -uno --porcelain`. 
+        - Use output from `git diff-index --name-status HEAD`. 
+
+Also of interest, to get a summary of changes:
+
+```sh
+$ git diff-index --shortstat HEAD
+ 4 files changed, 131 insertions(+), 96 deletions(-)
+```
+
+See more [here](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/cheatsheets/git/commands/diff-index.md).
+
+
 ## Installation
 
 ### Install system dependencies
@@ -30,21 +55,7 @@ $ npm install
 Run `npm install` in terminal to install dependencies.
 
 
+
 ## Usage
-> Start the extension for local development
 
-Open VS Code at the repo.
-
-```sh
-$ code .
-```
-
-Run the extension.
-
-1. Go to the Debub tab.
-2. Click _Run Extension_.
-
-
-This will start a sandboxes VS Code window which has the extension active in it and no other extensions. At a lower level, it runs `npm compile` and `npm watch`.
-
-The code for the extension is in [src](/src/).
+There are no production example use steps yet. Only dev steps. See [development](development.md) doc.

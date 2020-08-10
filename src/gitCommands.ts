@@ -26,13 +26,8 @@ export class Git {
    * If the CLI command was an empty string (no changes), then the result would be `[ '' ]`,
    * so return empty array instead.
    */
-  private static async diffIndex(
-    options: string[] = []
-  ): Promise<Array<string>> {
-    const {
-      stdout,
-      stderr
-    } = await this.execute(getWorkspaceFolder(), 'diff-index', [
+  private static async diffIndex(options: string[] = []): Promise<Array<string>> {
+    const { stdout, stderr } = await this.execute(getWorkspaceFolder(), 'diff-index', [
       '--name-status',
       ...options,
       'HEAD'
