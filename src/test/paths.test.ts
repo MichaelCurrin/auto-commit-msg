@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 
-import { commonPath, removeBase, splitPath, isDoc } from '../generate/paths';
+import { commonPath, removeBase, splitPath } from '../generate/paths';
+import { isDoc } from '../generate/semantic';
 
 describe('Path handling', function() {
   describe('#commonPath()', function() {
