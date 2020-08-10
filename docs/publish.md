@@ -1,10 +1,13 @@
 # Publish
-
-Build, use and share a packaged extension file.
+> Build, use and share a packaged form of the extension file
 
 See [Publishing Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) in the docs.
 
-This uses the [vsce](https://github.com/microsoft/vscode-vsce) package from NPM to create a `.vsix` binary file, which can be used locally (in `.vscode/extensions` for user or repo level), sent to others (directly or through a download on GitHub), or published to the VS Code marketplace (not currently setup for this extension).
+This seciton uses the [vsce](https://github.com/microsoft/vscode-vsce) package from NPM.
+
+> vsce, short for "Visual Studio Code Extensions", is a command-line tool for packaging, publishing and managing VS Code extensions.
+
+That is used to create a `.vsix` binary file.which can be used locally (in `.vscode/extensions` for user or repo level), sent to others (directly or through a download on GitHub), or published to the VS Code marketplace (not currently setup for this extension).
 
 
 <!-- TODO: Move sections to cheatsheets -->
@@ -93,6 +96,33 @@ $ vsce publish
 # <publisherID>.myExtension published to VS Code MarketPlace
 ```
 
+## Install
+
+Extensions must go `~/.vscode/extensions` according to the docs - that's where other marketplace extensions go as directories.
+
+Run this to unzip your build package and move it to the appropriate directory.
+
+```sh
+$ code --install-extension EXTENSION_PATH
+```
+```
+Installing extensions...
+Extension 'auto-commit-msg-0.6.0.vsix' was successfully installed.
+```
+
+Check it:
+
+```sh
+$ ls ~/.vscode/extensions/
+```
+```
+dbaeumer.vscode-eslint-2.1.8      michaelcurrin.auto-commit-msg-0.6.0
+```
+
+
+If published, you can also install by providing the extension ID from the marketplace.
+
+There is also the `ext` syntax you'll see in the marketplace which can be added to the command bar.
 
 ## Notes
 
