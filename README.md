@@ -5,6 +5,8 @@
 
 _Note: This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you. The focus has shifted away from making a terminal hook because VS Code handles is weirdly and on every UI commit, even if you only plan use it on the terminal_
 
+I am please to announced that this now a lot more stable as of `v0.7.0`, but is not production ready (mainly cosmetic issues and a need to smooth the packaging flow). Next are items in GH issues, a local TODO file, some Semantic functions to use and some renaming tests to work on.
+
 
 ## Project plan
 
