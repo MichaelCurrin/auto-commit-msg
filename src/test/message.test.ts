@@ -12,6 +12,10 @@ describe('Generate commit message for a single changed file', function() {
       assert.equal(one('M    foo.txt'), 'Update foo.txt');
     });
 
+    it('should return the appropriate commit message for a modified subdirectory file', function() {
+      assert.equal(one('M     bar/foo.txt'), 'Update foo.txt');
+    });
+
     it('should return the appropriate commit message for a deleted file', function() {
       assert.equal(one('D    foo.txt'), 'Delete foo.txt');
     });
@@ -20,6 +24,7 @@ describe('Generate commit message for a single changed file', function() {
       assert.equal(one('R    foo.txt   bar.txt'), 'Rename foo.txt to bar.txt');
     });
 
+    // These are for git status and need to be updated to reflect git-diff
     // it('should return the appropriate commit message for a moved file of the same name', function() {
     // assert.equal(
     //   one('R  foo.txt -> fizz/buzz/foo.txt'),

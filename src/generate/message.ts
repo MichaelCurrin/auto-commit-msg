@@ -1,10 +1,9 @@
 /**
  * Create a commit message from a string which is formatted as a short git status. 
  */
-
 import { parseDiffIndex } from './parse-git-output';
 
-import { lookupAction, pathToPath } from './action';
+import { lookupDiffIndexAction, pathToPath } from './action';
 
 // This is no titlecase method in JS. This works, but just for first letter.
 function title(value: string) {
@@ -15,11 +14,11 @@ function title(value: string) {
 }
 
 export function one(status: string): string {
-  const { x, y, from, to } = parseDiffIndex(status);
-
-  const verb = lookupAction(x, y);
+  const { x, from, to } = parseDiffIndex(status);
+  
+  const verb = lookupDiffIndexAction(x);
   // TODO Use moveRenamePath.
-  const paths = to ? pathToPath(from, to) : from;
+  const pathsDescription = pathToPath(from, to);
 
-  return `${title(verb)} ${paths}`;
+  return `${title(verb)} ${pathsDescription}`;
 }

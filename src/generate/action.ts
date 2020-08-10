@@ -1,6 +1,8 @@
 /**
  * Phrase commit changes in words.
  */
+import * as path from 'path';
+
 import { splitPath } from './paths';
 import { ACTION } from './constants';
 
@@ -13,14 +15,20 @@ export function describeAction(key: DescriptionStrings) {
 /**
  * Extract single action from given X and Y actions.
  * 
+ * This works for git status short output.
  * Modified takes preferences over the others. There is no way here to combine update and move.
  */
-export function lookupAction(x: string, y: string): string {
+export function lookupStatusAction(x: string, y: string): string {
   // Lookup value from enum dynamically without getting a TS error.
   const actionX = (<any>ACTION)[x];
   const actionY = (<any>ACTION)[y];
 
   return actionY === ACTION.M ? actionY : actionX;
+}
+
+export function lookupDiffIndexAction(x: string): string {
+  // Lookup value from enum dynamically without getting a TS error.
+  return (<any>ACTION)[x];
 }
 
 /**
@@ -29,8 +37,11 @@ export function lookupAction(x: string, y: string): string {
  * 
  * New path with always be full, ignoring any common base.
  */
-export function pathToPath(oldPath: string, newPath: string): string {
-  return `${oldPath} to ${newPath}`;
+export function pathToPath(from: string, to: string): string {
+  if (to !== '') {
+    return `${from} to ${to}`;
+  }
+  return path.basename(from);
 }
 
 /**
