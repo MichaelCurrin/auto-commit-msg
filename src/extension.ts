@@ -10,52 +10,71 @@ function getGitExtension() {
   return gitExtension && gitExtension.getAPI(1);
 }
 
+/** 
+ * Fetch Git Extension commit message.
+ * 
+ * This will be useful when doing semantic commits, as the initial 'feat' or 'feat: ' portion
+ * or similar can be kept as a prefix while the generate message can be a suffix.
+ * Or if left out it can be generated if possible such as for 'chore' or 'docs'.
+ */
+function getCommitMsg(repository: Repository): string {
+  return repository.inputBox.value;
+}
+
+/** Replace Git Extension commit message. */
+function setCommitMsg(repository: Repository, value: string): void {
+  repository.inputBox.value = value;
+}
+
 // Based on prefixCommit from git-prefix extension. This is the core logic from there
 // and where the message is added for this repo.
 // TODO break into functions
 async function prepareCommitMsg(repository: Repository) {
-  const originalMessage = repository.inputBox.value;
-
   const diffIndexLines = await Git.getChanges();
 
   if (diffIndexLines.length) {
     // Only support one line for now
-    const result = diffIndexLines[0];
-    repository.inputBox.value = result;
+    const value = diffIndexLines[0];
+    setCommitMsg(repository, value);
   } else {
-    vscode.window.showErrorMessage('No message to set');
+    vscode.window.showErrorMessage('Nothing to commit so no value to set as a message');
   }
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand(
-    'gitPrefix.setMessage',
-    async (uri?) => {
-      const git = getGitExtension();
+  const disposable = vscode.commands.registerCommand('gitPrefix.setMessage', async (uri?) => {
+    const git = getGitExtension();
 
-      if (!git) {
-        vscode.window.showErrorMessage('Unable to load Git Extension');
+    if (!git) {
+      vscode.window.showErrorMessage('Unable to load Git Extension');
+      return;
+    }
+
+    vscode.commands.executeCommand('workbench.view.scm');
+
+    if (uri) {
+      const selectedRepository = git.repositories.find((repository) => {
+        return repository.rootUri.path === uri._rootUri.path;
+      });
+
+      if (selectedRepository) {
+        await prepareCommitMsg(selectedRepository);
+      }
+    } else {
+      if (git.repositories.length === 0) {
+        vscode.window.showErrorMessage('No repos found');
         return;
       }
-
-      vscode.commands.executeCommand('workbench.view.scm');
-
-      if (uri) {
-        const selectedRepository = git.repositories.find((repository) => {
-          return repository.rootUri.path === uri._rootUri.path;
-        });
-
-        if (selectedRepository) {
-          await prepareCommitMsg(selectedRepository);
-        }
-      } else {
-        // TODO As yet undefined behavior for multiple repos.
-        for (const repo of git.repositories) {
-          await prepareCommitMsg(repo);
-        }
+      // Behavior for multiple repos is not implemented yet. Just handle one.
+      if (git.repositories.length > 1) {
+        vscode.window.showWarningMessage(
+          'This extension is only intended to work for one repo - taking the first'
+        );
       }
+
+      prepareCommitMsg(git.repositories[0]);
     }
-  );
+  });
 
   context.subscriptions.push(disposable);
 }
