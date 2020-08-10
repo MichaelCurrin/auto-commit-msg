@@ -3,7 +3,7 @@
 
 ## Structure
 
-The code from the Semantic Git Commit extension was used to set up [src](/src) directory for a couple of TS files and the tests. 
+The code from the Git Prefix was used to set up [src](/src) directory for a couple of TS files and the tests. 
 
 The [generate](/src/generate) module followed later as logic that will work standalone in the CLI for a hook.
 
@@ -74,11 +74,18 @@ $ npm run clean
 A few problems have been resolved by running the clean command, so this is now part of the `build` step so it runs every time when doing tests or running the extension. Note that the build/compile step happens as part of `watch` too, so it is covered there.
 
 
-## Tag
+## Releases
 
 ```sh
 $ npm version minor
 ```
+
+```sh
+$ git push --follow-tags
+```
+
+Then I go into the releases on GH section and add a title.
+
 
 
 ## Dependencies
