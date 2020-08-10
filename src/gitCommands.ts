@@ -28,8 +28,8 @@ export class Git {
   /** 
    * Run git diff-index with flags.
    * 
-   * If the CLI command was an empty string (no changes), then the result would be `[ '' ]`,
-   * so return empty array instead.
+   * Remove any empty lines, whether because of no changes or just the way the command-line
+   * data comes in or is split.
    * 
    * Note the output already seems always to have no color from my testing, but the 
    * no color flagged is added to be safe.
@@ -48,11 +48,7 @@ export class Git {
       console.debug('stderror for git diff-index command:', stderr);
     }
 
-    if (stdout.length === 0) {
-      return [];
-    }
-
-    return stdout.split('\n');
+    return stdout.split('\n').filter((line) => line !== '');
   }
 
   /** Summary of diff for staged and unstaged files, excluding untracked. **/
