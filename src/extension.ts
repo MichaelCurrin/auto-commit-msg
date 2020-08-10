@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 
 import { GitExtension, Repository } from './api/git';
 import { Git } from './gitCommands';
+import { one } from './generate/message';
 
 function getGitExtension() {
   const vscodeGit = vscode.extensions.getExtension<GitExtension>('vscode.git');
@@ -31,6 +32,8 @@ function setCommitMsg(repository: Repository, value: string): void {
 async function prepareCommitMsg(repository: Repository) {
   const diffIndexLines = await Git.getChanges();
 
+  console.debug(diffIndexLines);
+
   if (diffIndexLines.length === 0) {
     vscode.window.showWarningMessage('Nothing to commit - no value to set as a message');
     return;
@@ -40,8 +43,9 @@ async function prepareCommitMsg(repository: Repository) {
     return;
   }
 
-  const value = diffIndexLines[0];
-  setCommitMsg(repository, value);
+  const line = diffIndexLines[0];
+  const msg = one(line);
+  setCommitMsg(repository, msg);
 }
 
 export function activate(context: vscode.ExtensionContext) {

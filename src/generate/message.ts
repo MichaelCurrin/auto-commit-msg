@@ -2,7 +2,7 @@
  * Create a commit message from a string which is formatted as a short git status. 
  */
 
-import { parseStatus } from './parse-git-output';
+import { parseDiffIndex } from './parse-git-output';
 
 import { lookupAction, pathToPath } from './action';
 
@@ -15,7 +15,7 @@ function title(value: string) {
 }
 
 export function one(status: string): string {
-  const { x, y, to, from } = parseStatus(status);
+  const { x, y, from, to } = parseDiffIndex(status);
 
   const verb = lookupAction(x, y);
   // TODO Use moveRenamePath.
