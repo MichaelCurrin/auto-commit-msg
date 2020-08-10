@@ -18,6 +18,7 @@ export function one(status: string): string {
   const { x, y, to, from } = parseStatus(status);
 
   const verb = lookupAction(x, y);
+  // TODO Use moveRenamePath.
   const paths = from ? pathToPath(to, from) : to;
 
   return `${title(verb)} ${paths}`;
