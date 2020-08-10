@@ -32,13 +32,17 @@ function setCommitMsg(repository: Repository, value: string): void {
 async function prepareCommitMsg(repository: Repository) {
   const diffIndexLines = await Git.getChanges();
 
-  if (diffIndexLines.length) {
-    // Only support one line for now
-    const value = diffIndexLines[0];
-    setCommitMsg(repository, value);
-  } else {
-    vscode.window.showErrorMessage('Nothing to commit so no value to set as a message');
+  if (diffIndexLines.length === 0) {
+    vscode.window.showWarningMessage('Nothing to commit - no value to set as a message');
+    return;
   }
+  if (diffIndexLines.length > 1) {
+    vscode.window.showErrorMessage('This extension only supports working with one changed file');
+    return;
+  }
+
+  const value = diffIndexLines[0];
+  setCommitMsg(repository, value);
 }
 
 export function activate(context: vscode.ExtensionContext) {
