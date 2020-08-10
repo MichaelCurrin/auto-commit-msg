@@ -77,10 +77,14 @@ export function removeBase(base: string, filepath: string) {
   return filepath.substring(base.length);
 }
 
+interface SplitPathResult {
+  dir: string;
+  name: string;
+}
 /**
  * Directory and name of a path.
  */
-export function splitPath(filepath: string) {
+export function splitPath(filepath: string): SplitPathResult {
   const dir = path.dirname(filepath);
 
   return {
