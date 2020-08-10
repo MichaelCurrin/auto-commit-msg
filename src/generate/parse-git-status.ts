@@ -4,19 +4,12 @@
  * Convert short git status into elements.
  */
 
-/**
- * Map Git status short symbols to long description
- */
-export enum DESCRIPTION {
-  ' ' = 'unmodified',
-  M = 'modified',
-  A = 'added',
-  D = 'deleted',
-  R = 'renamed',
-  C = 'copied',
-  U = 'umerged',
-  '?' = 'untracked',
-  '!' = 'ignored'
+import { DESCRIPTION } from './constants';
+
+type DescriptionStrings = keyof typeof DESCRIPTION;
+
+export function describeCode(key: DescriptionStrings) {
+  return DESCRIPTION[key];
 }
 
 export interface Status {
@@ -43,10 +36,4 @@ export function parseStatus(line: string): Status {
     to: to,
     from: from
   };
-}
-
-export type DescriptionStrings = keyof typeof DESCRIPTION;
-
-export function describeCode(key: DescriptionStrings) {
-  return DESCRIPTION[key];
 }

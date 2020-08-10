@@ -1,20 +1,10 @@
 /**
  * Phrase commit changes in words.
  */
-
 import { splitPath } from './paths';
+import { ACTION } from './constants';
 
-/** Map git status short symbols to preferred words for commit messages. */
-export enum ACTION {
-  ' ' = '',
-  M = 'update',
-  A = 'create',
-  D = 'delete',
-  R = 'rename',
-  C = 'copy'
-}
-
-export type DescriptionStrings = keyof typeof ACTION;
+type DescriptionStrings = keyof typeof ACTION;
 
 export function describeAction(key: DescriptionStrings) {
   return ACTION[key];

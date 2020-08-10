@@ -1,5 +1,6 @@
 import * as assert from 'assert';
-import { Status, DESCRIPTION, parseStatus, describeCode } from '../generate/parse-git-status';
+import { Status, parseStatus, describeCode } from '../generate/parse-git-status';
+import { DESCRIPTION } from '../generate/constants';
 
 describe('Split git status into components for an unchanged path', function() {
   describe('#parseStatus()', function() {
