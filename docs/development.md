@@ -40,7 +40,6 @@ If you make a change to your source code, use the green Restart circle in the de
 The code for the extension is in [src](/src/).
 
 
-
 ##  Run checks
 
 ```sh
@@ -62,16 +61,6 @@ Run the pretest and unit test steps together
 ```sh
 $ npm test
 ```
-
-### Integration stests
-
-Run the VS Code extension tests. VS Code will be downloaded and run against the code in a separate window.
-
-1. Close VS Code - you will get errors unless you **close** VS Code first.
-2. Run integration tests.
-    ```sh
-    $ npm run pretest && npm run test:ig
-    ```
 
 
 ## Clean
