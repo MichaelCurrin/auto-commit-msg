@@ -71,6 +71,8 @@ This will clear the unversioned `out` directory - useful to get rid of files aft
 $ npm run clean
 ```
 
+A few problems have been resolved by running the clean command, so this is now part of the `build` step so it runs every time when doing tests or running the extension. Note that the build/compile step happens as part of `watch` too, so it is covered there.
+
 
 ## Tag
 

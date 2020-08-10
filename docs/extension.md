@@ -9,6 +9,8 @@ For now it is only available for dev testing but eventually will be installable 
 
 See the [gitCommands.ts](/src/gitCommands.ts) script for implementation details.
 
+UPDATE: Perhaps using untracked is a good idea - although not in the git CLI flow, in the VS Code git integration, new/untracked files would be added when adding _everything_ when nothing is staged. So updates might be needed below. Also see use of `git status -u` and similar for `diff-index`, but note that `diff-index` is still preferred because of the choice of staged or not while `status` does not have that ability. 
+
 - The extension button must be able to run against **staged** changes only (if any). This will be the most common flow for the initial easy functionality of only committing one file at a time.
     - Wnat staged only. Not untracked.
     - Command
