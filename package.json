@@ -12,9 +12,12 @@
   "bugs": "https://github.com/MichaelCurrin/auto-commit-msg/issues",
   "license": "MIT",
   "keywords": [
-    "Git",
-    "Commit",
-    "Message"
+    "git",
+    "auto",
+    "generate",
+    "commit",
+    "message",
+    "vs-code"
   ],
   "engines": {
     "vscode": "^1.39.0"
@@ -22,7 +25,62 @@
   "categories": [
     "Other"
   ],
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#f0efe7",
+    "theme": "light"
+  },
+  "activationEvents": [
+    "onCommand:gitPrefix.setMessage"
+  ],
   "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "GitPrefix",
+      "properties": {
+        "gitPrefix.pattern": {
+          "type": "string",
+          "default": "(.*)",
+          "description": "A regular expression to extract from branch name. Should match entire branch."
+        },
+        "gitPrefix.patternIgnoreCase": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ignore case in pattern."
+        },
+        "gitPrefix.replacementIsFunction": {
+          "type": "boolean",
+          "default": false,
+          "description": "Replacement string is a function return expression with parameters (p1, p2, p3...) matching patterns."
+        },
+        "gitPrefix.replacement": {
+          "type": "string",
+          "default": "[$1] ",
+          "description": "Content to place in commit message."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "gitPrefix.setMessage",
+        "title": "Git Prefix Commit Message",
+        "icon": {
+          "dark": "images/message.svg",
+          "light": "images/message-light.svg"
+        }
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "gitPrefix.setMessage",
+          "when": "scmProvider == git",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "build": "tsc -p ./",

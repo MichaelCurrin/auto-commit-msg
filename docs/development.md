@@ -22,6 +22,7 @@ $ npm run lint
 
 ## Run tests
 
+For the git-prefix project this was partly based on, unfortunately the tests are poor there so I didn't copy over the extension tests, but I could bring back some from tag v0.6.0 so there are integration tests if I think I need them.
 
 ### Unit tests
 
