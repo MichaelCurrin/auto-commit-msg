@@ -1,3 +1,5 @@
+import * as path from 'path';
+
 import { splitPath } from './paths';
 
 /**
@@ -14,6 +16,7 @@ const PACKAGE_RELATED = [
   'package.json',
   'package-lock.json'
 ];
+const CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json' ];
 
 export class Semantic {
   filepath: string;
@@ -45,10 +48,31 @@ export class Semantic {
     );
   }
 
+  isConfigRelated(): boolean {
+    if (path.extname(this.name) in CONFIG_EXTENSIONS) {
+      return true;
+    }
+    return false;
+  }
+
   isPackageRelated(): boolean {
     if (this.name in PACKAGE_RELATED) {
       return true;
     }
     return false;
+  }
+
+  getType(): string {
+    if (this.isPackageRelated() || this.isConfigRelated()) {
+      return 'chore';
+    }
+    if (this.isDocRelated()) {
+      return 'docs';
+    }
+    if (this.isTestRelated()) {
+      return 'test';
+    }
+
+    return '';
   }
 }
