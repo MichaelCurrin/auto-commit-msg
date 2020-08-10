@@ -2,6 +2,8 @@
  * Phrase commit changes in words.
  */
 
+import { splitPath } from './paths';
+
 /** Map git status short symbols to preferred words for commit messages. */
 export enum ACTION {
   ' ' = '',
@@ -39,4 +41,23 @@ export function lookupAction(x: string, y: string): string {
  */
 export function pathToPath(oldPath: string, newPath: string): string {
   return `${oldPath} to ${newPath}`;
+}
+
+/**
+ * Return full message for move and/or renaming a file.
+ * 
+ * TODO: Update for modified as well.
+ */
+export function moveRenamePath(oldPath: string, newPath: string): string {
+  const oldP = splitPath(oldPath);
+  const newP = splitPath(newPath);
+
+  if (oldP.name === newP.name) {
+    return `Move ${oldP.name} to ${newP.dir}`;
+  }
+  if (oldP.dir === newP.dir) {
+    return `Rename ${oldP.name} to ${newP.name}`;
+  }
+
+  return `Move and rename ${oldP.name} to ${newPath}`;
 }
