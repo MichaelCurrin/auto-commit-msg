@@ -1,7 +1,6 @@
 import * as assert from 'assert';
 
 import { commonPath, removeBase, splitPath } from '../generate/paths';
-import { isDoc } from '../generate/semantic';
 
 describe('Path handling', function() {
   describe('#commonPath()', function() {
@@ -75,17 +74,4 @@ describe('Path handling', function() {
     });
   });
 
-  describe('#isDoc()', function() {
-    it('Determines README.md is a doc', function() {
-      assert.equal(isDoc('README.md'), true);
-      assert.equal(isDoc('FEEADME.md'), false);
-    });
-
-    it('Determines docs file is a doc', function() {
-      assert.equal(isDoc('docs/fizz.md'), true);
-      assert.equal(isDoc('docs/foo.img'), true);
-
-      assert.equal(isDoc('fuzz/fizz.md'), false);
-    });
-  });
 });
