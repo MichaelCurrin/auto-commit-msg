@@ -7,7 +7,7 @@ This seciton uses the [vsce](https://github.com/microsoft/vscode-vsce) package f
 
 > vsce, short for "Visual Studio Code Extensions", is a command-line tool for packaging, publishing and managing VS Code extensions.
 
-That is used to create a `.vsix` binary file.which can be used locally (in `.vscode/extensions` for user or repo level), sent to others (directly or through a download on GitHub), or published to the VS Code marketplace (not currently setup for this extension).
+That is used to create a `.vsix` archive file. This can be used locally (unzipped and place in `.~/vscode/extensions` for user and may repo level), sent to others (directly or through a download on GitHub), or published to the VS Code marketplace (not currently setup for this extension).
 
 
 <!-- TODO: Move sections to cheatsheets -->
