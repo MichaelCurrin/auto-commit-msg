@@ -15,7 +15,7 @@ See the [gitCommands.ts](/src/gitCommands.ts) script for implementation details.
         - Use output from `git diff-index --name-status --cached HEAD`. That is staged but not untracked. This was based on [index.js](https://github.com/mcwhittemore/staged-git-files/blob/master/index.js) of another extension.
         - Note `git diff` will not be appropriate here.
 - And fallback to **all** changes that would be committed. Nothing is staged then, this is everything, but excluding untracked. (There may be specific behavior here I've assumed because of my smart commit or other VS Code preferences.)
-    - Want both staged and unstaged. But not untracked.
+    - Want both staged and unstaged. But not untracked. The downside is renames won't get picked unless they are staged (since the new file appears untracked).
     - Command
         - Use output from `git status -s -uno --porcelain`. 
         - Use output from `git diff-index --name-status HEAD`. 
