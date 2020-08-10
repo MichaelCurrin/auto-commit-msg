@@ -12,6 +12,4 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 
-temp/**
-test-temp/**
 .idea/**

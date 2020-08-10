@@ -16,118 +16,29 @@
     "Commit",
     "Message"
   ],
-  "icon": "images/logo.png",
-  "galleryBanner": {
-    "color": "#eae9e1",
-    "theme": "light"
-  },
   "engines": {
     "vscode": "^1.39.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "*"
-  ],
   "main": "./out/extension.js",
-  "contributes": {
-    "configuration": {
-      "type": "object",
-      "title": "Git - Auto Commit Message",
-      "properties": {
-        "autoCommitMsg.commitOptions": {
-          "type": "string",
-          "default": "--quiet",
-          "markdownDescription": "Specifies which [arguments](https://git-scm.com/docs/git-commit#_options) to be passed when the commit is executed."
-        },
-        "autoCommitMsg.preserveScope": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Determines whether to preserve the last message scope that was inserted."
-        },
-        "autoCommitMsg.scopeTemplate": {
-          "type": "string",
-          "default": "($scope)",
-          "markdownDescription": "Specifies scope template (`$scope` placeholder will be replaced with the passed scope). Check out [this](https://github.com/nitayneeman/vscode-git-semantic-commit#customize-your-scope) example."
-        },
-        "autoCommitMsg.stageAll": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Determines whether to stage all changes before the commit, in case the staging area (index) is empty."
-        },
-        "autoCommitMsg.types": {
-          "type": "array",
-          "default": [
-            {
-              "type": "chore",
-              "description": "Project administration like configs, package files and renaming or moing files"
-            },
-            {
-              "type": "ci",
-              "description": "Tasks relating to CI-CD"
-            },
-            {
-              "type": "docs",
-              "description": "Documentation changes related to the project"
-            },
-            {
-              "type": "feat",
-              "description": "Production changes related to new backward-compatible abilities or functionality"
-            },
-            {
-              "type": "fix",
-              "description": "Production changes related to backward-compatible bug fixes"
-            },
-            {
-              "type": "refactor",
-              "description": "Development changes related to modifying the codebase"
-            },
-            {
-              "type": "style",
-              "description": "Development changes related to styling the codebase"
-            },
-            {
-              "type": "test",
-              "description": "Development changes related to tests"
-            }
-          ],
-          "items": {
-            "type": [
-              "string",
-              "object"
-            ],
-            "description": "Can be either a string, or an object. If an object, use type for the commit type, and description to give a short description for the particular commit type."
-          },
-          "minItems": 1,
-          "uniqueItems": true,
-          "markdownDescription": "Specifies the supported message types. Check out [this](https://github.com/nitayneeman/vscode-git-semantic-commit#customize-your-types) example."
-        }
-      }
-    }
-  },
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "build": "tsc -p ./",
     "vscode:prepublish": "npm run build",
     "watch": "tsc -watch -p ./",
     "clean": "rm -rf ./out/*",
-    "pretest": "npm run build && git init test-temp --quiet",
-    "test:ig": "node ./out/test/integration.js",
-    "test:unit": "cd out && mocha --exclude test/integration.js,test/suite",
-    "test": "npm run test:unit"
+    "pretest": "npm run build",
+    "test": "cd out && mocha"
   },
   "devDependencies": {
-    "@types/fs-extra": "^9.0.1",
-    "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.1",
     "@types/vscode": "^1.39.0",
     "@typescript-eslint/eslint-plugin": "^3.0.2",
     "@typescript-eslint/parser": "^3.0.2",
     "eslint": "^7.6.0",
-    "fs-extra": "^8.1.0",
-    "glob": "^7.1.4",
     "mocha": "^6.2.3",
     "source-map-support": "^0.5.12",
     "tslint": "^5.20.1",

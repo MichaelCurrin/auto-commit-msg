@@ -1,7 +1,7 @@
 node_modules/
-temp/
-test-temp/
+
 out/
 .vscode-test/
+
 *.vsix
 .idea
