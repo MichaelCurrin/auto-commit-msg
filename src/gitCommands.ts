@@ -6,11 +6,16 @@ import { getWorkspaceFolder } from './workspace';
 const exec = util.promisify(childProcess.exec);
 
 export class Git {
+  /** Run git CLI command. **/
   static execute(cwd: string, command?: string, options: string[] = []) {
     return exec(`git ${command} ${options.join(' ')}`, { cwd });
   }
 
-  // TODO: This can be removed if not used.
+  /** 
+   * Get machine-readable value for git status short output.
+   * 
+   * This could be removed if not used.
+   */
   static async status(options: string[] = []) {
     return this.execute(getWorkspaceFolder(), 'status', [
       '-s',
@@ -25,10 +30,16 @@ export class Git {
    * 
    * If the CLI command was an empty string (no changes), then the result would be `[ '' ]`,
    * so return empty array instead.
+   * 
+   * Note the output already seems always to have no color from my testing, but the 
+   * no color flagged is added to be safe.
    */
   private static async diffIndex(options: string[] = []): Promise<Array<string>> {
     const { stdout, stderr } = await this.execute(getWorkspaceFolder(), 'diff-index', [
       '--name-status',
+      '--find-renames',
+      '--find-copies',
+      '--no-color',
       ...options,
       'HEAD'
     ]);
@@ -40,6 +51,7 @@ export class Git {
     if (stdout.length === 0) {
       return [];
     }
+
     return stdout.split('\n');
   }
 
