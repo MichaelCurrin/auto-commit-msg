@@ -1,29 +1,25 @@
-import * as path from 'path';
-
-import { splitPath } from './paths';
-
 /**
  * Logic around semantic commit messages.
  * 
  * This can be used to check if all changes in a commit are related
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
-const PACKAGE_RELATED = [
-    'dev-requirements.txt',
-    'requirements.txt',
-    'Gemfile',
-    'Gemfile.lock',
-    'package.json',
-    'package-lock.json'
-  ],
+import * as path from 'path';
+
+import { splitPath } from './paths';
+
+// Exclude package* files here for JS since those can be related to packages and sometimes to other metadata.
+const PACKAGE_RELATED = [ 'dev-requirements.txt', 'requirements.txt', 'Gemfile', 'Gemfile.lock' ],
   CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json' ],
   CONFIG_NAMES = [
+    'package.json',
+    'package-lock.json',
     '.gitignore',
     '.eslintrc.js',
+    '.editorconfig',
     '.prettierrc',
     'tsconfig.json',
-    'tslint.json',
-    '.editorconfig'
+    'tslint.json'
   ];
 
 export class Semantic {
