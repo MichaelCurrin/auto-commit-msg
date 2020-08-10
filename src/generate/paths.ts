@@ -1,9 +1,8 @@
 /**
- * Find common parent directory of paths.
+ * Helper functions around path handling.
  * 
- * From: http://rosettacode.org/wiki/Find_common_directory_path#JavaScript
- * 
- * JS does not have a builtin function like Python does.
+ * Common path handling from: http://rosettacode.org/wiki/Find_common_directory_path#JavaScript
+ * Since JS does not have a builtin function like Python does.
  */
 import * as path from 'path';
 
@@ -17,8 +16,7 @@ const ROOT = 'repo root';
  * @param {string} sep
  * @returns {!Array<!Array<string>>}
  */
-const splitStrings = (a: any[], sep = '/') =>
-  a.map((i: string) => i.split(sep));
+const splitStrings = (a: any[], sep = '/') => a.map((i: string) => i.split(sep));
 
 /**
  * Given an index number, return a function that takes an array and returns the
@@ -62,10 +60,7 @@ function allElementsEqual(arr: any[]) {
  * Or finding the top-most directory that is common to a few files that all changed.
  */
 export function commonPath(input: string[], sep = '/') {
-  const common = rotate(splitStrings(input, sep))
-    .filter(allElementsEqual)
-    .map(elAt(0))
-    .join(sep);
+  const common = rotate(splitStrings(input, sep)).filter(allElementsEqual).map(elAt(0)).join(sep);
 
   return common === '' ? ROOT : common;
 }
