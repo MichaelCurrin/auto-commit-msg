@@ -3,7 +3,7 @@
 
 ![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)
 
-_Note: This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you._
+_Note: This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you. The focus has shifted away from making a terminal hook because VS Code handles is weirdly and on every UI commit, even if you only plan use it on the terminal_
 
 
 ## Project plan
