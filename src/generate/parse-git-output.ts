@@ -12,14 +12,14 @@ export function describeCode(key: DescriptionStrings) {
   return DESCRIPTION[key];
 }
 
-export interface Status {
+export interface FileChanges {
   x: string;
   y: string;
   to: string;
   from: string;
 }
 
-export function parseStatus(line: string): Status {
+export function parseStatus(line: string): FileChanges {
   if (line.length <= 4) {
     throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
   }
