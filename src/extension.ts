@@ -2,6 +2,21 @@ import * as vscode from 'vscode';
 
 import { GitExtension, Repository } from './api/git';
 
+function getGitExtension() {
+  const vscodeGit = vscode.extensions.getExtension<GitExtension>('vscode.git');
+  const gitExtension = vscodeGit && vscodeGit.exports;
+
+  return gitExtension && gitExtension.getAPI(1);
+}
+
+// Based on prefixCommit from git-prefix extension. This is the core logic from there
+// and where the message is added for this repo.
+async function prefixCommit(repository: Repository) {
+  const originalMessage = repository.inputBox.value;
+
+  repository.inputBox.value = `PREFIX ${originalMessage}`;
+}
+
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     'gitPrefix.setMessage',
@@ -24,6 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
           await prefixCommit(selectedRepository);
         }
       } else {
+        // TODO As yet undefined behavior for multiple repos.
         for (const repo of git.repositories) {
           await prefixCommit(repo);
         }
@@ -32,61 +48,6 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(disposable);
-}
-
-async function prefixCommit(repository: Repository) {
-  const prefixPattern: string =
-    vscode.workspace.getConfiguration().get('gitPrefix.pattern') || '(.*)';
-  const ignoreCase: boolean =
-    vscode.workspace.getConfiguration().get('gitPrefix.patternIgnoreCase') ||
-    false;
-  const replacementIsFunction: boolean =
-    vscode.workspace
-      .getConfiguration()
-      .get('gitPrefix.replacementIsFunction') || false;
-  const branchRegEx = ignoreCase
-    ? new RegExp(prefixPattern, 'i')
-    : new RegExp(prefixPattern);
-  const prefixReplacement: string =
-    vscode.workspace.getConfiguration().get('gitPrefix.replacement') || '[$1] ';
-  const branchName =
-    (repository.state.HEAD && repository.state.HEAD.name) || '';
-
-  if (branchRegEx.test(branchName)) {
-    let ticket;
-    if (replacementIsFunction) {
-      ticket = branchName.replace(
-        branchRegEx,
-        (_substring: string, ...args: any[]) =>
-          Function(
-            ...Array(args.length).fill(1).map((x, y) => `p${x + y}`), // Build args 'p1', 'p2', 'p3'....
-            `return ${prefixReplacement}`
-          )(...args)
-      );
-    } else {
-      ticket = branchName.replace(branchRegEx, prefixReplacement);
-    }
-    repository.inputBox.value = `${ticket}${repository.inputBox.value}`;
-  } else {
-    const message = `Pattern ${prefixPattern} not found in branch ${branchName}`;
-    const editPattern = 'Edit Pattern';
-    const result = await vscode.window.showErrorMessage(
-      message,
-      { modal: false },
-      editPattern
-    );
-    if (result === editPattern) {
-      vscode.commands.executeCommand('workbench.action.openSettings');
-      vscode.commands.executeCommand('settings.action.clearSearchResults');
-    }
-  }
-}
-
-function getGitExtension() {
-  const vscodeGit = vscode.extensions.getExtension<GitExtension>('vscode.git');
-  const gitExtension = vscodeGit && vscodeGit.exports;
-
-  return gitExtension && gitExtension.getAPI(1);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
