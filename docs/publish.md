@@ -50,7 +50,7 @@ $ vsce ls
 
 ### Package
 
-The package and publish steps could be added to `package.json` and also then to a workflow for a release. For now, manually using and also uploading to a release will work.
+The package and publish steps could be added to `package.json` and also then to a workflow for a release. For now, manually using and also uploading to a release will work. The trick is to do the build _after_ using tagging (e.g. `npm version minor`), to ensure the name of the filename and the contents matches.
 
 
 ```sh
