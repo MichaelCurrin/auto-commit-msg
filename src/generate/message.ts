@@ -19,7 +19,7 @@ export function one(status: string): string {
 
   const verb = lookupAction(x, y);
   // TODO Use moveRenamePath.
-  const paths = from ? pathToPath(to, from) : to;
+  const paths = to ? pathToPath(from, to) : from;
 
   return `${title(verb)} ${paths}`;
 }

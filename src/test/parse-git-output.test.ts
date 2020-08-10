@@ -32,8 +32,8 @@ describe('Split git status output into components', function() {
       const expected: FileChanges = {
         x: 'A',
         y: ' ',
-        to: 'foo.txt',
-        from: ''
+        from: 'foo.txt',
+        to: ''
       };
       assert.deepEqual(parseStatus('A  foo.txt'), expected);
     });
@@ -42,8 +42,8 @@ describe('Split git status output into components', function() {
       const expected: FileChanges = {
         x: ' ',
         y: 'M',
-        to: 'foo.txt',
-        from: ''
+        from: 'foo.txt',
+        to: ''
       };
       assert.deepEqual(parseStatus(' M foo.txt'), expected);
     });
@@ -52,8 +52,8 @@ describe('Split git status output into components', function() {
       const expected: FileChanges = {
         x: 'D',
         y: ' ',
-        to: 'foo.txt',
-        from: ''
+        from: 'foo.txt',
+        to: ''
       };
       assert.deepEqual(parseStatus('D  foo.txt'), expected);
     });
@@ -62,8 +62,8 @@ describe('Split git status output into components', function() {
       const expected: FileChanges = {
         x: 'R',
         y: ' ',
-        to: 'foo.txt',
-        from: 'bar.txt'
+        from: 'foo.txt',
+        to: 'bar.txt'
       };
       assert.deepEqual(parseStatus('R  foo.txt -> bar.txt'), expected);
 
@@ -71,8 +71,8 @@ describe('Split git status output into components', function() {
         const expected: FileChanges = {
           x: 'R',
           y: ' ',
-          to: 'foo.txt',
-          from: 'fizz/bar.txt'
+          from: 'foo.txt',
+          to: 'fizz/foo.txt'
         };
         assert.deepEqual(parseStatus('R  foo.txt -> fizz/foo.txt'), expected);
       });

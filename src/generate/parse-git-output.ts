@@ -31,14 +31,13 @@ export function parseStatus(line: string): FileChanges {
   const y = line[1];
   const paths = line.substring(3);
 
-  // FIXME - is this order reversed?
-  const [ to, from ] = paths.includes('->') ? paths.split(' -> ') : [ paths, '' ];
+  const [ from, to ] = paths.includes('->') ? paths.split(' -> ') : [ paths, '' ];
 
   return {
     x: x,
     y: y,
-    to: to,
-    from: from
+    from: from,
+    to: to
   };
 }
 
@@ -59,7 +58,6 @@ export function parseDiffIndex(line: string): FileChanges {
   const segments = line.split(/\s+/);
   const from = segments[1];
   const to = segments.length === 3 ? segments[2] : '';
-  console.debug(segments, from, to);
 
   return {
     x: x,
