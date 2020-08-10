@@ -49,7 +49,7 @@ async function prepareCommitMsg(repository: Repository) {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('gitPrefix.setMessage', async (uri?) => {
+  const disposable = vscode.commands.registerCommand('commitMsg.setMessage', async (uri?) => {
     const git = getGitExtension();
 
     if (!git) {

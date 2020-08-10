@@ -31,30 +31,30 @@
     "theme": "light"
   },
   "activationEvents": [
-    "onCommand:gitPrefix.setMessage"
+    "onCommand:commitMsg.setMessage"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "GitPrefix",
+      "title": "commitMsg",
       "properties": {
-        "gitPrefix.pattern": {
+        "commitMsg.pattern": {
           "type": "string",
           "default": "(.*)",
           "description": "A regular expression to extract from branch name. Should match entire branch."
         },
-        "gitPrefix.patternIgnoreCase": {
+        "commitMsg.patternIgnoreCase": {
           "type": "boolean",
           "default": false,
           "description": "Ignore case in pattern."
         },
-        "gitPrefix.replacementIsFunction": {
+        "commitMsg.replacementIsFunction": {
           "type": "boolean",
           "default": false,
           "description": "Replacement string is a function return expression with parameters (p1, p2, p3...) matching patterns."
         },
-        "gitPrefix.replacement": {
+        "commitMsg.replacement": {
           "type": "string",
           "default": "[$1] ",
           "description": "Content to place in commit message."
@@ -63,8 +63,8 @@
     },
     "commands": [
       {
-        "command": "gitPrefix.setMessage",
-        "title": "Git Prefix Commit Message",
+        "command": "commitMsg.setMessage",
+        "title": "Auto Commit Message",
         "icon": {
           "dark": "images/message.svg",
           "light": "images/message-light.svg"
@@ -74,7 +74,7 @@
     "menus": {
       "scm/title": [
         {
-          "command": "gitPrefix.setMessage",
+          "command": "commitMsg.setMessage",
           "when": "scmProvider == git",
           "group": "navigation"
         }
@@ -83,10 +83,10 @@
   },
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
-    "build": "tsc -p ./",
+    "clean": "rm -rf ./out/*",
+    "build": "npm run clean && tsc -p ./",
     "vscode:prepublish": "npm run build",
     "watch": "tsc -watch -p ./",
-    "clean": "rm -rf ./out/*",
     "pretest": "npm run build",
     "test": "cd out && mocha"
   },
