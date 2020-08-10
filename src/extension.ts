@@ -28,7 +28,6 @@ function setCommitMsg(repository: Repository, value: string): void {
 
 // Based on prefixCommit from git-prefix extension. This is the core logic from there
 // and where the message is added for this repo.
-// TODO break into functions
 async function prepareCommitMsg(repository: Repository) {
   const diffIndexLines = await Git.getChanges();
 
