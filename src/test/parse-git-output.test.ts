@@ -1,8 +1,31 @@
 import * as assert from 'assert';
-import { FileChanges, parseStatus, describeCode } from '../generate/parse-git-output';
+import {
+  FileChanges,
+  describeCode,
+  parseStatus,
+  parseDiffIndex
+} from '../generate/parse-git-output';
 import { DESCRIPTION } from '../generate/constants';
 
-describe('Split git status into components for an unchanged path', function() {
+describe('Get value from description enum using key', function() {
+  describe('#describeCode()', function() {
+    it('Can return the correct value for added symbol', function() {
+      assert.equal(describeCode('A'), 'added');
+
+      assert.equal(describeCode('A'), DESCRIPTION.A);
+    });
+
+    it('Can return the correct value for empty space as unmodified', function() {
+      assert.equal(describeCode(' '), 'unmodified');
+    });
+
+    it('Can return the correct value for ignored symbol', function() {
+      assert.equal(describeCode('!'), 'ignored');
+    });
+  });
+});
+
+describe('Split git status output into components', function() {
   describe('#parseStatus()', function() {
     it('should return the appropriate commit message for a new file', function() {
       // Using DESCRIPTION.A to get 'A' does not work here.
@@ -57,20 +80,80 @@ describe('Split git status into components for an unchanged path', function() {
   });
 });
 
-describe('Get value from key', function() {
-  describe('#describeCode()', function() {
-    it('Can return the correct value for added symbol', function() {
-      assert.equal(describeCode('A'), 'added');
+describe('Split git diff-index output into components', function() {
+  // The 1st column to 2nd looks like constant with and then 2nd to 3rd looks like 6 chars.
+  // R100    tslint.json     src/tslint.json
+  // R100    vsc-extension-quickstart.md     src/vsc-extension-quickstart.md
 
-      assert.equal(describeCode('A'), DESCRIPTION.A);
+  describe('#parseDiffIndex()', function() {
+    it('should return the appropriate commit message for a new file', function() {
+      const expected: FileChanges = {
+        x: 'A',
+        y: ' ',
+        from: 'foo.txt',
+        to: ''
+      };
+      assert.deepEqual(parseDiffIndex('A       foo.txt'), expected);
     });
 
-    it('Can return the correct value for empty space as unmodified', function() {
-      assert.equal(describeCode(' '), 'unmodified');
+    it('should return the appropriate commit message for a modified file', function() {
+      const expected: FileChanges = {
+        x: 'M',
+        y: ' ',
+        from: 'foo.txt',
+        to: ''
+      };
+      assert.deepEqual(parseDiffIndex('M       foo.txt'), expected);
     });
 
-    it('Can return the correct value for ignored symbol', function() {
-      assert.equal(describeCode('!'), 'ignored');
+    it('should return the appropriate commit message for a deleted file', function() {
+      const expected: FileChanges = {
+        x: 'D',
+        y: ' ',
+        from: 'foo.txt',
+        to: ''
+      };
+      assert.deepEqual(parseDiffIndex('D       foo.txt'), expected);
+    });
+
+    it('should return the appropriate commit message for a renamed unchanged file', function() {
+      const expected: FileChanges = {
+        x: 'R',
+        y: ' ',
+        from: 'bar.txt',
+        to: 'foo.txt'
+      };
+      assert.deepEqual(parseDiffIndex('R100    bar.txt       foo.txt'), expected);
+
+      it('should return the appropriate commit message for a moved file', function() {
+        const expected: FileChanges = {
+          x: 'R',
+          y: ' ',
+          from: 'bar.txt',
+          to: 'fizz/foo.txt'
+        };
+        assert.deepEqual(parseDiffIndex('R100    bar.txt       fizz/foo.txt'), expected);
+      });
+    });
+
+    it('should return the appropriate commit message for a renamed slightly changed file', function() {
+      const expected: FileChanges = {
+        x: 'R',
+        y: ' ',
+        from: 'bar.txt',
+        to: 'foo.txt'
+      };
+      assert.deepEqual(parseDiffIndex('R096    bar.txt       foo.txt'), expected);
+
+      it('should return the appropriate commit message for a moved file', function() {
+        const expected: FileChanges = {
+          x: 'R',
+          y: ' ',
+          to: 'bar.txt',
+          from: 'fizz/foo.txt'
+        };
+        assert.deepEqual(parseDiffIndex('R096    bar.txt       fizz/foo.txt'), expected);
+      });
     });
   });
 });
