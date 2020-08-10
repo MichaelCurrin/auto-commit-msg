@@ -9,14 +9,22 @@ import { splitPath } from './paths';
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
 const PACKAGE_RELATED = [
-  'dev-requirements.txt',
-  'requirements.txt',
-  'Gemfile',
-  'Gemfile.lock',
-  'package.json',
-  'package-lock.json'
-];
-const CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json' ];
+    'dev-requirements.txt',
+    'requirements.txt',
+    'Gemfile',
+    'Gemfile.lock',
+    'package.json',
+    'package-lock.json'
+  ],
+  CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json' ],
+  CONFIG_NAMES = [
+    '.gitignore',
+    '.eslintrc.js',
+    '.prettierrc',
+    'tsconfig.json',
+    'tslint.json',
+    '.editorconfig'
+  ];
 
 export class Semantic {
   filepath: string;
@@ -43,13 +51,19 @@ export class Semantic {
   isTestRelated(): boolean {
     return (
       this.name.includes('.test.') ||
+      this.name.includes('.spec.') ||
       this.filepath.includes('test/') ||
       this.name.startsWith('test_')
     );
   }
 
   isConfigRelated(): boolean {
-    if (path.extname(this.name) in CONFIG_EXTENSIONS) {
+    if (
+      path.extname(this.name) in CONFIG_EXTENSIONS ||
+      this.name in CONFIG_NAMES ||
+      this.dir.startsWith('.vscode') ||
+      this.dir.startsWith('.github')
+    ) {
       return true;
     }
     return false;
@@ -63,7 +77,7 @@ export class Semantic {
   }
 
   getType(): string {
-    if (this.isPackageRelated() || this.isConfigRelated()) {
+    if (this.name === 'LICENSE' || this.isPackageRelated() || this.isConfigRelated()) {
       return 'chore';
     }
     if (this.isDocRelated()) {
