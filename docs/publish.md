@@ -60,7 +60,7 @@ Executing prepublish script 'npm run vscode:prepublish'...
 DONE  Packaged: /home/michael/repos/auto-commit-msg/auto-commit-msg-0.6.0.vsix (31 files, 33.21KB)
 ```
 
-Alternatively:
+Alternatively specify ignored `build` directory. Some may prefer `dist` for distribution.
 
 ```sh
 $ vsce package --out build
