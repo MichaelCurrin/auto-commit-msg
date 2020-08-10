@@ -5,6 +5,9 @@
  * 
  * JS does not have a builtin function like Python does.
  */
+import * as path from 'path';
+
+const ROOT = 'repo root';
 
 /**
  * Given an array of strings, return an array of arrays, containing the
@@ -52,9 +55,46 @@ function allElementsEqual(arr: any[]) {
   return arr.every((e: any) => e === arr[0]);
 }
 
+/**
+ * Common directory for an array of paths.
+ * 
+ * This can be useful for one file going from source to destination.
+ * Or finding the top-most directory that is common to a few files that all changed.
+ */
 export function commonPath(input: string[], sep = '/') {
-  return rotate(splitStrings(input, sep))
+  const common = rotate(splitStrings(input, sep))
     .filter(allElementsEqual)
     .map(elAt(0))
     .join(sep);
+
+  return common === '' ? ROOT : common;
+}
+
+/**
+ * Using a known common dir, remove it from a path.
+ */
+export function removeBase(base: string, filepath: string) {
+  return filepath.substring(base.length);
+}
+
+/**
+ * Directory and name of a path.
+ */
+export function splitPath(filepath: string) {
+  const dir = path.dirname(filepath);
+
+  return {
+    dir: dir === '.' ? ROOT : dir,
+    name: path.basename(filepath)
+  };
+}
+
+/**
+ * Check if file a doc - for semantic commits.
+ * 
+ * For static sites, not all .md files are docs. But everything in docs directory is,
+ * except perhaps for config files.
+ */
+export function isDoc(filepath: string): boolean {
+  return filepath === 'README.md' || filepath.startsWith('docs');
 }
