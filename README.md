@@ -26,15 +26,29 @@ This will probably be in Python for easy scaling and tests. And it will probably
 
 Released as [MIT](/LICENSE).
 
+The core of this project's VS Code extension logic is creating a commit message and pushing to the Git Extension input box in the UI. That comes from the Git Prefix extension, covered below.
+
 Sources:
 
-- This project started off as an extension based on the VS Code [hello world test sample](https://github.com/microsoft/vscode-extension-samples/tree/master/helloworld-test-sample). It was just hello world, so I got rid of the code in later tags.
-- Then I used parts of [Git Semantic Commit](https://github.com/nitayneeman/vscode-git-semantic-commit), mainly the `Git` API for adapting `status` from `diff`. This also gave me an outline of how to use tests (`mocha` in this case) for my own logic.
-- I found a much simpler and much more relevant extension - [https://github.com/srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix). This will push a message to the commit message UI box and allows manual overrides, which is a flow I like. That could work with the existing Semantic Git Commit extension if that message is kept when opening up the picklist for type (the problem is that that extension does not use the message but its own field). Also I have a plan to add semantic prefix using my own logic, for some cases. This see the `Semantic` class.
-- The [parse-git-output](/src/generate/parse-git-output) module was based on [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status), but I rewrote from scratch. My enhancements:
-    - Compatibility with `git status --porcelain`.
-        - Replace use of `-z` mode. Separating by either one or two null characters is not nice, so I split columns by whitespace rathe and lines split by newline character.
-    - Cleaner for loop logic
-        - I found the original hard to work on because of how it uses an old-style `for` loop and `i` variable and expects elements t
-    - Added TS types (essential for my project to run)
-    - It now handles output of both `git status --short` and `git diff-index HEAD`.
+- Hello World sample
+    - Source: [hello world test sample](https://github.com/microsoft/vscode-extension-samples/tree/master/helloworld-test-sample)
+    - This project started off as an extension based on the VS Code test sampke. It was just hello world and didn't help with my flow, so I got rid of the code in later tags.
+- Git Semantic Commit
+    - Repo: [nitayneeman/vscode-git-semantic-commit](https://github.com/nitayneeman/vscode-git-semantic-commit) 
+    - Then I used parts of that, mainly the `Git` API for adapting `status` from `diff`. 
+    - That also gave me an outline of how to use tests (`mocha` in this case) for my own logic.
+- Git Prefix
+    - I found a much simpler and much more relevant extension.
+    - [srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix). 
+    - This will push a message to the commit message UI box and allows manual overrides, which is a flow I like. That could work with the existing Semantic Git Commit extension if that message is kept when opening up the picklist for type (the problem is that that extension does not use the message but its own field). Also I have a plan to add semantic prefix using my own logic, for some cases. This see the `Semantic` class.
+- Parse Git Status
+    - Repo: [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status)
+    - Parsing the git output started with the Parse Git Status described below but diverged.
+    - My [parse-git-output](/src/generate/parse-git-output) module was based on `parse-git-status`, but I rewrote from scratch. 
+    - My enhancements:
+        - Compatibility with `git status --porcelain`.
+            - Replace use of `-z` mode. Separating by either one or two null characters is not nice, so I split columns by whitespace rathe and lines split by newline character.
+        - Cleaner for loop logic
+            - I found the original hard to work on because of how it uses an old-style `for` loop and `i` variable and expects elements t
+        - Added TS types (essential for my project to run)
+        - It now handles output of both `git status --short` and `git diff-index HEAD`.
