@@ -33,8 +33,8 @@ This is my first VS Code extension and first TypeScript project, so I am learnin
 - [x] Handle staged files or working tree
 - [x] Write a single-line commit message for a git repo (e.g. `Create`, `Update`, `Delete`)
 - [x] Handle changes from a single changed file
-- [ ] Handle changes from two or more files
-- [ ] Keep user-entered value as a prefix
+- [ ] Handle changes from two or more files e.g. `Update 3 files in foo`, `Create foo.txt and fizz/bar.txt`, `Create foo.txt and delete bar.txt`
+- [ ] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [ ] Use semantic prefix / conventional commits e.g. `chore: Update package.json`
 
 ### Structure
