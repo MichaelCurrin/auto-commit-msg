@@ -10,7 +10,7 @@ import { splitPath } from './paths';
 
 // Exclude package* files here for JS since those can be related to packages and sometimes to other metadata.
 const PACKAGE_RELATED = [ 'dev-requirements.txt', 'requirements.txt', 'Gemfile', 'Gemfile.lock' ],
-  CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json' ],
+  CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json', 'toml' ],
   CONFIG_NAMES = [
     'package.json',
     'package-lock.json',
@@ -20,7 +20,8 @@ const PACKAGE_RELATED = [ 'dev-requirements.txt', 'requirements.txt', 'Gemfile',
     '.prettierrc',
     'tsconfig.json',
     'tslint.json'
-  ];
+  ],
+  CI_RELATED = [ 'netlify.toml' ];
 
 /**
  * Support conventional commit message for a given file path.
@@ -54,12 +55,15 @@ export class Semantic {
     );
   }
 
+  isCIRelated(): boolean {
+    return this.dir === '.github/workflows' || this.name in CI_RELATED;
+  }
+
   isConfigRelated(): boolean {
     if (
       path.extname(this.name) in CONFIG_EXTENSIONS ||
       this.name in CONFIG_NAMES ||
-      this.dir.startsWith('.vscode') ||
-      this.dir.startsWith('.github')
+      this.dir.startsWith('.vscode')
     ) {
       return true;
     }
@@ -74,6 +78,10 @@ export class Semantic {
   }
 
   getType(): string {
+    if (this.isCIRelated()) {
+      return 'ci';
+    }
+
     if (this.name === 'LICENSE' || this.isPackageRelated() || this.isConfigRelated()) {
       return 'chore';
     }
