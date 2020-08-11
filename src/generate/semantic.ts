@@ -37,11 +37,11 @@ export class Semantic {
   }
 
   /**
- * Check if file a doc - for semantic commits.
- *
- * For static sites, not all .md files are docs. But everything in docs directory is,
- * except perhaps for config files.
- */
+   * Check if file a doc - for semantic commits.
+   *
+   * For static sites, not all .md files are docs. But everything in docs directory is,
+   * except perhaps for config files.
+   */
   isDocRelated(): boolean {
     return this.name === 'README.md' || this.dir.startsWith('docs');
   }
