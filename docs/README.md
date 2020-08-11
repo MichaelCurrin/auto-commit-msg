@@ -4,7 +4,7 @@ This project aims to prepare a smart commit message for your when you enter `git
 
 The docs are split into two features:
 
-- [Terminal hooks](terminal-hooks.md)
+- [Terminal hook](terminal-hook.md)
 - [Extension](extension.md)
 
 <!--
