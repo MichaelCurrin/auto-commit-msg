@@ -26,7 +26,6 @@ const PACKAGE_RELATED = [ 'dev-requirements.txt', 'requirements.txt', 'Gemfile',
  * Support conventional commit message for a given file path.
  */
 export class Semantic {
-  filepath: string;
   dir: string;
   name: string;
 
@@ -43,7 +42,7 @@ export class Semantic {
  * except perhaps for config files.
  */
   isDocRelated(): boolean {
-    return this.name === 'README.md' || this.filepath.startsWith('docs');
+    return this.name === 'README.md' || this.dir.startsWith('docs');
   }
 
   isTestRelated(): boolean {
