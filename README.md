@@ -1,7 +1,7 @@
 # Auto Commit Message
 > Automagically generate a commit message - based on which files changed and how they changed
 
-![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)
+[![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions)
 
 - Made with: TypeScript
 - Made for: VS Code
