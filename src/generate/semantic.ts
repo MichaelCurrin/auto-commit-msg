@@ -9,19 +9,28 @@ import * as path from 'path';
 import { splitPath } from './paths';
 
 // Exclude package* files here for JS since those can be related to packages and sometimes to other metadata.
-const PACKAGE_RELATED = [ 'dev-requirements.txt', 'requirements.txt', 'Gemfile', 'Gemfile.lock' ],
+const PACKAGE_NAMES = [
+    'dev-requirements.txt',
+    'requirements.txt',
+    'Gemfile',
+    'Gemfile.lock',
+    'package-lock.json',
+    'yarn.lock'
+  ],
   CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json', 'toml' ],
+  CONFIG_DIRS = [ '.vscode' ],
   CONFIG_NAMES = [
     'package.json',
-    'package-lock.json',
     '.gitignore',
-    '.eslintrc.js',
+    '.eslintrc.js', // TODO add other forms
     '.editorconfig',
     '.prettierrc',
     'tsconfig.json',
     'tslint.json'
   ],
-  CI_RELATED = [ 'netlify.toml' ];
+  BUILD_NAMES = [ 'Dockerfile', 'docker-compose.yml' ],
+  CI_DIRS = [ '.circleci', '.github/workflows' ],
+  CI_NAMES = [ 'netlify.toml', 'travis.yml' ];
 
 /**
  * Support conventional commit message for a given file path.
@@ -56,14 +65,14 @@ export class Semantic {
   }
 
   isCIRelated(): boolean {
-    return this.dir === '.github/workflows' || this.name in CI_RELATED;
+    return this.dir in CI_DIRS || this.name in CI_NAMES;
   }
 
   isConfigRelated(): boolean {
     if (
       path.extname(this.name) in CONFIG_EXTENSIONS ||
-      this.name in CONFIG_NAMES ||
-      this.dir.startsWith('.vscode')
+      this.dir in CONFIG_DIRS ||
+      this.name in CONFIG_NAMES
     ) {
       return true;
     }
@@ -71,12 +80,13 @@ export class Semantic {
   }
 
   isPackageRelated(): boolean {
-    if (this.name in PACKAGE_RELATED) {
+    if (this.name in PACKAGE_NAMES) {
       return true;
     }
     return false;
   }
 
+  // TODO: Move to enum
   getType(): string {
     if (this.isCIRelated()) {
       return 'ci';
