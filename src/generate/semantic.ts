@@ -22,14 +22,16 @@ const PACKAGE_RELATED = [ 'dev-requirements.txt', 'requirements.txt', 'Gemfile',
     'tslint.json'
   ];
 
+/**
+ * Support conventional commit message for a given file path.
+ */
 export class Semantic {
   filepath: string;
   dir: string;
   name: string;
 
-  constructor(filepath: string) {
-    this.filepath = filepath;
-    const { dir, name } = splitPath(filepath);
+  constructor(filePath: string) {
+    const { dir, name } = splitPath(filePath);
     this.dir = dir;
     this.name = name;
   }
@@ -48,7 +50,7 @@ export class Semantic {
     return (
       this.name.includes('.test.') ||
       this.name.includes('.spec.') ||
-      this.filepath.includes('test/') ||
+      this.dir.includes('test/') ||
       this.name.startsWith('test_')
     );
   }
