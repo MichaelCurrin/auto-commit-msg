@@ -15,6 +15,8 @@ See installation steps in the extension and hook docs - clone the repo and insta
 
 ## Run checks
 
+Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.github/workflows/main.yml).
+
 ### Lint
 
 Run ESLint against TS files for a report. This will not fix any errors though.
@@ -26,7 +28,7 @@ $ npm run lint
 Note this also runs in the CI/CD pipeline.
 
 
-## Run tests
+### Run tests
 
 For the git-prefix project this was partly based on, unfortunately the tests are poor there so I didn't copy over the extension tests, but I could bring back some from tag v0.6.0 so there are integration tests if I think I need them.
 
@@ -62,9 +64,8 @@ A few problems have been resolved by running the clean command, so this is now p
 
 
 ## Run extension in sandbox mode
-> Start the extension for local development
 
-There is an easy flow to build and use the extension without having to install it globally.
+Start the extension for local development. It will be started in a sandboxed environment with no other extensions active and the extension will not persist when you stop the debugger.
 
 Open VS Code at the repo.
 
@@ -87,17 +88,11 @@ If you make a change to your source code, use the green Restart circle in the de
 The code for the extension is in [src](/src/).
 
 
-## Releases
+## Install extension globally
 
-```sh
-$ npm version minor
-```
+See the [package](package.md) doc to install a dev version of the package.
 
-```sh
-$ git push --follow-tags
-```
-
-Then I go into the releases on GH section and add a title.
+Or see [quickstart](quickstart.md) doc to download a pre-built version from a GitHub release.
 
 
 ## Resources
