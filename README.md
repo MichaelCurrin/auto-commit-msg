@@ -2,7 +2,7 @@
 > Automagically generate a commit message - based on which files changed and how they changed
 
 [![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions)
-[![GitHub tag](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/tags/)
+[![GitHub release](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/releases/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 [![VS Code extension](https://img.shields.io/badge/VS_Code_extension-blue.svg)](https://code.visualstudio.com/)
