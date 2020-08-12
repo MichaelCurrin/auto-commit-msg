@@ -96,14 +96,14 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.1",
     "@types/vscode": "^1.39.0",
-    "@typescript-eslint/eslint-plugin": "^3.0.2",
-    "@typescript-eslint/parser": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^3.9.0",
+    "@typescript-eslint/parser": "^3.9.0",
     "eslint": "^7.6.0",
     "mocha": "^6.2.3",
     "source-map-support": "^0.5.12",
     "tslint": "^5.20.1",
     "typescript": "^3.6.4",
-    "vsce": "^1.77.0",
+    "vsce": "^1.78.0",
     "vscode-test": "^1.2.0"
   }
 }
