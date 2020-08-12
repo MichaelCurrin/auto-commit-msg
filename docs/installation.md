@@ -4,7 +4,7 @@ This project in installable as a VS Code extension.
 
 For now it is only available for dev testing but eventually will be installable for anyone using a download file (maybe even using the marketplace).
 
-
+<!--
 ## Functionality
 
 See the [gitCommands.ts](/src/gitCommands.ts) script for implementation details.
@@ -30,7 +30,7 @@ $ git diff-index --shortstat HEAD
 ```
 
 See more [here](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/cheatsheets/git/commands/diff-index.md).
-
+-->
 
 ## Installation
 
@@ -55,9 +55,3 @@ $ npm install
 #### Setup
 
 Run `npm install` in terminal to install dependencies.
-
-
-
-## Usage
-
-There are no production example use steps yet. Only dev steps. See [development](development.md) doc.
