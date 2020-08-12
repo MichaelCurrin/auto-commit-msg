@@ -1,15 +1,21 @@
 # Auto Commit Message
 > Automagically generate a commit message - based on which files changed and how they changed
 
-[![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions)
+[![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions) [![GitHub tag](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/tags/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](#license)
 
-- Made with: TypeScript
-- Made for: VS Code
+[![VS Code extension](https://img.shields.io/badge/VS_Code_extension-blue.svg)](https://code.visualstudio.com/)
+[![Made with TypeScript](https://img.shields.io/badge/Made_with-TypeScript-blue.svg)](https://typescriptlang.org)
+
+
+VS Code extension which provides smart suggestions for your commit messages.
 
 
 ## Purpose
 
-This is a VS Code extension - when you run it, it will look at files changed and then generate a commit message for you and add it to the commit message box (using the Git Extension's UI). It will look at files that are staged. If there are none, then it will look all changed unstaged files instead. The result will be a simple, descriptive message that fits on one line.
+This is a VS Code extension - when you run it, it will look at files changed and then generate a commit message for you and add it to the commit message box (using the Git Extension's UI). 
+
+It will look at files that are staged. If there are none, then it will look all changed unstaged files instead. The result will be a simple, descriptive message that fits on one line.
 
 Note: At the moment a message can be generated based on one changed file.
 
