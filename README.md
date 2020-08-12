@@ -77,7 +77,7 @@ Sources:
     - I like the integration tests approach though so I might come back to use pieces of that.
 - Git Prefix
     - Repos: [srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix). 
-    - I found this in the marketplace - it adds a branch prefix to commit message UI box and gives the user a chance to read it and edit it. This is very close to the flow that I want and it far less code that Git Semantic Commit, so my extension is based on this. See more example the use of `repository.inputBox.value` in [extension.ts](/src/extension.ts).
+    - I found this in the marketplace - it adds a branch prefix to commit message UI box and gives the user a chance to read it and edit it. This is very close to the flow that I want and it far less code that Git Semantic Commit, so my extension is based on this. See for example the use of `repository.inputBox.value` in [extension.ts](/src/extension.ts).
 - Parse Git Status
     - Repo: [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status)
     - I started out parsing git status output intending to use this NPM package. Unfortunately it does not come with types and I couldn't figure out how to add types, so I took the logic from it and rewrote it as my own so it is easier to manage and extend. See my [parse-git-output](/src/generate/parse-git-output) module - that based on `parse-git-status`.
