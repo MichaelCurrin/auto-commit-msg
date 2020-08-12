@@ -11,7 +11,7 @@
 
 This is a VS Code extension - when you run it, it will look at files changed and then generate a commit message for you and add it to the commit message box (using the Git Extension's UI). It will look at files that are staged. If there are none, then it will look all changed unstaged files instead. The result will be a simple, descriptive message that fits on one line.
 
-_\*At the moment a message can be generated based on one changed file_
+Note: At the moment a message can be generated based on one changed file.
 
 This was inspired partly by GitHub's UI - it suggests a message in grey like "Update README.md" when I edit that file and if I enter nothing it uses that.
 
@@ -68,24 +68,23 @@ The core of this project's VS Code extension logic is creating a commit message 
 Sources:
 
 - Hello World sample
-    - Source: [hello world test sample](https://github.com/microsoft/vscode-extension-samples/tree/master/helloworld-test-sample)
+    - Source: [Hello World test sample](https://github.com/microsoft/vscode-extension-samples/tree/master/helloworld-test-sample) project
     - This project started off as an extension based on the VS Code test sampke. It was just hello world and didn't help with my flow, so I got rid of the code in later tags.
 - Git Semantic Commit
     - Repo: [nitayneeman/vscode-git-semantic-commit](https://github.com/nitayneeman/vscode-git-semantic-commit) 
-    - Then I used parts of that, mainly the `Git` API for adapting `status` from `diff`. 
-    - That also gave me an outline of how to use tests (`mocha` in this case) for my own logic.
+    - I liked how this extension does Git CLI commands, so I used the `Git` class as a starting point for my own functionality in [gitCommands.ts](/src/gitCommands.ts).
+    - The rest of the extension was too advanced for what I needed to do, so I ended up not using the other parts.
+    - I like the integration tests approach though so I might come back to use pieces of that.
 - Git Prefix
-    - I found a much simpler and much more relevant extension.
-    - [srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix). 
-    - This will push a message to the commit message UI box and allows manual overrides, which is a flow I like. That could work with the existing Semantic Git Commit extension if that message is kept when opening up the picklist for type (the problem is that that extension does not use the message but its own field). Also I have a plan to add semantic prefix using my own logic, for some cases. This see the `Semantic` class.
+    - Repos: [srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix). 
+    - I found this in the marketplace - it adds a branch prefix to commit message UI box and gives the user a chance to read it and edit it. This is very close to the flow that I want and it far less code that Git Semantic Commit, so my extension is based on this. See more example the use of `repository.inputBox.value` in [extension.ts](/src/extension.ts).
 - Parse Git Status
     - Repo: [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status)
-    - Parsing the git output started with the Parse Git Status described below but diverged.
-    - My [parse-git-output](/src/generate/parse-git-output) module was based on `parse-git-status`, but I rewrote from scratch. 
+    - I started out parsing git status output intending to use this NPM package. Unfortunately it does not come with types and I couldn't figure out how to add types, so I took the logic from it and rewrote it as my own so it is easier to manage and extend. See my [parse-git-output](/src/generate/parse-git-output) module - that based on `parse-git-status`.
     - My enhancements:
         - Compatibility with `git status --porcelain`.
-            - Replace use of `-z` mode. Separating by either one or two null characters is not nice, so I split columns by whitespace rathe and lines split by newline character.
-        - Cleaner for loop logic
+            - Replaced use of `-z` mode. Separating by either one or two null characters is not nice, so I split columns by whitespace rathe and lines split by newline character.
+        - Cleaner `for` loop logic
             - I found the original hard to work on because of how it uses an old-style `for` loop and `i` variable and expects elements t
-        - Added TS types (essential for my project to run)
-        - It now handles output of both `git status --short` and `git diff-index HEAD`.
+        - Added TS types (essential for my project to run).
+        - My module handles output of both `git status --short` and `git diff-index HEAD`.
