@@ -35,32 +35,6 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "configuration": {
-      "type": "object",
-      "title": "commitMsg",
-      "properties": {
-        "commitMsg.pattern": {
-          "type": "string",
-          "default": "(.*)",
-          "description": "A regular expression to extract from branch name. Should match entire branch."
-        },
-        "commitMsg.patternIgnoreCase": {
-          "type": "boolean",
-          "default": false,
-          "description": "Ignore case in pattern."
-        },
-        "commitMsg.replacementIsFunction": {
-          "type": "boolean",
-          "default": false,
-          "description": "Replacement string is a function return expression with parameters (p1, p2, p3...) matching patterns."
-        },
-        "commitMsg.replacement": {
-          "type": "string",
-          "default": "[$1] ",
-          "description": "Content to place in commit message."
-        }
-      }
-    },
     "commands": [
       {
         "command": "commitMsg.setMessage",
