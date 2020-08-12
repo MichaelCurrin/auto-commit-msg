@@ -82,13 +82,15 @@
     }
   },
   "scripts": {
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts",
     "clean": "rm -rf ./out/*",
-    "build": "npm run clean && tsc -p ./",
-    "vscode:prepublish": "npm run build",
+    "compile": "npm run clean && tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run build",
-    "test": "cd out && mocha"
+    "pretest": "npm run compile",
+    "test": "cd out && mocha",
+    "vscode:prepublish": "npm run compile",
+    "build": "vsce package --out build/",
+    "ext": "npm run build && code --install-extension $(find build/* | sort -r | head -n1)"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
