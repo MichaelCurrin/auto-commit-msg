@@ -51,7 +51,6 @@ $ cd auto-commit-msg
 $ npm install
 ```
 
-
 #### Setup
 
 Run `npm install` in terminal to install dependencies.
