@@ -1,13 +1,24 @@
 # Documentation - Auto Commit Message
 
-This project aims to prepare a smart commit message for your when you enter `git commit`, which you can use or ignore.
+This project aims to prepare a smart commit message for you to make your development smoother.
+
+
+## Overview
+
+- Install a pre-built extension
+    - See [Quickstart](quickstart.md)
+- For developers
+    - Start with [installation](installation.md) to install.
+    - Continue to [development](development.md) doc for local development. 
+    - See the [deploy](deploy.md) doc to roll your own copy locally and install it.
+
+
+<!--
 
 The docs are split into two features:
 
-- [Terminal hook](terminal-hook.md)
 - [Extension](extension.md)
-
-<!--
+- [Terminal hook](terminal-hook.md)
 
 Part ideas:
 
