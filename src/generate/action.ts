@@ -41,14 +41,14 @@ export function moveRenamePath(oldPath: string, newPath: string): string {
     newP = splitPath(newPath);
 
   if (oldP.name === newP.name) {
-    const target = newP.dir;
+    const target = newP.dirPath;
     return `Move ${oldP.name} to ${target}`;
   }
-  if (oldP.dir === newP.dir) {
+  if (oldP.dirPath === newP.dirPath) {
     const target = newP.name;
     return `Rename ${oldP.name} to ${target}`;
   }
 
-  const target = newP.dir === ROOT ? `${newP.name} at ${ROOT}` : newPath;
+  const target = newP.dirPath === ROOT ? `${newP.name} at ${ROOT}` : newPath;
   return `Move and rename ${oldP.name} to ${target}`;
 }

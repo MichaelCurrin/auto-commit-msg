@@ -43,7 +43,7 @@ const PACKAGE_NAMES = [
  */
 export class Semantic {
   atRoot: boolean;
-  dir: string;
+  dirPath: string;
   name: string;
   extension: string;
 
@@ -55,9 +55,9 @@ export class Semantic {
     // Maybe a class is overkill as it is just a container of data.
     // Maybe the {} can be stored an object here. Or maybe combine that and this at the risk
     // of doing too much. But still easy to test attributes vs methods.
-    const { atRoot, dir, name, extension } = splitPath(filePath);
+    const { atRoot, dirPath, name, extension } = splitPath(filePath);
     this.atRoot = atRoot;
-    this.dir = dir;
+    this.dirPath = dirPath;
     this.name = name;
     this.extension = extension;
   }
@@ -69,12 +69,12 @@ export class Semantic {
    * except perhaps for config files.
    */
   isDocRelated(): boolean {
-    return this.name === 'README.md' || this.dir.startsWith('docs');
+    return this.name === 'README.md' || this.dirPath.startsWith('docs');
   }
 
   isTestRelated(): boolean {
     return (
-      this.dir.includes('test/') ||
+      this.dirPath.includes('test/') ||
       this.name.includes('.test.') ||
       this.name.includes('.spec.') ||
       this.name.startsWith('test_') ||
@@ -83,7 +83,7 @@ export class Semantic {
   }
 
   isCIRelated(): boolean {
-    return this.dir in CI_DIRS || this.name in CI_NAMES;
+    return this.dirPath in CI_DIRS || this.name in CI_NAMES;
   }
 
   // Broadly match eslint configs https://eslint.org/docs/user-guide/configuring
@@ -91,7 +91,7 @@ export class Semantic {
   isConfigRelated(): boolean {
     if (
       this.extension in CONFIG_EXTENSIONS ||
-      this.dir in CONFIG_DIRS ||
+      this.dirPath in CONFIG_DIRS ||
       this.name in CONFIG_NAMES ||
       this.name.includes('.eslintrc') ||
       this.name.includes('.prettier')

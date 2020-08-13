@@ -7,14 +7,14 @@ describe('Path handling', function() {
     it('splits a path correctly', function() {
       assert.deepEqual(splitPath('baz.txt'), {
         atRoot: true,
-        dir: 'repo root',
+        dirPath: 'repo root',
         name: 'baz.txt',
         extension: '.txt'
       });
 
       assert.deepEqual(splitPath('foo/bar/baz.txt'), {
         atRoot: false,
-        dir: 'foo/bar',
+        dirPath: 'foo/bar',
         name: 'baz.txt',
         extension: '.txt'
       });

@@ -9,7 +9,7 @@ import { ROOT } from './constants';
 
 interface SplitPathResult {
   atRoot: boolean;
-  dir: string;
+  dirPath: string;
   name: string;
   extension: string;
 }
@@ -30,7 +30,7 @@ export function splitPath(filePath: string): SplitPathResult {
 
   return {
     atRoot: isAtRepoRoot,
-    dir: isAtRepoRoot ? ROOT : dir,
+    dirPath: isAtRepoRoot ? ROOT : dir,
     name: path.basename(filePath),
     extension: path.extname(filePath)
   };
