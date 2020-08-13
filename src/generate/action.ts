@@ -1,10 +1,8 @@
 /**
  * Phrase commit changes in words.
  */
-import * as path from 'path';
-
 import { splitPath } from './paths';
-import { ACTION } from './constants';
+import { ACTION, ROOT } from './constants';
 
 type DescriptionStrings = keyof typeof ACTION;
 
@@ -28,37 +26,29 @@ export function lookupStatusAction(x: string, y: string): string {
 
 export function lookupDiffIndexAction(x: string): string {
   // Lookup value from enum dynamically without getting a TS error.
+  // This was a hack I found - maybe there's a cleaner way that falls back
+  // to a null value and not undefiend.
   return (<any>ACTION)[x];
-}
-
-/**
- * Return statement as old path to new path, using just target directory
- * for new path if the file is not renamed.
- * 
- * New path with always be full, ignoring any common base.
- */
-export function pathToPath(from: string, to: string): string {
-  if (to !== '') {
-    return `${from} to ${to}`;
-  }
-  return path.basename(from);
 }
 
 /**
  * Return full message for move and/or renaming a file.
  * 
- * TODO: Update for modified as well.
+ * TODO: Update for modified as well or make a new function.
  */
 export function moveRenamePath(oldPath: string, newPath: string): string {
-  const oldP = splitPath(oldPath);
-  const newP = splitPath(newPath);
+  const oldP = splitPath(oldPath),
+    newP = splitPath(newPath);
 
   if (oldP.name === newP.name) {
-    return `Move ${oldP.name} to ${newP.dir}`;
+    const target = newP.dir;
+    return `Move ${oldP.name} to ${target}`;
   }
   if (oldP.dir === newP.dir) {
-    return `Rename ${oldP.name} to ${newP.name}`;
+    const target = newP.name;
+    return `Rename ${oldP.name} to ${target}`;
   }
 
-  return `Move and rename ${oldP.name} to ${newPath}`;
+  const target = newP.dir === ROOT ? `${newP.name} at ${ROOT}` : newPath;
+  return `Move and rename ${oldP.name} to ${target}`;
 }

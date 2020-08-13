@@ -22,7 +22,7 @@ interface SplitPathResult {
  * 
  * Note that .extname is already smart enough to detect only the last extension
  * if there are multiple dots as see extension as empty string if it is '.filename'. 
- * Note that extension the dot.
+ * Note that extension has a dot.
  */
 export function splitPath(filePath: string): SplitPathResult {
   const dir = path.dirname(filePath),

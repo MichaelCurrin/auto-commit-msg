@@ -42,9 +42,9 @@ export function parseStatus(line: string): FileChanges {
 }
 
 /**
- * Parse a line coming from the git diff-index command.
+ * Parse a line produced by the git diff-index command.
  * 
- * For a rename as 'R100', discard the percentage.
+ * For a rename such as 'R100', discard the percentage.
  */
 export function parseDiffIndex(line: string): FileChanges {
   if (line.length <= 4) {
@@ -52,11 +52,15 @@ export function parseDiffIndex(line: string): FileChanges {
   }
 
   const x = line[0];
-  // Use unmodified symbol and keep to match status, but this is actually not present.
+  // Use unmodified symbol and keep to match git status handling
+  // where this function comes from, but this is actually not present.
   const y = ' ';
 
   const segments = line.split(/\s+/);
   const from = segments[1];
+  if (!from) {
+    throw new Error(`Bad input - could not find first filename in line: ${line}`);
+  }
   const to = segments.length === 3 ? segments[2] : '';
 
   return {
