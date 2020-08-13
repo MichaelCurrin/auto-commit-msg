@@ -4,8 +4,6 @@
  * This can be used to check if all changes in a commit are related
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
-import * as path from 'path';
-
 import { splitPath } from './paths';
 
 // Exclude package* files here for JS since those can be related to packages and sometimes to other metadata.
@@ -18,11 +16,13 @@ const PACKAGE_NAMES = [
     'package-lock.json',
     'yarn.lock'
   ],
-  LICENSE_NAMES = [ 'LICENSE', 'LICENSE.txt' ],
-  // This may be too broad or clash with other areas such as CI or package unless used close to last in the entire flow.
-  CONFIG_EXTENSIONS = [ 'yml', 'yaml', 'json', 'toml', 'ini', 'cfg' ],
+  LICENSE_NAMES = [ 'LICENSE', 'LICENSE.txt', 'License.txt' ],
+  // This may be too broad or clash with other areas such as CI or
+  // package unless used close to last in the entire flow.
+  CONFIG_EXTENSIONS = [ '.yml', '.yaml', '.json', '.toml', '.ini', '.cfg' ],
   CONFIG_DIRS = [ '.vscode' ],
   CONFIG_NAMES = [
+    'Makefile',
     'setup.py',
     'package.json',
     '.gitignore',
@@ -78,7 +78,7 @@ export class Semantic {
   isCIRelated(): boolean {
     return this.dir in CI_DIRS || this.name in CI_NAMES;
   }
-  
+
   // Broadly match eslint configs https://eslint.org/docs/user-guide/configuring
   // And prettier configs https://prettier.io/docs/en/configuration.html
   isConfigRelated(): boolean {
@@ -86,7 +86,7 @@ export class Semantic {
       this.extension in CONFIG_EXTENSIONS ||
       this.dir in CONFIG_DIRS ||
       this.name in CONFIG_NAMES ||
-      this.name.includes('.eslintrc') || 
+      this.name.includes('.eslintrc') ||
       this.name.includes('.prettier')
     ) {
       return true;
@@ -100,7 +100,7 @@ export class Semantic {
     }
     return false;
   }
-  
+
   isLicenseRelated() {
     return this.name in LICENSE_NAMES;
   }
