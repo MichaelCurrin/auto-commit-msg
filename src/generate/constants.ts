@@ -1,6 +1,9 @@
 /**
  * Map Git status short symbols to long description
  */
+// Human-friendly description of path for use in commit messages.
+export const ROOT = 'repo root';
+
 export enum DESCRIPTION {
   ' ' = 'unmodified',
   M = 'modified',

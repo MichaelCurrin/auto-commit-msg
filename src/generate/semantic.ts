@@ -48,6 +48,9 @@ export class Semantic {
     // could it work better as a class? And then semantic can inherit from it.
     // The properties are actually all the same her as there (duplication), only the semantic
     // methods get added here as new.
+    // Maybe a class is overkill as it is just a container of data.
+    // Maybe the {} can be stored an object here. Or maybe combine that and this at the risk
+    // of doing too much. But still easy to test attributes vs methods.
     const { atRoot, dir, name, extension } = splitPath(filePath);
     this.atRoot = atRoot;
     this.dir = dir;
