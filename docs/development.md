@@ -27,10 +27,16 @@ $ npm run lint
 
 Note this also runs in the CI/CD pipeline.
 
+Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the compile command. Note that this also runs as a pretest step as part of [Tests](#run-tests) in the next section, so you don't have to run it by hand.
+
+```sh
+$ npm run compile
+```
+
 
 ### Run tests
 
-For the git-prefix project this was partly based on, unfortunately the tests are poor there so I didn't copy over the extension tests, but I could bring back some from tag v0.6.0 so there are integration tests if I think I need them.
+For the `git-prefix` project this was partly based on, unfortunately the tests are poor there so I didn't copy over the extension tests, but I could bring back some from tag v0.6.0 so there are integration tests if I think I need them.
 
 #### Unit tests
 
