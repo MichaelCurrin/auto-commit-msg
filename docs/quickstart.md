@@ -31,7 +31,7 @@ If you already have the extension installed, this will overwrite it.
 To avoid clicking the extension with the mouse, you can use the command bar.
 
 1. Press <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> to open it up, select _Auto Commit Message_ and press enter or click it.
-1. Your cursor will move to the commit message box, so now you can press e.g. Use <kbd>CTRL</kbd>+<kbd>ENTER</kbd>.
+1. Your cursor will move to the commit message box, so now you can press commit with the keyboard. Use <kbd>CTRL</kbd>+<kbd>ENTER</kbd>.
 
 
 ### Remove 
