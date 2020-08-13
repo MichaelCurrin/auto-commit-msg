@@ -6,6 +6,7 @@
  */
 import * as path from 'path';
 
+// Human friendly description of path for use in commit messages.
 const ROOT = 'repo root';
 
 /**
@@ -73,17 +74,24 @@ export function removeBase(base: string, filepath: string) {
 }
 
 interface SplitPathResult {
+  isAtRepoRoot: boolean;
   dir: string;
   name: string;
+  extension: string
 }
 /**
- * Directory and name of a path.
+ * Metadata about a path.
+ *
+ * Info is derived based on the input value string whether the path to a file that exists or not.
  */
 export function splitPath(filepath: string): SplitPathResult {
-  const dir = path.dirname(filepath);
+  const dir = path.dirname(filepath),
+    isAtRepoRoot = dir === '.';
 
   return {
-    dir: dir === '.' ? ROOT : dir,
-    name: path.basename(filepath)
+    atRoot: isAtRepoRoot,
+    dir: isAtRepoRoot ? ROOT : dir,
+    name: path.basename(filepath),
+    extension: path.extname(filepath)
   };
 }
