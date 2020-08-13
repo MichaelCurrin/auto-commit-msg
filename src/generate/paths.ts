@@ -5,6 +5,7 @@
  * Since JS does not have a builtin function like Python does.
  */
 import * as path from 'path';
+import { extensions } from 'vscode';
 
 // Human friendly description of path for use in commit messages.
 const ROOT = 'repo root';
@@ -77,12 +78,17 @@ interface SplitPathResult {
   atRoot: boolean;
   dir: string;
   name: string;
-  extension: string
+  extension: string;
 }
 /**
  * Metadata about a path.
  *
- * Info is derived based on the input value string whether the path to a file that exists or not.
+ * Info is derived based on the input value string whether the path to a file that 
+ * exists or not.
+ * 
+ * Note that .extname is already smart enough to detect only the last extension
+ * if there are multiple dots as see extension as empty string if it is '.filename'. 
+ * Note that extension the dot.
  */
 export function splitPath(filePath: string): SplitPathResult {
   const dir = path.dirname(filePath),
