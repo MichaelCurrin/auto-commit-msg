@@ -74,7 +74,7 @@ export function removeBase(base: string, filepath: string) {
 }
 
 interface SplitPathResult {
-  isAtRepoRoot: boolean;
+  atRoot: boolean;
   dir: string;
   name: string;
   extension: string
