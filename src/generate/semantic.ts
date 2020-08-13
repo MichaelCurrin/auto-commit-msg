@@ -16,6 +16,10 @@ const PACKAGE_NAMES = [
     'package-lock.json',
     'yarn.lock'
   ],
+  // This can be useful for multi-file changes e.g. "Creat 5 scripts"
+  SCRIPT_EXTENSIONS = [ '.py', '.rb', '.js', '.ts', '.tsx', '.rs', '.go' ],
+  // For "Update 5 shell scripts"
+  SHELL_SCRIPT_EXTENSION = '.sh',
   LICENSE_NAMES = [ 'LICENSE', 'LICENSE.txt', 'License.txt' ],
   // This may be too broad or clash with other areas such as CI or
   // package unless used close to last in the entire flow.
