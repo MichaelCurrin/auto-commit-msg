@@ -84,14 +84,14 @@ interface SplitPathResult {
  *
  * Info is derived based on the input value string whether the path to a file that exists or not.
  */
-export function splitPath(filepath: string): SplitPathResult {
-  const dir = path.dirname(filepath),
+export function splitPath(filePath: string): SplitPathResult {
+  const dir = path.dirname(filePath),
     isAtRepoRoot = dir === '.';
 
   return {
     atRoot: isAtRepoRoot,
     dir: isAtRepoRoot ? ROOT : dir,
-    name: path.basename(filepath),
-    extension: path.extname(filepath)
+    name: path.basename(filePath),
+    extension: path.extname(filePath)
   };
 }
