@@ -38,13 +38,21 @@ const PACKAGE_NAMES = [
  * Support conventional commit message for a given file path.
  */
 export class Semantic {
+  atRoot: boolean;
   dir: string;
   name: string;
+  extension: string;
 
   constructor(filePath: string) {
-    const { dir, name } = splitPath(filePath);
+    // TODO It is worth keeping splitPath on its own for separation of concerns, but
+    // could it work better as a class? And then semantic can inherit from it.
+    // The properties are actually all the same her as there (duplication), only the semantic
+    // methods get added here as new.
+    const { atRoot, dir, name, extension } = splitPath(filePath);
+    this.atRoot = atRoot;
     this.dir = dir;
     this.name = name;
+    this.extension = extension;
   }
 
   /**
@@ -75,7 +83,7 @@ export class Semantic {
   // And prettier configs https://prettier.io/docs/en/configuration.html
   isConfigRelated(): boolean {
     if (
-      path.extname(this.name) in CONFIG_EXTENSIONS ||
+      this.extension in CONFIG_EXTENSIONS ||
       this.dir in CONFIG_DIRS ||
       this.name in CONFIG_NAMES ||
       this.name.includes('.eslintrc') || 
@@ -97,7 +105,7 @@ export class Semantic {
     return this.name in LICENSE_NAMES;
   }
 
-  // TODO: Move to enum
+  // TODO: Move values to enum and reference here e.g. SEMANTIC.CI
   getType(): string {
     if (this.isCIRelated()) {
       return 'ci';
