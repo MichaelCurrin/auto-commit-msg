@@ -63,7 +63,7 @@
     "pretest": "npm run compile",
     "test": "cd out && mocha",
     "vscode:prepublish": "npm run compile",
-    "build": "vsce package --out build/",
+    "build": "mkdir -p build && vsce package --out build/",
     "ext": "npm run build && code --install-extension $(find build/* | sort -r | head -n1)"
   },
   "devDependencies": {
