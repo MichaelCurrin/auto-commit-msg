@@ -19,7 +19,15 @@ $ npm version minor
 
 Then go into the [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases) section on GitHub, create a release from the tag and upload the built extension `.vsix` file to the binaries part.
 
-### Doc notes
+
+## Publishing
+
+Note that there is no marketplace extension yet.
+
+Also there is no package on NPM - this would not be useful as this is a standalone project extension and not a library.
+
+
+## Docs and versions
 
 Note that the doc badge on root README.md will increment to the latest tag number but not the latest release. This is okay, as tags can be regular to track progress but if there is nothing meaningful the extension doesn't have to be rebuilt. Until that flow becomes automated to upload to releases with CI, or publish to marketplace.
 
