@@ -59,12 +59,15 @@
     "lint": "eslint . --ext .ts",
     "clean": "rm -rf ./out/*",
     "compile": "npm run clean && tsc -p ./",
-    "watch": "tsc -watch -p ./",
     "pretest": "npm run compile",
     "test": "cd out && mocha",
+    "watch": "tsc -watch -p ./",
     "vscode:prepublish": "npm run compile",
     "build": "mkdir -p build && vsce package --out build/",
-    "ext": "npm run build && code --install-extension $(find build/* | sort -r | head -n1)"
+    "ext": "npm run build && code --install-extension $(find build/* | sort -r | head -n1)",
+    "preversion": "npm run lint && npm test",
+    "version": "npm run build",
+    "postversion": "git push --follow-tags"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
