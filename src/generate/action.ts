@@ -12,7 +12,7 @@ export function describeAction(key: DescriptionStrings) {
 
 /**
  * Extract single action from given X and Y actions.
- * 
+ *
  * This works for git status short output.
  * Modified takes preferences over the others. There is no way here to combine update and move.
  */
@@ -33,10 +33,10 @@ export function lookupDiffIndexAction(x: string): string {
 
 /**
  * Return full message for move and/or renaming a file.
- * 
+ *
  * TODO: Update for modified as well or make a new function.
  */
-export function moveRenamePath(oldPath: string, newPath: string): string {
+export function moveOrRenameFile(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
     newP = splitPath(newPath);
 

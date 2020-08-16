@@ -1,11 +1,11 @@
 /**
- * Create a commit message from a string which is formatted as a short git status. 
+ * Create a commit message from a string which is formatted as a short git status.
  */
 import * as path from 'path';
 import { ACTION } from './constants';
 
 import { parseDiffIndex } from './parse-git-output';
-import { lookupDiffIndexAction, moveRenamePath } from './action';
+import { lookupDiffIndexAction, moveOrRenameFile } from './action';
 
 /**
  * This is no titlecase method in JS. This is fills that gap,
@@ -20,7 +20,7 @@ function title(value: string) {
 
 /**
  * Prepare a commit message based on a single file change.
- * 
+ *
  * A rename can be handled, it just requires both the paths to be staged
  * so that git collapses D and A to a single R action.
  */
@@ -30,7 +30,7 @@ export function one(line: string): string {
   const verb = lookupDiffIndexAction(x);
   if (verb === ACTION.R) {
     // `to` will be set because it is a rename.
-    return moveRenamePath(from, to);
+    return moveOrRenameFile(from, to);
   }
 
   // from is not really descriptive here but the logic works.
