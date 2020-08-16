@@ -32,23 +32,26 @@ export function lookupDiffIndexAction(x: string): string {
 }
 
 /**
- * Return full message for move and/or renaming a file.
+ * Return full message for moving and/or renaming a file.
  *
- * TODO: Update for modified as well or make a new function.
+ * TODO: Update for modified as well, or make a new function.
  */
 export function moveOrRenameFile(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
     newP = splitPath(newPath);
 
+  let msg;
+
   if (oldP.name === newP.name) {
-    const target = newP.dirPath;
-    return `Move ${oldP.name} to ${target}`;
+    msg = `Move ${oldP.name} to ${newP.dirPath}`;
   }
-  if (oldP.dirPath === newP.dirPath) {
-    const target = newP.name;
-    return `Rename ${oldP.name} to ${target}`;
+  else if (oldP.dirPath === newP.dirPath) {
+    msg = `Rename ${oldP.name} to ${newP.name}`;
+  }
+  else {
+    const target = newP.dirPath === ROOT ? `${newP.name} at ${ROOT}` : newPath;
+    msg = `Move and rename ${oldP.name} to ${target}`;
   }
 
-  const target = newP.dirPath === ROOT ? `${newP.name} at ${ROOT}` : newPath;
-  return `Move and rename ${oldP.name} to ${target}`;
+  return msg;
 }
