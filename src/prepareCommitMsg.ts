@@ -12,6 +12,10 @@ import * as vscode from 'vscode';
 import { Repository } from './api/git';
 import { Git } from './gitCommands';
 import { one } from './generate/message';
+import { parseDiffIndex } from './generate/parse-git-output';
+import { lookupDiffIndexAction } from './generate/action';
+import { getSemanticConvention } from './generate/semantic';
+import { CONVENTIONAL_TYPE } from './generate/constants';
 
 /**
  * Fetch Git Extension commit message.
@@ -28,6 +32,28 @@ function getCommitMsg(repository: Repository): string {
 function setCommitMsg(repository: Repository, value: string): void {
   repository.inputBox.value = value;
 }
+
+function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
+  if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
+    return subject;
+  }
+  return `${prefix}: ${subject}`;
+}
+
+// Tie together piece of the generate module to create a full message for the UI.
+function generateMsg(diffIndexLines: string[]) {
+  const line = diffIndexLines[0];
+  const fileChangeMsg = one(line);
+
+  // TODO refactor as this is done in `one` too.
+  const { x: actionChar, from: filePath } = parseDiffIndex(line);
+  const action = lookupDiffIndexAction(actionChar);
+
+  const prefix = getSemanticConvention(action, filePath);
+
+  return formatMsg(prefix, fileChangeMsg);
+}
+
 /**
  * Read git output, process it to generate a commit message and then push the message to the input box UI.
  *
@@ -54,8 +80,7 @@ export async function prepareCommitMsg(repository: Repository) {
   }
 
   // Parse and process the git output fetched above.
-  const line = diffIndexLines[0];
-  const msg = one(line);
+  const msg = generateMsg(diffIndexLines);
 
   setCommitMsg(repository, msg);
 }

@@ -27,15 +27,16 @@ function title(value: string) {
 export function one(line: string): string {
   const { x, from, to } = parseDiffIndex(line);
 
-  const verb = lookupDiffIndexAction(x);
-  if (verb === ACTION.R) {
+  const action = lookupDiffIndexAction(x);
+  if (action === ACTION.R) {
     // `to` will be set because it is a rename.
     return moveOrRenameFile(from, to);
   }
 
+  // Stringify the action to get 'Update' etc.
   // from is not really descriptive here but the logic works.
   // It's also possible to reverse from and to in git status and git diff-index output
   // or handle just the parseDiffIndex function to make sure to is always set and from
   // is null if it is not a move.
-  return `${title(verb)} ${path.basename(from)}`;
+  return `${title(action)} ${path.basename(from)}`;
 }

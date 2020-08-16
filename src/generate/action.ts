@@ -24,8 +24,8 @@ export function lookupStatusAction(x: string, y: string): string {
   return actionY === ACTION.M ? actionY : actionX;
 }
 
-/** Get the display value for one of the ACTION enum pairs. */
-export function lookupDiffIndexAction(x: string): string {
+/** Return ACTION enum for a given string. */
+export function lookupDiffIndexAction(x: string) {
   // Lookup value from enum dynamically without getting a TS error.
   // This prevents an error on ACTION[x], because x may not be in.
   // This could return undefined which is caught next.
