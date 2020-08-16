@@ -107,8 +107,13 @@ export class Semantic {
   }
 
   isTestRelated(): boolean {
+    const dir = `${this.dirPath}/`;
+
     return (
-      this.dirPath.includes('test/') ||
+      dir.includes('test/') ||
+      dir.includes('tests/') ||
+      dir.includes('spec/') ||
+      dir.startsWith('unit') ||
       this.name.includes('.test.') ||
       this.name.includes('.spec.') ||
       this.name.startsWith('test_') ||
