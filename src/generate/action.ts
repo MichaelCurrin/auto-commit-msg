@@ -27,9 +27,15 @@ export function lookupStatusAction(x: string, y: string): string {
 /** Get the display value for one of the ACTION enum pairs. */
 export function lookupDiffIndexAction(x: string): string {
   // Lookup value from enum dynamically without getting a TS error.
-  // This was a hack I found - maybe there's a cleaner way that falls back
-  // to a null value and not undefiend.
-  return (<any>ACTION)[x];
+  // This prevents an error on ACTION[x], because x may not be in.
+  // This could return undefined which is caught next.
+  const action = (<any>ACTION)[x];
+
+  if (typeof action === 'undefined') {
+    throw new Error(`Could not find value in ACTION enum: ${x}`);
+  }
+
+  return action;
 }
 
 /**
