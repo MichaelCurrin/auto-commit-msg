@@ -67,7 +67,8 @@
     "ext": "npm run build && code --install-extension $(find build/* | sort -r | head -n1)",
     "preversion": "npm run lint && npm test",
     "version": "npm run build",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "sb": "bin/reset_sandbox.sh"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",

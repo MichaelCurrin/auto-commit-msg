@@ -5,3 +5,6 @@ out/
 
 build/*.vsix
 .idea
+
+# Temporary git repo in the repo, for testing the extension.
+sandbox/
