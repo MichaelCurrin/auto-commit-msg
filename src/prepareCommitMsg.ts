@@ -7,8 +7,8 @@
 import * as vscode from 'vscode';
 
 import { Repository } from './api/git';
-import { one } from './generate/message';
 import { Git } from './gitCommands';
+import { one } from './generate/message';
 
 /**
  * Fetch Git Extension commit message.
@@ -33,15 +33,19 @@ function setCommitMsg(repository: Repository, value: string): void {
 export async function prepareCommitMsg(repository: Repository) {
   const diffIndexLines = await Git.getChanges();
 
+  // Check the VS Code debug console - to help find issues.
   console.debug(diffIndexLines);
 
-  if (diffIndexLines.length === 0) {
-    vscode.window.showWarningMessage('Nothing to commit - no value to set as a message');
+  if (!diffIndexLines.length) {
+    vscode.window.showErrorMessage(
+      'Unable to generate message as no changes files can be seen.\nTry saving your files or stage any new untracked files.'
+    );
     return;
   }
+
   if (diffIndexLines.length > 1) {
     vscode.window.showErrorMessage(
-      "This extension only supports working with *one* changed file at a time. \nStage just one file (or both it's old 'D' and new 'A' path) and try again. Or stash changes so that only one file change is left in the working tree."
+      "This extension only supports working with *one* changed file at a time.Stage just one file (or both it's old 'D' and new 'A' path) and try again. Or stash changes so that only one file change is left in the working tree."
     );
     return;
   }
