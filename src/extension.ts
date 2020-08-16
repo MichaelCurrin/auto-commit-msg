@@ -4,7 +4,7 @@ import { GitExtension } from './api/git';
 import { prepareCommitMsg } from './prepareCommitMsg';
 
 /**
- * Return the VS Code builtin Git extension.
+ * Return VS Code's builtin Git extension.
  */
 function getGitExtension() {
   const vscodeGit = vscode.extensions.getExtension<GitExtension>('vscode.git');
@@ -13,6 +13,12 @@ function getGitExtension() {
   return gitExtension && gitExtension.getAPI(1);
 }
 
+/**
+ * Run the autofill command when extension is triggered.
+ *
+ * This is mostly copied from the git-prefix extension so some flows have not been
+ * directly tested.
+ */
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand('commitMsg.autofill', async (uri?) => {
     const git = getGitExtension();
@@ -25,6 +31,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand('workbench.view.scm');
 
     if (uri) {
+      // Flow for multiple repos in workspace and selecting just one.
+
+      // FIXME: Unfortunately this seems to only pick up the first repo.
       const selectedRepository = git.repositories.find(repository => {
         return repository.rootUri.path === uri._rootUri.path;
       });
@@ -34,16 +43,20 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
     else {
+      // One repo in workspace.
+
       if (git.repositories.length === 0) {
-        vscode.window.showErrorMessage('No repos found');
+        vscode.window.showErrorMessage(
+          'No repos found. Please open a repo or run git init then try this extension again.'
+        );
         return;
       }
-      // Behavior for multiple repos is not implemented yet. Just handle one.
       if (git.repositories.length > 1) {
-        vscode.window.showWarningMessage('This extension is only intended to work for one repo - taking the first');
+        // This flow is unlikely as I haven't experienced it yet, but log anyway just in case,
+        // without aborting.
+        vscode.window.showWarningMessage('Unable to select a repo as multiple repos are open and none was specified.');
       }
-
-      prepareCommitMsg(git.repositories[0]);
+      await prepareCommitMsg(git.repositories[0]);
     }
   });
 
