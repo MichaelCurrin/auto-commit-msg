@@ -1,3 +1,12 @@
+/**
+ * Git commands.
+ *
+ * This module is not named git.ts, in order to keep it distinct from the VS Code Git extension
+ * module of the same name and for which there are types under src/api/git.d.ts .
+ *
+ * There should be be confusion in the Git class here matching the name of one in the VS Code
+ * module, since that is not directly used in this project.
+ */
 import util = require('util');
 import childProcess = require('child_process');
 
@@ -6,32 +15,18 @@ import { getWorkspaceFolder } from './workspace';
 const exec = util.promisify(childProcess.exec);
 
 export class Git {
-  /** Run git CLI command. **/
+  /** Run git CLI command and return output. **/
   static execute(cwd: string, command?: string, options: string[] = []) {
     return exec(`git ${command} ${options.join(' ')}`, { cwd });
   }
 
-  /** 
-   * Get machine-readable value for git status short output.
-   * 
-   * This could be removed if not used.
-   */
-  static async status(options: string[] = []) {
-    return this.execute(getWorkspaceFolder(), 'status', [
-      '-s',
-      '-uno',
-      '--porcelain',
-      ...options
-    ]);
-  }
-
-  /** 
-   * Run git diff-index with flags.
-   * 
+  /**
+   * Run git diff-index with flags and return output.
+   *
    * Remove any empty lines, whether because of no changes or just the way the command-line
    * data comes in or is split.
-   * 
-   * Note the output already seems always to have no color from my testing, but the 
+   *
+   * Note the output already seems always to have no color from my testing, but the
    * no color flagged is added to be safe.
    */
   private static async diffIndex(options: string[] = []): Promise<Array<string>> {
@@ -48,7 +43,7 @@ export class Git {
       console.debug('stderror for git diff-index command:', stderr);
     }
 
-    return stdout.split('\n').filter((line) => line !== '');
+    return stdout.split('\n').filter(line => line !== '');
   }
 
   /** Summary of diff for staged and unstaged files, excluding untracked. **/
@@ -58,7 +53,9 @@ export class Git {
 
   /** Summary of diff for staged files, excluding untracked. **/
   static async stagedChanges() {
-    return this.diffIndex([ '--cached' ]);
+    return this.diffIndex([
+      '--cached'
+    ]);
   }
 
   /** Look for diff of staged files otherwise fall back to all files. Always excludes untracked */
@@ -72,5 +69,22 @@ export class Git {
 
     console.debug('Found staged changes');
     return staged;
+  }
+
+  /**
+   * Run git status short and return output.
+   *
+   * Ignore untracked and remove color.
+   *
+   * This was used before diffIndex was introduced to this project,
+   * so this function might not be needed.
+   */
+  static async status(options: string[] = []) {
+    return this.execute(getWorkspaceFolder(), 'status', [
+      '--short',
+      '-uno',
+      '--porcelain',
+      ...options
+    ]);
   }
 }
