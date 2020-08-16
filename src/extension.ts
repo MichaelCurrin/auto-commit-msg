@@ -43,7 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
     else {
-      // One repo in workspace.
+      // Flow for fewer than 2 repos in the workspace.
 
       if (git.repositories.length === 0) {
         vscode.window.showErrorMessage(
@@ -56,7 +56,9 @@ export function activate(context: vscode.ExtensionContext) {
         // without aborting.
         vscode.window.showWarningMessage('Unable to select a repo as multiple repos are open and none was specified.');
       }
-      await prepareCommitMsg(git.repositories[0]);
+
+      const targetRepo = git.repositories[0];
+      await prepareCommitMsg(targetRepo);
     }
   });
 
