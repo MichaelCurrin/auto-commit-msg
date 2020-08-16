@@ -26,9 +26,9 @@ function setCommitMsg(repository: Repository, value: string): void {
   repository.inputBox.value = value;
 }
 /**
- * Generate a commit message based on file changes and set it in the message box in the Git extension tab.
+ * Read git output, process it to generate a commit message and then push the message to the input box UI.
  *
- * This based on prefixCommit from git-prefix extension.
+ * This function based on the prefixCommit from git-prefix extension.
  */
 export async function prepareCommitMsg(repository: Repository) {
   const diffIndexLines = await Git.getChanges();
@@ -50,7 +50,9 @@ export async function prepareCommitMsg(repository: Repository) {
     return;
   }
 
+  // Parse and process the git output fetched above.
   const line = diffIndexLines[0];
   const msg = one(line);
+
   setCommitMsg(repository, msg);
 }
