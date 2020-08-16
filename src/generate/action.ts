@@ -13,7 +13,7 @@ export function describeAction(key: DescriptionStrings) {
 /**
  * Extract single action from given X and Y actions.
  *
- * This works for git status short output.
+ * This works for git status short output - currently not used.
  * Modified takes preferences over the others. There is no way here to combine update and move.
  */
 export function lookupStatusAction(x: string, y: string): string {
@@ -24,6 +24,7 @@ export function lookupStatusAction(x: string, y: string): string {
   return actionY === ACTION.M ? actionY : actionX;
 }
 
+/** Get the display value for one of the ACTION enum pairs. */
 export function lookupDiffIndexAction(x: string): string {
   // Lookup value from enum dynamically without getting a TS error.
   // This was a hack I found - maybe there's a cleaner way that falls back
