@@ -1,10 +1,5 @@
 import * as assert from 'assert';
-import {
-  FileChanges,
-  describeCode,
-  parseStatus,
-  parseDiffIndex
-} from '../generate/parse-git-output';
+import { FileChanges, describeCode, parseStatus, parseDiffIndex } from '../generate/parse-git-output';
 import { DESCRIPTION } from '../generate/constants';
 
 describe('Get value from description enum using key', function() {
@@ -15,11 +10,11 @@ describe('Get value from description enum using key', function() {
       assert.equal(describeCode('A'), DESCRIPTION.A);
     });
 
-    it('Can return the correct value for empty space as unmodified', function() {
+    it('can return the correct value for empty space as unmodified', function() {
       assert.equal(describeCode(' '), 'unmodified');
     });
 
-    it('Can return the correct value for ignored symbol', function() {
+    it('can return the correct value for ignored symbol', function() {
       assert.equal(describeCode('!'), 'ignored');
     });
   });
@@ -28,7 +23,6 @@ describe('Get value from description enum using key', function() {
 describe('Split git status output into components', function() {
   describe('#parseStatus()', function() {
     it('should return the appropriate commit message for a new file', function() {
-      // Using DESCRIPTION.A to get 'A' does not work here.
       const expected: FileChanges = {
         x: 'A',
         y: ' ',
