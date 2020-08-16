@@ -31,13 +31,13 @@
     "theme": "light"
   },
   "activationEvents": [
-    "onCommand:commitMsg.setMessage"
+    "onCommand:commitMsg.autofill"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "commitMsg.setMessage",
+        "command": "commitMsg.autofill",
         "title": "Auto Commit Message",
         "icon": {
           "dark": "images/message.svg",
@@ -48,7 +48,7 @@
     "menus": {
       "scm/title": [
         {
-          "command": "commitMsg.setMessage",
+          "command": "commitMsg.autofill",
           "when": "scmProvider == git",
           "group": "navigation"
         }

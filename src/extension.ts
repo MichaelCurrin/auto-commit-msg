@@ -14,7 +14,7 @@ function getGitExtension() {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('commitMsg.setMessage', async (uri?) => {
+  const disposable = vscode.commands.registerCommand('commitMsg.autofill', async (uri?) => {
     const git = getGitExtension();
 
     if (!git) {
