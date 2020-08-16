@@ -1,10 +1,11 @@
 /**
  * Logic around semantic commit messages.
- * 
+ *
  * This can be used to check if all changes in a commit are related
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
 import { splitPath } from './paths';
+import { ACTION, CONVENTIONAL_TYPE } from './constants';
 
 // Exclude package* files here for JS since those can be related to packages and sometimes to other metadata.
 const PACKAGE_NAMES = [
@@ -17,14 +18,35 @@ const PACKAGE_NAMES = [
     'yarn.lock'
   ],
   // This can be useful for multi-file changes e.g. "Creat 5 scripts"
-  SCRIPT_EXTENSIONS = [ '.py', '.rb', '.js', '.ts', '.tsx', '.rs', '.go' ],
+  SCRIPT_EXTENSIONS = [
+    '.py',
+    '.rb',
+    '.js',
+    '.ts',
+    '.tsx',
+    '.rs',
+    '.go'
+  ],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = '.sh',
-  LICENSE_NAMES = [ 'LICENSE', 'LICENSE.txt', 'License.txt' ],
+  LICENSE_NAMES = [
+    'LICENSE',
+    'LICENSE.txt',
+    'License.txt'
+  ],
   // This may be too broad or clash with other areas such as CI or
   // package unless used close to last in the entire flow.
-  CONFIG_EXTENSIONS = [ '.yml', '.yaml', '.json', '.toml', '.ini', '.cfg' ],
-  CONFIG_DIRS = [ '.vscode' ],
+  CONFIG_EXTENSIONS = [
+    '.yml',
+    '.yaml',
+    '.json',
+    '.toml',
+    '.ini',
+    '.cfg'
+  ],
+  CONFIG_DIRS = [
+    '.vscode'
+  ],
   CONFIG_NAMES = [
     'Makefile',
     'setup.py',
@@ -34,12 +56,24 @@ const PACKAGE_NAMES = [
     'tsconfig.json',
     'tslint.json'
   ],
-  BUILD_NAMES = [ 'Dockerfile', 'docker-compose.yml' ],
-  CI_DIRS = [ '.circleci', '.github/workflows' ],
-  CI_NAMES = [ 'netlify.toml', 'travis.yml', '.vscodeignore' ];
+  BUILD_NAMES = [
+    'Dockerfile',
+    'docker-compose.yml'
+  ],
+  CI_DIRS = [
+    '.circleci',
+    '.github/workflows'
+  ],
+  CI_NAMES = [
+    'netlify.toml',
+    'travis.yml',
+    '.vscodeignore'
+  ];
 
 /**
- * Support conventional commit message for a given file path.
+ * Support conventional commit prefix for a given file path.
+ *
+ * This ignores the action such as create file.
  */
 export class Semantic {
   atRoot: boolean;
@@ -113,21 +147,48 @@ export class Semantic {
     return LICENSE_NAMES.includes(this.name);
   }
 
-  // TODO: Move values to enum and reference here e.g. SEMANTIC.CI
-  getType(): string {
+  getType() {
     if (this.isCIRelated()) {
-      return 'ci';
+      return CONVENTIONAL_TYPE.CI;
     }
     if (this.isLicenseRelated() || this.isPackageRelated() || this.isConfigRelated()) {
-      return 'chore';
+      return CONVENTIONAL_TYPE.CHORE;
     }
     if (this.isDocRelated()) {
-      return 'docs';
+      return CONVENTIONAL_TYPE.DOCS;
     }
     if (this.isTestRelated()) {
-      return 'test';
+      return CONVENTIONAL_TYPE.TEST;
     }
 
-    return '';
+    return CONVENTIONAL_TYPE.UNKNOWN;
   }
+}
+
+/**
+ * Get the semantic conventional commit type.
+ *
+ * Relies on both the action type and the path-based logic.
+ *
+ * Don't handle ACTION.M or ACTION.C as it could be a fix or feature. So just use unknown/null value.
+ */
+export function getSemanticConvention(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
+  const semantic = new Semantic(filePath);
+
+  if (
+    action in
+    [
+      ACTION.R,
+      ACTION.D
+    ]
+  ) {
+    return CONVENTIONAL_TYPE.CHORE;
+  }
+
+  const semPathType = semantic.getType();
+  if (action === ACTION.A) {
+    return semPathType || CONVENTIONAL_TYPE.FEAT;
+  }
+
+  return semPathType;
 }
