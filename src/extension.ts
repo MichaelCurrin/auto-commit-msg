@@ -4,6 +4,9 @@ import { GitExtension, Repository } from './api/git';
 import { Git } from './gitCommands';
 import { one } from './generate/message';
 
+/**
+ * Return the VS Code builtin Git extension.
+ */
 function getGitExtension() {
   const vscodeGit = vscode.extensions.getExtension<GitExtension>('vscode.git');
   const gitExtension = vscodeGit && vscodeGit.exports;
@@ -11,9 +14,9 @@ function getGitExtension() {
   return gitExtension && gitExtension.getAPI(1);
 }
 
-/** 
+/**
  * Fetch Git Extension commit message.
- * 
+ *
  * This will be useful when doing semantic commits, as the initial 'feat' or 'feat: ' portion
  * or similar can be kept as a prefix while the generate message can be a suffix.
  * Or if left out it can be generated if possible such as for 'chore' or 'docs'.
@@ -27,8 +30,11 @@ function setCommitMsg(repository: Repository, value: string): void {
   repository.inputBox.value = value;
 }
 
-// Based on prefixCommit from git-prefix extension. This is the core logic from there
-// and where the message is added for this repo.
+/**
+ * Generate a commit message based on file changes and set it in the message box in the Git extension tab.
+ *
+ * This based on prefixCommit from git-prefix extension.
+ */
 async function prepareCommitMsg(repository: Repository) {
   const diffIndexLines = await Git.getChanges();
 
