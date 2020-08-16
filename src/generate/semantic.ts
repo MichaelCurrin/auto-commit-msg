@@ -73,7 +73,10 @@ const PACKAGE_NAMES = [
 /**
  * Support conventional commit prefix for a given file path.
  *
- * This ignores the action such as create file.
+ * This ignores the action such as create/delete file.
+ *
+ * For move or rename cases, the input path is assumed to be the `to` path path as that would more
+ * useful than knowing the `from` path.
  */
 export class Semantic {
   atRoot: boolean;
@@ -180,13 +183,7 @@ export class Semantic {
 export function getSemanticConvention(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
   const semantic = new Semantic(filePath);
 
-  if (
-    action in
-    [
-      ACTION.R,
-      ACTION.D
-    ]
-  ) {
+  if (action === ACTION.R || action === ACTION.D) {
     return CONVENTIONAL_TYPE.CHORE;
   }
 
