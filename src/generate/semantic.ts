@@ -155,6 +155,7 @@ export class Semantic {
     return LICENSE_NAMES.includes(this.name);
   }
 
+  /** Return conventional commit type. If rules can't be used to match a known one, return the unknown form of the enum. */
   getType() {
     if (this.isCIRelated()) {
       return CONVENTIONAL_TYPE.CI;

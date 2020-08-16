@@ -1,8 +1,11 @@
 /**
  * Prepare commit message.
  *
- * This module ties together the extension's UI and git output code with
- * the interal processing logic of the generate module.
+ * This module takes care of the high-level flow of the extension, after a repo is
+ * selected in extension.ts module.
+ *
+ * This module handles reading git output, processes it with the logic in the generate module
+ * and then finally sets it in the UI message box.
  */
 import * as vscode from 'vscode';
 
