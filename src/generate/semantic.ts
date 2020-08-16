@@ -83,16 +83,17 @@ export class Semantic {
   }
 
   isCIRelated(): boolean {
-    return this.dirPath in CI_DIRS || this.name in CI_NAMES;
+    // Assume flat structure and don't check for nesting in subdirs of CI_DIRS.
+    return CI_DIRS.includes(this.dirPath) || CI_NAMES.includes(this.name);
   }
 
   // Broadly match eslint configs https://eslint.org/docs/user-guide/configuring
   // And prettier configs https://prettier.io/docs/en/configuration.html
   isConfigRelated(): boolean {
     if (
-      this.extension in CONFIG_EXTENSIONS ||
-      this.dirPath in CONFIG_DIRS ||
-      this.name in CONFIG_NAMES ||
+      CONFIG_EXTENSIONS.includes(this.extension) ||
+      CONFIG_DIRS.includes(this.dirPath) ||
+      CONFIG_NAMES.includes(this.name) ||
       this.name.includes('.eslintrc') ||
       this.name.includes('.prettier')
     ) {
@@ -102,14 +103,14 @@ export class Semantic {
   }
 
   isPackageRelated(): boolean {
-    if (this.name in PACKAGE_NAMES) {
+    if (PACKAGE_NAMES.includes(this.name)) {
       return true;
     }
     return false;
   }
 
   isLicenseRelated() {
-    return this.name in LICENSE_NAMES;
+    return LICENSE_NAMES.includes(this.name);
   }
 
   // TODO: Move values to enum and reference here e.g. SEMANTIC.CI
