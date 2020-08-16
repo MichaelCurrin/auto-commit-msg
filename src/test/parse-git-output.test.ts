@@ -4,7 +4,7 @@ import { DESCRIPTION } from '../generate/constants';
 
 describe('Get value from description enum using key', function() {
   describe('#describeCode()', function() {
-    it('Can return the correct value for added symbol', function() {
+    it('can return the correct value for added symbol', function() {
       assert.equal(describeCode('A'), 'added');
 
       assert.equal(describeCode('A'), DESCRIPTION.A);
