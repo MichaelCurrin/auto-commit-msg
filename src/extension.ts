@@ -14,6 +14,8 @@ function getGitExtension() {
   return gitExtension && gitExtension.getAPI(1);
 }
 
+// TODO move the next few functions out
+
 /**
  * Fetch Git Extension commit message.
  *
@@ -46,7 +48,7 @@ async function prepareCommitMsg(repository: Repository) {
   }
   if (diffIndexLines.length > 1) {
     vscode.window.showErrorMessage(
-      "This extension only supports working with ONE changed file at a time. Stage just file (or it's old and new path) and try again. Or with no files staged, ensure that is only one file covered under changed files."
+      "This extension only supports working with *one* changed file at a time. \nStage just one file (or both it's old 'D' and new 'A' path) and try again. Or stash changes so that only one file change is left in the working tree."
     );
     return;
   }
@@ -68,23 +70,22 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand('workbench.view.scm');
 
     if (uri) {
-      const selectedRepository = git.repositories.find((repository) => {
+      const selectedRepository = git.repositories.find(repository => {
         return repository.rootUri.path === uri._rootUri.path;
       });
 
       if (selectedRepository) {
         await prepareCommitMsg(selectedRepository);
       }
-    } else {
+    }
+    else {
       if (git.repositories.length === 0) {
         vscode.window.showErrorMessage('No repos found');
         return;
       }
       // Behavior for multiple repos is not implemented yet. Just handle one.
       if (git.repositories.length > 1) {
-        vscode.window.showWarningMessage(
-          'This extension is only intended to work for one repo - taking the first'
-        );
+        vscode.window.showWarningMessage('This extension is only intended to work for one repo - taking the first');
       }
 
       prepareCommitMsg(git.repositories[0]);
