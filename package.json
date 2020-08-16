@@ -2,7 +2,7 @@
   "name": "auto-commit-msg",
   "displayName": "Auto Commit Message",
   "description": "Generate git commit messages automagically",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "publisher": "MichaelCurrin",
   "homepage": "https://github.com/MichaelCurrin/auto-commit-msg#readme",
   "repository": {
