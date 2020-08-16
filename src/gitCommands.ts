@@ -58,17 +58,31 @@ export class Git {
     ]);
   }
 
-  /** Look for diff of staged files otherwise fall back to all files. Always excludes untracked */
+  /**
+   * List files changed and how they changed.
+   *
+   * Look for diff description of staged files, otherwise fall back to all files. This is a wrapper
+   * on `stagedChanges` or `allChanges`. Always excludes untracked files - make sure to stage a file
+   * so it becomes tracked, especially in the case of a rename.
+   *
+   * Returns using the type of the underlying `diffIndex` function.
+   */
   static async getChanges() {
     const staged = await this.stagedChanges();
 
-    if (staged.length === 0) {
-      console.debug('No staged changes found, using unstaged');
-      return this.allChanges();
+    if (staged.length) {
+      console.debug('Found staged changes');
+      return staged;
     }
+    else {
+      console.debug('Staging area is empty. Using unstaged files.');
 
-    console.debug('Found staged changes');
-    return staged;
+      const unstaged = await this.allChanges();
+      if (!unstaged.length) {
+        console.debug('Could not find any changed files');
+      }
+      return unstaged;
+    }
   }
 
   /**
@@ -76,8 +90,8 @@ export class Git {
    *
    * Ignore untracked and remove color.
    *
-   * This was used before diffIndex was introduced to this project,
-   * so this function might not be needed.
+   * This was used before diffIndex was introduced to this project, so this function might not be
+   * needed.
    */
   static async status(options: string[] = []) {
     return this.execute(getWorkspaceFolder(), 'status', [
