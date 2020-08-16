@@ -40,6 +40,7 @@ function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
   return `${prefix}: ${subject}`;
 }
 
+// TODO: Move this and formatMsg to generate module.
 // Tie together piece of the generate module to create a full message for the UI.
 function generateMsg(diffIndexLines: string[]) {
   const line = diffIndexLines[0];
