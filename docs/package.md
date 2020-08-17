@@ -10,9 +10,11 @@ This section uses the [vsce](https://github.com/microsoft/vscode-vsce) package f
 That is used to create a `.vsix` archive file. This can be used locally (unzipped and place in `.~/vscode/extensions` for user and may repo level), sent to others (directly or through a download on GitHub), or published to the VS Code marketplace (not currently setup for this extension).
 
 
-## Build and setup extension locally
+## Build and install extension locally
 
-This will build the extension to the `build` directory, then install it globally in VS Code. This is ideal for testing out the changes change in the extension without creating a tag yet.
+This will build the extension `.vsix` archive to the `build` directory using the current code. Then it will install it globally in VS Code.
+
+This is ideal for testing out the changes change in the extension without creating a tag yet.
 
 ```sh
 $ npm run ext
