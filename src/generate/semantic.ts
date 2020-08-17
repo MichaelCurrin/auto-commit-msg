@@ -8,22 +8,42 @@ import { splitPath } from './paths';
 import { ACTION, CONVENTIONAL_TYPE } from './constants';
 
 // Exclude package* files here for JS since those can be related to packages and sometimes to other metadata.
-const PACKAGE_NAMES = [
+const PACKAGE_DIRS = [
+    '.cargo'
+  ],
+  PACKAGE_NAMES = [
     'dev-requirements.txt',
     'test-requirements.txt',
     'requirements.txt',
+
     'Gemfile',
     'Gemfile.lock',
+
     'package-lock.json',
+    'shrinkwrap.json',
     'yarn.lock'
   ],
   // This can be useful for multi-file changes e.g. "Creat 5 scripts"
   SCRIPT_EXTENSIONS = [
+    '.html',
+    '.css',
+    '.scss',
+
     '.py',
+
     '.rb',
+
     '.js',
+    '.jsx',
     '.ts',
     '.tsx',
+
+    '.java',
+    '.jar',
+
+    '.c',
+    '.h',
+
     '.rs',
     '.go'
   ],
@@ -32,7 +52,8 @@ const PACKAGE_NAMES = [
   LICENSE_NAMES = [
     'LICENSE',
     'LICENSE.txt',
-    'License.txt'
+    'License.txt',
+    'LICENSE-source'
   ],
   // This may be too broad or clash with other areas such as CI or
   // package unless used close to last in the entire flow.
@@ -42,13 +63,15 @@ const PACKAGE_NAMES = [
     '.json',
     '.toml',
     '.ini',
-    '.cfg'
+    '.cfg', // Python config but also for other systems maybe
+    '.gemspec' // Ruby installation
   ],
   CONFIG_DIRS = [
     '.vscode'
   ],
   CONFIG_NAMES = [
     'Makefile',
+    'Rakefile',
     'setup.py',
     'package.json',
     '.gitignore',
