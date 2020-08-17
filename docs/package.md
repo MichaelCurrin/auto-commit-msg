@@ -12,41 +12,12 @@ That is used to create a `.vsix` archive file. This can be used locally (unzippe
 
 ## Build and setup extension locally
 
-This will build the extension to the `build` directory and then install it globally in VS Code.
+This will build the extension to the `build` directory, then install it globally in VS Code. This is ideal for testing out the changes change in the extension without creating a tag yet.
 
 ```sh
 $ npm run ext
 ```
 
-You may need to restart VS Code. You'll see the extension in your Extensions tab.
+It is best to then **restart** VS Code. You'll see the extension in your Extensions tab.
 
-Sample output for reference:
-
-```
-> auto-commit-msg@0.7.0 ext /home/michael/repos/auto-commit-msg
-> npm run build && code --install-extension $(find build/* | sort -r | head -n1)
-
-
-> auto-commit-msg@0.7.0 build /home/michael/repos/auto-commit-msg
-> vsce package --out build/
-
-Executing prepublish script 'npm run vscode:prepublish'...
-
-> auto-commit-msg@0.7.0 vscode:prepublish /home/michael/repos/auto-commit-msg
-> npm run compile
-
-
-> auto-commit-msg@0.7.0 compile /home/michael/repos/auto-commit-msg
-> npm run clean && tsc -p ./
-
-
-> auto-commit-msg@0.7.0 clean /home/michael/repos/auto-commit-msg
-> rm -rf ./out/*
-
- DONE  Packaged: build/auto-commit-msg-0.7.0.vsix (29 files, 34.9KB)
- INFO  
-The latest version of vsce is 1.78.0 and you have 1.77.0.
-Update it now: npm install -g vsce
-Installing extensions...
-Extension 'auto-commit-msg-0.7.0.vsix' was successfully installed.
-```
+We use the `--force` flag to downgrade to an older version, according to the CLI output help.

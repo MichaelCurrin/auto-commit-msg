@@ -103,7 +103,13 @@ If you don't see code changes appearing, you may need to stop and start the debu
 
 ## Install extension globally
 
+### Roll your own
+
 See the [package](package.md) doc to install a dev version of the package.
+
+Note the command in [package.json](/package.json) scripts section sorts by time because sorting by name is not reliable when the version is `0.9.0` and `0.10.0` (the latter is higher but appears as a lower version).
+
+### Install pre-built extension
 
 Or see [quickstart](quickstart.md) doc to download a pre-built version from a GitHub release.
 
