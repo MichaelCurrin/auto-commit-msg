@@ -7,7 +7,6 @@
 import { splitPath } from './paths';
 import { ACTION, CONVENTIONAL_TYPE } from './constants';
 
-// Exclude package* files here for JS since those can be related to packages and sometimes to other metadata.
 const PACKAGE_DIRS = [
     '.cargo'
   ],
@@ -18,7 +17,8 @@ const PACKAGE_DIRS = [
 
     'Gemfile',
     'Gemfile.lock',
-
+    
+    // Exclude package.json since it can be used for metadata and not package changes.
     'package-lock.json',
     'shrinkwrap.json',
     'yarn.lock'
