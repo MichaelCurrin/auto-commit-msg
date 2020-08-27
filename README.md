@@ -1,15 +1,14 @@
-# Auto Commit Message
+# Auto Commit Message ⚙️🧙‍♂️ ✉️
 > Automagically generate a commit message - based on which files changed and how they changed
 
 [![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions)
 [![GitHub release](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/releases/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](#license)
 
-[![VS Code extension](https://img.shields.io/badge/VS_Code_extension-blue.svg)](https://code.visualstudio.com/)
-[![Made with TypeScript](https://img.shields.io/badge/Made_with-TypeScript-blue.svg)](https://typescriptlang.org)
+[![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
+[![Made with TypeScript](https://img.shields.io/badge/TypeScript-3-blue.svg?logo=typescript)](https://typescriptlang.org)
 
-
-VS Code extension which provides smart suggestions for your commit messages.
+A VS Code extension which provides smart suggestions for your commit messages.
 
 
 ## Purpose
