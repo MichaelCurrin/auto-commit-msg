@@ -8,23 +8,30 @@ import { splitPath } from './paths';
 import { ACTION, CONVENTIONAL_TYPE } from './constants';
 
 const PACKAGE_DIRS = [
+    // Rust
     '.cargo'
   ],
   PACKAGE_NAMES = [
-    'dev-requirements.txt',
-    'test-requirements.txt',
+    // Python
     'requirements.txt',
+    'requirements-dev.txt',
+    'dev-requirements.txt',
+    'requirements-test.txt',
+    'test-requirements.txt',
+    'Pipfile',
+    'pyproject.toml'
 
+    // Ruby
     'Gemfile',
     'Gemfile.lock',
     
-    // Exclude package.json since it can be used for metadata and not package changes.
+    // JavaScript (Exclude package.json since it can be used for metadata and not package changes.)
     'package-lock.json',
     'shrinkwrap.json',
     'yarn.lock'
-  ],
-  // This can be useful for multi-file changes e.g. "Creat 5 scripts"
-  SCRIPT_EXTENSIONS = [
+  ];
+// This can be useful for multi-file changes e.g. "Creat 5 scripts"
+const SCRIPT_EXTENSIONS = [
     '.html',
     '.css',
     '.scss',
@@ -48,16 +55,16 @@ const PACKAGE_DIRS = [
     '.go'
   ],
   // For "Update 5 shell scripts"
-  SHELL_SCRIPT_EXTENSION = '.sh',
-  LICENSE_NAMES = [
+  SHELL_SCRIPT_EXTENSION = '.sh';
+const LICENSE_NAMES = [
     'LICENSE',
     'LICENSE.txt',
     'License.txt',
     'LICENSE-source'
-  ],
-  // This may be too broad or clash with other areas such as CI or
-  // package unless used close to last in the entire flow.
-  CONFIG_EXTENSIONS = [
+  ];
+// This may be too broad or clash with other areas such as CI or
+// package unless used close to last in the entire flow.
+const CONFIG_EXTENSIONS = [
     '.yml',
     '.yaml',
     '.json',
@@ -78,18 +85,19 @@ const PACKAGE_DIRS = [
     '.editorconfig',
     'tsconfig.json',
     'tslint.json'
-  ],
-  BUILD_NAMES = [
+  ];
+const BUILD_NAMES = [
     'Dockerfile',
     'docker-compose.yml'
-  ],
-  CI_DIRS = [
+  ];
+const CI_DIRS = [
     '.circleci',
     '.github/workflows'
   ],
   CI_NAMES = [
     'netlify.toml',
     'travis.yml',
+    'tox.ini',
     '.vscodeignore'
   ];
 
