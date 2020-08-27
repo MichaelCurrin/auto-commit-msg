@@ -1,9 +1,9 @@
 # Usage
 > How to use the extension
 
-Follow the installation instructions.
+<!-- This has overlap with Run of Quickstart guide. Image would be useful. -->
 
-Open VS Code at the root of a git repo.
+With the extension installed, open VS Code at the root of a git repo.
 
 Follow the usage steps below:
 
