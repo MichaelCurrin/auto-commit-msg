@@ -22,7 +22,7 @@ Then go into the [Releases](https://github.com/MichaelCurrin/auto-commit-msg/rel
 
 ## Publishing
 
-Note that there is no marketplace extension yet.
+Note that there is no marketplace extension yet. This section will be completed when that happens around version `1.0`.
 
 Also there is no package on NPM - this would not be useful as this is a standalone project extension and not a library.
 

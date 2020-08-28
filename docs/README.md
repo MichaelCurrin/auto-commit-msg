@@ -8,9 +8,9 @@ This project aims to prepare a smart commit message for you to make your develop
 - Install a pre-built extension
     - See [Quickstart](quickstart.md)
 - For developers
-    - Start with [installation](installation.md) to install.
-    - Continue to [development](development.md) doc for local development.
-    - See the [package](package.md) doc to roll your own copy and install it, using single command.
+    - Start with the [Installation](installation.md) doc to install it.
+    - Continue to [Development](development.md) doc for local development.
+    - See the [Export](export.md) doc to roll your own copy and install it, using single command.
 
 
 <!--
