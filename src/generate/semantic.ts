@@ -19,12 +19,12 @@ const PACKAGE_DIRS = [
     'requirements-test.txt',
     'test-requirements.txt',
     'Pipfile',
-    'pyproject.toml'
+    'pyproject.toml',
 
     // Ruby
     'Gemfile',
     'Gemfile.lock',
-    
+
     // JavaScript (Exclude package.json since it can be used for metadata and not package changes.)
     'package-lock.json',
     'shrinkwrap.json',
@@ -57,11 +57,11 @@ const SCRIPT_EXTENSIONS = [
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = '.sh';
 const LICENSE_NAMES = [
-    'LICENSE',
-    'LICENSE.txt',
-    'License.txt',
-    'LICENSE-source'
-  ];
+  'LICENSE',
+  'LICENSE.txt',
+  'License.txt',
+  'LICENSE-source'
+];
 // This may be too broad or clash with other areas such as CI or
 // package unless used close to last in the entire flow.
 const CONFIG_EXTENSIONS = [
@@ -87,9 +87,9 @@ const CONFIG_EXTENSIONS = [
     'tslint.json'
   ];
 const BUILD_NAMES = [
-    'Dockerfile',
-    'docker-compose.yml'
-  ];
+  'Dockerfile',
+  'docker-compose.yml'
+];
 const CI_DIRS = [
     '.circleci',
     '.github/workflows'
