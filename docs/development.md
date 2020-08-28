@@ -18,19 +18,17 @@ See installation steps in the extension and hook docs - clone the repo and insta
 
 Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.github/workflows/main.yml).
 
-### Pre-push checks
+### Run all
 
-
-### Local
-
-Run all checks at once (see later in this doc to run steps separately).
+This is useful before pushing to ensure everything works. (This could be setup with a pre-push hook too to automated it)
 
 ```sh
 $ npm run preversion
 ```
 
-This is useful before pushing to ensure everything works. (This could be setup with a pre-push hook too to automated it)
+This will run `lint` and `test` steps, with `compile` run as part of `pretest` because of how NPM works.
 
+at once see later in this doc to run steps separately).
 
 ### Lint
 
@@ -87,7 +85,6 @@ A few problems have been resolved by running the clean command, so this is now p
 
 Start the extension for local development. It will be started in a sandboxed environment with no other extensions active and the extension will not persist when you stop the debugger.
 
-
 Follow these steps:
 
 1. Open VS Code at this repo if you haven't already.
@@ -120,11 +117,9 @@ If you don't see code changes appearing, you may need to stop and start the debu
 
 See the [export](export.md) doc to install a dev version of the package.
 
-Note the command in [package.json](/package.json) scripts section sorts by time because sorting by name is not reliable when the version is `0.9.0` and `0.10.0` (the latter is higher but appears as a lower version).
-
 ### Install pre-built extension
 
-Or see [quickstart](quickstart.md) doc to download a pre-built version from a GitHub release.
+Or see [quickstart](quickstart.md) doc to download and install a pre-built version from a GitHub release.
 
 
 ## Resources

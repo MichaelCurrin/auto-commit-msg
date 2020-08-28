@@ -9,7 +9,7 @@ For now it is only available for dev testing but eventually will be installable 
 
 See the [gitCommands.ts](/src/gitCommands.ts) script for implementation details.
 
-UPDATE: Perhaps using untracked is a good idea - although not in the git CLI flow, in the VS Code git integration, new/untracked files would be added when adding _everything_ when nothing is staged. So updates might be needed below. Also see use of `git status -u` and similar for `diff-index`, but note that `diff-index` is still preferred because of the choice of staged or not while `status` does not have that ability. 
+UPDATE: Perhaps using untracked is a good idea - although not in the git CLI flow, in the VS Code git integration, new/untracked files would be added when adding _everything_ when nothing is staged. So updates might be needed below. Also see use of `git status -u` and similar for `diff-index`, but note that `diff-index` is still preferred because of the choice of staged or not while `status` does not have that ability.
 
 - The extension button must be able to run against **staged** changes only (if any). This will be the most common flow for the initial easy functionality of only committing one file at a time.
     - Wnat staged only. Not untracked.
@@ -19,8 +19,8 @@ UPDATE: Perhaps using untracked is a good idea - although not in the git CLI flo
 - And fallback to **all** changes that would be committed. Nothing is staged then, this is everything, but excluding untracked. (There may be specific behavior here I've assumed because of my smart commit or other VS Code preferences.)
     - Want both staged and unstaged. But not untracked. The downside is renames won't get picked unless they are staged (since the new file appears untracked).
     - Command
-        - Use output from `git status -s -uno --porcelain`. 
-        - Use output from `git diff-index --name-status HEAD`. 
+        - Use output from `git status -s -uno --porcelain`.
+        - Use output from `git diff-index --name-status HEAD`.
 
 Also of interest, to get a summary of changes:
 
@@ -36,7 +36,7 @@ See more [here](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/che
 
 ### Install system dependencies
 
-Install Node.js.
+Install Node.js - follow [instructions](https://gist.github.com/MichaelCurrin/aa1fc56419a355972b96bce23f3bccba) in gist.
 
 ### Clone
 
@@ -51,6 +51,7 @@ $ cd auto-commit-msg
 $ npm install
 ```
 
-#### Setup
 
-Run `npm install` in terminal to install dependencies.
+## Install extension
+
+To install the extension itself, see [Install extension globally](development.md#install-extension-globally) in the Development doc.
