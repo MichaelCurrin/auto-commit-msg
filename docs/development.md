@@ -1,4 +1,5 @@
 # Development
+> How to work on this extension locally
 
 
 ## Structure
@@ -17,6 +18,20 @@ See installation steps in the extension and hook docs - clone the repo and insta
 
 Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.github/workflows/main.yml).
 
+### Pre-push checks
+
+
+### Local
+
+Run all checks at once (see later in this doc to run steps separately).
+
+```sh
+$ npm run preversion
+```
+
+This is useful before pushing to ensure everything works. (This could be setup with a pre-push hook too to automated it)
+
+
 ### Lint
 
 Run ESLint against TS files for a report. This will not fix any errors though.
@@ -32,7 +47,6 @@ Note that linting will not actually pick up on TypeScript compilation errors, bu
 ```sh
 $ npm run compile
 ```
-
 
 ### Run tests
 
@@ -90,7 +104,6 @@ Follow these steps:
 That will start a new sandboxed VS Code session which has the extension active and all others inactive. At a lower level, it runs `npm compile` and `npm watch`.
 
 The code for the extension is in [src](/src/).
-
 
 ### Reload
 

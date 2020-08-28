@@ -3,9 +3,11 @@
 
 ## Checks
 
-The CI/CD flow compiles the app and runs checks on every push - see [main.yml](/.github/workflows/main.yml).
+The CI/CD flow is setup on GitHub Actions to compile the app and runs checks against i. This is done on every push.
 
-But the full extension is not built or persisted yet. That will be added later using the release/tag trigger.
+See the [main.yml](/.github/workflows/main.yml) config file.
+
+Note the full extension is not built or persisted yet. That will be added later using the release/tag trigger.
 
 
 ## Releases
