@@ -9,6 +9,17 @@ The code from the Git Prefix was used to set up [src](/src) directory for a coup
 The [generate](/src/generate) module followed later as logic that will work standalone in the CLI for a hook.
 
 
+## Command overview
+
+Quick reference for commands to run in [package.json](/package.json):
+
+- `test` - lint, clean, compile and run tests
+- `version` - run tests and then tag and push
+- `ext` - build and install extension globally
+
+The other commands define are run indirectly through other commands or the debugger, or only are only run directly infrequently (such as `sb`), so aren't covered here.
+
+
 ## Install
 
 See installation steps in the extension and hook docs - clone the repo and install Node.js and dependencies.
@@ -38,9 +49,7 @@ Run ESLint against TS files for a report. This will not fix any errors though.
 $ npm run lint
 ```
 
-Note this also runs in the CI/CD pipeline.
-
-Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the compile command. Note that this also runs as a pretest step as part of [Tests](#run-tests) in the next section, so you don't have to run it by hand.
+Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the compile step. This runs as part of [Tests](#run-tests), so you don't have to run it by hand.
 
 ```sh
 $ npm run compile
@@ -95,7 +104,7 @@ Follow these steps:
         - You might want to use File / Open to change the sandbox window to a repo what has more content to play with. This will be remembered on later runs. Unfortunately if you changed your VS Code settings to open in a new window on Open, then the extension setup will be undone.
     - Or click the _Run in Sandbox repo_ task
         - For more reliable and consistent behavior.
-        - This will run against `sandbox` directory in the project, which is a git repo where you can make files and commits as you like. You'll need to run `npm run sb` first to ensure this exists and then run the debug action.
+        - This will run against `sandbox` directory in the project, which is a git repo where you can make files and commits as you like. You'll need to run `npm run sb` first to ensure this exists and then run the debug action. Run the command again clear the space and start over.
         - Note that the extension currently doesn't work on a repo with zero commits, so you'll have to make a commit and then use the extension.
 
 That will start a new sandboxed VS Code session which has the extension active and all others inactive. At a lower level, it runs `npm compile` and `npm watch`.
