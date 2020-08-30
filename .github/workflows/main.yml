@@ -20,10 +20,11 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      - name: Compile extension
+      - name: Compile
         run: npm run compile
 
-      - name: Run unit tests
-        run: npm test
+      # Use unit rather than test to skip the pretest step, as that would duplicate steps above.
+      - name: Unit tests
+        run: npm run unit
         env:
           CI: true
