@@ -25,6 +25,6 @@ jobs:
 
       # Use unit rather than test to skip the pretest step, as that would duplicate steps above.
       - name: Unit tests
-        run: npm run unit
+        run: npm run test:unit
         env:
           CI: true
