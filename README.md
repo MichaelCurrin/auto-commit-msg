@@ -11,6 +11,14 @@
 A VS Code extension which provides smart suggestions for your commit messages.
 
 
+## Release disclaimer
+
+- This application is still in **pre-release** stage. 
+- But... it is functional and I use it daily, so please use it too if you want.
+- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace and cleaning up the docs. It can become version `1.0.0` around then.
+- There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
+
+
 ## Purpose
 
 This is a VS Code extension - when you run it, it will look at files changed and then generate a commit message for you and add it to the commit message box (using the Git Extension's UI). 
