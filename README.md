@@ -49,7 +49,8 @@ This is my first VS Code extension and first TypeScript project, so I am learnin
 
 ## Features
 
-- [x] VS Code extension
+What this VS Code extension can do
+
 - [x] Installable from archive file (see _assets_ list under latest [release](https://github.com/MichaelCurrin/auto-commit-msg/releases))
 - [x] Handle staged files or working tree
 - [x] Write a single-line commit message for a git repo (e.g. `Create`, `Update`, `Delete`)
@@ -58,12 +59,14 @@ This is my first VS Code extension and first TypeScript project, so I am learnin
 - [ ] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [ ] Use semantic prefix / conventional commits e.g. `chore: Update package.json`
 
-### Structure
+### Structure and admin
 
 - [x] Works with git repos
 - [x] Test coverage - Unit tests that are run with GitHub Actions CI
+- [ ] Update logo
 - [ ] Available in VS Code marketplace 
 - [ ] CI to build the package archive on tag
+- [ ] Clean up docs and Wiki
 
 
 ## Project plan
