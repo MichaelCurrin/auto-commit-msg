@@ -28,7 +28,12 @@ const PACKAGE_DIRS = [
     // JavaScript (Exclude package.json since it can be used for metadata and not package changes.)
     'package-lock.json',
     'shrinkwrap.json',
-    'yarn.lock'
+    'yarn.lock',
+    '.npmignore',
+    '.npmrc',
+    
+    // PHP
+    'composer.json', 'composer.lock'
   ];
 // This can be useful for multi-file changes e.g. "Creat 5 scripts"
 const SCRIPT_EXTENSIONS = [
@@ -84,7 +89,10 @@ const CONFIG_EXTENSIONS = [
     '.gitignore',
     '.editorconfig',
     'tsconfig.json',
-    'tslint.json'
+    'tslint.json',
+    '.browserslistrc',
+    'browserslist',
+    'commitlint.config.js'
   ];
 const BUILD_NAMES = [
   'Dockerfile',
@@ -98,7 +106,12 @@ const CI_DIRS = [
     'netlify.toml',
     'travis.yml',
     'tox.ini',
-    '.vscodeignore'
+    '.vscodeignore',
+    'codecov.yml', '.codecov.yml',
+    '.codeclimate.yml',
+    
+    // Zeit
+    'now.json', '.nowignore', 'vercel.json', '.vercelignore'
   ];
 
 /**
@@ -160,15 +173,21 @@ export class Semantic {
     return CI_DIRS.includes(this.dirPath) || CI_NAMES.includes(this.name);
   }
 
-  // Broadly match eslint configs https://eslint.org/docs/user-guide/configuring
-  // And prettier configs https://prettier.io/docs/en/configuration.html
+  // Broadly match eslint configs with any extension e.g. .json or .yml - https://eslint.org/docs/user-guide/configuring
+  // Same for prettier configs https://prettier.io/docs/en/configuration.html
+  // And tslint* as JSON or YAML and webpack*.
+  // See https://github.com/vscode-icons/vscode-icons/blob/master/src/iconsManifest/supportedExtensions.ts
   isConfigRelated(): boolean {
     if (
       CONFIG_EXTENSIONS.includes(this.extension) ||
       CONFIG_DIRS.includes(this.dirPath) ||
       CONFIG_NAMES.includes(this.name) ||
       this.name.includes('.eslintrc') ||
-      this.name.includes('.prettier')
+      this.name.includes('.eslintignore') ||
+      this.name.includes('.eslintcache') ||
+      this.name.includes('.prettier') ||
+      this.name.includes('tslint') ||
+      this.name.includes('webpack')
     ) {
       return true;
     }
