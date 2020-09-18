@@ -146,11 +146,14 @@ export class Semantic {
   /**
    * Check if file a doc - for semantic commits.
    *
-   * For static sites, not all .md files are docs. But everything in docs directory is,
-   * except perhaps for config files.
+   * Include .md, .rst and other README files. And entire docs directory.
+   *
+   * For static sites, not all .md files are docs but that could be configured with a global flag. 
+   * TODO check .md files?
+   * TODO handle CONTRIBUTING.md etc. in the root.
    */
   isDocRelated(): boolean {
-    return this.name === 'README.md' || this.dirPath.startsWith('docs');
+    return this.name.toLowerCase.startsWith('readme') || this.dirPath.startsWith('docs');
   }
 
   isTestRelated(): boolean {
