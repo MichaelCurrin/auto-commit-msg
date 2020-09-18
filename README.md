@@ -8,18 +8,19 @@
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 [![Made with TypeScript](https://img.shields.io/badge/TypeScript-3-blue.svg?logo=typescript)](https://typescriptlang.org)
 
-A VS Code extension which provides smart suggestions for your commit messages.
 
 ## About
 
-It can **describe a change** for a single file. Including create, update, remove, rename and move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
+A VS Code extension which provides smart suggestions for your commit messages.
 
-And it can use an appropriate **semvar** label in many cases. It can't separate features and bug fixes but it can identify changes to docs, CI files and package or config files.
+It can write a message to **describe a change** for a single file in a commit. Including create, update, remove, rename and move - along with the filename. Or, the path, like for a move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
 
-## Example
+It many cases it can also provide an appropriate **semvar** label for you. It can't separate features and bug fixes but it can identify changes to docs, CI files and config files.
 
-- You created a new file `foo.js`. The extension writes `feat: Create foo.js`.
-- If you updated your `Makefile`. Then extension writes `chore: Update Makefile`.
+### Examples
+
+- You created a new file `foo.js`. Press the extension button and writes `feat: Create foo.js` for you in the existing Git message input box.
+- If you updated your `Makefile`. Then extension writes `chore: Update Makefile`
 - You updated a file in the docs directory. Message generated is `docs: Update bar.md`.
 
 
