@@ -10,10 +10,17 @@
 
 A VS Code extension which provides smart suggestions for your commit messages.
 
+## About
+
+It can describe a change for a single file. Such as create, update, remove or move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
+
+And it can use an appropriate semvar label in many cases.
+
 ## Example
 
 - You created a new file `foo.js`. The extension writes `feat: Create foo.js`.
 - If you updated your `Makefile`. Then extension writes `chore: Update Makefile`.
+- You updated a file in the docs directory. Message generated is `docs: Update bar.md`.
 
 
 ## Release disclaimer
@@ -42,7 +49,7 @@ This tool was inspired partly by GitHub's UI - it suggests a message in grey lik
 
 There are many tools out there that will _lint_ your commit message, or provide you a multi-line template, or will insert something in it like "feat:" or an emoji. But AutoCommitMsg writes you entire commit message for you in one line.
 
-
+<!--
 ## Notes
 
 This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you. The focus has shifted away from making a terminal hook because VS Code handles is weirdly and on every UI commit, even if you only plan use it on the terminal.
@@ -50,7 +57,7 @@ This project is in development - it is very unstable and unpredictable but you c
 I am please to announced that this now a lot more stable as of `v0.7.0`, but is not production ready (mainly cosmetic issues and a need to smooth the packaging flow). Next are items in GH issues, unchecked features list below, a local TODO file, some Semantic functions to use and some renaming tests to work on.
 
 This is my first VS Code extension and first TypeScript project, so I am learning as a go and trying to follow best practices I find.
-
+-->
 
 ## Features
 
