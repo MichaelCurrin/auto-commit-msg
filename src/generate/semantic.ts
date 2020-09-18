@@ -153,7 +153,7 @@ export class Semantic {
    * TODO handle CONTRIBUTING.md etc. in the root.
    */
   isDocRelated(): boolean {
-    return this.name.toLowerCase.startsWith('readme') || this.dirPath.startsWith('docs');
+    return this.name.toLowerCase().startsWith('readme') || this.dirPath.startsWith('docs');
   }
 
   isTestRelated(): boolean {
