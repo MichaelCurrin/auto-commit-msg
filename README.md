@@ -14,7 +14,7 @@ A VS Code extension which provides smart suggestions for your commit messages.
 
 It can describe a change for a single file. Such as create, update, remove or move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
 
-And it can use an appropriate semvar label in many cases.
+And it can use an appropriate semvar label in many cases. It can't separate features and bug fixes but it can identify changes to docs, CI files and package or config files.
 
 ## Example
 
