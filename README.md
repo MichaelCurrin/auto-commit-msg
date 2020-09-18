@@ -10,6 +10,11 @@
 
 A VS Code extension which provides smart suggestions for your commit messages.
 
+## Example
+
+- You created a new file `foo.js`. The extension writes `feat: Create foo.js`.
+- If you updated your `Makefile`. Then extension writes `chore: Update Makefile`.
+
 
 ## Release disclaimer
 
