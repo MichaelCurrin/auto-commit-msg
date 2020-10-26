@@ -7,6 +7,7 @@
 import { splitPath } from './paths';
 import { ACTION, CONVENTIONAL_TYPE } from './constants';
 
+// Package-related can be for 'build'.
 const PACKAGE_DIRS = [
     // Rust
     '.cargo'
@@ -35,6 +36,70 @@ const PACKAGE_DIRS = [
     // PHP
     'composer.json',
     'composer.lock'
+  ];
+
+// Build system (scripts, configurations or tools) and package dependencies.
+const BUILD_NAMES = [
+    'Dockerfile',
+    'docker-compose.yml',
+
+    'Makefile',
+    'Rakefile',
+
+    'setup.py', // Controls the build and not just external packagages.
+
+    'package.json' // Not necessarily package-related but always build-related.
+  ],
+  BUILD_EXTENSIONS = [
+    '.gemspec' // Ruby installation
+  ];
+
+// This may be too broad or clash with other areas such as CI or
+// package unless used close to last in the entire flow.
+const CONFIG_EXTENSIONS = [
+    '.yml',
+    '.yaml',
+    '.json',
+    '.toml',
+    '.ini',
+    '.cfg' // Python config but also for other systems maybe
+  ],
+  CONFIG_DIRS = [
+    '.vscode'
+  ],
+  CONFIG_NAMES = [
+    '.gitignore',
+    '.editorconfig',
+
+    'setup.cfg',
+
+    'tsconfig.json',
+    'tslint.json',
+    '.browserslistrc',
+    'browserslist',
+    'commitlint.config.js'
+  ];
+
+const CI_DIRS = [
+    '.circleci',
+    '.github/workflows'
+  ],
+  CI_NAMES = [
+    'netlify.toml',
+    'travis.yml',
+    'tox.ini',
+
+    '.vscodeignore',
+
+    'codecov.yml',
+    '.codecov.yml',
+    '.codeclimate.yml',
+
+    // Zeit
+    'now.json',
+    '.nowignore',
+    'vercel.json',
+    '.vercelignore'
   ];
 
 // This can be useful for multi-file changes e.g. "Creat 5 scripts"
@@ -70,69 +135,6 @@ const LICENSE_NAMES = [
   'License.txt',
   'LICENSE-source'
 ];
-
-// This may be too broad or clash with other areas such as CI or
-// package unless used close to last in the entire flow.
-const CONFIG_EXTENSIONS = [
-    '.yml',
-    '.yaml',
-    '.json',
-    '.toml',
-    '.ini',
-    '.cfg' // Python config but also for other systems maybe
-  ],
-  CONFIG_DIRS = [
-    '.vscode'
-  ],
-  CONFIG_NAMES = [
-    '.gitignore',
-    '.editorconfig',
-
-    'setup.cfg',
-
-    'tsconfig.json',
-    'tslint.json',
-    '.browserslistrc',
-    'browserslist',
-    'commitlint.config.js'
-  ];
-
-// Build system (scripts, configurations or tools) and package dependencies.
-const BUILD_NAMES = [
-  'Dockerfile',
-  'docker-compose.yml',
-
-  'Makefile',
-  'Rakefile',
-
-  'setup.py',
-
-  'package.json',
-
-  '.gemspec' // Ruby installation
-];
-
-const CI_DIRS = [
-    '.circleci',
-    '.github/workflows'
-  ],
-  CI_NAMES = [
-    'netlify.toml',
-    'travis.yml',
-    'tox.ini',
-
-    '.vscodeignore',
-
-    'codecov.yml',
-    '.codecov.yml',
-    '.codeclimate.yml',
-
-    // Zeit
-    'now.json',
-    '.nowignore',
-    'vercel.json',
-    '.vercelignore'
-  ];
 
 /**
  * Support conventional commit prefix for a given file path.
