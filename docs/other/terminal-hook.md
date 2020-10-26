@@ -38,7 +38,7 @@ $ cd auto-commit-msg
 
 Notes:
 
-- This flow covers how to add an executable script as a git hook in a project. This project was initially built around the Bash scripts in [shell](/shell/) as a proof of concept and you can continue to use one of those. But the idea is that eventually the TypeScript code used to make the VS Code extension can be repurposed as a standalone git hook for terminal use.
+- This flow covers how to add an executable script as a **git hook** in a project. This project was initially built around the Bash scripts in [shell](/shell/) as a proof of concept and you can continue to use one of those. Also there was an idea to turn this TypeScript code from VS Code extension and re-purpose as a standalone git hook for terminal use - but that doesn't work nicely in VS Code because a message hook ignores what you type in the message box and uses the hook's own logic only.
 - This is very general for now - there is no Node or compile build step.
 
 For working in this project, set up a symlink from a hook in the repo to exist in `.git/hooks` directory. Adjust the first script name and path as needed but the last value must stay as is to be recognized by git.
@@ -61,7 +61,7 @@ $ ls -l .git/hooks
 
 For other projects using this repo's hook - use `cp` or `curl` to add the hook to your repo. Or package and an installable Zip.
 
-Instructions to follow as this develops. 
+Instructions to follow as this develops.
 
 
 ## Disable
