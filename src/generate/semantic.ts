@@ -262,13 +262,13 @@ export class Semantic {
  * Don't handle ACTION.M or ACTION.C as it could be a fix or feature. So just use unknown/null value.
  */
 export function getSemanticConvention(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
-  const semantic = new Semantic(filePath);
-
   if (action === ACTION.R || action === ACTION.D) {
     return CONVENTIONAL_TYPE.CHORE;
   }
 
+  const semantic = new Semantic(filePath);
   const semPathType = semantic.getType();
+
   if (action === ACTION.A) {
     return semPathType || CONVENTIONAL_TYPE.FEAT;
   }
