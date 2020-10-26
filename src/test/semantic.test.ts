@@ -19,6 +19,18 @@ describe('Test #Semantic class for path-based conventional commit logic', functi
     });
   });
 
+  describe('#isBuildRelated()', function() {
+    it('can tell a build change of a build filename', function() {
+      assert.strictEqual(new Semantic('Dockerfile').isBuildRelated(), true);
+      assert.strictEqual(new Semantic('foo/Dockerfile').isBuildRelated(), true);
+
+      assert.strictEqual(new Semantic('setup.py').isBuildRelated(), true);
+
+      assert.strictEqual(new Semantic('foo.txt').isBuildRelated(), false);
+      assert.strictEqual(new Semantic('fizz/foo.txt').isBuildRelated(), false);
+    });
+  });
+
   describe('#isCIRelated()', function() {
     it('can tell a CI change is in a CircleCI directory', function() {
       assert.strictEqual(new Semantic('.circleci/foo.txt').isCIRelated(), true);
