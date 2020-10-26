@@ -21,6 +21,7 @@ const PACKAGE_DIRS = [
     'test-requirements.txt',
     'Pipfile',
     'pyproject.toml',
+    'setup.py',
 
     // Ruby
     'Gemfile',
@@ -45,8 +46,6 @@ const BUILD_NAMES = [
 
     'Makefile',
     'Rakefile',
-
-    'setup.py', // Controls the build and not just external packagages.
 
     'package.json' // Not necessarily package-related but always build-related.
   ],
