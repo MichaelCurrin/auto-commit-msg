@@ -259,7 +259,9 @@ export class Semantic {
  *
  * Relies on both the action type and the path-based logic.
  *
- * Don't handle ACTION.M or ACTION.C as it could be a fix or feature. So just use unknown/null value. Though it could be set as always feature or docs as a general rule or config option on the project level or extension level.
+ * Don't handle ACTION.M or ACTION.C as it could be a fix or feature. So just use unknown/null
+ * value. Though it could be set as always feature or docs as a general rule or config option on the
+ * project level or extension level.
  */
 export function getSemanticConvention(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
   if (action === ACTION.R || action === ACTION.D) {
