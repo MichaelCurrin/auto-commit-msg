@@ -79,8 +79,7 @@ const CONFIG_EXTENSIONS = [
     '.json',
     '.toml',
     '.ini',
-    '.cfg', // Python config but also for other systems maybe
-    '.gemspec' // Ruby installation
+    '.cfg' // Python config but also for other systems maybe
   ],
   CONFIG_DIRS = [
     '.vscode'
@@ -88,6 +87,8 @@ const CONFIG_EXTENSIONS = [
   CONFIG_NAMES = [
     '.gitignore',
     '.editorconfig',
+
+    'setup.cfg',
 
     'tsconfig.json',
     'tslint.json',
@@ -106,7 +107,9 @@ const BUILD_NAMES = [
 
   'setup.py',
 
-  'package.json'
+  'package.json',
+
+  '.gemspec' // Ruby installation
 ];
 
 const CI_DIRS = [
@@ -117,7 +120,9 @@ const CI_DIRS = [
     'netlify.toml',
     'travis.yml',
     'tox.ini',
+
     '.vscodeignore',
+
     'codecov.yml',
     '.codecov.yml',
     '.codeclimate.yml',
