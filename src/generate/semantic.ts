@@ -217,15 +217,19 @@ export class Semantic {
   }
 
   isBuildRelated(): boolean {
-    return BUILD_NAMES.includes(this.name);
+    return BUILD_NAMES.includes(this.name) || this.isPackageRelated();
   }
 
   isPackageRelated(): boolean {
     return PACKAGE_NAMES.includes(this.name);
   }
 
-  isLicenseRelated() {
+  isLicenseRelated(): boolean {
     return LICENSE_NAMES.includes(this.name);
+  }
+
+  isChoreRelated(): boolean {
+    return this.isLicenseRelated() || this.isConfigRelated();
   }
 
   /** Return conventional commit type. If rules can't be used to match a known one, return the unknown form of the enum. */
@@ -233,10 +237,10 @@ export class Semantic {
     if (this.isCIRelated()) {
       return CONVENTIONAL_TYPE.CI;
     }
-    if (this.isBuildRelated() || this.isPackageRelated()) {
+    if (this.isBuildRelated()) {
       return CONVENTIONAL_TYPE.BUILD;
     }
-    if (this.isLicenseRelated() || this.isConfigRelated()) {
+    if (this.isChoreRelated()) {
       return CONVENTIONAL_TYPE.CHORE;
     }
     if (this.isDocRelated()) {
