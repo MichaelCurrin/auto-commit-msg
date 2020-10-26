@@ -31,10 +31,12 @@ const PACKAGE_DIRS = [
     'yarn.lock',
     '.npmignore',
     '.npmrc',
-    
+
     // PHP
-    'composer.json', 'composer.lock'
+    'composer.json',
+    'composer.lock'
   ];
+
 // This can be useful for multi-file changes e.g. "Creat 5 scripts"
 const SCRIPT_EXTENSIONS = [
     '.html',
@@ -61,12 +63,14 @@ const SCRIPT_EXTENSIONS = [
   ],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = '.sh';
+
 const LICENSE_NAMES = [
   'LICENSE',
   'LICENSE.txt',
   'License.txt',
   'LICENSE-source'
 ];
+
 // This may be too broad or clash with other areas such as CI or
 // package unless used close to last in the entire flow.
 const CONFIG_EXTENSIONS = [
@@ -82,22 +86,29 @@ const CONFIG_EXTENSIONS = [
     '.vscode'
   ],
   CONFIG_NAMES = [
-    'Makefile',
-    'Rakefile',
-    'setup.py',
-    'package.json',
     '.gitignore',
     '.editorconfig',
+
     'tsconfig.json',
     'tslint.json',
     '.browserslistrc',
     'browserslist',
     'commitlint.config.js'
   ];
+
+// Build system (scripts, configurations or tools) and package dependencies.
 const BUILD_NAMES = [
   'Dockerfile',
-  'docker-compose.yml'
+  'docker-compose.yml',
+
+  'Makefile',
+  'Rakefile',
+
+  'setup.py',
+
+  'package.json'
 ];
+
 const CI_DIRS = [
     '.circleci',
     '.github/workflows'
@@ -107,11 +118,15 @@ const CI_DIRS = [
     'travis.yml',
     'tox.ini',
     '.vscodeignore',
-    'codecov.yml', '.codecov.yml',
+    'codecov.yml',
+    '.codecov.yml',
     '.codeclimate.yml',
-    
+
     // Zeit
-    'now.json', '.nowignore', 'vercel.json', '.vercelignore'
+    'now.json',
+    '.nowignore',
+    'vercel.json',
+    '.vercelignore'
   ];
 
 /**
@@ -148,7 +163,7 @@ export class Semantic {
    *
    * Include .md, .rst and other README files. And entire docs directory.
    *
-   * For static sites, not all .md files are docs but that could be configured with a global flag. 
+   * For static sites, not all .md files are docs but that could be configured with a global flag.
    * TODO check .md files?
    * TODO handle CONTRIBUTING.md etc. in the root.
    */
