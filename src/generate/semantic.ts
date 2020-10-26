@@ -203,7 +203,7 @@ export class Semantic {
   // And tslint* as JSON or YAML and webpack*.
   // See https://github.com/vscode-icons/vscode-icons/blob/master/src/iconsManifest/supportedExtensions.ts
   isConfigRelated(): boolean {
-    if (
+    return (
       CONFIG_EXTENSIONS.includes(this.extension) ||
       CONFIG_DIRS.includes(this.dirPath) ||
       CONFIG_NAMES.includes(this.name) ||
@@ -213,17 +213,15 @@ export class Semantic {
       this.name.includes('.prettier') ||
       this.name.includes('tslint') ||
       this.name.includes('webpack')
-    ) {
-      return true;
-    }
-    return false;
+    );
+  }
+
+  isBuildRelated(): boolean {
+    return BUILD_NAMES.includes(this.name);
   }
 
   isPackageRelated(): boolean {
-    if (PACKAGE_NAMES.includes(this.name)) {
-      return true;
-    }
-    return false;
+    return PACKAGE_NAMES.includes(this.name);
   }
 
   isLicenseRelated() {
@@ -235,7 +233,10 @@ export class Semantic {
     if (this.isCIRelated()) {
       return CONVENTIONAL_TYPE.CI;
     }
-    if (this.isLicenseRelated() || this.isPackageRelated() || this.isConfigRelated()) {
+    if (this.isBuildRelated() || this.isPackageRelated()) {
+      return CONVENTIONAL_TYPE.BUILD;
+    }
+    if (this.isLicenseRelated() || this.isConfigRelated()) {
       return CONVENTIONAL_TYPE.CHORE;
     }
     if (this.isDocRelated()) {
