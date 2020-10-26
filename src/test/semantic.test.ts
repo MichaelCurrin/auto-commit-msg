@@ -68,6 +68,36 @@ describe('Test #Semantic class for path-based conventional commit logic', functi
       assert.strictEqual(new Semantic('foo/test_bar.js').isTestRelated(), true);
     });
   });
+
+  describe('#getType()', function() {
+    // Rather than true and false like in above tests this actually categorizes and also it closer
+    // to the real world as it through a hierarchy (for example .yml is config-related unless it is
+    // for a CI file). But, this doesn't care what the action is like create or delete or modify, so
+    // it won't impose meaning based on that.
+    it('can tell a type for a build file', function() {
+      assert.strictEqual(new Semantic('Makefile').getType(), CONVENTIONAL_TYPE.BUILD);
+      assert.strictEqual(new Semantic('Gemfile').getType(), CONVENTIONAL_TYPE.BUILD);
+
+      assert.strictEqual(new Semantic('package.json').getType(), CONVENTIONAL_TYPE.BUILD);
+      assert.strictEqual(new Semantic('package-lock.json').getType(), CONVENTIONAL_TYPE.BUILD);
+
+      assert.strictEqual(new Semantic('requirements.txt').getType(), CONVENTIONAL_TYPE.BUILD);
+      assert.strictEqual(new Semantic('requirements-dev.txt').getType(), CONVENTIONAL_TYPE.BUILD);
+    });
+
+    // TODO Break into categories
+    it('can tell a type for other types', function() {
+      assert.strictEqual(new Semantic('foo').getType(), CONVENTIONAL_TYPE.UNKNOWN);
+
+      assert.strictEqual(new Semantic('test/foo.js').getType(), CONVENTIONAL_TYPE.TEST);
+
+      assert.strictEqual(new Semantic('.github/workflows/foo.yml').getType(), CONVENTIONAL_TYPE.CI);
+
+      assert.strictEqual(new Semantic('README.md').getType(), CONVENTIONAL_TYPE.DOCS);
+
+      assert.strictEqual(new Semantic('LICENSE').getType(), CONVENTIONAL_TYPE.CHORE);
+    });
+  });
 });
 
 describe('#getSemanticConvention()', function() {
