@@ -51,7 +51,7 @@
     "vs-code"
   ],
   "engines": {
-    "vscode": "^1.39.0"
+    "vscode": "^1.51.0"
   },
   "categories": [
     "Other"
