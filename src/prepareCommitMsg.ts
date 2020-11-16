@@ -10,7 +10,7 @@
 import * as vscode from 'vscode';
 
 import { Repository } from './api/git';
-import { Git } from './gitCommands';
+import { getChanges } from './gitCommands';
 import { parseDiffIndex } from './generate/parse-git-output';
 import { lookupDiffIndexAction } from './generate/action';
 import { one } from './generate/message';
@@ -61,7 +61,7 @@ function generateMsg(diffIndexLines: string[]) {
  * This function based on the prefixCommit from git-prefix extension.
  */
 export async function prepareCommitMsg(repository: Repository) {
-  const diffIndexLines = await Git.getChanges();
+  const diffIndexLines = await getChanges();
 
   // Check the VS Code debug console - to help find issues.
   console.debug(diffIndexLines);

@@ -10,15 +10,15 @@
 
 ## Git Semantic Commit
 
-- Repo: [nitayneeman/vscode-git-semantic-commit](https://github.com/nitayneeman/vscode-git-semantic-commit) 
-- I liked how this extension does Git CLI commands, so I used the original [Git](https://github.com/nitayneeman/vscode-git-semantic-commit/blob/master/src/git.ts) class and `getWorkspaceFolder`. That served the based for my functionality in [gitCommands.ts](/src/gitCommands.ts), which allowed my `extension.ts` script to work as I wanted.
+- Repo: [nitayneeman/vscode-git-semantic-commit](https://github.com/nitayneeman/vscode-git-semantic-commit)
+- I liked how this extension does Git CLI commands, so I used the original [Git](https://github.com/nitayneeman/vscode-git-semantic-commit/blob/master/src/git.ts) class and `getWorkspaceFolder` function. That served as the base for my functionality in [gitCommands.ts](/src/gitCommands.ts), which allowed my `extension.ts` script to work as I wanted. I later split out the `Git` class into functions as that made more sense.
 - The rest of the extension was too advanced for what I needed to do, so I ended up not using the other parts.
 - I like the integration tests approach though so I might come back to use pieces of that.
 
 
 ## Git Prefix
 
-- Repos: [srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix). 
+- Repos: [srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix).
 - I found this in the marketplace - it adds a _branch prefix_ to commit message UI box and gives the user a chance to read it and edit it. This is very close to the flow that I want and it far less code that Git Semantic Commit, so my extension is based on this. See for example the use of `repository.inputBox.value` in [extension.ts](/src/extension.ts).
 
 

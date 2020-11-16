@@ -9,15 +9,17 @@ The code from the Git Prefix was used to set up [src](/src) directory for a coup
 The [generate](/src/generate) module followed later as logic that will work standalone in the CLI for a hook.
 
 
-## Command overview
+## Overview of commands
 
-Quick reference for commands to run in [package.json](/package.json):
+The most important `npm` commands to know for this project:
 
-- `test` - lint, clean, compile and run tests
-- `version` - run tests and then tag and push
-- `ext` - build and install extension globally
+- `npm test` - Lint, clean, compile and run unit tests.
+- `npm version minor` - Run tests and then tag and push.
+- `npm run ext` - Build and install extension globally.
 
-The other commands define are run indirectly through other commands or the debugger, or only are only run directly infrequently (such as `sb`), so aren't covered here.
+The other commands define are run indirectly through the other commands or through the debugger. Or are only run directly infrequently, so they aren't covered here.
+
+See [package.json](/package.json) for all commands.
 
 
 ## Install
