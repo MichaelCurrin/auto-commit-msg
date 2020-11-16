@@ -15,7 +15,7 @@ import { getWorkspaceFolder } from './workspace';
 const exec = util.promisify(childProcess.exec);
 
 /** Run git CLI command and return output. **/
-export function execute(cwd: string, subcommand?: string, options: string[] = []) {
+function execute(cwd: string, subcommand?: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(' ')}`;
 
   return exec(command, { cwd });
@@ -63,19 +63,19 @@ export async function getChanges() {
   const stagedChanges = await diffIndex([
     '--cached'
   ]);
-
   if (stagedChanges.length) {
     console.debug('Found staged changes');
     return stagedChanges;
   }
-  else {
-    console.debug('Staging area is empty. Using unstaged files.');
-    const allChanges = await diffIndex();
-    if (!allChanges.length) {
-      console.debug('Could not find any changed files');
-    }
-    return allChanges;
+
+  console.debug('Staging area is empty. Using unstaged files.');
+
+  const allChanges = await diffIndex();
+  if (!allChanges.length) {
+    console.debug('No changes found');
   }
+  return allChanges;
+
 }
 
 /**
