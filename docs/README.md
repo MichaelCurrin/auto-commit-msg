@@ -9,7 +9,7 @@ This project aims to prepare a smart commit message for you to make your develop
     - See [Quickstart](quickstart.md)
 - For developers
     - Start with the [Installation](installation.md) doc to install it.
-    - Continue to [Development](development.md) doc for local development.
+    - Continue to [Development](development) docs section for local development.
     - See the [Export](export.md) doc to roll your own copy and install it, using a single command.
     - The [Deploy](deploy.md) covers the deploy pipeline and releases.
 
