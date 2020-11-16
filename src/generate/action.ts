@@ -1,8 +1,8 @@
 /**
  * Phrase commit changes in words.
  */
-import { splitPath } from './paths';
 import { ACTION, ROOT } from './constants';
+import { splitPath } from './paths';
 
 type DescriptionStrings = keyof typeof ACTION;
 

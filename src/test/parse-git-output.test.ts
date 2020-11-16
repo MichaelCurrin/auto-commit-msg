@@ -1,33 +1,28 @@
 import * as assert from 'assert';
-import {
-  FileChanges,
-  describeCode,
-  parseStatus,
-  parseDiffIndex
-} from '../generate/parse-git-output';
 import { DESCRIPTION } from '../generate/constants';
+import { describeCode, FileChanges, parseDiffIndex, parseStatus } from '../generate/parse-git-output';
 
-describe('Get value from description enum using key', function() {
-  describe('#describeCode()', function() {
-    it('can return the correct value for added symbol', function() {
+describe('Get value from description enum using key', function () {
+  describe('#describeCode()', function () {
+    it('can return the correct value for added symbol', function () {
       assert.strictEqual(describeCode('A'), 'added');
 
       assert.strictEqual(describeCode('A'), DESCRIPTION.A);
     });
 
-    it('can return the correct value for empty space as unmodified', function() {
+    it('can return the correct value for empty space as unmodified', function () {
       assert.strictEqual(describeCode(' '), 'unmodified');
     });
 
-    it('can return the correct value for ignored symbol', function() {
+    it('can return the correct value for ignored symbol', function () {
       assert.strictEqual(describeCode('!'), 'ignored');
     });
   });
 });
 
-describe('Split git status output into components', function() {
-  describe('#parseStatus()', function() {
-    it('should return the appropriate commit message for a new file', function() {
+describe('Split git status output into components', function () {
+  describe('#parseStatus()', function () {
+    it('should return the appropriate commit message for a new file', function () {
       const expected: FileChanges = {
         x: 'A',
         y: ' ',
@@ -37,7 +32,7 @@ describe('Split git status output into components', function() {
       assert.deepEqual(parseStatus('A  foo.txt'), expected);
     });
 
-    it('should return the appropriate commit message for a modified file', function() {
+    it('should return the appropriate commit message for a modified file', function () {
       const expected: FileChanges = {
         x: ' ',
         y: 'M',
@@ -47,7 +42,7 @@ describe('Split git status output into components', function() {
       assert.deepEqual(parseStatus(' M foo.txt'), expected);
     });
 
-    it('should return the appropriate commit message for a deleted file', function() {
+    it('should return the appropriate commit message for a deleted file', function () {
       const expected: FileChanges = {
         x: 'D',
         y: ' ',
@@ -57,7 +52,7 @@ describe('Split git status output into components', function() {
       assert.deepEqual(parseStatus('D  foo.txt'), expected);
     });
 
-    it('should return the appropriate commit message for a renamed file', function() {
+    it('should return the appropriate commit message for a renamed file', function () {
       const expected: FileChanges = {
         x: 'R',
         y: ' ',
@@ -66,7 +61,7 @@ describe('Split git status output into components', function() {
       };
       assert.deepEqual(parseStatus('R  foo.txt -> bar.txt'), expected);
 
-      it('should return the appropriate commit message for a moved file', function() {
+      it('should return the appropriate commit message for a moved file', function () {
         const expected: FileChanges = {
           x: 'R',
           y: ' ',
@@ -79,13 +74,13 @@ describe('Split git status output into components', function() {
   });
 });
 
-describe('Split git diff-index output into components', function() {
+describe('Split git diff-index output into components', function () {
   // The 1st column to 2nd looks like constant with and then 2nd to 3rd looks like 6 chars.
   // R100    tslint.json     src/tslint.json
   // R100    vsc-extension-quickstart.md     src/vsc-extension-quickstart.md
 
-  describe('#parseDiffIndex()', function() {
-    it('should return the appropriate commit message for a new file', function() {
+  describe('#parseDiffIndex()', function () {
+    it('should return the appropriate commit message for a new file', function () {
       const expected: FileChanges = {
         x: 'A',
         y: ' ',
@@ -95,7 +90,7 @@ describe('Split git diff-index output into components', function() {
       assert.deepEqual(parseDiffIndex('A       foo.txt'), expected);
     });
 
-    it('should return the appropriate commit message for a modified file', function() {
+    it('should return the appropriate commit message for a modified file', function () {
       const expected: FileChanges = {
         x: 'M',
         y: ' ',
@@ -105,7 +100,7 @@ describe('Split git diff-index output into components', function() {
       assert.deepEqual(parseDiffIndex('M       foo.txt'), expected);
     });
 
-    it('should return the appropriate commit message for a deleted file', function() {
+    it('should return the appropriate commit message for a deleted file', function () {
       const expected: FileChanges = {
         x: 'D',
         y: ' ',
@@ -115,7 +110,7 @@ describe('Split git diff-index output into components', function() {
       assert.deepEqual(parseDiffIndex('D       foo.txt'), expected);
     });
 
-    it('should return the appropriate commit message for a renamed unchanged file', function() {
+    it('should return the appropriate commit message for a renamed unchanged file', function () {
       const expected: FileChanges = {
         x: 'R',
         y: ' ',
@@ -124,7 +119,7 @@ describe('Split git diff-index output into components', function() {
       };
       assert.deepEqual(parseDiffIndex('R100    bar.txt       foo.txt'), expected);
 
-      it('should return the appropriate commit message for a moved file', function() {
+      it('should return the appropriate commit message for a moved file', function () {
         const expected: FileChanges = {
           x: 'R',
           y: ' ',
@@ -135,7 +130,7 @@ describe('Split git diff-index output into components', function() {
       });
     });
 
-    it('should return the appropriate commit message for a renamed slightly changed file', function() {
+    it('should return the appropriate commit message for a renamed slightly changed file', function () {
       const expected: FileChanges = {
         x: 'R',
         y: ' ',
@@ -144,7 +139,7 @@ describe('Split git diff-index output into components', function() {
       };
       assert.deepEqual(parseDiffIndex('R096    bar.txt       foo.txt'), expected);
 
-      it('should return the appropriate commit message for a moved file', function() {
+      it('should return the appropriate commit message for a moved file', function () {
         const expected: FileChanges = {
           x: 'R',
           y: ' ',

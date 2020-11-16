@@ -4,14 +4,14 @@
  * This can be used to check if all changes in a commit are related
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
-import { splitPath } from './paths';
 import { ACTION, CONVENTIONAL_TYPE } from './constants';
+import { splitPath } from './paths';
 
 // Package-related can be for 'build'.
 const PACKAGE_DIRS = [
-    // Rust
-    '.cargo'
-  ],
+  // Rust
+  '.cargo'
+],
   PACKAGE_NAMES = [
     // Python
     'requirements.txt',
@@ -41,14 +41,14 @@ const PACKAGE_DIRS = [
 
 // Build system (scripts, configurations or tools) and package dependencies.
 const BUILD_NAMES = [
-    'Dockerfile',
-    'docker-compose.yml',
+  'Dockerfile',
+  'docker-compose.yml',
 
-    'Makefile',
-    'Rakefile',
+  'Makefile',
+  'Rakefile',
 
-    'package.json' // Not necessarily package-related but always build-related.
-  ],
+  'package.json' // Not necessarily package-related but always build-related.
+],
   BUILD_EXTENSIONS = [
     '.gemspec' // Ruby installation
   ];
@@ -56,13 +56,13 @@ const BUILD_NAMES = [
 // This may be too broad or clash with other areas such as CI or
 // package unless used close to last in the entire flow.
 const CONFIG_EXTENSIONS = [
-    '.yml',
-    '.yaml',
-    '.json',
-    '.toml',
-    '.ini',
-    '.cfg' // Python config but also for other systems maybe
-  ],
+  '.yml',
+  '.yaml',
+  '.json',
+  '.toml',
+  '.ini',
+  '.cfg' // Python config but also for other systems maybe
+],
   CONFIG_DIRS = [
     '.vscode'
   ],
@@ -80,9 +80,9 @@ const CONFIG_EXTENSIONS = [
   ];
 
 const CI_DIRS = [
-    '.circleci',
-    '.github/workflows'
-  ],
+  '.circleci',
+  '.github/workflows'
+],
   CI_NAMES = [
     'netlify.toml',
     'travis.yml',
@@ -103,28 +103,28 @@ const CI_DIRS = [
 
 // This can be useful for multi-file changes e.g. "Creat 5 scripts"
 const SCRIPT_EXTENSIONS = [
-    '.html',
-    '.css',
-    '.scss',
+  '.html',
+  '.css',
+  '.scss',
 
-    '.py',
+  '.py',
 
-    '.rb',
+  '.rb',
 
-    '.js',
-    '.jsx',
-    '.ts',
-    '.tsx',
+  '.js',
+  '.jsx',
+  '.ts',
+  '.tsx',
 
-    '.java',
-    '.jar',
+  '.java',
+  '.jar',
 
-    '.c',
-    '.h',
+  '.c',
+  '.h',
 
-    '.rs',
-    '.go'
-  ],
+  '.rs',
+  '.go'
+],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = '.sh';
 

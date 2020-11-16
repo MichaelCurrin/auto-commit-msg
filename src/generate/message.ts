@@ -2,10 +2,9 @@
  * Create a commit message from a string which is formatted as a short git status.
  */
 import * as path from 'path';
-import { ACTION } from './constants';
-
-import { parseDiffIndex } from './parse-git-output';
 import { lookupDiffIndexAction, moveOrRenameFile } from './action';
+import { ACTION } from './constants';
+import { parseDiffIndex } from './parse-git-output';
 
 /**
  * This is no titlecase method in JS. This is fills that gap,

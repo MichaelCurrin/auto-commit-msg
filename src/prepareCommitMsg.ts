@@ -8,14 +8,14 @@
  * and then finally sets it in the UI message box.
  */
 import * as vscode from 'vscode';
-
 import { Repository } from './api/git';
-import { getChanges } from './gitCommands';
-import { parseDiffIndex } from './generate/parse-git-output';
 import { lookupDiffIndexAction } from './generate/action';
-import { one } from './generate/message';
-import { getSemanticConvention } from './generate/semantic';
 import { CONVENTIONAL_TYPE } from './generate/constants';
+import { one } from './generate/message';
+import { parseDiffIndex } from './generate/parse-git-output';
+import { getSemanticConvention } from './generate/semantic';
+import { getChanges } from './gitCommands';
+
 
 /**
  * Fetch Git Extension commit message.

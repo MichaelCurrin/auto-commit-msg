@@ -1,9 +1,8 @@
 /**
  * Parse git status.
- * 
+ *
  * Convert short git status into elements.
  */
-
 import { DESCRIPTION } from './constants';
 
 type DescriptionStrings = keyof typeof DESCRIPTION;
@@ -31,7 +30,7 @@ export function parseStatus(line: string): FileChanges {
   const y = line[1];
   const paths = line.substring(3);
 
-  const [ from, to ] = paths.includes('->') ? paths.split(' -> ') : [ paths, '' ];
+  const [from, to] = paths.includes('->') ? paths.split(' -> ') : [paths, ''];
 
   return {
     x: x,
@@ -43,7 +42,7 @@ export function parseStatus(line: string): FileChanges {
 
 /**
  * Parse a line produced by the git diff-index command.
- * 
+ *
  * For a rename such as 'R100', discard the percentage.
  */
 export function parseDiffIndex(line: string): FileChanges {

@@ -5,7 +5,6 @@
  * prepare commit message module to a target branch.
  */
 import * as vscode from 'vscode';
-
 import { GitExtension } from './api/git';
 import { prepareCommitMsg } from './prepareCommitMsg';
 
@@ -72,4 +71,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export function deactivate() {}
+export function deactivate() { }

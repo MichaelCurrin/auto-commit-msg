@@ -1,13 +1,12 @@
 import * as assert from 'assert';
-
 import { commonPath } from '../generate/commonPath';
 
-describe('Find the highest common parent directory for paths', function() {
+describe('Find the highest common parent directory for paths', function () {
   // This is useful when building a change message about multiple files and seeing what the high
   // common level is between them so this can be used in the message. If the parent directory is
   // needed for that to keep it much shorter, that is easy from the std lib.
-  describe('#commonPath()', function() {
-    it('should give the common path for 3 root repo paths', function() {
+  describe('#commonPath()', function () {
+    it('should give the common path for 3 root repo paths', function () {
       const paths = [
         'foo',
         'bar',
@@ -19,7 +18,7 @@ describe('Find the highest common parent directory for paths', function() {
 
     // These are relative to the repo root but don't have a forward slash,
     // based on git output from status or diff-index.
-    it('should give the common path for 2 different paths', function() {
+    it('should give the common path for 2 different paths', function () {
       const paths = [
         'Foo/test',
         'Foo/bar/test'
@@ -28,7 +27,7 @@ describe('Find the highest common parent directory for paths', function() {
       assert.strictEqual(commonPath(paths), 'Foo');
     });
 
-    it('should give the common path for 3 similar repo paths', function() {
+    it('should give the common path for 3 similar repo paths', function () {
       const paths = [
         'fizz/buzz/coverage/test',
         'fizz/buzz/covert/operator',
@@ -39,7 +38,7 @@ describe('Find the highest common parent directory for paths', function() {
     });
 
     // This shouldn't matter for use in a repo but just check its robustness.
-    it('should give the common path for 3 related absolute paths', function() {
+    it('should give the common path for 3 related absolute paths', function () {
       const paths = [
         '/home/user1/tmp/coverage/test',
         '/home/user1/tmp/covert/operator',

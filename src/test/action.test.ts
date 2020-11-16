@@ -1,10 +1,9 @@
 import * as assert from 'assert';
-
 import { moveOrRenameFile } from '../generate/action';
 
-describe('Desribe a file moved or renamed', function() {
-  describe('#moveOrRenameFile()', function() {
-    it('can describe a renamed file', function() {
+describe('Desribe a file moved or renamed', function () {
+  describe('#moveOrRenameFile()', function () {
+    it('can describe a renamed file', function () {
       assert.strictEqual(moveOrRenameFile('foo.txt', 'bar.txt'), 'Rename foo.txt to bar.txt');
       assert.strictEqual(
         moveOrRenameFile('buzz/foo.txt', 'buzz/bar.txt'),
@@ -12,12 +11,12 @@ describe('Desribe a file moved or renamed', function() {
       );
     });
 
-    it('can describe a moved file', function() {
+    it('can describe a moved file', function () {
       assert.strictEqual(moveOrRenameFile('buzz/foo.txt', 'fizz/foo.txt'), 'Move foo.txt to fizz');
       assert.strictEqual(moveOrRenameFile('buzz/foo.txt', 'foo.txt'), 'Move foo.txt to repo root');
     });
 
-    it('can describe a remamed and moved file', function() {
+    it('can describe a remamed and moved file', function () {
       assert.strictEqual(
         moveOrRenameFile('foo.txt', 'fizz/bar.txt'),
         'Move and rename foo.txt to fizz/bar.txt'
