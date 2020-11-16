@@ -74,15 +74,15 @@
   "devDependencies": {
     "@types/mocha": "^8.0.3",
     "@types/node": "^14.14.3",
-    "@types/vscode": "^1.39.0",
+    "@types/vscode": "^1.51.0",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
-    "eslint": "^7.7.0",
+    "eslint": "^7.13.0",
     "mocha": "^6.2.3",
     "source-map-support": "^0.5.12",
     "tslint": "^5.20.1",
     "typescript": "^3.6.4",
-    "vsce": "^1.79.4",
-    "vscode-test": "^1.2.0"
+    "vsce": "^1.81.1",
+    "vscode-test": "^1.4.1"
   }
 }
