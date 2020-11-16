@@ -4,16 +4,23 @@
 
 ## Build and install extension locally
 
-This will build the extension `.vsix` archive to the `build` directory using the current code. Then it will install it globally in VS Code.
-
-This is ideal for testing out the changes change in the extension without creating a tag yet.
+This is ideal for testing out local changes in you've made extension, without creating a tag.
 
 ```sh
 $ npm run ext
 ```
 
-It is best to then **restart** VS Code. You'll see the extension in your Extensions tab.
+That will do the following:
 
-We use the `--force` flag to downgrade to an older version, according to the CLI output help.
+1. Build the extension `.vsix` archive to the `build` directory using the current code. Performing all necessary checks.
+2. It will install the extension globally in VS Code.
 
-Note: The `ext` command in the [package.json](/package.json) scripts section sorts by _time_ because sorting by name is not reliable when the version is `0.9.0` and `0.10.0` (the latter is meant to be higher but appears as a lower version).
+You should then **restart** VS Code.
+
+You can find the extension in the Extension tab.
+
+
+### Notes
+
+- Within the `ext` command, we use the `--force` flag to downgrade to an older version, according to the CLI output help.
+- The `ext` command in the [package.json](/package.json) scripts section sorts by _time_ because sorting by name is not reliable when the version is `0.9.0` and `0.10.0` (the latter is meant to be higher but appears as a lower version).

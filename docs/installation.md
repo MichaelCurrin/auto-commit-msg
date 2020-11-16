@@ -32,6 +32,12 @@ $ git diff-index --shortstat HEAD
 See more [here](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/cheatsheets/git/commands/diff-index.md).
 -->
 
+
+## Install extension
+
+To install the extension itself, see the [Install extension globally](development.md#install-extension-globally) section of the Development doc.
+
+
 ## Installation
 
 ### Install system dependencies
@@ -50,8 +56,3 @@ $ cd auto-commit-msg
 ```sh
 $ npm install
 ```
-
-
-## Install extension
-
-To install the extension itself, see [Install extension globally](development.md#install-extension-globally) in the Development doc.

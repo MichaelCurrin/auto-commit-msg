@@ -13,11 +13,16 @@ Note the full extension is not built or persisted yet. That will be added later 
 ## Releases
 > How to create a release
 
-This will run checks, build an extension file in `build`, increment the tag version and push.
-
 ```sh
 $ npm version minor
 ```
+
+That will do the following:
+
+1. Run checks
+2. Build an extension file in `build` directory.
+3. Increment the tag version
+4. Push.
 
 Then go into the [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases) section on GitHub, create a release from the tag and upload the built extension `.vsix` file to the binaries part.
 

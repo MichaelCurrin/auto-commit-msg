@@ -4,19 +4,19 @@
 
 ## Setup and run the extension
 
-This is extension is not available in the VS Code marketplace, but you can still try it out. 
+This is extension is not available in the VS Code marketplace, but you can still get it another way.
 
 Below is a short quick guide to get the extension installed globally in your VS Code. Note that you do not need to install any dependencies or download this project. You only need VS Code installed.
 
 ### Install
 
-1. Download a copy of the `.vsix` asset on the latest release - [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases). This is an archive file but you don't need to unzip it.
+1. Download a copy of the `.vsix` asset on the latest release - [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases). This is an archive file, but you do not need to unzip it yourself.
 2. Run the following command with the path to the downloaded file.
     ```sh
     $ code --install-extension PATH
     ```
 
-This can be done with VS Code still running but it is best to restart VS Code when making updates to this extension. 
+This can be done with VS Code still running but it is best to restart VS Code when making updates to this extension.
 
 If you already have the extension installed, this will overwrite it.
 
@@ -34,7 +34,7 @@ To avoid clicking the extension with the mouse, you can use the command bar.
 1. Your cursor will move to the commit message box, so now you can press commit with the keyboard. Use <kbd>CTRL</kbd>+<kbd>ENTER</kbd>.
 
 
-### Remove 
+### Remove
 
 Uninstall the extension if you don't want it anymore.
 
