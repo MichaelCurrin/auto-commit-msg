@@ -34,14 +34,15 @@ function execute(cwd: string, subcommand?: string, options: string[] = []) {
  * no color flagged is added to be safe.
  */
 async function diffIndex(options: string[] = []): Promise<Array<string>> {
-  const { stdout, stderr } = await execute(getWorkspaceFolder(), 'diff-index', [
+  const fullOptions = [
     '--name-status',
     '--find-renames',
     '--find-copies',
     '--no-color',
     ...options,
     'HEAD'
-  ]);
+  ];
+  const { stdout, stderr } = await execute(getWorkspaceFolder(), 'diff-index', fullOptions);
 
   if (stderr) {
     console.debug('stderror for git diff-index command:', stderr);
@@ -65,6 +66,7 @@ export async function getChanges() {
   ]);
   if (stagedChanges.length) {
     console.debug('Found staged changes');
+
     return stagedChanges;
   }
 
@@ -75,7 +77,6 @@ export async function getChanges() {
     console.debug('No changes found');
   }
   return allChanges;
-
 }
 
 /**
