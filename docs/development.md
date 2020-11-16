@@ -37,16 +37,16 @@ This is useful before pushing to ensure everything works. (This could be setup w
 $ npm run preversion
 ```
 
-This will run `lint` and `test` steps, with `compile` run as part of `pretest` because of how NPM works.
+This is setup to run the linting and test steps, with `compile` run as part of `pretest` because of how NPM works.
 
-at once see later in this doc to run steps separately).
+See later in this doc to run steps separately.
 
 ### Lint
 
-Run ESLint against TS files for a report. This will not fix any errors though.
+Run ESLint against TS files for a report and fixing problems where possible.
 
 ```sh
-$ npm run lint
+$ npm run lint:fix
 ```
 
 Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the compile step. This runs as part of [Tests](#run-tests), so you don't have to run it by hand.

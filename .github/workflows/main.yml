@@ -18,7 +18,7 @@ jobs:
         run: npm install
 
       - name: Lint code
-        run: npm run lint
+        run: npm run lint:check
 
       - name: Compile
         run: npm run compile
