@@ -35,6 +35,9 @@
     "vsce": "^1.81.1",
     "vscode-test": "^1.4.1"
   },
+  "engines": {
+    "vscode": "^1.51.0"
+  },
   "homepage": "https://github.com/MichaelCurrin/auto-commit-msg#readme",
   "repository": {
     "type": "git",
@@ -50,9 +53,6 @@
     "message",
     "vs-code"
   ],
-  "engines": {
-    "vscode": "^1.51.0"
-  },
   "categories": [
     "Other"
   ],
