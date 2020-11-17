@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
-[![Made with TypeScript](https://img.shields.io/badge/TypeScript-3-blue.svg?logo=typescript)](https://typescriptlang.org)
+[![Made with TypeScript](https://img.shields.io/badge/TypeScript->=3-blue.svg?logo=typescript)](https://typescriptlang.org)
 
 
 ## About
@@ -27,7 +27,7 @@ It many cases it can also provide an appropriate **semvar** label for you. It ca
 ## Release disclaimer
 
 - This application is still in **pre-release** stage. 
-- But... it is functional and I use it daily, so please use it too if you want.
+- But... it is still functional and I use it daily, so please use it too if you want.
 - There are just some finishing touches still, like making a new logo, releasing the package on the marketplace and cleaning up the docs. It can become version `1.0.0` around then.
 - There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
 
@@ -91,9 +91,8 @@ This will probably be in Python for easy scaling and tests. And it will probably
 
 ## Documentation
 
-[Project docs](/docs/) folder
-
-[Project Wiki](https://github.com/MichaelCurrin/auto-commit-msg/wiki)
+[![view - Documenation](https://img.shields.io/badge/view-Documenation-blue)](/docs/)
+[![view - Wiki](https://img.shields.io/badge/view-Wiki-blue)](https://github.com/MichaelCurrin/auto-commit-msg/wiki)
 
 
 ## License
