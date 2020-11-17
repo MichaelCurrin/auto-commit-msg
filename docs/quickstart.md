@@ -4,25 +4,36 @@
 
 ## Setup and run the extension
 
-This is extension is not available in the VS Code marketplace, but you can still get it another way.
+Here is a short quick guide to get the extension installed globally in your VS Code using a downloaded file and then start using the extension.
 
-Below is a short quick guide to get the extension installed globally in your VS Code. Note that you do not need to install any dependencies or download this project. You only need VS Code installed.
+You only need to have VS Code installed. You do not need to install any dependencies yourself or download this repo. 
+
 
 ### Install
+> Use the terminal to install the extension from pre-built file
 
-1. Download a copy of the `.vsix` asset on the latest release - [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases). This is an archive file, but you do not need to unzip it yourself.
-2. Run the following command with the path to the downloaded file.
+This is extension is **not available** in the VS Code marketplace yet, but you download it from GitHub.
+
+1. Download a copy of the `.vsix` asset on the latest release - see [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases).
+2. Run the following using the downloaded file's path.
     ```sh
     $ code --install-extension PATH
     ```
+    e.g.
+    ```sh
+    $ code --install-extension ~/Downloads/auto-commit-msg-0.13.0.vsix
+    ```
+    ```
+    Installing extensions...
+    Extension 'auto-commit-msg-0.13.0.vsix' was successfully installed.
+    ```
 
-This can be done with VS Code still running but it is best to restart VS Code when making updates to this extension.
-
-If you already have the extension installed, this will overwrite it.
+You can proceed to use the extension using the next section.
 
 ### Run
+> How to use extension after it has been installed
 
-1. Open VS Code
+1. Open VS Code (or restart VS Code if you just installed or updated the extension).
 1. Go to the Source Control (Git Extension) tab. You'll see the extension added.
 1. Stage a file change in your repo.
 1. Click the extension button to push a message to the message box.
@@ -35,11 +46,16 @@ To avoid clicking the extension with the mouse, you can use the command bar.
 
 
 ### Remove
+> How to uninstall the extension if you don't want it anymore
 
-Uninstall the extension if you don't want it anymore.
+1. Go to the Extensions tab
+2. Click the extension.
+3. Click _uninstall_.
 
-- Go to the Extensions tab, find it and click uninstall.
-- Or run this command then restart VS Code.
+Or
+
+1. Run this command.
     ```sh
     $ code --uninstall-extension MichaelCurrin.auto-commit-msg
     ```
+2. Restart VS Code.
