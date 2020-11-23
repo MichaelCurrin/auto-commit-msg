@@ -8,7 +8,7 @@ There are just a few important `npm` commands to know for this project. These ar
 
 The other NPM script commands are run indirectly through the other commands or through the debugger. Or are only run directly infrequently, so they aren't covered here.
 
-See [package.json](/package.json) for all commands.
+See [package.json](/package.json) for all commands. Note that `.` is better than `src` as then the configs like `tsconfig.json` can be found - otherwise you'll get an error.
 
 
 ## Install
