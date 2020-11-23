@@ -10,7 +10,7 @@ i install:
 t test:
 	npm run test
 
-# Note - will not fix formatting issues.
+# Note - linter will not fix formatting issues but IDE or Prettier can.
 l lint:
 	npm run lint:fix
 
@@ -21,5 +21,5 @@ tag:
 
 
 # Build and install extension globally.
-b build:
+e ext:
 	npm run ext
