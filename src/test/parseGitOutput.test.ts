@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import { DESCRIPTION } from '../generate/constants';
-import { describeCode, FileChanges, parseDiffIndex, parseStatus } from '../generate/parse-git-output';
+import { describeCode, FileChanges, parseDiffIndex, parseStatus } from '../generate/parseGitOutput';
 
 describe('Get value from description enum using key', function () {
   describe('#describeCode()', function () {

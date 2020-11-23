@@ -4,7 +4,7 @@
 import * as path from 'path';
 import { lookupDiffIndexAction, moveOrRenameFile } from './action';
 import { ACTION } from './constants';
-import { parseDiffIndex } from './parse-git-output';
+import { parseDiffIndex } from './parseGitOutput';
 
 /**
  * This is no titlecase method in JS. This is fills that gap,
