@@ -216,7 +216,9 @@ export class Semantic {
   }
 
   isBuildRelated(): boolean {
-    return BUILD_NAMES.includes(this.name) || this.isPackageRelated();
+    return BUILD_NAMES.includes(this.name) ||
+      BUILD_EXTENSIONS.includes(this.extension) ||
+      this.isPackageRelated();
   }
 
   isPackageRelated(): boolean {
