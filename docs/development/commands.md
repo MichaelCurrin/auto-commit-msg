@@ -4,13 +4,9 @@
 
 ## Overview of commands
 
-The most important `npm` commands to know for this project:
+There are just a few important `npm` commands to know for this project. These are covered in the [Makefile](/Makefile) and can be run with `make TARGET` for convenience.
 
-- `npm test` - Lint, clean, compile and run unit tests.
-- `npm version minor` - Run tests and then tag and push.
-- `npm run ext` - Build and install extension globally.
-
-The other commands define are run indirectly through the other commands or through the debugger. Or are only run directly infrequently, so they aren't covered here.
+The other NPM script commands are run indirectly through the other commands or through the debugger. Or are only run directly infrequently, so they aren't covered here.
 
 See [package.json](/package.json) for all commands.
 
