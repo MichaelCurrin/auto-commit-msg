@@ -1,12 +1,14 @@
 # Auto Commit Message ⚙️🧙‍♂️ ✉️
 > Automagically generate a commit message - based on which files changed and how they changed
 
+<!-- Badges generated with https://michaelcurrin.github.io/badge-generator/#/ -->
+
 [![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions)
 [![GitHub release](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/releases/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
-[![Made with TypeScript](https://img.shields.io/badge/TypeScript->=3-blue.svg?logo=typescript)](https://typescriptlang.org)
+[![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
 
 
 ## About
@@ -26,7 +28,7 @@ It many cases it can also provide an appropriate **semvar** label for you. It ca
 
 ## Release disclaimer
 
-- This application is still in **pre-release** stage. 
+- This application is still in **pre-release** stage.
 - But... it is still functional and I use it daily, so please use it too if you want.
 - There are just some finishing touches still, like making a new logo, releasing the package on the marketplace and cleaning up the docs. It can become version `1.0.0` around then.
 - There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
@@ -34,15 +36,15 @@ It many cases it can also provide an appropriate **semvar** label for you. It ca
 
 ## Purpose
 
-This is a VS Code extension - when you run it, it will look at files changed and then generate a commit message for you and add it to the commit message box (using the Git Extension's UI). 
+This is a VS Code extension - when you run it, it will look at files changed and then generate a commit message for you and add it to the commit message box (using the Git Extension's UI).
 
 It will look at files that are staged. If there are none, then it will look all changed unstaged files instead. The result will be a simple, descriptive message that fits on one line.
 
 Note: At the moment a message can be generated based on one changed file.
 
-The idea of this tool is to take the friction out of writing commit messages, so you that you commit more frequently (such as a with more one-line changes rather than mixing multiple unrelated changes together) and to save having to type out details that can be automatic or a tedious (mentioning long or difficult-to-type paths or filenames). This tool is not mean to be perfect - it gives a best guess for common cases. 
+The idea of this tool is to take the friction out of writing commit messages, so you that you commit more frequently (such as a with more one-line changes rather than mixing multiple unrelated changes together) and to save having to type out details that can be automatic or a tedious (mentioning long or difficult-to-type paths or filenames). This tool is not mean to be perfect - it gives a best guess for common cases.
 
-It also not meant to replace writing messages by hand. It is a tool for myself mainly - 80% of my commit messages could have been written by an algorithm. 
+It also not meant to replace writing messages by hand. It is a tool for myself mainly - 80% of my commit messages could have been written by an algorithm.
 
 And for the other 20% when the change is important to describe in detail or hard to figure out programmatically (like class renames or bug fix descriptions), then I can still write my manual commit message.
 
@@ -77,7 +79,7 @@ What this VS Code extension can do
 - [x] Works with git repos
 - [x] Test coverage - Unit tests that are run with GitHub Actions CI
 - [ ] Update logo
-- [ ] Available in VS Code marketplace 
+- [ ] Available in VS Code marketplace
 - [ ] CI to build the package archive on tag
 - [ ] Clean up docs and Wiki
 
