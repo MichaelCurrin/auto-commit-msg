@@ -10,7 +10,7 @@ describe('Split git status output into components', function () {
         from: 'foo.txt',
         to: ''
       };
-      assert.deepEqual(parseStatus('A  foo.txt'), expected);
+      assert.deepStrictEqual(parseStatus('A  foo.txt'), expected);
     });
 
     it('should return the appropriate commit message for a modified file', function () {
@@ -20,7 +20,7 @@ describe('Split git status output into components', function () {
         from: 'foo.txt',
         to: ''
       };
-      assert.deepEqual(parseStatus(' M foo.txt'), expected);
+      assert.deepStrictEqual(parseStatus(' M foo.txt'), expected);
     });
 
     it('should return the appropriate commit message for a deleted file', function () {
@@ -30,7 +30,7 @@ describe('Split git status output into components', function () {
         from: 'foo.txt',
         to: ''
       };
-      assert.deepEqual(parseStatus('D  foo.txt'), expected);
+      assert.deepStrictEqual(parseStatus('D  foo.txt'), expected);
     });
 
     it('should return the appropriate commit message for a renamed file', function () {
@@ -40,7 +40,7 @@ describe('Split git status output into components', function () {
         from: 'foo.txt',
         to: 'bar.txt'
       };
-      assert.deepEqual(parseStatus('R  foo.txt -> bar.txt'), expected);
+      assert.deepStrictEqual(parseStatus('R  foo.txt -> bar.txt'), expected);
 
       it('should return the appropriate commit message for a moved file', function () {
         const expected: FileChanges = {
@@ -49,7 +49,7 @@ describe('Split git status output into components', function () {
           from: 'foo.txt',
           to: 'fizz/foo.txt'
         };
-        assert.deepEqual(parseStatus('R  foo.txt -> fizz/foo.txt'), expected);
+        assert.deepStrictEqual(parseStatus('R  foo.txt -> fizz/foo.txt'), expected);
       });
     });
   });
@@ -68,7 +68,7 @@ describe('Split git diff-index output into components', function () {
         from: 'foo.txt',
         to: ''
       };
-      assert.deepEqual(parseDiffIndex('A       foo.txt'), expected);
+      assert.deepStrictEqual(parseDiffIndex('A       foo.txt'), expected);
     });
 
     it('should return the appropriate commit message for a modified file', function () {
@@ -78,7 +78,7 @@ describe('Split git diff-index output into components', function () {
         from: 'foo.txt',
         to: ''
       };
-      assert.deepEqual(parseDiffIndex('M       foo.txt'), expected);
+      assert.deepStrictEqual(parseDiffIndex('M       foo.txt'), expected);
     });
 
     it('should return the appropriate commit message for a deleted file', function () {
@@ -88,7 +88,7 @@ describe('Split git diff-index output into components', function () {
         from: 'foo.txt',
         to: ''
       };
-      assert.deepEqual(parseDiffIndex('D       foo.txt'), expected);
+      assert.deepStrictEqual(parseDiffIndex('D       foo.txt'), expected);
     });
 
     it('should return the appropriate commit message for a renamed unchanged file', function () {
@@ -98,7 +98,7 @@ describe('Split git diff-index output into components', function () {
         from: 'bar.txt',
         to: 'foo.txt'
       };
-      assert.deepEqual(parseDiffIndex('R100    bar.txt       foo.txt'), expected);
+      assert.deepStrictEqual(parseDiffIndex('R100    bar.txt       foo.txt'), expected);
 
       it('should return the appropriate commit message for a moved file', function () {
         const expected: FileChanges = {
@@ -107,7 +107,7 @@ describe('Split git diff-index output into components', function () {
           from: 'bar.txt',
           to: 'fizz/foo.txt'
         };
-        assert.deepEqual(parseDiffIndex('R100    bar.txt       fizz/foo.txt'), expected);
+        assert.deepStrictEqual(parseDiffIndex('R100    bar.txt       fizz/foo.txt'), expected);
       });
     });
 
@@ -118,7 +118,7 @@ describe('Split git diff-index output into components', function () {
         from: 'bar.txt',
         to: 'foo.txt'
       };
-      assert.deepEqual(parseDiffIndex('R096    bar.txt       foo.txt'), expected);
+      assert.deepStrictEqual(parseDiffIndex('R096    bar.txt       foo.txt'), expected);
 
       it('should return the appropriate commit message for a moved file', function () {
         const expected: FileChanges = {
@@ -127,7 +127,7 @@ describe('Split git diff-index output into components', function () {
           to: 'bar.txt',
           from: 'fizz/foo.txt'
         };
-        assert.deepEqual(parseDiffIndex('R096    bar.txt       fizz/foo.txt'), expected);
+        assert.deepStrictEqual(parseDiffIndex('R096    bar.txt       fizz/foo.txt'), expected);
       });
     });
   });
