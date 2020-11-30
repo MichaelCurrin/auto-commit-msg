@@ -3,13 +3,6 @@
  *
  * Convert short git status into elements.
  */
-import { DESCRIPTION } from './constants';
-
-type DescriptionStrings = keyof typeof DESCRIPTION;
-
-export function describeCode(key: DescriptionStrings) {
-  return DESCRIPTION[key];
-}
 
 export interface FileChanges {
   x: string;

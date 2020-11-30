@@ -1,24 +1,5 @@
 import * as assert from 'assert';
-import { DESCRIPTION } from '../generate/constants';
-import { describeCode, FileChanges, parseDiffIndex, parseStatus } from '../generate/parseGitOutput';
-
-describe('Get value from description enum using key', function () {
-  describe('#describeCode()', function () {
-    it('can return the correct value for added symbol', function () {
-      assert.strictEqual(describeCode('A'), 'added');
-
-      assert.strictEqual(describeCode('A'), DESCRIPTION.A);
-    });
-
-    it('can return the correct value for empty space as unmodified', function () {
-      assert.strictEqual(describeCode(' '), 'unmodified');
-    });
-
-    it('can return the correct value for ignored symbol', function () {
-      assert.strictEqual(describeCode('!'), 'ignored');
-    });
-  });
-});
+import { FileChanges, parseDiffIndex, parseStatus } from '../generate/parseGitOutput';
 
 describe('Split git status output into components', function () {
   describe('#parseStatus()', function () {
