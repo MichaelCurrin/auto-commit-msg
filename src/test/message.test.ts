@@ -1,5 +1,5 @@
 /**
- * Test high-level functionality around what message is shown to user based on file changes.
+ * High-level test of message is shown to the user, based on changes to one or more files.
  */
 import * as assert from 'assert';
 import { one } from '../generate/message';
