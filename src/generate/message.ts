@@ -28,7 +28,6 @@ export function one(line: string): string {
 
   const action = lookupDiffIndexAction(x);
   if (action === ACTION.R) {
-    // `to` will be set because it is a rename.
     return moveOrRenameFile(from, to);
   }
 

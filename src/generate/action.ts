@@ -4,38 +4,26 @@
 import { ACTION, ROOT } from './constants';
 import { splitPath } from './paths';
 
-type DescriptionStrings = keyof typeof ACTION;
-
-export function describeAction(key: DescriptionStrings) {
-  return ACTION[key];
-}
+type ActionKeys = keyof typeof ACTION;
 
 /**
  * Extract single action from given X and Y actions.
  *
- * This works for git status short output - currently not used.
- * Modified takes preferences over the others. There is no way here to combine update and move.
+ * NOT USED.
+ *
+ * This works for git status short output.
+ *
+ * "Modified" takes preferences over the others. There is no way here to combine update and move.
  */
 export function lookupStatusAction(x: string, y: string): string {
-  // Lookup value from enum dynamically without getting a TS error.
-  const actionX = (<any>ACTION)[x];
-  const actionY = (<any>ACTION)[y];
-
-  return actionY === ACTION.M ? actionY : actionX;
+  if (ACTION[y as ActionKeys] === ACTION.M) {
+    return ACTION.M;
+  }
+  return ACTION[x as ActionKeys];
 }
 
-/** Return ACTION enum for a given string. */
 export function lookupDiffIndexAction(x: string) {
-  // Lookup value from enum dynamically without getting a TS error.
-  // This prevents an error on ACTION[x], because x may not be in.
-  // This could return undefined which is caught next.
-  const action = (<any>ACTION)[x];
-
-  if (typeof action === 'undefined') {
-    throw new Error(`Could not find value in ACTION enum: ${x}`);
-  }
-
-  return action;
+  return ACTION[x as ActionKeys];
 }
 
 /**
