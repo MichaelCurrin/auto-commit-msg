@@ -7,8 +7,10 @@ import { ACTION } from './constants';
 import { parseDiffIndex } from './parseGitOutput';
 
 /**
- * This is no titlecase method in JS. This is fills that gap,
- * but only care about the first letter, ignoring multiple words.
+ * Make first letter of a string uppercase.
+ *
+ * This is no titlecase method in JS. This is fills that gap, but, only care about the first letter,
+ * ignoring multiple words. This also doesn't care about downcasing.
  */
 function title(value: string) {
   if (!value.length) {
