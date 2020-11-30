@@ -20,6 +20,8 @@ import { getChanges } from './gitCommands';
 /**
  * Fetch Git Extension commit message.
  *
+ * NOT USED
+ *
  * This will be useful when doing semantic commits, as the initial 'feat' or 'feat: ' portion
  * or similar can be kept as a prefix while the generate message can be a suffix.
  * Or if left out it can be generated if possible such as for 'chore' or 'docs'.
