@@ -16,11 +16,10 @@ import { parseDiffIndex } from './generate/parseGitOutput';
 import { getSemanticConvention } from './generate/semantic';
 import { getChanges } from './gitCommands';
 
-
 /**
  * Fetch Git Extension commit message.
  *
- * NOT USED
+ * NOT USED.
  *
  * This will be useful when doing semantic commits, as the initial 'feat' or 'feat: ' portion
  * or similar can be kept as a prefix while the generate message can be a suffix.
@@ -45,13 +44,12 @@ function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
 // TODO: Move this and formatMsg to generate module.
 // Tie together piece of the generate module to create a full message for the UI.
 function generateMsg(diffIndexLines: string[]) {
-  const line = diffIndexLines[0];
-  const fileChangeMsg = one(line);
+  const line = diffIndexLines[0],
+    fileChangeMsg = one(line);
 
   // TODO refactor as this is done in `one` too.
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
-
   const prefix = getSemanticConvention(action, filePath);
 
   return formatMsg(prefix, fileChangeMsg);
@@ -84,6 +82,5 @@ export async function prepareCommitMsg(repository: Repository) {
 
   // Parse and process the git output fetched above.
   const msg = generateMsg(diffIndexLines);
-
   setCommitMsg(repository, msg);
 }
