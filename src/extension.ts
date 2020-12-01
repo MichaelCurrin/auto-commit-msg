@@ -19,7 +19,7 @@ function getGitExtension() {
 }
 
 /**
- * Run the autofill command when extension is triggered.
+ * Run the autofill command when the extension is triggered.
  *
  * This is mostly copied from the git-prefix extension so some flows have not been
  * directly tested.
@@ -36,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand('workbench.view.scm');
 
     if (uri) {
-      // Flow for multiple repos in workspace and selecting just one.
+      // Flow for multiple repos in workspace and selecting just one. This is a rare flow.
 
       // FIXME: Unfortunately this seems to only pick up the first repo.
       const selectedRepository = git.repositories.find(repository => {
@@ -59,7 +59,9 @@ export function activate(context: vscode.ExtensionContext) {
       if (git.repositories.length > 1) {
         // This flow is unlikely as I haven't experienced it yet, but log anyway just in case,
         // without aborting.
-        vscode.window.showWarningMessage('Unable to select a repo as multiple repos are open and none was specified.');
+        vscode.window.showWarningMessage(
+          'Unable to select a repo as multiple repos are open and none was specified.'
+        );
       }
 
       const targetRepo = git.repositories[0];
