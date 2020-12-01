@@ -38,8 +38,9 @@ export function parseStatus(line: string): FileChanges {
  *
  * See the git docs for the meaning of `x`, `y`, `from` and `to`.
  *
- * Here we set `y` as the Unmodified symbol and keep it, so we can match the git status handling
- * where this function comes from. But this is actually not present.
+ * Here we set `y` as the Unmodified symbol and keep it, so we can match the `git status` handling
+ * where this function comes from. But this is actually not present in the text and it not used
+ * elsewhere in this project.
  *
  * For a rename such as 'R100', discard the percentage similarity.
  */
@@ -58,7 +59,7 @@ export function parseDiffIndex(line: string): FileChanges {
   }
   const to = segments.length === 3 ? segments[2] : '';
 
-  // TODO: Convert to type
+  // TODO: Convert to type.
   return {
     x: x,
     y: y,
