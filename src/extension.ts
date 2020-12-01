@@ -41,10 +41,7 @@ async function handleRepo(git: API) {
 }
 
 /**
- * Run the autofill command when the extension is triggered.
- *
- * This is mostly copied from the git-prefix extension so some flows have not been
- * directly tested.
+ * Setup this extension's autofill command to run when triggered.
  */
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand('commitMsg.autofill', async (uri?) => {
