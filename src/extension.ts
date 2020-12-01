@@ -18,10 +18,11 @@ function getGitExtension() {
   return gitExtension && gitExtension.getAPI(1);
 }
 
+/**
+ * Flow for multiple repos in workspace and selecting just one. This is a rare flow.
+ */
 async function handleRepos(git: API, uri: any) {
-  // Flow for multiple repos in workspace and selecting just one. This is a rare flow.
-
-  // FIXME: Unfortunately this seems to only pick up the first repo.
+  // FIXME: Unfortunately this seems to only pick up the first repo and not find second etc.
   const selectedRepository = git.repositories.find(repository => {
     return repository.rootUri.path === uri._rootUri.path;
   });
@@ -31,21 +32,15 @@ async function handleRepos(git: API, uri: any) {
   }
 }
 
-// Flow for a single or zero repos in the workspace.
+/**
+ * Flow for a single or zero repos in the workspace.
+ */
 async function handleRepo(git: API) {
   if (git.repositories.length === 0) {
     vscode.window.showErrorMessage(
       'No repos found. Please open a repo or run git init then try this extension again.'
     );
     return;
-  }
-
-  if (git.repositories.length > 1) {
-    // This flow is unlikely as I haven't experienced it yet, but log anyway just in case,
-    // without aborting.
-    vscode.window.showWarningMessage(
-      'Unable to select a repo as multiple repos are open and none was specified.'
-    );
   }
 
   const targetRepo = git.repositories[0];
