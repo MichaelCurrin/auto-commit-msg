@@ -42,7 +42,7 @@ export function parseStatus(line: string): FileChanges {
  * where this function comes from. But this is actually not present in the text and it not used
  * elsewhere in this project.
  *
- * For a rename such as 'R100', discard the percentage similarity.
+ * For a rename such as 'R100' which is 100% similar, we discard the percentage value.
  */
 export function parseDiffIndex(line: string): FileChanges {
   if (line.length <= 4) {
