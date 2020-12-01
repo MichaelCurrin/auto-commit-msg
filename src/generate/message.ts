@@ -25,7 +25,7 @@ function title(value: string) {
  * A rename can be handled, it just requires both the paths to be staged
  * so that git collapses D and A to a single R action.
  */
-export function one(line: string): string {
+export function one(line: string) {
   const { x, from, to } = parseDiffIndex(line);
 
   const action = lookupDiffIndexAction(x);
@@ -33,10 +33,9 @@ export function one(line: string): string {
     return moveOrRenameFile(from, to);
   }
 
-  // Stringify the action to get 'Update' etc.
-  // from is not really descriptive here but the logic works.
-  // It's also possible to reverse from and to in git status and git diff-index output
-  // or handle just the parseDiffIndex function to make sure to is always set and from
-  // is null if it is not a move.
+  // Stringify the action to get 'Update foo.txt' etc.
+  // Using the variable name as 'from' is not really descriptive here but the logic works. It's also
+  // possible to reverse 'from' and 'to' in git status and git diff-index output or handle just the
+  // parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a move.
   return `${title(action)} ${path.basename(from)}`;
 }
