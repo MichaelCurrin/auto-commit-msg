@@ -17,23 +17,26 @@ import { getSemanticConvention } from './generate/semantic';
 import { getChanges } from './gitCommands';
 
 /**
- * Fetch Git Extension commit message.
+ * Fetch the commit message in the Git Extension.
  *
- * NOT USED.
- *
- * This will be useful when doing semantic commits, as the initial 'feat' or 'feat: ' portion
- * or similar can be kept as a prefix while the generate message can be a suffix.
- * Or if left out it can be generated if possible such as for 'chore' or 'docs'.
+ * This could useful when doing semantic commits, as the initial 'feat' or 'feat: ' portion
+ * or similar can be kept as a prefix while the generated message added on.
+ * Or if left out, it can be generated if possible such as for 'chore' or 'docs'.
  */
 function getCommitMsg(repository: Repository): string {
   return repository.inputBox.value;
 }
 
-/** Replace Git Extension commit message. */
-function setCommitMsg(repository: Repository, value: string): void {
-  repository.inputBox.value = value;
+/**
+ * Set the commit message in the Git Extenion.
+ */
+function setCommitMsg(repository: Repository, msg: string) {
+  repository.inputBox.value = msg;
 }
 
+/**
+ * Output a readable semantic git commit message.
+ */
 function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
     return subject;
@@ -56,7 +59,7 @@ function generateMsg(diffIndexLines: string[]) {
 }
 
 /**
- * Autofill commit message.
+ * Generate and push a commit message.
  *
  * Read git command output, process it to generate a commit message and then push the message to the input box UI.
  *
@@ -82,7 +85,11 @@ export async function prepareCommitMsg(repository: Repository) {
     return;
   }
 
-  // Parse and process the git output fetched above.
+  const currentMsg = getCommitMsg(repository);
+  console.debug('Old message: ', currentMsg);
+
   const msg = generateMsg(diffIndexLines);
+  console.debug('New message: ', msg)
+
   setCommitMsg(repository, msg);
 }
