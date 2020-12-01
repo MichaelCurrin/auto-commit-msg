@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { FileChanges, parseDiffIndex, parseStatus } from '../generate/parseGitOutput';
 
-describe('Split git status output into components', function () {
+describe('Split `git status` output into components', function () {
   describe('#parseStatus()', function () {
     it('should return the appropriate commit message for a new file', function () {
       const expected: FileChanges = {
@@ -55,7 +55,7 @@ describe('Split git status output into components', function () {
   });
 });
 
-describe('Split git diff-index output into components', function () {
+describe('Split `git diff-index` output into components', function () {
   // The 1st column to 2nd looks like constant with and then 2nd to 3rd looks like 6 chars.
   // R100    tslint.json     src/tslint.json
   // R100    vsc-extension-quickstart.md     src/vsc-extension-quickstart.md
