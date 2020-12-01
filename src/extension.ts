@@ -36,16 +36,10 @@ async function handleRepos(git: API, uri: any) {
  * Flow for a single or zero repos in the workspace.
  */
 async function handleRepo(git: API) {
-  if (git.repositories.length === 0) {
-    vscode.window.showErrorMessage(
-      'No repos found. Please open a repo or run git init then try this extension again.'
-    );
-    return;
-  }
-
   const targetRepo = git.repositories[0];
   await prepareCommitMsg(targetRepo);
 }
+
 /**
  * Run the autofill command when the extension is triggered.
  *
@@ -58,6 +52,13 @@ export function activate(context: vscode.ExtensionContext) {
 
     if (!git) {
       vscode.window.showErrorMessage('Unable to load Git Extension');
+      return;
+    }
+
+    if (git.repositories.length === 0) {
+      vscode.window.showErrorMessage(
+        'No repos found. Please open a repo or run git init then try this extension again.'
+      );
       return;
     }
 
