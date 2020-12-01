@@ -56,9 +56,11 @@ function generateMsg(diffIndexLines: string[]) {
 }
 
 /**
- * Read git output, process it to generate a commit message and then push the message to the input box UI.
+ * Autofill commit message.
  *
- * This function based on the prefixCommit from git-prefix extension.
+ * Read git command output, process it to generate a commit message and then push the message to the input box UI.
+ *
+ * This function is based on prefixCommit from git-prefix extension.
  */
 export async function prepareCommitMsg(repository: Repository) {
   const diffIndexLines = await getChanges();
