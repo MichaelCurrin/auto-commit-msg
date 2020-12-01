@@ -5,7 +5,7 @@
  * prepare commit message module to a target branch.
  */
 import * as vscode from 'vscode';
-import { GitExtension } from './api/git';
+import { API, GitExtension } from './api/git';
 import { prepareCommitMsg } from './prepareCommitMsg';
 
 /**
@@ -18,6 +18,39 @@ function getGitExtension() {
   return gitExtension && gitExtension.getAPI(1);
 }
 
+async function handleManyRepos(git: API, uri: any) {
+  // Flow for multiple repos in workspace and selecting just one. This is a rare flow.
+
+  // FIXME: Unfortunately this seems to only pick up the first repo.
+  const selectedRepository = git.repositories.find(repository => {
+    return repository.rootUri.path === uri._rootUri.path;
+  });
+
+  if (selectedRepository) {
+    await prepareCommitMsg(selectedRepository);
+  }
+}
+
+async function handleFewRepos(git: API) {
+  // Flow for fewer than 2 repos in the workspace.
+
+  if (git.repositories.length === 0) {
+    vscode.window.showErrorMessage(
+      'No repos found. Please open a repo or run git init then try this extension again.'
+    );
+    return;
+  }
+  if (git.repositories.length > 1) {
+    // This flow is unlikely as I haven't experienced it yet, but log anyway just in case,
+    // without aborting.
+    vscode.window.showWarningMessage(
+      'Unable to select a repo as multiple repos are open and none was specified.'
+    );
+  }
+
+  const targetRepo = git.repositories[0];
+  await prepareCommitMsg(targetRepo);
+}
 /**
  * Run the autofill command when the extension is triggered.
  *
@@ -36,36 +69,10 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand('workbench.view.scm');
 
     if (uri) {
-      // Flow for multiple repos in workspace and selecting just one. This is a rare flow.
-
-      // FIXME: Unfortunately this seems to only pick up the first repo.
-      const selectedRepository = git.repositories.find(repository => {
-        return repository.rootUri.path === uri._rootUri.path;
-      });
-
-      if (selectedRepository) {
-        await prepareCommitMsg(selectedRepository);
-      }
+      handleManyRepos(git, uri);
     }
     else {
-      // Flow for fewer than 2 repos in the workspace.
-
-      if (git.repositories.length === 0) {
-        vscode.window.showErrorMessage(
-          'No repos found. Please open a repo or run git init then try this extension again.'
-        );
-        return;
-      }
-      if (git.repositories.length > 1) {
-        // This flow is unlikely as I haven't experienced it yet, but log anyway just in case,
-        // without aborting.
-        vscode.window.showWarningMessage(
-          'Unable to select a repo as multiple repos are open and none was specified.'
-        );
-      }
-
-      const targetRepo = git.repositories[0];
-      await prepareCommitMsg(targetRepo);
+      handleFewRepos(git);
     }
   });
 
