@@ -1,10 +1,10 @@
 /**
  * Create a commit message from a string which is formatted as a short git status.
  */
-import * as path from 'path';
 import { lookupDiffIndexAction, moveOrRenameFile } from './action';
 import { ACTION } from './constants';
 import { parseDiffIndex } from './parseGitOutput';
+import { formatPath } from './paths';
 
 /**
  * Make first letter of a string uppercase.
@@ -22,8 +22,14 @@ function title(value: string) {
 /**
  * Prepare a commit message based on a single file change.
  *
- * A rename can be handled too - it just requires both the paths to be staged
- * so that git collapses D and A to a single R action.
+ * A rename can be handled too - it just requires both the paths to be staged so that git collapses
+ * D and A to a single R action.
+ *
+ * The output will be like 'Update foo.txt'.
+ *
+ * Using the variable name as 'from' is not really descriptive here but the logic works. It's also
+ * possible to reverse 'from' and 'to' in `git status` and `git diff-index` output or handle just the
+ * parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a move.
  */
 export function one(line: string) {
   const { x, from, to } = parseDiffIndex(line);
@@ -33,9 +39,7 @@ export function one(line: string) {
     return moveOrRenameFile(from, to);
   }
 
-  // Stringify the action to get 'Update foo.txt' etc.
-  // Using the variable name as 'from' is not really descriptive here but the logic works. It's also
-  // possible to reverse 'from' and 'to' in git status and git diff-index output or handle just the
-  // parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a move.
-  return `${title(action)} ${path.basename(from)}`;
+  const outputPath = formatPath(from);
+
+  return `${title(action)} ${outputPath}`;
 }

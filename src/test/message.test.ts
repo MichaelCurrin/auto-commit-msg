@@ -104,5 +104,42 @@ describe('Generate commit message for a single changed file', function () {
         'Move and rename foo.txt to fuzz.txt at repo root'
       );
     });
+
+    it('uses the full path to describe index files', function () {
+      assert.strictEqual(
+        one('A    README.md'),
+        'Create README.md'
+      );
+      assert.strictEqual(
+        one('M    README.md'),
+        'Update README.md'
+      );
+      assert.strictEqual(
+        one('D    README.md'),
+        'Delete README.md'
+      );
+
+      assert.strictEqual(
+        one('A    foo/README.md'),
+        'Create foo/README.md'
+      );
+      assert.strictEqual(
+        one('M    bar/baz/README.md'),
+        'Update bar/baz/README.md'
+      );
+      assert.strictEqual(
+        one('D    bar/baz/buzz/README.md'),
+        'Delete bar/baz/buzz/README.md'
+      );
+
+      assert.strictEqual(
+        one('A    foo/index.md'),
+        'Create foo/index.md'
+      );
+      assert.strictEqual(
+        one('A    foo/index.js'),
+        'Create foo/index.js'
+      );
+    });
   });
 });
