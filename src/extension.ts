@@ -18,7 +18,7 @@ function getGitExtension() {
   return gitExtension && gitExtension.getAPI(1);
 }
 
-async function handleManyRepos(git: API, uri: any) {
+async function handleRepos(git: API, uri: any) {
   // Flow for multiple repos in workspace and selecting just one. This is a rare flow.
 
   // FIXME: Unfortunately this seems to only pick up the first repo.
@@ -31,15 +31,15 @@ async function handleManyRepos(git: API, uri: any) {
   }
 }
 
-async function handleFewRepos(git: API) {
-  // Flow for fewer than 2 repos in the workspace.
-
+// Flow for a single or zero repos in the workspace.
+async function handleRepo(git: API) {
   if (git.repositories.length === 0) {
     vscode.window.showErrorMessage(
       'No repos found. Please open a repo or run git init then try this extension again.'
     );
     return;
   }
+
   if (git.repositories.length > 1) {
     // This flow is unlikely as I haven't experienced it yet, but log anyway just in case,
     // without aborting.
@@ -69,10 +69,10 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand('workbench.view.scm');
 
     if (uri) {
-      handleManyRepos(git, uri);
+      handleRepos(git, uri);
     }
     else {
-      handleFewRepos(git);
+      handleRepo(git);
     }
   });
 
