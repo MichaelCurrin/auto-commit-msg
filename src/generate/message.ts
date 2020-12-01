@@ -22,7 +22,7 @@ function title(value: string) {
 /**
  * Prepare a commit message based on a single file change.
  *
- * A rename can be handled, it just requires both the paths to be staged
+ * A rename can be handled too - it just requires both the paths to be staged
  * so that git collapses D and A to a single R action.
  */
 export function one(line: string) {
