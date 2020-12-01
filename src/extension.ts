@@ -29,6 +29,8 @@ async function handleRepos(git: API, uri: any) {
 
   if (selectedRepository) {
     await prepareCommitMsg(selectedRepository);
+  } else {
+    vscode.window.showErrorMessage('No repos found');
   }
 }
 
