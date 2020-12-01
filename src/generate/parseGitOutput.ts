@@ -36,25 +36,29 @@ export function parseStatus(line: string): FileChanges {
 /**
  * Parse a line produced by the git diff-index command.
  *
- * For a rename such as 'R100', discard the percentage.
+ * See the git docs for the meaning of `x`, `y`, `from` and `to`.
+ *
+ * Here we set `y` as the Unmodified symbol and keep it, so we can match the git status handling
+ * where this function comes from. But this is actually not present.
+ *
+ * For a rename such as 'R100', discard the percentage similarity.
  */
 export function parseDiffIndex(line: string): FileChanges {
   if (line.length <= 4) {
     throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
   }
 
-  const x = line[0];
-  // Use unmodified symbol and keep to match git status handling
-  // where this function comes from, but this is actually not present.
-  const y = ' ';
+  const x = line[0],
+    y = ' ';
 
-  const segments = line.split(/\s+/);
-  const from = segments[1];
+  const segments = line.split(/\s+/),
+    from = segments[1];
   if (!from) {
     throw new Error(`Bad input - could not find first filename in line: ${line}`);
   }
   const to = segments.length === 3 ? segments[2] : '';
 
+  // TODO: Convert to type
   return {
     x: x,
     y: y,
