@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { moveOrRenameFile } from '../generate/action';
 
-describe('Desribe a file moved or renamed', function () {
+describe('Desribe a file as moved or renamed', function () {
   describe('#moveOrRenameFile()', function () {
     it('can describe a renamed file', function () {
       assert.strictEqual(moveOrRenameFile('foo.txt', 'bar.txt'), 'Rename foo.txt to bar.txt');
