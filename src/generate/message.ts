@@ -1,5 +1,7 @@
 /**
- * Create a commit message from a string from git output.
+ * Message module.
+ *
+ * Create a commit message using output from a git command.
  */
 import { parseDiffIndex } from '../git/parseOutput';
 import { ACTION } from '../lib/constants';
