@@ -6,7 +6,7 @@
 import util = require('util');
 import childProcess = require('child_process');
 
-import { getWorkspaceFolder } from './workspace';
+import { getWorkspaceFolder } from '../workspace';
 
 const exec = util.promisify(childProcess.exec);
 

@@ -1,4 +1,8 @@
 /**
+ * Parse git command type defs.
+ */
+
+/**
  * Describe a change of a file.
  *
  * The variable names come from git's naming for git status and git diff-index. The `x` and `y`

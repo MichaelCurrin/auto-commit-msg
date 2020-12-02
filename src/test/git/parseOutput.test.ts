@@ -1,6 +1,6 @@
 import * as assert from 'assert';
-import { parseDiffIndex, parseStatus } from '../../generate/parseGitOutput';
-import { FileChanges } from '../../generate/parseGitOutput.d';
+import { parseDiffIndex, parseStatus } from '../../git/parseOutput';
+import { FileChanges } from '../../git/parseOutput.d';
 
 describe('Split `git status` output into components', function () {
   describe('#parseStatus()', function () {

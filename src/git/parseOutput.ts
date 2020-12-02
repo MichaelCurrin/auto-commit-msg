@@ -1,7 +1,7 @@
 /**
  * Parse git command output.
  */
-import { FileChanges } from './parseGitOutput.d';
+import { FileChanges } from './parseOutput.d';
 
 /**
  * Split paths from status output.

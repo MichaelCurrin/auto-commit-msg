@@ -11,9 +11,9 @@ import * as vscode from 'vscode';
 import { Repository } from './api/git';
 import { lookupDiffIndexAction } from './generate/action';
 import { one } from './generate/message';
-import { parseDiffIndex } from './generate/parseGitOutput';
 import { getSemanticConvention } from './generate/semantic';
-import { getChanges } from './gitCli';
+import { getChanges } from './git/cli';
+import { parseDiffIndex } from './git/parseOutput';
 import { CONVENTIONAL_TYPE } from './lib/constants';
 
 /**
