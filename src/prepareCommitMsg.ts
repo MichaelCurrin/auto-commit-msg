@@ -66,6 +66,21 @@ function generateMsgFromChanges(diffIndexLines: string[]) {
 }
 
 /**
+ * Generate commit message.
+ *
+ * Use the current file changes and the old message to create a new message.
+ *
+ * For now, assume old message is a commit message template prefix and can always go in front.
+ */
+function generateMsg(diffIndexLines: string[], oldMsg?: string) {
+  const { prefix, fileChangeMsg } = generateMsgFromChanges(diffIndexLines);
+
+  const newMsg = formatMsg(prefix, fileChangeMsg);
+
+  return oldMsg ? `${oldMsg} ${newMsg}` : newMsg;
+}
+
+/**
  * Generate and push a commit message.
  *
  * Read git command output, process it to generate a commit message and then push the message to the input box UI.
@@ -95,8 +110,7 @@ export async function makeAndFillCommitMsg(repository: Repository) {
   const oldMsg = getCommitMsg(repository);
   console.debug('Old message: ', oldMsg);
 
-  const { prefix, fileChangeMsg } = generateMsgFromChanges(diffIndexLines);
-  const newMsg = formatMsg(prefix, fileChangeMsg);
+  const newMsg = generateMsg(diffIndexLines, oldMsg);
   console.debug('New message: ', newMsg);
 
   setCommitMsg(repository, newMsg);
