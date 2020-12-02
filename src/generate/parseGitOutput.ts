@@ -1,22 +1,23 @@
 /**
- * Parse git status.
- *
- * Convert short git status into elements.
+ * Parse git command output.
  */
+import { FileChanges } from './parseGitOutput.d';
+
+function splitStatusLine(line: string) {
+  const x = line[0];
+  const y = line[1];
+  const paths = line.substring(3);
+
+  return { x, y, paths };
+}
 
 /**
- * Describe a change of a file.
- *
- * The variable names come from git's naming for git status and git diff-index.
- * The `x` and `y` parts are actions like 'M' and they correspond to `from` and `to` respectively. When updating a single file, only `from` is filled. When moving or renaming, then `from` is the old path and `to` is the new path.
- *
- * There can also be percentage value for renaming, such 'R100' which is 100% similar. But we discard any percentage value for the purposes of this project when parsing a line.
+ * Parse a value of one or two filepaths and return as `from`.
  */
-export interface FileChanges {
-  x: string;
-  y: string;
-  to: string;
-  from: string;
+function splitStatusPaths(paths: string) {
+  const [from, to] = paths.includes('->') ? paths.split(' -> ') : [paths, ''];
+
+  return { from, to };
 }
 
 /**
@@ -27,43 +28,48 @@ export function parseStatus(line: string): FileChanges {
     throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
   }
 
-  const x = line[0];
-  const y = line[1];
-  const paths = line.substring(3);
-
-  const [from, to] = paths.includes('->') ? paths.split(' -> ') : [paths, ''];
+  const { x, y, paths } = splitStatusLine(line);
+  const { from, to } = splitStatusPaths(paths);
 
   return {
-    x: x,
-    y: y,
-    from: from,
-    to: to
+    x,
+    y,
+    from,
+    to
   };
+}
+
+function splitDiffIndexPaths(line: string) {
+  const segments = line.split(/\s+/),
+    from = segments[1];
+
+  if (!from) {
+    throw new Error(`Bad input - could not find first filename in line: ${line}`);
+  }
+  const to = segments.length === 3 ? segments[2] : '';
+
+  return { from, to };
 }
 
 /**
  * Parse a line produced by the `git diff-index` command.
+ *
+ * Unlike `git status`, the `y` value will be missing so we set it to unmodified.
  */
 export function parseDiffIndex(line: string): FileChanges {
   if (line.length <= 4) {
     throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
   }
 
-  const x = line[0],
-    y = ' ';
+  const x = line[0];
+  const y = ' '; // TODO replace with unmodified from.
 
-  const segments = line.split(/\s+/),
-    from = segments[1];
-  if (!from) {
-    throw new Error(`Bad input - could not find first filename in line: ${line}`);
-  }
-  const to = segments.length === 3 ? segments[2] : '';
+  const { from, to } = splitDiffIndexPaths(line);
 
-  // TODO: Convert to type.
   return {
-    x: x,
-    y: y,
-    from: from,
-    to: to
+    x,
+    y,
+    from,
+    to
   };
 }

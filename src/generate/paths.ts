@@ -5,13 +5,7 @@
  */
 import * as path from 'path';
 import { ROOT } from './constants';
-
-interface SplitPathResult {
-  atRoot: boolean;
-  dirPath: string;
-  name: string;
-  extension: string;
-}
+import { SplitPathResult } from './paths.d';
 
 /**
  * Get metadata about a path.
