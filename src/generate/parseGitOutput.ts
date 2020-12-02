@@ -3,18 +3,11 @@
  */
 import { FileChanges } from './parseGitOutput.d';
 
-function splitStatusLine(line: string) {
-  const x = line[0];
-  const y = line[1];
-  const paths = line.substring(3);
-
-  return { x, y, paths };
-}
-
 /**
  * Parse a value of one or two filepaths and return as `from`.
  */
-function splitStatusPaths(paths: string) {
+function splitStatusPaths(line: string) {
+  const paths = line.substring(3);
   const [from, to] = paths.includes('->') ? paths.split(' -> ') : [paths, ''];
 
   return { from, to };
@@ -28,8 +21,9 @@ export function parseStatus(line: string): FileChanges {
     throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
   }
 
-  const { x, y, paths } = splitStatusLine(line);
-  const { from, to } = splitStatusPaths(paths);
+  const x = line[0];
+  const y = line[1];
+  const { from, to } = splitStatusPaths(line);
 
   return {
     x,
@@ -39,6 +33,9 @@ export function parseStatus(line: string): FileChanges {
   };
 }
 
+/**
+ * Split output from `git diff-index` into `from` and `to`.
+ */
 function splitDiffIndexPaths(line: string) {
   const segments = line.split(/\s+/),
     from = segments[1];
@@ -63,7 +60,6 @@ export function parseDiffIndex(line: string): FileChanges {
 
   const x = line[0];
   const y = ' '; // TODO replace with unmodified from.
-
   const { from, to } = splitDiffIndexPaths(line);
 
   return {
