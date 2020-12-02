@@ -33,15 +33,15 @@ export function splitPath(filePath: string): SplitPathResult {
 }
 
 /**
- * Change file path to be more readable format.
+ * Change file path a more readable format.
  *
  * Index files stay as a full path, but otherwise reduce the filename.
  */
 export function formatPath(filePath: string) {
-  let { name } = splitPath(filePath);
-  name = name.toLowerCase();
+  const { name } = splitPath(filePath);
 
-  if (name.startsWith('readme') || name.startsWith('index')) {
+  const nameLower = name.toLowerCase();
+  if (nameLower.startsWith('readme') || nameLower.startsWith('index')) {
     return filePath;
   }
   return name;
