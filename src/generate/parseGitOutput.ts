@@ -4,6 +4,14 @@
  * Convert short git status into elements.
  */
 
+/**
+ * Describe a change of a file.
+ *
+ * The variable names come from git's naming for git status and git diff-index.
+ * The `x` and `y` parts are actions like 'M' and they correspond to `from` and `to` respectively. When updating a single file, only `from` is filled. When moving or renaming, then `from` is the old path and `to` is the new path.
+ *
+ * There can also be percentage value for renaming, such 'R100' which is 100% similar. But we discard any percentage value for the purposes of this project when parsing a line.
+ */
 export interface FileChanges {
   x: string;
   y: string;
@@ -12,7 +20,7 @@ export interface FileChanges {
 }
 
 /**
- * Parse a line coming from the git status short command.
+ * Parse a line coming from the `git status --short` command.
  */
 export function parseStatus(line: string): FileChanges {
   if (line.length <= 4) {
@@ -34,15 +42,7 @@ export function parseStatus(line: string): FileChanges {
 }
 
 /**
- * Parse a line produced by the git diff-index command.
- *
- * See the git docs for the meaning of `x`, `y`, `from` and `to`.
- *
- * Here we set `y` as the Unmodified symbol and keep it, so we can match the `git status` handling
- * where this function comes from. But this is actually not present in the text and it not used
- * elsewhere in this project.
- *
- * For a rename such as 'R100' which is 100% similar, we discard the percentage value.
+ * Parse a line produced by the `git diff-index` command.
  */
 export function parseDiffIndex(line: string): FileChanges {
   if (line.length <= 4) {
