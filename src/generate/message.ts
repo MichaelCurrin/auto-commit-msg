@@ -33,7 +33,7 @@ function title(value: string) {
  * possible to reverse 'from' and 'to' in `git status` and `git diff-index` output or handle just the
  * parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a move.
  */
-export function one(line: string) {
+export function oneChange(line: string) {
   const { x: actionChar, from, to } = parseDiffIndex(line);
 
   const action = lookupDiffIndexAction(actionChar);

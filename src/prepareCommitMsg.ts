@@ -4,11 +4,10 @@
  * This module doesn't interact with the git CLI or the extension. It just deals with text.
  */
 import { lookupDiffIndexAction } from './generate/action';
-import { one } from './generate/message';
+import { oneChange } from './generate/message';
 import { getSemanticConvention } from './generate/semantic';
 import { parseDiffIndex } from './git/parseOutput';
 import { CONVENTIONAL_TYPE } from './lib/constants';
-
 /**
  * Output a readable semantic git commit message.
  */
@@ -37,7 +36,7 @@ export function generateMsgFromChanges(diffIndexLines: string[]) {
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
-  const fileChangeMsg = one(line),
+  const fileChangeMsg = oneChange(line),
     prefix = generatePrefixFromChanges(line);
 
   return { prefix, fileChangeMsg };
