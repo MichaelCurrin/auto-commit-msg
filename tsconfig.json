@@ -5,10 +5,10 @@
     "lib": [
       "ES2019"
     ],
-    "rootDir": "src",
-    "outDir": "out",
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "rootDir": "src",
+    "outDir": "out"
   },
   "exclude": [
     "node_modules",
