@@ -20,7 +20,7 @@ function execute(cwd: string, subcommand: string, options: string[] = []) {
 }
 
 /**
- * Run git diff-index with flags and return output.
+ * Run `git diff-index` with flags and return output.
  *
  * This will return both staged and unstaged changes. Pass '--cached' to only use staged changes.
  * Always excludes untracked files.
@@ -43,7 +43,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
   const { stdout, stderr } = await execute(getWorkspaceFolder(), 'diff-index', fullOptions);
 
   if (stderr) {
-    console.debug('stderror for git diff-index command:', stderr);
+    console.debug('stderror for `git diff-index` command:', stderr);
   }
 
   return stdout.split('\n').filter(line => line !== '');
@@ -68,7 +68,7 @@ export async function getChanges() {
     return stagedChanges;
   }
 
-  console.debug('Staging area is empty. Using unstaged files.');
+  console.debug('Staging area is empty. Using unstaged files (tracked files only still).');
 
   const allChanges = await diffIndex();
   if (!allChanges.length) {
