@@ -65,7 +65,7 @@ function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldM
 }
 
 /**
- * Generage commit message.
+ * Generate commit message.
  *
  * High-level function to process file changes and an old message to generate replacement commit
  * message.
