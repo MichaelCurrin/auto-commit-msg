@@ -1,7 +1,7 @@
 /**
  * Phrase commit changes in words.
  */
-import { ACTION, ROOT } from './constants';
+import { ACTION, ROOT } from '../lib/constants';
 import { splitPath } from './paths';
 
 type ActionKeys = keyof typeof ACTION;

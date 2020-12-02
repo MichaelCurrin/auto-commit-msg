@@ -4,7 +4,7 @@
  * Helper functions dealing with file paths.
  */
 import * as path from 'path';
-import { ROOT } from './constants';
+import { ROOT } from '../lib/constants';
 import { SplitPathResult } from './paths.d';
 
 /**

@@ -1,6 +1,6 @@
 import * as assert from 'assert';
-import { ACTION, CONVENTIONAL_TYPE } from '../../generate/constants';
 import { getSemanticConvention, Semantic } from '../../generate/semantic';
+import { ACTION, CONVENTIONAL_TYPE } from '../../lib/constants';
 
 describe('Test #Semantic class for path-based conventional commit logic', function () {
   describe('#isDocRelated()', function () {

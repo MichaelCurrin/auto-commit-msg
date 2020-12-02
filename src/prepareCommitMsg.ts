@@ -10,11 +10,11 @@
 import * as vscode from 'vscode';
 import { Repository } from './api/git';
 import { lookupDiffIndexAction } from './generate/action';
-import { CONVENTIONAL_TYPE } from './generate/constants';
 import { one } from './generate/message';
 import { parseDiffIndex } from './generate/parseGitOutput';
 import { getSemanticConvention } from './generate/semantic';
 import { getChanges } from './gitCommands';
+import { CONVENTIONAL_TYPE } from './lib/constants';
 
 /**
  * Fetch the commit message in the Git Extension.

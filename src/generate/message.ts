@@ -1,8 +1,8 @@
 /**
  * Create a commit message from a string which is formatted as a short git status.
  */
+import { ACTION } from '../lib/constants';
 import { lookupDiffIndexAction, moveOrRenameFile } from './action';
-import { ACTION } from './constants';
 import { parseDiffIndex } from './parseGitOutput';
 import { formatPath } from './paths';
 

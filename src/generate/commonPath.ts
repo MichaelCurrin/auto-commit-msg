@@ -7,7 +7,7 @@
  *
  * This module is kept separate from paths.ts as all the code here is tightly related.
  */
-import { ROOT } from './constants';
+import { ROOT } from '../lib/constants';
 
 /**
  * Given an array of strings, return an array of arrays, containing the

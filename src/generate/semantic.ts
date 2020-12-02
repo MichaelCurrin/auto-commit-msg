@@ -4,7 +4,7 @@
  * This can be used to check if all changes in a commit are related
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
-import { ACTION, CONVENTIONAL_TYPE } from './constants';
+import { ACTION, CONVENTIONAL_TYPE } from '../lib/constants';
 import { splitPath } from './paths';
 
 // Package-related can be for 'build'.
