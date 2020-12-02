@@ -44,7 +44,7 @@ function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
   return `${prefix}: ${subject}`;
 }
 
-function generatePrefix(line: string) {
+function generatePrefixFromChanges(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
 
@@ -53,14 +53,14 @@ function generatePrefix(line: string) {
 
 // TODO: Move this and formatMsg to generate module.
 // Tie together pieces of the generate module to create a full message for the UI.
-function generateMsg(diffIndexLines: string[]) {
+function generateMsgFromChanges(diffIndexLines: string[]) {
   const line = diffIndexLines[0];
 
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
   const fileChangeMsg = one(line),
-    prefix = generatePrefix(line);
+    prefix = generatePrefixFromChanges(line);
 
   return { prefix, fileChangeMsg };
 }
@@ -95,7 +95,7 @@ export async function makeAndFillCommitMsg(repository: Repository) {
   const oldMsg = getCommitMsg(repository);
   console.debug('Old message: ', oldMsg);
 
-  const { prefix, fileChangeMsg } = generateMsg(diffIndexLines);
+  const { prefix, fileChangeMsg } = generateMsgFromChanges(diffIndexLines);
   const newMsg = formatMsg(prefix, fileChangeMsg);
   console.debug('New message: ', newMsg);
 
