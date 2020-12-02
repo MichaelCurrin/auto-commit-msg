@@ -1,11 +1,5 @@
 /**
  * Prepare commit message.
- *
- * This module takes care of the high-level flow of the extension, after a repo is
- * selected in extension.ts module.
- *
- * This module handles reading git output, processes it with the logic in the generate module
- * and then finally sets it in the UI message box.
  */
 import { lookupDiffIndexAction } from './generate/action';
 import { one } from './generate/message';

@@ -2,6 +2,12 @@
  * Git extension module.
  *
  * Perform tasks related to the builtin Git extension.
+ *
+ * This module takes care of the high-level flow of the extension, after a repo is selected in
+ * extension.ts module.
+ *
+ * This module handles reading git output, processes it with the logic in the generate module and
+ * then finally sets it in the UI message box.
  */
 import * as vscode from 'vscode';
 import { Repository } from './api/git';
