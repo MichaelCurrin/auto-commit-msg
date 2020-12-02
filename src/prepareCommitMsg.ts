@@ -72,9 +72,7 @@ function generateMsgFromChanges(diffIndexLines: string[]) {
  *
  * For now, assume old message is a commit message template prefix and can always go in front.
  */
-function generateMsg(diffIndexLines: string[], oldMsg?: string) {
-  const { prefix, fileChangeMsg } = generateMsgFromChanges(diffIndexLines);
-
+function generateMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
   const newMsg = formatMsg(prefix, fileChangeMsg);
 
   return oldMsg ? `${oldMsg} ${newMsg}` : newMsg;
@@ -110,7 +108,8 @@ export async function makeAndFillCommitMsg(repository: Repository) {
   const oldMsg = getCommitMsg(repository);
   console.debug('Old message: ', oldMsg);
 
-  const newMsg = generateMsg(diffIndexLines, oldMsg);
+  const { prefix, fileChangeMsg } = generateMsgFromChanges(diffIndexLines);
+  const newMsg = generateMsg(prefix, fileChangeMsg, oldMsg);
   console.debug('New message: ', newMsg);
 
   setCommitMsg(repository, newMsg);
