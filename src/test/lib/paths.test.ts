@@ -23,12 +23,12 @@ describe('Path handling', function () {
   describe('#formatPath()', function () {
     it('formats a long path as a filename only', function () {
       assert.strictEqual(
-        formatPath('baz.txt'),
-        'baz.txt'
+        formatPath('Baz.txt'),
+        'Baz.txt'
       );
       assert.strictEqual(
-        formatPath('bazz/baz.txt'),
-        'baz.txt'
+        formatPath('bazz/Baz.txt'),
+        'Baz.txt'
       );
     });
 
@@ -49,16 +49,16 @@ describe('Path handling', function () {
 
     it('formats an index file as a full path', function () {
       assert.strictEqual(
-        formatPath('foo/index.md'),
-        'foo/index.md'
+        formatPath('Foo/index.md'),
+        'Foo/index.md'
       );
       assert.strictEqual(
-        formatPath('foo/index.html'),
-        'foo/index.html'
+        formatPath('Foo/index.html'),
+        'Foo/index.html'
       );
       assert.strictEqual(
-        formatPath('foo/index.js'),
-        'foo/index.js'
+        formatPath('Foo/index.js'),
+        'Foo/index.js'
       );
     });
   });
