@@ -71,6 +71,7 @@ function generateMsgFromChanges(diffIndexLines: string[]) {
  * Use the current file changes and the old message to create a new message.
  *
  * For now, assume old message is a commit message template prefix and can always go in front.
+ * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form.
  */
 function generateMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
   const newMsg = formatMsg(prefix, fileChangeMsg);
