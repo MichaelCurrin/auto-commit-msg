@@ -4,7 +4,9 @@
 import { FileChanges } from './parseGitOutput.d';
 
 /**
- * Parse a value of one or two filepaths and return as `from`.
+ * Split paths from status output.
+ *
+ * Parse a value of one or two file paths from `git status --short` and return as `from` and `to`.
  */
 function splitStatusPaths(line: string) {
   const paths = line.substring(3);
@@ -20,7 +22,6 @@ export function parseStatus(line: string): FileChanges {
   if (line.length <= 4) {
     throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
   }
-
   const x = line[0];
   const y = line[1];
   const { from, to } = splitStatusPaths(line);
