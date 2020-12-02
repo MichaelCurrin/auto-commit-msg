@@ -11,10 +11,21 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   rules: {
-    'semi': [2, "always"],
+    'semi': [
+      2,
+      'always',
+    ],
+    'comma-dangle': [
+      2,
+      'always-multiline',
+    ],
+    'quotes': [
+      2,
+      'single',
+    ],
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-non-null-assertion': 0,
-  }
+  },
 };
