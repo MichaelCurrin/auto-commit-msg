@@ -69,22 +69,22 @@ function generateMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: 
 /**
  * Generate and use a commit message.
  *
- * Read git command output, process it to generate a commit message and then push the message to the
- * input box UI.
+ * Read file changes using a git command output, process the output to generate a commit message and
+ * then push the message to the input box UI.
  *
  * This is based on prefixCommit from the git-prefix extension.
  */
 export async function makeAndFillCommitMsg(repository: Repository) {
-  const lines = await getChanges();
+  const fileChanges = await getChanges();
 
   // Send to the VS Code debug console to help find issues.
-  console.debug('diff-index:', lines);
+  console.debug('diff-index:', fileChanges);
 
-  if (!lines.length) {
+  if (!fileChanges.length) {
     vscode.window.showErrorMessage(NO_LINES);
     return;
   }
-  if (lines.length > 1) {
+  if (fileChanges.length > 1) {
     vscode.window.showErrorMessage(TOO_MANY_FILES);
     return;
   }
@@ -92,7 +92,7 @@ export async function makeAndFillCommitMsg(repository: Repository) {
   const oldMsg = getCommitMsg(repository);
   console.debug('Old message: ', oldMsg);
 
-  const { prefix, fileChangeMsg } = generateMsgFromChanges(lines);
+  const { prefix, fileChangeMsg } = generateMsgFromChanges(fileChanges);
   const newMsg = generateMsg(prefix, fileChangeMsg, oldMsg);
   console.debug('New message: ', newMsg);
 
