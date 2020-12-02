@@ -6,7 +6,7 @@
  */
 import * as vscode from 'vscode';
 import { API, GitExtension } from './api/git';
-import { makeAndFillCommitMsg } from './gitExtension';
+import { makeAndFillCommitMsg } from './autofill';
 
 /**
  * Return VS Code's builtin Git extension.
