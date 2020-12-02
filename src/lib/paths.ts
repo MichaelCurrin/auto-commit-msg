@@ -8,7 +8,7 @@ import { ROOT } from '../lib/constants';
 import { SplitPathResult } from './paths.d';
 
 /**
- * Get metadata about a given path.
+ * Get metadata for a given path.
  *
  * This is done in one function call to save having to do separate calls or having to the builtin
  * string methods all over the project.
@@ -33,7 +33,7 @@ export function splitPath(filePath: string): SplitPathResult {
 }
 
 /**
- * Change file path a more readable format.
+ * Change file path to a more readable format.
  *
  * Index files stay as a full path, but otherwise reduce the filename.
  */
