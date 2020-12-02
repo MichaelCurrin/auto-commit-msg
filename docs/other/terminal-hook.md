@@ -1,7 +1,16 @@
 # Terminal hook
 > Setup and use a prepare-commit-msg hook for terminal commits
 
-Warning: VS Code does actually honor a `prepare-commit-msg` hook, unfortunately the hook cannot read from the UI message box and the message is always written out with confirmation. So this this with caution.
+**Note** Using this script outside of the extension is on the roadmap but not done yet.
+
+You can use the core logic of this project without using the VS Code Git extension pane. You can use the terminal and that includes on in another IDE like PyCharm which has a terminal.
+
+
+## Warning
+
+While VS Code does actually honor a `prepare-commit-msg` hook, unfortunately the hook **cannot** read from the UI message box and the message is always written out with confirmation. So use an enable commit hook message hook inside VS Code with caution, but outside VS Code you are safe.
+
+Another way around the issue in VS Code, is instead of using a commit hook that you rather use an alias command like `git c`, which could run the Auto Commit Msg script and pass the result to `git commit -m '...'`.
 
 
 ## Reference
@@ -71,7 +80,7 @@ $ git commit FILE
 $ git log
 ```
 
-Remove:
+Remove the hook.
 
 ```sh
 $ rm .git/hooks/prepare-commit-msg
