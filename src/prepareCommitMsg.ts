@@ -44,16 +44,20 @@ function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
   return `${prefix}: ${subject}`;
 }
 
-// TODO: Move this and formatMsg to generate module.
-// Tie together piece of the generate module to create a full message for the UI.
-function generateMsg(diffIndexLines: string[]) {
-  const line = diffIndexLines[0],
-    fileChangeMsg = one(line);
-
-  // TODO refactor as this is done in `one` too.
+function generatePrefix(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
-  const prefix = getSemanticConvention(action, filePath);
+
+  return getSemanticConvention(action, filePath);
+}
+
+// TODO: Move this and formatMsg to generate module.
+// Tie together pieces of the generate module to create a full message for the UI.
+function generateMsg(diffIndexLines: string[]) {
+  const line = diffIndexLines[0];
+
+  const fileChangeMsg = one(line),
+    prefix = generatePrefix(line);
 
   return formatMsg(prefix, fileChangeMsg);
 }
@@ -89,7 +93,7 @@ export async function prepareCommitMsg(repository: Repository) {
   console.debug('Old message: ', currentMsg);
 
   const msg = generateMsg(diffIndexLines);
-  console.debug('New message: ', msg)
+  console.debug('New message: ', msg);
 
   setCommitMsg(repository, msg);
 }
