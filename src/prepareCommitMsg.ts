@@ -62,7 +62,7 @@ function generateMsg(diffIndexLines: string[]) {
   const fileChangeMsg = one(line),
     prefix = generatePrefix(line);
 
-  return formatMsg(prefix, fileChangeMsg);
+  return { prefix, fileChangeMsg };
 }
 
 /**
@@ -92,11 +92,12 @@ export async function prepareCommitMsg(repository: Repository) {
     return;
   }
 
-  const currentMsg = getCommitMsg(repository);
-  console.debug('Old message: ', currentMsg);
+  const oldMsg = getCommitMsg(repository);
+  console.debug('Old message: ', oldMsg);
 
-  const msg = generateMsg(diffIndexLines);
-  console.debug('New message: ', msg);
+  const { prefix, fileChangeMsg } = generateMsg(diffIndexLines);
+  const newMsg = formatMsg(prefix, fileChangeMsg);
+  console.debug('New message: ', newMsg);
 
-  setCommitMsg(repository, msg);
+  setCommitMsg(repository, newMsg);
 }
