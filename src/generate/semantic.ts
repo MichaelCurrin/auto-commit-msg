@@ -5,7 +5,7 @@
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
 import { ACTION, CONVENTIONAL_TYPE } from '../lib/constants';
-import { splitPath } from './paths';
+import { splitPath } from '../lib/paths';
 
 // Package-related can be for 'build'.
 const PACKAGE_DIRS = [

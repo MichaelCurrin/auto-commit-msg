@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { formatPath, splitPath } from '../../generate/paths';
+import { formatPath, splitPath } from '../../lib/paths';
 
 describe('Path handling', function () {
   describe('#splitPath()', function () {

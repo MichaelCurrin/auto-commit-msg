@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { commonPath } from '../../generate/commonPath';
+import { commonPath } from '../../lib/commonPath';
 
 describe('Find the highest common parent directory for paths', function () {
   // This is useful when building a change message about multiple files and seeing what the high

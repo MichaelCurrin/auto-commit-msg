@@ -2,9 +2,9 @@
  * Create a commit message from a string which is formatted as a short git status.
  */
 import { ACTION } from '../lib/constants';
+import { formatPath } from '../lib/paths';
 import { lookupDiffIndexAction, moveOrRenameFile } from './action';
 import { parseDiffIndex } from './parseGitOutput';
-import { formatPath } from './paths';
 
 /**
  * Make first letter of a string uppercase.
