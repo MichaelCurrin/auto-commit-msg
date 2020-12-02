@@ -1,12 +1,12 @@
 /**
  * Type definitions for the VS Code Git Extension.
  *
- * For use in extensions.ts script.
+ * For use in the extensions.ts script.
  *
  * Based on instructions:
  *   https://github.com/microsoft/vscode/tree/master/extensions/git#api
  *
- * The file is copied below as is, except for the link pasted in the license section.
+ * The file was copied below as is, except for the link pasted in the license section.
  */
 
 /*---------------------------------------------------------------------------------------------
