@@ -51,7 +51,6 @@ function generatePrefixFromChanges(line: string) {
   return getSemanticConvention(action, filePath);
 }
 
-// TODO: Move this and formatMsg to generate module.
 // Tie together pieces of the generate module to create a full message for the UI.
 function generateMsgFromChanges(diffIndexLines: string[]) {
   const line = diffIndexLines[0];
