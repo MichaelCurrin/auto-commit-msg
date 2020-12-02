@@ -10,7 +10,7 @@ describe('Find the highest common parent directory for paths', function () {
       const paths = [
         'foo',
         'bar',
-        'fizz/buzz'
+        'fizz/buzz',
       ];
 
       assert.strictEqual(commonPath(paths), 'repo root');
@@ -21,7 +21,7 @@ describe('Find the highest common parent directory for paths', function () {
     it('should give the common path for 2 different paths', function () {
       const paths = [
         'Foo/test',
-        'Foo/bar/test'
+        'Foo/bar/test',
       ];
 
       assert.strictEqual(commonPath(paths), 'Foo');
@@ -31,7 +31,7 @@ describe('Find the highest common parent directory for paths', function () {
       const paths = [
         'fizz/buzz/coverage/test',
         'fizz/buzz/covert/operator',
-        'fizz/buzz/tmp/coven/members'
+        'fizz/buzz/tmp/coven/members',
       ];
 
       assert.strictEqual(commonPath(paths), 'fizz/buzz');
@@ -42,7 +42,7 @@ describe('Find the highest common parent directory for paths', function () {
       const paths = [
         '/home/user1/tmp/coverage/test',
         '/home/user1/tmp/covert/operator',
-        '/home/user1/tmp/coven/members'
+        '/home/user1/tmp/coven/members',
       ];
 
       assert.strictEqual(commonPath(paths), '/home/user1/tmp');

@@ -29,7 +29,7 @@ export function parseStatus(line: string): FileChanges {
     x,
     y,
     from,
-    to
+    to,
   };
 }
 
@@ -66,6 +66,6 @@ export function parseDiffIndex(line: string): FileChanges {
     x,
     y,
     from,
-    to
+    to,
   };
 }

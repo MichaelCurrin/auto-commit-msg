@@ -28,7 +28,7 @@ export function splitPath(filePath: string): SplitPathResult {
     atRoot: isAtRepoRoot,
     dirPath: isAtRepoRoot ? ROOT : dir,
     name: path.basename(filePath),
-    extension: path.extname(filePath)
+    extension: path.extname(filePath),
   };
 }
 

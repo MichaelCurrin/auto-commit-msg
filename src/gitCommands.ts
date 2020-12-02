@@ -40,7 +40,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
     '--find-copies',
     '--no-color',
     ...options,
-    'HEAD'
+    'HEAD',
   ];
   const { stdout, stderr } = await execute(getWorkspaceFolder(), 'diff-index', fullOptions);
 
@@ -62,7 +62,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
  */
 export async function getChanges() {
   const stagedChanges = await diffIndex([
-    '--cached'
+    '--cached',
   ]);
   if (stagedChanges.length) {
     console.debug('Found staged changes');
@@ -91,6 +91,6 @@ async function status(options: string[] = []) {
     '--short',
     '-uno',
     '--porcelain',
-    ...options
+    ...options,
   ]);
 }

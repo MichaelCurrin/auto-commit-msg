@@ -10,7 +10,7 @@ import { splitPath } from './paths';
 // Package-related can be for 'build'.
 const PACKAGE_DIRS = [
   // Rust
-  '.cargo'
+  '.cargo',
 ],
   PACKAGE_NAMES = [
     // Python
@@ -36,7 +36,7 @@ const PACKAGE_DIRS = [
 
     // PHP
     'composer.json',
-    'composer.lock'
+    'composer.lock',
   ];
 
 // Build system (scripts, configurations or tools) and package dependencies.
@@ -47,10 +47,10 @@ const BUILD_NAMES = [
   'Makefile',
   'Rakefile',
 
-  'package.json' // Not necessarily package-related but always build-related.
+  'package.json', // Not necessarily package-related but always build-related.
 ],
   BUILD_EXTENSIONS = [
-    '.gemspec' // Ruby installation
+    '.gemspec', // Ruby installation
   ];
 
 // This may be too broad or clash with other areas such as CI or
@@ -61,10 +61,10 @@ const CONFIG_EXTENSIONS = [
   '.json',
   '.toml',
   '.ini',
-  '.cfg' // Python config but also for other systems maybe
+  '.cfg', // Python config but also for other systems maybe
 ],
   CONFIG_DIRS = [
-    '.vscode'
+    '.vscode',
   ],
   CONFIG_NAMES = [
     '.gitignore',
@@ -76,12 +76,12 @@ const CONFIG_EXTENSIONS = [
     'tslint.json',
     '.browserslistrc',
     'browserslist',
-    'commitlint.config.js'
+    'commitlint.config.js',
   ];
 
 const CI_DIRS = [
   '.circleci',
-  '.github/workflows'
+  '.github/workflows',
 ],
   CI_NAMES = [
     'netlify.toml',
@@ -98,7 +98,7 @@ const CI_DIRS = [
     'now.json',
     '.nowignore',
     'vercel.json',
-    '.vercelignore'
+    '.vercelignore',
   ];
 
 // This can be useful for multi-file changes e.g. "Creat 5 scripts"
@@ -123,7 +123,7 @@ const SCRIPT_EXTENSIONS = [
   '.h',
 
   '.rs',
-  '.go'
+  '.go',
 ],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = '.sh';
@@ -132,7 +132,7 @@ const LICENSE_NAMES = [
   'LICENSE',
   'LICENSE.txt',
   'License.txt',
-  'LICENSE-source'
+  'LICENSE-source',
 ];
 
 /**

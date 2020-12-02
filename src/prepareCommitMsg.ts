@@ -101,7 +101,7 @@ export async function makeAndFillCommitMsg(repository: Repository) {
 
   if (diffIndexLines.length > 1) {
     vscode.window.showErrorMessage(
-      "This extension currently only supports working with *one* changed file at a time.\nStage just one file (or both it's old 'D' and new 'A' path) and try again. Or stash changes so that only one file change is left in the working tree."
+      'This extension currently only supports working with *one* changed file at a time.\nStage just one file (or both it\'s old \'D\' and new \'A\' path) and try again. Or stash changes so that only one file change is left in the working tree.'
     );
     return;
   }

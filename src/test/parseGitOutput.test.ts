@@ -9,7 +9,7 @@ describe('Split `git status` output into components', function () {
         x: 'A',
         y: ' ',
         from: 'foo.txt',
-        to: ''
+        to: '',
       };
       assert.deepStrictEqual(parseStatus('A  foo.txt'), expected);
     });
@@ -19,7 +19,7 @@ describe('Split `git status` output into components', function () {
         x: ' ',
         y: 'M',
         from: 'foo.txt',
-        to: ''
+        to: '',
       };
       assert.deepStrictEqual(parseStatus(' M foo.txt'), expected);
     });
@@ -29,7 +29,7 @@ describe('Split `git status` output into components', function () {
         x: 'D',
         y: ' ',
         from: 'foo.txt',
-        to: ''
+        to: '',
       };
       assert.deepStrictEqual(parseStatus('D  foo.txt'), expected);
     });
@@ -39,7 +39,7 @@ describe('Split `git status` output into components', function () {
         x: 'R',
         y: ' ',
         from: 'foo.txt',
-        to: 'bar.txt'
+        to: 'bar.txt',
       };
       assert.deepStrictEqual(parseStatus('R  foo.txt -> bar.txt'), expected);
 
@@ -48,7 +48,7 @@ describe('Split `git status` output into components', function () {
           x: 'R',
           y: ' ',
           from: 'foo.txt',
-          to: 'fizz/foo.txt'
+          to: 'fizz/foo.txt',
         };
         assert.deepStrictEqual(parseStatus('R  foo.txt -> fizz/foo.txt'), expected);
       });
@@ -67,7 +67,7 @@ describe('Split `git diff-index` output into components', function () {
         x: 'A',
         y: ' ',
         from: 'foo.txt',
-        to: ''
+        to: '',
       };
       assert.deepStrictEqual(parseDiffIndex('A       foo.txt'), expected);
     });
@@ -77,7 +77,7 @@ describe('Split `git diff-index` output into components', function () {
         x: 'M',
         y: ' ',
         from: 'foo.txt',
-        to: ''
+        to: '',
       };
       assert.deepStrictEqual(parseDiffIndex('M       foo.txt'), expected);
     });
@@ -87,7 +87,7 @@ describe('Split `git diff-index` output into components', function () {
         x: 'D',
         y: ' ',
         from: 'foo.txt',
-        to: ''
+        to: '',
       };
       assert.deepStrictEqual(parseDiffIndex('D       foo.txt'), expected);
     });
@@ -97,7 +97,7 @@ describe('Split `git diff-index` output into components', function () {
         x: 'R',
         y: ' ',
         from: 'bar.txt',
-        to: 'foo.txt'
+        to: 'foo.txt',
       };
       assert.deepStrictEqual(parseDiffIndex('R100    bar.txt       foo.txt'), expected);
 
@@ -106,7 +106,7 @@ describe('Split `git diff-index` output into components', function () {
           x: 'R',
           y: ' ',
           from: 'bar.txt',
-          to: 'fizz/foo.txt'
+          to: 'fizz/foo.txt',
         };
         assert.deepStrictEqual(parseDiffIndex('R100    bar.txt       fizz/foo.txt'), expected);
       });
@@ -117,7 +117,7 @@ describe('Split `git diff-index` output into components', function () {
         x: 'R',
         y: ' ',
         from: 'bar.txt',
-        to: 'foo.txt'
+        to: 'foo.txt',
       };
       assert.deepStrictEqual(parseDiffIndex('R096    bar.txt       foo.txt'), expected);
 
@@ -126,7 +126,7 @@ describe('Split `git diff-index` output into components', function () {
           x: 'R',
           y: ' ',
           to: 'bar.txt',
-          from: 'fizz/foo.txt'
+          from: 'fizz/foo.txt',
         };
         assert.deepStrictEqual(parseDiffIndex('R096    bar.txt       fizz/foo.txt'), expected);
       });
