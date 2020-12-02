@@ -32,9 +32,9 @@ function title(value: string) {
  * parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a move.
  */
 export function one(line: string) {
-  const { x, from, to } = parseDiffIndex(line);
+  const { x: actionChar, from, to } = parseDiffIndex(line);
 
-  const action = lookupDiffIndexAction(x);
+  const action = lookupDiffIndexAction(actionChar);
   if (action === ACTION.R) {
     return moveOrRenameFile(from, to);
   }
