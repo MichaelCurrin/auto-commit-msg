@@ -1,6 +1,6 @@
 {
   "name": "auto-commit-msg",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "displayName": "Auto Commit Message",
   "description": "Generate git commit messages automagically",
   "publisher": "MichaelCurrin",
