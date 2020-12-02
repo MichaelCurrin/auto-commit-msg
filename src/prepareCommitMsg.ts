@@ -56,6 +56,9 @@ function generatePrefix(line: string) {
 function generateMsg(diffIndexLines: string[]) {
   const line = diffIndexLines[0];
 
+  // TODO: Pass FileChanges to one and generatePrefix instead of string.
+  // Don't unpack as {x, y, from, to}
+  // const fileChanges = parseDiffIndex(line)
   const fileChangeMsg = one(line),
     prefix = generatePrefix(line);
 
