@@ -1,12 +1,12 @@
 /**
- * Type definitions for VS Code Git Extension.
- * 
- * For use extensions.ts script.
- * 
- * Based on instructions: 
+ * Type definitions for the VS Code Git Extension.
+ *
+ * For use in extensions.ts script.
+ *
+ * Based on instructions:
  *   https://github.com/microsoft/vscode/tree/master/extensions/git#api
- * 
- * The file is copied below as is except for the link pasted in.
+ *
+ * The file is copied below as is, except for the link pasted in the license section.
  */
 
 /*---------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@
  *  Licensed under the MIT License. https://github.com/microsoft/vscode/blob/master/LICENSE.txt
  *--------------------------------------------------------------------------------------------*/
 
-import { Uri, Event, Disposable, ProviderResult } from 'vscode';
+import { Disposable, Event, ProviderResult, Uri } from 'vscode';
 export { ProviderResult } from 'vscode';
 
 export interface Git {
@@ -96,10 +96,10 @@ export const enum Status {
 
 export interface Change {
   /**
-	 * Returns either `originalUri` or `renameUri`, depending
-	 * on whether this change is a rename change. When
-	 * in doubt always use `uri` over the other two alternatives.
-	 */
+   * Returns either `originalUri` or `renameUri`, depending
+   * on whether this change is a rename change. When
+   * in doubt always use `uri` over the other two alternatives.
+   */
   readonly uri: Uri;
   readonly originalUri: Uri;
   readonly renameUri: Uri | undefined;
@@ -274,15 +274,15 @@ export interface GitExtension {
   readonly onDidChangeEnablement: Event<boolean>;
 
   /**
-	 * Returns a specific API version.
-	 *
-	 * Throws error if git extension is disabled. You can listed to the
-	 * [GitExtension.onDidChangeEnablement](#GitExtension.onDidChangeEnablement) event
-	 * to know when the extension becomes enabled/disabled.
-	 *
-	 * @param version Version number.
-	 * @returns API instance
-	 */
+   * Returns a specific API version.
+   *
+   * Throws error if git extension is disabled. You can listed to the
+   * [GitExtension.onDidChangeEnablement](#GitExtension.onDidChangeEnablement) event
+   * to know when the extension becomes enabled/disabled.
+   *
+   * @param version Version number.
+   * @returns API instance
+   */
   getAPI(version: 1): API;
 }
 
