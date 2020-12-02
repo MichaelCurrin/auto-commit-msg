@@ -72,7 +72,7 @@ function generateMsg(diffIndexLines: string[]) {
  *
  * This function is based on prefixCommit from git-prefix extension.
  */
-export async function prepareCommitMsg(repository: Repository) {
+export async function makeAndFillCommitMsg(repository: Repository) {
   const diffIndexLines = await getChanges();
 
   // Check the VS Code debug console - to help find issues.

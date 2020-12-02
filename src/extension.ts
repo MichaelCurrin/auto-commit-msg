@@ -6,7 +6,7 @@
  */
 import * as vscode from 'vscode';
 import { API, GitExtension } from './api/git';
-import { prepareCommitMsg } from './prepareCommitMsg';
+import { makeAndFillCommitMsg } from './prepareCommitMsg';
 
 /**
  * Return VS Code's builtin Git extension.
@@ -28,7 +28,7 @@ async function handleRepos(git: API, uri: any) {
   });
 
   if (selectedRepository) {
-    await prepareCommitMsg(selectedRepository);
+    await makeAndFillCommitMsg(selectedRepository);
   } else {
     vscode.window.showErrorMessage('No repos found');
   }
@@ -39,7 +39,7 @@ async function handleRepos(git: API, uri: any) {
  */
 async function handleRepo(git: API) {
   const targetRepo = git.repositories[0];
-  await prepareCommitMsg(targetRepo);
+  await makeAndFillCommitMsg(targetRepo);
 }
 
 /**
