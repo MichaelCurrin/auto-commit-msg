@@ -29,7 +29,7 @@ export function lookupDiffIndexAction(x: string) {
 /**
  * Return full message for moving and/or renaming a file.
  *
- * TODO: Update for modified as well, or make a new function.
+ * TODO: Update to handle case modified as well, or make a new function.
  */
 export function moveOrRenameFile(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
