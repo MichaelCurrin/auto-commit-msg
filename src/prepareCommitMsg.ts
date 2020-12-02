@@ -14,25 +14,8 @@ import { one } from './generate/message';
 import { getSemanticConvention } from './generate/semantic';
 import { getChanges } from './git/cli';
 import { parseDiffIndex } from './git/parseOutput';
+import { getCommitMsg, setCommitMsg } from './gitExtension';
 import { CONVENTIONAL_TYPE } from './lib/constants';
-
-/**
- * Fetch the commit message in the Git Extension.
- *
- * This could useful when doing semantic commits, as the initial 'feat' or 'feat: ' portion
- * or similar can be kept as a prefix while the generated message added on.
- * Or if left out, it can be generated if possible such as for 'chore' or 'docs'.
- */
-function getCommitMsg(repository: Repository): string {
-  return repository.inputBox.value;
-}
-
-/**
- * Set the commit message in the Git Extension.
- */
-function setCommitMsg(repository: Repository, msg: string) {
-  repository.inputBox.value = msg;
-}
 
 /**
  * Output a readable semantic git commit message.

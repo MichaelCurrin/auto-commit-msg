@@ -1,7 +1,7 @@
 /**
  * Extension module.
  *
- * This sets up the extension command entry point and applies the
+ * This sets up the extension's command entry point and applies the
  * prepare commit message module to a target branch.
  */
 import * as vscode from 'vscode';

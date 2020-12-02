@@ -1,5 +1,5 @@
 /**
- * Create a commit message from a string which is formatted as a short git status.
+ * Create a commit message from a string from git output.
  */
 import { parseDiffIndex } from '../git/parseOutput';
 import { ACTION } from '../lib/constants';
