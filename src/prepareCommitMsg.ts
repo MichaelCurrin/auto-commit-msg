@@ -13,7 +13,7 @@ import { lookupDiffIndexAction } from './generate/action';
 import { one } from './generate/message';
 import { parseDiffIndex } from './generate/parseGitOutput';
 import { getSemanticConvention } from './generate/semantic';
-import { getChanges } from './gitCommands';
+import { getChanges } from './gitCli';
 import { CONVENTIONAL_TYPE } from './lib/constants';
 
 /**

@@ -1,5 +1,5 @@
 /**
- * Git commands.
+ * Git CLI module.
  *
  * Run git commands on the command-line and capture output.
  */
