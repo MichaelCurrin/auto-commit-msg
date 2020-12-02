@@ -1,11 +1,7 @@
 /**
  * Git commands.
  *
- * This module is not named git.ts, in order to keep it distinct from the VS Code Git extension
- * module of the same name and for which there are types under src/api/git.d.ts .
- *
- * There should be be confusion in the Git class here matching the name of one in the VS Code
- * module, since that is not directly used in this project.
+ * Run git commands on the command-line and capture output.
  */
 import util = require('util');
 import childProcess = require('child_process');
@@ -14,8 +10,10 @@ import { getWorkspaceFolder } from './workspace';
 
 const exec = util.promisify(childProcess.exec);
 
-/** Run git CLI command and return output. **/
-function execute(cwd: string, subcommand?: string, options: string[] = []) {
+/**
+ * Run a given git command and return output.
+ */
+function execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(' ')}`;
 
   return exec(command, { cwd });

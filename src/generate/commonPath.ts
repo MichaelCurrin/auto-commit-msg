@@ -5,7 +5,7 @@
  *    http://rosettacode.org/wiki/Find_common_directory_path#JavaScript
  * Since JS does not have a builtin function like Python does.
  *
- * This module is kept separate from paths.ts as all the code here is tighly related.
+ * This module is kept separate from paths.ts as all the code here is tightly related.
  */
 import { ROOT } from './constants';
 

@@ -1,14 +1,14 @@
 /**
  * Paths module.
  *
- * Helper functiosn dealing with file paths.
+ * Helper functions dealing with file paths.
  */
 import * as path from 'path';
 import { ROOT } from './constants';
 import { SplitPathResult } from './paths.d';
 
 /**
- * Get metadata about a path.
+ * Get metadata about a given path.
  *
  * This is done in one function call to save having to do separate calls or having to the builtin
  * string methods all over the project.
