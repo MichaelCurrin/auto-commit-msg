@@ -1,8 +1,11 @@
 #!/bin/sh
 # A minimal git commit hook.
+#
 # Usage:
 #   ./simple-hook.sh MSG SRC SHA [-d]
 # The last part is an optional non-standard flag, allowing this to be run directly without writing out.
+#
+# This uses a call to `git status`, processes the text, writes out to a commit message file.
 
 set -e
 
@@ -22,11 +25,11 @@ MESSAGE="This is a message inserted before your commit message
 $CHANGES"
 
 if [ "$4" = '-d' ]; then
-    echo '\nDRY RUN'
-    echo "$MESSAGE"
+  echo '\nDRY RUN'
+  echo "$MESSAGE"
 else
-    # Note that -n flag is not needed here on echo.
-    echo "$MESSAGE" >$COMMIT_MSG_FILE
+  # Note that -n flag is not needed here on echo.
+  echo "$MESSAGE" >$COMMIT_MSG_FILE
 fi
 
 # There is a weird bug where the space before the first line goes missing, but not in the dry run output.
