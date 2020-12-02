@@ -17,6 +17,9 @@ import { parseDiffIndex } from './git/parseOutput';
 import { getCommitMsg, setCommitMsg } from './gitExtension';
 import { CONVENTIONAL_TYPE } from './lib/constants';
 
+const NO_LINES = 'Unable to generate message as no changes files can be seen.\nTry saving your files or stage any new untracked files.'
+const TOO_MANY_FILES = 'This extension currently only supports working with *one* changed file at a time.\nStage just one file (or both it\'s old \'D\' and new \'A\' path) and try again. Or stash changes so that only one file change is left in the working tree.'
+
 /**
  * Output a readable semantic git commit message.
  */
@@ -64,36 +67,32 @@ function generateMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: 
 }
 
 /**
- * Generate and push a commit message.
+ * Generate and use a commit message.
  *
- * Read git command output, process it to generate a commit message and then push the message to the input box UI.
+ * Read git command output, process it to generate a commit message and then push the message to the
+ * input box UI.
  *
- * This function is based on prefixCommit from git-prefix extension.
+ * This is based on prefixCommit from the git-prefix extension.
  */
 export async function makeAndFillCommitMsg(repository: Repository) {
-  const diffIndexLines = await getChanges();
+  const lines = await getChanges();
 
-  // Check the VS Code debug console - to help find issues.
-  console.debug(diffIndexLines);
+  // Send to the VS Code debug console to help find issues.
+  console.debug('diff-index:', lines);
 
-  if (!diffIndexLines.length) {
-    vscode.window.showErrorMessage(
-      'Unable to generate message as no changes files can be seen.\nTry saving your files or stage any new untracked files.'
-    );
+  if (!lines.length) {
+    vscode.window.showErrorMessage(NO_LINES);
     return;
   }
-
-  if (diffIndexLines.length > 1) {
-    vscode.window.showErrorMessage(
-      'This extension currently only supports working with *one* changed file at a time.\nStage just one file (or both it\'s old \'D\' and new \'A\' path) and try again. Or stash changes so that only one file change is left in the working tree.'
-    );
+  if (lines.length > 1) {
+    vscode.window.showErrorMessage(TOO_MANY_FILES);
     return;
   }
 
   const oldMsg = getCommitMsg(repository);
   console.debug('Old message: ', oldMsg);
 
-  const { prefix, fileChangeMsg } = generateMsgFromChanges(diffIndexLines);
+  const { prefix, fileChangeMsg } = generateMsgFromChanges(lines);
   const newMsg = generateMsg(prefix, fileChangeMsg, oldMsg);
   console.debug('New message: ', newMsg);
 
