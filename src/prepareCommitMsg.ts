@@ -1,5 +1,7 @@
 /**
  * Prepare commit message.
+ *
+ * This module doesn't interact with the git CLI or the extension. It just deals with text.
  */
 import { lookupDiffIndexAction } from './generate/action';
 import { one } from './generate/message';
@@ -25,6 +27,8 @@ function generatePrefixFromChanges(line: string) {
 }
 
 /**
+ * Generate message from changes.
+ *
  * Tie together pieces to create a full message for the UI.
  */
 export function generateMsgFromChanges(diffIndexLines: string[]) {
