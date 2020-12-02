@@ -28,7 +28,7 @@ function getCommitMsg(repository: Repository): string {
 }
 
 /**
- * Set the commit message in the Git Extenion.
+ * Set the commit message in the Git Extension.
  */
 function setCommitMsg(repository: Repository, msg: string) {
   repository.inputBox.value = msg;
@@ -51,7 +51,9 @@ function generatePrefixFromChanges(line: string) {
   return getSemanticConvention(action, filePath);
 }
 
-// Tie together pieces of the generate module to create a full message for the UI.
+/**
+ * Tie together pieces of the generate module to create a full message for the UI.
+ */
 function generateMsgFromChanges(diffIndexLines: string[]) {
   const line = diffIndexLines[0];
 
