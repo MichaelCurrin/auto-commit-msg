@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { moveOrRenameFile } from '../generate/action';
+import { moveOrRenameFile } from '../../generate/action';
 
 describe('Desribe a file as moved or renamed', function () {
   describe('#moveOrRenameFile()', function () {

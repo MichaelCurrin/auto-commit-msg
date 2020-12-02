@@ -2,7 +2,7 @@
  * High-level test of message is shown to the user, based on changes to one or more files.
  */
 import * as assert from 'assert';
-import { one } from '../generate/message';
+import { one } from '../../generate/message';
 
 describe('Generate commit message for a single changed file', function () {
   // Note that git status --short expects XY format but this is for git diff-index
