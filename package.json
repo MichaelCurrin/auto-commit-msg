@@ -10,7 +10,7 @@
     "clean": "rm -rf out",
     "compile": "npm run clean && tsc -p .",
     "pretest": "npm run compile && npm run lint:fix",
-    "test:unit": "cd out && mocha",
+    "test:unit": "cd out && mocha --recursive",
     "test": "npm run test:unit",
     "watch": "tsc -watch -p .",
     "vscode:prepublish": "npm run compile",
