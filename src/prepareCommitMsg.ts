@@ -31,7 +31,7 @@ function generatePrefixFromChanges(line: string) {
 }
 
 /**
- * Tie together pieces of the generate module to create a full message for the UI.
+ * Tie together pieces to create a full message for the UI.
  */
 export function generateMsgFromChanges(diffIndexLines: string[]) {
   const line = diffIndexLines[0];

@@ -8,6 +8,10 @@ import { Repository } from './api/git';
 import { getChanges } from './git/cli';
 import { generateMsg, generateMsgFromChanges } from './prepareCommitMsg';
 
+export const NO_LINES = 'Unable to generate message as no changes files can be seen.\nTry saving your files or stage any new untracked files.';
+
+export const TOO_MANY_FILES = 'This extension currently only supports working with *one* changed file at a time.\nStage just one file (or both it\'s old \'D\' and new \'A\' path) and try again. Or stash changes so that only one file change is left in the working tree.';
+
 /**
  * Fetch the commit message in the Git Extension.
  *
@@ -25,12 +29,6 @@ function getCommitMsg(repository: Repository): string {
 function setCommitMsg(repository: Repository, msg: string) {
   repository.inputBox.value = msg;
 }
-
-
-
-export const NO_LINES = 'Unable to generate message as no changes files can be seen.\nTry saving your files or stage any new untracked files.';
-
-export const TOO_MANY_FILES = 'This extension currently only supports working with *one* changed file at a time.\nStage just one file (or both it\'s old \'D\' and new \'A\' path) and try again. Or stash changes so that only one file change is left in the working tree.';
 
 /**
  * Generate and fill the commit message.
