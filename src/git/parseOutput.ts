@@ -60,7 +60,7 @@ export function parseDiffIndex(line: string): FileChanges {
   }
 
   const x = line[0];
-  const y = ' '; // TODO replace with unmodified from.
+  const y = ' '; // TODO replace with Unmodified form.
   const { from, to } = splitDiffIndexPaths(line);
 
   return {
