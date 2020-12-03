@@ -32,20 +32,21 @@ export function generateMsgFromChanges(diffIndexLines: string[]) {
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
-  const fileChangeMsg = oneChange(line),
-    prefix = generatePrefixFromChanges(line);
+  const prefix = generatePrefixFromChanges(line),
+    fileChangeMsg = oneChange(line);
 
+  // TODO convert to interface.
   return { prefix, fileChangeMsg };
 }
 
 /**
  * Output a readable semantic git commit message.
  */
-function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
+export function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
-    return subject;
+    return fileChangeMsg;
   }
-  return `${prefix}: ${subject}`;
+  return `${prefix}: ${fileChangeMsg}`;
 }
 
 /**
@@ -57,6 +58,7 @@ function formatMsg(prefix: CONVENTIONAL_TYPE, subject: string) {
  * removing any existing twice on either side for flexibility.
  *
  * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form. This changes the new message form.
+ * Dev note - make sure prefix and fileChangeMsg come in separately.
  */
 function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
   const newMsg = formatMsg(prefix, fileChangeMsg);
