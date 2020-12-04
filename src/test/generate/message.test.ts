@@ -22,7 +22,7 @@ describe('Generate commit message for a single changed file', function () {
         'Create foo.txt');
     });
 
-    it('should throw an error if no filepath can be output', function () {
+    it('should throw an error if no filepath can be no generated', function () {
       assert.throws(() => oneChange('A    '));
     });
 
@@ -55,6 +55,13 @@ describe('Generate commit message for a single changed file', function () {
       );
       assert.strictEqual(
         oneChange('R    fizz/foo.txt     fizz/bar.txt'),
+        'Rename foo.txt to bar.txt'
+      );
+
+      // We don't care about getting the percentage out in this extension. So just make sure it does
+      // get ignored.
+      assert.strictEqual(
+        oneChange('R97    foo.txt          bar.txt'),
         'Rename foo.txt to bar.txt'
       );
     });
