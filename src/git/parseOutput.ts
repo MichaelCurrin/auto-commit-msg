@@ -4,18 +4,6 @@
 import { FileChanges } from './parseOutput.d';
 
 /**
- * Split paths from status output.
- *
- * Parse a value of one or two file paths from `git status --short` and return as `from` and `to`.
- */
-function splitStatusPaths(line: string) {
-  const paths = line.substring(3);
-  const [from, to] = paths.includes('->') ? paths.split(' -> ') : [paths, ''];
-
-  return { from, to };
-}
-
-/**
  * Parse a line coming from the `git status --short` command.
  */
 export function parseStatus(line: string): FileChanges {
@@ -24,7 +12,9 @@ export function parseStatus(line: string): FileChanges {
   }
   const x = line[0];
   const y = line[1];
-  const { from, to } = splitStatusPaths(line);
+
+  const paths = line.substring(3);
+  const [from, to] = paths.includes('->') ? paths.split(' -> ') : [paths, ''];
 
   return {
     x,
@@ -35,38 +25,31 @@ export function parseStatus(line: string): FileChanges {
 }
 
 /**
- * Split output from `git diff-index` into `from` and `to`.
- */
-function splitDiffIndexPaths(line: string) {
-  const segments = line.split(/\s+/),
-    from = segments[1];
-
-  if (!from) {
-    throw new Error(`Bad input - could not find first filename in line: ${line}`);
-  }
-  const to = segments.length === 3 ? segments[2] : '';
-
-  return { from, to };
-}
-
-/**
  * Parse a line produced by the `git diff-index` command.
  *
- * Unlike `git status`, the `y` value will be missing so we set it to unmodified.
+ * We keep `x` as a single letter, though the input might be 'R100 ...'.
+ *
+ * Unlike `git status`, here the `y` value will be missing so we set it to Unmodified.
+ *
+ * The `to` field will not always be set so null string is fine (and better than undefined).
  */
 export function parseDiffIndex(line: string): FileChanges {
   if (line.length <= 4) {
-    throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
+    throw new Error(`Invalid input. Input string must be at least 4 characters. Got: '${line}'`);
   }
-
   const x = line[0];
-  const y = ' '; // TODO replace with Unmodified form.
-  const { from, to } = splitDiffIndexPaths(line);
+  const y = ' ';
+
+  const [_, from, to] = line.split(/\s+/);
+  if (!from) {
+    // Unlikely in real life but this helps in development.
+    throw new Error(`Invalid input - could not find 'from' path: ${line}`);
+  }
 
   return {
     x,
     y,
     from,
-    to,
+    to: to || '',
   };
 }
