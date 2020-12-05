@@ -1,7 +1,7 @@
 /**
  * Prepare commit message.
  *
- * This module ties together logic in the generate modules.
+ * This module ties together logic from modules in the `generate` module. So it is best kept outside that.
  *
  * This module doesn't interact with the git CLI or the extension. It just deals with text.
  */
@@ -42,7 +42,7 @@ export function generateMsgFromChanges(diffIndexLines: string[]) {
 /**
  * Output a readable semantic git commit message.
  */
-export function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
+function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
     return fileChangeMsg;
   }
@@ -50,15 +50,23 @@ export function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
 }
 
 /**
- * Generate commit message using old and new message.
- *
- * Use the current file changes and the old message to create a new message.
+ * Generate a new commit message.
+ */
+function generateNewMsg(lines: string[]) {
+  const { prefix, fileChangeMsg } = generateMsgFromChanges(lines);
+
+  return formatMsg(prefix, fileChangeMsg);
+}
+
+/**
+ * Format commit message using old and new messages.
  *
  * For now, assume old message is a commit message template prefix and can always go in front,
  * removing any existing twice on either side for flexibility.
  *
+ * Dev note - must make sure prefix and fileChangeMsg come in separately here, not as a combined message.
+ *
  * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form. This changes the new message form.
- * Dev note - make sure prefix and fileChangeMsg come in separately.
  */
 function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
   const newMsg = formatMsg(prefix, fileChangeMsg);
@@ -67,13 +75,33 @@ function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldM
 }
 
 /**
- * Generate commit message.
+ * Generate commit message using old and new.
  *
  * High-level function to process file changes and an old message to generate replacement commit
- * message.
+ * message. Old message must be given, but it can be an empty string.
  */
-export function generateMsg(fileChanges: string[], oldMsg?: string) {
+function generateMsgWithOld(fileChanges: string[], oldMsg: string) {
+  if (oldMsg === '') {
+    throw new Error('Either `oldMsg` must not be empty, or use `generateNewMsg` instead.');
+  }
   const { prefix, fileChangeMsg } = generateMsgFromChanges(fileChanges);
 
   return combineOldAndNew(prefix, fileChangeMsg, oldMsg);
+}
+
+/**
+ * Generate commit message.
+ *
+ * This is a public wrapper function to allow old message to be set or not.
+ *
+ * Old message could be the current commit message value in the UI box (which might be a commit
+ * message template that VS Code has filled in), or a commit message template read from a file in
+ * the case of a hook flow without VS Code.
+ */
+export function generateMsg(fileChanges: string[], oldMsg?: string): string {
+  if (!oldMsg) {
+    return generateNewMsg(fileChanges);
+  } else {
+    return generateMsgWithOld(fileChanges, oldMsg);
+  }
 }
