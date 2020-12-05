@@ -21,14 +21,13 @@ echo "COMMIT_MSG_FILE = $COMMIT_MSG_FILE"
 echo "COMMIT_SOURCE = $COMMIT_SOURCE"
 echo "SHA1 = $SHA1"
 
-MESSAGE="This is a message inserted before your commit message
+MESSAGE="This is a dumb message inserted before your commit message to prove can works but there is no smart logic here
 $CHANGES"
 
 if [ "$4" = '-d' ]; then
   echo '\nDRY RUN'
   echo "$MESSAGE"
 else
-  # Note that -n flag is not needed here on echo.
   echo "$MESSAGE" >$COMMIT_MSG_FILE
 fi
 
