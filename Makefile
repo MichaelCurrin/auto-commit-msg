@@ -9,13 +9,15 @@ h help:
 install:
 	npm install
 
+
+# Note - the linter will not fix formatting issues, but IDE or Prettier can.
+l lint:
+	npm run lint:fix
+
+
 # Lint, clean, compile and run unit tests.
 t test:
 	npm run test
-
-# Note - linter will not fix formatting issues but IDE or Prettier can.
-l lint:
-	npm run lint:fix
 
 
 # Run tests and then tag and push.
