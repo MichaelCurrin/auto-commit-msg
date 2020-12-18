@@ -1,8 +1,10 @@
 /**
  * Auto Commit Message CLI script.
  *
- * This is the entry-point for this tool as a command-line script. This does not interact with VS
- * Code or git commands. It just receives text on an argument and prints output stdout for use in a hook flow. Or stderr in the case of a message not appropriate for a commit message.
+ * This is the entry-point for this tool to be used as a stand-alone command-line script. This does
+ * NOT interact with VS Code or git commands. It just receives text on an argument and prints output
+ * stdout for use in a hook flow. Or stderr in the case of a message not appropriate for a commit
+ * message.
  *
  * See shell/README.md docs.
  */
@@ -11,7 +13,8 @@ import { generateMsg } from './prepareCommitMsg';
 /**
  * Command-line entry-point.
  *
- * Expect `git diff-index` output as the first argument and return suitable commit message.
+ * Expect multi-line output from `git diff-index` as the CLI first argument. Returns a suitable
+ * generated commit message.
  */
 function main(args: string[]) {
   console.debug(args);
