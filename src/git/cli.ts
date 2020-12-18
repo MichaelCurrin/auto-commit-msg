@@ -22,10 +22,10 @@ function execute(cwd: string, subcommand: string, options: string[] = []) {
 /**
  * Run `git diff-index` with flags and return output.
  *
- * This will return both staged and unstaged changes. Pass '--cached' to only use staged changes.
+ * This will return both staged and unstaged changes. Pass '--cached' to use staged changes only.
  * Always excludes untracked files.
  *
- * Remove any empty lines, whether because of no changes or just the way the command-line
+ * Removes any empty lines, whether because of no changes or just the way the command-line
  * data comes in or is split.
  *
  * Note the output already seems always to have no color from my testing, but the
