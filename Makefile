@@ -5,7 +5,8 @@ all: install test
 h help:
 	@egrep '^\S|^$$' Makefile
 
-i install:
+
+install:
 	npm install
 
 # Lint, clean, compile and run unit tests.
@@ -22,6 +23,6 @@ tag:
 	npm version minor
 
 
-# Build and install extension globally.
+# Build and install the extension globally.
 e ext:
 	npm run ext
