@@ -1,7 +1,8 @@
 /**
  * Prepare commit message.
  *
- * This module ties together logic from modules in the `generate` module. So it is best kept outside that.
+ * This module ties together logic from modules in the `generate` module. So it is best kept outside
+ * that.
  *
  * This module doesn't interact with the git CLI or the extension. It just deals with text.
  */
@@ -64,9 +65,11 @@ function generateNewMsg(lines: string[]) {
  * For now, assume old message is a commit message template prefix and can always go in front,
  * removing any existing twice on either side for flexibility.
  *
- * Dev note - must make sure prefix and fileChangeMsg come in separately here, not as a combined message.
+ * Dev note - must make sure prefix and fileChangeMsg come in separately here, not as a combined
+ * message.
  *
- * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form. This changes the new message form.
+ * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form. This changes
+ * the new message form.
  */
 function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
   const newMsg = formatMsg(prefix, fileChangeMsg);
