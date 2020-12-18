@@ -1,7 +1,7 @@
 /**
  * Git CLI module.
  *
- * Run git commands on the command-line and capture output.
+ * Run `git` commands in the shell internally and capture the output.
  */
 import util = require('util');
 import childProcess = require('child_process');
@@ -11,7 +11,7 @@ import { getWorkspaceFolder } from '../workspace';
 const exec = util.promisify(childProcess.exec);
 
 /**
- * Run a given git command and return output.
+ * Run a given `git` command and return output.
  */
 function execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(' ')}`;

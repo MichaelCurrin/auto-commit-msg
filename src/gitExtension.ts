@@ -11,7 +11,6 @@
  */
 import { Repository } from './api/git';
 
-
 /**
  * Fetch the commit message in the Git Extension.
  *
