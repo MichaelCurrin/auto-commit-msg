@@ -57,8 +57,10 @@ describe('Generate commit message for a single changed file', function () {
         oneChange('R    fizz/foo.txt     fizz/bar.txt'),
         'Rename foo.txt to bar.txt'
       );
+    });
 
-      // We don't care about getting the percentage out in this extension. So just make sure it does
+    it('must ignore percentage change in a renamed file', function () {
+      // We don't care about getting the percentage out in this project. So just make sure it does
       // get ignored.
       assert.strictEqual(
         oneChange('R97    foo.txt    bar.txt'),
@@ -71,6 +73,7 @@ describe('Generate commit message for a single changed file', function () {
         oneChange('R    foo.txt      fizz/foo.txt'),
         'Move foo.txt to fizz'
       );
+
       assert.strictEqual(
         oneChange('R    foo.txt      fizz/buzz/foo.txt'),
         'Move foo.txt to fizz/buzz'
@@ -107,6 +110,13 @@ describe('Generate commit message for a single changed file', function () {
 
       assert.strictEqual(
         oneChange('R    bar/foo.txt   fizz/fuzz.txt'),
+        'Move and rename foo.txt to fizz/fuzz.txt'
+      );
+    });
+
+    it('must ignore percentage changed for a file that was both moved and renamed', function () {
+      assert.strictEqual(
+        oneChange('R97  foo.txt       fizz/fuzz.txt'),
         'Move and rename foo.txt to fizz/fuzz.txt'
       );
     });
