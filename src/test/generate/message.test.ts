@@ -61,7 +61,7 @@ describe('Generate commit message for a single changed file', function () {
       // We don't care about getting the percentage out in this extension. So just make sure it does
       // get ignored.
       assert.strictEqual(
-        oneChange('R97    foo.txt          bar.txt'),
+        oneChange('R97    foo.txt    bar.txt'),
         'Rename foo.txt to bar.txt'
       );
     });
@@ -82,33 +82,32 @@ describe('Generate commit message for a single changed file', function () {
         oneChange('R     fizz/buzz/foo.txt    foo.txt'),
         'Move foo.txt to repo root'
       );
+
       assert.strictEqual(
         oneChange('R     fizz/buzz/foo.txt    fizz/foo.txt'),
         'Move foo.txt to fizz'
       );
+
       assert.strictEqual(
-        oneChange('R     fizz/buzz/foo.txt      fizz/buzz/foo.txt'),
+        oneChange('R     fizz/buzz/foo.txt    fizz/buzz/foo.txt'),
         'Move foo.txt to fizz/buzz'
       );
     });
 
     it('must describe a file that was both moved and renamed', function () {
       assert.strictEqual(
-        oneChange('R    foo.txt   fizz/buzz/fuzz.txt'),
-        'Move and rename foo.txt to fizz/buzz/fuzz.txt'
-      );
-      assert.strictEqual(
-        oneChange('R    bar/foo.txt   fizz/buzz/fuzz.txt'),
-        'Move and rename foo.txt to fizz/buzz/fuzz.txt'
-      );
-      assert.strictEqual(
-        oneChange('R    bar/foo.txt   fizz/fuzz.txt'),
+        oneChange('R    foo.txt       fizz/fuzz.txt'),
         'Move and rename foo.txt to fizz/fuzz.txt'
       );
-      // Maybe the from path should be longer where dest is root.
+
       assert.strictEqual(
         oneChange('R    bar/foo.txt   fuzz.txt'),
         'Move and rename foo.txt to fuzz.txt at repo root'
+      );
+
+      assert.strictEqual(
+        oneChange('R    bar/foo.txt   fizz/fuzz.txt'),
+        'Move and rename foo.txt to fizz/fuzz.txt'
       );
     });
 
