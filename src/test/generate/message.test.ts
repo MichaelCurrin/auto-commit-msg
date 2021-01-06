@@ -11,7 +11,7 @@ describe('Generate commit message for a single changed file', function () {
   // and path are unchanged, or including two file names for an add line. But validation
   // on at least file name is done.
   describe('#oneChange()', function () {
-    it('should return the appropriate commit message for a new file', function () {
+    it('must return the appropriate commit message for a new file', function () {
       assert.strictEqual(
         oneChange('A    foo.txt'),
         'Create foo.txt'
@@ -22,11 +22,11 @@ describe('Generate commit message for a single changed file', function () {
         'Create foo.txt');
     });
 
-    it('should throw an error if no filepath can be no generated', function () {
+    it('must throw an error if no filepath can be no generated', function () {
       assert.throws(() => oneChange('A    '));
     });
 
-    it('should return the appropriate commit message for a modified file', function () {
+    it('must return the appropriate commit message for a modified file', function () {
       assert.strictEqual(
         oneChange('M    foo.txt'),
         'Update foo.txt'
@@ -37,7 +37,7 @@ describe('Generate commit message for a single changed file', function () {
       );
     });
 
-    it('should return the appropriate commit message for a deleted file', function () {
+    it('must return the appropriate commit message for a deleted file', function () {
       assert.strictEqual(
         oneChange('D    foo.txt'),
         'Delete foo.txt'
@@ -48,7 +48,7 @@ describe('Generate commit message for a single changed file', function () {
       );
     });
 
-    it('should describe a file renamed in the same directory', function () {
+    it('must describe a file renamed in the same directory', function () {
       assert.strictEqual(
         oneChange('R    foo.txt          bar.txt'),
         'Rename foo.txt to bar.txt'
@@ -66,7 +66,7 @@ describe('Generate commit message for a single changed file', function () {
       );
     });
 
-    it('should describe a file moved out of the repo root', function () {
+    it('must describe a file moved out of the repo root', function () {
       assert.strictEqual(
         oneChange('R    foo.txt      fizz/foo.txt'),
         'Move foo.txt to fizz'
@@ -77,7 +77,7 @@ describe('Generate commit message for a single changed file', function () {
       );
     });
 
-    it('should describe a file moved out of a subdirectory', function () {
+    it('must describe a file moved out of a subdirectory', function () {
       assert.strictEqual(
         oneChange('R     fizz/buzz/foo.txt    foo.txt'),
         'Move foo.txt to repo root'
@@ -92,7 +92,7 @@ describe('Generate commit message for a single changed file', function () {
       );
     });
 
-    it('should describe a file that was both moved and renamed', function () {
+    it('must describe a file that was both moved and renamed', function () {
       assert.strictEqual(
         oneChange('R    foo.txt   fizz/buzz/fuzz.txt'),
         'Move and rename foo.txt to fizz/buzz/fuzz.txt'
@@ -112,7 +112,7 @@ describe('Generate commit message for a single changed file', function () {
       );
     });
 
-    it('uses the full path to describe index files', function () {
+    it('must use the full path to describe index files', function () {
       assert.strictEqual(
         oneChange('A    README.md'),
         'Create README.md'
