@@ -13,6 +13,29 @@
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
 
 
+## Examples
+
+In a git repo open in VS Code, press the extension's button. It will write message for you in the existing Git message input box.
+
+If created a new file `foo.js`:
+
+```
+feat: Create foo.js`
+```
+
+If you updated your `Makefile`:
+
+```
+build: Update Makefile
+```
+
+You updated a file in the docs directory:
+
+```
+docs: Update bar.md`
+```
+
+
 ## About
 
 A VS Code extension which gives you smart commit message suggestions. For the times where all your need it a simple message.
@@ -24,12 +47,6 @@ It can make a message to **describe a change** for a single file to be committed
 It many cases it can also provide an appropriate **semvar** label for you. It can't separate features and bug fixes but it can identify changes to docs, CI files and config files.
 
  Don't use this tool all the time - remember to write explantory messages when it matters.
-
-### Examples
-
-- You created a new file `foo.js`. Press the extension button and writes `feat: Create foo.js` for you in the existing Git message input box.
-- If you updated your `Makefile`. Then extension writes `chore: Update Makefile`
-- You updated a file in the docs directory. Message generated is `docs: Update bar.md`.
 
 
 ## Release disclaimer
