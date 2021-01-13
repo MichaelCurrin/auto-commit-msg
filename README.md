@@ -1,5 +1,5 @@
 # Auto Commit Message ⚙️🧙‍♂️ ✉️
-> Automagically generate a commit message - based on which files changed and how they changed
+> VS Code extension to write commit messages for you
 
 <!-- Badges generated with https://michaelcurrin.github.io/badge-generator/#/ -->
 
@@ -15,11 +15,15 @@
 
 ## About
 
-A VS Code extension which provides smart suggestions for your commit messages.
+A VS Code extension which gives you smart commit message suggestions. For the times where all your need it a simple message.
 
-It can write a message to **describe a change** for a single file in a commit. Including create, update, remove, rename and move - along with the filename. Or, the path, like for a move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
+It looks at the path of a file that changed and how it changed, then pushes the commit message to the Git pane in VS Code. You can edit or erase the message if you don't like.
+
+It can make a message to **describe a change** for a single file to be committed. Including create, update, remove, rename and move - along with the filename. Or, the path, like for a move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
 
 It many cases it can also provide an appropriate **semvar** label for you. It can't separate features and bug fixes but it can identify changes to docs, CI files and config files.
+
+ Don't use this tool all the time - remember to write explantory messages when it matters.
 
 ### Examples
 
@@ -64,17 +68,18 @@ I am please to announced that this now a lot more stable as of `v0.7.0`, but is 
 This is my first VS Code extension and first TypeScript project, so I am learning as a go and trying to follow best practices I find.
 -->
 
+
 ## Features
 
-What this VS Code extension can do
+What this VS Code extension can do:
 
 - [x] Installable from archive file (see _assets_ list under latest [release](https://github.com/MichaelCurrin/auto-commit-msg/releases))
 - [x] Handle staged files or working tree
-- [x] Write a single-line commit message for a git repo (e.g. `Create`, `Update`, `Delete`)
+- [x] Generate a single-line commit message for file to be committed, using action verbs (e.g. `Create`, `Update`, `Delete`)
 - [x] Handle changes from a single changed file
 - [ ] Handle changes from two or more files e.g. `Update 3 files in foo`, `Create foo.txt and fizz/bar.txt`, `Create foo.txt and delete bar.txt`
-- [ ] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
-- [ ] Use semantic prefix / conventional commits e.g. `chore: Update package.json`
+- [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
+- [x] Use semantic prefix / conventional commits e.g. `chore: Update package.json`
 
 ### Structure and admin
 
