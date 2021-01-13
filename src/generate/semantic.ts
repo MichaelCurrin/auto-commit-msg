@@ -37,6 +37,10 @@ const PACKAGE_DIRS = [
     // PHP
     'composer.json',
     'composer.lock',
+
+    // GO
+    'go.mod',
+    'go.sum',
   ];
 
 // Build system (scripts, configurations or tools) and package dependencies.
