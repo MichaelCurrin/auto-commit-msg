@@ -9,7 +9,7 @@
  * This module handles reading git output, processes it with the logic in the generate module and
  * then finally sets it in the UI message box.
  */
-import { Repository } from './api/git';
+import { Repository } from "./api/git";
 
 /**
  * Fetch the commit message in the Git Extension.

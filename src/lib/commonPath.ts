@@ -7,7 +7,7 @@
  *
  * This module is kept separate from paths.ts as all the code here is tightly related.
  */
-import { ROOT } from '../lib/constants';
+import { ROOT } from "../lib/constants";
 
 /**
  * Given an array of strings, return an array of arrays, containing the
@@ -17,7 +17,7 @@ import { ROOT } from '../lib/constants';
  * @param {string} sep
  * @returns {!Array<!Array<string>>}
  */
-const splitStrings = (a: any[], sep = '/') => a.map((i: string) => i.split(sep));
+const splitStrings = (a: any[], sep = "/") => a.map((i: string) => i.split(sep));
 
 /**
  * Given an index number, return a function that takes an array and returns the
@@ -60,8 +60,8 @@ function allElementsEqual(arr: any[]) {
  * This can be useful for one file going from source to destination.
  * Or finding the top-most directory that is common to a few files that all changed.
  */
-export function commonPath(input: string[], sep = '/') {
+export function commonPath(input: string[], sep = "/") {
   const common = rotate(splitStrings(input, sep)).filter(allElementsEqual).map(elAt(0)).join(sep);
 
-  return common === '' ? ROOT : common;
+  return common === "" ? ROOT : common;
 }

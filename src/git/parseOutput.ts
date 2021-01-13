@@ -1,7 +1,7 @@
 /**
  * Parse git command output.
  */
-import { FileChanges } from './parseOutput.d';
+import { FileChanges } from "./parseOutput.d";
 
 /**
  * Parse a line coming from the `git status --short` command.
@@ -14,7 +14,7 @@ export function parseStatus(line: string): FileChanges {
   const y = line[1];
 
   const paths = line.substring(3);
-  const [from, to] = paths.includes('->') ? paths.split(' -> ') : [paths, ''];
+  const [from, to] = paths.includes("->") ? paths.split(" -> ") : [paths, ""];
 
   return {
     x,
@@ -38,7 +38,7 @@ export function parseDiffIndex(line: string): FileChanges {
     throw new Error(`Invalid input. Input string must be at least 4 characters. Got: '${line}'`);
   }
   const x = line[0];
-  const y = ' ';
+  const y = " ";
 
   const [_, from, to] = line.split(/\s+/);
   if (!from) {
@@ -50,6 +50,6 @@ export function parseDiffIndex(line: string): FileChanges {
     x,
     y,
     from,
-    to: to || '',
+    to: to || "",
   };
 }

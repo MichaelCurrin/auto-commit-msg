@@ -6,11 +6,11 @@
  *
  * This module doesn't interact with the git CLI or the extension. It just deals with text.
  */
-import { lookupDiffIndexAction } from './generate/action';
-import { oneChange } from './generate/message';
-import { getSemanticConvention } from './generate/semantic';
-import { parseDiffIndex } from './git/parseOutput';
-import { CONVENTIONAL_TYPE } from './lib/constants';
+import { lookupDiffIndexAction } from "./generate/action";
+import { oneChange } from "./generate/message";
+import { getSemanticConvention } from "./generate/semantic";
+import { parseDiffIndex } from "./git/parseOutput";
+import { CONVENTIONAL_TYPE } from "./lib/constants";
 
 /**
  * Determine what the prefix should be for a file change, using semantic conventions.
@@ -84,8 +84,8 @@ function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldM
  * message. Old message must be given, but it can be an empty string.
  */
 function generateMsgWithOld(fileChanges: string[], oldMsg: string) {
-  if (oldMsg === '') {
-    throw new Error('Either `oldMsg` must not be empty, or use `generateNewMsg` instead.');
+  if (oldMsg === "") {
+    throw new Error("Either `oldMsg` must not be empty, or use `generateNewMsg` instead.");
   }
   const { prefix, fileChangeMsg } = generateMsgFromChanges(fileChanges);
 

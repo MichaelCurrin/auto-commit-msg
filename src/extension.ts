@@ -4,15 +4,15 @@
  * This sets up the extension's command entry point and applies the
  * prepare commit message module to a target branch.
  */
-import * as vscode from 'vscode';
-import { API, GitExtension } from './api/git';
-import { makeAndFillCommitMsg } from './autofill';
+import * as vscode from "vscode";
+import { API, GitExtension } from "./api/git";
+import { makeAndFillCommitMsg } from "./autofill";
 
 /**
  * Return VS Code's builtin Git extension.
  */
 function getGitExtension() {
-  const vscodeGit = vscode.extensions.getExtension<GitExtension>('vscode.git');
+  const vscodeGit = vscode.extensions.getExtension<GitExtension>("vscode.git");
   const gitExtension = vscodeGit && vscodeGit.exports;
 
   return gitExtension && gitExtension.getAPI(1);
@@ -30,7 +30,7 @@ async function handleRepos(git: API, uri: any) {
   if (selectedRepository) {
     await makeAndFillCommitMsg(selectedRepository);
   } else {
-    vscode.window.showErrorMessage('No repos found');
+    vscode.window.showErrorMessage("No repos found");
   }
 }
 
@@ -46,22 +46,22 @@ async function handleRepo(git: API) {
  * Setup this extension's autofill command to run when triggered.
  */
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('commitMsg.autofill', async (uri?) => {
+  const disposable = vscode.commands.registerCommand("commitMsg.autofill", async (uri?) => {
     const git = getGitExtension();
 
     if (!git) {
-      vscode.window.showErrorMessage('Unable to load Git Extension');
+      vscode.window.showErrorMessage("Unable to load Git Extension");
       return;
     }
 
     if (git.repositories.length === 0) {
       vscode.window.showErrorMessage(
-        'No repos found. Please open a repo or run git init then try this extension again.'
+        "No repos found. Please open a repo or run git init then try this extension again."
       );
       return;
     }
 
-    vscode.commands.executeCommand('workbench.view.scm');
+    vscode.commands.executeCommand("workbench.view.scm");
 
     if (uri) {
       handleRepos(git, uri);

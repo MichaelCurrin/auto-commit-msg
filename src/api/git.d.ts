@@ -14,8 +14,8 @@
  *  Licensed under the MIT License. https://github.com/microsoft/vscode/blob/master/LICENSE.txt
  *--------------------------------------------------------------------------------------------*/
 
-import { Disposable, Event, ProviderResult, Uri } from 'vscode';
-export { ProviderResult } from 'vscode';
+import { Disposable, Event, ProviderResult, Uri } from "vscode";
+export { ProviderResult } from "vscode";
 
 export interface Git {
   readonly path: string;
@@ -135,7 +135,7 @@ export interface LogOptions {
 }
 
 export interface CommitOptions {
-  all?: boolean | 'tracked';
+  all?: boolean | "tracked";
   amend?: boolean;
   signoff?: boolean;
   signCommit?: boolean;
@@ -250,7 +250,7 @@ export interface PushErrorHandler {
   ): Promise<boolean>;
 }
 
-export type APIState = 'uninitialized' | 'initialized';
+export type APIState = "uninitialized" | "initialized";
 
 export interface API {
   readonly state: APIState;
@@ -287,39 +287,39 @@ export interface GitExtension {
 }
 
 export const enum GitErrorCodes {
-  BadConfigFile = 'BadConfigFile',
-  AuthenticationFailed = 'AuthenticationFailed',
-  NoUserNameConfigured = 'NoUserNameConfigured',
-  NoUserEmailConfigured = 'NoUserEmailConfigured',
-  NoRemoteRepositorySpecified = 'NoRemoteRepositorySpecified',
-  NotAGitRepository = 'NotAGitRepository',
-  NotAtRepositoryRoot = 'NotAtRepositoryRoot',
-  Conflict = 'Conflict',
-  StashConflict = 'StashConflict',
-  UnmergedChanges = 'UnmergedChanges',
-  PushRejected = 'PushRejected',
-  RemoteConnectionError = 'RemoteConnectionError',
-  DirtyWorkTree = 'DirtyWorkTree',
-  CantOpenResource = 'CantOpenResource',
-  GitNotFound = 'GitNotFound',
-  CantCreatePipe = 'CantCreatePipe',
-  PermissionDenied = 'PermissionDenied',
-  CantAccessRemote = 'CantAccessRemote',
-  RepositoryNotFound = 'RepositoryNotFound',
-  RepositoryIsLocked = 'RepositoryIsLocked',
-  BranchNotFullyMerged = 'BranchNotFullyMerged',
-  NoRemoteReference = 'NoRemoteReference',
-  InvalidBranchName = 'InvalidBranchName',
-  BranchAlreadyExists = 'BranchAlreadyExists',
-  NoLocalChanges = 'NoLocalChanges',
-  NoStashFound = 'NoStashFound',
-  LocalChangesOverwritten = 'LocalChangesOverwritten',
-  NoUpstreamBranch = 'NoUpstreamBranch',
-  IsInSubmodule = 'IsInSubmodule',
-  WrongCase = 'WrongCase',
-  CantLockRef = 'CantLockRef',
-  CantRebaseMultipleBranches = 'CantRebaseMultipleBranches',
-  PatchDoesNotApply = 'PatchDoesNotApply',
-  NoPathFound = 'NoPathFound',
-  UnknownPath = 'UnknownPath'
+  BadConfigFile = "BadConfigFile",
+  AuthenticationFailed = "AuthenticationFailed",
+  NoUserNameConfigured = "NoUserNameConfigured",
+  NoUserEmailConfigured = "NoUserEmailConfigured",
+  NoRemoteRepositorySpecified = "NoRemoteRepositorySpecified",
+  NotAGitRepository = "NotAGitRepository",
+  NotAtRepositoryRoot = "NotAtRepositoryRoot",
+  Conflict = "Conflict",
+  StashConflict = "StashConflict",
+  UnmergedChanges = "UnmergedChanges",
+  PushRejected = "PushRejected",
+  RemoteConnectionError = "RemoteConnectionError",
+  DirtyWorkTree = "DirtyWorkTree",
+  CantOpenResource = "CantOpenResource",
+  GitNotFound = "GitNotFound",
+  CantCreatePipe = "CantCreatePipe",
+  PermissionDenied = "PermissionDenied",
+  CantAccessRemote = "CantAccessRemote",
+  RepositoryNotFound = "RepositoryNotFound",
+  RepositoryIsLocked = "RepositoryIsLocked",
+  BranchNotFullyMerged = "BranchNotFullyMerged",
+  NoRemoteReference = "NoRemoteReference",
+  InvalidBranchName = "InvalidBranchName",
+  BranchAlreadyExists = "BranchAlreadyExists",
+  NoLocalChanges = "NoLocalChanges",
+  NoStashFound = "NoStashFound",
+  LocalChangesOverwritten = "LocalChangesOverwritten",
+  NoUpstreamBranch = "NoUpstreamBranch",
+  IsInSubmodule = "IsInSubmodule",
+  WrongCase = "WrongCase",
+  CantLockRef = "CantLockRef",
+  CantRebaseMultipleBranches = "CantRebaseMultipleBranches",
+  PatchDoesNotApply = "PatchDoesNotApply",
+  NoPathFound = "NoPathFound",
+  UnknownPath = "UnknownPath"
 }

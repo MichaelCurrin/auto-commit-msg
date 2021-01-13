@@ -4,139 +4,139 @@
  * This can be used to check if all changes in a commit are related
  * to 'chore' changes, 'docs' changes, 'test' changes and so on.
  */
-import { ACTION, CONVENTIONAL_TYPE } from '../lib/constants';
-import { splitPath } from '../lib/paths';
+import { ACTION, CONVENTIONAL_TYPE } from "../lib/constants";
+import { splitPath } from "../lib/paths";
 
 // Package-related can be for 'build'.
 const PACKAGE_DIRS = [
   // Rust
-  '.cargo',
+  ".cargo",
 ],
   PACKAGE_NAMES = [
     // Python
-    'requirements.txt',
-    'requirements-dev.txt',
-    'dev-requirements.txt',
-    'requirements-test.txt',
-    'test-requirements.txt',
-    'Pipfile',
-    'pyproject.toml',
-    'setup.py',
+    "requirements.txt",
+    "requirements-dev.txt",
+    "dev-requirements.txt",
+    "requirements-test.txt",
+    "test-requirements.txt",
+    "Pipfile",
+    "pyproject.toml",
+    "setup.py",
 
     // Ruby
-    'Gemfile',
-    'Gemfile.lock',
+    "Gemfile",
+    "Gemfile.lock",
 
     // JavaScript (Exclude package.json since it can be used for metadata and not package changes.)
-    'package-lock.json',
-    'shrinkwrap.json',
-    'yarn.lock',
-    '.npmignore',
-    '.npmrc',
+    "package-lock.json",
+    "shrinkwrap.json",
+    "yarn.lock",
+    ".npmignore",
+    ".npmrc",
 
     // PHP
-    'composer.json',
-    'composer.lock',
+    "composer.json",
+    "composer.lock",
 
     // GO
-    'go.mod',
-    'go.sum',
+    "go.mod",
+    "go.sum",
   ];
 
 // Build system (scripts, configurations or tools) and package dependencies.
 const BUILD_NAMES = [
-  'Dockerfile',
-  'docker-compose.yml',
+  "Dockerfile",
+  "docker-compose.yml",
 
-  'Makefile',
-  'Rakefile',
+  "Makefile",
+  "Rakefile",
 
-  'package.json', // Not necessarily package-related but always build-related.
+  "package.json", // Not necessarily package-related but always build-related.
 ],
   BUILD_EXTENSIONS = [
-    '.gemspec', // Ruby installation
+    ".gemspec", // Ruby installation
   ];
 
 // This may be too broad or clash with other areas such as CI or
 // package unless used close to last in the entire flow.
 const CONFIG_EXTENSIONS = [
-  '.yml',
-  '.yaml',
-  '.json',
-  '.toml',
-  '.ini',
-  '.cfg', // Python config but also for other systems maybe
+  ".yml",
+  ".yaml",
+  ".json",
+  ".toml",
+  ".ini",
+  ".cfg", // Python config but also for other systems maybe
 ],
   CONFIG_DIRS = [
-    '.vscode',
+    ".vscode",
   ],
   CONFIG_NAMES = [
-    '.gitignore',
-    '.editorconfig',
+    ".gitignore",
+    ".editorconfig",
 
-    'setup.cfg',
+    "setup.cfg",
 
-    'tsconfig.json',
-    'tslint.json',
-    '.browserslistrc',
-    'browserslist',
-    'commitlint.config.js',
+    "tsconfig.json",
+    "tslint.json",
+    ".browserslistrc",
+    "browserslist",
+    "commitlint.config.js",
   ];
 
 const CI_DIRS = [
-  '.circleci',
-  '.github/workflows',
+  ".circleci",
+  ".github/workflows",
 ],
   CI_NAMES = [
-    'netlify.toml',
-    'travis.yml',
-    'tox.ini',
+    "netlify.toml",
+    "travis.yml",
+    "tox.ini",
 
-    '.vscodeignore',
+    ".vscodeignore",
 
-    'codecov.yml',
-    '.codecov.yml',
-    '.codeclimate.yml',
+    "codecov.yml",
+    ".codecov.yml",
+    ".codeclimate.yml",
 
     // Zeit
-    'now.json',
-    '.nowignore',
-    'vercel.json',
-    '.vercelignore',
+    "now.json",
+    ".nowignore",
+    "vercel.json",
+    ".vercelignore",
   ];
 
 // This can be useful for multi-file changes e.g. "Creat 5 scripts"
 const SCRIPT_EXTENSIONS = [
-  '.html',
-  '.css',
-  '.scss',
+  ".html",
+  ".css",
+  ".scss",
 
-  '.py',
+  ".py",
 
-  '.rb',
+  ".rb",
 
-  '.js',
-  '.jsx',
-  '.ts',
-  '.tsx',
+  ".js",
+  ".jsx",
+  ".ts",
+  ".tsx",
 
-  '.java',
-  '.jar',
+  ".java",
+  ".jar",
 
-  '.c',
-  '.h',
+  ".c",
+  ".h",
 
-  '.rs',
-  '.go',
+  ".rs",
+  ".go",
 ],
   // For "Update 5 shell scripts"
-  SHELL_SCRIPT_EXTENSION = '.sh';
+  SHELL_SCRIPT_EXTENSION = ".sh";
 
 const LICENSE_NAMES = [
-  'LICENSE',
-  'LICENSE.txt',
-  'License.txt',
-  'LICENSE-source',
+  "LICENSE",
+  "LICENSE.txt",
+  "License.txt",
+  "LICENSE-source",
 ];
 
 /**
@@ -178,21 +178,21 @@ export class Semantic {
    * TODO handle CONTRIBUTING.md etc. in the root.
    */
   isDocRelated(): boolean {
-    return this.name.toLowerCase().startsWith('readme') || this.dirPath.startsWith('docs');
+    return this.name.toLowerCase().startsWith("readme") || this.dirPath.startsWith("docs");
   }
 
   isTestRelated(): boolean {
     const dir = `${this.dirPath}/`;
 
     return (
-      dir.includes('test/') ||
-      dir.includes('tests/') ||
-      dir.includes('spec/') ||
-      dir.startsWith('unit') ||
-      this.name.includes('.test.') ||
-      this.name.includes('.spec.') ||
-      this.name.startsWith('test_') ||
-      this.name === '.coveragerc'
+      dir.includes("test/") ||
+      dir.includes("tests/") ||
+      dir.includes("spec/") ||
+      dir.startsWith("unit") ||
+      this.name.includes(".test.") ||
+      this.name.includes(".spec.") ||
+      this.name.startsWith("test_") ||
+      this.name === ".coveragerc"
     );
   }
 
@@ -210,12 +210,12 @@ export class Semantic {
       CONFIG_EXTENSIONS.includes(this.extension) ||
       CONFIG_DIRS.includes(this.dirPath) ||
       CONFIG_NAMES.includes(this.name) ||
-      this.name.includes('.eslintrc') ||
-      this.name.includes('.eslintignore') ||
-      this.name.includes('.eslintcache') ||
-      this.name.includes('.prettier') ||
-      this.name.includes('tslint') ||
-      this.name.includes('webpack')
+      this.name.includes(".eslintrc") ||
+      this.name.includes(".eslintignore") ||
+      this.name.includes(".eslintcache") ||
+      this.name.includes(".prettier") ||
+      this.name.includes("tslint") ||
+      this.name.includes("webpack")
     );
   }
 

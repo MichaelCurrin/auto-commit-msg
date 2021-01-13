@@ -3,10 +3,10 @@
  *
  * Create a commit message using output from a git command.
  */
-import { parseDiffIndex } from '../git/parseOutput';
-import { ACTION } from '../lib/constants';
-import { formatPath } from '../lib/paths';
-import { lookupDiffIndexAction, moveOrRenameFile } from './action';
+import { parseDiffIndex } from "../git/parseOutput";
+import { ACTION } from "../lib/constants";
+import { formatPath } from "../lib/paths";
+import { lookupDiffIndexAction, moveOrRenameFile } from "./action";
 
 /**
  * Make first letter of a string uppercase.
@@ -16,7 +16,7 @@ import { lookupDiffIndexAction, moveOrRenameFile } from './action';
  */
 function title(value: string) {
   if (!value.length) {
-    throw new Error('Cannot have empty string for applying title');
+    throw new Error("Cannot have empty string for applying title");
   }
   return `${value[0].toUpperCase()}${value.substring(1)}`;
 }

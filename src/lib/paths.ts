@@ -3,9 +3,9 @@
  *
  * Helper functions dealing with file paths.
  */
-import * as path from 'path';
-import { ROOT } from '../lib/constants';
-import { SplitPathResult } from './paths.d';
+import * as path from "path";
+import { ROOT } from "../lib/constants";
+import { SplitPathResult } from "./paths.d";
 
 /**
  * Get metadata for a given path.
@@ -22,7 +22,7 @@ import { SplitPathResult } from './paths.d';
  */
 export function splitPath(filePath: string): SplitPathResult {
   const dir = path.dirname(filePath),
-    isAtRepoRoot = dir === '.';
+    isAtRepoRoot = dir === ".";
 
   return {
     atRoot: isAtRepoRoot,
@@ -41,7 +41,7 @@ export function formatPath(filePath: string) {
   const { name } = splitPath(filePath);
 
   const nameLower = name.toLowerCase();
-  if (nameLower.startsWith('readme') || nameLower.startsWith('index')) {
+  if (nameLower.startsWith("readme") || nameLower.startsWith("index")) {
     return filePath;
   }
   return name;

@@ -8,7 +8,7 @@
  *
  * See shell/README.md docs.
  */
-import { generateMsg } from './prepareCommitMsg';
+import { generateMsg } from "./prepareCommitMsg";
 
 /**
  * Command-line entry-point.
@@ -20,11 +20,11 @@ function main(args: string[]) {
   console.debug(args);
 
   if (!args || args.length === 0) {
-    throw new Error('Missing arguments');
+    throw new Error("Missing arguments");
   }
   const lines = [args[0]];
   if (!lines) {
-    console.error('No file changes found');
+    console.error("No file changes found");
     return;
   }
 

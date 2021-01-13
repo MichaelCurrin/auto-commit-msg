@@ -2,20 +2,20 @@
  * Map Git status short symbols to long description
  */
 // Human-friendly description of path for use in commit messages.
-export const ROOT = 'repo root';
+export const ROOT = "repo root";
 
 // Mapping of change description in git status (or diff-index).
 // The keys are for --short output.
 export enum DESCRIPTION {
-  ' ' = 'unmodified',
-  M = 'modified',
-  A = 'added',
-  D = 'deleted',
-  R = 'renamed',
-  C = 'copied',
-  U = 'unmerged',
-  '?' = 'untracked',
-  '!' = 'ignored'
+  " " = "unmodified",
+  M = "modified",
+  A = "added",
+  D = "deleted",
+  R = "renamed",
+  C = "copied",
+  U = "unmerged",
+  "?" = "untracked",
+  "!" = "ignored"
 }
 
 /**
@@ -26,11 +26,11 @@ export enum DESCRIPTION {
  * different logic.
  */
 export enum ACTION {
-  M = 'update',
-  A = 'create',
-  D = 'delete',
-  R = 'rename',
-  C = 'copy'
+  M = "update",
+  A = "create",
+  D = "delete",
+  R = "rename",
+  C = "copy"
 }
 
 /**
@@ -44,16 +44,16 @@ export enum ACTION {
  *    https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum
  */
 export enum CONVENTIONAL_TYPE {
-  BUILD = 'build',
-  CI = 'ci',
-  CHORE = 'chore',
-  DOCS = 'docs',
-  FEAT = 'feat',
-  FIX = 'fix',
-  PERF = 'perf',
-  REFACTOR = 'refactor',
-  REVERT = 'revert',
-  STYLE = 'style',
-  TEST = 'test',
-  UNKNOWN = ''
+  BUILD = "build",
+  CI = "ci",
+  CHORE = "chore",
+  DOCS = "docs",
+  FEAT = "feat",
+  FIX = "fix",
+  PERF = "perf",
+  REFACTOR = "refactor",
+  REVERT = "revert",
+  STYLE = "style",
+  TEST = "test",
+  UNKNOWN = ""
 }
