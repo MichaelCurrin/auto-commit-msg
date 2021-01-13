@@ -53,6 +53,7 @@ describe('Generate commit message for a single changed file', function () {
         oneChange('R    foo.txt          bar.txt'),
         'Rename foo.txt to bar.txt'
       );
+
       assert.strictEqual(
         oneChange('R    fizz/foo.txt     fizz/bar.txt'),
         'Rename foo.txt to bar.txt'
