@@ -98,14 +98,18 @@ What this VS Code extension can do:
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [x] Use semantic prefix / conventional commits e.g. `chore: Update package.json`
 
-### Structure and admin
+### Topics areas
 
-- [x] Works with git repos
-- [x] Test coverage - Unit tests that are run with GitHub Actions CI
-- [ ] Update logo
-- [ ] Available in VS Code marketplace
-- [ ] CI to build the package archive on tag
-- [ ] Clean up docs and Wiki
+If recognizes files for a variety of languages and tooling, for providing an appropriate semantic commit message.
+
+- [x] Python - package files and configs.
+- [x] JavaScript, TypeScript  - package files and configs.
+- [x] Ruby - package files and configs.
+- [x] Go modules.
+- [x] Circle CI, GitHub Actions - `ci`.
+- [x] Makefile and package files for languages - `build`.
+- [x] Config files like YAML, JSON and TOML - `chore` or `build`.
+
 
 
 ## Project plan
@@ -113,6 +117,17 @@ What this VS Code extension can do:
 This project is a work in progress. It is starting out as a specification of the desired behavior on the [Wiki](https://github.com/MichaelCurrin/auto-commit-msg/wiki), then will tests added and then only the functionality last.
 
 This will probably be in Python for easy scaling and tests. And it will probably use git commit hooks - whatever I find works well for command-line use and also VS Code messages if left blank but allowing manual overrides. And ideally showing the message just before its made so one can confirm. But this may be reaching too much especially for two entry methods. Maybe it can be generated when files are staged based on an event in VS Code.
+
+### Tasks
+
+Topics around structure and admin:
+
+- [x] Works with `git` repos
+- [x] Test coverage - Unit tests that are run with GitHub Actions CI
+- [ ] Update logo
+- [ ] Available in VS Code marketplace
+- [ ] CI to build the package archive on tag
+- [ ] Clean up docs and Wiki
 
 
 ## Documentation
