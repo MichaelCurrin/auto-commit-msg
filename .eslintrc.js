@@ -21,7 +21,7 @@ module.exports = {
     ],
     'quotes': [
       2,
-      'single',
+      'double',
     ],
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-explicit-any': 0,
