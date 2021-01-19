@@ -33,9 +33,9 @@ If you updated a build-related file.
 
 ![build](docs/_media/sample-build.png)
 
-If updated update file in `docs/` or a `README.md` anywhere.
+If updated a file in `docs/` or a `README.md` anywhere.
 
-![docs](docs/_media/sample-feat.png)
+![docs](docs/_media/sample-docs.png)
 
 If you renamed a file.
 
@@ -58,7 +58,7 @@ Based on the action and the file (directory, name and extension), a _semantic co
 
 - `feat` - for new file
 - `chore` - for config files and delete/rename the actions
-- `build` - for package files and Makefile / Rakefile
+- `build` - for package files and `Makefile` / `Rakefile`
 - `ci` - GH Actions, CircleCI, BuildKite
 
 You have to figure out when to use `fix`, `refactor` or `perf` yourself.
