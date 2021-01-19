@@ -1,5 +1,5 @@
 # Auto Commit Message ⚙️🧙‍♂️ ✉️
-> VS Code extension to write commit messages for you
+> A VS Code extension that writes commit messages for you
 
 <!-- Badges generated with https://michaelcurrin.github.io/badge-generator/#/ -->
 
@@ -13,11 +13,19 @@
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
 
 
-## Examples
+## Release disclaimer
 
-In a git repo open in VS Code, press the extension's button. It will write message for you in the existing Git message input box.
+- This application is still in **pre-release** stage.
+- But... it is still functional and I use it daily, so please use it too if you want.
+- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace and cleaning up the docs. It can become version `1.0.0` around then.
+- There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
 
-If created a new file `foo.js`:
+
+## Intro
+
+### Samples of generated commit messages
+
+If you created a new file - `foo.js`:
 
 ```
 feat: Create foo.js`
@@ -35,6 +43,45 @@ You updated a file in the docs directory:
 docs: Update bar.md`
 ```
 
+If you move a file.
+
+```
+chore: Move tsconfig.json to src
+```
+
+### Capabilities
+
+This extension understands something about a single file and how it changed.
+
+Here are supported action words which will be used.
+
+- `Create`
+- `Update`
+- `Delete`
+- `Move`
+- `Rename`
+- `Move and rename`
+
+Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived from one of:
+
+- `feat` (new file)
+- `chore` (configs)
+- `build` (package files)
+- `ci` (CI builds)
+
+You have to figure out when to use `fix`, `refactor` or `perf` yourself.
+
+### How to use
+
+Install the extension from a recent release on GitHub.
+
+1. Open VS Code where you have a Git repo.
+2. In the Git pane, click the extension's button.
+3. Edit a single file. Or stage one file if you have many changes.
+4. If possible, the extension will create a descriptive commit message for you in the commit message box.
+
+<!-- TODO Add screenshots or GIF here -->
+
 
 ## About
 
@@ -47,14 +94,6 @@ It can make a message to **describe a change** for a single file to be committed
 It many cases it can also provide an appropriate **semvar** label for you. It can't separate features and bug fixes but it can identify changes to docs, CI files and config files.
 
  Don't use this tool all the time - remember to write explantory messages when it matters.
-
-
-## Release disclaimer
-
-- This application is still in **pre-release** stage.
-- But... it is still functional and I use it daily, so please use it too if you want.
-- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace and cleaning up the docs. It can become version `1.0.0` around then.
-- There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
 
 
 ## Purpose
