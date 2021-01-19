@@ -21,33 +21,25 @@
 - There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
 
 
-## Intro
+## Overview
 
 ### Samples of generated commit messages
 
-If you created a new file - `foo.js`:
+If you created a new file and staged it.
 
-```
-feat: Create foo.js`
-```
+![feat](docs/_media/sample-feat.png)
 
-If you updated your `Makefile`:
+If you updated a build-related file.
 
-```
-build: Update Makefile
-```
+![build](docs/_media/sample-build.png)
 
-You updated a file in the docs directory:
+If updated update file in `docs/` or a `README.md` anywhere.
 
-```
-docs: Update bar.md`
-```
+![docs](docs/_media/sample-feat.png)
 
-If you move a file.
+If you renamed a file.
 
-```
-chore: Move tsconfig.json to src
-```
+![rename](docs/_media/sample-rename.png)
 
 ### Capabilities
 
@@ -65,7 +57,7 @@ Here are supported action words which will be used.
 Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived from one of:
 
 - `feat` - for new file
-- `chore` - for config files and delete/rename actions
+- `chore` - for config files and delete/rename the actions
 - `build` - for package files and Makefile / Rakefile
 - `ci` - GH Actions, CircleCI, BuildKite
 
@@ -80,7 +72,7 @@ Install the extension from a recent release on GitHub.
 3. Edit a single file. Or stage one file if you have many changes.
 4. If possible, the extension will create a descriptive commit message for you in the commit message box.
 
-<!-- TODO Add screenshots or GIF here -->
+<!-- TODO Add GIF here -->
 
 
 ## About
