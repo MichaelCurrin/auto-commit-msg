@@ -1,9 +1,6 @@
 {
   "name": "auto-commit-msg",
   "version": "0.14.0",
-  "displayName": "Auto Commit Message",
-  "description": "Generate git commit messages automagically",
-  "publisher": "MichaelCurrin",
   "scripts": {
     "lint:check": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
@@ -37,6 +34,9 @@
     "vsce": "^1.83.0",
     "vscode-test": "^1.4.1"
   },
+  "displayName": "Auto Commit Message",
+  "description": "Generate git commit messages automagically",
+  "publisher": "MichaelCurrin",
   "homepage": "https://github.com/MichaelCurrin/auto-commit-msg#readme",
   "repository": {
     "type": "git",
