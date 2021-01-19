@@ -64,10 +64,10 @@ Here are supported action words which will be used.
 
 Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived from one of:
 
-- `feat` (new file)
-- `chore` (configs)
-- `build` (package files)
-- `ci` (CI builds)
+- `feat` - for new file
+- `chore` - for config files and delete/rename actions
+- `build` - for package files and Makefile / Rakefile
+- `ci` - GH Actions, CircleCI, BuildKite
 
 You have to figure out when to use `fix`, `refactor` or `perf` yourself.
 
