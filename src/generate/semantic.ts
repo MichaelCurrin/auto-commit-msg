@@ -1,8 +1,8 @@
 /**
  * Logic around semantic commit messages.
  *
- * This can be used to check if all changes in a commit are related
- * to 'chore' changes, 'docs' changes, 'test' changes and so on.
+ * This can be used to check if all changes in a commit are related to 'chore' changes, 'docs'
+ * changes, 'test' changes and so on.
  */
 import { ACTION, CONVENTIONAL_TYPE } from "../lib/constants";
 import { splitPath } from "../lib/paths";
@@ -57,8 +57,8 @@ const BUILD_NAMES = [
     ".gemspec", // Ruby installation
   ];
 
-// This may be too broad or clash with other areas such as CI or
-// package unless used close to last in the entire flow.
+// This may be too broad or clash with other areas such as CI or package unless used close to last
+// in the entire flow.
 const CONFIG_EXTENSIONS = [
   ".yml",
   ".yaml",
@@ -173,7 +173,8 @@ export class Semantic {
    *
    * Return true for `.rst`, README files and anything in the docs directory.
    *
-   * TODO: For static sites, not all .md files are docs but that could be configured with a global flag. Or recognize Jekyll config.
+   * TODO: For static sites, not all .md files are docs but that could be configured with a global
+   * flag. Or recognize Jekyll config.
    */
   isDocRelated(): boolean {
     if (this.extension === ".rst") {
@@ -204,7 +205,8 @@ export class Semantic {
     return CI_DIRS.includes(this.dirPath) || CI_NAMES.includes(this.name);
   }
 
-  // Broadly match eslint configs with any extension e.g. .json or .yml - https://eslint.org/docs/user-guide/configuring
+  // Broadly match eslint configs with any extension e.g. .json or .yml
+  // See https://eslint.org/docs/user-guide/configuring
   // Same for prettier configs https://prettier.io/docs/en/configuration.html
   // And tslint* as JSON or YAML and webpack*.
   // See https://github.com/vscode-icons/vscode-icons/blob/master/src/iconsManifest/supportedExtensions.ts
@@ -240,7 +242,11 @@ export class Semantic {
     return this.isLicenseRelated() || this.isConfigRelated();
   }
 
-  /** Return conventional commit type. If rules can't be used to match a known one, return the unknown form of the enum. */
+  /**
+   * Return conventional commit type.
+   *
+   * If rules can't be used to match a known one, return the unknown form of the enum.
+   */
   getType() {
     if (this.isCIRelated()) {
       return CONVENTIONAL_TYPE.CI;

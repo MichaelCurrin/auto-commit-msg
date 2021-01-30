@@ -23,6 +23,8 @@ module.exports = {
       2,
       "double",
     ],
+    "max-len": [2, { code: 100, "ignoreStrings": true, "ignoreUrls": true },
+    ],
     "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,

@@ -30,8 +30,9 @@ function title(value: string) {
  * The output will be like 'Update foo.txt'.
  *
  * Using the variable name as 'from' is not really descriptive here but the logic works. It's also
- * possible to reverse 'from' and 'to' in `git status` and `git diff-index` output or handle just the
- * parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a move.
+ * possible to reverse 'from' and 'to' in `git status` and `git diff-index` output or handle just
+ * the parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a
+ * move.
  */
 export function oneChange(line: string) {
   const { x: actionChar, from, to } = parseDiffIndex(line);
