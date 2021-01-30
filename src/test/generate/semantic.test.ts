@@ -4,9 +4,17 @@ import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
 describe("Test #Semantic class for path-based conventional commit logic", function () {
   describe("#isDocRelated()", function () {
-    it("determines README.md is a doc", function () {
+    it("determines that README file is a doc", function () {
       assert.strictEqual(new Semantic("README.md").isDocRelated(), true);
+      assert.strictEqual(new Semantic("README.rst").isDocRelated(), true);
+      assert.strictEqual(new Semantic("Readme.txt").isDocRelated(), true);
+      assert.strictEqual(new Semantic("readme").isDocRelated(), true);
+
       assert.strictEqual(new Semantic("FEEDME.md").isDocRelated(), false);
+    });
+
+    it("determines that a CONTRIBUTING file is a doc", function () {
+      assert.strictEqual(new Semantic("CONTRIBUTING.md").isDocRelated(), true);
     });
 
     it("determines a file in the docs directory is a doc", function () {

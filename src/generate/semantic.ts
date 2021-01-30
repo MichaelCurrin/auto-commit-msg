@@ -174,11 +174,13 @@ export class Semantic {
    * Include .md, .rst and other README files. And entire docs directory.
    *
    * For static sites, not all .md files are docs but that could be configured with a global flag.
-   * TODO check .md files?
-   * TODO handle CONTRIBUTING.md etc. in the root.
+   * TODO check .md files if not a Jekyll project - use a config value to enable Jekyll, or
+   * recognize Jekyll config.
    */
   isDocRelated(): boolean {
-    return this.name.toLowerCase().startsWith("readme") || this.dirPath.startsWith("docs");
+    const lowerName = this.name.toLowerCase();
+
+    return lowerName.startsWith("readme") || lowerName.startsWith("contributing") || this.dirPath.startsWith("docs");
   }
 
   isTestRelated(): boolean {
