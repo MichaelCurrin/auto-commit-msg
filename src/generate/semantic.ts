@@ -171,13 +171,14 @@ export class Semantic {
   /**
    * Check if file a doc - for semantic commits.
    *
-   * Include .md, .rst and other README files. And entire docs directory.
+   * Return true for `.rst`, README files and anything in the docs directory.
    *
-   * For static sites, not all .md files are docs but that could be configured with a global flag.
-   * TODO check .md files if not a Jekyll project - use a config value to enable Jekyll, or
-   * recognize Jekyll config.
+   * TODO: For static sites, not all .md files are docs but that could be configured with a global flag. Or recognize Jekyll config.
    */
   isDocRelated(): boolean {
+    if (this.extension === ".rst") {
+      return true;
+    }
     const lowerName = this.name.toLowerCase();
 
     return lowerName.startsWith("readme") || lowerName.startsWith("contributing") || this.dirPath.startsWith("docs");

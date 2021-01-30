@@ -17,6 +17,11 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
       assert.strictEqual(new Semantic("CONTRIBUTING.md").isDocRelated(), true);
     });
 
+    it("determines that a `.rst` file is a doc", function () {
+      assert.strictEqual(new Semantic("README.rst").isDocRelated(), true);
+      assert.strictEqual(new Semantic("foo.rst").isDocRelated(), true);
+    });
+
     it("determines a file in the docs directory is a doc", function () {
       assert.strictEqual(new Semantic("docs/fizz.md").isDocRelated(), true);
       assert.strictEqual(new Semantic("docs/foo.img").isDocRelated(), true);
