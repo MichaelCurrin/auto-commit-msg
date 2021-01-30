@@ -11,18 +11,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
   ],
   rules: {
-    "semi": [
-      2,
-      "always",
-    ],
-    "comma-dangle": [
-      2,
-      "always-multiline",
-    ],
-    "quotes": [
-      2,
-      "double",
-    ],
+    "semi": [2, "always",],
+    "comma-dangle": [2, "always-multiline",],
+    "quotes": [2, "double",],
     "max-len": [2, { code: 100, "ignoreStrings": true, "ignoreUrls": true },
     ],
     "@typescript-eslint/no-unused-vars": 0,
