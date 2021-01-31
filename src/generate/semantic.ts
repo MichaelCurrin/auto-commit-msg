@@ -65,7 +65,7 @@ const BUILD_NAMES = [
   BUILD_EXTENSIONS = [
     ".gemspec", // Ruby installation
     ".bat",
-    ".gradle"
+    ".gradle",
   ];
 
 // This may be too broad or clash with other areas such as CI or package unless used close to last
