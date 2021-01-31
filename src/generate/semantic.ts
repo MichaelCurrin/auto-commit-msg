@@ -41,6 +41,10 @@ const PACKAGE_DIRS = [
     // GO
     "go.mod",
     "go.sum",
+
+    // RUST
+    "Cargo.toml",
+    "Cargo.lock",
   ];
 
 // Build system (scripts, configurations or tools) and package dependencies.
@@ -52,9 +56,16 @@ const BUILD_NAMES = [
   "Rakefile",
 
   "package.json", // Not necessarily package-related but always build-related.
+
+  // JAVA
+  "gradlew",
+  "grailsw",
+  "micronaut-cli.yml",
 ],
   BUILD_EXTENSIONS = [
     ".gemspec", // Ruby installation
+    ".bat",
+    ".gradle"
   ];
 
 // This may be too broad or clash with other areas such as CI or package unless used close to last
