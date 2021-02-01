@@ -46,7 +46,10 @@ describe("Split `git diff-index` output into components", function () {
         from: "bar.txt",
         to: "foo.txt",
       };
-      assert.deepStrictEqual(parseDiffIndex("R100    bar.txt       foo.txt"), expected);
+      assert.deepStrictEqual(
+        parseDiffIndex("R100    bar.txt       foo.txt"),
+        expected
+      );
 
       it("should return the appropriate commit message for a moved file", function () {
         const expected: FileChanges = {
@@ -55,7 +58,10 @@ describe("Split `git diff-index` output into components", function () {
           from: "bar.txt",
           to: "fizz/foo.txt",
         };
-        assert.deepStrictEqual(parseDiffIndex("R100    bar.txt       fizz/foo.txt"), expected);
+        assert.deepStrictEqual(
+          parseDiffIndex("R100    bar.txt       fizz/foo.txt"),
+          expected
+        );
       });
     });
 
@@ -66,7 +72,10 @@ describe("Split `git diff-index` output into components", function () {
         from: "bar.txt",
         to: "foo.txt",
       };
-      assert.deepStrictEqual(parseDiffIndex("R096    bar.txt       foo.txt"), expected);
+      assert.deepStrictEqual(
+        parseDiffIndex("R096    bar.txt       foo.txt"),
+        expected
+      );
 
       it("should return the appropriate commit message for a moved file", function () {
         const expected: FileChanges = {
@@ -75,7 +84,10 @@ describe("Split `git diff-index` output into components", function () {
           to: "bar.txt",
           from: "fizz/foo.txt",
         };
-        assert.deepStrictEqual(parseDiffIndex("R096    bar.txt       fizz/foo.txt"), expected);
+        assert.deepStrictEqual(
+          parseDiffIndex("R096    bar.txt       fizz/foo.txt"),
+          expected
+        );
       });
     });
   });
@@ -130,7 +142,10 @@ describe("Split `git status` output into components", function () {
           from: "foo.txt",
           to: "fizz/foo.txt",
         };
-        assert.deepStrictEqual(parseStatus("R  foo.txt -> fizz/foo.txt"), expected);
+        assert.deepStrictEqual(
+          parseStatus("R  foo.txt -> fizz/foo.txt"),
+          expected
+        );
       });
     });
   });

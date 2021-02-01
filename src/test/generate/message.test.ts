@@ -12,14 +12,9 @@ describe("Generate commit message for a single changed file", function () {
   // on at least file name is done.
   describe("#oneChange()", function () {
     it("must return the appropriate commit message for a new file", function () {
-      assert.strictEqual(
-        oneChange("A    foo.txt"),
-        "Create foo.txt"
-      );
+      assert.strictEqual(oneChange("A    foo.txt"), "Create foo.txt");
       // Maybe create foo.txt in bar, if the dir is not too long?
-      assert.strictEqual(
-        oneChange("A    bar/foo.txt"),
-        "Create foo.txt");
+      assert.strictEqual(oneChange("A    bar/foo.txt"), "Create foo.txt");
     });
 
     it("must throw an error if no filepath can be no generated", function () {
@@ -27,25 +22,13 @@ describe("Generate commit message for a single changed file", function () {
     });
 
     it("must return the appropriate commit message for a modified file", function () {
-      assert.strictEqual(
-        oneChange("M    foo.txt"),
-        "Update foo.txt"
-      );
-      assert.strictEqual(
-        oneChange("M    bar/foo.txt"),
-        "Update foo.txt"
-      );
+      assert.strictEqual(oneChange("M    foo.txt"), "Update foo.txt");
+      assert.strictEqual(oneChange("M    bar/foo.txt"), "Update foo.txt");
     });
 
     it("must return the appropriate commit message for a deleted file", function () {
-      assert.strictEqual(
-        oneChange("D    foo.txt"),
-        "Delete foo.txt"
-      );
-      assert.strictEqual(
-        oneChange("D    bar/foo.txt"),
-        "Delete foo.txt"
-      );
+      assert.strictEqual(oneChange("D    foo.txt"), "Delete foo.txt");
+      assert.strictEqual(oneChange("D    bar/foo.txt"), "Delete foo.txt");
     });
 
     it("must describe a file renamed in the same directory", function () {
@@ -123,18 +106,9 @@ describe("Generate commit message for a single changed file", function () {
     });
 
     it("must use the full path to describe index files", function () {
-      assert.strictEqual(
-        oneChange("A    README.md"),
-        "Create README.md"
-      );
-      assert.strictEqual(
-        oneChange("M    README.md"),
-        "Update README.md"
-      );
-      assert.strictEqual(
-        oneChange("D    README.md"),
-        "Delete README.md"
-      );
+      assert.strictEqual(oneChange("A    README.md"), "Create README.md");
+      assert.strictEqual(oneChange("M    README.md"), "Update README.md");
+      assert.strictEqual(oneChange("D    README.md"), "Delete README.md");
 
       assert.strictEqual(
         oneChange("A    foo/README.md"),
@@ -149,14 +123,8 @@ describe("Generate commit message for a single changed file", function () {
         "Delete bar/baz/buzz/README.md"
       );
 
-      assert.strictEqual(
-        oneChange("A    foo/index.md"),
-        "Create foo/index.md"
-      );
-      assert.strictEqual(
-        oneChange("A    foo/index.js"),
-        "Create foo/index.js"
-      );
+      assert.strictEqual(oneChange("A    foo/index.md"), "Create foo/index.md");
+      assert.strictEqual(oneChange("A    foo/index.js"), "Create foo/index.js");
     });
   });
 });

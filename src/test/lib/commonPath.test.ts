@@ -7,11 +7,7 @@ describe("Find the highest common parent directory for paths", function () {
   // needed for that to keep it much shorter, that is easy from the std lib.
   describe("#commonPath()", function () {
     it("should give the common path for 3 root repo paths", function () {
-      const paths = [
-        "foo",
-        "bar",
-        "fizz/buzz",
-      ];
+      const paths = ["foo", "bar", "fizz/buzz"];
 
       assert.strictEqual(commonPath(paths), "repo root");
     });
@@ -19,10 +15,7 @@ describe("Find the highest common parent directory for paths", function () {
     // These are relative to the repo root but don't have a forward slash,
     // based on git output from status or diff-index.
     it("should give the common path for 2 different paths", function () {
-      const paths = [
-        "Foo/test",
-        "Foo/bar/test",
-      ];
+      const paths = ["Foo/test", "Foo/bar/test"];
 
       assert.strictEqual(commonPath(paths), "Foo");
     });
