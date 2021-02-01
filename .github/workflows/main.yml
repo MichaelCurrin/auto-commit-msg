@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
-    
+
       - name: Get cached dependencies
         uses: actions/cache@v2
         with:
@@ -24,7 +24,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-     
+
       - name: Install dependencies
         run: npm install
 
