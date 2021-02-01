@@ -193,7 +193,7 @@ export class Semantic {
     }
     const lowerName = this.name.toLowerCase();
 
-    return lowerName.startsWith("readme") || lowerName.startsWith("contributing") || this.dirPath.startsWith("docs");
+    return lowerName.startsWith("readme") || lowerName.startsWith("contributing") || lowerName.startsWith("changelog") || lowerName.startsWith("releases") || this.dirPath.startsWith("docs");
   }
 
   isTestRelated(): boolean {
