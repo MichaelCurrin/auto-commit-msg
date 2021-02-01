@@ -7,9 +7,16 @@ import { getChanges } from "./git/cli";
 import { getCommitMsg, setCommitMsg } from "./gitExtension";
 import { generateMsg } from "./prepareCommitMsg";
 
-export const NO_LINES = "Unable to generate message as no changes files can be seen.\nTry saving your files or stage any new untracked files.";
+export const NO_LINES = `\
+Unable to generate message as no changes files can be seen.
+Try saving your files or stage any new untracked files.\
+`;
 
-export const TOO_MANY_FILES = "This extension currently only supports working with *one* changed file at a time.\nStage just one file (or both it's old 'D' and new 'A' path) and try again. Or stash changes so that only one file change is left in the working tree.";
+export const TOO_MANY_FILES = `\
+This extension currently only supports working with *one* changed file at a time.
+Stage just one file (or both it's old 'D' and new 'A' path) and try again.
+Or stash changes so that only one file change is left in the working tree.\
+`;
 
 /**
  * Generate and fill a commit message.

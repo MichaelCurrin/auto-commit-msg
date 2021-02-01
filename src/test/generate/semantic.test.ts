@@ -114,7 +114,7 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
 });
 
 describe("#getSemanticConvention()", function () {
-  it("knows for a new file that category is feat (and probably not a fix), unless there is a match for it under another category", function () {
+  it("uses feat for a new file if no other match is found", function () {
     const add = ACTION.A;
 
     assert.strictEqual(getSemanticConvention(add, "README.md"), CONVENTIONAL_TYPE.DOCS);
@@ -152,7 +152,7 @@ describe("#getSemanticConvention()", function () {
     );
   });
 
-  it("knows for a modified file that the semantic category comes from the path or is not set", function () {
+  it("uses semantic category from path for a modified file, or leaves not set", function () {
     const modified = ACTION.M;
 
     assert.strictEqual(getSemanticConvention(modified, "foo.txt"), CONVENTIONAL_TYPE.UNKNOWN);
