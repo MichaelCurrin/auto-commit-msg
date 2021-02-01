@@ -10,6 +10,5 @@
 
   // For Prettier Now extension. I don't like how this has to be set
   // vs the the TS JS language features extension. Plus Prettier Now wraps else statements weirdly. Oh but Prettier Now removes empty lines for cleanup and the other doesn't. So I don't know which to use. Maybe prettier is better as it is meant to avoid discussions like this.
-	"prettier.tabWidth": 2
-
+  "prettier.tabWidth": 2
 }
