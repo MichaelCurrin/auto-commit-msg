@@ -150,6 +150,23 @@ const LICENSE_NAMES = [
   "LICENSE-source",
 ];
 
+// Leave as all lowercase for case-insenstive checks.
+// Don't worry about .rst as those are already cover as always docs. While .md could be content for
+// a static site.
+const DOC_NAMES = [
+  "readme.md",
+  "readme.txt",
+  "readme",
+
+  "installation.md",
+  "usage.md",
+  "development.md",
+
+  "contributing.md",
+  "changelog.md",
+  "releases.md",
+];
+
 /**
  * Support conventional commit prefix for a given file path.
  *
@@ -193,11 +210,7 @@ export class Semantic {
     }
     const lowerName = this.name.toLowerCase();
 
-    return lowerName.startsWith("readme")
-      || lowerName.startsWith("contributing")
-      || lowerName.startsWith("changelog")
-      || lowerName.startsWith("releases")
-      || this.dirPath.startsWith("docs");
+    return DOC_NAMES.includes(lowerName) || this.dirPath.startsWith("docs");
   }
 
   isTestRelated(): boolean {
