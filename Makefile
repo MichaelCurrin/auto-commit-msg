@@ -9,6 +9,7 @@ h help:
 install:
 	npm install
 
+
 # Note - the linter will not fix formatting issues, but IDE or Prettier can.
 l lint:
 	npm run lint:fix
