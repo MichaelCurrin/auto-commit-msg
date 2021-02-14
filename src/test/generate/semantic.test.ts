@@ -3,36 +3,36 @@ import { getSemanticConvention, Semantic } from "../../generate/semantic";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
 describe("Test #Semantic class for path-based conventional commit logic", function () {
-  describe("#isDocRelated()", function () {
+  describe("#isDocsRelated()", function () {
     it("determines that a README file is a doc", function () {
-      assert.strictEqual(new Semantic("README.md").isDocRelated(), true);
-      assert.strictEqual(new Semantic("README.rst").isDocRelated(), true);
-      assert.strictEqual(new Semantic("Readme.txt").isDocRelated(), true);
-      assert.strictEqual(new Semantic("readme").isDocRelated(), true);
+      assert.strictEqual(new Semantic("README.md").isDocsRelated(), true);
+      assert.strictEqual(new Semantic("README.rst").isDocsRelated(), true);
+      assert.strictEqual(new Semantic("Readme.txt").isDocsRelated(), true);
+      assert.strictEqual(new Semantic("readme").isDocsRelated(), true);
 
-      assert.strictEqual(new Semantic("FEEDME.md").isDocRelated(), false);
+      assert.strictEqual(new Semantic("FEEDME.md").isDocsRelated(), false);
     });
 
     it("determines that a CONTRIBUTING file is a doc", function () {
-      assert.strictEqual(new Semantic("CONTRIBUTING.md").isDocRelated(), true);
-      assert.strictEqual(new Semantic("contributing.md").isDocRelated(), true);
+      assert.strictEqual(new Semantic("CONTRIBUTING.md").isDocsRelated(), true);
+      assert.strictEqual(new Semantic("contributing.md").isDocsRelated(), true);
     });
 
     it("determines that a `.rst` file is a doc", function () {
-      assert.strictEqual(new Semantic("README.rst").isDocRelated(), true);
-      assert.strictEqual(new Semantic("foo.rst").isDocRelated(), true);
+      assert.strictEqual(new Semantic("README.rst").isDocsRelated(), true);
+      assert.strictEqual(new Semantic("foo.rst").isDocsRelated(), true);
     });
 
     it("determines a file in the docs directory is a doc", function () {
-      assert.strictEqual(new Semantic("docs/fizz.md").isDocRelated(), true);
-      assert.strictEqual(new Semantic("docs/foo.img").isDocRelated(), true);
+      assert.strictEqual(new Semantic("docs/fizz.md").isDocsRelated(), true);
+      assert.strictEqual(new Semantic("docs/foo.img").isDocsRelated(), true);
 
       assert.strictEqual(
-        new Semantic("docs/fizz/foo.img").isDocRelated(),
+        new Semantic("docs/fizz/foo.img").isDocsRelated(),
         true
       );
 
-      assert.strictEqual(new Semantic("fuzz/fizz.md").isDocRelated(), false);
+      assert.strictEqual(new Semantic("fuzz/fizz.md").isDocsRelated(), false);
     });
   });
 

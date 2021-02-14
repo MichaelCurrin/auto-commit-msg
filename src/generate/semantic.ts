@@ -204,7 +204,7 @@ export class Semantic {
    * TODO: For static sites, not all .md files are docs but that could be configured with a global
    * flag. Or recognize Jekyll config.
    */
-  isDocRelated(): boolean {
+  isDocsRelated(): boolean {
     if (this.extension === ".rst") {
       return true;
     }
@@ -285,7 +285,7 @@ export class Semantic {
     if (this.isChoreRelated()) {
       return CONVENTIONAL_TYPE.CHORE;
     }
-    if (this.isDocRelated()) {
+    if (this.isDocsRelated()) {
       return CONVENTIONAL_TYPE.DOCS;
     }
     if (this.isTestRelated()) {
