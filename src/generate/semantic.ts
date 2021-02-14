@@ -162,6 +162,7 @@ const DOC_NAMES = [
   "usage.md",
   "development.md",
 
+  "security.md",
   "contributing.md",
   "changelog.md",
   "releases.md",
