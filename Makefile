@@ -20,8 +20,9 @@ t test:
 
 
 # Run tests and then tag and push.
-tag:
+tag: #ext
 	npm version minor
+	$(MAKE) ext
 
 # Build and install the extension globally.
 e ext:
