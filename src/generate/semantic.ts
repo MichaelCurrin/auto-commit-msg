@@ -150,6 +150,11 @@ const LICENSE_NAMES = [
   "LICENSE-source",
 ];
 
+const DOCS_DIRS = [
+  "docs",
+  ".github/ISSUE_TEMPLATE",
+  ".github/PULL_REQUEST_TEMPLATE",
+];
 // Anything in `/docs` will be covered already so this is for the root and any subdirectories. Especially
 // Don't worry about .rst as those are already cover as always docs. While .md could be content for
 // a static site.
@@ -170,6 +175,9 @@ const DOC_NAMES = [
   "FUNDING.md",
   "PULL_REQUEST_TEMPLATE.md",
   "ISSUE_TEMPLATE.md",
+  
+  "MAINTAINERS.txt",
+  "CODEOWNERS",
 ].map(name => name.toLowerCase());
 
 /**
