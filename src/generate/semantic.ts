@@ -150,23 +150,27 @@ const LICENSE_NAMES = [
   "LICENSE-source",
 ];
 
-// Leave as all lowercase for case-insenstive checks.
+// Anything in `/docs` will be covered already so this is for the root and any subdirectories. Especially
 // Don't worry about .rst as those are already cover as always docs. While .md could be content for
 // a static site.
 const DOC_NAMES = [
-  "readme.md",
-  "readme.txt",
-  "readme",
-
+  "README",
+  "README.md",
+  "README.txt",
+  
   "installation.md",
   "usage.md",
   "development.md",
-
-  "security.md",
-  "contributing.md",
-  "changelog.md",
-  "releases.md",
-];
+  
+  // GitHub docs.
+  "SECURITY.md",
+  "CONTRIBUTING.md",
+  "CHANGELOG.md",
+  "RELEASES.md",
+  "FUNDING.md",
+  "PULL_REQUEST_TEMPLATE.md",
+  "ISSUE_TEMPLATE.md",
+].map(name => name.toLowerCase());
 
 /**
  * Support conventional commit prefix for a given file path.
