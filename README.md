@@ -27,19 +27,27 @@
 
 If you created a new file and staged it.
 
-![feat](docs/_media/sample-feat.png)
+<div align="center">
+    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="400" />
+</div>
 
 If you updated a build-related file.
 
-![build](docs/_media/sample-build.png)
+<div align="center">
+<img src="/docs/_media/sample-build.png" alt="build" title="build" width="400" />
+</div>
 
 If updated a file in `docs/` or a `README.md` anywhere.
 
-![docs](docs/_media/sample-docs.png)
+<div align="center">
+<img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="400" />
+</div>
 
 If you renamed a file.
 
-![rename](docs/_media/sample-rename.png)
+<div align="center">
+    <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="400" />
+</div>
 
 ### Capabilities
 
@@ -54,14 +62,25 @@ Here are supported action words which will be used.
 - `Rename`
 - `Move and rename`
 
-Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived from one of:
+Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived from one of these:
+ 
+Label   | Rule
+---     | ---
+`feat`  | For a new file. (The tool can't differentiate between content for a feature / refactor / bug fix, but it assumes a new file is probably going to be new feature)
+`chore` | For config files and for deleting, renaming or moving a file.
+`build` | For package management files and `Makefile` / `Rakefile`.
+`ci`    | For configs around GH Actions, CircleCI and BuildKite.
+`test`  | For directories and files related to tests, like `tests/` or `index.spec.js`.
+`docs`  | For documentation changes, like `README.md`, `docs/` or `CONTRIBUTING.md`.
 
-- `feat` - for new file
-- `chore` - for config files and delete/rename the actions
-- `build` - for package files and `Makefile` / `Rakefile`
-- `ci` - GH Actions, CircleCI, BuildKite
+If none of the labels can be applied, it will left out.
 
-You have to figure out when to use `fix`, `refactor` or `perf` yourself.
+There are other semantic labels available. These require looking at the content of the file, not just the path. These are not in the scope of this project, but you can always type them manually.
+
+- `style`
+- `fix`
+- `refactor` 
+- `perf`
 
 ### How to use
 
@@ -72,7 +91,7 @@ Install the extension from a recent release on GitHub.
 3. Edit a single file. Or stage one file if you have many changes.
 4. If possible, the extension will create a descriptive commit message for you in the commit message box.
 
-<!-- TODO Add GIF here -->
+<!-- TODO: Add GIF here -->
 
 
 ## About
