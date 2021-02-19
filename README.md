@@ -28,25 +28,25 @@
 If you created a new file and staged it.
 
 <div align="center">
-    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="400" />
+    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="300" />
 </div>
 
 If you updated a build-related file.
 
 <div align="center">
-<img src="/docs/_media/sample-build.png" alt="build" title="build" width="400" />
+<img src="/docs/_media/sample-build.png" alt="build" title="build" width="300" />
 </div>
 
 If updated a file in `docs/` or a `README.md` anywhere.
 
 <div align="center">
-<img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="400" />
+<img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="300" />
 </div>
 
 If you renamed a file.
 
 <div align="center">
-    <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="400" />
+    <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="300" />
 </div>
 
 ### Capabilities
