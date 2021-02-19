@@ -53,6 +53,8 @@ If you renamed a file.
 
 This extension understands something about a single file and how it changed.
 
+#### Actions
+
 Here are supported action words which will be used.
 
 - `Create`
@@ -62,9 +64,13 @@ Here are supported action words which will be used.
 - `Rename`
 - `Move and rename`
 
-Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived from one of these:
+#### Prefixes
+
+Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived. If none of the labels can be applied, it will left out.
+
+Here are the prefixes it knows and a summary of the rule used.
  
-Label   | Rule
+Prefix  | Rule
 ---     | ---
 `feat`  | For a new file. (The tool can't differentiate between content for a feature / refactor / bug fix, but it assumes a new file is probably going to be new feature)
 `chore` | For config files and for deleting, renaming or moving a file.
@@ -73,9 +79,7 @@ Label   | Rule
 `test`  | For directories and files related to tests, like `tests/` or `index.spec.js`.
 `docs`  | For documentation changes, like `README.md`, `docs/` or `CONTRIBUTING.md`.
 
-If none of the labels can be applied, it will left out.
-
-There are other semantic labels available. These require looking at the content of the file, not just the path. These are not in the scope of this project, but you can always type them manually.
+There are other prefixes available. These require looking at the content of the file, not just the path. These are not in the scope of this project, but you can always type them manually.
 
 - `style`
 - `fix`
