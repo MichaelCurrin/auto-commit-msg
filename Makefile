@@ -3,7 +3,7 @@ default: install
 all: install test
 
 h help:
-	@egrep '^\S|^$$' Makefile
+	@grep '^[a-z]' Makefile
 
 
 install:
