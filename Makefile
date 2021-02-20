@@ -16,14 +16,14 @@ l lint:
 
 # Lint, clean, compile and run unit tests.
 t test:
-	npm run test
+	npm test
 
 
-# Run tests and then tag and push.
-tag: #ext
+# Run tests and then tag and push. Install the tagged version afterwards.
+tag:
 	npm version minor
 	$(MAKE) ext
 
 # Build and install the extension globally.
-e ext:
+e ext: test
 	npm run ext
