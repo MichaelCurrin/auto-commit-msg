@@ -50,7 +50,7 @@ const PACKAGE_DIRS = [
     "deps.ts",
     "test_deps.ts",
     "dev_deps.ts",
-    "import_map.json"
+    "import_map.json",
   ];
 
 // Build system (scripts, configurations or tools) and package dependencies.
