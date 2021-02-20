@@ -38,11 +38,11 @@ const PACKAGE_DIRS = [
     "composer.json",
     "composer.lock",
 
-    // GO
+    // Go
     "go.mod",
     "go.sum",
 
-    // RUST
+    // Rust
     "Cargo.toml",
     "Cargo.lock",
 
