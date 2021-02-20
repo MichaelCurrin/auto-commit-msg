@@ -45,6 +45,12 @@ const PACKAGE_DIRS = [
     // RUST
     "Cargo.toml",
     "Cargo.lock",
+
+    // Deno
+    "deps.ts",
+    "test_deps.ts",
+    "dev_deps.ts",
+    "import_map.json"
   ];
 
 // Build system (scripts, configurations or tools) and package dependencies.
