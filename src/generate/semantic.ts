@@ -57,7 +57,7 @@ const BUILD_NAMES = [
 
   "package.json", // Not necessarily package-related but always build-related.
 
-  // JAVA
+  // Java
   "gradlew",
   "grailsw",
   "micronaut-cli.yml",
