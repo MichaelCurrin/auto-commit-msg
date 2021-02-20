@@ -25,5 +25,6 @@ tag:
 	$(MAKE) ext
 
 # Build and install the extension globally.
-e ext: test
+e ext:
+	npm run lint:check
 	npm run ext
