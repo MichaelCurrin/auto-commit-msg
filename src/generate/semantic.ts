@@ -76,8 +76,8 @@ const BUILD_NAMES = [
 
 // This may be too broad or clash with other areas such as CI or package, unless used close to LAST
 // in the entire flow.
-// Note also that prettier and ESLint configs with various extensions are handled in isConfigRelated so
-// don't have to be listed explictly. Though those strings should be moved out of the function.
+// Note also that prettier and ESLint configs with various extensions are handled in isConfigRelated
+// so don't have to be listed explictly. Though those strings should be moved out of the function.
 const CONFIG_EXTENSIONS = [
   ".yml",
   ".yaml",
