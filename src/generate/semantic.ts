@@ -74,15 +74,17 @@ const BUILD_NAMES = [
     ".gradle",
   ];
 
-// This may be too broad or clash with other areas such as CI or package unless used close to last
+// This may be too broad or clash with other areas such as CI or package, unless used close to LAST
 // in the entire flow.
+// Note also that prettier and ESLint configs with various extensions are handled in isConfigRelated so
+// don't have to be listed explictly. Though those strings should be moved out of the function.
 const CONFIG_EXTENSIONS = [
   ".yml",
   ".yaml",
   ".json",
   ".toml",
   ".ini",
-  ".cfg", // Python config but also for other systems maybe
+  ".cfg", // Python config at least but also for other systems maybe.
 ],
   CONFIG_DIRS = [
     ".vscode",
@@ -98,6 +100,11 @@ const CONFIG_EXTENSIONS = [
     ".browserslistrc",
     "browserslist",
     "commitlint.config.js",
+    
+    ".env",
+    ".env.dev",
+    ".env.prod",
+    ".env.tempate",
   ];
 
 const CI_DIRS = [
@@ -151,6 +158,8 @@ const SCRIPT_EXTENSIONS = [
   ".rs",
   
   ".go",
+  
+  ".php",
 ],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = ".sh";
