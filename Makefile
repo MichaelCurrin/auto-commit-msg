@@ -1,10 +1,14 @@
 default: install
 
-all: install test
+all: hooks install test
 
 h help:
 	@grep '^[a-z]' Makefile
 
+
+.PHONY: hooks
+hooks:
+	cd .git/hooks && ln -s -f ../../hooks/pre-push pre-push
 
 install:
 	npm install
