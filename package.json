@@ -2,7 +2,7 @@
   "name": "auto-commit-msg",
   "version": "0.17.0",
   "scripts": {
-    "lint:check": "eslint . --ext .ts",
+    "lint:check": "eslint . --ext .ts --quiet",
     "lint:fix": "eslint . --ext .ts --fix",
     "clean": "rm -rf out",
     "compile": "npm run clean && tsc -p .",
