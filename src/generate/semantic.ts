@@ -100,7 +100,7 @@ const CONFIG_EXTENSIONS = [
     ".browserslistrc",
     "browserslist",
     "commitlint.config.js",
-    
+
     ".env",
     ".env.dev",
     ".env.prod",
@@ -134,7 +134,7 @@ const CI_DIRS = [
 // unless it is a doc, markdown file or config.
 const SCRIPT_EXTENSIONS = [
   ".html",
-  
+
   ".css",
   ".less",
   ".scss",
@@ -144,7 +144,7 @@ const SCRIPT_EXTENSIONS = [
   ".ts",
   ".tsx",
   ".mjs",
-  
+
   ".py",
 
   ".rb",
@@ -156,9 +156,9 @@ const SCRIPT_EXTENSIONS = [
   ".h",
 
   ".rs",
-  
+
   ".go",
-  
+
   ".php",
 ],
   // For "Update 5 shell scripts"
