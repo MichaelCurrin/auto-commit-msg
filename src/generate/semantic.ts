@@ -122,20 +122,25 @@ const CI_DIRS = [
     ".vercelignore",
   ];
 
-// This can be useful for multi-file changes e.g. "Creat 5 scripts"
+// This can be useful for multi-file changes e.g. "Create 5 scripts"
+// It might be easier to leave out this list and assume everything is a script
+// unless it is a doc, markdown file or config.
 const SCRIPT_EXTENSIONS = [
   ".html",
+  
   ".css",
+  ".less",
   ".scss",
-
-  ".py",
-
-  ".rb",
 
   ".js",
   ".jsx",
   ".ts",
   ".tsx",
+  ".mjs",
+  
+  ".py",
+
+  ".rb",
 
   ".java",
   ".jar",
@@ -144,6 +149,7 @@ const SCRIPT_EXTENSIONS = [
   ".h",
 
   ".rs",
+  
   ".go",
 ],
   // For "Update 5 shell scripts"
