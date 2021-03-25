@@ -23,7 +23,8 @@ l lint:
 
 # Lint, clean, compile and run unit tests.
 t test:
-	npm test
+	npm run test:coverage
+	npm run test:report
 
 
 # Run tests and then tag and push. Install the tagged version afterwards.
