@@ -188,6 +188,7 @@ const DOC_NAMES = [
   "FUNDING.md",
   "PULL_REQUEST_TEMPLATE.md",
   "ISSUE_TEMPLATE.md",
+  "CODE_OF_CONDUCT.md",
 
   "MAINTAINERS.txt",
   "CODEOWNERS",
