@@ -105,26 +105,28 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("uses the full path to describe index files", function () {
-      assert.strictEqual(oneChange("A    README.md"), "Create README.md");
-      assert.strictEqual(oneChange("M    README.md"), "Update README.md");
-      assert.strictEqual(oneChange("D    README.md"), "Delete README.md");
+    describe("Path-specific logic", function () {
+      it("uses the full path to describe index files", function () {
+        assert.strictEqual(oneChange("A    README.md"), "Create README.md");
+        assert.strictEqual(oneChange("M    README.md"), "Update README.md");
+        assert.strictEqual(oneChange("D    README.md"), "Delete README.md");
 
-      assert.strictEqual(
-        oneChange("A    foo/README.md"),
-        "Create foo/README.md"
-      );
-      assert.strictEqual(
-        oneChange("M    bar/baz/README.md"),
-        "Update bar/baz/README.md"
-      );
-      assert.strictEqual(
-        oneChange("D    bar/baz/buzz/README.md"),
-        "Delete bar/baz/buzz/README.md"
-      );
+        assert.strictEqual(
+          oneChange("A    foo/README.md"),
+          "Create foo/README.md"
+        );
+        assert.strictEqual(
+          oneChange("M    bar/baz/README.md"),
+          "Update bar/baz/README.md"
+        );
+        assert.strictEqual(
+          oneChange("D    bar/baz/buzz/README.md"),
+          "Delete bar/baz/buzz/README.md"
+        );
 
-      assert.strictEqual(oneChange("A    foo/index.md"), "Create foo/index.md");
-      assert.strictEqual(oneChange("A    foo/index.js"), "Create foo/index.js");
+        assert.strictEqual(oneChange("A    foo/index.md"), "Create foo/index.md");
+        assert.strictEqual(oneChange("A    foo/index.js"), "Create foo/index.js");
+      });
     });
   });
 });
