@@ -11,27 +11,27 @@ describe("Generate commit message for a single changed file", function () {
   // and path are unchanged, or including two file names for an add line. But validation
   // on at least file name is done.
   describe("#oneChange()", function () {
-    it("must return the appropriate commit message for a new file", function () {
+    it("returns the appropriate commit message for a new file", function () {
       assert.strictEqual(oneChange("A    foo.txt"), "Create foo.txt");
       // Maybe create foo.txt in bar, if the dir is not too long?
       assert.strictEqual(oneChange("A    bar/foo.txt"), "Create foo.txt");
     });
 
-    it("must throw an error if no filepath can be no generated", function () {
+    it("throws an error if no filepath can be no generated", function () {
       assert.throws(() => oneChange("A    "));
     });
 
-    it("must return the appropriate commit message for a modified file", function () {
+    it("returns the appropriate commit message for a modified file", function () {
       assert.strictEqual(oneChange("M    foo.txt"), "Update foo.txt");
       assert.strictEqual(oneChange("M    bar/foo.txt"), "Update foo.txt");
     });
 
-    it("must return the appropriate commit message for a deleted file", function () {
+    it("returns the appropriate commit message for a deleted file", function () {
       assert.strictEqual(oneChange("D    foo.txt"), "Delete foo.txt");
       assert.strictEqual(oneChange("D    bar/foo.txt"), "Delete foo.txt");
     });
 
-    it("must describe a file renamed in the same directory", function () {
+    it("describes a file renamed in the same directory", function () {
       assert.strictEqual(
         oneChange("R    foo.txt          bar.txt"),
         "Rename foo.txt to bar.txt"
@@ -43,7 +43,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("must ignore percentage change in a renamed file", function () {
+    it("ignores percentage change in a renamed file", function () {
       // We don't care about getting the percentage out in this project. So just make sure it does
       // get ignored.
       assert.strictEqual(
@@ -52,7 +52,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("must describe a file moved out of the repo root", function () {
+    it("describes a file moved out of the repo root", function () {
       assert.strictEqual(
         oneChange("R    foo.txt      fizz/foo.txt"),
         "Move foo.txt to fizz"
@@ -64,7 +64,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("must describe a file moved out of a subdirectory", function () {
+    it("describes a file moved out of a subdirectory", function () {
       assert.strictEqual(
         oneChange("R     fizz/buzz/foo.txt    foo.txt"),
         "Move foo.txt to repo root"
@@ -81,7 +81,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("must describe a file that was both moved and renamed", function () {
+    it("describes a file that was both moved and renamed", function () {
       assert.strictEqual(
         oneChange("R    foo.txt       fizz/fuzz.txt"),
         "Move and rename foo.txt to fizz/fuzz.txt"
@@ -98,14 +98,14 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("must ignore percentage changed for a file that was both moved and renamed", function () {
+    it("ignores percentage changed value for a file that was both moved and renamed", function () {
       assert.strictEqual(
         oneChange("R97  foo.txt       fizz/fuzz.txt"),
         "Move and rename foo.txt to fizz/fuzz.txt"
       );
     });
 
-    it("must use the full path to describe index files", function () {
+    it("uses the full path to describe index files", function () {
       assert.strictEqual(oneChange("A    README.md"), "Create README.md");
       assert.strictEqual(oneChange("M    README.md"), "Update README.md");
       assert.strictEqual(oneChange("D    README.md"), "Delete README.md");
