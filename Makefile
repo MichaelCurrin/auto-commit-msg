@@ -13,6 +13,9 @@ hooks:
 install:
 	npm install
 
+upgrade:
+	npm upgrade
+
 
 # Note - the linter will not fix formatting issues, but IDE or Prettier can.
 l lint:
