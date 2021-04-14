@@ -49,6 +49,8 @@ export function formatPath(filePath: string) {
 
 /**
  * Convert an array of paths to a human-readable sentence listing all the paths.
+ *
+ * Leave order as in comes it - though sorting could be added if needed.
  */
 export function humanList(paths: string[]) {
   if (!paths.length) {
