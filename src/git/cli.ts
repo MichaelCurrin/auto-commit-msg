@@ -20,16 +20,16 @@ function execute(cwd: string, subcommand: string, options: string[] = []) {
 }
 
 /**
- * Run `git diff-index` with flags and return output.
+ * Run `git diff-index` with given flags and return output.
  *
  * This will return both staged and unstaged changes. Pass '--cached' to use staged changes only.
  * Always excludes untracked files.
  *
- * Removes any empty lines, whether because of no changes or just the way the command-line
- * data comes in or is split.
+ * Empty lines will be dropped - because of no changes or just the way the command-line data comes
+ * in or got split.
  *
- * Note the output already seems always to have no color from my testing, but the
- * no color flagged is added to be safe.
+ * The output already seems to never have color info, from my testing, but the no-color flagged is
+ * added still to be safe.
  */
 async function diffIndex(options: string[] = []): Promise<Array<string>> {
   const fullOptions = [
@@ -46,7 +46,9 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
     console.debug("stderror for `git diff-index` command:", stderr);
   }
 
-  return stdout.split("\n").filter(line => line !== "");
+  const lines = stdout.split("\n");
+
+  return lines.filter(line => line !== "");
 }
 
 /**
@@ -56,7 +58,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
  * Always excludes untracked files - make sure to stage a file so it becomes tracked, especially
  * in the case of a rename.
  *
- * Returns using the type of the underlying `diffIndex` function.
+ * Returns an array of strings, coming from the `diffIndex` function.
  */
 export async function getChanges() {
   const stagedChanges = await diffIndex([
