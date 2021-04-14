@@ -132,7 +132,6 @@ describe("Generate commit message for a single changed file", function () {
   });
 });
 
-
 describe("Generate commit message for a few changed files which each get named", function () {
   describe("#namedFiles()", function () {
     it("return the appropriate commit message for a few files", function () {
@@ -140,6 +139,5 @@ describe("Generate commit message for a few changed files which each get named",
         ["A    foo.txt", "A    bar.txt"]
       ), "Create foo.txt and bar.txt");
     });
-
   });
 });
