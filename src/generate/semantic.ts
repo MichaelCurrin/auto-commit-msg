@@ -1,5 +1,7 @@
 /**
- * Logic around semantic commit messages.
+ * Semantic module.
+ *
+ * Logic around semantic commit (aka conventional commit) messages.
  *
  * This can be used to check if all changes in a commit are related to 'chore' changes, 'docs'
  * changes, 'test' changes and so on.
