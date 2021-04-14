@@ -59,8 +59,16 @@ export function moveOrRenameFile(oldPath: string, newPath: string): string {
 }
 
 /**
+ * Reduce actions across files to a single action.
+ *
  * If all the files changed have the same action, return it. Otherwise return null value.
  */
 export function reduceActions(actions: ActionKeys[]) {
-  return ACTION.A;
+  const actionSet = new Set(actions);
+
+  if (actionSet.size !== 1) {
+    return ACTION.UNKNOWN;
+  }
+
+  return lookupDiffIndexAction(actions[0]);
 }
