@@ -1,5 +1,7 @@
 /**
- * High-level test of message is shown to the user, based on changes to one or more files.
+ * Message test module.
+ *
+ * High-level test of the message shown to the user, based on changes to one or more files.
  */
 import * as assert from "assert";
 import { oneChange } from "../../generate/message";

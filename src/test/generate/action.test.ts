@@ -1,3 +1,6 @@
+/**
+ * Action test module to check action verbs used.
+ */
 import * as assert from "assert";
 import { moveOrRenameFile } from "../../generate/action";
 

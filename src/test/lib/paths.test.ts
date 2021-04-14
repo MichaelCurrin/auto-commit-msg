@@ -1,3 +1,8 @@
+/**
+ * Paths test module.
+ *
+ * Check handling of paths as text.
+ */
 import * as assert from "assert";
 import { formatPath, splitPath } from "../../lib/paths";
 

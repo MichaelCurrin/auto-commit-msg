@@ -1,3 +1,8 @@
+/**
+ * Common path test module.
+ *
+ * Check that a common path can be found for paths.
+ */
 import * as assert from "assert";
 import { commonPath } from "../../lib/commonPath";
 
