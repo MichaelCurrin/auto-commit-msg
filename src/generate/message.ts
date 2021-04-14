@@ -55,10 +55,11 @@ export function oneChange(line: string) {
  * foo.txt and bar.txt'.
  */
 export function namedFiles(lines: string[]) {
-  const actions = lines.map(line => line[0]);
-  const reducedAction = reduceActions(actions as ActionKeys[]);
-
   const changes = lines.map(line => parseDiffIndex(line));
+
+  const actions = changes.map(item => item.x as ActionKeys);
+  const reducedAction = reduceActions(actions);
+
   const pathsChanged = changes.map(item => item.from);
   const fileList = humanList(pathsChanged);
 
