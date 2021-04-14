@@ -2,7 +2,8 @@
  * Message test module.
  *
  * High-level test of the message shown to the user, based on changes to one or more files. This
- * includes the action verb in a sentence along with named files, but not the semantic convention.
+ * includes the action verb in a sentence, along with named files, but not the conventional commit
+ * prefix.
  */
 import * as assert from "assert";
 import { namedFiles, oneChange, _title } from "../../generate/message";
