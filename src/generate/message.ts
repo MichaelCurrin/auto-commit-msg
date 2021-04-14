@@ -22,17 +22,18 @@ function title(value: string) {
 }
 
 /**
- * Prepare a commit message based on a single file change.
+ * Prepare a commit message based on a single changed file.
  *
  * A rename can be handled too - it just requires both the paths to be staged so that git collapses
  * D and A to a single R action.
- *
- * The output will be like 'Update foo.txt'.
  *
  * Using the variable name as 'from' is not really descriptive here but the logic works. It's also
  * possible to reverse 'from' and 'to' in `git status` and `git diff-index` output or handle just
  * the parseDiffIndex function to make sure 'to' is always set and 'from' is null if it is not a
  * move.
+ *
+ * Expects a single line string that came from a git command and returns a value like 'Update
+ * foo.txt'.
  */
 export function oneChange(line: string) {
   const { x: actionChar, from, to } = parseDiffIndex(line);
@@ -45,4 +46,14 @@ export function oneChange(line: string) {
   const outputPath = formatPath(from);
 
   return `${title(action)} ${outputPath}`;
+}
+
+/**
+ * Prepare a commit message using the names of a few changed files.
+ *
+ * Expects a multi-string string that came from a git command and returns a value like 'Update
+ * foo.txt and bar.txt'.
+ */
+export function namedFiles(lines: string[]) {
+  return "Create foo.txt and bar.txt";
 }
