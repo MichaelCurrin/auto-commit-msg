@@ -45,6 +45,12 @@ describe("Path handling", function () {
   });
 
   describe("#humanList()", function () {
+    it("returns a path for a single file", function () {
+      assert.strictEqual(humanList(
+        ["foo.txt"]
+      ), "foo.txt");
+    });
+
     it("returns a sentence for two files", function () {
       assert.strictEqual(humanList(
         ["foo.txt", "bar.txt"]
