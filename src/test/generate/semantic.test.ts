@@ -1,7 +1,7 @@
 /**
  * Semantic test module.
  *
- * Check the categorization of changed files into semantic convention commit types.
+ * Check the categorization of changed files into semantic (aka conventional commit) types.
  */
 import * as assert from "assert";
 import { getSemanticConvention, Semantic } from "../../generate/semantic";
