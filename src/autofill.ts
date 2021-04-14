@@ -37,7 +37,7 @@ export async function makeAndFillCommitMsg(repository: Repository) {
     vscode.window.showErrorMessage(NO_LINES);
     return;
   }
-  if (fileChanges.length > 1) {
+  if (fileChanges.length > 3) {
     vscode.window.showErrorMessage(TOO_MANY_FILES);
     return;
   }
