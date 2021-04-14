@@ -6,7 +6,7 @@
 import { parseDiffIndex } from "../git/parseOutput";
 import { ACTION } from "../lib/constants";
 import { formatPath } from "../lib/paths";
-import { lookupDiffIndexAction, moveOrRenameFile } from "./action";
+import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile, reduceActions } from "./action";
 
 /**
  * Convert to titlecase.
@@ -53,9 +53,12 @@ export function oneChange(line: string) {
 /**
  * Prepare a commit message using the names of a few changed files.
  *
- * Expects a multi-string string that came from a git command and returns a value like 'Update
+ * Expects lines that came from a git command and returns a value like 'Update
  * foo.txt and bar.txt'.
  */
 export function namedFiles(lines: string[]) {
-  return "Create foo.txt and bar.txt";
+  const actions = lines.map(line => line[0]);
+  const reducedAction = reduceActions(actions as ActionKeys[]);
+
+  return `${title(reducedAction)} foo.txt and bar.txt`;
 }
