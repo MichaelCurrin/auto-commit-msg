@@ -50,5 +50,17 @@ describe("Path handling", function () {
         ["foo.txt", "bar.txt"]
       ), "foo.txt and bar.txt");
     });
+
+    it("returns a sentence for three files", function () {
+      assert.strictEqual(humanList(
+        ["foo.txt", "bar.txt", "bazz.js"]
+      ), "foo.txt, bar.txt and bazz.js");
+    });
+
+    it("returns a sentence for four files", function () {
+      assert.strictEqual(humanList(
+        ["foo.txt", "bar.txt", "bazz.js", "buzz.ts"]
+      ), "foo.txt, bar.txt, bazz.js and buzz.ts");
+    });
   });
 });
