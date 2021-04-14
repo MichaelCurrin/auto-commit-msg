@@ -2,7 +2,7 @@
  * Action test module to check action verbs used.
  */
 import * as assert from "assert";
-import { lookupDiffIndexAction, moveOrRenameFile } from "../../generate/action";
+import { lookupDiffIndexAction, moveOrRenameFile, reduceActions } from "../../generate/action";
 
 describe("Desribe a file using a single path", function () {
   describe("#lookupDiffIndexAction()", function () {
@@ -82,5 +82,13 @@ describe("Desribe a file using two paths", function () {
         "Move and rename foo.txt to bar.txt at repo root"
       );
     });
+  });
+});
+
+describe("Desribe action across multiple files", function () {
+  describe("#actionFromFiles()", function () {
+    assert.strictEqual(reduceActions(
+      ["A", "A", "A"]
+    ), "create");
   });
 });
