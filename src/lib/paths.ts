@@ -51,5 +51,16 @@ export function formatPath(filePath: string) {
  * Convert an array of paths to a human-readable sentence listing all the paths.
  */
 export function humanList(paths: string[]) {
-  return "foo.txt and bar.txt";
+  if (!paths.length) {
+    return "";
+  }
+  if (paths.length === 1) {
+    return paths[0];
+  }
+  const firstItems = paths.slice(0, paths.length - 1);
+  const lastItem = paths.slice(-1);
+
+  const start = firstItems.join(", ");
+
+  return `${start} and ${lastItem}`;
 }
