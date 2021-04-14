@@ -87,8 +87,10 @@ describe("Desribe a file using two paths", function () {
 
 describe("Desribe action across multiple files", function () {
   describe("#actionFromFiles()", function () {
-    assert.strictEqual(reduceActions(
-      ["A", "A", "A"]
-    ), "create");
+    it("returns the correct action for identical actions", function () {
+      assert.strictEqual(reduceActions(
+        ["A", "A", "A"]
+      ), "create");
+    });
   });
 });
