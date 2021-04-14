@@ -59,9 +59,9 @@ export function humanList(paths: string[]) {
   if (paths.length === 1) {
     return paths[0];
   }
+
   const firstItems = paths.slice(0, paths.length - 1);
   const lastItem = paths.slice(-1);
-
   const start = firstItems.join(", ");
 
   return `${start} and ${lastItem}`;
