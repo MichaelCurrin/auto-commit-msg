@@ -138,6 +138,10 @@ describe("Generate commit message for a few changed files which each get named",
       assert.strictEqual(namedFiles(
         ["A    foo.txt", "A    bar.txt"]
       ), "Create foo.txt and bar.txt");
+
+      assert.strictEqual(namedFiles(
+        ["M    foo.txt", "M    bar.txt"]
+      ), "Update foo.txt and bar.txt");
     });
   });
 });

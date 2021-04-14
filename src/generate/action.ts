@@ -10,7 +10,7 @@
 import { ACTION, ROOT } from "../lib/constants";
 import { splitPath } from "../lib/paths";
 
-type ActionKeys = keyof typeof ACTION;
+export type ActionKeys = keyof typeof ACTION;
 
 /**
  * Extract single action from given X and Y actions.
