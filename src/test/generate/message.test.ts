@@ -134,7 +134,7 @@ describe("Generate commit message for a single changed file", function () {
 
 describe("Generate commit message for a few changed files which each get named", function () {
   describe("#namedFiles()", function () {
-    it("return the appropriate commit message for two files with the same action", function () {
+    it("return the appropriate commit message for two files", function () {
       assert.strictEqual(namedFiles(
         ["A    foo.txt", "A    bar.txt"]
       ), "Create foo.txt and bar.txt");
@@ -146,6 +146,16 @@ describe("Generate commit message for a few changed files which each get named",
       assert.strictEqual(namedFiles(
         ["M    fizz.js", "M    buzz.ts"]
       ), "Update fizz.js and buzz.ts");
+    });
+
+    it("return a commit message for more than two files", function () {
+      assert.strictEqual(namedFiles(
+        ["A    foo.txt", "A    docs/bar.txt", "A    buzz.js"]
+      ), "Create foo.txt, docs/bar.txt and buzz.js");
+
+      assert.strictEqual(namedFiles(
+        ["D    foo.txt", "D    docs/bar.txt", "D    buzz.js"]
+      ), "Delete foo.txt, docs/bar.txt and buzz.js");
     });
 
     it("handles differing actions", function () {
