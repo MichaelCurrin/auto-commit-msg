@@ -63,7 +63,7 @@ export function namedFiles(lines: string[]) {
   const fileList = "foo.txt and bar.txt";
 
   if (reducedAction === ACTION.UNKNOWN) {
-    return fileList;
+    return `Various changes to ${fileList}`;
   }
 
   return `${title(reducedAction)} ${fileList}`;

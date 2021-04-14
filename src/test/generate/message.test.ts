@@ -161,5 +161,15 @@ describe("Generate commit message for a few changed files which each get named",
         ["M    foo.txt", "M    bar.txt"]
       ), "Update foo.txt and bar.txt");
     });
+
+    it("handles differing actions", function () {
+      assert.strictEqual(namedFiles(
+        ["A    foo.txt", "M    bar.txt"]
+      ), "Various changes to foo.txt and bar.txt");
+
+      assert.strictEqual(namedFiles(
+        ["M    foo.txt", "D    bar.txt"]
+      ), "Various changes to foo.txt and bar.txt");
+    });
   });
 });
