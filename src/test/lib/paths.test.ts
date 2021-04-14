@@ -69,6 +69,12 @@ describe("Path handling", function () {
       ), "foo.txt, bar.txt, bazz.js and buzz.ts");
     });
 
+    it("returns a sentence for four longer paths", function () {
+      assert.strictEqual(humanList(
+        ["foo.txt", "docs/bar.txt", "src/lib/bazz.js", "src/buzz.ts"]
+      ), "foo.txt, docs/bar.txt, src/lib/bazz.js and src/buzz.ts");
+    });
+
     it("throws an error for zero files", function () {
       assert.throws(() => humanList([]));
     });
