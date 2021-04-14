@@ -27,8 +27,9 @@ export enum DESCRIPTION {
 /**
  * Describe actions in commit message sentences.
  *
- * These are based on GitHub syntax as in DESCRIPTION above. But in the active voice here and they
- * will be used for the message for the extension output.
+ * These are based on GitHub syntax as in DESCRIPTION above, except the values are in the active
+ * voice and not past tense, to fit the conventional commit style. Plus 'update' is used as a more
+ * natural word than 'modify'.
  *
  * Note that 'move' will be included in 'rename', unless behavior is used later in this project to
  * determine a move with different logic.
