@@ -1,9 +1,13 @@
 /**
- * Parse git command output.
+ * Parse outut module.
+ *
+ * Handle text output from a git command.
  */
 import { FileChanges } from "./parseOutput.d";
 
 /**
+ * Parse status.
+ *
  * Parse a line coming from the `git status --short` command.
  */
 export function parseStatus(line: string): FileChanges {
@@ -25,6 +29,8 @@ export function parseStatus(line: string): FileChanges {
 }
 
 /**
+ * Parse diff index.
+ *
  * Parse a line produced by the `git diff-index` command.
  *
  * We keep `x` as a single letter, though the input might be 'R100 ...'.
