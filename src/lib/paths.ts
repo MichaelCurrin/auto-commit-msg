@@ -54,7 +54,7 @@ export function formatPath(filePath: string) {
  */
 export function humanList(paths: string[]) {
   if (!paths.length) {
-    return "";
+    throw new Error("Expected at least one path, got zero");
   }
   if (paths.length === 1) {
     return paths[0];

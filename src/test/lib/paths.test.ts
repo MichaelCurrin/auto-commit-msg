@@ -68,5 +68,9 @@ describe("Path handling", function () {
         ["foo.txt", "bar.txt", "bazz.js", "buzz.ts"]
       ), "foo.txt, bar.txt, bazz.js and buzz.ts");
     });
+
+    it("throws an error for zero files", function () {
+      assert.throws(() => humanList([]));
+    });
   });
 });
