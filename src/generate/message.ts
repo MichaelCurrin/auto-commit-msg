@@ -60,5 +60,11 @@ export function namedFiles(lines: string[]) {
   const actions = lines.map(line => line[0]);
   const reducedAction = reduceActions(actions as ActionKeys[]);
 
-  return `${title(reducedAction)} foo.txt and bar.txt`;
+  const fileList = "foo.txt and bar.txt";
+
+  if (reducedAction === ACTION.UNKNOWN) {
+    return fileList;
+  }
+
+  return `${title(reducedAction)} ${fileList}`;
 }
