@@ -5,7 +5,7 @@
  */
 import { parseDiffIndex } from "../git/parseOutput";
 import { ACTION } from "../lib/constants";
-import { formatPath } from "../lib/paths";
+import { formatPath, humanList } from "../lib/paths";
 import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile, reduceActions } from "./action";
 
 /**
@@ -58,7 +58,9 @@ export function namedFiles(lines: string[]) {
   const actions = lines.map(line => line[0]);
   const reducedAction = reduceActions(actions as ActionKeys[]);
 
-  const fileList = "foo.txt and bar.txt";
+  const changes = lines.map(line => parseDiffIndex(line));
+  const pathsChanged = changes.map(item => item.from);
+  const fileList = humanList(pathsChanged);
 
   if (reducedAction === ACTION.UNKNOWN) {
     return `Various changes to ${fileList}`;
