@@ -57,3 +57,10 @@ export function moveOrRenameFile(oldPath: string, newPath: string): string {
 
   return msg;
 }
+
+/**
+ * If all the files changed have the same action, return it. Otherwise return null value.
+ */
+export function reduceActions(actions: ActionKeys[]) {
+  return ACTION.A;
+}
