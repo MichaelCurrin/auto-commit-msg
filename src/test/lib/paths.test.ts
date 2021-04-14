@@ -4,7 +4,7 @@
  * Check handling of paths as text.
  */
 import * as assert from "assert";
-import { formatPath, splitPath } from "../../lib/paths";
+import { formatPath, humanList, splitPath } from "../../lib/paths";
 
 describe("Path handling", function () {
   describe("#splitPath()", function () {
@@ -41,6 +41,14 @@ describe("Path handling", function () {
       assert.strictEqual(formatPath("Foo/index.md"), "Foo/index.md");
       assert.strictEqual(formatPath("Foo/index.html"), "Foo/index.html");
       assert.strictEqual(formatPath("Foo/index.js"), "Foo/index.js");
+    });
+  });
+
+  describe("#humanList()", function () {
+    it("returns a sentence for two files", function () {
+      assert.strictEqual(humanList(
+        ["foo.txt", "bar.txt"]
+      ), "foo.txt and bar.txt");
     });
   });
 });

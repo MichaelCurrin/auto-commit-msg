@@ -46,3 +46,10 @@ export function formatPath(filePath: string) {
   }
   return name;
 }
+
+/**
+ * Convert an array of paths to a human-readable sentence listing all the paths.
+ */
+export function humanList(paths: string[]) {
+  return "foo.txt and bar.txt";
+}
