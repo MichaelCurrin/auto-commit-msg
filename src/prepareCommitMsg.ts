@@ -25,10 +25,12 @@ function generatePrefixFromChanges(line: string) {
 /**
  * Generate message from changes.
  *
- * Create semantic convention prefix and description of change paths and return a combined message.
+ * Return convention commit prefix and a description of change paths.
  */
 export function generateMsgFromChanges(diffIndexLines: string[]) {
   const line = diffIndexLines[0];
+
+  // TODO: Should reduceActions go where generatePrefixFromChanges is and which should be used here?
 
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
@@ -41,7 +43,7 @@ export function generateMsgFromChanges(diffIndexLines: string[]) {
 }
 
 /**
- * Output a readable semantic git commit message.
+ * Output a readable conventional commit message.
  */
 function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
