@@ -35,8 +35,8 @@ jobs:
       - name: Compile
         run: npm run compile
 
-      # Use unit rather than test to skip the pretest step, as that would duplicate steps above.
-      - name: Unit tests
+      # Use unit rather than `test`, to skip the pretest step, otherwise that would duplicate steps above.
+      - name: Unit tests (without coverage report)
         run: npm run test:unit
         env:
           CI: true
