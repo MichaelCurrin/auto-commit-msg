@@ -23,30 +23,32 @@
 
 ## Overview
 
-### Samples of generated commit messages
+### Samples
+
+Here are some screenshots of what messages the extension generates, based on changed files.
 
 If you created a new file and staged it.
 
 <div align="center">
-    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="300" />
+    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="250" />
 </div>
 
 If you updated a build-related file.
 
 <div align="center">
-<img src="/docs/_media/sample-build.png" alt="build" title="build" width="300" />
+<img src="/docs/_media/sample-build.png" alt="build" title="build" width="250" />
 </div>
 
 If updated a file in `docs/` or a `README.md` anywhere.
 
 <div align="center">
-<img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="300" />
+<img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="250" />
 </div>
 
 If you renamed a file.
 
 <div align="center">
-    <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="300" />
+    <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="250" />
 </div>
 
 ### Capabilities
@@ -174,14 +176,17 @@ This will probably be in Python for easy scaling and tests. And it will probably
 
 ### Tasks
 
-Topics around structure and admin:
+Roadmap of things to do to get this to v1 release.
 
-- [x] Works with `git` repos
-- [x] Test coverage - Unit tests that are run with GitHub Actions CI
-- [ ] Update logo
-- [ ] Available in VS Code marketplace
-- [ ] CI to build the package archive on tag
-- [ ] Clean up docs and Wiki
+- [x] Works with `git` repos.
+- [x] Tests - Unit tests that are run with GitHub Actions CI
+- [x] Test coverage report. 
+- [ ] Update logo.
+- [ ] Available in VS Code marketplace.
+- [ ] CI to build the package archive on tag (so it easily available outside the marketplace).
+- [ ] Clean up docs and Wiki.
+
+See [Issues](https://github.com/MichaelCurrin/auto-commit-msg/issues) on the repo.
 
 
 ## Documentation
