@@ -25,7 +25,7 @@ function generatePrefixFromChanges(line: string) {
 /**
  * Generate message from changes.
  *
- * Return convention commit prefix and a description of change paths.
+ * Return conventional commit prefix and a description of changed paths.
  */
 export function generateMsgFromChanges(diffIndexLines: string[]) {
   const line = diffIndexLines[0];
