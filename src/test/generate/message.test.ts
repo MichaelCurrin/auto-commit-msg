@@ -5,7 +5,8 @@
  * includes the action verb in a sentence along with named files, but not the semantic convention.
  */
 import * as assert from "assert";
-import { namedFiles, oneChange } from "../../generate/message";
+import { actionNamePairs, namedFiles, oneChange } from "../../generate/message";
+import { ACTION } from "../../lib/constants";
 
 describe("Generate commit message for a single changed file", function () {
   // Note that git status --short expects XY format but this is for git diff-index
@@ -166,6 +167,24 @@ describe("Generate commit message for a few changed files which each get named",
       assert.strictEqual(namedFiles(
         ["M    foo.txt", "D    bar.txt"]
       ), "Various changes to foo.txt and bar.txt");
+    });
+  });
+});
+
+// TODO - move spliting of "A  foo.txt" into a high-level function and low level ones deal with
+// objects to keep things simple and type safe.
+describe("Generate message as verb and filename pairs", function () {
+  describe("#actionNamePairs()", function () {
+    it("return the appropriate commit message for two files", function () {
+      const changes = [
+        { action: ACTION.A, path: "foo.txt" },
+        { action: ACTION.M, path: "bar.txt" },
+      ];
+
+      assert.strictEqual(
+        actionNamePairs(changes),
+        "Create foo.txt and update bar.txt"
+      );
     });
   });
 });

@@ -63,9 +63,23 @@ export function namedFiles(lines: string[]) {
   const pathsChanged = changes.map(item => item.from);
   const fileList = humanList(pathsChanged);
 
+  // TODO: Maybe remove this as a case. And move logic for the same action message to a new
+  // function.
   if (reducedAction === ACTION.UNKNOWN) {
     return `Various changes to ${fileList}`;
   }
 
   return `${title(reducedAction)} ${fileList}`;
+}
+
+// TODO Find a type or move this
+// Same as x and from but more readable.
+type FileChange = {
+  action: ACTION,
+  path: string
+}
+
+export function actionNamePairs(fileChanges: FileChange[]) {
+  console.log(fileChanges);
+  return "Create foo.txt and update bar.txt";
 }
