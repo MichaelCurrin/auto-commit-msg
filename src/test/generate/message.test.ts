@@ -177,8 +177,8 @@ describe("Generate message as verb and filename pairs", function () {
   describe("#actionNamePairs()", function () {
     it("return the appropriate commit message for two files", function () {
       const changes = [
-        { action: ACTION.A, path: "foo.txt" },
-        { action: ACTION.M, path: "bar.txt" },
+        { actionChar: ACTION.A, from: "foo.txt" },
+        { actionChar: ACTION.M, from: "bar.txt" },
       ];
 
       assert.strictEqual(

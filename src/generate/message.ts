@@ -8,6 +8,13 @@ import { ACTION } from "../lib/constants";
 import { formatPath, humanList } from "../lib/paths";
 import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile, reduceActions } from "./action";
 
+// TODO Find a type or move this or extend from it.
+type FileChange = {
+  actionChar: ACTION,
+  from: string
+  to?: string
+}
+
 /**
  * Make first letter of a string uppercase.
  *
@@ -36,6 +43,7 @@ function title(value: string) {
  * foo.txt'.
  */
 export function oneChange(line: string) {
+  // TODO This function should accept these separate params, to make it more usable.
   const { x: actionChar, from, to } = parseDiffIndex(line);
 
   const action = lookupDiffIndexAction(actionChar);
@@ -72,14 +80,18 @@ export function namedFiles(lines: string[]) {
   return `${title(reducedAction)} ${fileList}`;
 }
 
-// TODO Find a type or move this
-// Same as x and from but more readable.
-type FileChange = {
-  action: ACTION,
-  path: string
-}
 
+// Duplicating some logic in oneChange but not quiet. To avoid refactoring oneChange params for now
+// and because of title and move issues.
 export function actionNamePairs(fileChanges: FileChange[]) {
-  console.log(fileChanges);
-  return "Create foo.txt and update bar.txt";
+  // This is not working.
+  // Also maybe this transformation should in a separate function. Maybe even it is done before this function (needing a refactor)
+  const changeDescriptions = fileChanges.map(c => {
+    return {
+      actionChar: lookupDiffIndexAction(c.actionChar),
+      outputPath: formatPath(c.from),
+    };
+  }).map(d => `${d.actionChar} ${d.outputPath}`);
+
+  return humanList(changeDescriptions);
 }
