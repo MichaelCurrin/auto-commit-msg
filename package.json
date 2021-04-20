@@ -2,6 +2,8 @@
   "name": "auto-commit-msg",
   "version": "0.17.0",
   "scripts": {
+    "fmt:check": "prettier -c src",
+    "fmt": "prettier -w src",
     "lint:check": "eslint . --ext .ts --quiet",
     "lint:fix": "eslint . --ext .ts --fix",
     "clean": "rm -rf out",
@@ -32,6 +34,7 @@
     "eslint": "^7.24.0",
     "mocha": "^8.3.2",
     "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
     "source-map-support": "^0.5.12",
     "typescript": "^4.2.4",
     "vsce": "^1.87.1",
