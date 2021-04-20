@@ -17,7 +17,12 @@ upgrade:
 	npm upgrade
 
 
-# Note - the linter will not fix formatting issues, but IDE or Prettier can.
+fmt-check:
+	npm run fmt:check
+fmt:
+	npm run fmt
+
+# Note - the linter will not fix formatting issues.
 l lint:
 	npm run lint:fix
 
