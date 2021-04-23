@@ -9,12 +9,14 @@ import { formatPath } from "../lib/paths";
 import { lookupDiffIndexAction, moveOrRenameFile } from "./action";
 
 /**
- * Make first letter of a string uppercase.
+ * Convert to titlecase.
  *
- * This is no titlecase method in JS. This is fills that gap, but, only care about the first letter,
+ * i.e. Make first letter of a string uppercase and return the new string.
+ *
+ * This is no titlecase method in JS. This fills that gap, but, only care about the first letter,
  * ignoring multiple words. This also doesn't care about downcasing.
  */
-function title(value: string) {
+export function title(value: string) {
   if (!value.length) {
     throw new Error("Cannot have empty string for applying title");
   }
