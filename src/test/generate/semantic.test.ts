@@ -37,11 +37,9 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
   });
 
   describe("#isBuildRelated()", function () {
-    it("can tell a build change of a build filename", function () {
+    it("can recognize a build change fr a build-related filename", function () {
       assert.strictEqual(new Semantic("Dockerfile").isBuildRelated(), true);
       assert.strictEqual(new Semantic("foo/Dockerfile").isBuildRelated(), true);
-
-      assert.strictEqual(new Semantic("setup.py").isBuildRelated(), true);
 
       assert.strictEqual(new Semantic("foo.txt").isBuildRelated(), false);
       assert.strictEqual(new Semantic("fizz/foo.txt").isBuildRelated(), false);
@@ -97,11 +95,23 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
     // to the real world as it through a hierarchy (for example .yml is config-related unless it is
     // for a CI file). But, this doesn't care what the action is like create or delete or modify, so
     // it won't impose meaning based on that.
-    it("can tell a type for a build file", function () {
+    it("can recognizes a build file as build", function () {
       assert.strictEqual(
         new Semantic("Makefile").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
+      assert.strictEqual(
+        new Semantic("Dockerfile").getType(),
+        CONVENTIONAL_TYPE.BUILD
+      );
+
+      assert.strictEqual(
+        new Semantic("foo.gemspec").getType(),
+        CONVENTIONAL_TYPE.BUILD
+      );
+    });
+
+    it("can recognizes a package file as build", function () {
       assert.strictEqual(
         new Semantic("Gemfile").getType(),
         CONVENTIONAL_TYPE.BUILD
