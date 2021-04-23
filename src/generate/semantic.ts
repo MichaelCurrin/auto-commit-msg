@@ -233,7 +233,7 @@ export class Semantic {
   }
 
   /**
-   * Check if file a doc - for semantic commits.
+   * Check if doc-related.
    *
    * Return true for `.rst`, README files and anything in the docs directory.
    *
