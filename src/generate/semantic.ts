@@ -294,8 +294,7 @@ export class Semantic {
 
   isBuildRelated(): boolean {
     return BUILD_NAMES.includes(this.name) ||
-      BUILD_EXTENSIONS.includes(this.extension) ||
-      this.isPackageRelated();
+      BUILD_EXTENSIONS.includes(this.extension);
   }
 
   isLicenseRelated(): boolean {
@@ -309,13 +308,15 @@ export class Semantic {
   /**
    * Return conventional commit type.
    *
-   * If rules can't be used to match a known one, return the unknown form of the enum.
+   * Order of checks is imporant here.
+   *
+   * Return the unknown/null value if no rule matches.
    */
   getType() {
     if (this.isCIRelated()) {
       return CONVENTIONAL_TYPE.CI;
     }
-    if (this.isBuildRelated()) {
+    if (this.isBuildRelated() || this.isPackageRelated()) {
       return CONVENTIONAL_TYPE.BUILD;
     }
     if (this.isChoreRelated()) {
@@ -333,11 +334,11 @@ export class Semantic {
 }
 
 /**
- * Get the semantic conventional commit type.
+ * Get the conventional commit type.
  *
  * Relies on both the action type and the path-based logic.
  *
- * Don't handle ACTION.M or ACTION.C as it could be a fix or feature. So just use unknown/null
+ * Don't handle `ACTION.M` or `ACTION.C`, as it could be a fix or feature. So just use unknown/null
  * value. Though it could be set as always feature or docs as a general rule or config option on the
  * project level or extension level.
  */
