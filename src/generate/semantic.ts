@@ -288,14 +288,14 @@ export class Semantic {
     );
   }
 
+  isPackageRelated(): boolean {
+    return PACKAGE_NAMES.includes(this.name);
+  }
+
   isBuildRelated(): boolean {
     return BUILD_NAMES.includes(this.name) ||
       BUILD_EXTENSIONS.includes(this.extension) ||
       this.isPackageRelated();
-  }
-
-  isPackageRelated(): boolean {
-    return PACKAGE_NAMES.includes(this.name);
   }
 
   isLicenseRelated(): boolean {
