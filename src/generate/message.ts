@@ -16,7 +16,7 @@ import { lookupDiffIndexAction, moveOrRenameFile } from "./action";
  * This is no titlecase method in JS. This fills that gap, but, only care about the first letter,
  * ignoring multiple words. This also doesn't care about downcasing.
  */
-export function title(value: string) {
+export function _title(value: string) {
   if (!value.length) {
     throw new Error("Cannot have empty string for applying title");
   }
@@ -46,5 +46,5 @@ export function oneChange(line: string) {
 
   const outputPath = formatPath(from);
 
-  return `${title(action)} ${outputPath}`;
+  return `${_title(action)} ${outputPath}`;
 }

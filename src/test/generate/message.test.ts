@@ -2,24 +2,24 @@
  * High-level test of message is shown to the user, based on changes to one or more files.
  */
 import * as assert from "assert";
-import { oneChange, title } from "../../generate/message";
+import { oneChange, _title } from "../../generate/message";
 
 describe("Generate commit message for a single changed file", function () {
   describe("#title", function () {
     it("converts to titlecase correctly", function () {
-      assert.strictEqual(title("h"), "H");
+      assert.strictEqual(_title("h"), "H");
 
-      assert.strictEqual(title("hello"), "Hello");
+      assert.strictEqual(_title("hello"), "Hello");
     });
 
     it("doesn't downcase uppercase letters", function () {
-      assert.strictEqual(title("Hello"), "Hello");
+      assert.strictEqual(_title("Hello"), "Hello");
 
-      assert.strictEqual(title("hELLo"), "HELLo");
+      assert.strictEqual(_title("hELLo"), "HELLo");
     });
 
     it("disallows empty string input", function () {
-      assert.throws(() => title(""));
+      assert.throws(() => _title(""));
     });
   });
 
