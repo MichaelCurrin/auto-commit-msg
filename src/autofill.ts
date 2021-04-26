@@ -20,6 +20,8 @@ This extension currently only supports working with *one* changed file at a time
 Or stash changes so that only one file change is left in the working tree.\
 `;
 
+const MAX_CHANGES = 8
+
 /**
  * Generate and fill a commit message.
  *
@@ -39,7 +41,7 @@ export async function makeAndFillCommitMsg(repository: Repository) {
     vscode.window.showErrorMessage(NO_LINES);
     return;
   }
-  if (fileChanges.length > 3) {
+  if (fileChanges.length > MAX_CHANGES) {
     vscode.window.showErrorMessage(TOO_MANY_FILES);
     return;
   }
