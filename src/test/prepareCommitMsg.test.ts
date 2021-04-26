@@ -8,7 +8,7 @@ import { generateMsgFromChanges } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
   describe("#generateMsgFromChanges()", function () {
-    it("splits a path correctly", function () {
+    it("handles a single file correctly", function () {
       const expected = {
         prefix: "feat",
         fileChangeMsg: "Create baz.txt",
