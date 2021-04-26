@@ -1,19 +1,27 @@
 # Run extension in sandbox mode
 
-Start the extension for local development. It will be started in a sandboxed environment with no other extensions active and the extension will not persist when you stop the debugger.
+Start the extension for local development.
+
+This allows manual integration tests. Here we set up a separate sandboxed VS Code instance in an new window. That window has all extensions **disable** except the extension we are working on. And your original VS Code instance will not be affected.
+
+If you prefer not use this approach, you can just compile and install the extension globally. It will override the existing extension though.
+
+
+## Start sandbox
 
 Follow these steps:
 
 1. Open VS Code at this repo if you haven't already.
 2. Go to the _Debug_ tab.
-3. Run the extension
-    - Click _Run Extension_ task.
-        - This will start in a default directory such as the home directory.
+3. Select one of two tasks:
+    - _Run Extension_ task.
+        - This will start in a default directory such as your user's home directory.
         - You might want to use File / Open to change the sandbox window to a repo what has more content to play with. This will be remembered on later runs. Unfortunately if you changed your VS Code settings to open in a new window on Open, then the extension setup will be undone.
-    - Or click the _Run in Sandbox repo_ task
+    - Start in Sandbox repo_ task.
         - For more reliable and consistent behavior.
-        - This will run against `sandbox` directory in the project, which is a git repo where you can make files and commits as you like. You'll need to run `npm run sb` first to ensure this exists and then run the debug action. Run the command again clear the space and start over.
-        - Note that the extension currently doesn't work on a repo with zero commits, so you'll have to make a commit and then use the extension.
+        - This will run against `sandbox` directory in the project, which is a git repo where you can make files and commits as you like. Y
+        - NB. You'll need to run `npm run sb` first to ensure this directory exists and then run the debug action. Run that NPM command again to clear the space and start over.
+4. Click the play arrow.
 
 That will start a new sandboxed VS Code session which has the extension active and all others inactive. At a lower level, it runs `npm compile` and `npm watch`.
 
