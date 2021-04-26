@@ -49,6 +49,17 @@ describe("Prepare commit message", function () {
         assert.deepStrictEqual(
           generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    README.md"]), expected);
       });
+
+      it("handles 4 files with the same action correctly", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          fileChangeMsg: "Create baz.txt, bar.js, README.md and fuzz.ts",
+        };
+
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    README.md", "A    fuzz.ts"]),
+          expected);
+      });
     });
 
     describe("multiple files with the same action", function () {
@@ -62,7 +73,7 @@ describe("Prepare commit message", function () {
           generateMsgFromChanges(["A    baz.txt", "M    bar.js"]), expected);
       });
 
-      it("handles 3 files - with different actions ", function () {
+      it("handles 3 files - with different actions", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
           fileChangeMsg: "Various changes to baz.txt, bar.js and README.md",
