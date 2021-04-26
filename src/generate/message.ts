@@ -68,5 +68,5 @@ export function namedFiles(lines: string[]) {
     return `Various changes to ${fileList}`;
   }
 
-  return `${title(reducedAction)} ${fileList}`;
+  return `${_title(reducedAction)} ${fileList}`;
 }
