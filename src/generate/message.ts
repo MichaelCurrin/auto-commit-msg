@@ -51,10 +51,9 @@ export function oneChange(line: string) {
 }
 
 /**
- * Prepare a commit message using the names of a few changed files.
+ * Describe an action and paths for a set of changed files.
  *
- * Expects lines that came from a git command and returns a value like 'Update
- * foo.txt and bar.txt'.
+ * Expects lines that came from a git command and returns a value like 'Update foo.txt and bar.txt'.
  */
 export function namedFiles(lines: string[]) {
   const changes = lines.map(line => parseDiffIndex(line));
