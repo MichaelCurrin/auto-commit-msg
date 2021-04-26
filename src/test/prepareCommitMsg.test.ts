@@ -19,24 +19,58 @@ describe("Prepare commit message", function () {
         generateMsgFromChanges(["A    baz.txt"]), expected);
     });
 
-    it("handles 2 files with the same action correctly", function () {
-      const expected = {
-        prefix: CONVENTIONAL_TYPE.UNKNOWN,
-        fileChangeMsg: "Create baz.txt and bar.js",
-      };
+    describe("multiple files with the same action", function () {
+      it("handles 2 created files created correctly", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          fileChangeMsg: "Create baz.txt and bar.js",
+        };
 
-      assert.deepStrictEqual(
-        generateMsgFromChanges(["A    baz.txt", "A    bar.js"]), expected);
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["A    baz.txt", "A    bar.js"]), expected);
+      });
+
+      it("handles 2 modified files correctly", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          fileChangeMsg: "Update baz.txt and bar.js",
+        };
+
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["M    baz.txt", "M    bar.js"]), expected);
+      });
+
+      it("handles 3 files with the same action correctly", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          fileChangeMsg: "Create baz.txt, bar.js and README.md",
+        };
+
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    README.md"]), expected);
+      });
     });
 
-    it("handles 2 files with a different action correctly", function () {
-      const expected = {
-        prefix: CONVENTIONAL_TYPE.UNKNOWN,
-        fileChangeMsg: "Various changes to baz.txt and bar.js",
-      };
+    describe("multiple files with the same action", function () {
+      it("handles 2 files - one created and one modified", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          fileChangeMsg: "Various changes to baz.txt and bar.js",
+        };
 
-      assert.deepStrictEqual(
-        generateMsgFromChanges(["A    baz.txt", "M    bar.js"]), expected);
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["A    baz.txt", "M    bar.js"]), expected);
+      });
+
+      it("handles 3 files - with different actions ", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          fileChangeMsg: "Various changes to baz.txt, bar.js and README.md",
+        };
+
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["A    baz.txt", "M    bar.js", "D    README.md"]), expected);
+      });
     });
   });
 });
