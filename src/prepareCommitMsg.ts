@@ -31,7 +31,6 @@ export function _generateMsgOne(line: string) {
   const prefix = generatePrefixFromChanges(line),
     fileChangeMsg = oneChange(line);
 
-  // TODO convert to interface.
   return { prefix, fileChangeMsg };
 }
 
