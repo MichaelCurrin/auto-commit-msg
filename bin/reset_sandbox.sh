@@ -1,15 +1,17 @@
 #!/bin/sh
-# Set up the sandbox directly.
+# Set up the sandbox directory.
 set -e
 
-if [ -d sandbox ]; then
-  rm -rf sandbox
+DIR='sandbox'
+
+if [ -d "$DIR" ]; then
+  rm -rf "$DIR"
 fi
 
-git init sandbox --quiet
-cd sandbox
+git init "$DIR" --quiet
+cd "$DIR"
 
 # Create a commit, so that the extension can run diff-index, which requires an initial commit.
 echo "# Sandbox\n" >'README.md'
 git add -A
-git commit -m 'Initial commit in sandbox'
+git commit -m "Initial commit in $DIR"
