@@ -17,5 +17,15 @@ describe("Prepare commit message", function () {
       assert.deepStrictEqual(
         generateMsgFromChanges(["A    baz.txt"]), expected);
     });
+
+    it("handles 2 files with the same action correctly", function () {
+      const expected = {
+        prefix: "",
+        fileChangeMsg: "Create baz.txt and bar.js",
+      };
+
+      assert.deepStrictEqual(
+        generateMsgFromChanges(["A    baz.txt", "A    bar.js"]), expected);
+    });
   });
 });
