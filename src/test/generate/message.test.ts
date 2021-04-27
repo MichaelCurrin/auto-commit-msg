@@ -1,8 +1,11 @@
 /**
- * High-level test of message is shown to the user, based on changes to one or more files.
+ * Message test module.
+ *
+ * High-level test of the message shown to the user, based on changes to one or more files. This
+ * includes the action verb in a sentence along with named files, but not the semantic convention.
  */
 import * as assert from "assert";
-import { oneChange, _title } from "../../generate/message";
+import { namedFiles, oneChange, _title } from "../../generate/message";
 
 describe("Generate commit message for a single changed file", function () {
   describe("#title", function () {
@@ -143,6 +146,44 @@ describe("Generate commit message for a single changed file", function () {
 
       assert.strictEqual(oneChange("A    foo/index.md"), "Create foo/index.md");
       assert.strictEqual(oneChange("A    foo/index.js"), "Create foo/index.js");
+    });
+  });
+});
+
+describe("Generate commit message for a few changed files which each get named", function () {
+  describe("#namedFiles()", function () {
+    it("return the appropriate commit message for two files", function () {
+      assert.strictEqual(namedFiles(
+        ["A    foo.txt", "A    bar.txt"]
+      ), "Create foo.txt and bar.txt");
+
+      assert.strictEqual(namedFiles(
+        ["M    foo.txt", "M    bar.txt"]
+      ), "Update foo.txt and bar.txt");
+
+      assert.strictEqual(namedFiles(
+        ["M    fizz.js", "M    buzz.ts"]
+      ), "Update fizz.js and buzz.ts");
+    });
+
+    it("return a commit message for more than two files", function () {
+      assert.strictEqual(namedFiles(
+        ["A    foo.txt", "A    docs/bar.txt", "A    buzz.js"]
+      ), "Create foo.txt, docs/bar.txt and buzz.js");
+
+      assert.strictEqual(namedFiles(
+        ["D    foo.txt", "D    docs/bar.txt", "D    buzz.js"]
+      ), "Delete foo.txt, docs/bar.txt and buzz.js");
+    });
+
+    it("handles differing actions", function () {
+      assert.strictEqual(namedFiles(
+        ["A    foo.txt", "M    bar.txt"]
+      ), "Various changes to foo.txt and bar.txt");
+
+      assert.strictEqual(namedFiles(
+        ["M    foo.txt", "D    bar.txt"]
+      ), "Various changes to foo.txt and bar.txt");
     });
   });
 });

@@ -71,21 +71,21 @@ Here are supported action words which will be used.
 Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived. If none of the labels can be applied, it will left out.
 
 Here are the prefixes it knows and a summary of the rule used.
- 
-Prefix  | Rule
----     | ---
-`feat`  | For a new file. (The tool can't differentiate between content for a feature / refactor / bug fix, but it assumes a new file is probably going to be new feature)
-`chore` | For config files and for deleting, renaming or moving a file.
-`build` | For package management files and `Makefile` / `Rakefile`.
-`ci`    | For configs around GH Actions, CircleCI and BuildKite.
-`test`  | For directories and files related to tests, like `tests/` or `index.spec.js`.
-`docs`  | For documentation changes, like `README.md`, `docs/` or `CONTRIBUTING.md`.
+
+| Prefix  | Rule                                                                                                                                                             |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `feat`  | For a new file. (The tool can't differentiate between content for a feature / refactor / bug fix, but it assumes a new file is probably going to be new feature) |
+| `chore` | For config files and for deleting, renaming or moving a file.                                                                                                    |
+| `build` | For package management files and `Makefile` / `Rakefile`.                                                                                                        |
+| `ci`    | For configs around GH Actions, CircleCI and BuildKite.                                                                                                           |
+| `test`  | For directories and files related to tests, like `tests/` or `index.spec.js`.                                                                                    |
+| `docs`  | For documentation changes, like `README.md`, `docs/` or `CONTRIBUTING.md`.                                                                                       |
 
 There are other prefixes available. These require looking at the content of the file, not just the path. These are not in the scope of this project, but you can always type them manually.
 
 - `style`
 - `fix`
-- `refactor` 
+- `refactor`
 - `perf`
 
 ### How to use
@@ -108,9 +108,9 @@ It looks at the path of a file that changed and how it changed, then pushes the 
 
 It can make a message to **describe a change** for a single file to be committed. Including create, update, remove, rename and move - along with the filename. Or, the path, like for a move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
 
-It many cases it can also provide an appropriate **semvar** label for you. It can't separate features and bug fixes but it can identify changes to docs, CI files and config files.
+It many cases it can also provide an appropriate **conventional commit** prefix label for you. It can't separate features and bug fixes but it can identify changes to docs, CI files and config files.
 
- Don't use this tool all the time - remember to write explantory messages when it matters.
+Don't use this tool all the time - remember to write explanatory messages when it matters.
 
 
 ## Purpose
@@ -150,7 +150,10 @@ What this VS Code extension can do:
 - [x] Handle staged files or working tree
 - [x] Generate a single-line commit message for file to be committed, using action verbs (e.g. `Create`, `Update`, `Delete`)
 - [x] Handle changes from a single changed file
-- [ ] Handle changes from two or more files e.g. `Update 3 files in foo`, `Create foo.txt and fizz/bar.txt`, `Create foo.txt and delete bar.txt`
+- [ ] Handle changes from two or more files.
+    - [x] As a list of the same nature e.g. `Update foo.txt and fizz/bar.txt`, `feat: Create foo.txt, fizz/bar.txt and buzz.js` and `Various changes to ...`
+    - [ ] As as different verb for each change `Create foo.txt and delete bar.txt`.
+    - [ ] As a count. e.g. `Update 3 files in foo`.
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [x] Use semantic prefix / conventional commits e.g. `chore: Update package.json`
 
@@ -180,7 +183,7 @@ Roadmap of things to do to get this to v1 release.
 
 - [x] Works with `git` repos.
 - [x] Tests - Unit tests that are run with GitHub Actions CI
-- [x] Test coverage report. 
+- [x] Test coverage report.
 - [ ] Update logo.
 - [ ] Available in VS Code marketplace.
 - [ ] CI to build the package archive on tag (so it easily available outside the marketplace).
@@ -191,7 +194,7 @@ See [Issues](https://github.com/MichaelCurrin/auto-commit-msg/issues) on the rep
 
 ## Documentation
 
-[![view - Documenation](https://img.shields.io/badge/view-Documenation-blue)](/docs/)
+[![view - Documentation](https://img.shields.io/badge/view-Documenation-blue)](/docs/)
 [![view - Wiki](https://img.shields.io/badge/view-Wiki-blue)](https://github.com/MichaelCurrin/auto-commit-msg/wiki)
 
 

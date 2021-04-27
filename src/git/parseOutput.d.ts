@@ -3,7 +3,7 @@
  */
 
 /**
- * Describe a change of a file.
+ * Describe changes to a file at a low-level.
  *
  * The variable names come from git's naming for git status and git diff-index. The `x` and `y`
  * parts are actions like 'M' and they correspond to `from` and `to` respectively. When updating a

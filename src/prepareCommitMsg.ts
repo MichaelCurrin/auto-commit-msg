@@ -7,10 +7,11 @@
  * This module doesn't interact with the git CLI or the extension. It just deals with text.
  */
 import { lookupDiffIndexAction } from "./generate/action";
-import { oneChange } from "./generate/message";
+import { namedFiles, oneChange } from "./generate/message";
 import { getSemanticConvention } from "./generate/semantic";
 import { parseDiffIndex } from "./git/parseOutput";
 import { CONVENTIONAL_TYPE } from "./lib/constants";
+import { equal } from "./lib/utils";
 
 /**
  * Determine what the prefix should be for a file change, using semantic conventions.
@@ -22,26 +23,39 @@ function generatePrefixFromChanges(line: string) {
   return getSemanticConvention(action, filePath);
 }
 
-/**
- * Generate message from changes.
- *
- * Create semantic convention prefix and description of change paths and return a combined message.
- */
-export function generateMsgFromChanges(diffIndexLines: string[]) {
-  const line = diffIndexLines[0];
-
+export function _generateMsgOne(line: string) {
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
   const prefix = generatePrefixFromChanges(line),
     fileChangeMsg = oneChange(line);
 
-  // TODO convert to interface.
   return { prefix, fileChangeMsg };
 }
 
+export function _generateMsgMulti(lines: string[]) {
+  const conventions = lines.map(generatePrefixFromChanges);
+  const prefix = equal(conventions) ? conventions[0] : CONVENTIONAL_TYPE.UNKNOWN;
+
+  return { prefix, fileChangeMsg: namedFiles(lines) };
+}
+
 /**
- * Output a readable semantic git commit message.
+ * Generate message from changes.
+ *
+ * Return conventional commit prefix and a description of changed paths.
+ */
+export function generateMsgFromChanges(diffIndexLines: string[]) {
+  if (diffIndexLines.length === 1) {
+    const line = diffIndexLines[0];
+    return _generateMsgOne(line);
+  }
+
+  return _generateMsgMulti(diffIndexLines);
+}
+
+/**
+ * Output a readable conventional commit message.
  */
 function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
@@ -78,7 +92,7 @@ function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldM
 }
 
 /**
- * Generate commit message using old and new.
+ * Generate commit message using existing message and new generated message.
  *
  * High-level function to process file changes and an old message to generate replacement commit
  * message. Old message must be given, but it can be an empty string.
