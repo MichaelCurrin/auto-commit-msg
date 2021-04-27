@@ -24,8 +24,6 @@ function generatePrefixFromChanges(line: string) {
 }
 
 export function _generateMsgOne(line: string) {
-  // TODO: Should reduceActions go where generatePrefixFromChanges is and which should be used here?
-
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
