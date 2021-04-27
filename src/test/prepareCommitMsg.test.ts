@@ -5,10 +5,10 @@
  */
 import * as assert from "assert";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
-import { generateMsgFromChanges } from "../prepareCommitMsg";
+import { _msgFromChanges } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
-  describe("#generateMsgFromChanges", function () {
+  describe("#_msgFromChanges", function () {
     it("handles a single file correctly", function () {
       const expected = {
         prefix: CONVENTIONAL_TYPE.FEAT,
@@ -16,7 +16,7 @@ describe("Prepare commit message", function () {
       };
 
       assert.deepStrictEqual(
-        generateMsgFromChanges(["A    baz.txt"]), expected);
+        _msgFromChanges(["A    baz.txt"]), expected);
     });
 
     describe("multiple files with the same action", function () {
@@ -27,7 +27,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["A    baz.txt", "A    bar.js"]), expected);
+          _msgFromChanges(["A    baz.txt", "A    bar.js"]), expected);
       });
 
       it("handles 2 modified files correctly", function () {
@@ -37,7 +37,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["M    baz.txt", "M    bar.js"]), expected);
+          _msgFromChanges(["M    baz.txt", "M    bar.js"]), expected);
       });
 
       it("handles 3 files with the same action correctly", function () {
@@ -47,7 +47,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"]), expected);
+          _msgFromChanges(["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"]), expected);
       });
 
       it("handles 4 files with the same action correctly", function () {
@@ -57,7 +57,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    fuzz.md", "A    fuzz.ts"]),
+          _msgFromChanges(["A    baz.txt", "A    bar.js", "A    fuzz.md", "A    fuzz.ts"]),
           expected);
       });
 
@@ -68,7 +68,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["M    docs/foo.md", "M    bar/README.md", "M    README.md"]),
+          _msgFromChanges(["M    docs/foo.md", "M    bar/README.md", "M    README.md"]),
           expected);
       });
 
@@ -79,7 +79,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["M    docs/README.md", "M    bar/README.md", "M    README.md"]),
+          _msgFromChanges(["M    docs/README.md", "M    bar/README.md", "M    README.md"]),
           expected);
       });
     });
@@ -92,7 +92,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["A    baz.txt", "M    bar.js"]), expected);
+          _msgFromChanges(["A    baz.txt", "M    bar.js"]), expected);
       });
 
       it("handles 3 files - with different actions", function () {
@@ -102,7 +102,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["A    baz.txt", "M    bar.js", "D    README.md"]), expected);
+          _msgFromChanges(["A    baz.txt", "M    bar.js", "D    README.md"]), expected);
       });
     });
   });
