@@ -152,8 +152,9 @@ What this VS Code extension can do:
 - [x] Handle changes from a single changed file
 - [ ] Handle changes from two or more files.
     - [x] As a list of the same nature e.g. `Update foo.txt and fizz/bar.txt`, `feat: Create foo.txt, fizz/bar.txt and buzz.js` and `Various changes to foo.txt and fizz/bar.txt`.
-    - [ ] As as different verb for each change `Create foo.txt and delete bar.txt`.
-    - [ ] As a count. e.g. `Update 3 files in foo`.
+    - [ ] As as different verb for each change `Create foo.txt and delete bar.txt`. See [#37](https://github.com/MichaelCurrin/auto-commit-msg/issues/37).
+    - [ ] As a count. e.g. `Update 3 files in foo`. See [#18](https://github.com/MichaelCurrin/auto-commit-msg/issues/38).
+    - [ ] As a count with label. e.g. `Update 3 configs`. See [#13](https://github.com/MichaelCurrin/auto-commit-msg/issues/13).
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [x] Use conventional commits e.g. `chore: Update package.json`
 
