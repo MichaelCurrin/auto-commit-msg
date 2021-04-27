@@ -6,7 +6,8 @@
 import { parseDiffIndex } from "../git/parseOutput";
 import { ACTION } from "../lib/constants";
 import { formatPath, humanList } from "../lib/paths";
-import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile, reduceActions } from "./action";
+import { equal } from "../lib/util";
+import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile } from "./action";
 
 /**
  * Convert to titlecase.
@@ -59,14 +60,14 @@ export function namedFiles(lines: string[]) {
   const changes = lines.map(line => parseDiffIndex(line));
 
   const actions = changes.map(item => item.x as ActionKeys);
-  const reducedAction = reduceActions(actions);
+  const action = equal(actions) ? lookupDiffIndexAction(actions[0]) : ACTION.UNKNOWN;
 
   const pathsChanged = changes.map(item => item.from);
   const fileList = humanList(pathsChanged);
 
-  if (reducedAction === ACTION.UNKNOWN) {
+  if (action === ACTION.UNKNOWN) {
     return `Various changes to ${fileList}`;
   }
 
-  return `${_title(reducedAction)} ${fileList}`;
+  return `${_title(action)} ${fileList}`;
 }
