@@ -19,12 +19,23 @@
 </div>
 
 
+## Getting started
+
+<div align="center">
+
+[![docs - getting started](https://img.shields.io/badge/docs-getting_started-2ea44f?style=for-the-badge&logo=github)](https://github.com/MichaelCurrin/auto-commit-msg/releases)
+
+</div>
+
+
+
 ## Release disclaimer
 
 - This application is still in **pre-release** stage.
 - But... it is still functional and I use it daily, so please use it too if you want.
-- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace and cleaning up the docs. It can become version `1.0.0` around then.
+- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace (so you can install it without downloading from releases page) and cleaning up the docs. It can become version `1.0.0` around then.
 - There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
+
 
 
 ## Overview

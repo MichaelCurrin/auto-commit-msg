@@ -4,25 +4,30 @@
 
 ## Set up and run the extension
 
+This extension is _not_ available through the VS Code extension marketplace yet.
+
 Here is a short quick guide to get the extension installed globally in your VS Code using a downloaded file and then start using the extension.
 
-You only need to have VS Code installed. You do not need to install any dependencies yourself or download this repo. 
+You **only** need to have VS Code installed.
+
+You do **not** need to install any JavaScript dependencies yourself or to download this repo.
 
 ### Install
 > Use the terminal to install the extension from pre-built file
 
 This is extension is **not available** in the VS Code marketplace yet, but you download it from GitHub.
 
-1. Find the latest release on the GitHub [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases) page.
+1. Find the latest release on the GitHub Releases page.
+    - [![releases](https://img.shields.io/badge/releases-2ea44f?style=for-the-badge&logo=github)](https://github.com/MichaelCurrin/auto-commit-msg/releases)
 2. Download a copy of the `.vsix` asset on the latest release.
     - Click on the file.
-    - Or use the shell. 
+    - Or use the shell.
         e.g.
         ```sh
         $ cd ~/Downloads
         $ curl -O https://github.com/MichaelCurrin/auto-commit-msg/releases/download/v0.17.0/auto-commit-msg-0.17.0.vsix
         ```
-5. Install the extension. Here we run VS Code in the CLI against the downloaded file.
+3. Install the extension. Here we run VS Code in the CLI against the downloaded file.
     ```sh
     $ code --install-extension PATH
     ```
@@ -43,7 +48,7 @@ Continue to the section below for how to use the extension.
 1. Open VS Code. If it is already open, you'll need to restart it.
 1. Go to the Source Control (Git Extension) tab. You'll see this extension added.
 1. Make a change to a file and use the Soure Control pane to stage a file.
-1. Click the extension button. 
+1. Click the extension button.
 1. You'll see a message added the commit message box. Edit it if you want.
 1. Commit with the VS Code UI. e.g. Use <kbd>CTRL</kbd>+<kbd>ENTER</kbd> or press the tick button.
 
