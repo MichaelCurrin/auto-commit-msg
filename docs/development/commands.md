@@ -22,7 +22,7 @@ Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.githu
 
 ### Run all
 
-Format, lint and then unit tests.
+Format, lint and then run unit tests.
 
 ```sh
 $ make test
@@ -33,7 +33,7 @@ $ make test
 Apply Prettier formatting to scripts.
 
 ```sh
-$ npm run fmt
+$ make fmt
 ```
 
 ### Lint
@@ -41,7 +41,7 @@ $ npm run fmt
 Run ESLint against TS files for a report and fixing problems where possible.
 
 ```sh
-$ npm run lint:fix
+$ make lint
 ```
 
 Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the compile step. This runs as part of [Tests](#run-tests), so you don't have to run it by hand.
@@ -56,7 +56,7 @@ For the `git-prefix` project this project was partly based on, unfortunately the
 
 #### Unit tests
 
-This will clean the output directory, compile files and then run unit tests.
+This will clean the output directory, compile files and then run unit tests. No formatting or linting.
 
 ```sh
 $ npm test
