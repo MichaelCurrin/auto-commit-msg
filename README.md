@@ -151,7 +151,7 @@ What this VS Code extension can do:
 - [x] Generate a single-line commit message for file to be committed, using action verbs (e.g. `Create`, `Update`, `Delete`)
 - [x] Handle changes from a single changed file
 - [ ] Handle changes from two or more files.
-    - [x] As a list of the same nature e.g. `Update foo.txt and fizz/bar.txt`, `feat: Create foo.txt, fizz/bar.txt and buzz.js` and `Various changes to ...`
+    - [x] As a list of the same nature e.g. `Update foo.txt and fizz/bar.txt`, `feat: Create foo.txt, fizz/bar.txt and buzz.js` and `Various changes to foo.txt and fizz/bar.txt`.
     - [ ] As as different verb for each change `Create foo.txt and delete bar.txt`.
     - [ ] As a count. e.g. `Update 3 files in foo`.
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
