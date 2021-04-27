@@ -6,7 +6,7 @@
 import { parseDiffIndex } from "../git/parseOutput";
 import { ACTION } from "../lib/constants";
 import { formatPath, humanList } from "../lib/paths";
-import { equal } from "../lib/util";
+import { equal } from "../lib/utils";
 import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile } from "./action";
 
 /**

@@ -11,7 +11,7 @@ import { namedFiles, oneChange } from "./generate/message";
 import { getSemanticConvention } from "./generate/semantic";
 import { parseDiffIndex } from "./git/parseOutput";
 import { CONVENTIONAL_TYPE } from "./lib/constants";
-import { equal } from "./lib/util";
+import { equal } from "./lib/utils";
 
 /**
  * Determine what the prefix should be for a file change, using semantic conventions.
