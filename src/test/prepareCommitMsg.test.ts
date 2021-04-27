@@ -61,7 +61,6 @@ describe("Prepare commit message", function () {
           expected);
       });
 
-
       it("handles 3 docs correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.DOCS,
