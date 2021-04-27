@@ -88,7 +88,8 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("handles 2 \"build\" files correctly", function () {
+      /* eslint-disable-next-line quotes */
+      it('handles 2 "build" files correctly', function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.BUILD,
           fileChangeMsg: "Update package.json and package-lock.json",
