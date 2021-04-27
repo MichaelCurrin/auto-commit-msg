@@ -2,12 +2,11 @@
 > How to get the pre-built extension installed in VS Code
 
 
-## Setup and run the extension
+## Set up and run the extension
 
 Here is a short quick guide to get the extension installed globally in your VS Code using a downloaded file and then start using the extension.
 
 You only need to have VS Code installed. You do not need to install any dependencies yourself or download this repo. 
-
 
 ### Install
 > Use the terminal to install the extension from pre-built file
