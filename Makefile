@@ -30,7 +30,7 @@ t test: fmt lint
 	npm run test:report
 
 
-# Run tests and then tag and push. Install the tagged version afterwards.
+# Run checks, tag and push then install the tagged version as cleanup.
 tag:
 	npm version minor
 	$(MAKE) ext
