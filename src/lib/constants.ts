@@ -10,7 +10,7 @@ export const ROOT = "repo root";
  * Based on the git docs for using `git status` or `git diff-index`. The keys are for `--short`
  * output. The values are the human-readable values from the standard long output.
  *
- * I've never seen 'copied' in real life I don't think but it is included anyway for completeness.
+ * I've never noticed 'copied' in real life, but it is included anyway for completeness.
  */
 export enum DESCRIPTION {
   " " = "unmodified",
