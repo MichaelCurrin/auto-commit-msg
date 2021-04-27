@@ -5,10 +5,12 @@
 ## Hello World sample
 
 - Source: [Hello World test sample](https://github.com/microsoft/vscode-extension-samples/tree/master/helloworld-test-sample) project
-- This project started off as an extension based on the VS Code test sampke. It was just hello world and didn't help with my flow, so I got rid of the code in later tags.
+- This project started off as an extension based on the VS Code test sample. It was just hello world and didn't help with my flow, so I got rid of the code in later tags.
 
 
 ## Git Semantic Commit
+
+Note that a "semantic commit" message is the same as a "conventional commit" message.
 
 - Repo: [nitayneeman/vscode-git-semantic-commit](https://github.com/nitayneeman/vscode-git-semantic-commit)
 - I liked how this extension does Git CLI commands, so I used the original [Git](https://github.com/nitayneeman/vscode-git-semantic-commit/blob/master/src/git.ts) class and `getWorkspaceFolder` function. That served as the base for my functionality in [gitCommands.ts](/src/gitCommands.ts), which allowed my `extension.ts` script to work as I wanted. I later split out the `Git` class into functions as that made more sense.
