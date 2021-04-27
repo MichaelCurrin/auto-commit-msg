@@ -35,10 +35,12 @@ See more [here](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/che
 
 ## Install extension
 
-To install the extension itself, see the [Install extension globally](development.md#install-extension-globally) section of the Development doc.
+See the [Install extension globally](development.md#install-extension-globally) section of the Development doc.
 
 
 ## Installation
+
+Set up the project in a development environment.
 
 ### Install system dependencies
 
