@@ -35,4 +35,4 @@ Note that a "semantic commit" message is the same as a "conventional commit" mes
         - I found the original hard to work on because of how it uses an old-style `for` loop and `i` variable.
         - I found using `.split` with a regex pattern was much simpler.
     - Added TS types (essential for my project to run).
-    - My module handles output of both `git status [FLAGS] --short` and `git diff-index [FLAGS] HEAD`.
+    - Add `git diff-index` support - see [status vs diff-index](/docs/development/status-vs-diff-index.md) doc.
