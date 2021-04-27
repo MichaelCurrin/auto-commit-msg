@@ -35,7 +35,7 @@ export function splitPath(filePath: string): SplitPathResult {
 /**
  * Change file path to a more readable format.
  *
- * Index files stay as a full path, but otherwise reduce the filename.
+ * The README and index files stay as a full path, otherwise reduce to just the filename.
  */
 export function formatPath(filePath: string) {
   const { name } = splitPath(filePath);
