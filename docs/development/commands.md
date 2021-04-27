@@ -22,15 +22,19 @@ Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.githu
 
 ### Run all
 
-This is useful before pushing to ensure everything works. (This could be setup with a pre-push hook too to automated it)
+Format, lint and then unit tests.
 
 ```sh
-$ npm run preversion
+$ make test
 ```
 
-This is setup to run the linting and test steps, with `compile` run as part of `pretest` because of how NPM works.
+### Format
 
-See later in this doc to run steps separately.
+Apply Prettier formatting to scripts.
+
+```sh
+$ npm run fmt
+```
 
 ### Lint
 
@@ -57,13 +61,6 @@ This will clean the output directory, compile files and then run unit tests.
 ```sh
 $ npm test
 ```
-
-Format, lint and then unit tests.
-
-```sh
-$ make test
-```
-
 
 #### Integration tests
 
