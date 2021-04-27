@@ -8,7 +8,7 @@ import { CONVENTIONAL_TYPE } from "../lib/constants";
 import { generateMsgFromChanges } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
-  describe("#generateMsgFromChanges()", function () {
+  describe("#generateMsgFromChanges", function () {
     it("handles a single file correctly", function () {
       const expected = {
         prefix: CONVENTIONAL_TYPE.FEAT,
