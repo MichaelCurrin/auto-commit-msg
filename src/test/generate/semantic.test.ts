@@ -8,7 +8,7 @@ import { getSemanticConvention, Semantic } from "../../generate/semantic";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
 describe("Test #Semantic class for path-based conventional commit logic", function () {
-  describe("#isDocsRelated()", function () {
+  describe("#isDocsRelated", function () {
     it("determines that a README file is a doc", function () {
       assert.strictEqual(new Semantic("README.md").isDocsRelated(), true);
       assert.strictEqual(new Semantic("README.rst").isDocsRelated(), true);
@@ -41,7 +41,7 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
     });
   });
 
-  describe("#isBuildRelated()", function () {
+  describe("#isBuildRelated", function () {
     it("can recognize a build change fr a build-related filename", function () {
       assert.strictEqual(new Semantic("Dockerfile").isBuildRelated(), true);
       assert.strictEqual(new Semantic("foo/Dockerfile").isBuildRelated(), true);
@@ -51,7 +51,7 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
     });
   });
 
-  describe("#isCIRelated()", function () {
+  describe("#isCIRelated", function () {
     it("can tell a CI change is in a CircleCI directory", function () {
       assert.strictEqual(new Semantic(".circleci/foo.txt").isCIRelated(), true);
 
@@ -77,7 +77,7 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
     });
   });
 
-  describe("#isTestRelated()", function () {
+  describe("#isTestRelated", function () {
     it("can tell a test directory is for tests", function () {
       assert.strictEqual(new Semantic("test/foo.js").isTestRelated(), true);
       assert.strictEqual(new Semantic("tests/foo.js").isTestRelated(), true);
@@ -95,7 +95,7 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
     });
   });
 
-  describe("#getType()", function () {
+  describe("#getType", function () {
     // Rather than true and false like in above tests this actually categorizes and also it closer
     // to the real world as it through a hierarchy (for example .yml is config-related unless it is
     // for a CI file). But, this doesn't care what the action is like create or delete or modify, so
@@ -171,7 +171,7 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
   });
 });
 
-describe("#getSemanticConvention()", function () {
+describe("#getSemanticConvention", function () {
   it("uses feat for a new file if no other match is found", function () {
     const add = ACTION.A;
 

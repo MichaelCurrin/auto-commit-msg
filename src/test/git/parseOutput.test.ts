@@ -11,7 +11,7 @@ describe("Split `git diff-index` output into components", function () {
   // The 1st column to 2nd looks like constant with and then 2nd to 3rd looks like 6 chars.
   // R100    tslint.json     src/tslint.json
   // R100    vsc-extension-quickstart.md     src/vsc-extension-quickstart.md
-  describe("#parseDiffIndex()", function () {
+  describe("#parseDiffIndex", function () {
     it("should return the appropriate commit message for a new file", function () {
       const expected: FileChanges = {
         x: "A",
@@ -100,7 +100,7 @@ describe("Split `git diff-index` output into components", function () {
 
 // Not a core part of the tool anymore, but the code and tests are kept anyway.
 describe("Split `git status` output into components", function () {
-  describe("#parseStatus()", function () {
+  describe("#parseStatus", function () {
     it("should return the appropriate commit message for a new file", function () {
       const expected: FileChanges = {
         x: "A",

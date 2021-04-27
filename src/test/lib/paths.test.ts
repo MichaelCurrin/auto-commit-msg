@@ -7,7 +7,7 @@ import * as assert from "assert";
 import { formatPath, humanList, splitPath } from "../../lib/paths";
 
 describe("Path handling", function () {
-  describe("#splitPath()", function () {
+  describe("#splitPath", function () {
     it("splits a path correctly", function () {
       assert.deepStrictEqual(splitPath("baz.txt"), {
         atRoot: true,
@@ -25,7 +25,7 @@ describe("Path handling", function () {
     });
   });
 
-  describe("#formatPath()", function () {
+  describe("#formatPath", function () {
     it("formats a long path as a filename only", function () {
       assert.strictEqual(formatPath("Baz.txt"), "Baz.txt");
       assert.strictEqual(formatPath("bazz/Baz.txt"), "Baz.txt");
@@ -44,7 +44,7 @@ describe("Path handling", function () {
     });
   });
 
-  describe("#humanList()", function () {
+  describe("#humanList", function () {
     it("returns a path for a single file", function () {
       assert.strictEqual(humanList(
         ["foo.txt"]
