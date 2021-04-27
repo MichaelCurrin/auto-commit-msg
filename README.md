@@ -153,7 +153,7 @@ What this VS Code extension can do:
 - [x] Generate a single-line commit message for file to be committed, using action verbs (e.g. `Create`, `Update`, `Delete`)
 - [x] Handle changes from a single changed file
 - [ ] Handle changes from two or more files.
-    - [x] As a list of the same nature e.g. `Update foo.txt and fizz/bar.txt`, `feat: Create foo.txt, fizz/bar.txt and buzz.js` and `Various changes to foo.txt and fizz/bar.txt`. See [#29](https://github.com/MichaelCurrin/auto-commit-msg/pull/29).
+    - [x] As a list of the same nature e.g. `Update foo.txt and fizz/bar.txt`, `feat: Create foo.txt, fizz/bar.txt and buzz.js` (including prefix) and `Various changes to foo.txt and fizz/bar.txt` (for say one updated and one new file). See [#29](https://github.com/MichaelCurrin/auto-commit-msg/pull/29).
     - [ ] As as different verb for each change `Create foo.txt and delete bar.txt`. See [#37](https://github.com/MichaelCurrin/auto-commit-msg/issues/37).
     - [ ] As a count. e.g. `Update 3 files in foo`. See [#18](https://github.com/MichaelCurrin/auto-commit-msg/issues/38).
     - [ ] As a count with label. e.g. `Update 3 configs`. See [#13](https://github.com/MichaelCurrin/auto-commit-msg/issues/13).
