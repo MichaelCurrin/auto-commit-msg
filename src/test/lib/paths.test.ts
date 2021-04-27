@@ -5,7 +5,7 @@
  */
 import * as assert from "assert";
 import { ROOT } from "../../lib/constants";
-import { formatPath, humanList, splitPath } from "../../lib/paths";
+import { friendlyFile, humanList, splitPath } from "../../lib/paths";
 
 describe("Path handling", function () {
   describe("#splitPath", function () {
@@ -26,22 +26,22 @@ describe("Path handling", function () {
     });
   });
 
-  describe("#formatPath", function () {
+  describe("#friendlyFile", function () {
     it("formats a long path as a filename only", function () {
-      assert.strictEqual(formatPath("Baz.txt"), "Baz.txt");
-      assert.strictEqual(formatPath("bazz/Baz.txt"), "Baz.txt");
+      assert.strictEqual(friendlyFile("Baz.txt"), "Baz.txt");
+      assert.strictEqual(friendlyFile("bazz/Baz.txt"), "Baz.txt");
     });
 
     it("formats a README file as a full path", function () {
-      assert.strictEqual(formatPath("README.md"), "README.md");
-      assert.strictEqual(formatPath("foo/README.md"), "foo/README.md");
-      assert.strictEqual(formatPath("bar/readme.txt"), "bar/readme.txt");
+      assert.strictEqual(friendlyFile("README.md"), "README.md");
+      assert.strictEqual(friendlyFile("foo/README.md"), "foo/README.md");
+      assert.strictEqual(friendlyFile("bar/readme.txt"), "bar/readme.txt");
     });
 
     it("formats an index file as a full path", function () {
-      assert.strictEqual(formatPath("Foo/index.md"), "Foo/index.md");
-      assert.strictEqual(formatPath("Foo/index.html"), "Foo/index.html");
-      assert.strictEqual(formatPath("Foo/index.js"), "Foo/index.js");
+      assert.strictEqual(friendlyFile("Foo/index.md"), "Foo/index.md");
+      assert.strictEqual(friendlyFile("Foo/index.html"), "Foo/index.html");
+      assert.strictEqual(friendlyFile("Foo/index.js"), "Foo/index.js");
     });
   });
 

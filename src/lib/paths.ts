@@ -35,9 +35,10 @@ export function splitPath(filePath: string): SplitPathResult {
 /**
  * Change file path to a more readable format.
  *
- * The README and index files stay as a full path, otherwise reduce to just the filename.
+ * The idea is to show just the filename, to keep things short. README and index files can be
+ * confusing as there might be be a few in a project, so those are kept as paths.
  */
-export function formatPath(filePath: string) {
+export function friendlyFile(filePath: string) {
   const { name } = splitPath(filePath);
 
   const nameLower = name.toLowerCase();

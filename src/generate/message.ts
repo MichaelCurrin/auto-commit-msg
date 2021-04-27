@@ -5,7 +5,7 @@
  */
 import { parseDiffIndex } from "../git/parseOutput";
 import { ACTION } from "../lib/constants";
-import { formatPath, humanList } from "../lib/paths";
+import { friendlyFile, humanList } from "../lib/paths";
 import { equal } from "../lib/utils";
 import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile } from "./action";
 
@@ -46,7 +46,7 @@ export function oneChange(line: string) {
     return moveOrRenameFile(from, to);
   }
 
-  const outputPath = formatPath(from);
+  const outputPath = friendlyFile(from);
 
   return `${_title(action)} ${outputPath}`;
 }
