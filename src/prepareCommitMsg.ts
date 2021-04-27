@@ -16,7 +16,7 @@ import { equal } from "./lib/utils";
 /**
  * Determine what the prefix should be for a file change, using semantic conventions.
  */
-function generatePrefixFromChanges(line: string) {
+function _generatePrefixFromChanges(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
 
@@ -27,14 +27,14 @@ export function _generateMsgOne(line: string) {
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
-  const prefix = generatePrefixFromChanges(line),
+  const prefix = _generatePrefixFromChanges(line),
     fileChangeMsg = oneChange(line);
 
   return { prefix, fileChangeMsg };
 }
 
 export function _generateMsgMulti(lines: string[]) {
-  const conventions = lines.map(generatePrefixFromChanges);
+  const conventions = lines.map(_generatePrefixFromChanges);
   const prefix = equal(conventions) ? conventions[0] : CONVENTIONAL_TYPE.UNKNOWN;
 
   return { prefix, fileChangeMsg: namedFiles(lines) };
