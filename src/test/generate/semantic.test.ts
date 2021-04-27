@@ -4,94 +4,94 @@
  * Test the categorization of changed files as conventional commit types.
  */
 import * as assert from "assert";
-import { getSemanticConvention, Semantic } from "../../generate/semantic";
+import { ConventionalCommit, getConventionType } from "../../generate/semantic";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
 describe("Test #Semantic class for path-based conventional commit logic", function () {
   describe("#isDocsRelated", function () {
     it("determines that a README file is a doc", function () {
-      assert.strictEqual(new Semantic("README.md").isDocsRelated(), true);
-      assert.strictEqual(new Semantic("README.rst").isDocsRelated(), true);
-      assert.strictEqual(new Semantic("Readme.txt").isDocsRelated(), true);
-      assert.strictEqual(new Semantic("readme").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("README.md").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("README.rst").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("Readme.txt").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("readme").isDocsRelated(), true);
 
-      assert.strictEqual(new Semantic("FEEDME.md").isDocsRelated(), false);
+      assert.strictEqual(new ConventionalCommit("FEEDME.md").isDocsRelated(), false);
     });
 
     it("determines that a CONTRIBUTING file is a doc", function () {
-      assert.strictEqual(new Semantic("CONTRIBUTING.md").isDocsRelated(), true);
-      assert.strictEqual(new Semantic("contributing.md").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("CONTRIBUTING.md").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("contributing.md").isDocsRelated(), true);
     });
 
     it("determines that a `.rst` file is a doc", function () {
-      assert.strictEqual(new Semantic("README.rst").isDocsRelated(), true);
-      assert.strictEqual(new Semantic("foo.rst").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("README.rst").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("foo.rst").isDocsRelated(), true);
     });
 
     it("determines a file in the docs directory is a doc", function () {
-      assert.strictEqual(new Semantic("docs/fizz.md").isDocsRelated(), true);
-      assert.strictEqual(new Semantic("docs/foo.img").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("docs/fizz.md").isDocsRelated(), true);
+      assert.strictEqual(new ConventionalCommit("docs/foo.img").isDocsRelated(), true);
 
       assert.strictEqual(
-        new Semantic("docs/fizz/foo.img").isDocsRelated(),
+        new ConventionalCommit("docs/fizz/foo.img").isDocsRelated(),
         true
       );
 
-      assert.strictEqual(new Semantic("fuzz/fizz.md").isDocsRelated(), false);
+      assert.strictEqual(new ConventionalCommit("fuzz/fizz.md").isDocsRelated(), false);
     });
   });
 
   describe("#isBuildRelated", function () {
     it("can recognize a build change fr a build-related filename", function () {
-      assert.strictEqual(new Semantic("Dockerfile").isBuildRelated(), true);
-      assert.strictEqual(new Semantic("foo/Dockerfile").isBuildRelated(), true);
+      assert.strictEqual(new ConventionalCommit("Dockerfile").isBuildRelated(), true);
+      assert.strictEqual(new ConventionalCommit("foo/Dockerfile").isBuildRelated(), true);
 
-      assert.strictEqual(new Semantic("foo.txt").isBuildRelated(), false);
-      assert.strictEqual(new Semantic("fizz/foo.txt").isBuildRelated(), false);
+      assert.strictEqual(new ConventionalCommit("foo.txt").isBuildRelated(), false);
+      assert.strictEqual(new ConventionalCommit("fizz/foo.txt").isBuildRelated(), false);
     });
   });
 
   describe("#isCIRelated", function () {
     it("can tell a CI change is in a CircleCI directory", function () {
-      assert.strictEqual(new Semantic(".circleci/foo.txt").isCIRelated(), true);
+      assert.strictEqual(new ConventionalCommit(".circleci/foo.txt").isCIRelated(), true);
 
-      assert.strictEqual(new Semantic("foo.txt").isCIRelated(), false);
-      assert.strictEqual(new Semantic("fizz/foo.txt").isCIRelated(), false);
+      assert.strictEqual(new ConventionalCommit("foo.txt").isCIRelated(), false);
+      assert.strictEqual(new ConventionalCommit("fizz/foo.txt").isCIRelated(), false);
     });
 
     it("can tell a CI change is in a workflows directory", function () {
       assert.strictEqual(
-        new Semantic(".github/workflows/foo.txt").isCIRelated(),
+        new ConventionalCommit(".github/workflows/foo.txt").isCIRelated(),
         true
       );
 
-      assert.strictEqual(new Semantic("foo.txt").isCIRelated(), false);
-      assert.strictEqual(new Semantic(".github/foo.txt").isCIRelated(), false);
+      assert.strictEqual(new ConventionalCommit("foo.txt").isCIRelated(), false);
+      assert.strictEqual(new ConventionalCommit(".github/foo.txt").isCIRelated(), false);
     });
 
     it("can tell a CI change for a CI filename", function () {
-      assert.strictEqual(new Semantic("netlify.toml").isCIRelated(), true);
-      assert.strictEqual(new Semantic("foo/netlify.toml").isCIRelated(), true);
+      assert.strictEqual(new ConventionalCommit("netlify.toml").isCIRelated(), true);
+      assert.strictEqual(new ConventionalCommit("foo/netlify.toml").isCIRelated(), true);
 
-      assert.strictEqual(new Semantic("foo.txt").isCIRelated(), false);
+      assert.strictEqual(new ConventionalCommit("foo.txt").isCIRelated(), false);
     });
   });
 
   describe("#isTestRelated", function () {
     it("can tell a test directory is for tests", function () {
-      assert.strictEqual(new Semantic("test/foo.js").isTestRelated(), true);
-      assert.strictEqual(new Semantic("tests/foo.js").isTestRelated(), true);
-      assert.strictEqual(new Semantic("spec/foo.js").isTestRelated(), true);
+      assert.strictEqual(new ConventionalCommit("test/foo.js").isTestRelated(), true);
+      assert.strictEqual(new ConventionalCommit("tests/foo.js").isTestRelated(), true);
+      assert.strictEqual(new ConventionalCommit("spec/foo.js").isTestRelated(), true);
 
       assert.strictEqual(
-        new Semantic("unit_tests/foo.js").isTestRelated(),
+        new ConventionalCommit("unit_tests/foo.js").isTestRelated(),
         true
       );
     });
 
     it("can tell a test file is for tests", function () {
-      assert.strictEqual(new Semantic("foo/bar.test.js").isTestRelated(), true);
-      assert.strictEqual(new Semantic("foo/test_bar.js").isTestRelated(), true);
+      assert.strictEqual(new ConventionalCommit("foo/bar.test.js").isTestRelated(), true);
+      assert.strictEqual(new ConventionalCommit("foo/test_bar.js").isTestRelated(), true);
     });
   });
 
@@ -102,41 +102,41 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
     // it won't impose meaning based on that.
     it("can recognizes a build file as build", function () {
       assert.strictEqual(
-        new Semantic("Makefile").getType(),
+        new ConventionalCommit("Makefile").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
       assert.strictEqual(
-        new Semantic("Dockerfile").getType(),
+        new ConventionalCommit("Dockerfile").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
 
       assert.strictEqual(
-        new Semantic("foo.gemspec").getType(),
+        new ConventionalCommit("foo.gemspec").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
     });
 
     it("can recognizes a package file as build", function () {
       assert.strictEqual(
-        new Semantic("Gemfile").getType(),
+        new ConventionalCommit("Gemfile").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
 
       assert.strictEqual(
-        new Semantic("package.json").getType(),
+        new ConventionalCommit("package.json").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
       assert.strictEqual(
-        new Semantic("package-lock.json").getType(),
+        new ConventionalCommit("package-lock.json").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
 
       assert.strictEqual(
-        new Semantic("requirements.txt").getType(),
+        new ConventionalCommit("requirements.txt").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
       assert.strictEqual(
-        new Semantic("requirements-dev.txt").getType(),
+        new ConventionalCommit("requirements-dev.txt").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
     });
@@ -144,27 +144,27 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
     // TODO Break into categories
     it("can tell a type for other types", function () {
       assert.strictEqual(
-        new Semantic("foo").getType(),
+        new ConventionalCommit("foo").getType(),
         CONVENTIONAL_TYPE.UNKNOWN
       );
 
       assert.strictEqual(
-        new Semantic("test/foo.js").getType(),
+        new ConventionalCommit("test/foo.js").getType(),
         CONVENTIONAL_TYPE.TEST
       );
 
       assert.strictEqual(
-        new Semantic(".github/workflows/foo.yml").getType(),
+        new ConventionalCommit(".github/workflows/foo.yml").getType(),
         CONVENTIONAL_TYPE.CI
       );
 
       assert.strictEqual(
-        new Semantic("README.md").getType(),
+        new ConventionalCommit("README.md").getType(),
         CONVENTIONAL_TYPE.DOCS
       );
 
       assert.strictEqual(
-        new Semantic("LICENSE").getType(),
+        new ConventionalCommit("LICENSE").getType(),
         CONVENTIONAL_TYPE.CHORE
       );
     });
@@ -176,16 +176,16 @@ describe("#getSemanticConvention", function () {
     const add = ACTION.A;
 
     assert.strictEqual(
-      getSemanticConvention(add, "README.md"),
+      getConventionType(add, "README.md"),
       CONVENTIONAL_TYPE.DOCS
     );
     assert.strictEqual(
-      getSemanticConvention(add, "tests/foo.js"),
+      getConventionType(add, "tests/foo.js"),
       CONVENTIONAL_TYPE.TEST
     );
 
     assert.strictEqual(
-      getSemanticConvention(add, "foo.txt"),
+      getConventionType(add, "foo.txt"),
       CONVENTIONAL_TYPE.FEAT
     );
   });
@@ -193,16 +193,16 @@ describe("#getSemanticConvention", function () {
     const del = ACTION.D;
 
     assert.strictEqual(
-      getSemanticConvention(del, "foo.txt"),
+      getConventionType(del, "foo.txt"),
       CONVENTIONAL_TYPE.CHORE
     );
     assert.strictEqual(
-      getSemanticConvention(del, "README.md"),
+      getConventionType(del, "README.md"),
       CONVENTIONAL_TYPE.CHORE
     );
 
     assert.strictEqual(
-      getSemanticConvention(del, "tests/foo.js"),
+      getConventionType(del, "tests/foo.js"),
       CONVENTIONAL_TYPE.CHORE
     );
   });
@@ -211,25 +211,25 @@ describe("#getSemanticConvention", function () {
     const renameOrMove = ACTION.R;
 
     assert.strictEqual(
-      getSemanticConvention(renameOrMove, "foo.txt"),
+      getConventionType(renameOrMove, "foo.txt"),
       CONVENTIONAL_TYPE.CHORE
     );
     assert.strictEqual(
-      getSemanticConvention(renameOrMove, "fuzz/foo.txt"),
-      CONVENTIONAL_TYPE.CHORE
-    );
-
-    assert.strictEqual(
-      getSemanticConvention(renameOrMove, "README.md"),
-      CONVENTIONAL_TYPE.CHORE
-    );
-    assert.strictEqual(
-      getSemanticConvention(renameOrMove, "docs/foo.txt"),
+      getConventionType(renameOrMove, "fuzz/foo.txt"),
       CONVENTIONAL_TYPE.CHORE
     );
 
     assert.strictEqual(
-      getSemanticConvention(renameOrMove, "tests/foo.js"),
+      getConventionType(renameOrMove, "README.md"),
+      CONVENTIONAL_TYPE.CHORE
+    );
+    assert.strictEqual(
+      getConventionType(renameOrMove, "docs/foo.txt"),
+      CONVENTIONAL_TYPE.CHORE
+    );
+
+    assert.strictEqual(
+      getConventionType(renameOrMove, "tests/foo.js"),
       CONVENTIONAL_TYPE.CHORE
     );
   });
@@ -238,20 +238,20 @@ describe("#getSemanticConvention", function () {
     const modified = ACTION.M;
 
     assert.strictEqual(
-      getSemanticConvention(modified, "foo.txt"),
+      getConventionType(modified, "foo.txt"),
       CONVENTIONAL_TYPE.UNKNOWN
     );
     assert.strictEqual(
-      getSemanticConvention(modified, "fizz/foo.txt"),
+      getConventionType(modified, "fizz/foo.txt"),
       CONVENTIONAL_TYPE.UNKNOWN
     );
 
     assert.strictEqual(
-      getSemanticConvention(modified, "README.md"),
+      getConventionType(modified, "README.md"),
       CONVENTIONAL_TYPE.DOCS
     );
     assert.strictEqual(
-      getSemanticConvention(modified, "tests/foo.js"),
+      getConventionType(modified, "tests/foo.js"),
       CONVENTIONAL_TYPE.TEST
     );
   });

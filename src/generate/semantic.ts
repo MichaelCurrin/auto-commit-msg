@@ -206,14 +206,14 @@ const DOC_NAMES = [
 ].map(name => name.toLowerCase());
 
 /**
- * Support conventional commit prefix for a given file path.
+ * Evaluate conventional commit prefix for a given file.
  *
  * This ignores the action such as create/delete file.
  *
  * For move or rename cases, the input path is assumed to be the `to` path path as that would more
  * useful than knowing the `from` path.
  */
-export class Semantic {
+export class ConventionalCommit {
   atRoot: boolean;
   dirPath: string;
   name: string;
@@ -344,12 +344,12 @@ export class Semantic {
  * value. Though it could be set as always feature or docs as a general rule or config option on the
  * project level or extension level.
  */
-export function getSemanticConvention(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
+export function getConventionType(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
   if (action === ACTION.R || action === ACTION.D) {
     return CONVENTIONAL_TYPE.CHORE;
   }
 
-  const semantic = new Semantic(filePath);
+  const semantic = new ConventionalCommit(filePath);
   const semPathType = semantic.getType();
 
   if (action === ACTION.A) {

@@ -8,7 +8,7 @@
  */
 import { lookupDiffIndexAction } from "./generate/action";
 import { namedFiles, oneChange } from "./generate/message";
-import { getSemanticConvention } from "./generate/semantic";
+import { getConventionType } from "./generate/semantic";
 import { parseDiffIndex } from "./git/parseOutput";
 import { CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
@@ -20,7 +20,7 @@ function _prefixFromChanges(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
 
-  return getSemanticConvention(action, filePath);
+  return getConventionType(action, filePath);
 }
 
 /**
