@@ -197,8 +197,13 @@ See [Issues](https://github.com/MichaelCurrin/auto-commit-msg/issues) on the rep
 
 ## Documentation
 
+<div align="center">
+
 [![view - Documentation](https://img.shields.io/badge/view-Documenation-blue)](/docs/)
+
 [![view - Wiki](https://img.shields.io/badge/view-Wiki-blue)](https://github.com/MichaelCurrin/auto-commit-msg/wiki)
+
+</div>
 
 
 ## License
