@@ -57,7 +57,7 @@ export function _msgMulti(lines: string[]) {
  *
  * Return conventional commit prefix and a description of changed paths.
  */
-export function generateMsgFromChanges(diffIndexLines: string[]) {
+export function _msgFromChanges(diffIndexLines: string[]) {
   if (diffIndexLines.length === 1) {
     const line = diffIndexLines[0];
     return _msgOne(line);
@@ -69,7 +69,7 @@ export function generateMsgFromChanges(diffIndexLines: string[]) {
 /**
  * Output a readable conventional commit message.
  */
-function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
+function _formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
     return fileChangeMsg;
   }
@@ -77,12 +77,12 @@ function formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
 }
 
 /**
- * Generate a new commit message.
+ * Generate a new commit message and format is as a string.
  */
-function generateNewMsg(lines: string[]) {
-  const { prefix, fileChangeMsg } = generateMsgFromChanges(lines);
+function _newMsg(lines: string[]) {
+  const { prefix, fileChangeMsg } = _msgFromChanges(lines);
 
-  return formatMsg(prefix, fileChangeMsg);
+  return _formatMsg(prefix, fileChangeMsg);
 }
 
 /**
@@ -97,8 +97,8 @@ function generateNewMsg(lines: string[]) {
  * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form. This changes
  * the new message form.
  */
-function combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
-  const newMsg = formatMsg(prefix, fileChangeMsg);
+function _combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
+  const newMsg = _formatMsg(prefix, fileChangeMsg);
 
   return oldMsg ? `${oldMsg.trim()} ${newMsg}` : newMsg;
 }
@@ -113,9 +113,9 @@ function generateMsgWithOld(fileChanges: string[], oldMsg: string) {
   if (oldMsg === "") {
     throw new Error("Either `oldMsg` must not be empty, or use `generateNewMsg` instead.");
   }
-  const { prefix, fileChangeMsg } = generateMsgFromChanges(fileChanges);
+  const { prefix, fileChangeMsg } = _msgFromChanges(fileChanges);
 
-  return combineOldAndNew(prefix, fileChangeMsg, oldMsg);
+  return _combineOldAndNew(prefix, fileChangeMsg, oldMsg);
 }
 
 /**
@@ -129,7 +129,7 @@ function generateMsgWithOld(fileChanges: string[], oldMsg: string) {
  */
 export function generateMsg(fileChanges: string[], oldMsg?: string): string {
   if (!oldMsg) {
-    return generateNewMsg(fileChanges);
+    return _newMsg(fileChanges);
   } else {
     return generateMsgWithOld(fileChanges, oldMsg);
   }
