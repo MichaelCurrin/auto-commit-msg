@@ -56,6 +56,6 @@ export function parseDiffIndex(line: string): FileChanges {
     x,
     y,
     from,
-    to: to || "",
+    to: to ?? "",
   };
 }
