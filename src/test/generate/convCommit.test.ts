@@ -4,59 +4,119 @@
  * Test the categorization of changed files as conventional commit types.
  */
 import * as assert from "assert";
-import { ConventionalCommit, getConventionType } from "../../generate/convCommit";
+import {
+  ConventionalCommit,
+  getConventionType,
+} from "../../generate/convCommit";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
 describe("Test #ConventionalCommit class for path-based conventional commit logic", function () {
   describe("#isDocsRelated", function () {
     it("determines that a README file is a doc", function () {
-      assert.strictEqual(new ConventionalCommit("README.md").isDocsRelated(), true);
-      assert.strictEqual(new ConventionalCommit("README.rst").isDocsRelated(), true);
-      assert.strictEqual(new ConventionalCommit("Readme.txt").isDocsRelated(), true);
-      assert.strictEqual(new ConventionalCommit("readme").isDocsRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("README.md").isDocsRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("README.rst").isDocsRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("Readme.txt").isDocsRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("readme").isDocsRelated(),
+        true
+      );
 
-      assert.strictEqual(new ConventionalCommit("FEEDME.md").isDocsRelated(), false);
+      assert.strictEqual(
+        new ConventionalCommit("FEEDME.md").isDocsRelated(),
+        false
+      );
     });
 
     it("determines that a CONTRIBUTING file is a doc", function () {
-      assert.strictEqual(new ConventionalCommit("CONTRIBUTING.md").isDocsRelated(), true);
-      assert.strictEqual(new ConventionalCommit("contributing.md").isDocsRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("CONTRIBUTING.md").isDocsRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("contributing.md").isDocsRelated(),
+        true
+      );
     });
 
     it("determines that a `.rst` file is a doc", function () {
-      assert.strictEqual(new ConventionalCommit("README.rst").isDocsRelated(), true);
-      assert.strictEqual(new ConventionalCommit("foo.rst").isDocsRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("README.rst").isDocsRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("foo.rst").isDocsRelated(),
+        true
+      );
     });
 
     it("determines a file in the docs directory is a doc", function () {
-      assert.strictEqual(new ConventionalCommit("docs/fizz.md").isDocsRelated(), true);
-      assert.strictEqual(new ConventionalCommit("docs/foo.img").isDocsRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("docs/fizz.md").isDocsRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("docs/foo.img").isDocsRelated(),
+        true
+      );
 
       assert.strictEqual(
         new ConventionalCommit("docs/fizz/foo.img").isDocsRelated(),
         true
       );
 
-      assert.strictEqual(new ConventionalCommit("fuzz/fizz.md").isDocsRelated(), false);
+      assert.strictEqual(
+        new ConventionalCommit("fuzz/fizz.md").isDocsRelated(),
+        false
+      );
     });
   });
 
   describe("#isBuildRelated", function () {
     it("can recognize a build change fr a build-related filename", function () {
-      assert.strictEqual(new ConventionalCommit("Dockerfile").isBuildRelated(), true);
-      assert.strictEqual(new ConventionalCommit("foo/Dockerfile").isBuildRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("Dockerfile").isBuildRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("foo/Dockerfile").isBuildRelated(),
+        true
+      );
 
-      assert.strictEqual(new ConventionalCommit("foo.txt").isBuildRelated(), false);
-      assert.strictEqual(new ConventionalCommit("fizz/foo.txt").isBuildRelated(), false);
+      assert.strictEqual(
+        new ConventionalCommit("foo.txt").isBuildRelated(),
+        false
+      );
+      assert.strictEqual(
+        new ConventionalCommit("fizz/foo.txt").isBuildRelated(),
+        false
+      );
     });
   });
 
   describe("#isCIRelated", function () {
     it("can tell a CI change is in a CircleCI directory", function () {
-      assert.strictEqual(new ConventionalCommit(".circleci/foo.txt").isCIRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit(".circleci/foo.txt").isCIRelated(),
+        true
+      );
 
-      assert.strictEqual(new ConventionalCommit("foo.txt").isCIRelated(), false);
-      assert.strictEqual(new ConventionalCommit("fizz/foo.txt").isCIRelated(), false);
+      assert.strictEqual(
+        new ConventionalCommit("foo.txt").isCIRelated(),
+        false
+      );
+      assert.strictEqual(
+        new ConventionalCommit("fizz/foo.txt").isCIRelated(),
+        false
+      );
     });
 
     it("can tell a CI change is in a workflows directory", function () {
@@ -65,23 +125,47 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
         true
       );
 
-      assert.strictEqual(new ConventionalCommit("foo.txt").isCIRelated(), false);
-      assert.strictEqual(new ConventionalCommit(".github/foo.txt").isCIRelated(), false);
+      assert.strictEqual(
+        new ConventionalCommit("foo.txt").isCIRelated(),
+        false
+      );
+      assert.strictEqual(
+        new ConventionalCommit(".github/foo.txt").isCIRelated(),
+        false
+      );
     });
 
     it("can tell a CI change for a CI filename", function () {
-      assert.strictEqual(new ConventionalCommit("netlify.toml").isCIRelated(), true);
-      assert.strictEqual(new ConventionalCommit("foo/netlify.toml").isCIRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("netlify.toml").isCIRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("foo/netlify.toml").isCIRelated(),
+        true
+      );
 
-      assert.strictEqual(new ConventionalCommit("foo.txt").isCIRelated(), false);
+      assert.strictEqual(
+        new ConventionalCommit("foo.txt").isCIRelated(),
+        false
+      );
     });
   });
 
   describe("#isTestRelated", function () {
     it("can tell a test directory is for tests", function () {
-      assert.strictEqual(new ConventionalCommit("test/foo.js").isTestRelated(), true);
-      assert.strictEqual(new ConventionalCommit("tests/foo.js").isTestRelated(), true);
-      assert.strictEqual(new ConventionalCommit("spec/foo.js").isTestRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("test/foo.js").isTestRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("tests/foo.js").isTestRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("spec/foo.js").isTestRelated(),
+        true
+      );
 
       assert.strictEqual(
         new ConventionalCommit("unit_tests/foo.js").isTestRelated(),
@@ -90,8 +174,14 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     });
 
     it("can tell a test file is for tests", function () {
-      assert.strictEqual(new ConventionalCommit("foo/bar.test.js").isTestRelated(), true);
-      assert.strictEqual(new ConventionalCommit("foo/test_bar.js").isTestRelated(), true);
+      assert.strictEqual(
+        new ConventionalCommit("foo/bar.test.js").isTestRelated(),
+        true
+      );
+      assert.strictEqual(
+        new ConventionalCommit("foo/test_bar.js").isTestRelated(),
+        true
+      );
     });
   });
 

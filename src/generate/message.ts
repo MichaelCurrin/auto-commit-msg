@@ -60,7 +60,9 @@ export function namedFiles(lines: string[]) {
   const changes = lines.map(line => parseDiffIndex(line));
 
   const actions = changes.map(item => item.x as ActionKeys);
-  const action = equal(actions) ? lookupDiffIndexAction(actions[0]) : ACTION.UNKNOWN;
+  const action = equal(actions)
+    ? lookupDiffIndexAction(actions[0])
+    : ACTION.UNKNOWN;
 
   const pathsChanged = changes.map(item => item.from);
   const fileList = humanList(pathsChanged);

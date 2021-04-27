@@ -28,7 +28,7 @@ export interface InputBox {
 export const enum RefType {
   Head,
   RemoteHead,
-  Tag
+  Tag,
 }
 
 export interface Ref {
@@ -91,7 +91,7 @@ export const enum Status {
   DELETED_BY_THEM,
   BOTH_ADDED,
   BOTH_DELETED,
-  BOTH_MODIFIED
+  BOTH_MODIFIED,
 }
 
 export interface Change {
@@ -321,5 +321,5 @@ export const enum GitErrorCodes {
   CantRebaseMultipleBranches = "CantRebaseMultipleBranches",
   PatchDoesNotApply = "PatchDoesNotApply",
   NoPathFound = "NoPathFound",
-  UnknownPath = "UnknownPath"
+  UnknownPath = "UnknownPath",
 }

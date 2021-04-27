@@ -7,38 +7,23 @@ import { lookupDiffIndexAction, moveOrRenameFile } from "../../generate/action";
 describe("Desribe a file using a single path", function () {
   describe("#lookupDiffIndexAction", function () {
     it("can describe an updated file", function () {
-      assert.strictEqual(
-        lookupDiffIndexAction("M"),
-        "update"
-      );
+      assert.strictEqual(lookupDiffIndexAction("M"), "update");
     });
 
     it("can describe a created file", function () {
-      assert.strictEqual(
-        lookupDiffIndexAction("A"),
-        "create"
-      );
+      assert.strictEqual(lookupDiffIndexAction("A"), "create");
     });
 
     it("can describe a deleted file", function () {
-      assert.strictEqual(
-        lookupDiffIndexAction("D"),
-        "delete"
-      );
+      assert.strictEqual(lookupDiffIndexAction("D"), "delete");
     });
 
     it("can describe a renamed file", function () {
-      assert.strictEqual(
-        lookupDiffIndexAction("R"),
-        "rename"
-      );
+      assert.strictEqual(lookupDiffIndexAction("R"), "rename");
     });
 
     it("can describe a copied file", function () {
-      assert.strictEqual(
-        lookupDiffIndexAction("C"),
-        "copy"
-      );
+      assert.strictEqual(lookupDiffIndexAction("C"), "copy");
     });
   });
 });

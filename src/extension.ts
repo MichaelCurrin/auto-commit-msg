@@ -46,33 +46,35 @@ async function handleRepo(git: API) {
  * Setup this extension's autofill command to run when triggered.
  */
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand("commitMsg.autofill", async (uri?) => {
-    const git = getGitExtension();
+  const disposable = vscode.commands.registerCommand(
+    "commitMsg.autofill",
+    async (uri?) => {
+      const git = getGitExtension();
 
-    if (!git) {
-      vscode.window.showErrorMessage("Unable to load Git Extension");
-      return;
-    }
+      if (!git) {
+        vscode.window.showErrorMessage("Unable to load Git Extension");
+        return;
+      }
 
-    if (git.repositories.length === 0) {
-      vscode.window.showErrorMessage(
-        "No repos found. Please open a repo or run git init then try this extension again."
-      );
-      return;
-    }
+      if (git.repositories.length === 0) {
+        vscode.window.showErrorMessage(
+          "No repos found. Please open a repo or run git init then try this extension again."
+        );
+        return;
+      }
 
-    vscode.commands.executeCommand("workbench.view.scm");
+      vscode.commands.executeCommand("workbench.view.scm");
 
-    if (uri) {
-      handleRepos(git, uri);
+      if (uri) {
+        handleRepos(git, uri);
+      } else {
+        handleRepo(git);
+      }
     }
-    else {
-      handleRepo(git);
-    }
-  });
+  );
 
   context.subscriptions.push(disposable);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export function deactivate() { }
+export function deactivate() {}

@@ -47,7 +47,9 @@ export function _msgOne(line: string) {
  */
 export function _msgMulti(lines: string[]) {
   const conventions = lines.map(_prefixFromChanges);
-  const prefix = equal(conventions) ? conventions[0] : CONVENTIONAL_TYPE.UNKNOWN;
+  const prefix = equal(conventions)
+    ? conventions[0]
+    : CONVENTIONAL_TYPE.UNKNOWN;
 
   return { prefix, fileChangeMsg: namedFiles(lines) };
 }
@@ -97,7 +99,11 @@ function _newMsg(lines: string[]) {
  * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form. This changes
  * the new message form.
  */
-function _combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, oldMsg?: string) {
+function _combineOldAndNew(
+  prefix: CONVENTIONAL_TYPE,
+  fileChangeMsg: string,
+  oldMsg?: string
+) {
   const newMsg = _formatMsg(prefix, fileChangeMsg);
 
   return oldMsg ? `${oldMsg.trim()} ${newMsg}` : newMsg;
@@ -111,7 +117,9 @@ function _combineOldAndNew(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string, old
  */
 function generateMsgWithOld(fileChanges: string[], oldMsg: string) {
   if (oldMsg === "") {
-    throw new Error("Either `oldMsg` must not be empty, or use `generateNewMsg` instead.");
+    throw new Error(
+      "Either `oldMsg` must not be empty, or use `generateNewMsg` instead."
+    );
   }
   const { prefix, fileChangeMsg } = _msgFromChanges(fileChanges);
 

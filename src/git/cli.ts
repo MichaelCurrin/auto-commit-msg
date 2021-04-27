@@ -40,7 +40,11 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
     ...options,
     "HEAD",
   ];
-  const { stdout, stderr } = await execute(getWorkspaceFolder(), "diff-index", fullOptions);
+  const { stdout, stderr } = await execute(
+    getWorkspaceFolder(),
+    "diff-index",
+    fullOptions
+  );
 
   if (stderr) {
     console.debug("stderror for `git diff-index` command:", stderr);
@@ -61,16 +65,16 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
  * Returns an array of strings, coming from the `diffIndex` function.
  */
 export async function getChanges() {
-  const stagedChanges = await diffIndex([
-    "--cached",
-  ]);
+  const stagedChanges = await diffIndex(["--cached"]);
   if (stagedChanges.length) {
     console.debug("Found staged changes");
 
     return stagedChanges;
   }
 
-  console.debug("Staging area is empty. Using unstaged files (tracked files only still).");
+  console.debug(
+    "Staging area is empty. Using unstaged files (tracked files only still)."
+  );
 
   const allChanges = await diffIndex();
   if (!allChanges.length) {

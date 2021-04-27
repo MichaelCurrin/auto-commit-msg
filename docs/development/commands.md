@@ -22,22 +22,26 @@ Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.githu
 
 ### Run all
 
-This is useful before pushing to ensure everything works. (This could be setup with a pre-push hook too to automated it)
+Format, lint and then run unit tests.
 
 ```sh
-$ npm run preversion
+$ make test
 ```
 
-This is setup to run the linting and test steps, with `compile` run as part of `pretest` because of how NPM works.
+### Format
 
-See later in this doc to run steps separately.
+Apply Prettier formatting to scripts.
+
+```sh
+$ make fmt
+```
 
 ### Lint
 
 Run ESLint against TS files for a report and fixing problems where possible.
 
 ```sh
-$ npm run lint:fix
+$ make lint
 ```
 
 Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the compile step. This runs as part of [Tests](#run-tests), so you don't have to run it by hand.
@@ -48,9 +52,11 @@ $ npm run compile
 
 ### Run tests
 
-For the `git-prefix` project this was partly based on, unfortunately the tests are poor there so I didn't copy over the extension tests, but I could bring back some from tag v0.6.0 so there are integration tests if I think I need them.
+For the `git-prefix` project this project was partly based on, unfortunately the tests were poor there so I didn't copy over the extension tests, but I could bring back some from tag `v0.6.0` so there are integration tests if I think I need them.
 
 #### Unit tests
+
+This will clean the output directory, compile files and then run unit tests. No formatting or linting.
 
 ```sh
 $ npm test

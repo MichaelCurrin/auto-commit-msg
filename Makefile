@@ -17,12 +17,15 @@ upgrade:
 	npm upgrade
 
 
-# Note - the linter will not fix formatting issues, but IDE or Prettier can.
+fmt-check:
+	npm run fmt:check
+fmt:
+	npm run fmt:fix
+
 l lint:
 	npm run lint:fix
 
-# Lint, clean, compile and run unit tests.
-t test:
+t test: fmt lint
 	npm run test:coverage
 	npm run test:report
 
