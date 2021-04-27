@@ -43,7 +43,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files with the same action correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "Create baz.txt, bar.js and fizz/fuzz.md",
+          fileChangeMsg: "Create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
@@ -61,14 +61,27 @@ describe("Prepare commit message", function () {
           expected);
       });
 
-      it("handles 3 docs correctly", function () {
+      it("handles 3 files in subdirectories but does not show the directory paths", function () {
         const expected = {
-          prefix: CONVENTIONAL_TYPE.DOCS,
-          fileChangeMsg: "Update docs/foo.md, bar/README.md and README.md",
+          prefix: CONVENTIONAL_TYPE.FEAT,
+          fileChangeMsg: "Create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
-          _msgFromChanges(["M    docs/foo.md", "M    bar/README.md", "M    README.md"]),
+          _msgFromChanges(["A    baz.txt", "A    fizz/bar.js", "A    fizz/fuzz.md"]),
+          expected);
+      });
+
+      it("handles 2 \"build\" files correctly", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.BUILD,
+          fileChangeMsg: "Update package.json and package-lock.json",
+        };
+
+        assert.deepStrictEqual(
+          _msgFromChanges(
+            ["M    package.json", "M     package-lock.json"]
+          ),
           expected);
       });
 

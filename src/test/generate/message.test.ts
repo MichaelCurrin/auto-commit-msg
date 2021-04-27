@@ -170,11 +170,11 @@ describe("Generate commit message for a few changed files which each get named",
     it("return a commit message for more than two files", function () {
       assert.strictEqual(namedFiles(
         ["A    foo.txt", "A    docs/bar.txt", "A    buzz.js"]
-      ), "Create foo.txt, docs/bar.txt and buzz.js");
+      ), "Create foo.txt, bar.txt and buzz.js");
 
       assert.strictEqual(namedFiles(
         ["D    foo.txt", "D    docs/bar.txt", "D    buzz.js"]
-      ), "Delete foo.txt, docs/bar.txt and buzz.js");
+      ), "Delete foo.txt, bar.txt and buzz.js");
     });
 
     it("handles differing actions", function () {
