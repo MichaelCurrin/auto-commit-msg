@@ -1,10 +1,10 @@
 /**
- * Semantic test module.
+ * Conventional commit test module.
  *
  * Test the categorization of changed files as conventional commit types.
  */
 import * as assert from "assert";
-import { ConventionalCommit, getConventionType } from "../../generate/semantic";
+import { ConventionalCommit, getConventionType } from "../../generate/convCommit";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
 describe("Test #Semantic class for path-based conventional commit logic", function () {

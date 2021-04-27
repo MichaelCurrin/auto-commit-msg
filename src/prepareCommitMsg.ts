@@ -7,8 +7,8 @@
  * This module doesn't interact with the git CLI or the extension. It just deals with text.
  */
 import { lookupDiffIndexAction } from "./generate/action";
+import { getConventionType } from "./generate/convCommit";
 import { namedFiles, oneChange } from "./generate/message";
-import { getConventionType } from "./generate/semantic";
 import { parseDiffIndex } from "./git/parseOutput";
 import { CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
