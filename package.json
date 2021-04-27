@@ -3,7 +3,7 @@
   "version": "0.17.0",
   "scripts": {
     "fmt:check": "prettier -c src",
-    "fmt": "prettier -w src",
+    "fmt:fix": "prettier -w src",
     "lint:check": "eslint . --ext .ts --quiet",
     "lint:fix": "eslint . --ext .ts --fix",
     "clean": "rm -rf out",

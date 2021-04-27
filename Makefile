@@ -20,7 +20,7 @@ upgrade:
 fmt-check:
 	npm run fmt:check
 fmt:
-	npm run fmt
+	npm run fmt:fix
 
 l lint:
 	npm run lint:fix
