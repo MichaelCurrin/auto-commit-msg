@@ -12,6 +12,12 @@
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
 
+<div align="center">
+
+[Quickstart](https://github.com/MichaelCurrin/auto-commit-msg/docs/quickstart.md) to install the extension | [Docs](/docs) | [Development](/docs/development/) docs
+
+</div>
+
 
 ## Release disclaimer
 
