@@ -11,6 +11,7 @@ import { namedFiles, oneChange } from "./generate/message";
 import { getSemanticConvention } from "./generate/semantic";
 import { parseDiffIndex } from "./git/parseOutput";
 import { CONVENTIONAL_TYPE } from "./lib/constants";
+import { equal } from "./lib/util";
 
 /**
  * Determine what the prefix should be for a file change, using semantic conventions.
@@ -35,7 +36,10 @@ export function _generateMsgOne(line: string) {
 }
 
 export function _generateMsgMulti(lines: string[]) {
-  return { prefix: CONVENTIONAL_TYPE.UNKNOWN, fileChangeMsg: namedFiles(lines) };
+  const conventions = lines.map(generatePrefixFromChanges);
+  const prefix = equal(conventions) ? conventions[0] : CONVENTIONAL_TYPE.UNKNOWN;
+
+  return { prefix, fileChangeMsg: namedFiles(lines) };
 }
 
 /**
