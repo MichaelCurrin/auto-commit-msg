@@ -71,6 +71,17 @@ describe("Prepare commit message", function () {
           generateMsgFromChanges(["M    docs/foo.md", "M    bar/README.md", "M    README.md"]),
           expected);
       });
+
+      it("handles 3 README.md files in different locations as full paths", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.DOCS,
+          fileChangeMsg: "Update docs/README.md, bar/README.md and README.md",
+        };
+
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["M    docs/README.md", "M    bar/README.md", "M    README.md"]),
+          expected);
+      });
     });
 
     describe("multiple files with the same action", function () {
