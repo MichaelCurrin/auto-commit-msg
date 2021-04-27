@@ -57,12 +57,14 @@ export function oneChange(line: string) {
  * Expects lines that came from a git command and returns a value like 'Update foo.txt and bar.txt'.
  */
 export function namedFiles(lines: string[]) {
-  const changes = lines.map(line => parseDiffIndex(line));
+  const changes = lines.map((line) => parseDiffIndex(line));
 
-  const actions = changes.map(item => item.x as ActionKeys);
-  const action = equal(actions) ? lookupDiffIndexAction(actions[0]) : ACTION.UNKNOWN;
+  const actions = changes.map((item) => item.x as ActionKeys);
+  const action = equal(actions)
+    ? lookupDiffIndexAction(actions[0])
+    : ACTION.UNKNOWN;
 
-  const pathsChanged = changes.map(item => item.from);
+  const pathsChanged = changes.map((item) => item.from);
   const fileList = humanList(pathsChanged);
 
   if (action === ACTION.UNKNOWN) {

@@ -47,32 +47,41 @@ describe("Path handling", function () {
 
   describe("#humanList", function () {
     it("returns a path for a single file", function () {
-      assert.strictEqual(humanList(
-        ["foo.txt"]
-      ), "foo.txt");
+      assert.strictEqual(humanList(["foo.txt"]), "foo.txt");
     });
 
     it("returns a sentence for two files", function () {
-      assert.strictEqual(humanList(
-        ["foo.txt", "bar.txt"]
-      ), "foo.txt and bar.txt");
+      assert.strictEqual(
+        humanList(["foo.txt", "bar.txt"]),
+        "foo.txt and bar.txt"
+      );
     });
 
     it("returns a sentence for three files", function () {
-      assert.strictEqual(humanList(
-        ["foo.txt", "bar.txt", "bazz.js"]
-      ), "foo.txt, bar.txt and bazz.js");
+      assert.strictEqual(
+        humanList(["foo.txt", "bar.txt", "bazz.js"]),
+        "foo.txt, bar.txt and bazz.js"
+      );
     });
 
     it("returns a sentence for four files", function () {
-      assert.strictEqual(humanList(
-        ["foo.txt", "bar.txt", "bazz.js", "buzz.ts"]
-      ), "foo.txt, bar.txt, bazz.js and buzz.ts");
+      assert.strictEqual(
+        humanList(["foo.txt", "bar.txt", "bazz.js", "buzz.ts"]),
+        "foo.txt, bar.txt, bazz.js and buzz.ts"
+      );
     });
 
     it("returns a sentence for four longer paths", function () {
-      const input = ["foo.txt", "docs/README.md", "src/lib/bazz.js", "src/buzz.ts"];
-      assert.strictEqual(humanList(input), "foo.txt, docs/README.md, bazz.js and buzz.ts");
+      const input = [
+        "foo.txt",
+        "docs/README.md",
+        "src/lib/bazz.js",
+        "src/buzz.ts",
+      ];
+      assert.strictEqual(
+        humanList(input),
+        "foo.txt, docs/README.md, bazz.js and buzz.ts"
+      );
     });
 
     it("throws an error for zero files", function () {

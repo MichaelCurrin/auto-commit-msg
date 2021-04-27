@@ -17,7 +17,8 @@ import { ROOT } from "../lib/constants";
  * @param {string} sep
  * @returns {!Array<!Array<string>>}
  */
-const splitStrings = (a: any[], sep = "/") => a.map((i: string) => i.split(sep));
+const splitStrings = (a: any[], sep = "/") =>
+  a.map((i: string) => i.split(sep));
 
 /**
  * Given an index number, return a function that takes an array and returns the
@@ -61,7 +62,10 @@ function allElementsEqual(arr: any[]) {
  * Or finding the top-most directory that is common to a few files that all changed.
  */
 export function commonPath(input: string[], sep = "/") {
-  const common = rotate(splitStrings(input, sep)).filter(allElementsEqual).map(elAt(0)).join(sep);
+  const common = rotate(splitStrings(input, sep))
+    .filter(allElementsEqual)
+    .map(elAt(0))
+    .join(sep);
 
   return common === "" ? ROOT : common;
 }

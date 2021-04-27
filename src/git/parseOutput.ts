@@ -16,7 +16,9 @@ const UNMODIFIED = " ";
  */
 export function parseStatus(line: string): FileChanges {
   if (line.length <= 4) {
-    throw new Error(`Input string must be at least 4 characters. Got: '${line}'`);
+    throw new Error(
+      `Input string must be at least 4 characters. Got: '${line}'`
+    );
   }
   const x = line[0];
   const y = line[1];
@@ -46,7 +48,9 @@ export function parseStatus(line: string): FileChanges {
  */
 export function parseDiffIndex(line: string): FileChanges {
   if (line.length <= 4) {
-    throw new Error(`Invalid input. Input string must be at least 4 characters. Got: '${line}'`);
+    throw new Error(
+      `Invalid input. Input string must be at least 4 characters. Got: '${line}'`
+    );
   }
   const x = line[0];
   const y = UNMODIFIED;

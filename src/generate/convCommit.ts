@@ -11,9 +11,9 @@ import { splitPath } from "../lib/paths";
 
 // Package-related can be for 'build'.
 const PACKAGE_DIRS = [
-  // Rust
-  ".cargo",
-],
+    // Rust
+    ".cargo",
+  ],
   PACKAGE_NAMES = [
     // Python
     "requirements.txt",
@@ -57,19 +57,19 @@ const PACKAGE_DIRS = [
 
 // Build system (scripts, configurations or tools) and package dependencies.
 const BUILD_NAMES = [
-  "Dockerfile",
-  "docker-compose.yml",
+    "Dockerfile",
+    "docker-compose.yml",
 
-  "Makefile",
-  "Rakefile",
+    "Makefile",
+    "Rakefile",
 
-  "package.json", // Not necessarily package-related but always build-related.
+    "package.json", // Not necessarily package-related but always build-related.
 
-  // Java
-  "gradlew",
-  "grailsw",
-  "micronaut-cli.yml",
-],
+    // Java
+    "gradlew",
+    "grailsw",
+    "micronaut-cli.yml",
+  ],
   BUILD_EXTENSIONS = [
     ".gemspec", // Ruby installation
     ".bat",
@@ -81,16 +81,14 @@ const BUILD_NAMES = [
 // Note also that prettier and ESLint configs with various extensions are handled in isConfigRelated
 // so don't have to be listed explictly. Though those strings should be moved out of the function.
 const CONFIG_EXTENSIONS = [
-  ".yml",
-  ".yaml",
-  ".json",
-  ".toml",
-  ".ini",
-  ".cfg", // Python config at least but also for other systems maybe.
-],
-  CONFIG_DIRS = [
-    ".vscode",
+    ".yml",
+    ".yaml",
+    ".json",
+    ".toml",
+    ".ini",
+    ".cfg", // Python config at least but also for other systems maybe.
   ],
+  CONFIG_DIRS = [".vscode"],
   CONFIG_NAMES = [
     ".gitignore",
     ".editorconfig",
@@ -109,10 +107,7 @@ const CONFIG_EXTENSIONS = [
     ".env.tempate",
   ];
 
-const CI_DIRS = [
-  ".circleci",
-  ".github/workflows",
-],
+const CI_DIRS = [".circleci", ".github/workflows"],
   CI_NAMES = [
     "netlify.toml",
     "travis.yml",
@@ -135,34 +130,34 @@ const CI_DIRS = [
 // It might be easier to leave out this list and assume everything is a script
 // unless it is a doc, markdown file or config.
 const SCRIPT_EXTENSIONS = [
-  ".html",
+    ".html",
 
-  ".css",
-  ".less",
-  ".scss",
+    ".css",
+    ".less",
+    ".scss",
 
-  ".js",
-  ".jsx",
-  ".ts",
-  ".tsx",
-  ".mjs",
+    ".js",
+    ".jsx",
+    ".ts",
+    ".tsx",
+    ".mjs",
 
-  ".py",
+    ".py",
 
-  ".rb",
+    ".rb",
 
-  ".java",
-  ".jar",
+    ".java",
+    ".jar",
 
-  ".c",
-  ".h",
+    ".c",
+    ".h",
 
-  ".rs",
+    ".rs",
 
-  ".go",
+    ".go",
 
-  ".php",
-],
+    ".php",
+  ],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = ".sh";
 
@@ -203,7 +198,7 @@ const DOC_NAMES = [
 
   "MAINTAINERS.txt",
   "CODEOWNERS",
-].map(name => name.toLowerCase());
+].map((name) => name.toLowerCase());
 
 /**
  * Evaluate conventional commit prefix for a given file.
@@ -295,8 +290,10 @@ export class ConventionalCommit {
   }
 
   isBuildRelated(): boolean {
-    return BUILD_NAMES.includes(this.name) ||
-      BUILD_EXTENSIONS.includes(this.extension);
+    return (
+      BUILD_NAMES.includes(this.name) ||
+      BUILD_EXTENSIONS.includes(this.extension)
+    );
   }
 
   isLicenseRelated(): boolean {
@@ -344,7 +341,10 @@ export class ConventionalCommit {
  * value. Though it could be set as always feature or docs as a general rule or config option on the
  * project level or extension level.
  */
-export function getConventionType(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
+export function getConventionType(
+  action: ACTION,
+  filePath: string
+): CONVENTIONAL_TYPE {
   if (action === ACTION.R || action === ACTION.D) {
     return CONVENTIONAL_TYPE.CHORE;
   }

@@ -16,7 +16,6 @@ const MAX_CHANGES = 8;
 
 export const TOO_MANY_FILES = `Max of ${MAX_CHANGES} reached. Try staging or stashing some changes`;
 
-
 /**
  * Generate and fill a commit message.
  *

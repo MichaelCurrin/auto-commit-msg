@@ -21,7 +21,7 @@ export enum DESCRIPTION {
   C = "copied",
   U = "unmerged",
   "?" = "untracked",
-  "!" = "ignored"
+  "!" = "ignored",
 }
 
 /**
@@ -40,7 +40,7 @@ export enum ACTION {
   D = "delete",
   R = "rename",
   C = "copy",
-  UNKNOWN = ""
+  UNKNOWN = "",
 }
 
 /**
@@ -67,5 +67,5 @@ export enum CONVENTIONAL_TYPE {
   REVERT = "revert",
   STYLE = "style",
   TEST = "test",
-  UNKNOWN = ""
+  UNKNOWN = "",
 }
