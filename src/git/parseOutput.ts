@@ -5,10 +5,14 @@
  */
 import { FileChanges } from "./parseOutput.d";
 
+// This is not worth moving to constants because the space is a value while the DESCRIPTION enum has
+// it as a key.
+const UNMODIFIED = " ";
+
 /**
  * Parse status.
  *
- * Parse a line coming from the `git status --short` command.
+ * Parse a line produced by the `git status --short` command.
  */
 export function parseStatus(line: string): FileChanges {
   if (line.length <= 4) {
@@ -33,9 +37,10 @@ export function parseStatus(line: string): FileChanges {
  *
  * Parse a line produced by the `git diff-index` command.
  *
- * We keep `x` as a single letter, though the input might be 'R100 ...'.
+ * We keep `x` as a single letter here, even though the input might be include a percentage that we
+ * ignore, as in 'R100 ...'.
  *
- * Unlike `git status`, here the `y` value will be missing so we set it to Unmodified.
+ * Unlike for `git status`, the `y` value will be missing here so we set it to Unmodified (a space).
  *
  * The `to` field will not always be set so null string is fine (and better than undefined).
  */
@@ -44,7 +49,7 @@ export function parseDiffIndex(line: string): FileChanges {
     throw new Error(`Invalid input. Input string must be at least 4 characters. Got: '${line}'`);
   }
   const x = line[0];
-  const y = " ";
+  const y = UNMODIFIED;
 
   const [_, from, to] = line.split(/\s+/);
   if (!from) {
@@ -56,6 +61,6 @@ export function parseDiffIndex(line: string): FileChanges {
     x,
     y,
     from,
-    to: to || "",
+    to: to ?? "",
   };
 }

@@ -44,7 +44,7 @@ describe("Desribe a file using a single path", function () {
 });
 
 describe("Desribe a file using two paths", function () {
-  describe("#moveOrRenameFile()", function () {
+  describe("#moveOrRenameFile", function () {
     it("can describe a renamed file", function () {
       assert.strictEqual(
         moveOrRenameFile("foo.txt", "bar.txt"),

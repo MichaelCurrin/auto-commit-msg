@@ -68,7 +68,7 @@ Here are supported action words which will be used.
 
 #### Prefixes
 
-Based on the action and the file (directory, name and extension), a _semantic commit_ prefix will be derived. If none of the labels can be applied, it will left out.
+Based on the action and the file (directory, name and extension), a _conventional commit_ prefix will be derived. If none of the labels can be applied, it will left out.
 
 Here are the prefixes it knows and a summary of the rule used.
 
@@ -136,7 +136,7 @@ There are many tools out there that will _lint_ your commit message, or provide 
 
 This project is in development - it is very unstable and unpredictable but you can use the scripts or docs if they make sense to you. The focus has shifted away from making a terminal hook because VS Code handles is weirdly and on every UI commit, even if you only plan use it on the terminal.
 
-I am please to announced that this now a lot more stable as of `v0.7.0`, but is not production ready (mainly cosmetic issues and a need to smooth the packaging flow). Next are items in GH issues, unchecked features list below, a local TODO file, some Semantic functions to use and some renaming tests to work on.
+I am please to announced that this now a lot more stable as of `v0.7.0`, but is not production ready (mainly cosmetic issues and a need to smooth the packaging flow). Next are items in GH issues, unchecked features list below, a local TODO file, some Conventional Commit functions to use and some renaming tests to work on.
 
 This is my first VS Code extension and first TypeScript project, so I am learning as a go and trying to follow best practices I find.
 -->
@@ -155,11 +155,11 @@ What this VS Code extension can do:
     - [ ] As as different verb for each change `Create foo.txt and delete bar.txt`.
     - [ ] As a count. e.g. `Update 3 files in foo`.
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
-- [x] Use semantic prefix / conventional commits e.g. `chore: Update package.json`
+- [x] Use conventional commits e.g. `chore: Update package.json`
 
 ### Topics areas
 
-If recognizes files for a variety of languages and tooling, for providing an appropriate semantic commit message.
+If recognizes files for a variety of languages and tooling, for providing an appropriate conventional commit message.
 
 - [x] Python - package files and configs.
 - [x] JavaScript, TypeScript  - package files and configs.
@@ -202,4 +202,4 @@ See [Issues](https://github.com/MichaelCurrin/auto-commit-msg/issues) on the rep
 
 Released as [MIT](/LICENSE).
 
-The core of this project's VS Code extension logic is creating a commit message and pushing to the Git Extension input box in the UI. That comes from the Git Prefix extension. Use of Git CLI in the extension comes from the Semantic Git Commit extension. Read about these in the [Credit](/docs/credit.md) section the docs.
+The core of this project's VS Code extension logic is creating a commit message and pushing to the Git Extension input box in the UI. That comes from the Git Prefix extension. Use of Git CLI in the extension comes from the _Semantic Git Commit_ extension. Read about these in the [Credit](/docs/credit.md) section the docs.

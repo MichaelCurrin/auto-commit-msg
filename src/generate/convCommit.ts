@@ -1,7 +1,7 @@
 /**
- * Semantic module.
+ * Convenntional Commit module.
  *
- * Logic around semantic commit (aka conventional commit) messages.
+ * Logic around preparing conventional commit messages.
  *
  * This can be used to check if all changes in a commit are related to 'chore' changes, 'docs'
  * changes, 'test' changes and so on.
@@ -206,14 +206,14 @@ const DOC_NAMES = [
 ].map(name => name.toLowerCase());
 
 /**
- * Support conventional commit prefix for a given file path.
+ * Evaluate conventional commit prefix for a given file.
  *
  * This ignores the action such as create/delete file.
  *
  * For move or rename cases, the input path is assumed to be the `to` path path as that would more
  * useful than knowing the `from` path.
  */
-export class Semantic {
+export class ConventionalCommit {
   atRoot: boolean;
   dirPath: string;
   name: string;
@@ -221,8 +221,8 @@ export class Semantic {
 
   constructor(filePath: string) {
     // TODO It is worth keeping splitPath on its own for separation of concerns, but
-    // could it work better as a class? And then semantic can inherit from it.
-    // The properties are actually all the same her as there (duplication), only the semantic
+    // could it work better as a class? And then conv commit can inherit from it.
+    // The properties are actually all the same her as there (duplication), only the conv commit
     // methods get added here as new.
     // Maybe a class is overkill as it is just a container of data.
     // Maybe the {} can be stored an object here. Or maybe combine that and this at the risk
@@ -344,17 +344,17 @@ export class Semantic {
  * value. Though it could be set as always feature or docs as a general rule or config option on the
  * project level or extension level.
  */
-export function getSemanticConvention(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
+export function getConventionType(action: ACTION, filePath: string): CONVENTIONAL_TYPE {
   if (action === ACTION.R || action === ACTION.D) {
     return CONVENTIONAL_TYPE.CHORE;
   }
 
-  const semantic = new Semantic(filePath);
-  const semPathType = semantic.getType();
+  const convCommit = new ConventionalCommit(filePath);
+  const convCommitType = convCommit.getType();
 
   if (action === ACTION.A) {
-    return semPathType || CONVENTIONAL_TYPE.FEAT;
+    return convCommitType || CONVENTIONAL_TYPE.FEAT;
   }
 
-  return semPathType;
+  return convCommitType;
 }
