@@ -5,7 +5,7 @@ import * as assert from "assert";
 import { lookupDiffIndexAction, moveOrRenameFile } from "../../generate/action";
 
 describe("Desribe a file using a single path", function () {
-  describe("#lookupDiffIndexAction()", function () {
+  describe("#lookupDiffIndexAction", function () {
     it("can describe an updated file", function () {
       assert.strictEqual(
         lookupDiffIndexAction("M"),
