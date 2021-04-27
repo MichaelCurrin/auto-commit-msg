@@ -23,7 +23,7 @@ function getGitExtension() {
  */
 async function handleRepos(git: API, uri: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find second etc.
-  const selectedRepository = git.repositories.find((repository) => {
+  const selectedRepository = git.repositories.find(repository => {
     return repository.rootUri.path === uri._rootUri.path;
   });
 

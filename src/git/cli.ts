@@ -52,7 +52,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
 
   const lines = stdout.split("\n");
 
-  return lines.filter((line) => line !== "");
+  return lines.filter(line => line !== "");
 }
 
 /**

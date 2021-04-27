@@ -69,7 +69,7 @@ export function humanList(paths: string[]) {
   if (!paths.length) {
     throw new Error("Expected at least one path, got zero");
   }
-  paths = paths.map((path) => friendlyFile(path));
+  paths = paths.map(path => friendlyFile(path));
 
   if (paths.length === 1) {
     return paths[0];

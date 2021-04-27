@@ -198,7 +198,7 @@ const DOC_NAMES = [
 
   "MAINTAINERS.txt",
   "CODEOWNERS",
-].map((name) => name.toLowerCase());
+].map(name => name.toLowerCase());
 
 /**
  * Evaluate conventional commit prefix for a given file.
