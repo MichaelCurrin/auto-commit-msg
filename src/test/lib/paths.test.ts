@@ -1,9 +1,10 @@
 /**
  * Paths test module.
  *
- * Check handling of paths as text.
+ * Test handling of path values as text.
  */
 import * as assert from "assert";
+import { ROOT } from "../../lib/constants";
 import { formatPath, humanList, splitPath } from "../../lib/paths";
 
 describe("Path handling", function () {
@@ -11,7 +12,7 @@ describe("Path handling", function () {
     it("splits a path correctly", function () {
       assert.deepStrictEqual(splitPath("baz.txt"), {
         atRoot: true,
-        dirPath: "repo root",
+        dirPath: ROOT,
         name: "baz.txt",
         extension: ".txt",
       });
