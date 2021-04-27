@@ -16,42 +16,54 @@ import { equal } from "./lib/utils";
 /**
  * Determine what the prefix should be for a file change, using semantic conventions.
  */
-function _generatePrefixFromChanges(line: string) {
+function _prefixFromChanges(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
 
   return getSemanticConvention(action, filePath);
 }
 
-export function _generateMsgOne(line: string) {
+/**
+ * Generate message for a single file change.
+ */
+export function _msgOne(line: string) {
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
-  const prefix = _generatePrefixFromChanges(line),
+  const prefix = _prefixFromChanges(line),
     fileChangeMsg = oneChange(line);
 
   return { prefix, fileChangeMsg };
 }
 
-export function _generateMsgMulti(lines: string[]) {
-  const conventions = lines.map(_generatePrefixFromChanges);
+/**
+ * Generate message for multiple file changes.
+ *
+ * This finds a common conventional commit prefix if one is appropriate and returns a message
+ * listing all the names.
+ *
+ * This was added onto this extension later in development, while `_msgOne` was the core behavior
+ * up to then.
+ */
+export function _msgMulti(lines: string[]) {
+  const conventions = lines.map(_prefixFromChanges);
   const prefix = equal(conventions) ? conventions[0] : CONVENTIONAL_TYPE.UNKNOWN;
 
   return { prefix, fileChangeMsg: namedFiles(lines) };
 }
 
 /**
- * Generate message from changes.
+ * Generate message from changes to one or more files.
  *
  * Return conventional commit prefix and a description of changed paths.
  */
 export function generateMsgFromChanges(diffIndexLines: string[]) {
   if (diffIndexLines.length === 1) {
     const line = diffIndexLines[0];
-    return _generateMsgOne(line);
+    return _msgOne(line);
   }
 
-  return _generateMsgMulti(diffIndexLines);
+  return _msgMulti(diffIndexLines);
 }
 
 /**
@@ -109,7 +121,7 @@ function generateMsgWithOld(fileChanges: string[], oldMsg: string) {
 /**
  * Generate commit message.
  *
- * This is a public wrapper function to allow old message to be set or not.
+ * This is a public wrapper function to allow an existing message to be set or not.
  *
  * Old message could be the current commit message value in the UI box (which might be a commit
  * message template that VS Code has filled in), or a commit message template read from a file in
