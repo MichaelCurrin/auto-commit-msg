@@ -22,7 +22,7 @@ describe("Prepare commit message", function () {
     describe("multiple files with the same action", function () {
       it("handles 2 created files created correctly", function () {
         const expected = {
-          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          prefix: CONVENTIONAL_TYPE.FEAT,
           fileChangeMsg: "Create baz.txt and bar.js",
         };
 
@@ -42,22 +42,34 @@ describe("Prepare commit message", function () {
 
       it("handles 3 files with the same action correctly", function () {
         const expected = {
-          prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeMsg: "Create baz.txt, bar.js and README.md",
+          prefix: CONVENTIONAL_TYPE.FEAT,
+          fileChangeMsg: "Create baz.txt, bar.js and fizz/fuzz.md",
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    README.md"]), expected);
+          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"]), expected);
       });
 
       it("handles 4 files with the same action correctly", function () {
         const expected = {
-          prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeMsg: "Create baz.txt, bar.js, README.md and fuzz.ts",
+          prefix: CONVENTIONAL_TYPE.FEAT,
+          fileChangeMsg: "Create baz.txt, bar.js, fuzz.md and fuzz.ts",
         };
 
         assert.deepStrictEqual(
-          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    README.md", "A    fuzz.ts"]),
+          generateMsgFromChanges(["A    baz.txt", "A    bar.js", "A    fuzz.md", "A    fuzz.ts"]),
+          expected);
+      });
+
+
+      it("handles 3 docs correctly", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.DOCS,
+          fileChangeMsg: "Update docs/foo.md, bar/README.md and README.md",
+        };
+
+        assert.deepStrictEqual(
+          generateMsgFromChanges(["M    docs/foo.md", "M    bar/README.md", "M    README.md"]),
           expected);
       });
     });
