@@ -185,6 +185,7 @@ const DOC_NAMES = [
   "installation.md",
   "usage.md",
   "development.md",
+  "deploy.md",
 
   // GitHub docs.
   "SECURITY.md",
@@ -198,6 +199,13 @@ const DOC_NAMES = [
 
   "MAINTAINERS.txt",
   "CODEOWNERS",
+  
+  // Images.
+  "sample.png",
+  "sample-1.png",
+  "sample-2.png",
+  "screenshot.png",
+  "preview.png",
 ].map(name => name.toLowerCase());
 
 /**
