@@ -15,7 +15,7 @@
 
 <div align="center">
 
-[Quickstart](https://github.com/MichaelCurrin/auto-commit-msg/docs/quickstart.md) | [Samples](#samples) | [Features](#features) [Docs](/docs)
+[Quickstart](https://github.com/MichaelCurrin/auto-commit-msg/docs/quickstart.md) | [Samples](#samples) | [Features](#features) | [Docs](#documentation)
 
 </div>
 
