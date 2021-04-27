@@ -221,8 +221,8 @@ export class ConventionalCommit {
 
   constructor(filePath: string) {
     // TODO It is worth keeping splitPath on its own for separation of concerns, but
-    // could it work better as a class? And then semantic can inherit from it.
-    // The properties are actually all the same her as there (duplication), only the semantic
+    // could it work better as a class? And then conv commit can inherit from it.
+    // The properties are actually all the same her as there (duplication), only the conv commit
     // methods get added here as new.
     // Maybe a class is overkill as it is just a container of data.
     // Maybe the {} can be stored an object here. Or maybe combine that and this at the risk
@@ -349,12 +349,12 @@ export function getConventionType(action: ACTION, filePath: string): CONVENTIONA
     return CONVENTIONAL_TYPE.CHORE;
   }
 
-  const semantic = new ConventionalCommit(filePath);
-  const semPathType = semantic.getType();
+  const convCommit = new ConventionalCommit(filePath);
+  const convCommitType = convCommit.getType();
 
   if (action === ACTION.A) {
-    return semPathType || CONVENTIONAL_TYPE.FEAT;
+    return convCommitType || CONVENTIONAL_TYPE.FEAT;
   }
 
-  return semPathType;
+  return convCommitType;
 }

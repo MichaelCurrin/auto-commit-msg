@@ -7,7 +7,7 @@ import * as assert from "assert";
 import { ConventionalCommit, getConventionType } from "../../generate/convCommit";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
-describe("Test #Semantic class for path-based conventional commit logic", function () {
+describe("Test #ConventionalCommit class for path-based conventional commit logic", function () {
   describe("#isDocsRelated", function () {
     it("determines that a README file is a doc", function () {
       assert.strictEqual(new ConventionalCommit("README.md").isDocsRelated(), true);
@@ -171,7 +171,7 @@ describe("Test #Semantic class for path-based conventional commit logic", functi
   });
 });
 
-describe("#getSemanticConvention", function () {
+describe("#getConventionType", function () {
   it("uses feat for a new file if no other match is found", function () {
     const add = ACTION.A;
 
@@ -234,7 +234,7 @@ describe("#getSemanticConvention", function () {
     );
   });
 
-  it("uses semantic category from path for a modified file, or leaves not set", function () {
+  it("uses conventional commit type from path for a modified file, or leaves not set", function () {
     const modified = ACTION.M;
 
     assert.strictEqual(
