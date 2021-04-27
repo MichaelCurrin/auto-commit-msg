@@ -9,18 +9,13 @@ import { generateMsg } from "./prepareCommitMsg";
 
 export const NO_LINES = `\
 Unable to generate message as no changes files can be seen.
-Try saving your files or stage any new untracked files.\
-`;
-
-export const TOO_MANY_FILES = `\
-Too many file changes to process.
-
-This extension currently only supports working with *one* changed file at a time or just a
-*few* files. Stage just one file (or both it's old 'D' and new 'A' path) and try again.
-Or stash changes so that only one file change is left in the working tree.\
+Try saving your files or stage any new (untracked) files.\
 `;
 
 const MAX_CHANGES = 8;
+
+export const TOO_MANY_FILES = `Max of ${MAX_CHANGES} reached. Try staging or stashing some changes`;
+
 
 /**
  * Generate and fill a commit message.
