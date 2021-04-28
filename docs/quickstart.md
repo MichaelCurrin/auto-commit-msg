@@ -5,6 +5,7 @@ _This extension is not yet available through the VS Code extension marketplace._
 
 This guides covers how to get the extension installed globally in your VS Code using a downloaded file and then start using the extension
 
+
 ## Requirements
 
 You only need to have VS Code installed and access to run terminal commands.
@@ -12,7 +13,7 @@ You only need to have VS Code installed and access to run terminal commands.
 You do **not** need to download the repo or have NPM / Node installed.
 
 
-## Install
+## Install the extension
 > Use the terminal to install the extension from pre-built file
 
 This is extension is **not available** in the VS Code marketplace yet, but you download it from GitHub.
@@ -44,7 +45,7 @@ This is extension is **not available** in the VS Code marketplace yet, but you d
 If you have VS Code running already, make sure to **restart** it to get the extension loaded.
 
 
-## Run
+## Use the extension
 > How to use extension after it has been installed
 
 1. Open VS Code.
@@ -58,19 +59,3 @@ To avoid having to use the extension with the mouse, you can use the command bar
 
 1. Press <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> to open it up, select _Auto Commit Message_ and press enter or click it.
 1. Your cursor will move to the commit message box, so now you can press commit with the keyboard. Use <kbd>CTRL</kbd>+<kbd>ENTER</kbd>.
-
-
-## Remove
-> How to uninstall the extension if you don't want it anymore
-
-1. Go to the _Extensions_ tab.
-2. Click the extension.
-3. Click _uninstall_.
-
-Or
-
-1. Run this command.
-    ```sh
-    $ code --uninstall-extension MichaelCurrin.auto-commit-msg
-    ```
-2. Restart VS Code.
