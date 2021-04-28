@@ -27,8 +27,8 @@ This is extension is **not available** in the VS Code marketplace yet, but you d
         e.g.
         ```sh
         $ cd ~/Downloads
-        $ VSN='v0.18.0'
-        $ curl -O "https://github.com/MichaelCurrin/auto-commit-msg/releases/download/$VSN/auto-commit-msg-$VSN.vsix"
+        $ TARGET='0.18.0'
+        $ curl -O "https://github.com/MichaelCurrin/auto-commit-msg/releases/download/v$TARGET/auto-commit-msg-$TARGET.vsix"
         ```
 1. Install the extension. Here we run VS Code in the CLI against path to the downloaded file (no need to unzip it first).
     ```sh
