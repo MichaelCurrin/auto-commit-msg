@@ -23,11 +23,12 @@ This is extension is **not available** in the VS Code marketplace yet, but you d
 1. Find the latest release and expand the _Assets_ section.
 1. Download a copy of the `.vsix` archive file.
     - Click on the filename. OR
-    - Use the shell to download.
+    - Use `curl` in the shell to download it.
         e.g.
         ```sh
         $ cd ~/Downloads
-        $ curl -O https://github.com/MichaelCurrin/auto-commit-msg/releases/download/v0.17.0/auto-commit-msg-0.17.0.vsix
+        $ VSN='v0.18.0'
+        $ curl -O "https://github.com/MichaelCurrin/auto-commit-msg/releases/download/$VSN/auto-commit-msg-$VSN.vsix"
         ```
 1. Install the extension. Here we run VS Code in the CLI against path to the downloaded file (no need to unzip it first).
     ```sh
