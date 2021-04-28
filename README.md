@@ -15,7 +15,7 @@
 
 <div align="center">
 
-[Quickstart](https://github.com/MichaelCurrin/auto-commit-msg/docs/quickstart.md) | [Samples](#samples) | [Features](#features) | [Docs](#documentation)
+[Quickstart](/docs/quickstart.md) | [Sample screenshots](#samples) | [Features](#features) | [Docs](#documentation)
 
 </div>
 
@@ -26,7 +26,7 @@ This guide shows you how to download a _pre-built_ extension from GitHub Release
 
 <div align="center">
 
-[![docs - getting started](https://img.shields.io/badge/docs-getting_started-2ea44f?style=for-the-badge)](https://github.com/MichaelCurrin/auto-commit-msg/releases)
+[![docs - getting started](https://img.shields.io/badge/docs-getting_started-2ea44f?style=for-the-badge)](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/docs/quickstart.md)
 
 </div>
 
