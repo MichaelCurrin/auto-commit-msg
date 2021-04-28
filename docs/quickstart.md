@@ -17,27 +17,28 @@ You do **not** need to download the repo or have NPM / Node installed.
 
 This is extension is **not available** in the VS Code marketplace yet, but you download it from GitHub.
 
-1. Find the latest release on the GitHub Releases page.
+1. Go to the GitHub Releases page.
     - [![view - releases](https://img.shields.io/badge/view-releases-2ea44f?style=for-the-badge&logo=github)](https://github.com/MichaelCurrin/auto-commit-msg/releases)
-2. Download a copy of the `.vsix` asset on the latest release.
-    - Click on the name name.
-    - Or use the shell.
+1. Find the latest release and expand the _Assets_ section.
+1. Download a copy of the `.vsix` archive file.
+    - Click on the filename. OR
+    - Use the shell to download.
         e.g.
         ```sh
         $ cd ~/Downloads
         $ curl -O https://github.com/MichaelCurrin/auto-commit-msg/releases/download/v0.17.0/auto-commit-msg-0.17.0.vsix
         ```
-3. Install the extension. Here we run VS Code in the CLI against path to the downloaded file.
+1. Install the extension. Here we run VS Code in the CLI against path to the downloaded file (no need to unzip it first).
     ```sh
     $ code --install-extension PATH
     ```
     e.g.
     ```sh
-    $ code --install-extension ~/Downloads/auto-commit-msg-0.17.0.vsix
+    $ code --install-extension ~/Downloads/auto-commit-msg-0.18.0.vsix
     ```
     ```
     Installing extensions...
-    Extension 'auto-commit-msg-0.17.0.vsix' was successfully installed.
+    Extension 'auto-commit-msg-0.18.0.vsix' was successfully installed.
     ```
 
 If you have VS Code running already, make sure to **restart** it to get the extension loaded.
