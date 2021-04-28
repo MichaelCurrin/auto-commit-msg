@@ -1,8 +1,8 @@
 # VS Code extension
 
-This project in installable as a VS Code extension.
+This project installable as a VS Code extension.
 
-For now it is only available for dev testing but eventually will be installable for anyone using a download file (maybe even using the marketplace).
+For now, it is only available for dev testing, but eventually will be installable for anyone using a download file (maybe even using the marketplace).
 
 <!--
 ## Functionality
@@ -34,13 +34,14 @@ See more [here](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/che
 
 
 ## Install extension
+> Instructions for end-users
 
-See the [Install extension globally](development.md#install-extension-globally) section of the Development doc.
+Follow the [Install extension globally](development.md#install-extension-globally) section of the Development doc.
 
 
 ## Installation
+> Guide for developers
 
-Set up the project in a development environment.
 
 ### Install system dependencies
 
