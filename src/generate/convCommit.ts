@@ -19,6 +19,7 @@ const PACKAGE_DIRS = [
     "requirements-test.txt",
     "test-requirements.txt",
     "Pipfile",
+    // Make Python package installable and manage external packages.
     "pyproject.toml",
     "setup.py",
 
@@ -26,12 +27,10 @@ const PACKAGE_DIRS = [
     "Gemfile",
     "Gemfile.lock",
 
-    // JavaScript (Exclude package.json since it can be used for metadata and not package changes.)
+    // NPM (Exclude package.json since it can be used for metadata and not package changes.)
     "package-lock.json",
     "shrinkwrap.json",
     "yarn.lock",
-    ".npmignore",
-    ".npmrc",
 
     // PHP
     "composer.json",
@@ -54,11 +53,21 @@ const PACKAGE_DIRS = [
 
 // Build system (scripts, configurations or tools) and package dependencies.
 const BUILD_NAMES = [
+    // Docker
+    ".dockerignore",
     "Dockerfile",
     "docker-compose.yml",
 
-    "Makefile",
+    // Make
+    "GNUmakefile", 
+    "makefile",
+    "Makefile", 
+    
+    // Ruby Rake - based on rake CLI message.
+    "rakefile", 
     "Rakefile",
+    "rakefile.rb",
+    "Rakefile.rb",
 
     "package.json", // Not necessarily package-related but always build-related.
 
@@ -68,9 +77,14 @@ const BUILD_NAMES = [
     "micronaut-cli.yml",
   ],
   BUILD_EXTENSIONS = [
-    ".gemspec", // Ruby installation
-    ".bat",
-    ".gradle",
+    // Ruby installation
+    ".gemspec", 
+    
+    // Windows
+    ".bat",    
+    
+   // Java
+    ".gradle", 
   ];
 
 // This may be too broad or clash with other areas such as CI or package, unless used close to LAST
@@ -83,21 +97,33 @@ const CONFIG_EXTENSIONS = [
     ".json",
     ".toml",
     ".ini",
-    ".cfg", // Python config at least but also for other systems maybe.
+    ".cfg",
   ],
   CONFIG_DIRS = [".vscode"],
   CONFIG_NAMES = [
+    // Node
+    ".npmignore",
+    ".npmrc",
+    
+    // Git
     ".gitignore",
+    
+    // EditorConfig
     ".editorconfig",
 
+    // Python
     "setup.cfg",
-
-    "tsconfig.json",
-    "tslint.json",
+    
+    // Node
     ".browserslistrc",
     "browserslist",
     "commitlint.config.js",
+    
+    // TypeScript
+    "tsconfig.json",
+    "tslint.json",
 
+    // Dotenv
     ".env",
     ".env.dev",
     ".env.prod",
