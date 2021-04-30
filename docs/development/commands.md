@@ -20,9 +20,9 @@ See installation steps in the extension and hook docs - clone the repo and insta
 
 Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.github/workflows/main.yml).
 
-### Run all
+### Run all checks
 
-Format, lint and then run unit tests.
+Format, lint and then run unit tests with code coverage.
 
 ```sh
 $ make test
@@ -61,6 +61,15 @@ This will clean the output directory, compile files and then run unit tests. No 
 ```sh
 $ npm test
 ```
+
+With code coverge, as text report or HTML report:
+
+```sh
+$ npm run test:coverage
+$ npm run test:report
+```
+
+These are handled in [Makefile](/Makefile) already under `test`.
 
 #### Integration tests
 
