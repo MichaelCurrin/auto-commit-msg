@@ -4,7 +4,7 @@
   "scripts": {
     "fmt:check": "prettier -c src",
     "fmt:fix": "prettier -w src",
-    "lint:check": "eslint . --ext .ts --quiet",
+    "lint:check": "eslint . --ext .ts --max-warnings 10",
     "lint:fix": "eslint . --ext .ts --fix",
     "clean": "rm -rf out",
     "compile": "npm run clean && tsc -p .",
