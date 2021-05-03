@@ -26,8 +26,8 @@ l lint:
 	npm run lint:fix
 
 t test: fmt lint
-	npm run test:coverage
-	npm run test:report
+	npm run cover
+	npm run cover:report
 
 
 # Run checks, tag and push then install the tagged version as cleanup.

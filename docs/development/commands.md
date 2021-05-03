@@ -56,20 +56,42 @@ For the `git-prefix` project this project was partly based on, unfortunately the
 
 #### Unit tests
 
+Run tests with coverage.
+
+```sh
+$ make test
+```
+
 This will clean the output directory, compile files and then run unit tests. No formatting or linting.
 
 ```sh
 $ npm test
 ```
 
-With code coverge, as text report or HTML report:
+Test with code coverage, as a text report.
 
 ```sh
-$ npm run test:coverage
-$ npm run test:report
+$ npm run cover
 ```
 
-These are handled in [Makefile](/Makefile) already under `test`.
+Generate a visual multi-page HTML report.
+
+```sh
+$ npm run cover:report
+```
+
+See the main page generated as `coverage/lcov-report/index.html`.
+
+This can viewed as using a static site server.
+
+```sh
+$ cd coverage/lcov-report
+$ python3 -m http.server
+```
+
+Then open as:
+
+- http://localhost:8000
 
 #### Integration tests
 
