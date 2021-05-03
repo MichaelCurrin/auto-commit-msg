@@ -59,12 +59,12 @@ const BUILD_NAMES = [
     "docker-compose.yml",
 
     // Make
-    "GNUmakefile", 
+    "GNUmakefile",
     "makefile",
-    "Makefile", 
-    
+    "Makefile",
+
     // Ruby Rake - based on rake CLI message.
-    "rakefile", 
+    "rakefile",
     "Rakefile",
     "rakefile.rb",
     "Rakefile.rb",
@@ -78,47 +78,40 @@ const BUILD_NAMES = [
   ],
   BUILD_EXTENSIONS = [
     // Ruby installation
-    ".gemspec", 
-    
+    ".gemspec",
+
     // Windows
-    ".bat",    
-    
-   // Java
-    ".gradle", 
+    ".bat",
+
+    // Java
+    ".gradle",
   ];
 
 // This may be too broad or clash with other areas such as CI or package, unless used close to LAST
 // in the entire flow.
 // Note also that prettier and ESLint configs with various extensions are handled in isConfigRelated
 // so don't have to be listed explictly. Though those strings should be moved out of the function.
-const CONFIG_EXTENSIONS = [
-    ".yml",
-    ".yaml",
-    ".json",
-    ".toml",
-    ".ini",
-    ".cfg",
-  ],
+const CONFIG_EXTENSIONS = [".yml", ".yaml", ".json", ".toml", ".ini", ".cfg"],
   CONFIG_DIRS = [".vscode"],
   CONFIG_NAMES = [
     // Node
     ".npmignore",
     ".npmrc",
-    
+
     // Git
     ".gitignore",
-    
+
     // EditorConfig
     ".editorconfig",
 
     // Python
     "setup.cfg",
-    
+
     // Node
     ".browserslistrc",
     "browserslist",
     "commitlint.config.js",
-    
+
     // TypeScript
     "tsconfig.json",
     "tslint.json",
@@ -222,7 +215,7 @@ const DOC_NAMES = [
 
   "MAINTAINERS.txt",
   "CODEOWNERS",
-  
+
   // Images.
   "sample.png",
   "sample-1.png",
