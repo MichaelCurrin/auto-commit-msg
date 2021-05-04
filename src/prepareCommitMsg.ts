@@ -79,9 +79,9 @@ export function _formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
 }
 
 /**
- * Generate a new commit message and format is as a string.
+ * Generate a new commit message and format it as a string.
  */
-function _newMsg(lines: string[]) {
+export function _newMsg(lines: string[]) {
   const { prefix, fileChangeMsg } = _msgFromChanges(lines);
 
   return _formatMsg(prefix, fileChangeMsg);

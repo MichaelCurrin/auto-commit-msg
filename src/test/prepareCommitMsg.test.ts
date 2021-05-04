@@ -5,7 +5,7 @@
  */
 import * as assert from "assert";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
-import { _formatMsg, _msgFromChanges } from "../prepareCommitMsg";
+import { _formatMsg, _msgFromChanges, _newMsg } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {
@@ -161,6 +161,37 @@ describe("Prepare commit message", function () {
         _formatMsg(CONVENTIONAL_TYPE.DOCS, "Update README.md"),
         "docs: Update README.md"
       );
+    });
+  });
+
+  describe("#_newMsg", function () {
+    describe("creates a new message from a prefix and message", function () {
+      it("handles a single change", function () {
+        assert.strictEqual(_newMsg(["A    baz.txt"]), "feat: Create baz.txt");
+      });
+
+      it("handles multiple changes", function () {
+        // Leave the detailed cases to tests for _msgFromChanges.
+
+        assert.strictEqual(
+          _newMsg(["A    baz.txt", "A    bar.js"]),
+          "feat: Create baz.txt and bar.js"
+        );
+
+        assert.strictEqual(
+          _newMsg(["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"]),
+          "feat: Create baz.txt, bar.js and fuzz.md"
+        );
+
+        assert.strictEqual(
+          _newMsg([
+            "M    docs/README.md",
+            "M    bar/README.md",
+            "M    README.md",
+          ]),
+          "docs: Update docs/README.md, bar/README.md and README.md"
+        );
+      });
     });
   });
 });
