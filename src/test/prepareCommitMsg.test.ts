@@ -146,18 +146,18 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_formatMsg", function () {
-    it("formats a message correctly", function () {
-      assert.deepStrictEqual(
+    it("combines a prefix and message correctly", function () {
+      assert.strictEqual(
         _formatMsg(CONVENTIONAL_TYPE.FEAT, "Create foo.txt"),
         "feat: Create foo.txt"
       );
 
-      assert.deepStrictEqual(
+      assert.strictEqual(
         _formatMsg(CONVENTIONAL_TYPE.BUILD, "Update foo.txt"),
         "build: Update foo.txt"
       );
 
-      assert.deepStrictEqual(
+      assert.strictEqual(
         _formatMsg(CONVENTIONAL_TYPE.DOCS, "Update README.md"),
         "docs: Update README.md"
       );
