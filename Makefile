@@ -17,15 +17,15 @@ upgrade:
 	npm upgrade
 
 
-fmt-check:
-	npm run fmt:check
 fmt:
 	npm run fmt:fix
 
 l lint:
 	npm run lint:fix
 
-t test: fmt lint
+fix: fmt lint
+
+t test: fix
 	npm run cover
 	npm run cover:report
 
