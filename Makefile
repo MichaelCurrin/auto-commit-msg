@@ -29,6 +29,10 @@ t test: fix
 	npm run cover
 	npm run cover:report
 
+test-quick:
+	npx tsc -p .
+	npm run test:unit
+
 
 # Run checks, tag and push then install the tagged version as cleanup.
 tag:
