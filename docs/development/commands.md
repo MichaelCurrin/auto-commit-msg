@@ -1,14 +1,16 @@
 # Commands
-> Guide for using NPM commands in this project
+> Guide for running tasks in this project
 
 
-## Overview of commands
+## Overview
 
-There are just a few important `npm` commands to know for this project. These are covered in the [Makefile](/Makefile) and can be run with `make TARGET` for convenience.
+There are just a _few_ important or frequent `npm` commands to know for this project. To make those easier to access and remember, some shortcut commands have been set up.
 
-The other NPM script commands are run indirectly through the other commands or through the debugger. Or are only run directly infrequently, so they aren't covered here.
+This has been done with `make` as a task runner than wraps `npm run`. These tasks are covered in the [Makefile](/Makefile). They can be run with `make TARGET` for convenience. This is standard on macOS and Linux but you will need to install `make` on Windows.
 
-See [package.json](/package.json) for all commands. Note that `.` is better than `src` as then the configs like `tsconfig.json` can be found - otherwise you'll get an error.
+See [package.json](/package.json) for all the underlying NPM commands. Note that `.` is better than `src`, as then the configs like `tsconfig.json` can be found - otherwise you'll get an error.
+
+See also [NPM tasks](npm-tasks.md) doc.
 
 
 ## Install
@@ -19,14 +21,6 @@ See installation steps in the extension and hook docs - clone the repo and insta
 ## Run checks
 
 Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.github/workflows/main.yml).
-
-### Run all checks
-
-Format, lint and then run unit tests with code coverage.
-
-```sh
-$ make test
-```
 
 ### Format
 
@@ -44,75 +38,22 @@ Run ESLint against TS files for a report and fixing problems where possible.
 $ make lint
 ```
 
-Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the compile step. This runs as part of [Tests](#run-tests), so you don't have to run it by hand.
-
-```sh
-$ npm run compile
-```
+Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the `npm run compile` step. This runs as part of [Run tests](#run-tests) section.
 
 ### Run tests
 
-For the `git-prefix` project this project was partly based on, unfortunately the tests were poor there so I didn't copy over the extension tests, but I could bring back some from tag `v0.6.0` so there are integration tests if I think I need them.
+Skip clean and style steps, for even faster results such and when editing test spec files. At the risk of inconsistencies sometimes, if a file is renamed or moved.
 
-#### Unit tests
+```sh
+$ make test-quick
+```
 
-Run tests with coverage.
+### Run all checks
+
+Clean output, fix-up source and then run tests with code coverage.
 
 ```sh
 $ make test
 ```
 
-This will clean the output directory, compile files and then run unit tests. No formatting or linting.
-
-```sh
-$ npm test
-```
-
-Test with code coverage, as a text report.
-
-```sh
-$ npm run cover
-```
-
-Generate a visual multi-page HTML report.
-
-```sh
-$ npm run cover:report
-```
-
-See the main page generated as `coverage/lcov-report/index.html`.
-
-This can viewed as using a static site server.
-
-```sh
-$ cd coverage/lcov-report
-$ python3 -m http.server
-```
-
-Then open as:
-
-- http://localhost:8000
-
-#### Integration tests
-
-There are no integration tests in this project.
-
-Most of the logic is what happens internally so it is easy to test with unit tests. There is one frontend button and it just pushes a message, so there is not that much that can go wrong in the UI.
-
-What would be more useful is testing the integration with `git` - namely using actual output from `git` commands. For now, the unit tests are created using output copied from git command output, so that is covered. It is possible to add integration tests for this area, but it would end up duplicating the unit tests - unless the integration is just focus on git commands to expected strings which is testing git itself and not the extension.
-
-Notes:
-
-- This extension was built around Git Prefix, but unfortunately the integration tests of Git Prefix extension there are not useful, so I left out integration tests out of my project. I also noticed that downloading of VS Code as an NPM script is different but clear compared with _Git Semantic Commit_ approach. I don't know which is best practice - need to look at some more VS Code samples.
-- _Git Semantic Commit_ extension does in-depth integration tests and even creates a separate new repo in a subfolder to run activity in, so I could look at bringing this in to mine.
-
-
-## Clean
-
-This will clear the unversioned `out` directory - useful to get rid of files after renaming or deleting TS files. This will keep any hidden directories like `.vscode-test` which has a large binary for integration tests.
-
-```sh
-$ npm run clean
-```
-
-A few problems have been resolved by running the clean command, so this is now part of the `build` step so it runs every time when doing tests or running the extension. Note that the build/compile step happens as part of `watch` too, so it is covered there.
+See the [Tests](tests.md) doc for more.
