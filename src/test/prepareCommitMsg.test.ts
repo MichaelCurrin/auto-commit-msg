@@ -5,7 +5,7 @@
  */
 import * as assert from "assert";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
-import { _msgFromChanges } from "../prepareCommitMsg";
+import { _formatMsg, _msgFromChanges } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {
@@ -142,6 +142,25 @@ describe("Prepare commit message", function () {
           expected
         );
       });
+    });
+  });
+
+  describe("#_formatMsg", function () {
+    it("formats a message correctly", function () {
+      assert.deepStrictEqual(
+        _formatMsg(CONVENTIONAL_TYPE.FEAT, "Create foo.txt"),
+        "feat: Create foo.txt"
+      );
+
+      assert.deepStrictEqual(
+        _formatMsg(CONVENTIONAL_TYPE.BUILD, "Update foo.txt"),
+        "build: Update foo.txt"
+      );
+
+      assert.deepStrictEqual(
+        _formatMsg(CONVENTIONAL_TYPE.DOCS, "Update README.md"),
+        "docs: Update README.md"
+      );
     });
   });
 });

@@ -71,7 +71,7 @@ export function _msgFromChanges(diffIndexLines: string[]) {
 /**
  * Output a readable conventional commit message.
  */
-function _formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
+export function _formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeMsg: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
     return fileChangeMsg;
   }
