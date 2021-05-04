@@ -24,7 +24,7 @@ Notes:
 
 - This extension was built around Git Prefix, but unfortunately the integration tests of Git Prefix extension there are not useful, so I left out integration tests out of my project. I also noticed that downloading of VS Code as an NPM script is different but clear compared with _Git Semantic Commit_ approach. I don't know which is best practice - need to look at some more VS Code samples.
 - _Git Semantic Commit_ extension does in-depth integration tests and even creates a separate new repo in a subfolder to run activity in, so I could look at bringing this in to mine.
--
+
 
 ## Coverage
 
@@ -52,3 +52,5 @@ $ python3 -m http.server
 Then open as:
 
 - http://localhost:8000
+
+Or set up VS Code's _Live Server_ to start on that `index.html` page. That will hot-reload the browser tab when the HTML files changes - this is useful if you are updating your tests and want to see the browser reflect changes to coverage.
