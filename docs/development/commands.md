@@ -13,6 +13,19 @@ See [package.json](/package.json) for all the underlying NPM commands. Note that
 See also [NPM tasks](npm-tasks.md) doc.
 
 
+## Run tasks
+
+Run major tasks to check the project for issues.
+
+```sh
+$ make all
+```
+
+This will up hooks, install packages, fix and unit test tasks.
+
+This is useful for bootstrapping the project on a fresh clone, or before pushing commits. This task also runs as part of the `pre-push` hook after that has been set up.
+
+
 ## Install
 
 See installation steps in the extension and hook docs - clone the repo and install Node.js and dependencies.
