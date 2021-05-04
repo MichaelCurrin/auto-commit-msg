@@ -5,7 +5,12 @@
  */
 import * as assert from "assert";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
-import { _formatMsg, _msgFromChanges, _newMsg } from "../prepareCommitMsg";
+import {
+  _combineOldAndNew,
+  _formatMsg,
+  _msgFromChanges,
+  _newMsg
+} from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {
@@ -192,6 +197,46 @@ describe("Prepare commit message", function () {
           "docs: Update docs/README.md, bar/README.md and README.md"
         );
       });
+    });
+  });
+
+  describe("#_combineOldAndNew", function () {
+    it("combines uses the new message if there is no old message", function () {
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar"),
+        "feat: Foo bar"
+      );
+
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar", ""),
+        "feat: Foo bar"
+      );
+    });
+
+    it("combines an existing message and a new message", function () {
+      // Typical case is '[JIRA_TICKET] docs:' has 'Update foo' added.
+      // Though this ends up duplicating docs and feat possible.
+      // This isn't so smart yet but helps sometimes.
+
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "Fizz buzz"),
+        "Fizz buzz Foo bar"
+      );
+
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat:"),
+        "feat: Foo bar"
+      );
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat: "),
+        "feat: Foo bar"
+      );
+
+      // This isn't intended but currently how it works.
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar", "Fizz buzz"),
+        "Fizz buzz feat: Foo bar"
+      );
     });
   });
 });

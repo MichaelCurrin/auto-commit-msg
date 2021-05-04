@@ -99,7 +99,7 @@ export function _newMsg(lines: string[]) {
  * TODO: Check if the old message is already a PREFIX form or a PREFIX FILECHANGE form. This changes
  * the new message form.
  */
-function _combineOldAndNew(
+export function _combineOldAndNew(
   prefix: CONVENTIONAL_TYPE,
   fileChangeMsg: string,
   oldMsg?: string
