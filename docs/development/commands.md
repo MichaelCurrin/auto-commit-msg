@@ -10,7 +10,7 @@ This has been done with `make` as a task runner than wraps `npm run`. These task
 
 See [package.json](/package.json) for all the underlying NPM commands. Note that `.` is better than `src`, as then the configs like `tsconfig.json` can be found - otherwise you'll get an error.
 
-See also [NPM tasks](npm-tasks.md) doc.
+See also [NPM tasks](advanced/npm-tasks.md) doc.
 
 
 ## Run tasks

@@ -3,7 +3,7 @@
 
 ## Checks
 
-The CI/CD flow is setup on GitHub Actions to compile the app and runs checks against i. This is done on every push.
+The CI/CD flow is setup on GitHub Actions to compile the app and runs checks against it. This is done on every push.
 
 See the [main.yml](/.github/workflows/main.yml) config file.
 

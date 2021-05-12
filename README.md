@@ -235,4 +235,4 @@ See [Issues](https://github.com/MichaelCurrin/auto-commit-msg/issues) on the rep
 
 Released as [MIT](/LICENSE).
 
-The core of this project's VS Code extension logic is creating a commit message and pushing to the Git Extension input box in the UI. That comes from the Git Prefix extension. Use of Git CLI in the extension comes from the _Semantic Git Commit_ extension. Read about these in the [Credit](/docs/credit.md) section the docs.
+The core of this project's VS Code extension logic is creating a commit message and pushing to the Git Extension input box in the UI. That comes from the Git Prefix extension. Use of Git CLI in the extension comes from the _Semantic Git Commit_ extension. Read about these in the [Credit](/docs/about/credit.md) section the docs.
