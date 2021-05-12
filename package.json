@@ -43,13 +43,16 @@
   "displayName": "Auto Commit Message",
   "description": "Generate git commit messages automagically",
   "publisher": "MichaelCurrin",
+  "author": {
+    "name": "MichaelCurrin"
+  },
   "license": "MIT",
   "homepage": "https://github.com/MichaelCurrin/auto-commit-msg#readme",
+  "bugs": "https://github.com/MichaelCurrin/auto-commit-msg/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/MichaelCurrin/auto-commit-msg"
   },
-  "bugs": "https://github.com/MichaelCurrin/auto-commit-msg/issues",
   "keywords": [
     "git",
     "auto",
