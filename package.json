@@ -23,7 +23,7 @@
     "sb": "bin/reset_sandbox.sh"
   },
   "engines": {
-    "vscode": "^1.55.0"
+    "vscode": "^1.56.0"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.2",
