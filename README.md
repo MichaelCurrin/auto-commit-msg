@@ -105,4 +105,4 @@ Don't use this tool all the time - remember to write explanatory messages when i
 
 Released under [MIT](/LICENSE) by [@MichaelCurrin](https://github.com/MichaelCurrin).
 
-See [Credit](/docs/credit.md) section the docs for more info.
+See [Credit](/docs/other/credit.md) section the docs for more info.
