@@ -5,7 +5,7 @@ This project aims to prepare a smart commit message for you to make your develop
 
 ## Overview
 
-- Install the extension.
+- User manual
     - See the [Quickstart](quickstart.md) page - you can download and install a pre-built extension. No need to work with this repo directly or be familiar with JavaScript.
 - Developer guides
     - Start with the [Installation](installation.md) doc to install it.
