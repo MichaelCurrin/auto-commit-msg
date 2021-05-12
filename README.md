@@ -96,7 +96,7 @@ Don't use this tool all the time - remember to write explanatory messages when i
 
 [![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
 
-[![view - Wiki](https://img.shields.io/badge/view-Wiki-blue)](https://github.com/MichaelCurrin/auto-commit-msg/wiki?style=for-the-badge)
+[![view - Wiki](https://img.shields.io/badge/view-Wiki-blue?style=for-the-badge)](https://github.com/MichaelCurrin/auto-commit-msg/wiki)
 
 </div>
 
