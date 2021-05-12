@@ -15,7 +15,9 @@
 
 <div align="center">
 
-<img src="/images/icon.png" alt="Logo" title="Logo" width="200" />
+<a href="/docs/quickstart.md">
+    <img src="/images/icon.png" alt="Logo" title="Logo" width="200" />
+</a>
 
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 
