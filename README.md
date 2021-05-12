@@ -218,9 +218,9 @@ See [Issues](https://github.com/MichaelCurrin/auto-commit-msg/issues) on the rep
 
 <div align="center">
 
-[![view - Documentation](https://img.shields.io/badge/view-Documenation-blue)](/docs/)
+[![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
 
-[![view - Wiki](https://img.shields.io/badge/view-Wiki-blue)](https://github.com/MichaelCurrin/auto-commit-msg/wiki)
+[![view - Wiki](https://img.shields.io/badge/view-Wiki-blue)](https://github.com/MichaelCurrin/auto-commit-msg/wiki?style=for-the-badge)
 
 </div>
 
