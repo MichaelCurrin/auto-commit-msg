@@ -21,6 +21,4 @@ $ cd auto-commit-msg
 $ npm install
 ```
 
----
-
 Continue to [Usage](usage.md) doc.

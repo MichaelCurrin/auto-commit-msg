@@ -2,6 +2,11 @@
 > Giving credit to projects which influenced this project
 
 
+The core of this project's VS Code extension logic is about creating a commit message and pushing to the _Git Extension_ input box in the UI. That comes from the _Git Prefix_ extension. Use of _Git CLI_ in the extension comes from the _Semantic Git Commit_ extension.
+
+See more info below.
+
+
 ## Hello World sample
 
 - Source: [Hello World test sample](https://github.com/microsoft/vscode-extension-samples/tree/master/helloworld-test-sample) project
