@@ -11,12 +11,13 @@
 
 [![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
-[![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 
 
 <div align="center">
 
 <img src="/images/icon.png" alt="Logo" title="Logo" width="200" />
+
+[![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 
 [Quickstart](/docs/quickstart.md) | [Sample screenshots](#samples) | [Features](#features) | [Docs](#documentation)
 
