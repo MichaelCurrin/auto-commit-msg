@@ -21,6 +21,8 @@ Here is the full syntax:
 [optional footer]
 ```
 
+Description is meant to start with a lowercase letter.
+
 This project focuses only on the first part:
 
 ```
@@ -48,7 +50,7 @@ This would be specific to concepts and directories in a particular project, howe
 e.g.
 
 ```
-build(deps): Upgrade packages
+build(deps): upgrade packages
 ```
 
 From the docs:
