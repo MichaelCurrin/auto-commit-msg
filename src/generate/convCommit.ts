@@ -339,7 +339,10 @@ export class ConventionalCommit {
     if (this.isCIRelated()) {
       return CONVENTIONAL_TYPE.CI;
     }
-    if (this.isBuildRelated() || this.isPackageRelated()) {
+    if (this.isPackageRelated()) {
+      return CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
+    }
+    if (this.isBuildRelated()) {
       return CONVENTIONAL_TYPE.BUILD;
     }
     if (this.isChoreRelated()) {

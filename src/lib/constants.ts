@@ -44,12 +44,16 @@ export enum ACTION {
 }
 
 /**
- * Conventional commit types.
+ * Conventional Commit types.
+ *
+ * The scope is mixed in here because refactoring a few modules to handle scope alone is too much
+ * effort for one use-case.
  *
  * See convention-commits.md doc for more info.
  */
 export enum CONVENTIONAL_TYPE {
   BUILD = "build",
+  BUILD_DEPENDENCIES = "build(deps)",
   CI = "ci",
   CHORE = "chore",
   DOCS = "docs",

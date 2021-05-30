@@ -36,22 +36,32 @@ export function _msgOne(line: string) {
   return { prefix, fileChangeMsg };
 }
 
+/** Get single Conventional Commit type from multiple ones. */
+function collapse(conventions: CONVENTIONAL_TYPE[]) {
+  if (equal(conventions)) {
+    return conventions[0];
+  }
+  if (conventions.includes(CONVENTIONAL_TYPE.BUILD_DEPENDENCIES)) {
+    return CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
+  }
+
+  return CONVENTIONAL_TYPE.UNKNOWN;
+}
+
 /**
  * Generate message for multiple file changes.
  *
- * This finds a common conventional commit prefix if one is appropriate and returns a message
+ * This finds a common Conventional Commit prefix if one is appropriate and returns a message
  * listing all the names.
  *
  * This was added onto this extension later in development, while `_msgOne` was the core behavior
- * up to then.
+ * previously.
  */
 export function _msgMulti(lines: string[]) {
   const conventions = lines.map(_prefixFromChanges);
-  const prefix = equal(conventions)
-    ? conventions[0]
-    : CONVENTIONAL_TYPE.UNKNOWN;
+  const convention = collapse(conventions);
 
-  return { prefix, fileChangeMsg: namedFiles(lines) };
+  return { prefix: convention, fileChangeMsg: namedFiles(lines) };
 }
 
 /**

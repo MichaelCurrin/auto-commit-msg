@@ -6,7 +6,7 @@
 import * as assert from "assert";
 import {
   ConventionalCommit,
-  getConventionType,
+  getConventionType
 } from "../../generate/convCommit";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
@@ -190,7 +190,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     // to the real world as it through a hierarchy (for example .yml is config-related unless it is
     // for a CI file). But, this doesn't care what the action is like create or delete or modify, so
     // it won't impose meaning based on that.
-    it("can recognizes a build file as build", function () {
+    it("sees a build file as build", function () {
       assert.strictEqual(
         new ConventionalCommit("Makefile").getType(),
         CONVENTIONAL_TYPE.BUILD
@@ -204,30 +204,31 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
         new ConventionalCommit("foo.gemspec").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
-    });
-
-    it("can recognizes a package file as build", function () {
-      assert.strictEqual(
-        new ConventionalCommit("Gemfile").getType(),
-        CONVENTIONAL_TYPE.BUILD
-      );
 
       assert.strictEqual(
         new ConventionalCommit("package.json").getType(),
         CONVENTIONAL_TYPE.BUILD
       );
+    });
+
+    it("sees a dependency-related file as 'build' and with dependency scope", function () {
+      assert.strictEqual(
+        new ConventionalCommit("Gemfile").getType(),
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+      );
+
       assert.strictEqual(
         new ConventionalCommit("package-lock.json").getType(),
-        CONVENTIONAL_TYPE.BUILD
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
       );
 
       assert.strictEqual(
         new ConventionalCommit("requirements.txt").getType(),
-        CONVENTIONAL_TYPE.BUILD
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
       );
       assert.strictEqual(
         new ConventionalCommit("requirements-dev.txt").getType(),
-        CONVENTIONAL_TYPE.BUILD
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
       );
     });
 
