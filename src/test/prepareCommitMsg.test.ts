@@ -9,7 +9,7 @@ import {
   _combineOldAndNew,
   _formatMsg,
   _msgFromChanges,
-  _newMsg,
+  _newMsg
 } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
@@ -17,7 +17,7 @@ describe("Prepare commit message", function () {
     it("handles a single file correctly", function () {
       const expected = {
         prefix: CONVENTIONAL_TYPE.FEAT,
-        fileChangeMsg: "Create baz.txt",
+        fileChangeMsg: "create baz.txt",
       };
 
       assert.deepStrictEqual(_msgFromChanges(["A    baz.txt"]), expected);
@@ -27,7 +27,7 @@ describe("Prepare commit message", function () {
       it("handles 2 created files created correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "Create baz.txt and bar.js",
+          fileChangeMsg: "create baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -39,7 +39,7 @@ describe("Prepare commit message", function () {
       it("handles 2 modified files correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeMsg: "Update baz.txt and bar.js",
+          fileChangeMsg: "update baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -51,7 +51,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files with the same action correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "Create baz.txt, bar.js and fuzz.md",
+          fileChangeMsg: "create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
@@ -63,7 +63,7 @@ describe("Prepare commit message", function () {
       it("handles 4 files with the same action correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "Create baz.txt, bar.js, fuzz.md and fuzz.ts",
+          fileChangeMsg: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
         };
 
         assert.deepStrictEqual(
@@ -80,7 +80,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files in subdirectories but does not show the directory paths", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "Create baz.txt, bar.js and fuzz.md",
+          fileChangeMsg: "create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
@@ -97,7 +97,7 @@ describe("Prepare commit message", function () {
       it('handles 2 "build(deps)" files correctly', function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
-          fileChangeMsg: "Update package.json and package-lock.json",
+          fileChangeMsg: "update package.json and package-lock.json",
         };
 
         assert.deepStrictEqual(
@@ -109,7 +109,7 @@ describe("Prepare commit message", function () {
       it("handles 3 README.md files in different locations as full paths", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.DOCS,
-          fileChangeMsg: "Update docs/README.md, bar/README.md and README.md",
+          fileChangeMsg: "update docs/README.md, bar/README.md and README.md",
         };
 
         assert.deepStrictEqual(
@@ -153,18 +153,18 @@ describe("Prepare commit message", function () {
   describe("#_formatMsg", function () {
     it("combines a prefix and message correctly", function () {
       assert.strictEqual(
-        _formatMsg(CONVENTIONAL_TYPE.FEAT, "Create foo.txt"),
-        "feat: Create foo.txt"
+        _formatMsg(CONVENTIONAL_TYPE.FEAT, "create foo.txt"),
+        "feat: create foo.txt"
       );
 
       assert.strictEqual(
-        _formatMsg(CONVENTIONAL_TYPE.BUILD, "Update foo.txt"),
-        "build: Update foo.txt"
+        _formatMsg(CONVENTIONAL_TYPE.BUILD, "update foo.txt"),
+        "build: update foo.txt"
       );
 
       assert.strictEqual(
-        _formatMsg(CONVENTIONAL_TYPE.DOCS, "Update README.md"),
-        "docs: Update README.md"
+        _formatMsg(CONVENTIONAL_TYPE.DOCS, "update README.md"),
+        "docs: update README.md"
       );
     });
   });
@@ -172,7 +172,7 @@ describe("Prepare commit message", function () {
   describe("#_newMsg", function () {
     describe("creates a new message from a prefix and message", function () {
       it("handles a single change", function () {
-        assert.strictEqual(_newMsg(["A    baz.txt"]), "feat: Create baz.txt");
+        assert.strictEqual(_newMsg(["A    baz.txt"]), "feat: create baz.txt");
       });
 
       it("handles multiple changes", function () {
@@ -180,12 +180,12 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _newMsg(["A    baz.txt", "A    bar.js"]),
-          "feat: Create baz.txt and bar.js"
+          "feat: create baz.txt and bar.js"
         );
 
         assert.strictEqual(
           _newMsg(["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"]),
-          "feat: Create baz.txt, bar.js and fuzz.md"
+          "feat: create baz.txt, bar.js and fuzz.md"
         );
 
         assert.strictEqual(
@@ -194,7 +194,7 @@ describe("Prepare commit message", function () {
             "M    bar/README.md",
             "M    README.md",
           ]),
-          "docs: Update docs/README.md, bar/README.md and README.md"
+          "docs: update docs/README.md, bar/README.md and README.md"
         );
       });
     });

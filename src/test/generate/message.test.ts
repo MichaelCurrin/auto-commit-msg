@@ -34,9 +34,9 @@ describe("Generate commit message for a single changed file", function () {
   // on at least file name is done.
   describe("#oneChange", function () {
     it("returns the appropriate commit message for a new file", function () {
-      assert.strictEqual(oneChange("A    foo.txt"), "Create foo.txt");
+      assert.strictEqual(oneChange("A    foo.txt"), "create foo.txt");
       // Maybe create foo.txt in bar, if the dir is not too long?
-      assert.strictEqual(oneChange("A    bar/foo.txt"), "Create foo.txt");
+      assert.strictEqual(oneChange("A    bar/foo.txt"), "create foo.txt");
     });
 
     it("throws an error if no filepath can be no generated", function () {
@@ -44,13 +44,13 @@ describe("Generate commit message for a single changed file", function () {
     });
 
     it("returns the appropriate commit message for a modified file", function () {
-      assert.strictEqual(oneChange("M    foo.txt"), "Update foo.txt");
-      assert.strictEqual(oneChange("M    bar/foo.txt"), "Update foo.txt");
+      assert.strictEqual(oneChange("M    foo.txt"), "update foo.txt");
+      assert.strictEqual(oneChange("M    bar/foo.txt"), "update foo.txt");
     });
 
     it("returns the appropriate commit message for a deleted file", function () {
-      assert.strictEqual(oneChange("D    foo.txt"), "Delete foo.txt");
-      assert.strictEqual(oneChange("D    bar/foo.txt"), "Delete foo.txt");
+      assert.strictEqual(oneChange("D    foo.txt"), "delete foo.txt");
+      assert.strictEqual(oneChange("D    bar/foo.txt"), "delete foo.txt");
     });
 
     it("describes a file renamed in the same directory", function () {
@@ -128,25 +128,25 @@ describe("Generate commit message for a single changed file", function () {
     });
 
     it("uses the full path to describe index files", function () {
-      assert.strictEqual(oneChange("A    README.md"), "Create README.md");
-      assert.strictEqual(oneChange("M    README.md"), "Update README.md");
-      assert.strictEqual(oneChange("D    README.md"), "Delete README.md");
+      assert.strictEqual(oneChange("A    README.md"), "create README.md");
+      assert.strictEqual(oneChange("M    README.md"), "update README.md");
+      assert.strictEqual(oneChange("D    README.md"), "delete README.md");
 
       assert.strictEqual(
         oneChange("A    foo/README.md"),
-        "Create foo/README.md"
+        "create foo/README.md"
       );
       assert.strictEqual(
         oneChange("M    bar/baz/README.md"),
-        "Update bar/baz/README.md"
+        "update bar/baz/README.md"
       );
       assert.strictEqual(
         oneChange("D    bar/baz/buzz/README.md"),
-        "Delete bar/baz/buzz/README.md"
+        "delete bar/baz/buzz/README.md"
       );
 
-      assert.strictEqual(oneChange("A    foo/index.md"), "Create foo/index.md");
-      assert.strictEqual(oneChange("A    foo/index.js"), "Create foo/index.js");
+      assert.strictEqual(oneChange("A    foo/index.md"), "create foo/index.md");
+      assert.strictEqual(oneChange("A    foo/index.js"), "create foo/index.js");
     });
   });
 });
@@ -156,29 +156,29 @@ describe("Generate commit message for a few changed files which each get named",
     it("return the appropriate commit message for two files", function () {
       assert.strictEqual(
         namedFiles(["A    foo.txt", "A    bar.txt"]),
-        "Create foo.txt and bar.txt"
+        "create foo.txt and bar.txt"
       );
 
       assert.strictEqual(
         namedFiles(["M    foo.txt", "M    bar.txt"]),
-        "Update foo.txt and bar.txt"
+        "update foo.txt and bar.txt"
       );
 
       assert.strictEqual(
         namedFiles(["M    fizz.js", "M    buzz.ts"]),
-        "Update fizz.js and buzz.ts"
+        "update fizz.js and buzz.ts"
       );
     });
 
     it("return a commit message for more than two files", function () {
       assert.strictEqual(
         namedFiles(["A    foo.txt", "A    docs/bar.txt", "A    buzz.js"]),
-        "Create foo.txt, bar.txt and buzz.js"
+        "create foo.txt, bar.txt and buzz.js"
       );
 
       assert.strictEqual(
         namedFiles(["D    foo.txt", "D    docs/bar.txt", "D    buzz.js"]),
-        "Delete foo.txt, bar.txt and buzz.js"
+        "delete foo.txt, bar.txt and buzz.js"
       );
     });
 

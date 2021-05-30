@@ -6,7 +6,7 @@
 import * as assert from "assert";
 import {
   ConventionalCommit,
-  getConventionType
+  getConventionType,
 } from "../../generate/convCommit";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
