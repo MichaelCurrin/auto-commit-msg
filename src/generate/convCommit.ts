@@ -329,9 +329,9 @@ export class ConventionalCommit {
   }
 
   /**
-   * Return conventional commit type.
+   * Return Conventional Commit type.
    *
-   * Order of checks is imporant here.
+   * Order of checks is important here.
    *
    * Return the unknown/null value if no rule matches.
    */
@@ -357,7 +357,7 @@ export class ConventionalCommit {
 }
 
 /**
- * Get the conventional commit type.
+ * Get the Conventional Commit type.
  *
  * Relies on both the action type and the path-based logic.
  *
