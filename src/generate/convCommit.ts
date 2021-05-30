@@ -374,11 +374,11 @@ export function getConventionType(
   }
 
   const convCommit = new ConventionalCommit(filePath);
-  const convCommitType = convCommit.getType();
+  const commitType = convCommit.getType();
 
   if (action === ACTION.A) {
-    return convCommitType || CONVENTIONAL_TYPE.FEAT;
+    return commitType || CONVENTIONAL_TYPE.FEAT;
   }
 
-  return convCommitType;
+  return commitType;
 }
