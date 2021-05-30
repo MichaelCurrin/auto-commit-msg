@@ -36,7 +36,13 @@ export function _msgOne(line: string) {
   return { prefix, fileChangeMsg };
 }
 
-/** Get single Conventional Commit type from multiple ones. */
+/**
+ * Get single Conventional Commit type from multiple ones.
+ *
+ * If at least one item is build dependencies even if the others are different, then use that.
+ * This covers the case where package.json may have non-package changes but you know it does
+ * in this case because it changed with the lock file.
+*/
 function collapse(conventions: CONVENTIONAL_TYPE[]) {
   if (equal(conventions)) {
     return conventions[0];
