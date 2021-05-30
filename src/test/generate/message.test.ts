@@ -39,12 +39,12 @@ describe("Generate commit message for a single changed file", function () {
     it("describes a file renamed in the same directory", function () {
       assert.strictEqual(
         oneChange("R    foo.txt          bar.txt"),
-        "Rename foo.txt to bar.txt"
+        "rename foo.txt to bar.txt"
       );
 
       assert.strictEqual(
         oneChange("R    fizz/foo.txt     fizz/bar.txt"),
-        "Rename foo.txt to bar.txt"
+        "rename foo.txt to bar.txt"
       );
     });
 
@@ -53,60 +53,60 @@ describe("Generate commit message for a single changed file", function () {
       // get ignored.
       assert.strictEqual(
         oneChange("R97    foo.txt    bar.txt"),
-        "Rename foo.txt to bar.txt"
+        "rename foo.txt to bar.txt"
       );
     });
 
     it("describes a file moved out of the repo root", function () {
       assert.strictEqual(
         oneChange("R    foo.txt      fizz/foo.txt"),
-        "Move foo.txt to fizz"
+        "move foo.txt to fizz"
       );
 
       assert.strictEqual(
         oneChange("R    foo.txt      fizz/buzz/foo.txt"),
-        "Move foo.txt to fizz/buzz"
+        "move foo.txt to fizz/buzz"
       );
     });
 
     it("describes a file moved out of a subdirectory", function () {
       assert.strictEqual(
         oneChange("R     fizz/buzz/foo.txt    foo.txt"),
-        "Move foo.txt to repo root"
+        "move foo.txt to repo root"
       );
 
       assert.strictEqual(
         oneChange("R     fizz/buzz/foo.txt    fizz/foo.txt"),
-        "Move foo.txt to fizz"
+        "move foo.txt to fizz"
       );
 
       assert.strictEqual(
         oneChange("R     fizz/buzz/foo.txt    fizz/buzz/foo.txt"),
-        "Move foo.txt to fizz/buzz"
+        "move foo.txt to fizz/buzz"
       );
     });
 
     it("describes a file that was both moved and renamed", function () {
       assert.strictEqual(
         oneChange("R    foo.txt       fizz/fuzz.txt"),
-        "Move and rename foo.txt to fizz/fuzz.txt"
+        "move and rename foo.txt to fizz/fuzz.txt"
       );
 
       assert.strictEqual(
         oneChange("R    bar/foo.txt   fuzz.txt"),
-        "Move and rename foo.txt to fuzz.txt at repo root"
+        "move and rename foo.txt to fuzz.txt at repo root"
       );
 
       assert.strictEqual(
         oneChange("R    bar/foo.txt   fizz/fuzz.txt"),
-        "Move and rename foo.txt to fizz/fuzz.txt"
+        "move and rename foo.txt to fizz/fuzz.txt"
       );
     });
 
     it("ignores percentage changed value for a file that was both moved and renamed", function () {
       assert.strictEqual(
         oneChange("R97  foo.txt       fizz/fuzz.txt"),
-        "Move and rename foo.txt to fizz/fuzz.txt"
+        "move and rename foo.txt to fizz/fuzz.txt"
       );
     });
 

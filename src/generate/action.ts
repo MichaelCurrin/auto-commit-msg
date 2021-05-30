@@ -45,12 +45,12 @@ export function moveOrRenameFile(oldPath: string, newPath: string): string {
   let msg;
 
   if (oldP.name === newP.name) {
-    msg = `Move ${oldP.name} to ${newP.dirPath}`;
+    msg = `move ${oldP.name} to ${newP.dirPath}`;
   } else if (oldP.dirPath === newP.dirPath) {
-    msg = `Rename ${oldP.name} to ${newP.name}`;
+    msg = `rename ${oldP.name} to ${newP.name}`;
   } else {
     const target = newP.dirPath === ROOT ? `${newP.name} at ${ROOT}` : newPath;
-    msg = `Move and rename ${oldP.name} to ${target}`;
+    msg = `move and rename ${oldP.name} to ${target}`;
   }
 
   return msg;
