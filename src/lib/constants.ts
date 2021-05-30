@@ -1,11 +1,11 @@
 /**
- * Map Git status short symbols to long description
+ * Map Git status short symbols to a long description.
  */
-// Human-friendly description of path for use in commit messages.
+// Human-friendly description of path,  for use in commit messages.
 export const ROOT = "repo root";
 
 /**
- * Mapping of change description.
+ * Mapping of change descriptions.
  *
  * Based on the git docs for using `git status` or `git diff-index`. The keys are for `--short`
  * output. The values are the human-readable values from the standard long output.
@@ -44,16 +44,9 @@ export enum ACTION {
 }
 
 /**
- * Conventional commits mapping.
+ * Conventional commit types.
  *
- * Based on `<type>` from the conventional commits specification.
- *
- * e.g. 'feat: Add foo'
- *
- * See ConventionalCommits homepage:
- *    https://www.conventionalcommits.org
- * See the `commitlint` repo, which is linked from there:
- *    https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum
+ * See convention-commits.md doc for more info.
  */
 export enum CONVENTIONAL_TYPE {
   BUILD = "build",
