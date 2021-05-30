@@ -14,7 +14,7 @@ import { CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
 
 /**
- * Determine what the prefix should be for a file change, using conventional commit conventions.
+ * Determine what the prefix should be for a file change, using Conventional Commit standard.
  */
 function _prefixFromChanges(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
