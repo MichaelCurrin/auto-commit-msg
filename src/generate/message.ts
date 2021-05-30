@@ -10,21 +10,6 @@ import { equal } from "../lib/utils";
 import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile } from "./action";
 
 /**
- * Convert to titlecase.
- *
- * i.e. Make first letter of a string uppercase and return the new string.
- *
- * This is no titlecase method in JS. This fills that gap, but, only care about the first letter,
- * ignoring multiple words. This also doesn't care about downcasing.
- */
-export function _title(value: string) {
-  if (!value.length) {
-    throw new Error("Cannot have empty string for applying title");
-  }
-  return `${value[0].toUpperCase()}${value.substring(1)}`;
-}
-
-/**
  * Prepare a commit message based on a single changed file.
  *
  * A rename can be handled too - it just requires both the paths to be staged so that git collapses

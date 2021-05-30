@@ -6,32 +6,15 @@
  * prefix.
  */
 import * as assert from "assert";
-import { namedFiles, oneChange, _title } from "../../generate/message";
+import { namedFiles, oneChange } from "../../generate/message";
 
 describe("Generate commit message for a single changed file", function () {
-  describe("#title", function () {
-    it("converts to titlecase correctly", function () {
-      assert.strictEqual(_title("h"), "H");
-
-      assert.strictEqual(_title("hello"), "Hello");
-    });
-
-    it("doesn't downcase uppercase letters", function () {
-      assert.strictEqual(_title("Hello"), "Hello");
-
-      assert.strictEqual(_title("hELLo"), "HELLo");
-    });
-
-    it("disallows empty string input", function () {
-      assert.throws(() => _title(""));
-    });
-  });
-
-  // Note that git status --short expects XY format but this is for git diff-index
-  // which is only X. Also there is just spaces between - no '->' symbol.
-  // Note that impossible cases are not covered here, like renaming a file and the name
-  // and path are unchanged, or including two file names for an add line. But validation
-  // on at least file name is done.
+  // Notes:
+  //   - The command `git status --short` expects XY format but this is for `git diff-index` which
+  //     is only X. Also there is just spaces between - no '->' symbol.
+  //   - Impossible cases are not covered here, like renaming a file and the name and path are
+  //     unchanged, or including two file names for an add line. But validation on at least file
+  //     name is done.
   describe("#oneChange", function () {
     it("returns the appropriate commit message for a new file", function () {
       assert.strictEqual(oneChange("A    foo.txt"), "create foo.txt");

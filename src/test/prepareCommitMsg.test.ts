@@ -9,7 +9,7 @@ import {
   _combineOldAndNew,
   _formatMsg,
   _msgFromChanges,
-  _newMsg
+  _newMsg,
 } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
