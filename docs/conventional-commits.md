@@ -1,6 +1,6 @@
-# Conventional commits
+# Conventional Commits
 
-Info on the Conventional Commit standard and how it is applied in this project.
+Info on the Conventional Commits standard and how it is applied in this project.
 
 
 ## Resources
