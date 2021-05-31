@@ -1,6 +1,6 @@
 # Conventional Commits
 
-Info on the Conventional Commits standard and how it is applied in this project.
+Info on how the Conventional Commits standard is applied for generating output in this project.
 
 
 ## Resources
@@ -11,7 +11,7 @@ Info on the Conventional Commits standard and how it is applied in this project.
 
 ## Overview
 
-Here is the full syntax:
+Here is the full syntax for a commit message:
 
 ```
 <type>[optional scope]: <description>
@@ -21,7 +21,7 @@ Here is the full syntax:
 [optional footer]
 ```
 
-Description is meant to start with a lowercase letter.
+The standad says that description is meant to start with a _lowercase letter_, so this is applied throughout this project.
 
 This project focuses only on the first part:
 
