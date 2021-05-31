@@ -1,6 +1,6 @@
 # Auto Commit Message documentation
 
-This project aims to prepare a smart commit message for you to make your development smoother.
+This project aims to prepare a smart commit message for you, to make your development flow smoother.
 
 
 ## Overview
