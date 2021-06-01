@@ -10,7 +10,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Split a message into components", function () {
@@ -237,7 +237,7 @@ describe("Prepare commit message", function () {
       });
 
       it("handles multiple changes", function () {
-        // Leave the detailed cases to tests for _msgFromChanges.
+        // Leave the detailed cases to tests for `_msgFromChanges`.
 
         assert.strictEqual(
           _newMsg(["A    baz.txt", "A    bar.js"]),
@@ -262,22 +262,27 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_combineOldAndNew", function () {
-    it("uses the new message only, if there is no old message", function () {
+    it("uses only the new message, if the old message is empty", function () {
       assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar"),
-        "feat: Foo bar"
+        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar"),
+        "foo bar"
       );
 
       assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar", ""),
-        "feat: Foo bar"
+        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar"),
+        "feat: foo bar"
+      );
+
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", ""),
+        "feat: foo bar"
       );
     });
 
-    describe("combines an existing message with a new message", function () {
+    describe("combines an existing message with a new message that is set", function () {
       // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name works too.
 
-      describe("No convention is determined from the file changes", function () {
+      describe("when convention cannot be determined from the file changes", function () {
         it("combines two plain messages", function () {
           assert.strictEqual(
             _combineOldAndNew(
@@ -298,7 +303,7 @@ describe("Prepare commit message", function () {
           );
         });
 
-        it("combines one plain and one existing prefix message", function () {
+        it("combines a plain message and an existing prefix", function () {
           assert.strictEqual(
             _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
             "feat: foo bar"
@@ -314,7 +319,7 @@ describe("Prepare commit message", function () {
           );
         });
 
-        it("combines one plain and one existing prefix message with a space", function () {
+        it("combines a plain message and an existing prefix with a space after it", function () {
           assert.strictEqual(
             _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat: "),
             "feat: foo bar"
@@ -325,6 +330,54 @@ describe("Prepare commit message", function () {
               CONVENTIONAL_TYPE.UNKNOWN,
               "foo bar",
               "[ABCD-1234] feat: "
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+      });
+
+      describe("when a convention is determined from the file changes", function () {
+        it("inserts a new prefix between the old and new messages", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "fizz buzz"),
+            "feat: fizz buzz foo bar"
+          );
+
+          // Unfortunately if your old message doesn't look like a prefix by having a colon, it just
+          // gets treated as an old description and not something to add before the type.
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "[ABCD-1234]"),
+            "feat: [ABCD-1234] foo bar"
+          );
+        });
+
+        it("inserts replaces an old prefix with a new one", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs:"),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.FEAT,
+              "foo bar",
+              "[ABCD-1234] docs:"
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+
+        it("inserts replaces an old prefix with a space with a new one", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs: "),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.FEAT,
+              "foo bar",
+              "[ABCD-1234] docs: "
             ),
             "[ABCD-1234] feat: foo bar"
           );
