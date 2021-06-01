@@ -6,18 +6,99 @@
 import * as assert from "assert";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
+  _cleanJoin,
   _combineOldAndNew,
   _formatMsg,
   _msgFromChanges,
   _newMsg,
+  _splitMsg,
 } from "../prepareCommitMsg";
+
+describe("Join strings cleanly", function () {
+  describe("#_cleanJoin", function () {
+    it("joins two set strings", function () {
+      assert.strictEqual(_cleanJoin("abc", "def"), "abc def");
+      assert.strictEqual(_cleanJoin(" abc", "def "), "abc def");
+    });
+
+    it("uses the first string if the second is not set", function () {
+      assert.strictEqual(_cleanJoin("abc", ""), "abc");
+      assert.strictEqual(_cleanJoin("abc ", ""), "abc");
+    });
+
+    it("uses the second string if the first is not set", function () {
+      assert.strictEqual(_cleanJoin("", "abc def"), "abc def");
+      assert.strictEqual(_cleanJoin("", "abc def "), "abc def");
+    });
+  });
+});
+
+describe("Split a message into components", function () {
+  describe("#_splitMsg", function () {
+    it("handles a description alone", function () {
+      assert.deepStrictEqual(_splitMsg("abc def"), {
+        customPrefix: "",
+        typePrefix: "",
+        fileChangeDesc: "abc def",
+      });
+      assert.deepStrictEqual(_splitMsg("[ABCD-1234]"), {
+        customPrefix: "",
+        typePrefix: "",
+        fileChangeDesc: "[ABCD-1234]",
+      });
+    });
+
+    it("handles a prefix alone", function () {
+      assert.deepStrictEqual(_splitMsg("docs:"), {
+        customPrefix: "",
+        typePrefix: "docs",
+        fileChangeDesc: "",
+      });
+      assert.deepStrictEqual(_splitMsg("feat:"), {
+        customPrefix: "",
+        typePrefix: "feat",
+        fileChangeDesc: "",
+      });
+
+      assert.deepStrictEqual(_splitMsg("docs: "), {
+        customPrefix: "",
+        typePrefix: "docs",
+        fileChangeDesc: "",
+      });
+    });
+
+    it("separates a prefix and description", function () {
+      assert.deepStrictEqual(_splitMsg("docs: abc"), {
+        customPrefix: "",
+        typePrefix: "docs",
+        fileChangeDesc: "abc",
+      });
+      assert.deepStrictEqual(_splitMsg("docs: abc def"), {
+        customPrefix: "",
+        typePrefix: "docs",
+        fileChangeDesc: "abc def",
+      });
+      assert.deepStrictEqual(_splitMsg("feat: abc def"), {
+        customPrefix: "",
+        typePrefix: "feat",
+        fileChangeDesc: "abc def",
+      });
+
+      assert.deepStrictEqual(_splitMsg("[ABCD-1234] docs: abc def"), {
+        customPrefix: "[ABCD-1234]",
+        typePrefix: "docs",
+        fileChangeDesc: "abc def",
+      });
+    });
+  });
+});
 
 describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {
     it("handles a single file correctly", function () {
       const expected = {
         prefix: CONVENTIONAL_TYPE.FEAT,
-        fileChangeMsg: "create baz.txt",
+        fileChangeDesc: "create baz.txt",
       };
 
       assert.deepStrictEqual(_msgFromChanges(["A    baz.txt"]), expected);
@@ -27,7 +108,7 @@ describe("Prepare commit message", function () {
       it("handles 2 created files created correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "create baz.txt and bar.js",
+          fileChangeDesc: "create baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -39,7 +120,7 @@ describe("Prepare commit message", function () {
       it("handles 2 modified files correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeMsg: "update baz.txt and bar.js",
+          fileChangeDesc: "update baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -51,7 +132,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files with the same action correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "create baz.txt, bar.js and fuzz.md",
+          fileChangeDesc: "create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
@@ -63,7 +144,7 @@ describe("Prepare commit message", function () {
       it("handles 4 files with the same action correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
+          fileChangeDesc: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
         };
 
         assert.deepStrictEqual(
@@ -80,7 +161,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files in subdirectories but does not show the directory paths", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeMsg: "create baz.txt, bar.js and fuzz.md",
+          fileChangeDesc: "create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
@@ -97,7 +178,7 @@ describe("Prepare commit message", function () {
       it('handles 2 "build(deps)" files correctly', function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
-          fileChangeMsg: "update package.json and package-lock.json",
+          fileChangeDesc: "update package.json and package-lock.json",
         };
 
         assert.deepStrictEqual(
@@ -109,7 +190,7 @@ describe("Prepare commit message", function () {
       it("handles 3 README.md files in different locations as full paths", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.DOCS,
-          fileChangeMsg: "update docs/README.md, bar/README.md and README.md",
+          fileChangeDesc: "update docs/README.md, bar/README.md and README.md",
         };
 
         assert.deepStrictEqual(
@@ -127,7 +208,7 @@ describe("Prepare commit message", function () {
       it("handles 2 files - one created and one modified", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeMsg: "Various changes to baz.txt and bar.js",
+          fileChangeDesc: "Various changes to baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -139,7 +220,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files - with different actions", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeMsg: "Various changes to baz.txt, bar.js and README.md",
+          fileChangeDesc: "Various changes to baz.txt, bar.js and README.md",
         };
 
         assert.deepStrictEqual(
@@ -176,7 +257,7 @@ describe("Prepare commit message", function () {
       });
 
       it("handles multiple changes", function () {
-        // Leave the detailed cases to tests for _msgFromChanges.
+        // Leave the detailed cases to tests for `_msgFromChanges`.
 
         assert.strictEqual(
           _newMsg(["A    baz.txt", "A    bar.js"]),
@@ -201,42 +282,127 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_combineOldAndNew", function () {
-    it("combines uses the new message if there is no old message", function () {
+    it("uses only the new message, if the old message is empty", function () {
       assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar"),
-        "feat: Foo bar"
+        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar"),
+        "foo bar"
       );
 
       assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar", ""),
-        "feat: Foo bar"
+        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar"),
+        "feat: foo bar"
+      );
+
+      assert.strictEqual(
+        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", ""),
+        "feat: foo bar"
       );
     });
 
-    it("combines an existing message and a new message", function () {
-      // Typical case is '[JIRA_TICKET] docs:' has 'Update foo' added.
-      // Though this ends up duplicating docs and feat possible.
-      // This isn't so smart yet but helps sometimes.
+    describe("combines an existing message with a new message that is set", function () {
+      // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name works too.
 
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "Fizz buzz"),
-        "Fizz buzz Foo bar"
-      );
+      describe("when convention cannot be determined from the file changes", function () {
+        it("combines two plain messages", function () {
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "fizz buzz"
+            ),
+            "fizz buzz foo bar"
+          );
 
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat:"),
-        "feat: Foo bar"
-      );
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat: "),
-        "feat: Foo bar"
-      );
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "[ABCD-1234]"
+            ),
+            "[ABCD-1234] foo bar"
+          );
+        });
 
-      // This isn't intended but currently how it works.
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar", "Fizz buzz"),
-        "Fizz buzz feat: Foo bar"
-      );
+        it("combines a plain message and an existing prefix", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "[ABCD-1234] feat:"
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+
+        it("combines a plain message and an existing prefix with a space after it", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat: "),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "[ABCD-1234] feat: "
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+      });
+
+      describe("when a convention is determined from the file changes", function () {
+        it("inserts a new prefix between the old and new messages", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "fizz buzz"),
+            "feat: fizz buzz foo bar"
+          );
+
+          // Unfortunately if your old message doesn't look like a prefix by having a colon, it just
+          // gets treated as an old description and not something to add before the type.
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "[ABCD-1234]"),
+            "feat: [ABCD-1234] foo bar"
+          );
+        });
+
+        it("inserts replaces an old prefix with a new one", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs:"),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.FEAT,
+              "foo bar",
+              "[ABCD-1234] docs:"
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+
+        it("inserts replaces an old prefix with a space with a new one", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs: "),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.FEAT,
+              "foo bar",
+              "[ABCD-1234] docs: "
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+      });
     });
   });
 });

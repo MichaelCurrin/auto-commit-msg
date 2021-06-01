@@ -21,12 +21,12 @@ Here is the full syntax for a commit message:
 [optional footer]
 ```
 
-The standad says that description is meant to start with a _lowercase letter_, so this is applied throughout this project.
+The standard says that description is meant to start with a _lowercase letter_, so this is applied throughout this project.
 
 This project focuses only on the first part:
 
 ```
-<TYPE>(SCOPE): MESSAGE
+<TYPE>(SCOPE): FILE_CHANGE_DESCRIPTION
 ```
 
 
