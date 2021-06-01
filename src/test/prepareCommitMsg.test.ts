@@ -6,12 +6,32 @@
 import * as assert from "assert";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
+  _cleanJoin,
   _combineOldAndNew,
   _formatMsg,
   _msgFromChanges,
   _newMsg,
   _splitMsg,
 } from "../prepareCommitMsg";
+
+describe("Join strings cleanly", function () {
+  describe("#_cleanJoin", function () {
+    it("joins two set strings", function () {
+      assert.strictEqual(_cleanJoin("abc", "def"), "abc def");
+      assert.strictEqual(_cleanJoin(" abc", "def "), "abc def");
+    });
+
+    it("uses the first string if the second is not set", function () {
+      assert.strictEqual(_cleanJoin("abc", ""), "abc");
+      assert.strictEqual(_cleanJoin("abc ", ""), "abc");
+    });
+
+    it("uses the second string if the first is not set", function () {
+      assert.strictEqual(_cleanJoin("", "abc def"), "abc def");
+      assert.strictEqual(_cleanJoin("", "abc def "), "abc def");
+    });
+  });
+});
 
 describe("Split a message into components", function () {
   describe("#_splitMsg", function () {
