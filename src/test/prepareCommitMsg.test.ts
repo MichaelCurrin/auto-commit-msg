@@ -220,22 +220,22 @@ describe("Prepare commit message", function () {
 
       it("combines two plain messages", function () {
         assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "Fizz buzz"),
-          "Fizz buzz Foo bar"
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "fizz buzz"),
+          "fizz buzz foo bar"
         );
       })
 
       it("combines one plain and one existing prefix message", function () {
         assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat:"),
-          "feat: Foo bar"
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
+          "feat: foo bar"
         );
       })
 
       it("combines one plain and one existing prefix message with a space", function () {
         assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat: "),
-          "feat: Foo bar"
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat: "),
+          "feat: foo bar"
         );
       })
     });
