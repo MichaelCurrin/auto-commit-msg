@@ -10,7 +10,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg
+  _splitMsg,
 } from "../prepareCommitMsg";
 
 describe("Split a message into components", function () {
@@ -19,12 +19,12 @@ describe("Split a message into components", function () {
       assert.deepStrictEqual(_splitMsg("abc def"), {
         customPrefix: "",
         typePrefix: "",
-        description: "abc def",
+        fileChangeMsg: "abc def",
       });
       assert.deepStrictEqual(_splitMsg("[ABCD-1234]"), {
         customPrefix: "",
         typePrefix: "",
-        description: "[ABCD-1234]",
+        fileChangeMsg: "[ABCD-1234]",
       });
     });
 
@@ -32,18 +32,18 @@ describe("Split a message into components", function () {
       assert.deepStrictEqual(_splitMsg("docs:"), {
         customPrefix: "",
         typePrefix: "docs",
-        description: "",
+        fileChangeMsg: "",
       });
       assert.deepStrictEqual(_splitMsg("feat:"), {
         customPrefix: "",
         typePrefix: "feat",
-        description: "",
+        fileChangeMsg: "",
       });
 
       assert.deepStrictEqual(_splitMsg("docs: "), {
         customPrefix: "",
         typePrefix: "docs",
-        description: "",
+        fileChangeMsg: "",
       });
     });
 
@@ -51,23 +51,23 @@ describe("Split a message into components", function () {
       assert.deepStrictEqual(_splitMsg("docs: abc"), {
         customPrefix: "",
         typePrefix: "docs",
-        description: "abc",
+        fileChangeMsg: "abc",
       });
       assert.deepStrictEqual(_splitMsg("docs: abc def"), {
         customPrefix: "",
         typePrefix: "docs",
-        description: "abc def",
+        fileChangeMsg: "abc def",
       });
       assert.deepStrictEqual(_splitMsg("feat: abc def"), {
         customPrefix: "",
         typePrefix: "feat",
-        description: "abc def",
+        fileChangeMsg: "abc def",
       });
 
       assert.deepStrictEqual(_splitMsg("[ABCD-1234] docs: abc def"), {
         customPrefix: "[ABCD-1234]",
         typePrefix: "docs",
-        description: "abc def",
+        fileChangeMsg: "abc def",
       });
     });
   });

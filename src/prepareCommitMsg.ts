@@ -29,13 +29,15 @@ export function _cleanJoin(first: string, second: string) {
  * type and we don' have to check if we are part of a word e.g. 'circus'.
  */
 export function _splitMsg(msg: string) {
-  const [prefix, description] = msg.includes(":") ? msg.split(":") : ["", msg];
+  const [prefix, fileChangeMsg] = msg.includes(":")
+    ? msg.split(":")
+    : ["", msg];
 
   const [customPrefix, typePrefix] = prefix.includes(" ")
     ? prefix.split(" ", 2)
     : ["", prefix];
 
-  return { customPrefix, typePrefix, description: description.trim() };
+  return { customPrefix, typePrefix, fileChangeMsg: fileChangeMsg.trim() };
 }
 
 /**
@@ -151,22 +153,25 @@ export function _combineOldAndNew(
   }
 
   const {
-    customPrefix,
-    typePrefix: oldPrefix,
-    description: oldDescription,
+    customPrefix: oldCustomPrefix,
+    typePrefix: oldTypePrefix,
+    fileChangeMsg: oldFileChangeMsg,
   } = _splitMsg(oldMsg);
 
-  const newDesc = _cleanJoin(oldDescription, fileChangeMsg);
+  const fileChangeMsgResult = _cleanJoin(oldFileChangeMsg, fileChangeMsg);
 
   if (prefix !== CONVENTIONAL_TYPE.UNKNOWN) {
-    return `${_cleanJoin(customPrefix, prefix)}: ${newDesc}`;
+    return `${_cleanJoin(oldCustomPrefix, prefix)}: ${fileChangeMsgResult}`;
   }
 
-  if (oldPrefix) {
-    return `${_cleanJoin(customPrefix, oldPrefix)}: ${newDesc}`;
+  if (oldTypePrefix) {
+    return `${_cleanJoin(
+      oldCustomPrefix,
+      oldTypePrefix
+    )}: ${fileChangeMsgResult}`;
   }
 
-  return newDesc;
+  return fileChangeMsgResult;
 }
 
 /**
