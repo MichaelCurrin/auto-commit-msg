@@ -9,7 +9,7 @@ import {
   _combineOldAndNew,
   _formatMsg,
   _msgFromChanges,
-  _newMsg
+  _newMsg,
 } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
@@ -213,31 +213,62 @@ describe("Prepare commit message", function () {
       );
     });
 
-    describe("combines an existing message with a a new message", function () {
-      // Typical case is '[JIRA_TICKET] docs:' has 'Update foo' added.
-      // Though this ends up duplicating docs and feat possible.
-      // This isn't so smart yet but helps sometimes.
+    describe("combines an existing message with a new message", function () {
+      // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name works too.
 
-      it("combines two plain messages", function () {
-        assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "fizz buzz"),
-          "fizz buzz foo bar"
-        );
-      })
+      describe("No convention is determined from the file changes", function () {
+        it("combines two plain messages", function () {
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "fizz buzz"
+            ),
+            "fizz buzz foo bar"
+          );
 
-      it("combines one plain and one existing prefix message", function () {
-        assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
-          "feat: foo bar"
-        );
-      })
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "[ABCD-1234]"
+            ),
+            "[ABCD-1234] foo bar"
+          );
+        });
 
-      it("combines one plain and one existing prefix message with a space", function () {
-        assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat: "),
-          "feat: foo bar"
-        );
-      })
+        it("combines one plain and one existing prefix message", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "[ABCD-1234] feat:"
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+
+        it("combines one plain and one existing prefix message with a space", function () {
+          assert.strictEqual(
+            _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat: "),
+            "feat: foo bar"
+          );
+
+          assert.strictEqual(
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo bar",
+              "[ABCD-1234] feat: "
+            ),
+            "[ABCD-1234] feat: foo bar"
+          );
+        });
+      });
     });
   });
 });
