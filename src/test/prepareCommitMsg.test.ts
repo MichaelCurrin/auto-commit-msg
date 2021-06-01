@@ -10,7 +10,68 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
+  _splitMsg,
 } from "../prepareCommitMsg";
+
+describe("Split a message into components", function () {
+  describe("#_splitMsg", function () {
+    it("handles a description alone", function () {
+      assert.deepStrictEqual(_splitMsg("abc def"), {
+        customPrefix: "",
+        typePrefix: "",
+        description: "abc def",
+      });
+      assert.deepStrictEqual(_splitMsg("[ABCD-1234]"), {
+        customPrefix: "",
+        typePrefix: "",
+        description: "[ABCD-1234]",
+      });
+    });
+
+    it("handles a prefix alone", function () {
+      assert.deepStrictEqual(_splitMsg("docs:"), {
+        customPrefix: "",
+        typePrefix: "docs",
+        description: "",
+      });
+      assert.deepStrictEqual(_splitMsg("feat:"), {
+        customPrefix: "",
+        typePrefix: "feat",
+        description: "",
+      });
+
+      assert.deepStrictEqual(_splitMsg("docs: "), {
+        customPrefix: "",
+        typePrefix: "docs",
+        description: "",
+      });
+    });
+
+    it("separates a prefix and description", function () {
+      assert.deepStrictEqual(_splitMsg("docs: abc"), {
+        customPrefix: "",
+        typePrefix: "docs",
+        description: "abc",
+      });
+      assert.deepStrictEqual(_splitMsg("docs: abc def"), {
+        customPrefix: "",
+        typePrefix: "docs",
+        description: "abc def",
+      });
+      assert.deepStrictEqual(_splitMsg("feat: abc def"), {
+        customPrefix: "",
+        typePrefix: "feat",
+        description: "abc def",
+      });
+
+      assert.deepStrictEqual(_splitMsg("[ABCD-1234] docs: abc def"), {
+        customPrefix: "[ABCD-1234]",
+        typePrefix: "docs",
+        description: "abc def",
+      });
+    });
+  });
+});
 
 describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {

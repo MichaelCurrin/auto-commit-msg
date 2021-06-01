@@ -14,6 +14,31 @@ import { CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
 
 /**
+ * Join two strings together by a space if just a single string if only one is set.
+ * Trim leading and trailing whitespace of the result.
+ */
+export function _cleanJoin(first: string, second: string) {
+  return [first, second].join(" ").trim();
+}
+
+/**
+ * Separate a message into a Conventional Commit prefix, if any, and the description.
+ *
+ * Require a colon to exist to detect prefix. i.e. 'ci' will be considered a description, but 'ci:'
+ * will be considered a prefix. This keeps the check simpler as we don't have to match against every
+ * type and we don' have to check if we are part of a word e.g. 'circus'.
+ */
+export function _splitMsg(msg: string) {
+  const [prefix, description] = msg.includes(":") ? msg.split(":") : ["", msg];
+
+  const [customPrefix, typePrefix] = prefix.includes(" ")
+    ? prefix.split(" ", 2)
+    : ["", prefix];
+
+  return { customPrefix, typePrefix, description: description.trim() };
+}
+
+/**
  * Determine what the prefix should be for a file change, using Conventional Commit standard.
  */
 function _prefixFromChanges(line: string) {
