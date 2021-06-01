@@ -213,30 +213,31 @@ describe("Prepare commit message", function () {
       );
     });
 
-    it("combines an existing message with a a new message", function () {
+    describe("combines an existing message with a a new message", function () {
       // Typical case is '[JIRA_TICKET] docs:' has 'Update foo' added.
       // Though this ends up duplicating docs and feat possible.
       // This isn't so smart yet but helps sometimes.
 
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "Fizz buzz"),
-        "Fizz buzz Foo bar"
-      );
+      it("combines two plain messages", function () {
+        assert.strictEqual(
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "Fizz buzz"),
+          "Fizz buzz Foo bar"
+        );
+      })
 
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat:"),
-        "feat: Foo bar"
-      );
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat: "),
-        "feat: Foo bar"
-      );
+      it("combines one plain and one existing prefix message", function () {
+        assert.strictEqual(
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat:"),
+          "feat: Foo bar"
+        );
+      })
 
-      // This isn't intended but currently how it works.
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar", "Fizz buzz"),
-        "Fizz buzz feat: Foo bar"
-      );
+      it("combines one plain and one existing prefix message with a space", function () {
+        assert.strictEqual(
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "Foo bar", "feat: "),
+          "feat: Foo bar"
+        );
+      })
     });
   });
 });
