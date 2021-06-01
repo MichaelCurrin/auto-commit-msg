@@ -9,7 +9,7 @@ import {
   _combineOldAndNew,
   _formatMsg,
   _msgFromChanges,
-  _newMsg,
+  _newMsg
 } from "../prepareCommitMsg";
 
 describe("Prepare commit message", function () {
@@ -201,7 +201,7 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_combineOldAndNew", function () {
-    it("combines uses the new message if there is no old message", function () {
+    it("uses the new message only, if there is no old message", function () {
       assert.strictEqual(
         _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "Foo bar"),
         "feat: Foo bar"
@@ -213,7 +213,7 @@ describe("Prepare commit message", function () {
       );
     });
 
-    it("combines an existing message and a new message", function () {
+    it("combines an existing message with a a new message", function () {
       // Typical case is '[JIRA_TICKET] docs:' has 'Update foo' added.
       // Though this ends up duplicating docs and feat possible.
       // This isn't so smart yet but helps sometimes.
