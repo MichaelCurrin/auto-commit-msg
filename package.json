@@ -1,6 +1,6 @@
 {
   "name": "auto-commit-msg",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "scripts": {
     "fmt:check": "prettier -c src",
     "fmt:fix": "prettier -w src",
