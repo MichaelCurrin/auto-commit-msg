@@ -188,7 +188,7 @@ export function _combineOldAndNew(
  * High-level function to process file changes and an old message to generate replacement commit
  * message. Old message must be given, but it can be an empty string.
  */
-function generateMsgWithOld(fileChanges: string[], oldMsg: string) {
+function _generateMsgWithOld(fileChanges: string[], oldMsg: string) {
   if (oldMsg === "") {
     throw new Error(
       "Either `oldMsg` must not be empty, or use `generateNewMsg` instead."
@@ -212,6 +212,6 @@ export function generateMsg(fileChanges: string[], oldMsg?: string): string {
   if (!oldMsg) {
     return _newMsg(fileChanges);
   } else {
-    return generateMsgWithOld(fileChanges, oldMsg);
+    return _generateMsgWithOld(fileChanges, oldMsg);
   }
 }
