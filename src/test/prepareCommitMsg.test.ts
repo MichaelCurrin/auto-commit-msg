@@ -11,7 +11,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg
+  _splitMsg,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -296,7 +296,8 @@ describe("Prepare commit message", function () {
       });
 
       it("keeps the old description", function () {
-        // TODO: Make the order of the description pieces should be switched to be more natural. e.g. 'update .editorconfig - xyz'
+        // TODO: Make the order of the description pieces should be switched to be more natural.
+        //    e.g. 'update .editorconfig - xyz'
         // TODO: If the message is the same, don't add to it.
         // i.e. Don't want to get 'chore: update.editorconfig update .editorconfig'
         const oldMsg = "xyz";
