@@ -76,7 +76,7 @@ export function _msgOne(line: string) {
  * This covers the case where package.json may have non-package changes but you know it does
  * in this case because it changed with the lock file.
  */
-function collapse(conventions: CONVENTIONAL_TYPE[]) {
+function _collapse(conventions: CONVENTIONAL_TYPE[]) {
   if (equal(conventions)) {
     return conventions[0];
   }
@@ -98,7 +98,7 @@ function collapse(conventions: CONVENTIONAL_TYPE[]) {
  */
 export function _msgMulti(lines: string[]) {
   const conventions = lines.map(_prefixFromChanges);
-  const convention = collapse(conventions);
+  const convention = _collapse(conventions);
 
   return { prefix: convention, fileChangeDesc: namedFiles(lines) };
 }
