@@ -1,34 +1,32 @@
 /**
- * Functionality to get a common path of paths and necessary helper functions.
+ * Functionality to get a common path of paths and some necessary helper functions.
  *
  * The code comes from:
  *    http://rosettacode.org/wiki/Find_common_directory_path#JavaScript
- * Since JS does not have a builtin function like Python does.
+ * Since JS does not have a built-in function like Python does.
  *
- * This module is kept separate from paths.ts as all the code here is tightly related.
+ * This module is kept separate from `paths.ts` as all the code here is tightly related.
  */
 import { ROOT } from "../lib/constants";
 
 /**
- * Given an array of strings, return an array of arrays, containing the
- * strings split at the given separator
+ * Split strings.
  *
- * @param {!Array<!string>} a
- * @param {string} sep
- * @returns {!Array<!Array<string>>}
+ * Given an array of strings, return a nested of array containing the strings split at the given
+ * separator.
  */
-const splitStrings = (a: any[], sep = "/") =>
-  a.map((i: string) => i.split(sep));
+function _splitStrings(items: string[], sep = "/") {
+  return items.map((item: string) => item.split(sep));
+}
 
 /**
- * Given an index number, return a function that takes an array and returns the
- * element at the given index
+ * Get an element at a position.
  *
- * @param {number} i
- * @return {function(!Array<*>): *}
+ * Given an index number, return a function that takes an array and returns the
+ * element at the given index.
  */
-function elAt(i: number) {
-  return (a: { [x: string]: any }) => a[i];
+function _elAt(index: number) {
+  return (arr: { [x: string]: any }) => arr[index];
 }
 
 /**
@@ -36,35 +34,29 @@ function elAt(i: number) {
  *
  * Example:
  *   [['a', 'b', 'c'], ['A', 'B', 'C'], [1, 2, 3]] ->
- *   [['a', 'A', 1], ['b', 'B', 2], ['c', 'C', 3]]
- *
- * @param {!Array<!Array<*>>} a
- * @return {!Array<!Array<*>>}
+ *   [['a', 'A', 1],   ['b', 'B', 2],   ['c', 'C', 3]]
  */
-function rotate(a: any[]) {
-  return a[0].map((e: any, i: any) => a.map(elAt(i)));
+function _rotate(arr: any[]) {
+  return arr[0].map((_e: any, index: number) => arr.map(_elAt(index)));
 }
 
 /**
- * Checks of all the elements in the array are the same.
- *
- * @param {!Array<*>} arr
- * @return {boolean}
+ * Check whether all the elements in an array are the same or not.
  */
-function allElementsEqual(arr: any[]) {
-  return arr.every((e: any) => e === arr[0]);
+function _allElementsEqual(arr: any[]) {
+  return arr.every((el: any) => el === arr[0]);
 }
 
 /**
- * Common directory for an array of paths.
+ * Return common directory for an array of paths.
  *
  * This can be useful for one file going from source to destination.
  * Or finding the top-most directory that is common to a few files that all changed.
  */
 export function commonPath(input: string[], sep = "/") {
-  const common = rotate(splitStrings(input, sep))
-    .filter(allElementsEqual)
-    .map(elAt(0))
+  const common = _rotate(_splitStrings(input, sep))
+    .filter(_allElementsEqual)
+    .map(_elAt(0))
     .join(sep);
 
   return common === "" ? ROOT : common;
