@@ -29,7 +29,7 @@ t test: fix
 	npm run cover
 	npm run cover:report
 
-test-quick:
+q test-quick:
 	npx tsc -p .
 	npm run test:unit
 
