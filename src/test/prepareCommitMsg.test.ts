@@ -282,6 +282,45 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_combineOldAndNew", function () {
+    describe("handles common scenarios correctly", function () {
+      it("keeps the old message's prefix type if none can be inferred", function () {
+        const oldMsg = "docs:";
+        assert.strictEqual(
+          _combineOldAndNew(
+            CONVENTIONAL_TYPE.UNKNOWN,
+            "update prepareCommitMsg.ts",
+            oldMsg
+          ),
+          "docs: update prepareCommitMsg.ts"
+        );
+      });
+
+      it("keeps the old description", function () {
+        // TODO: Maybe the order of the description pieces should be switched to be more natural.
+        const oldMsg = "xyz";
+        assert.strictEqual(
+          _combineOldAndNew(
+            CONVENTIONAL_TYPE.CHORE,
+            "update .editorconfig",
+            oldMsg
+          ),
+          "chore: xyz update .editorconfig"
+        );
+      });
+
+      it("replaces the old type with an inferred one but keeps the custom prefix", function () {
+        const oldMsg = "[abc] docs:";
+        assert.strictEqual(
+          _combineOldAndNew(
+            CONVENTIONAL_TYPE.CHORE,
+            "update .editorconfig",
+            oldMsg
+          ),
+          "[abc] chore: update .editorconfig"
+        );
+      });
+    });
+
     it("uses only the new message, if the old message is empty", function () {
       assert.strictEqual(
         _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar"),
