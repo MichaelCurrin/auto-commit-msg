@@ -11,7 +11,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -296,7 +296,9 @@ describe("Prepare commit message", function () {
       });
 
       it("keeps the old description", function () {
-        // TODO: Maybe the order of the description pieces should be switched to be more natural.
+        // TODO: Make the order of the description pieces should be switched to be more natural. e.g. 'update .editorconfig - xyz'
+        // TODO: If the message is the same, don't add to it.
+        // i.e. Don't want to get 'chore: update.editorconfig update .editorconfig'
         const oldMsg = "xyz";
         assert.strictEqual(
           _combineOldAndNew(
@@ -309,6 +311,8 @@ describe("Prepare commit message", function () {
       });
 
       it("replaces the old type with an inferred one but keeps the custom prefix", function () {
+        // TODO: Make this should not replace the type - like if you make a 'docs' change in an
+        // inferred 'test' file but want to keep as 'docs'.
         const oldMsg = "[abc] docs:";
         assert.strictEqual(
           _combineOldAndNew(
