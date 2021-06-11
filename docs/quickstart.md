@@ -8,7 +8,7 @@ This guides covers how to get the extension installed globally in your VS Code u
 
 ## How to use
 
-Install the extension from a recent release on GitHub.
+Install the extension from a recent release on GitHub - see [Installation](/docs/manual/installation.md).
 
 Then use it like this:
 
@@ -20,6 +20,6 @@ Then use it like this:
 
 ## Requirements
 
-You only need to have VS Code installed and access to run terminal commands.
+You only need to have VS Code installed and the ability to run a terminal commands to install the extension.
 
-You do **not** need to download the repo or have NPM / Node installed.
+You do **not** need to download the repo or have Node or NPM installed.
