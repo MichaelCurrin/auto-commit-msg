@@ -15,8 +15,9 @@ Here we install the extension from pre-built file. This is extension is **not av
 1. In the browser.
     1. Go to the GitHub Releases page.
         - [![view - releases](https://img.shields.io/badge/view-releases-2ea44f?style=for-the-badge&logo=github)](https://github.com/MichaelCurrin/auto-commit-msg/releases)
-    1. Find the latest release and expand the _Assets_ section.
-    1. Download a copy of the `.vsix` archive file by clicking on the filename.
+    1. Find the latest release.
+    1. Expand the _Assets_ section.
+    3. Download a copy of the `.vsix` archive file by clicking on the filename.
 1. In VS Code
     1. Open the Command Pallette (_View_ then _Command Pallette_).
     1. Type `extension`, wait for the auto-complete, then select _Extension: Install from VSIX..._.
@@ -27,7 +28,9 @@ Here we install the extension from pre-built file. This is extension is **not av
 
 Instructions for macOS / Linux.
 
-1. Download the `.vsix` extension file using `curl`.
+1. Identify the latest release number on the GitHub Releases page.
+    - [![view - releases](https://img.shields.io/badge/view-releases-2ea44f?style=for-the-badge&logo=github)](https://github.com/MichaelCurrin/auto-commit-msg/releases)
+1. Download the `.vsix` extension file using `curl`, using the appropriat target version.
     ```sh
     $ cd ~/Downloads
     $ TARGET='0.19.0'
@@ -39,7 +42,7 @@ Instructions for macOS / Linux.
     ```
     e.g.
     ```sh
-    $ code --install-extension ~/Downloads/auto-commit-msg-0.18.0.vsix
+    $ code --install-extension ~/Downloads/auto-commit-msg-0.19.0.vsix
     ```
     ```
     Installing extensions...
