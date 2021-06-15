@@ -47,4 +47,6 @@ And in the case of renaming/moving files, there's a limitation of git that can't
 
 The `git status` sucommand _can_ handle new _untracked_ files. But the effort to rewrite a chunk of the extension to use a different Git subcommand is not worth it, and won't solve the rename/move case anyway.
 
-So we just keep things simple to avoid bloating the codebase. You can still do what you need to - just remember to stage files if you need the extension to recognize them.
+So we just keep things simple to avoid bloating the codebase (adding the ability to use two similar subcommands and handle them both well is not sensible when one subcommand works great for most things). 
+
+You can still do what you need to - just remember to stage files if you need the extension to recognize them.
