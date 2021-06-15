@@ -33,7 +33,13 @@ Why use `diff-index`? It makes things more **predictable** when parsing output. 
 
 ## Limitation of diff-index
 
-Summary - new files and moved/renamed files _always_ need to be staged for `git diff-index` to see them.
+### Summary
+
+New files and moved/renamed files _always_ need to be staged for `git diff-index` to see them. Just remember to do this yourself, because the extension won't see the `U` untracked files otherwise.
+
+I consider this is an acceptable limitation of functionality to keep the extension code simple.
+
+### Details
 
 The `diff-index` subcommand cannot see new or moved/renamed files, unless you stage them. Which is okay, because you just need to stage a file and then the extension can see it. 
 
