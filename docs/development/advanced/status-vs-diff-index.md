@@ -1,6 +1,10 @@
 # status vs diff-index
 
-The [parseOutput.ts](/src/git/parseOutput.ts) handles output of two similar git commands.
+Git subcommands used by this extension to check which filepaths changed and how they changed.
+
+## Two subcommands
+
+The [parseOutput.ts](/src/git/parseOutput.ts) handles output of two similar Git subcommands.
 
 The well-known `status` command.
 
@@ -8,16 +12,33 @@ The well-known `status` command.
 $ git status [FLAGS] --short
 ```
 
+> git-status - Show the working tree status
+
 And the lesser-known `diff-index` command.
 
 ```sh
 $ git diff-index [FLAGS] HEAD
 ```
 
-This project was initially built around `status`, using another extension to design around. But now the `diff-index` approach is used instead.
+> Compare a tree to the working tree or index
 
-Using `diff-index` makes things more predictable as the `from` file is always first from left to right, while status has it on the right, which is hard because it is not always there. There might be other reasons I can't remember.
+This project was initially built around `status`, as that was the subcommand use by another extension that this extension was based on. But, now the `diff-index` approach is used instead.
 
-A disadvantage though is that while `status` can handle new untracked files, `diff-index` can't see them. Which is okay, because when renaming a file, you need to **stage** the old and new paths for `git` to see them as **one file**. Regardless of using `status` or `diff-index`.
+Using `status` is friendly for everyday use as developer. The `diff-index` subcommand is not for everyday use - you can to add a path like `HEAD` and you need to add flags to get sensible output.
 
-i.e. New files and renamed files _always_ need staging for `git diff-index` to see them.
+Both `status` and `diff-index` can be used to see a list of paths and how they changed, using `from` and `to` as a pair of paths when moving or renaming a file.
+
+Why use `diff-index`? It makes things more **predictable** when parsing output. Since the `from` file is always first, from left to right. While `status` has it on the right, which is hard because it is not always there. There might be other reasons I can't remember.
+
+
+## Limitation of diff-index
+
+Summary - new files and moved/renamed files _always_ need to be staged for `git diff-index` to see them.
+
+The `diff-index` subcommand cannot see new or moved/renamed files, unless you stage them. Which is okay, because you just need to stage a file and then the extension can see it. 
+
+And in the case of renaming/moving files, there's a limitation of git that can't be overcome - you need to **stage** the old and new paths anyway for `git` to see them as **one file**, regardless of using `status` or `diff-index`.
+
+The `git status` sucommand _can_ handle new _untracked_ files. But the effort to rewrite a chunk of the extension to use a different Git subcommand is not worth it, and won't solve the rename/move case anyway.
+
+So we just keep things simple to avoid bloatin the codebase. You can still do what you need to - just remember to stage files if you need the extension to recognize them.
