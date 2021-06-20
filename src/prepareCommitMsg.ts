@@ -35,9 +35,7 @@ export function _cleanJoin(first: string, second: string) {
  * every type and we don't have to check if we are part of a word e.g. 'circus'.
  */
 export function _splitMsg(msg: string) {
-  const [prefix, description] = msg.includes(":")
-    ? msg.split(":")
-    : ["", msg];
+  const [prefix, description] = msg.includes(":") ? msg.split(":") : ["", msg];
 
   const [customPrefix, typePrefix] = prefix.includes(" ")
     ? prefix.split(" ", 2)
@@ -174,10 +172,7 @@ export function _combineOldAndNew(
   }
 
   if (oldType) {
-    return `${_cleanJoin(
-      oldCustomPrefix,
-      oldType
-    )}: ${descResult}`;
+    return `${_cleanJoin(oldCustomPrefix, oldType)}: ${descResult}`;
   }
 
   return descResult;
