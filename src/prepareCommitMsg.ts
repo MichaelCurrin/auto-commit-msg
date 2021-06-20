@@ -30,9 +30,9 @@ export function _cleanJoin(first: string, second: string) {
 /**
  * Separate a message into a Conventional Commit type, if any, and the description.
  *
- * Require a colon to exist to detect type prefix. i.e. 'ci' will be considered a description, but 'ci:'
- * will be considered a prefix. This keeps the check simpler as we don't have to match against every
- * type and we don't have to check if we are part of a word e.g. 'circus'.
+ * Require a colon to exist to detect type prefix. i.e. 'ci' will be considered a description, but
+ * 'ci:' will be considered a prefix. This keeps the check simpler as we don't have to match against
+ * every type and we don't have to check if we are part of a word e.g. 'circus'.
  */
 export function _splitMsg(msg: string) {
   const [prefix, description] = msg.includes(":")
