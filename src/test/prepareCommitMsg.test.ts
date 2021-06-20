@@ -307,7 +307,7 @@ describe("Prepare commit message", function () {
             "update .editorconfig",
             oldMsg
           ),
-          "chore: xyz update .editorconfig"
+          "chore: update .editorconfig xyz"
         );
       });
 
@@ -367,7 +367,7 @@ describe("Prepare commit message", function () {
               "foo bar",
               "fizz buzz"
             ),
-            "fizz buzz foo bar"
+            "foo bar fizz buzz"
           );
 
           assert.strictEqual(
@@ -376,7 +376,7 @@ describe("Prepare commit message", function () {
               "foo bar",
               "[ABCD-1234]"
             ),
-            "[ABCD-1234] foo bar"
+            "foo bar [ABCD-1234]"
           );
         });
 
@@ -417,14 +417,14 @@ describe("Prepare commit message", function () {
         it("inserts a new prefix between the old and new messages", function () {
           assert.strictEqual(
             _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "fizz buzz"),
-            "feat: fizz buzz foo bar"
+            "feat: foo bar fizz buzz"
           );
 
           // Unfortunately if your old message doesn't look like a prefix by having a colon, it just
-          // gets treated as an old description and not something to add before the type.
+          // gets treated as an old description and can't be added before the type. Maybe a future enhancement to get '[ABCD-1234] feat: foo bar'.
           assert.strictEqual(
             _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "[ABCD-1234]"),
-            "feat: [ABCD-1234] foo bar"
+            "feat: foo bar [ABCD-1234]"
           );
         });
 

@@ -165,7 +165,7 @@ export function _combineOldAndNew(
     description: oldDesc,
   } = _splitMsg(oldMsg);
 
-  const descResult = _cleanJoin(oldDesc, autoDesc);
+  const descResult = _cleanJoin(autoDesc, oldDesc);
 
   if (oldType) {
     return `${_cleanJoin(oldCustomPrefix, oldType)}: ${descResult}`;
