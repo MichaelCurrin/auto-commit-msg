@@ -212,7 +212,7 @@ function _generateMsgWithOld(fileChanges: string[], oldMsg: string) {
 export function generateMsg(fileChanges: string[], oldMsg?: string): string {
   if (!oldMsg) {
     return _newMsg(fileChanges);
-  } else {
-    return _generateMsgWithOld(fileChanges, oldMsg);
   }
+
+  return _generateMsgWithOld(fileChanges, oldMsg);
 }
