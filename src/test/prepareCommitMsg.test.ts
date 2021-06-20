@@ -11,7 +11,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -311,9 +311,22 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("replaces the old type with an inferred one but keeps the custom prefix", function () {
-        // TODO: Make this should not replace the type - like if you make a 'docs' change in an
-        // inferred 'test' file but want to keep as 'docs'.
+      it("uses a generated description, but keeps the type from the old message", function () {
+        // In this example, say editing a comment in a config file and entering type as docs and
+        // keeping that value instead of a generated one.
+        const oldMsg = "docs:";
+
+        assert.strictEqual(
+          _combineOldAndNew(
+            CONVENTIONAL_TYPE.CHORE,
+            "update .editorconfig",
+            oldMsg
+          ),
+          "docs: update .editorconfig"
+        );
+      });
+
+      it("combines an old custom prefix and type with a new description", function () {
         const oldMsg = "[abc] docs:";
         assert.strictEqual(
           _combineOldAndNew(
@@ -321,7 +334,7 @@ describe("Prepare commit message", function () {
             "update .editorconfig",
             oldMsg
           ),
-          "[abc] chore: update .editorconfig"
+          "[abc] docs: update .editorconfig"
         );
       });
     });
@@ -415,10 +428,10 @@ describe("Prepare commit message", function () {
           );
         });
 
-        it("inserts replaces an old prefix with a new one", function () {
+        it("keeps the old type where there is an new one", function () {
           assert.strictEqual(
             _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs:"),
-            "feat: foo bar"
+            "docs: foo bar"
           );
 
           assert.strictEqual(
@@ -427,14 +440,14 @@ describe("Prepare commit message", function () {
               "foo bar",
               "[ABCD-1234] docs:"
             ),
-            "[ABCD-1234] feat: foo bar"
+            "[ABCD-1234] docs: foo bar"
           );
         });
 
         it("inserts replaces an old prefix with a space with a new one", function () {
           assert.strictEqual(
             _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs: "),
-            "feat: foo bar"
+            "docs: foo bar"
           );
 
           assert.strictEqual(
@@ -443,7 +456,7 @@ describe("Prepare commit message", function () {
               "foo bar",
               "[ABCD-1234] docs: "
             ),
-            "[ABCD-1234] feat: foo bar"
+            "[ABCD-1234] docs: foo bar"
           );
         });
       });

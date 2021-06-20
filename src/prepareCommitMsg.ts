@@ -137,9 +137,9 @@ export function _newMsg(lines: string[]) {
 /**
  * Create a commit message using an existing message and generated pieces.
  *
- * The point is to always use the new message and prefix, but respect the old message. If there is
- * no new prefix type set, use the old one, and if that is not set then just a simple message will
- * do.
+ * The point is to always use the new description, but respect the old description.
+ *
+ * An old type (possibly manually generated) must take preference over a generated one.
  *
  * See the "common scenarios" part of `prepareCommitMsg.test.ts` test spec.
  *
@@ -167,12 +167,12 @@ export function _combineOldAndNew(
 
   const descResult = _cleanJoin(oldDesc, autoDesc);
 
-  if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
-    return `${_cleanJoin(oldCustomPrefix, autoType)}: ${descResult}`;
-  }
-
   if (oldType) {
     return `${_cleanJoin(oldCustomPrefix, oldType)}: ${descResult}`;
+  }
+
+  if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
+    return `${_cleanJoin(oldCustomPrefix, autoType)}: ${descResult}`;
   }
 
   return descResult;
