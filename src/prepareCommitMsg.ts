@@ -47,7 +47,7 @@ export function _splitMsg(msg: string) {
 }
 
 /**
- * Determine what the prefix should be for a file change, using Conventional Commit standard.
+ * Determine what the type prefix should be for a file change, using Conventional Commit standard.
  */
 function _prefixFromChanges(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
