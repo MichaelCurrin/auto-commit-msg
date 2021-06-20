@@ -70,17 +70,17 @@ export function _msgOne(line: string) {
 }
 
 /**
- * Get single Conventional Commit type from multiple ones.
+ * Get single Conventional Commit type prefix from multiple items given.
  *
  * If at least one item is build dependencies even if the others are different, then use that.
- * This covers the case where package.json may have non-package changes but you know it does
+ * This covers the case where `package.json` may have non-package changes but you know it does
  * in this case because it changed with the lock file.
  */
-function _collapse(conventions: CONVENTIONAL_TYPE[]) {
-  if (equal(conventions)) {
-    return conventions[0];
+function _collapse(types: CONVENTIONAL_TYPE[]) {
+  if (equal(types)) {
+    return types[0];
   }
-  if (conventions.includes(CONVENTIONAL_TYPE.BUILD_DEPENDENCIES)) {
+  if (types.includes(CONVENTIONAL_TYPE.BUILD_DEPENDENCIES)) {
     return CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
   }
 
