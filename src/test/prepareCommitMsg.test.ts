@@ -11,7 +11,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -283,7 +283,7 @@ describe("Prepare commit message", function () {
 
   describe("#_combineOldAndNew", function () {
     describe("handles common scenarios correctly", function () {
-      it("keeps the old message's prefix type if none can be inferred", function () {
+      it("keeps the old message's type, if none can be inferred", function () {
         const oldMsg = "docs:";
         assert.strictEqual(
           _combineOldAndNew(
@@ -326,7 +326,7 @@ describe("Prepare commit message", function () {
       });
     });
 
-    it("uses only the new message, if the old message is empty", function () {
+    it("will use only the new message, if the old message is empty", function () {
       assert.strictEqual(
         _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar"),
         "foo bar"
