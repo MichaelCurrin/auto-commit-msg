@@ -39,12 +39,12 @@ describe("Split a message into components", function () {
       assert.deepStrictEqual(_splitMsg("abc def"), {
         customPrefix: "",
         typePrefix: "",
-        fileChangeDesc: "abc def",
+        description: "abc def",
       });
       assert.deepStrictEqual(_splitMsg("[ABCD-1234]"), {
         customPrefix: "",
         typePrefix: "",
-        fileChangeDesc: "[ABCD-1234]",
+        description: "[ABCD-1234]",
       });
     });
 
@@ -52,18 +52,18 @@ describe("Split a message into components", function () {
       assert.deepStrictEqual(_splitMsg("docs:"), {
         customPrefix: "",
         typePrefix: "docs",
-        fileChangeDesc: "",
+        description: "",
       });
       assert.deepStrictEqual(_splitMsg("feat:"), {
         customPrefix: "",
         typePrefix: "feat",
-        fileChangeDesc: "",
+        description: "",
       });
 
       assert.deepStrictEqual(_splitMsg("docs: "), {
         customPrefix: "",
         typePrefix: "docs",
-        fileChangeDesc: "",
+        description: "",
       });
     });
 
@@ -71,23 +71,23 @@ describe("Split a message into components", function () {
       assert.deepStrictEqual(_splitMsg("docs: abc"), {
         customPrefix: "",
         typePrefix: "docs",
-        fileChangeDesc: "abc",
+        description: "abc",
       });
       assert.deepStrictEqual(_splitMsg("docs: abc def"), {
         customPrefix: "",
         typePrefix: "docs",
-        fileChangeDesc: "abc def",
+        description: "abc def",
       });
       assert.deepStrictEqual(_splitMsg("feat: abc def"), {
         customPrefix: "",
         typePrefix: "feat",
-        fileChangeDesc: "abc def",
+        description: "abc def",
       });
 
       assert.deepStrictEqual(_splitMsg("[ABCD-1234] docs: abc def"), {
         customPrefix: "[ABCD-1234]",
         typePrefix: "docs",
-        fileChangeDesc: "abc def",
+        description: "abc def",
       });
     });
   });
@@ -98,7 +98,7 @@ describe("Prepare commit message", function () {
     it("handles a single file correctly", function () {
       const expected = {
         prefix: CONVENTIONAL_TYPE.FEAT,
-        fileChangeDesc: "create baz.txt",
+        description: "create baz.txt",
       };
 
       assert.deepStrictEqual(_msgFromChanges(["A    baz.txt"]), expected);
@@ -108,7 +108,7 @@ describe("Prepare commit message", function () {
       it("handles 2 created files created correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeDesc: "create baz.txt and bar.js",
+          description: "create baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -120,7 +120,7 @@ describe("Prepare commit message", function () {
       it("handles 2 modified files correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeDesc: "update baz.txt and bar.js",
+          description: "update baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -132,7 +132,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files with the same action correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeDesc: "create baz.txt, bar.js and fuzz.md",
+          description: "create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
@@ -144,7 +144,7 @@ describe("Prepare commit message", function () {
       it("handles 4 files with the same action correctly", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeDesc: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
+          description: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
         };
 
         assert.deepStrictEqual(
@@ -161,7 +161,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files in subdirectories but does not show the directory paths", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
-          fileChangeDesc: "create baz.txt, bar.js and fuzz.md",
+          description: "create baz.txt, bar.js and fuzz.md",
         };
 
         assert.deepStrictEqual(
@@ -178,7 +178,7 @@ describe("Prepare commit message", function () {
       it('handles 2 "build(deps)" files correctly', function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
-          fileChangeDesc: "update package.json and package-lock.json",
+          description: "update package.json and package-lock.json",
         };
 
         assert.deepStrictEqual(
@@ -190,7 +190,7 @@ describe("Prepare commit message", function () {
       it("handles 3 README.md files in different locations as full paths", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.DOCS,
-          fileChangeDesc: "update docs/README.md, bar/README.md and README.md",
+          description: "update docs/README.md, bar/README.md and README.md",
         };
 
         assert.deepStrictEqual(
@@ -208,7 +208,7 @@ describe("Prepare commit message", function () {
       it("handles 2 files - one created and one modified", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeDesc: "Various changes to baz.txt and bar.js",
+          description: "Various changes to baz.txt and bar.js",
         };
 
         assert.deepStrictEqual(
@@ -220,7 +220,7 @@ describe("Prepare commit message", function () {
       it("handles 3 files - with different actions", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          fileChangeDesc: "Various changes to baz.txt, bar.js and README.md",
+          description: "Various changes to baz.txt, bar.js and README.md",
         };
 
         assert.deepStrictEqual(

@@ -28,14 +28,14 @@ export function _cleanJoin(first: string, second: string) {
 }
 
 /**
- * Separate a message into a Conventional Commit prefix, if any, and the description.
+ * Separate a message into a Conventional Commit type, if any, and the description.
  *
- * Require a colon to exist to detect prefix. i.e. 'ci' will be considered a description, but 'ci:'
+ * Require a colon to exist to detect type prefix. i.e. 'ci' will be considered a description, but 'ci:'
  * will be considered a prefix. This keeps the check simpler as we don't have to match against every
- * type and we don' have to check if we are part of a word e.g. 'circus'.
+ * type and we don't have to check if we are part of a word e.g. 'circus'.
  */
 export function _splitMsg(msg: string) {
-  const [prefix, fileChangeDesc] = msg.includes(":")
+  const [prefix, description] = msg.includes(":")
     ? msg.split(":")
     : ["", msg];
 
@@ -43,7 +43,7 @@ export function _splitMsg(msg: string) {
     ? prefix.split(" ", 2)
     : ["", prefix];
 
-  return { customPrefix, typePrefix, fileChangeDesc: fileChangeDesc.trim() };
+  return { customPrefix, typePrefix, description: description.trim() };
 }
 
 /**
@@ -64,9 +64,9 @@ export function _msgOne(line: string) {
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
   const prefix = _prefixFromChanges(line),
-    fileChangeDesc = oneChange(line);
+    description = oneChange(line);
 
-  return { prefix, fileChangeDesc };
+  return { prefix, description };
 }
 
 /**
@@ -100,7 +100,7 @@ export function _msgMulti(lines: string[]) {
   const conventions = lines.map(_prefixFromChanges);
   const convention = _collapse(conventions);
 
-  return { prefix: convention, fileChangeDesc: namedFiles(lines) };
+  return { prefix: convention, description: namedFiles(lines) };
 }
 
 /**
@@ -120,20 +120,20 @@ export function _msgFromChanges(diffIndexLines: string[]) {
 /**
  * Output a readable conventional commit message.
  */
-export function _formatMsg(prefix: CONVENTIONAL_TYPE, fileChangeDesc: string) {
+export function _formatMsg(prefix: CONVENTIONAL_TYPE, description: string) {
   if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
-    return fileChangeDesc;
+    return description;
   }
-  return `${prefix}: ${fileChangeDesc}`;
+  return `${prefix}: ${description}`;
 }
 
 /**
  * Generate a new commit message and format it as a string.
  */
 export function _newMsg(lines: string[]) {
-  const { prefix, fileChangeDesc } = _msgFromChanges(lines);
+  const { prefix, description } = _msgFromChanges(lines);
 
-  return _formatMsg(prefix, fileChangeDesc);
+  return _formatMsg(prefix, description);
 }
 
 /**
@@ -164,7 +164,7 @@ export function _combineOldAndNew(
   const {
     customPrefix: oldCustomPrefix,
     typePrefix: oldType,
-    fileChangeDesc: oldDesc,
+    description: oldDesc,
   } = _splitMsg(oldMsg);
 
   const descResult = _cleanJoin(oldDesc, autoDesc);
@@ -195,9 +195,9 @@ function _generateMsgWithOld(fileChanges: string[], oldMsg: string) {
       "Either `oldMsg` must not be empty, or use `generateNewMsg` instead."
     );
   }
-  const { prefix, fileChangeDesc } = _msgFromChanges(fileChanges);
+  const { prefix, description } = _msgFromChanges(fileChanges);
 
-  return _combineOldAndNew(prefix, fileChangeDesc, oldMsg);
+  return _combineOldAndNew(prefix, description, oldMsg);
 }
 
 /**
