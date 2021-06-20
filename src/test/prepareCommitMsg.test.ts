@@ -11,7 +11,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg
+  _splitMsg,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -427,7 +427,7 @@ describe("Prepare commit message", function () {
               ),
               "chore: fizz buzz"
             );
-          })
+          });
 
           it("does nothing when there are no types to work with", function () {
             assert.strictEqual(
@@ -438,7 +438,7 @@ describe("Prepare commit message", function () {
               ),
               "fizz buzz"
             );
-          })
+          });
 
           it("ignores a new type if the old one is set", function () {
             assert.strictEqual(
@@ -451,7 +451,7 @@ describe("Prepare commit message", function () {
             );
           });
         });
-      })
+      });
 
       describe("when a convention is determined from the file changes", function () {
         it("inserts a new prefix between the old and new messages", function () {
@@ -461,7 +461,8 @@ describe("Prepare commit message", function () {
           );
 
           // Unfortunately if your old message doesn't look like a prefix by having a colon, it just
-          // gets treated as an old description and can't be added before the type. Maybe a future enhancement to get '[ABCD-1234] feat: foo bar'.
+          // gets treated as an old description and can't be added before the type. Maybe a future
+          // enhancement to get '[ABCD-1234] feat: foo bar'.
           assert.strictEqual(
             _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "[ABCD-1234]"),
             "feat: foo bar [ABCD-1234]"

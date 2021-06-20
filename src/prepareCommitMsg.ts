@@ -28,7 +28,7 @@ export function _cleanJoin(first: string, second: string) {
   second = second.trim();
 
   if (first === second) {
-    return first
+    return first;
   }
   return `${first} ${second}`.trim();
 }
