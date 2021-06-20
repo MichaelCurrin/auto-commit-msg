@@ -11,7 +11,7 @@ import {
   _formatMsg,
   _msgFromChanges,
   _newMsg,
-  _splitMsg
+  _splitMsg,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
