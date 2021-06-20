@@ -17,14 +17,20 @@ import { CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
 
 /**
- * Join two strings together with a space, or just one string if only one is set.
+ * Join two strings together with a space.
+ *
+ * Use only one string if only one is set, or if they are identical.
  *
  * Trimming on the outside is necessary, in case only one item is set.
- * Don't both trimming the items before joining them, as this project doesn't need that for where
- * this is used.
  */
 export function _cleanJoin(first: string, second: string) {
-  return [first, second].join(" ").trim();
+  first = first.trim();
+  second = second.trim();
+
+  if (first === second) {
+    return first
+  }
+  return `${first} ${second}`.trim();
 }
 
 /**

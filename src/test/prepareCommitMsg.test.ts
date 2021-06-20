@@ -30,6 +30,11 @@ describe("Join strings cleanly", function () {
       assert.strictEqual(_cleanJoin("", "abc def"), "abc def");
       assert.strictEqual(_cleanJoin("", "abc def "), "abc def");
     });
+
+    it("returns the first string if they are identical, ignoring spaces", function () {
+      assert.strictEqual(_cleanJoin("abc def", "abc def"), "abc def");
+      assert.strictEqual(_cleanJoin("abc def", " abc def "), "abc def");
+    });
   });
 });
 
@@ -411,7 +416,42 @@ describe("Prepare commit message", function () {
             "[ABCD-1234] feat: foo bar"
           );
         });
-      });
+
+        describe("recognize the message is identical and does not duplicate it", function () {
+          it("adds a inferred type if it has one", function () {
+            assert.strictEqual(
+              _combineOldAndNew(
+                CONVENTIONAL_TYPE.CHORE,
+                "fizz buzz",
+                "fizz buzz"
+              ),
+              "chore: fizz buzz"
+            );
+          })
+
+          it("does nothing when there are no types to work with", function () {
+            assert.strictEqual(
+              _combineOldAndNew(
+                CONVENTIONAL_TYPE.UNKNOWN,
+                "fizz buzz",
+                "fizz buzz"
+              ),
+              "fizz buzz"
+            );
+          })
+
+          it("ignores a new type if the old one is set", function () {
+            assert.strictEqual(
+              _combineOldAndNew(
+                CONVENTIONAL_TYPE.CHORE,
+                "fizz buzz",
+                "docs: fizz buzz"
+              ),
+              "docs: fizz buzz"
+            );
+          });
+        });
+      })
 
       describe("when a convention is determined from the file changes", function () {
         it("inserts a new prefix between the old and new messages", function () {
