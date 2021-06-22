@@ -6,6 +6,7 @@ Info on how the Conventional Commits standard is applied for generating output i
 ## Resources
 
 - [Conventional Commits](https://www.conventionalcommits.org) homepage
+- [Conventionl Commits](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/other/conventional-commits.html) cheatsheets in my Dev Cheatsheets projects.
 
 
 ## Overview
@@ -25,7 +26,13 @@ The standard says that description is meant to start with a _lowercase letter_, 
 This Auto Commit Extension project focuses only on the first part:
 
 ```
-<TYPE>(SCOPE): DESCRIPTION
+TYPE: DESCRIPTION
+```
+
+Or
+
+```
+TYPE(SCOPE): DESCRIPTION
 ```
 
 Perhaps one day some details will be added to the body.
