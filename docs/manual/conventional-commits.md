@@ -6,7 +6,7 @@ Info on how the Conventional Commits standard is applied for generating output i
 ## Resources
 
 - [conventionalcommits.org](https://www.conventionalcommits.org) homepage
-- [config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum)
+- [config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum) section of the commitlint repo.
 
 
 ## Overview
@@ -26,7 +26,7 @@ The standard says that description is meant to start with a _lowercase letter_, 
 This project focuses only on the first part:
 
 ```
-<TYPE>(SCOPE): FILE_CHANGE_DESCRIPTION
+<TYPE>(SCOPE): DESCRIPTION
 ```
 
 
