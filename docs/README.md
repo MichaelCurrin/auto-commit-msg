@@ -7,9 +7,10 @@ This project servesd to prepare a smart commit message for you, to make your dev
 
 - [Quickstart](quickstart.md)
     - You can download and install a pre-built extension. No need to work with this repo directly or be familiar with JavaScript.
-- [User manual](manual/s)
-- [Developer guide](development/)
-
+- [User manual](manual/)
+    - How to use the installed extension.
+- [Development](development/)
+    - Guide for developers to set up and run locally,  so you can contribute if you want.
 
 <!--
 
