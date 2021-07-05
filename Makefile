@@ -28,6 +28,7 @@ fix: fmt lint
 t test: fix
 	npm run cover
 	npm run cover:report
+	npm run cover:check
 
 q test-quick:
 	npx tsc -p .
