@@ -6,6 +6,7 @@
 import * as assert from "assert";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
+  generateMsg,
   _cleanJoin,
   _combineOldAndNew,
   _formatMsg,
@@ -520,7 +521,7 @@ describe("Prepare commit message", function () {
       );
     });
 
-    it("handles an empty message", function () {
+    it("handles an empty old message", function () {
       const oldMsg = "";
 
       assert.throws(
@@ -528,6 +529,34 @@ describe("Prepare commit message", function () {
           fileChanges,
           oldMsg
         ),
+      );
+    });
+  });
+
+  describe("#generateMsg", function () {
+    const fileChanges = ["M    baz.txt", "M    bar.js"];
+
+    it("handles a set old message", function () {
+      const oldMsg = "my old message";
+
+      assert.strictEqual(
+        generateMsg(
+          fileChanges,
+          oldMsg
+        ),
+        "update baz.txt and bar.js my old message"
+      );
+    });
+
+    it("handles an empty old message", function () {
+      const oldMsg = "";
+
+      assert.strictEqual(
+        generateMsg(
+          fileChanges,
+          oldMsg
+        ),
+        "update baz.txt and bar.js"
       );
     });
   });
