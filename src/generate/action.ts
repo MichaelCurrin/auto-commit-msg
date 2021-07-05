@@ -15,11 +15,14 @@ export type ActionKeys = keyof typeof ACTION;
 /**
  * Extract single action from given X and Y actions.
  *
- * NOT USED. But keep for future use with git status short output.
+ * NOT USED.
  *
- * "Modified" must take preference over the others. There is no way here to combine update and move.
+ * Keep for future use with `git status` short output if needed.
+ *
+ * "Modified" must take preference over the others. Unfortunately, there is no way here to combine
+ * update and move.
  */
-export function lookupStatusAction(x: string, y: string): string {
+function _lookupStatusAction(x: string, y: string): string {
   if (ACTION[y as ActionKeys] === ACTION.M) {
     return ACTION.M;
   }
