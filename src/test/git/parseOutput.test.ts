@@ -95,10 +95,14 @@ describe("Split `git diff-index` output into components", function () {
         );
       });
     });
+
+    it("throws an error on input that is too short", function () {
+      assert.throws(() => parseDiffIndex("abc"));
+    });
   });
 });
 
-// Not a core part of the tool anymore, but the code and tests are kept anyway.
+// Not a core part of this extension anymore, but the code and tests are kept anyway.
 describe("Split `git status` output into components", function () {
   describe("#parseStatus", function () {
     it("should return the appropriate commit message for a new file", function () {
@@ -154,7 +158,7 @@ describe("Split `git status` output into components", function () {
       });
     });
 
-    it("throws an error on change that are too short", function () {
+    it("throws an error on input that is too short", function () {
       assert.throws(() => parseStatus("abc"));
     });
   });
