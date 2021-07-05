@@ -110,7 +110,9 @@ export function _msgMulti(lines: string[]) {
 /**
  * Generate message from changes to one or more files.
  *
- * Return conventional commit prefix and a description of changed paths.
+ * @param diffIndexLines Lines from the `git diff-index` function, describing changes to files.
+ *
+ * @returns Conventional Commit prefix and a description of changed paths.
  */
 export function _msgFromChanges(diffIndexLines: string[]) {
   if (diffIndexLines.length === 1) {
@@ -187,13 +189,13 @@ export function _combineOldAndNew(
 /**
  * Generate commit message using existing message and new generated message.
  *
- * High-level function to process file changes and an old message to generate replacement commit
- * message. Old message must be given, but it can be an empty string.
+ * High-level function to process file changes and an old message, to generate a replacement commit
+ * message.
  */
-function _generateMsgWithOld(fileChanges: string[], oldMsg: string) {
-  if (oldMsg === "") {
+export function _generateMsgWithOld(fileChanges: string[], oldMsg: string) {
+  if (!oldMsg) {
     throw new Error(
-      "Either `oldMsg` must not be empty, or use `generateNewMsg` instead."
+      "`oldMsg` must be non-empty - or use `generateNewMsg` instead."
     );
   }
   const { prefix, description } = _msgFromChanges(fileChanges);
