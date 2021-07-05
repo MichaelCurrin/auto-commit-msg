@@ -9,6 +9,7 @@ import {
   _cleanJoin,
   _combineOldAndNew,
   _formatMsg,
+  _generateMsgWithOld,
   _msgFromChanges,
   _newMsg,
   _splitMsg,
@@ -501,6 +502,21 @@ describe("Prepare commit message", function () {
           );
         });
       });
+    });
+  });
+
+  describe("#_generateMsgWithOld", function () {
+    it("handles a set old message", function () {
+      const fileChanges = ["M    baz.txt", "M    bar.js"];
+      const oldMsg = "my old message";
+
+      assert.strictEqual(
+        _generateMsgWithOld(
+          fileChanges,
+          oldMsg
+        ),
+        "update baz.txt and bar.js my old message"
+      );
     });
   });
 });
