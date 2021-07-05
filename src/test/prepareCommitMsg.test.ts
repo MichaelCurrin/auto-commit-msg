@@ -12,7 +12,7 @@ import {
   _generateMsgWithOld,
   _msgFromChanges,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -506,8 +506,9 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_generateMsgWithOld", function () {
+    const fileChanges = ["M    baz.txt", "M    bar.js"];
+
     it("handles a set old message", function () {
-      const fileChanges = ["M    baz.txt", "M    bar.js"];
       const oldMsg = "my old message";
 
       assert.strictEqual(
@@ -516,6 +517,17 @@ describe("Prepare commit message", function () {
           oldMsg
         ),
         "update baz.txt and bar.js my old message"
+      );
+    });
+
+    it("handles an empty message", function () {
+      const oldMsg = "";
+
+      assert.throws(
+        () => _generateMsgWithOld(
+          fileChanges,
+          oldMsg
+        ),
       );
     });
   });
