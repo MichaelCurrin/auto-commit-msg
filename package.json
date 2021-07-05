@@ -13,7 +13,7 @@
     "test": "npm run test:unit",
     "cover": "nyc npm test",
     "cover:report": "nyc report --reporter=lcov",
-    "cover:check": "nyc check-coverage --lines 90",
+    "cover:check": "nyc check-coverage --lines 95",
     "watch": "tsc -watch -p .",
     "vscode:prepublish": "npm run compile",
     "build": "mkdir -p build && vsce package --out build/",
