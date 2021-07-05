@@ -153,5 +153,9 @@ describe("Split `git status` output into components", function () {
         );
       });
     });
+
+    it("throws an error on change that are too short", function () {
+      assert.throws(() => parseStatus("abc"));
+    });
   });
 });
