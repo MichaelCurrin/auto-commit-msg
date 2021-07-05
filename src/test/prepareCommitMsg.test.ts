@@ -13,7 +13,7 @@ import {
   _generateMsgWithOld,
   _msgFromChanges,
   _newMsg,
-  _splitMsg
+  _splitMsg,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -513,10 +513,7 @@ describe("Prepare commit message", function () {
       const oldMsg = "my old message";
 
       assert.strictEqual(
-        _generateMsgWithOld(
-          fileChanges,
-          oldMsg
-        ),
+        _generateMsgWithOld(fileChanges, oldMsg),
         "update baz.txt and bar.js my old message"
       );
     });
@@ -524,12 +521,7 @@ describe("Prepare commit message", function () {
     it("handles an empty old message", function () {
       const oldMsg = "";
 
-      assert.throws(
-        () => _generateMsgWithOld(
-          fileChanges,
-          oldMsg
-        ),
-      );
+      assert.throws(() => _generateMsgWithOld(fileChanges, oldMsg));
     });
   });
 
@@ -540,10 +532,7 @@ describe("Prepare commit message", function () {
       const oldMsg = "my old message";
 
       assert.strictEqual(
-        generateMsg(
-          fileChanges,
-          oldMsg
-        ),
+        generateMsg(fileChanges, oldMsg),
         "update baz.txt and bar.js my old message"
       );
     });
@@ -552,10 +541,7 @@ describe("Prepare commit message", function () {
       const oldMsg = "";
 
       assert.strictEqual(
-        generateMsg(
-          fileChanges,
-          oldMsg
-        ),
+        generateMsg(fileChanges, oldMsg),
         "update baz.txt and bar.js"
       );
     });
