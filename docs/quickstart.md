@@ -8,7 +8,11 @@ This guides covers how to get the extension installed globally in your VS Code u
 
 ## How to use
 
+### Install
+
 Install the extension from a recent release on GitHub - see [Installation](/docs/manual/installation.md).
+
+### Run
 
 Then use it like this:
 
