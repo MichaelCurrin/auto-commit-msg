@@ -21,7 +21,7 @@
 
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 
-[Quickstart](/docs/quickstart.md) | [Sample screenshots](#samples) | [Features](#features) | [Docs](#documentation)
+[Features](#features) | [Getting started](#getting-started) | [Sample screenshots](#samples) | [Docs](#documentation)
 
 </div>
 
