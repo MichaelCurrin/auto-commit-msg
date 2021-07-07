@@ -21,8 +21,15 @@
 
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 
-[Features](#features) | [Getting started](#getting-started) | [Sample screenshots](#samples) | [Docs](#documentation)
+[Getting started](#getting-started) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
 
+</div>
+
+
+## Preview
+
+<div align="center">
+    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="400" />
 </div>
 
 
@@ -56,7 +63,7 @@ This guide shows you how to download a _pre-built_ extension from GitHub Release
 - There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
 
 
-## Sample
+## Sample usage
 
 Here are some screenshots of what messages the extension generates, based on changed files.
 
