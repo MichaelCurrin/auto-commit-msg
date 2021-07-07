@@ -26,6 +26,17 @@
 </div>
 
 
+## Features
+
+- Simmply click the extension button in the Git pane.
+- Reads the state of files in your Git repo or staged files
+- Generates a commit message, which you can use or edit
+- Describes a variety of changes - when file is added, removed, moved, renamed...
+- Handles multiple files at once.
+- Infers a Conventional Commit category where possible - e.g. `feat`, `ci`, `build`.
+- Suitable for development in a variety of languages and tools - it can recognize a range of files based on path and extension, such as related to CI, configs, dependency or docs.
+
+
 ## Getting started
 
 This guide shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code (you can't find it on the extension marketplace yet).
