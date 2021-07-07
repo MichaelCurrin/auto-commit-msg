@@ -1,4 +1,4 @@
-# Auto Commit Message ⚙️🧙‍♂️ ✉️
+# Auto Commit Message ⚙️ 🧙‍♂️ ✉️
 > A VS Code extension that writes commit messages for you
 
 <!-- Badges generated with https://michaelcurrin.github.io/badge-generator/#/ -->
