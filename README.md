@@ -21,7 +21,7 @@
 
 [![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 
-[Getting started](#getting-started) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
+[Getting started](#getting-started) | [Features](#features) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
 
 </div>
 
@@ -31,17 +31,6 @@
 <div align="center">
     <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="400" />
 </div>
-
-
-## Features
-
-- Simmply click the extension button in the Git pane.
-- Reads the state of files in your Git repo or staged files
-- Generates a commit message, which you can use or edit
-- Describes a variety of changes - when file is added, removed, moved, renamed...
-- Handles multiple files at once.
-- Infers a Conventional Commit category where possible - e.g. `feat`, `ci`, `build`.
-- Suitable for development in a variety of languages and tools - it can recognize a range of files based on path and extension, such as related to CI, configs, dependency or docs.
 
 
 ## Getting started
@@ -61,6 +50,19 @@ This guide shows you how to download a _pre-built_ extension from GitHub Release
 - But... it is still functional and I use it daily, so please use it too if you want.
 - There are just some finishing touches still, like making a new logo, releasing the package on the marketplace (so you can install it without downloading from releases page) and cleaning up the docs. It can become version `1.0.0` around then.
 - There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
+
+
+## Features
+
+See more info on the [Features](/docs/features.md) page in the docs.
+
+- Simmply click the extension button in the Git pane.
+- Reads the state of files in your Git repo or staged files
+- Generates a commit message, which you can use or edit
+- Describes a variety of changes - when file is added, removed, moved, renamed...
+- Handles multiple files at once.
+- Infers a Conventional Commit category where possible - e.g. `feat`, `ci`, `build`.
+- Suitable for development in a variety of languages and tools - it can recognize a range of files based on path and extension, such as related to CI, configs, dependency or docs.
 
 
 ## Sample usage
