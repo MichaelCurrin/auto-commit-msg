@@ -1,4 +1,4 @@
-# Auto Commit Message documentation ⚙️🧙‍♂️ ✉️
+# Auto Commit Message documentation ⚙️ 🧙‍♂️ ✉️
 
 This project servesd to prepare a smart commit message for you, to make your development flow smoother.
 
