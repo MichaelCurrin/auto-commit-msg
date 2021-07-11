@@ -7,7 +7,7 @@ import { getChanges } from "./git/cli";
 import { getCommitMsg, setCommitMsg } from "./gitExtension";
 import { generateMsg } from "./prepareCommitMsg";
 
-export const NO_LINES = `\
+export const NO_LINES_HELP_MSG = `\
 Unable to generate message as no changes files can be seen.
 Try saving your files or stage any new (untracked) files.\
 `;
@@ -17,7 +17,7 @@ const MAX_CHANGES = 8;
 export const TOO_MANY_FILES = `Max of ${MAX_CHANGES} reached. Try staging or stashing some changes`;
 
 /**
- * Generate and fill a commit message.
+ * Generate and fill a commit message in the Git pane.
  *
  * Steps:
  *   1. Read git command output and the message in the Git Extension commit message box.
@@ -32,7 +32,7 @@ export async function makeAndFillCommitMsg(repository: Repository) {
   console.debug("diff-index:", fileChanges);
 
   if (!fileChanges.length) {
-    vscode.window.showErrorMessage(NO_LINES);
+    vscode.window.showErrorMessage(NO_LINES_HELP_MSG);
     return;
   }
   if (fileChanges.length > MAX_CHANGES) {
