@@ -1,12 +1,14 @@
 /**
- * Auto Commit Message CLI script.
+ * CLI module.
  *
- * This is the entry-point for this tool to be used as a stand-alone command-line script. This does
- * NOT interact with VS Code or git commands. It just receives text on an argument and prints output
- * stdout for use in a hook flow. Or stderr in the case of a message not appropriate for a commit
- * message.
+ * This is the entry-point for the Auto Commit Message tool when running as an STANDALONE
+ * command-line script.
  *
- * See shell/README.md docs.
+ * This script does NOT interact with VS Code or any git commands. It just receives text as an
+ * argument and prints output to `stdout` for use in a hook flow. Or `stderr` in the case of a
+ * message not appropriate for a commit message.
+ *
+ * See `shell/README.md` docs.
  */
 import { generateMsg } from "./prepareCommitMsg";
 
