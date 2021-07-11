@@ -1,8 +1,8 @@
 /**
  * Prepare commit message.
  *
- * This module ties together logic from modules in the `generate` module. So it is best kept outside
- * that.
+ * This module ties together logic from independent modules in the `generate` module. So it is best
+ * kept on the outside here.
  *
  * The "message" is the full commit message. The "file change description" is the description
  * portion, which describes how the files changed.
