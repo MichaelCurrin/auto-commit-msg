@@ -8,6 +8,16 @@
  * e.g. 'update 16 files and delete 2 files'
 */
 
-export function count() {
-  return { created: 1 }
+import { FileChanges } from "../git/parseOutput.d"
+
+type CountResult = { [key: string]: number }
+
+export function count(changes: FileChanges[]) {
+  const result: CountResult = {}
+
+  const item: FileChanges = changes[0]
+  const k: string = item.x
+  result[k] = 1
+
+  return result
 }
