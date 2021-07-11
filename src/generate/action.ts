@@ -9,8 +9,11 @@
  */
 import { ACTION, ROOT } from "../lib/constants";
 import { splitPath } from "../lib/paths";
+import { SplitPathResult } from "../lib/paths.d";
+
 
 export type ActionKeys = keyof typeof ACTION;
+export type MoveAndOrRename = 'move' | 'rename' | 'move and rename'
 
 /**
  * Extract single action from given X and Y actions.
@@ -36,6 +39,22 @@ export function lookupDiffIndexAction(x: string) {
   return ACTION[x as ActionKeys];
 }
 
+
+function moveType(oldP: SplitPathResult, newP: SplitPathResult): MoveAndOrRename {
+  let result: MoveAndOrRename;
+
+  if (oldP.name === newP.name) {
+    result = 'move'
+  }
+  else if (oldP.dirPath === newP.dirPath) {
+    result = 'rename'
+  } else {
+    result = 'move and rename'
+  }
+
+  return result
+}
+
 /**
  * Return full message for moving and/or renaming a file.
  *
@@ -45,11 +64,13 @@ export function moveOrRenameFile(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
     newP = splitPath(newPath);
 
+  const moveDesc = moveType(oldP, newP)
+
   let msg;
 
-  if (oldP.name === newP.name) {
+  if (moveDesc === 'move') {
     msg = `move ${oldP.name} to ${newP.dirPath}`;
-  } else if (oldP.dirPath === newP.dirPath) {
+  } else if (moveDesc === 'rename') {
     msg = `rename ${oldP.name} to ${newP.name}`;
   } else {
     const target = newP.dirPath === ROOT ? `${newP.name} at ${ROOT}` : newPath;
