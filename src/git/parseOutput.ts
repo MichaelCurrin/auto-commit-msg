@@ -5,8 +5,8 @@
  */
 import { FileChanges } from "./parseOutput.d";
 
-// This is NOT worth moving to constants, because the space is a value ,while the `DESCRIPTION` enum has
-// it as a key.
+// This is NOT worth moving to constants, because the space is a value, while the `DESCRIPTION`
+// enum has it as a key.
 const UNMODIFIED = " ";
 
 /**
@@ -42,7 +42,8 @@ export function parseStatus(line: string): FileChanges {
  * We keep `x` as a single letter here, even though the input might be include a percentage that we
  * ignore, as in 'R100 ...'.
  *
- * Unlike for `git status`, the `y` value will be missing here, so we set it to Unmodified (a space).
+ * Unlike for `git status`, the `y` value will be missing here, so we set it to Unmodified (a
+ * space).
  *
  * The `to` field will not always be set, so a null string is fine (and better than `undefined`).
  */
