@@ -9,9 +9,10 @@ import { generateMsg } from "./prepareCommitMsg";
 
 const MAX_CHANGES = 8;
 
-export const TOO_MANY_FILES_HELP_MSG = `Max of ${MAX_CHANGES} reached. Try staging or stashing some changes`;
+export const TOO_MANY_FILES_MSG = `\
+Max of ${MAX_CHANGES} reached. Try staging or stashing some changes`;
 
-export const NO_LINES_HELP_MSG = `\
+export const NO_LINES_MSG = `\
 Unable to generate message as no changes files can be seen.
 Try saving your files or stage any new (untracked) files.\
 `;
@@ -33,11 +34,11 @@ export async function makeAndFillCommitMsg(repository: Repository) {
   console.debug("diff-index:", fileChanges);
 
   if (!fileChanges.length) {
-    vscode.window.showErrorMessage(NO_LINES_HELP_MSG);
+    vscode.window.showErrorMessage(NO_LINES_MSG);
     return;
   }
   if (fileChanges.length > MAX_CHANGES) {
-    vscode.window.showErrorMessage(TOO_MANY_FILES_HELP_MSG);
+    vscode.window.showErrorMessage(TOO_MANY_FILES_MSG);
     return;
   }
 
