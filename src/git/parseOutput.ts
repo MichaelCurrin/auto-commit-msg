@@ -1,7 +1,7 @@
 /**
- * Parse outut module.
+ * Parse output module.
  *
- * Handle text output from a git command.
+ * Handle text output from a `git` subcommand.
  */
 import { FileChanges } from "./parseOutput.d";
 
