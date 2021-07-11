@@ -14,7 +14,7 @@ describe('count', () => {
         {
           x: ACTION.A,
           y: " ",
-          from: "foo",
+          from: "foo.txt",
           to: ""
         }
       ]
@@ -31,7 +31,7 @@ describe('count', () => {
         {
           x: ACTION.M,
           y: " ",
-          from: "foo",
+          from: "foo.txt",
           to: ""
         }
       ]
@@ -48,12 +48,29 @@ describe('count', () => {
         {
           x: ACTION.D,
           y: " ",
-          from: "foo",
+          from: "foo.txt",
           to: ""
         }
       ]
       const expected = {
         delete: 1
+      }
+
+      assert.deepStrictEqual(
+        count(changes), expected)
+    })
+
+    it('should handle a renamed file', function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "foo.txt",
+          to: "bar.txt"
+        }
+      ]
+      const expected = {
+        rename: 1
       }
 
       assert.deepStrictEqual(
