@@ -31,7 +31,7 @@ function moveOrRenameFromChange(item: FileChanges): string {
 /**
  * Group changes by action and add counts within each.
  */
-export function count(changes: FileChanges[]) {
+export function countByAction(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
 
   for (const item of changes) {

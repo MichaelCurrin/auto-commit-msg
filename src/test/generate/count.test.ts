@@ -3,11 +3,11 @@
  */
 
 import * as assert from "assert";
-import { count } from "../../generate/count";
+import { countByAction } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
 
-describe("count", () => {
+describe("#countByAction", () => {
   describe("should return the correct action and count for one file", function () {
     it("should handle a created file", function () {
       const changes: FileChanges[] = [
@@ -22,7 +22,7 @@ describe("count", () => {
         create: { fileCount: 1 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle an updated file", function () {
@@ -38,7 +38,7 @@ describe("count", () => {
         update: { fileCount: 1 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle a deleted file", function () {
@@ -54,7 +54,7 @@ describe("count", () => {
         delete: { fileCount: 1 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle a renamed file", function () {
@@ -70,7 +70,7 @@ describe("count", () => {
         rename: { fileCount: 1 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle a moved file", function () {
@@ -86,7 +86,7 @@ describe("count", () => {
         move: { fileCount: 1 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle a renamed and moved file", function () {
@@ -102,7 +102,7 @@ describe("count", () => {
         'move and rename': { fileCount: 1 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
   });
 
@@ -126,7 +126,7 @@ describe("count", () => {
         create: { fileCount: 2 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle two renamed files", function () {
@@ -148,7 +148,7 @@ describe("count", () => {
         rename: { fileCount: 2 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle two created files", function () {
@@ -170,7 +170,7 @@ describe("count", () => {
         create: { fileCount: 2 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle three deleted files", function () {
@@ -198,7 +198,7 @@ describe("count", () => {
         delete: { fileCount: 3 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle four updated files", function () {
@@ -232,7 +232,7 @@ describe("count", () => {
         update: { fileCount: 4 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
   })
 
@@ -257,7 +257,7 @@ describe("count", () => {
         update: { fileCount: 1 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     });
 
     it("should handle one created and two updated files", function () {
@@ -286,7 +286,7 @@ describe("count", () => {
         update: { fileCount: 2 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     })
 
     it("should handle one created, updated, deleted, renamed and two moved files", function () {
@@ -336,7 +336,7 @@ describe("count", () => {
         move: { fileCount: 2 },
       };
 
-      assert.deepStrictEqual(count(changes), expected);
+      assert.deepStrictEqual(countByAction(changes), expected);
     })
   })
 });
