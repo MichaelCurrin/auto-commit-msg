@@ -12,10 +12,10 @@
 import { FileChanges } from "../git/parseOutput.d";
 import { ACTION } from "../lib/constants";
 import { moveOrRename, splitPath } from "../lib/paths";
-import { CountResult } from "./count.d";
+import { FileChangesByAction } from "./count.d";
 
 export function count(changes: FileChanges[]) {
-  const result: CountResult = {};
+  const result: FileChangesByAction = {};
 
   const item: FileChanges = changes[0];
 
