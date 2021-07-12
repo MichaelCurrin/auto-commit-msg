@@ -19,7 +19,7 @@ describe("count", () => {
         },
       ];
       const expected = {
-        create: 1,
+        create: { fileCount: 1 },
       };
 
       assert.deepStrictEqual(count(changes), expected);
@@ -35,7 +35,7 @@ describe("count", () => {
         },
       ];
       const expected = {
-        update: 1,
+        update: { fileCount: 1 },
       };
 
       assert.deepStrictEqual(count(changes), expected);
@@ -51,7 +51,7 @@ describe("count", () => {
         },
       ];
       const expected = {
-        delete: 1,
+        delete: { fileCount: 1 },
       };
 
       assert.deepStrictEqual(count(changes), expected);
@@ -67,7 +67,7 @@ describe("count", () => {
         },
       ];
       const expected = {
-        rename: 1,
+        rename: { fileCount: 1 },
       };
 
       assert.deepStrictEqual(count(changes), expected);
@@ -83,7 +83,7 @@ describe("count", () => {
         },
       ];
       const expected = {
-        move: 1,
+        move: { fileCount: 1 },
       };
 
       assert.deepStrictEqual(count(changes), expected);

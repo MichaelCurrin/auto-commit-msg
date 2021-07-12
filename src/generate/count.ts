@@ -28,7 +28,8 @@ export function count(changes: FileChanges[]) {
   else {
     k = item.x;
   }
-  result[k] = 1;
+
+  result[k] = { fileCount: 1 }
 
   return result;
 }
