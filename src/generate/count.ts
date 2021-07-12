@@ -14,7 +14,10 @@ import { ACTION } from "../lib/constants";
 import { moveOrRenameFromPaths, splitPath } from "../lib/paths";
 import { FileChangesByAction } from "./count.d";
 
-function determineAction(item: FileChanges): string {
+/**
+ * Determine if a file change is for move, rename, or both.
+ */
+function moveOrRenameFromChange(item: FileChanges): string {
   if (item.x !== ACTION.R) {
     return item.x
   }
@@ -25,11 +28,14 @@ function determineAction(item: FileChanges): string {
   return moveOrRenameFromPaths(oldP, newP);
 }
 
+/**
+ * Group changes by action and add counts within each.
+ */
 export function count(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
 
   for (const item of changes) {
-    let action: string = determineAction(item);
+    let action: string = moveOrRenameFromChange(item);
 
     result[action] = result[action] || { fileCount: 0 };
     result[action].fileCount++;
