@@ -52,5 +52,5 @@ export function countByActionMsg(actionCounts: FileChangesByAction) {
     return `${action} ${count} file${plural}`;
   });
 
-  return msgs.join(" ");
+  return msgs.join(", ");
 }
