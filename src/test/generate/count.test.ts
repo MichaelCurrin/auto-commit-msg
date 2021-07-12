@@ -10,8 +10,8 @@ import {
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
 
-describe("Aggregate counts of files as numeric data", () => {
-  describe("#_countByAction", () => {
+describe("Aggregate counts of files as numeric data", function () {
+  describe("#_countByAction", function () {
     describe("should return the correct action and count for one file", function () {
       it("should handle a created file", function () {
         const changes: FileChanges[] = [
@@ -346,21 +346,21 @@ describe("Aggregate counts of files as numeric data", () => {
   });
 })
 
-describe("Identify move, rename, or move and rename", () => {
-  describe("#_moveOrRenameFromChange", () => {
-    it("should return move", () => {
+describe("Identify move, rename, or move and rename", function () {
+  describe("#_moveOrRenameFromChange", function () {
+    it("should return move", function () {
       const change = {
         x: ACTION.R,
         y: " ",
         from: "foo.txt",
-        to: "bar/foo.xt",
+        to: "bar/foo.txt",
       };
       const expected = "move";
 
       assert.strictEqual(_moveOrRenameFromChange(change), expected);
     });
 
-    it("should return rename", () => {
+    it("should return rename", function () {
       const change = {
         x: ACTION.R,
         y: " ",
@@ -372,7 +372,7 @@ describe("Identify move, rename, or move and rename", () => {
       assert.strictEqual(_moveOrRenameFromChange(change), expected);
     });
 
-    it("should return move and rename", () => {
+    it("should return move and rename", function () {
       const change = {
         x: ACTION.R,
         y: " ",
@@ -386,8 +386,8 @@ describe("Identify move, rename, or move and rename", () => {
   });
 });
 
-describe("#countByActionMsg", () => {
-  describe("should convert action and counts to a readable commit message", function () {
+describe("Convert action and counts to a readable commit message", function () {
+  describe("#countByActionMsg", function () {
     describe("one file", function () {
       it("should handle a created file", function () {
         const actionCounts = {
