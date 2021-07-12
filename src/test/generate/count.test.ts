@@ -3,7 +3,7 @@
  */
 
 import * as assert from "assert";
-import { countByActionMsg, _countByAction } from "../../generate/count";
+import { countByActionMsg, _countByAction, _moveOrRenameFromChange } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
 
@@ -341,6 +341,23 @@ describe("Aggregate counts of files by their associated actions", () => {
       })
     })
   });
+
+  describe('#_moveOrRenameFromChange', () => {
+    it('should return move, rename, or move and rename action', () => {
+      it('should return move', () => {
+        const change = {
+          x: ACTION.R,
+          y: " ",
+          from: "foo.txt",
+          to: "bar/foo.xt",
+        };
+        const expected = 'move'
+
+        assert.strictEqual(_moveOrRenameFromChange(change), expected);
+      })
+    }
+    )
+  })
 
   describe("#countByActionMsg", () => {
     describe("should convert action and counts to a readable commit message", function () {
