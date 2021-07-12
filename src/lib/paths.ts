@@ -48,9 +48,11 @@ export function friendlyFile(filePath: string) {
   return name;
 }
 
+/** Join items using commas and an "and". */
 export function _join(paths: string[]) {
   const firstItems = paths.slice(0, paths.length - 1);
   const lastItem = paths.slice(-1);
+
   const start = firstItems.join(", ");
 
   return `${start} and ${lastItem}`;
@@ -86,7 +88,7 @@ export function humanList(paths: string[]) {
 export function moveOrRename(
   oldP: SplitPathResult,
   newP: SplitPathResult
-): MoveOrRename {
+) {
   let result: MoveOrRename;
 
   if (oldP.name === newP.name) {
