@@ -43,3 +43,14 @@ export function _countByAction(changes: FileChanges[]) {
 
   return result;
 }
+
+export function countByActionMsg(actionCounts: FileChangesByAction) {
+  const msgs = Object.keys(actionCounts).map(action => {
+    const count = actionCounts[action].fileCount;
+    const plural = count === 1 ? "" : "s";
+
+    return `${action} ${count} file${plural}`;
+  });
+
+  return msgs.join(" ");
+}

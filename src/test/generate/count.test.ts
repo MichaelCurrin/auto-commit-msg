@@ -3,7 +3,7 @@
  */
 
 import * as assert from "assert";
-import { _countByAction } from "../../generate/count";
+import { countByActionMsg, _countByAction } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
 
@@ -340,3 +340,17 @@ describe("#_countByAction", () => {
     })
   })
 });
+
+
+describe("#countByActionMsg", () => {
+  describe("should convert action and counts to a readable commit message", function () {
+    it("should handle a created file", function () {
+      const actionCounts = {
+        create: { fileCount: 1 },
+      }
+      const expected = "create 1 file"
+
+      assert.strictEqual(countByActionMsg(actionCounts), expected);
+    })
+  })
+})
