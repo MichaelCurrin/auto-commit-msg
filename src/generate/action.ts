@@ -38,7 +38,7 @@ export function lookupDiffIndexAction(x: string) {
 /**
  * Return full message for moving and/or renaming a file.
  */
-export function moveOrRenameFile(oldPath: string, newPath: string): string {
+export function moveOrRenameMsg(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
     newP = splitPath(newPath);
 
