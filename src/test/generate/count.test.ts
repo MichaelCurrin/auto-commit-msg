@@ -272,5 +272,49 @@ describe("count", () => {
 
       assert.deepStrictEqual(count(changes), expected);
     })
+
+    it("should handle one created, updated, deleted, renamed and moved file", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+        {
+          x: ACTION.D,
+          y: " ",
+          from: "fizz.txt",
+          to: "",
+        },
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "abc.txt",
+          to: "def.txt",
+        },
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "def.txt",
+          to: "xyz/def.txt",
+        },
+      ];
+      const expected = {
+        create: { fileCount: 1 },
+        update: { fileCount: 1 },
+        delete: { fileCount: 1 },
+        rename: { fileCount: 1 },
+        move: { fileCount: 1 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    })
   })
 });
