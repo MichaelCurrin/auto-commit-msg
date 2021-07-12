@@ -19,17 +19,17 @@ export function count(changes: FileChanges[]) {
 
   const item: FileChanges = changes[0];
 
-  let k: string
+  let action: string
   if (item.x === ACTION.R) {
     const oldP = splitPath(item.from)
     const newP = splitPath(item.to)
-    k = moveOrRename(oldP, newP)
+    action = moveOrRename(oldP, newP)
   }
   else {
-    k = item.x;
+    action = item.x;
   }
 
-  result[k] = { fileCount: 1 }
+  result[action] = { fileCount: 1 }
 
   return result;
 }
