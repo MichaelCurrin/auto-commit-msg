@@ -50,6 +50,8 @@ export function friendlyFile(filePath: string) {
 
 /**
  * Join a series of items using commas and an "and".
+ *
+ * These don't have to be file paths but usually are for this project.
  */
 export function _join(items: string[]) {
   if (items.length === 1) {
