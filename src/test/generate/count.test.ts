@@ -355,6 +355,30 @@ describe("Aggregate counts of files by their associated actions", () => {
 
         assert.strictEqual(_moveOrRenameFromChange(change), expected);
       })
+
+      it('should return rename', () => {
+        const change = {
+          x: ACTION.R,
+          y: " ",
+          from: "foo.txt",
+          to: "bar.xt",
+        };
+        const expected = 'rename'
+
+        assert.strictEqual(_moveOrRenameFromChange(change), expected);
+      })
+
+      it('should return move and rename', () => {
+        const change = {
+          x: ACTION.R,
+          y: " ",
+          from: "foo.txt",
+          to: "bar/bazz.xt",
+        };
+        const expected = 'move and rename'
+
+        assert.strictEqual(_moveOrRenameFromChange(change), expected);
+      })
     }
     )
   })
