@@ -10,6 +10,8 @@
  */
 
 import { FileChanges } from "../git/parseOutput.d";
+import { ACTION } from "../lib/constants";
+import { moveOrRename, splitPath } from "../lib/paths";
 
 // Allowed keys are strictly mean to be from ACTION constant, plus also 'rename' (Git considers
 // rename and move the same thing but it is useful to differeniate here). Keep it flexible - don't
@@ -21,7 +23,16 @@ export function count(changes: FileChanges[]) {
   const result: CountResult = {};
 
   const item: FileChanges = changes[0];
-  const k: string = item.x;
+
+  let k: string
+  if (item.x === ACTION.R) {
+    const oldP = splitPath(item.from)
+    const newP = splitPath(item.to)
+    k = moveOrRename(oldP, newP)
+  }
+  else {
+    k = item.x;
+  }
   result[k] = 1;
 
   return result;

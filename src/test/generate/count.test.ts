@@ -72,5 +72,21 @@ describe("count", () => {
 
       assert.deepStrictEqual(count(changes), expected);
     });
+
+    it("should handle a moved file", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "foo.txt",
+          to: "bar/foo.txt",
+        },
+      ];
+      const expected = {
+        move: 1,
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
   });
 });
