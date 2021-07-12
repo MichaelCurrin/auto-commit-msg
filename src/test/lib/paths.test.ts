@@ -29,16 +29,16 @@ describe("Path handling", function () {
   describe("_join", function () {
     it("returns one item", () => {
       assert.strictEqual(_join(["foo"]), "foo");
-    })
+    });
 
     it("returns two items joined with \"and\"", () => {
       assert.strictEqual(_join(["foo", "bar"]), "foo and bar");
-    })
+    });
 
     it("returns three items joined with commands and an an \"and\"", () => {
       assert.strictEqual(_join(["foo", "bar", "bazz"]), "foo, bar and bazz");
-    })
-  })
+    });
+  });
 
   describe("#friendlyFile", function () {
     it("formats a long path as a filename only", function () {

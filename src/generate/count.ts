@@ -19,7 +19,7 @@ import { FileChangesByAction } from "./count.d";
  */
 export function _moveOrRenameFromChange(item: FileChanges): string {
   if (item.x !== ACTION.R) {
-    return item.x
+    return item.x;
   }
 
   const oldP = splitPath(item.from);
@@ -35,7 +35,7 @@ export function _countByAction(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
 
   for (const item of changes) {
-    let action: string = _moveOrRenameFromChange(item);
+    const action: string = _moveOrRenameFromChange(item);
 
     result[action] = result[action] || { fileCount: 0 };
     result[action].fileCount++;
@@ -52,5 +52,5 @@ export function countByActionMsg(actionCounts: FileChangesByAction) {
     return `${action} ${count} file${plural}`;
   });
 
-  return _join(msgs)
+  return _join(msgs);
 }
