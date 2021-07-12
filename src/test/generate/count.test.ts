@@ -1,17 +1,16 @@
 /**
  * Count test module
  */
-
 import * as assert from "assert";
 import {
   countByActionMsg,
   _countByAction,
-  _moveOrRenameFromChange,
+  _moveOrRenameFromChange
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
 
-describe("Aggregate counts of files by their associated actions", () => {
+describe("Aggregate counts of files as numeric data", () => {
   describe("#_countByAction", () => {
     describe("should return the correct action and count for one file", function () {
       it("should handle a created file", function () {
@@ -345,110 +344,110 @@ describe("Aggregate counts of files by their associated actions", () => {
       });
     });
   });
+})
 
-  describe("#_moveOrRenameFromChange", () => {
-    it("should return move, rename, or move and rename action", () => {
-      it("should return move", () => {
-        const change = {
-          x: ACTION.R,
-          y: " ",
-          from: "foo.txt",
-          to: "bar/foo.xt",
-        };
-        const expected = "move";
+describe("#_moveOrRenameFromChange", () => {
+  it("should return move, rename, or move and rename action", () => {
+    it("should return move", () => {
+      const change = {
+        x: ACTION.R,
+        y: " ",
+        from: "foo.txt",
+        to: "bar/foo.xt",
+      };
+      const expected = "move";
 
-        assert.strictEqual(_moveOrRenameFromChange(change), expected);
-      });
+      assert.strictEqual(_moveOrRenameFromChange(change), expected);
+    });
 
-      it("should return rename", () => {
-        const change = {
-          x: ACTION.R,
-          y: " ",
-          from: "foo.txt",
-          to: "bar.xt",
-        };
-        const expected = "rename";
+    it("should return rename", () => {
+      const change = {
+        x: ACTION.R,
+        y: " ",
+        from: "foo.txt",
+        to: "bar.xt",
+      };
+      const expected = "rename";
 
-        assert.strictEqual(_moveOrRenameFromChange(change), expected);
-      });
+      assert.strictEqual(_moveOrRenameFromChange(change), expected);
+    });
 
-      it("should return move and rename", () => {
-        const change = {
-          x: ACTION.R,
-          y: " ",
-          from: "foo.txt",
-          to: "bar/bazz.xt",
-        };
-        const expected = "move and rename";
+    it("should return move and rename", () => {
+      const change = {
+        x: ACTION.R,
+        y: " ",
+        from: "foo.txt",
+        to: "bar/bazz.xt",
+      };
+      const expected = "move and rename";
 
-        assert.strictEqual(_moveOrRenameFromChange(change), expected);
-      });
+      assert.strictEqual(_moveOrRenameFromChange(change), expected);
     });
   });
+});
 
-  describe("#countByActionMsg", () => {
-    describe("should convert action and counts to a readable commit message", function () {
-      describe("one file", function () {
-        it("should handle a created file", function () {
-          const actionCounts = {
-            create: { fileCount: 1 },
-          };
-          const expected = "create 1 file";
+describe("#countByActionMsg", () => {
+  describe("should convert action and counts to a readable commit message", function () {
+    describe("one file", function () {
+      it("should handle a created file", function () {
+        const actionCounts = {
+          create: { fileCount: 1 },
+        };
+        const expected = "create 1 file";
 
-          assert.strictEqual(countByActionMsg(actionCounts), expected);
-        });
-
-        it("should handle a deleted file", function () {
-          const actionCounts = {
-            delete: { fileCount: 1 },
-          };
-          const expected = "delete 1 file";
-
-          assert.strictEqual(countByActionMsg(actionCounts), expected);
-        });
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
       });
 
-      describe("multiples files", function () {
-        it("should handle one created file and one updated file", function () {
-          const actionCounts = {
-            create: { fileCount: 1 },
-            update: { fileCount: 1 },
-          };
-          const expected = "create 1 file and update 1 file";
+      it("should handle a deleted file", function () {
+        const actionCounts = {
+          delete: { fileCount: 1 },
+        };
+        const expected = "delete 1 file";
 
-          assert.strictEqual(countByActionMsg(actionCounts), expected);
-        });
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      });
+    });
 
-        it("should handle one created, updated and deleted", function () {
-          const actionCounts = {
-            create: { fileCount: 1 },
-            update: { fileCount: 1 },
-            delete: { fileCount: 1 },
-          };
-          const expected = "create 1 file, update 1 file and delete 1 file";
+    describe("multiples files", function () {
+      it("should handle one created file and one updated file", function () {
+        const actionCounts = {
+          create: { fileCount: 1 },
+          update: { fileCount: 1 },
+        };
+        const expected = "create 1 file and update 1 file";
 
-          assert.strictEqual(countByActionMsg(actionCounts), expected);
-        });
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      });
 
-        it("should handle one created file and two updated files", function () {
-          const actionCounts = {
-            create: { fileCount: 1 },
-            update: { fileCount: 2 },
-          };
-          const expected = "create 1 file and update 2 files";
+      it("should handle one created, updated and deleted", function () {
+        const actionCounts = {
+          create: { fileCount: 1 },
+          update: { fileCount: 1 },
+          delete: { fileCount: 1 },
+        };
+        const expected = "create 1 file, update 1 file and delete 1 file";
 
-          assert.strictEqual(countByActionMsg(actionCounts), expected);
-        });
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      });
 
-        it("should handle two updated file and three deleted files", function () {
-          const actionCounts = {
-            update: { fileCount: 2 },
-            delete: { fileCount: 3 },
-          };
-          const expected = "update 2 files and delete 3 files";
+      it("should handle one created file and two updated files", function () {
+        const actionCounts = {
+          create: { fileCount: 1 },
+          update: { fileCount: 2 },
+        };
+        const expected = "create 1 file and update 2 files";
 
-          assert.strictEqual(countByActionMsg(actionCounts), expected);
-        });
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      });
+
+      it("should handle two updated file and three deleted files", function () {
+        const actionCounts = {
+          update: { fileCount: 2 },
+          delete: { fileCount: 3 },
+        };
+        const expected = "update 2 files and delete 3 files";
+
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
       });
     });
   });
