@@ -344,13 +344,24 @@ describe("#_countByAction", () => {
 
 describe("#countByActionMsg", () => {
   describe("should convert action and counts to a readable commit message", function () {
-    it("should handle a created file", function () {
-      const actionCounts = {
-        create: { fileCount: 1 },
-      }
-      const expected = "create 1 file"
+    describe("one file", function () {
+      it("should handle a created file", function () {
+        const actionCounts = {
+          create: { fileCount: 1 },
+        }
+        const expected = "create 1 file"
 
-      assert.strictEqual(countByActionMsg(actionCounts), expected);
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      })
+
+      it("should handle a deleted file", function () {
+        const actionCounts = {
+          delete: { fileCount: 1 },
+        }
+        const expected = "delete 1 file"
+
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      })
     })
   })
 })
