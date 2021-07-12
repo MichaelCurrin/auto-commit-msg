@@ -15,7 +15,7 @@ import { ROOT } from "../lib/constants";
  * Given an array of strings, return a nested of array containing the strings split at the given
  * separator.
  */
-function _splitStrings(items: string[], sep = "/") {
+export function _splitStrings(items: string[], sep = "/") {
   return items.map((item: string) => item.split(sep));
 }
 
