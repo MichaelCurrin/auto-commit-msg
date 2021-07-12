@@ -346,8 +346,8 @@ describe("Aggregate counts of files as numeric data", () => {
   });
 })
 
-describe("#_moveOrRenameFromChange", () => {
-  it("should return move, rename, or move and rename action", () => {
+describe("Identify move, rename, or move and rename", () => {
+  describe("#_moveOrRenameFromChange", () => {
     it("should return move", () => {
       const change = {
         x: ACTION.R,
