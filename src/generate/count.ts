@@ -11,7 +11,7 @@
 
 import { FileChanges } from "../git/parseOutput.d";
 import { ACTION } from "../lib/constants";
-import { moveOrRenameFromPaths, splitPath } from "../lib/paths";
+import { moveOrRenameFromPaths, splitPath, _join } from "../lib/paths";
 import { FileChangesByAction } from "./count.d";
 
 /**
@@ -52,5 +52,5 @@ export function countByActionMsg(actionCounts: FileChangesByAction) {
     return `${action} ${count} file${plural}`;
   });
 
-  return msgs.join(", ");
+  return _join(msgs)
 }

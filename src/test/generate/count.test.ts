@@ -370,7 +370,7 @@ describe("#countByActionMsg", () => {
           create: { fileCount: 1 },
           update: { fileCount: 1 },
         }
-        const expected = "create 1 file, update 1 file"
+        const expected = "create 1 file and update 1 file"
 
         assert.strictEqual(countByActionMsg(actionCounts), expected);
       })
@@ -381,7 +381,7 @@ describe("#countByActionMsg", () => {
           update: { fileCount: 1 },
           delete: { fileCount: 1 },
         }
-        const expected = "create 1 file, update 1 file, delete 1 file"
+        const expected = "create 1 file, update 1 file and delete 1 file"
 
         assert.strictEqual(countByActionMsg(actionCounts), expected);
       })
