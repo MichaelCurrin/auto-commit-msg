@@ -5,7 +5,7 @@
  */
 import * as path from "path";
 import { ROOT } from "../lib/constants";
-import { MoveAndOrRename, SplitPathResult } from "./paths.d";
+import { MoveOrRename, SplitPathResult } from "./paths.d";
 
 /**
  * Get metadata for a given path.
@@ -86,8 +86,8 @@ export function humanList(paths: string[]) {
 export function moveOrRename(
   oldP: SplitPathResult,
   newP: SplitPathResult
-): MoveAndOrRename {
-  let result: MoveAndOrRename;
+): MoveOrRename {
+  let result: MoveOrRename;
 
   if (oldP.name === newP.name) {
     result = "move";
