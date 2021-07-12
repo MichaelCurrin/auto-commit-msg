@@ -184,5 +184,39 @@ describe("count", () => {
 
       assert.deepStrictEqual(count(changes), expected);
     });
+
+    it("should handle four updated files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "fizz.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "buzz.txt",
+          to: "",
+        },
+      ];
+      const expected = {
+        update: { fileCount: 4 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
   })
 });
