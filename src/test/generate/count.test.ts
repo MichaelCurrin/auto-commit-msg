@@ -89,4 +89,28 @@ describe("count", () => {
       assert.deepStrictEqual(count(changes), expected);
     });
   });
+
+  describe("should return the correct action and count for two file of the same action", function () {
+    it("should handle two created files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+      ];
+      const expected = {
+        create: { fileCount: 2 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
+  })
 });
