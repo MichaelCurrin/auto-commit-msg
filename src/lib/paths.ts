@@ -87,7 +87,7 @@ export function humanList(paths: string[]) {
  *
  * TODO: Update to handle case modified in addition to move/rename, or make a new function.
  */
-export function moveOrRename(
+export function moveOrRenameFromPaths(
   oldP: SplitPathResult,
   newP: SplitPathResult
 ) {

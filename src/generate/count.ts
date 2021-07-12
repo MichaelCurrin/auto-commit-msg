@@ -11,7 +11,7 @@
 
 import { FileChanges } from "../git/parseOutput.d";
 import { ACTION } from "../lib/constants";
-import { moveOrRename, splitPath } from "../lib/paths";
+import { moveOrRenameFromPaths, splitPath } from "../lib/paths";
 import { FileChangesByAction } from "./count.d";
 
 function determineAction(item: FileChanges): string {
@@ -22,7 +22,7 @@ function determineAction(item: FileChanges): string {
   const oldP = splitPath(item.from);
   const newP = splitPath(item.to);
 
-  return moveOrRename(oldP, newP);
+  return moveOrRenameFromPaths(oldP, newP);
 }
 
 export function count(changes: FileChanges[]) {
