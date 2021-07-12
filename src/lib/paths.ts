@@ -5,7 +5,7 @@
  */
 import * as path from "path";
 import { ROOT } from "../lib/constants";
-import { SplitPathResult } from "./paths.d";
+import { MoveAndOrRename, SplitPathResult } from "./paths.d";
 
 /**
  * Get metadata for a given path.
@@ -76,4 +76,26 @@ export function humanList(paths: string[]) {
   }
 
   return _join(paths);
+}
+
+/**
+ * Determine if a pair of paths represents a move, rename, or both.
+ *
+ * TODO: Update to handle case modified in addition to move/rename, or make a new function.
+ */
+export function moveType(
+  oldP: SplitPathResult,
+  newP: SplitPathResult
+): MoveAndOrRename {
+  let result: MoveAndOrRename;
+
+  if (oldP.name === newP.name) {
+    result = "move";
+  } else if (oldP.dirPath === newP.dirPath) {
+    result = "rename";
+  } else {
+    result = "move and rename";
+  }
+
+  return result;
 }

@@ -8,11 +8,9 @@
  * differently.
  */
 import { ACTION, ROOT } from "../lib/constants";
-import { splitPath } from "../lib/paths";
-import { SplitPathResult } from "../lib/paths.d";
+import { moveType, splitPath } from "../lib/paths";
 
 export type ActionKeys = keyof typeof ACTION;
-export type MoveAndOrRename = "move" | "rename" | "move and rename";
 
 /**
  * Extract single action from given X and Y actions.
@@ -36,28 +34,6 @@ function _lookupStatusAction(x: string, y: string): string {
  */
 export function lookupDiffIndexAction(x: string) {
   return ACTION[x as ActionKeys];
-}
-
-/**
- * Determine if a pair of paths represents a move, rename, or both.
- *
- * TODO: Update to handle case modified in addition to move/rename, or make a new function.
- */
-function moveType(
-  oldP: SplitPathResult,
-  newP: SplitPathResult
-): MoveAndOrRename {
-  let result: MoveAndOrRename;
-
-  if (oldP.name === newP.name) {
-    result = "move";
-  } else if (oldP.dirPath === newP.dirPath) {
-    result = "rename";
-  } else {
-    result = "move and rename";
-  }
-
-  return result;
 }
 
 /**
