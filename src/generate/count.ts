@@ -28,11 +28,11 @@ function determineAction(item: FileChanges): string {
 export function count(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
 
-  const item: FileChanges = changes[0];
+  for (const item of changes) {
+    let action: string = determineAction(item);
 
-  let action: string = determineAction(item);
-
-  result[action] = { fileCount: 1 }
+    result[action] = { fileCount: 1 }
+  }
 
   return result;
 }
