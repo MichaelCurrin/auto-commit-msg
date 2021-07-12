@@ -8,7 +8,7 @@
  * differently.
  */
 import { ACTION, ROOT } from "../lib/constants";
-import { moveType, splitPath } from "../lib/paths";
+import { moveOrRename, splitPath } from "../lib/paths";
 import { ActionKeys } from "./action.d";
 
 /**
@@ -42,7 +42,7 @@ export function moveOrRenameMsg(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
     newP = splitPath(newPath);
 
-  const moveDesc = moveType(oldP, newP);
+  const moveDesc = moveOrRename(oldP, newP);
 
   let msg;
 
