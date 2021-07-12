@@ -31,7 +31,8 @@ export function count(changes: FileChanges[]) {
   for (const item of changes) {
     let action: string = determineAction(item);
 
-    result[action] = { fileCount: 1 }
+    result[action] = result[action] || { fileCount: 0 };
+    result[action].fileCount++;
   }
 
   return result;
