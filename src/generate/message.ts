@@ -7,7 +7,8 @@ import { parseDiffIndex } from "../git/parseOutput";
 import { ACTION } from "../lib/constants";
 import { friendlyFile, humanList } from "../lib/paths";
 import { equal } from "../lib/utils";
-import { ActionKeys, lookupDiffIndexAction, moveOrRenameFile } from "./action";
+import { lookupDiffIndexAction, moveOrRenameFile } from "./action";
+import { ActionKeys } from "./action.d";
 
 /**
  * Prepare a commit message based on a single changed file.
