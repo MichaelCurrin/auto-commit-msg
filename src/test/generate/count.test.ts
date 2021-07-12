@@ -363,5 +363,17 @@ describe("#countByActionMsg", () => {
         assert.strictEqual(countByActionMsg(actionCounts), expected);
       })
     })
+
+    describe("multiples files", function () {
+      it("should handle one created file and one updated file", function () {
+        const actionCounts = {
+          create: { fileCount: 1 },
+          update: { fileCount: 1 },
+        }
+        const expected = "create 1 file, update 1 file"
+
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      })
+    })
   })
 })
