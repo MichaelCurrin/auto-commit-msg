@@ -88,6 +88,22 @@ describe("count", () => {
 
       assert.deepStrictEqual(count(changes), expected);
     });
+
+    it("should handle a renamed and moved file", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "foo.txt",
+          to: "bar/buzz.txt",
+        },
+      ];
+      const expected = {
+        'move and rename': { fileCount: 1 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
   });
 
   describe("give correct action and count for files of the same action", function () {
