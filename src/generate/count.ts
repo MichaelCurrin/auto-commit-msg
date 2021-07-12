@@ -14,19 +14,15 @@ import { ACTION } from "../lib/constants";
 import { moveOrRename, splitPath } from "../lib/paths";
 import { FileChangesByAction } from "./count.d";
 
-function determineAction(item: FileChanges) {
-  let action: string;
-
-  if (item.x === ACTION.R) {
-    const oldP = splitPath(item.from);
-    const newP = splitPath(item.to);
-    action = moveOrRename(oldP, newP);
-  }
-  else {
-    action = item.x;
+function determineAction(item: FileChanges): string {
+  if (item.x !== ACTION.R) {
+    return item.x
   }
 
-  return action;
+  const oldP = splitPath(item.from);
+  const newP = splitPath(item.to);
+
+  return moveOrRename(oldP, newP);
 }
 
 export function count(changes: FileChanges[]) {
