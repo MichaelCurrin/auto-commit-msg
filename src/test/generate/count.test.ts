@@ -112,5 +112,27 @@ describe("count", () => {
 
       assert.deepStrictEqual(count(changes), expected);
     });
+
+    it("should handle two renamed files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "foo.txt",
+          to: "bar.txt",
+        },
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "bazz.txt",
+          to: "buzz.txt",
+        },
+      ];
+      const expected = {
+        rename: { fileCount: 2 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
   })
 });
