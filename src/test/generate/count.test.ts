@@ -219,4 +219,58 @@ describe("count", () => {
       assert.deepStrictEqual(count(changes), expected);
     });
   })
+
+  describe("give correct actionsand counts for files with different actions", function () {
+    it("should handle one created and one updated file", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+      ];
+      const expected = {
+        create: { fileCount: 1 },
+        update: { fileCount: 1 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
+
+    it("should handle one created and two updated files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "fizz.txt",
+          to: "",
+        },
+      ];
+      const expected = {
+        create: { fileCount: 1 },
+        update: { fileCount: 2 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    })
+  })
 });
