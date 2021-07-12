@@ -27,15 +27,15 @@ describe("Path handling", function () {
   });
 
   describe("_join", function () {
-    it("returns one item", () => {
+    it("returns one item", function () {
       assert.strictEqual(_join(["foo"]), "foo");
     });
 
-    it("returns two items joined with \"and\"", () => {
+    it("returns two items joined with \"and\"", function () {
       assert.strictEqual(_join(["foo", "bar"]), "foo and bar");
     });
 
-    it("returns three items joined with commands and an an \"and\"", () => {
+    it("returns three items joined with commands and an an \"and\"", function () {
       assert.strictEqual(_join(["foo", "bar", "bazz"]), "foo, bar and bazz");
     });
   });
