@@ -17,7 +17,7 @@ import { FileChangesByAction } from "./count.d";
 /**
  * Determine if a file change is for move, rename, or both.
  */
-function moveOrRenameFromChange(item: FileChanges): string {
+export function _moveOrRenameFromChange(item: FileChanges): string {
   if (item.x !== ACTION.R) {
     return item.x
   }
@@ -35,7 +35,7 @@ export function _countByAction(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
 
   for (const item of changes) {
-    let action: string = moveOrRenameFromChange(item);
+    let action: string = _moveOrRenameFromChange(item);
 
     result[action] = result[action] || { fileCount: 0 };
     result[action].fileCount++;
