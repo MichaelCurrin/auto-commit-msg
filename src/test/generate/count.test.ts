@@ -90,7 +90,7 @@ describe("count", () => {
     });
   });
 
-  describe("should return the correct action and count for two file of the same action", function () {
+  describe("give correct action and count for files of the same action", function () {
     it("should handle two created files", function () {
       const changes: FileChanges[] = [
         {
@@ -130,6 +130,56 @@ describe("count", () => {
       ];
       const expected = {
         rename: { fileCount: 2 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
+
+    it("should handle two created files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+      ];
+      const expected = {
+        create: { fileCount: 2 },
+      };
+
+      assert.deepStrictEqual(count(changes), expected);
+    });
+
+    it("should handle three deleted files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.D,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.D,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+        {
+          x: ACTION.D,
+          y: " ",
+          from: "bazz.txt",
+          to: "",
+        },
+      ];
+      const expected = {
+        delete: { fileCount: 3 },
       };
 
       assert.deepStrictEqual(count(changes), expected);
