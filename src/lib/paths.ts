@@ -58,8 +58,15 @@ export function _join(items: string[]) {
     return items[0];
   }
 
-  const firstItems = items.slice(0, items.length - 1);
   const lastItem = items.slice(-1);
+
+  if (items.length === 2) {
+    const firstItem = items[0];
+
+    return `${firstItem} and ${lastItem}`;
+  }
+
+  const firstItems = items.slice(0, items.length - 1);
 
   const start = firstItems.join(", ");
 
