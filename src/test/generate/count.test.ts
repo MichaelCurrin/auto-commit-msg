@@ -273,7 +273,7 @@ describe("count", () => {
       assert.deepStrictEqual(count(changes), expected);
     })
 
-    it("should handle one created, updated, deleted, renamed and moved file", function () {
+    it("should handle one created, updated, deleted, renamed and two moved files", function () {
       const changes: FileChanges[] = [
         {
           x: ACTION.A,
@@ -305,13 +305,19 @@ describe("count", () => {
           from: "def.txt",
           to: "xyz/def.txt",
         },
+        {
+          x: ACTION.R,
+          y: " ",
+          from: "src/main.js",
+          to: "main.js",
+        },
       ];
       const expected = {
         create: { fileCount: 1 },
         update: { fileCount: 1 },
         delete: { fileCount: 1 },
         rename: { fileCount: 1 },
-        move: { fileCount: 1 },
+        move: { fileCount: 2 },
       };
 
       assert.deepStrictEqual(count(changes), expected);
