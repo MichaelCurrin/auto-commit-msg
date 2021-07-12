@@ -38,6 +38,11 @@ export function lookupDiffIndexAction(x: string) {
   return ACTION[x as ActionKeys];
 }
 
+/**
+ * Determine if a pair of paths represents a move, rename, or both.
+ *
+ * TODO: Update to handle case modified in addition to move/rename, or make a new function.
+ */
 function moveType(
   oldP: SplitPathResult,
   newP: SplitPathResult
@@ -57,8 +62,6 @@ function moveType(
 
 /**
  * Return full message for moving and/or renaming a file.
- *
- * TODO: Update to handle case modified as well, or make a new function.
  */
 export function moveOrRenameFile(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
