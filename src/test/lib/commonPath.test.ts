@@ -4,7 +4,19 @@
  * Check that a common path can be found for paths.
  */
 import * as assert from "assert";
-import { commonPath } from "../../lib/commonPath";
+import { commonPath, _splitStrings } from "../../lib/commonPath";
+
+describe("Split an array of strings at a separator", function () {
+  describe("#_splitStrings", function () {
+    it("should split 3 strings correctly with the default separator", function () {
+      assert.deepStrictEqual(_splitStrings(["a/b/c", "A/B/C", "1/2/3"]), [
+        ["a", "b", "c"],
+        ["A", "B", "C"],
+        ["1", "2", "3"],
+      ]);
+    });
+  });
+});
 
 describe("Find the highest common parent directory for paths", function () {
   // This is useful when building a change message about multiple files and seeing what the high
