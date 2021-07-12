@@ -12,12 +12,7 @@
 import { FileChanges } from "../git/parseOutput.d";
 import { ACTION } from "../lib/constants";
 import { moveOrRename, splitPath } from "../lib/paths";
-
-// Allowed keys are strictly mean to be from ACTION constant, plus also 'rename' (Git considers
-// rename and move the same thing but it is useful to differeniate here). Keep it flexible - don't
-// bother to validate the key here as this is used internally and from the user nd tests can handle
-// it.
-type CountResult = { [key: string]: number };
+import { CountResult } from "./count.d";
 
 export function count(changes: FileChanges[]) {
   const result: CountResult = {};
