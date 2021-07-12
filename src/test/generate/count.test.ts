@@ -395,6 +395,16 @@ describe("#countByActionMsg", () => {
 
         assert.strictEqual(countByActionMsg(actionCounts), expected);
       })
+
+      it("should handle two updated file and three deleted files", function () {
+        const actionCounts = {
+          update: { fileCount: 2 },
+          delete: { fileCount: 3 },
+        }
+        const expected = "update 2 files and delete 3 files"
+
+        assert.strictEqual(countByActionMsg(actionCounts), expected);
+      })
     })
   })
 })
