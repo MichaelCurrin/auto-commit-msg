@@ -5,7 +5,7 @@ import * as assert from "assert";
 import {
   countByActionMsg,
   _countByAction,
-  _moveOrRenameFromChange
+  _moveOrRenameFromChange,
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
@@ -344,7 +344,7 @@ describe("Aggregate counts of files as numeric data", function () {
       });
     });
   });
-})
+});
 
 describe("Identify move, rename, or move and rename", function () {
   describe("#_moveOrRenameFromChange", function () {
