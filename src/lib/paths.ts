@@ -49,11 +49,15 @@ export function friendlyFile(filePath: string) {
 }
 
 /**
- * Join items using commas and an "and".
+ * Join a series of items using commas and an "and".
  */
-export function _join(paths: string[]) {
-  const firstItems = paths.slice(0, paths.length - 1);
-  const lastItem = paths.slice(-1);
+export function _join(items: string[]) {
+  if (items.length === 1) {
+    return items[0];
+  }
+
+  const firstItems = items.slice(0, items.length - 1);
+  const lastItem = items.slice(-1);
 
   const start = firstItems.join(", ");
 
