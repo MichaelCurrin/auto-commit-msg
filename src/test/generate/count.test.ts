@@ -618,5 +618,34 @@ describe("Convert file changes to readable commit message of actions and counts"
 
       assert.strictEqual(countMsg(changes), expected);
     });
+
+    describe("return the action and count for more than two actions", function () {
+      it("handles one created, one updated and one deleted file", function () {
+        const changes: FileChanges[] = [
+          {
+            x: ACTION.A,
+            y: " ",
+            from: "foo.txt",
+            to: "",
+          },
+          {
+            x: ACTION.M,
+            y: " ",
+            from: "bar.txt",
+            to: "",
+          },
+          {
+            x: ACTION.D,
+            y: " ",
+            from: "bazz.txt",
+            to: "",
+          },
+        ];
+
+        const expected = "create 1 file, update 1 file and delete 1 file";
+
+        assert.strictEqual(countMsg(changes), expected);
+      })
+    })
   });
 });
