@@ -61,10 +61,9 @@ export function _formatOne(action: string, count: number) {
  * Return full human-readable message using all actions and counts.
  */
 export function _formatAll(actionCounts: FileChangesByAction) {
-  const msgs = Object.keys(actionCounts).map(action => {
-    const count = actionCounts[action].fileCount;
-
-    return _formatOne(action, count);
+  const msgs = Object.entries(actionCounts).map(pair => {
+    const [action, values] = pair;
+    return _formatOne(action, values.fileCount);
   });
 
   return _join(msgs);
