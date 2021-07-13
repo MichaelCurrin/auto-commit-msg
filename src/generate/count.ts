@@ -8,7 +8,6 @@
  * e.g. 'update 3 files in foo' (highest common directory).
  * e.g. 'update 16 files and delete 2 files'
  */
-
 import { FileChanges } from "../git/parseOutput.d";
 import { ACTION } from "../lib/constants";
 import { moveOrRenameFromPaths, splitPath, _join } from "../lib/paths";
@@ -67,4 +66,12 @@ export function _formatAll(actionCounts: FileChangesByAction) {
   });
 
   return _join(msgs);
+}
+
+/**
+ * Return commit message of actions and counts for one or more file changes
+ */
+export function countMsg(changes: FileChanges[]): string {
+  const actionCounts = _countByAction(changes);
+  return _formatAll(actionCounts);
 }

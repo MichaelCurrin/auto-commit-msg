@@ -3,6 +3,7 @@
  */
 import * as assert from "assert";
 import {
+  countMsg,
   _countByAction,
   _formatAll,
   _formatOne,
@@ -481,6 +482,27 @@ describe("Convert action and counts to a readable commit message", function () {
         const expected = "update 2 files and delete 3 files";
 
         assert.strictEqual(_formatAll(actionCounts), expected);
+      });
+    });
+  });
+});
+
+describe("Convert file changes to readable commit message of actions and counts", function () {
+  describe("#countMsg", function () {
+    describe("returns the action and count for one kind of action", function () {
+      it("returns the action and count for one created file", function () {
+        const changes: FileChanges[] = [
+          {
+            x: ACTION.A,
+            y: " ",
+            from: "foo.txt",
+            to: "",
+          },
+        ];
+
+        const expected = "create 1 file";
+
+        assert.strictEqual(countMsg(changes), expected);
       });
     });
   });
