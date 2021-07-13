@@ -44,15 +44,17 @@ export function _countByAction(changes: FileChanges[]) {
   return result;
 }
 
+export function _pluralS(count: number) {
+  return count === 1 ? "" : "s";
+}
+
 /**
  * Return a human-readable message a single action and count value.
  *
  * Anything works for action - it is not enforced to be one of ACTION or the MoveOrRename type.
  */
 export function _formatOne(action: string, count: number) {
-  const plural = count === 1 ? "" : "s";
-
-  return `${action} ${count} file${plural}`;
+  return `${action} ${count} file${_pluralS(count)}`;
 }
 
 /**
