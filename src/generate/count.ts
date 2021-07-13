@@ -44,6 +44,11 @@ export function _countByAction(changes: FileChanges[]) {
   return result;
 }
 
+/**
+ * Return a human-readable message a single action and count value.
+ *
+ * Anything works for action - it is not enforced to be one of ACTION or the MoveOrRename type.
+ */
 export function _formatOne(action: string, count: number) {
   const plural = count === 1 ? "" : "s";
 
@@ -51,7 +56,7 @@ export function _formatOne(action: string, count: number) {
 }
 
 /**
- * Return a human-readable message for the actions and counts.
+ * Return full human-readable message using all actions and counts.
  */
 export function countByActionMsg(actionCounts: FileChangesByAction) {
   const msgs = Object.keys(actionCounts).map(action => {
