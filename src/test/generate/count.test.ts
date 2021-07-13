@@ -3,8 +3,10 @@
  */
 import * as assert from "assert";
 import {
-  _countByAction, _formatAll, _formatOne,
-  _moveOrRenameFromChange
+  _countByAction,
+  _formatAll,
+  _formatOne,
+  _moveOrRenameFromChange,
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
