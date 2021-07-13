@@ -5,7 +5,8 @@ import * as assert from "assert";
 import {
   countByActionMsg,
   _countByAction,
-  _moveOrRenameFromChange,
+  _formatOne,
+  _moveOrRenameFromChange
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
@@ -382,6 +383,38 @@ describe("Identify move, rename, or move and rename", function () {
       const expected = "move and rename";
 
       assert.strictEqual(_moveOrRenameFromChange(change), expected);
+    });
+  });
+});
+
+describe("Format a single action and count value as text", function () {
+  describe("#_formatOne", function () {
+    describe("should handle one file", function () {
+      it("should handle one created file", function () {
+        assert.strictEqual(_formatOne("create", 1), "create 1 file");
+      });
+
+      it("should handle one updated file", function () {
+        assert.strictEqual(_formatOne("update", 1), "update 1 file");
+      });
+
+      it("should handle one moved file", function () {
+        assert.strictEqual(_formatOne("move", 1), "move 1 file");
+      });
+
+      it("should handle one renamed file", function () {
+        assert.strictEqual(_formatOne("rename", 1), "rename 1 file");
+      });
+    });
+
+    describe("should handle multiple files", function () {
+      it("should handle two created files", function () {
+        assert.strictEqual(_formatOne("create", 2), "create 2 files");
+      });
+
+      it("should handle three deleted files", function () {
+        assert.strictEqual(_formatOne("delete", 3), "delete 3 files");
+      });
     });
   });
 });

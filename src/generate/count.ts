@@ -44,6 +44,15 @@ export function _countByAction(changes: FileChanges[]) {
   return result;
 }
 
+export function _formatOne(action: string, count: number) {
+  const plural = count === 1 ? "" : "s";
+
+  return `${action} ${count} file${plural}`;
+}
+
+/**
+ * Return a human-readable message for the actions and counts.
+ */
 export function countByActionMsg(actionCounts: FileChangesByAction) {
   const msgs = Object.keys(actionCounts).map(action => {
     const count = actionCounts[action].fileCount;
