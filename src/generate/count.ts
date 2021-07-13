@@ -69,7 +69,7 @@ export function _formatAll(actionCounts: FileChangesByAction) {
 }
 
 /**
- * Return commit message of actions and counts for one or more file changes
+ * Return commit message of actions and counts for one or more file changes.
  */
 export function countMsg(changes: FileChanges[]): string {
   const actionCounts = _countByAction(changes);
