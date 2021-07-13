@@ -7,7 +7,7 @@ import {
   _countByAction,
   _formatAll,
   _formatOne,
-  _moveOrRenameFromChange,
+  _moveOrRenameFromChange
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
@@ -489,8 +489,8 @@ describe("Convert action and counts to a readable commit message", function () {
 
 describe("Convert file changes to readable commit message of actions and counts", function () {
   describe("#countMsg", function () {
-    describe("returns the action and count for one kind of action", function () {
-      it("returns the action and count for one created file", function () {
+    describe("return the action and count for one kind of action", function () {
+      it("handles one created file", function () {
         const changes: FileChanges[] = [
           {
             x: ACTION.A,
@@ -504,6 +504,64 @@ describe("Convert file changes to readable commit message of actions and counts"
 
         assert.strictEqual(countMsg(changes), expected);
       });
+    });
+
+    it("handles one updated file", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+      ];
+
+      const expected = "update 1 file";
+
+      assert.strictEqual(countMsg(changes), expected);
+    });
+
+    it("handles two deleted files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.D,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.D,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+      ];
+      const expected = "delete 2 files";
+
+      assert.strictEqual(countMsg(changes), expected);
+    });
+  });
+
+  describe("return the action and count for multiple actions", function () {
+    it("handles one created and one updated file", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+      ];
+
+      const expected = "create 1 file and update 1 file";
+
+      assert.strictEqual(countMsg(changes), expected);
     });
   });
 });
