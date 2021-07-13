@@ -60,7 +60,7 @@ export function _formatOne(action: string, count: number) {
 /**
  * Return full human-readable message using all actions and counts.
  */
-export function countByActionMsg(actionCounts: FileChangesByAction) {
+export function _formatAll(actionCounts: FileChangesByAction) {
   const msgs = Object.keys(actionCounts).map(action => {
     const count = actionCounts[action].fileCount;
     const plural = count === 1 ? "" : "s";
