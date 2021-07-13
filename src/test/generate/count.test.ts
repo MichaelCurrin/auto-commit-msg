@@ -646,6 +646,105 @@ describe("Convert file changes to readable commit message of actions and counts"
 
         assert.strictEqual(countMsg(changes), expected);
       })
+
+      it("handles two created, one updated and one deleted file", function () {
+        const changes: FileChanges[] = [
+          {
+            x: ACTION.A,
+            y: " ",
+            from: "fizz.txt",
+            to: "",
+          },
+          {
+            x: ACTION.A,
+            y: " ",
+            from: "foo.txt",
+            to: "",
+          },
+          {
+            x: ACTION.M,
+            y: " ",
+            from: "bar.txt",
+            to: "",
+          },
+          {
+            x: ACTION.D,
+            y: " ",
+            from: "bazz.txt",
+            to: "",
+          },
+        ];
+
+        const expected = "create 2 files, update 1 file and delete 1 file";
+
+        assert.strictEqual(countMsg(changes), expected);
+      })
+
+      it("handles one created, two updated and one deleted file", function () {
+        const changes: FileChanges[] = [
+          {
+            x: ACTION.A,
+            y: " ",
+            from: "foo.txt",
+            to: "",
+          },
+          {
+            x: ACTION.M,
+            y: " ",
+            from: "bar.txt",
+            to: "",
+          },
+          {
+            x: ACTION.M,
+            y: " ",
+            from: "fizz.txt",
+            to: "",
+          },
+          {
+            x: ACTION.D,
+            y: " ",
+            from: "bazz.txt",
+            to: "",
+          },
+        ];
+
+        const expected = "create 1 file, update 2 files and delete 1 file";
+
+        assert.strictEqual(countMsg(changes), expected);
+      })
+
+      it("handles one created, one updated and one deleted file", function () {
+        const changes: FileChanges[] = [
+          {
+            x: ACTION.A,
+            y: " ",
+            from: "foo.txt",
+            to: "",
+          },
+          {
+            x: ACTION.M,
+            y: " ",
+            from: "bar.txt",
+            to: "",
+          },
+          {
+            x: ACTION.D,
+            y: " ",
+            from: "bazz.txt",
+            to: "",
+          },
+          {
+            x: ACTION.D,
+            y: " ",
+            from: "fizz.txt",
+            to: "",
+          },
+        ];
+
+        const expected = "create 1 file, update 1 file and delete 2 files";
+
+        assert.strictEqual(countMsg(changes), expected);
+      })
     })
   });
 });
