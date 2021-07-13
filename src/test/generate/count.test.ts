@@ -542,7 +542,7 @@ describe("Convert file changes to readable commit message of actions and counts"
     });
   });
 
-  describe("return the action and count for multiple actions", function () {
+  describe("return the action and count for two actions", function () {
     it("handles one created and one updated file", function () {
       const changes: FileChanges[] = [
         {
@@ -554,12 +554,67 @@ describe("Convert file changes to readable commit message of actions and counts"
         {
           x: ACTION.M,
           y: " ",
-          from: "foo.txt",
+          from: "bar.txt",
           to: "",
         },
       ];
 
       const expected = "create 1 file and update 1 file";
+
+      assert.strictEqual(countMsg(changes), expected);
+    });
+
+    it("handles one created and two updated files", function () {
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bazz.txt",
+          to: "",
+        },
+      ];
+
+      const expected = "create 1 file and update 2 files";
+
+      assert.strictEqual(countMsg(changes), expected);
+    });
+
+    it("handles two updated files and one created file", function () {
+      // Same data as previous case, but with the order array changed.
+      const changes: FileChanges[] = [
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bar.txt",
+          to: "",
+        },
+        {
+          x: ACTION.M,
+          y: " ",
+          from: "bazz.txt",
+          to: "",
+        },
+        {
+          x: ACTION.A,
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        },
+      ];
+
+      const expected = "update 2 files and create 1 file";
 
       assert.strictEqual(countMsg(changes), expected);
     });
