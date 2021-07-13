@@ -63,9 +63,8 @@ export function _formatOne(action: string, count: number) {
 export function _formatAll(actionCounts: FileChangesByAction) {
   const msgs = Object.keys(actionCounts).map(action => {
     const count = actionCounts[action].fileCount;
-    const plural = count === 1 ? "" : "s";
 
-    return `${action} ${count} file${plural}`;
+    return _formatOne(action, count);
   });
 
   return _join(msgs);
