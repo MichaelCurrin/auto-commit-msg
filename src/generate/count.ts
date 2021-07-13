@@ -73,5 +73,6 @@ export function _formatAll(actionCounts: FileChangesByAction) {
  */
 export function countMsg(changes: FileChanges[]): string {
   const actionCounts = _countByAction(changes);
+
   return _formatAll(actionCounts);
 }
