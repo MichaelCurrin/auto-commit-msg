@@ -7,7 +7,7 @@ import {
   _countByAction,
   _formatAll,
   _formatOne,
-  _moveOrRenameFromChange
+  _moveOrRenameFromChange,
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 import { ACTION } from "../../lib/constants";
@@ -645,7 +645,7 @@ describe("Convert file changes to readable commit message of actions and counts"
         const expected = "create 1 file, update 1 file and delete 1 file";
 
         assert.strictEqual(countMsg(changes), expected);
-      })
+      });
 
       it("handles two created, one updated and one deleted file", function () {
         const changes: FileChanges[] = [
@@ -678,7 +678,7 @@ describe("Convert file changes to readable commit message of actions and counts"
         const expected = "create 2 files, update 1 file and delete 1 file";
 
         assert.strictEqual(countMsg(changes), expected);
-      })
+      });
 
       it("handles one created, two updated and one deleted file", function () {
         const changes: FileChanges[] = [
@@ -711,7 +711,7 @@ describe("Convert file changes to readable commit message of actions and counts"
         const expected = "create 1 file, update 2 files and delete 1 file";
 
         assert.strictEqual(countMsg(changes), expected);
-      })
+      });
 
       it("handles one created, one updated and one deleted file", function () {
         const changes: FileChanges[] = [
@@ -744,7 +744,7 @@ describe("Convert file changes to readable commit message of actions and counts"
         const expected = "create 1 file, update 1 file and delete 2 files";
 
         assert.strictEqual(countMsg(changes), expected);
-      })
-    })
+      });
+    });
   });
 });
