@@ -11,9 +11,10 @@
  */
 import { lookupDiffIndexAction } from "./generate/action";
 import { getConventionType } from "./generate/convCommit";
+import { countMsg } from "./generate/count";
 import { namedFiles, oneChange } from "./generate/message";
 import { parseDiffIndex } from "./git/parseOutput";
-import { CONVENTIONAL_TYPE } from "./lib/constants";
+import { AGGREGATE_MIN, CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
 
 /**
@@ -101,10 +102,18 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
  * previously.
  */
 export function _msgMulti(lines: string[]) {
-  const conventions = lines.map(_prefixFromChange);
-  const convention = _collapse(conventions);
+  if (lines.length < AGGREGATE_MIN) {
+    const conventions = lines.map(_prefixFromChange);
+    const prefix = _collapse(conventions);
+    const description = namedFiles(lines);
+    return { prefix, description };
+  } else {
+    const prefix = CONVENTIONAL_TYPE.UNKNOWN;
+    const changes = lines.map(line => parseDiffIndex(line));
+    const description = countMsg(changes);
 
-  return { prefix: convention, description: namedFiles(lines) };
+    return { prefix, description };
+  }
 }
 
 /**
