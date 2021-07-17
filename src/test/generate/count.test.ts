@@ -10,7 +10,6 @@ import {
   _moveOrRenameFromChange,
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
-import { ACTION } from "../../lib/constants";
 
 describe("Aggregate counts of files as numeric data", function () {
   describe("#_countByAction", function () {
@@ -18,7 +17,7 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle a created file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
@@ -34,7 +33,7 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle an updated file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "foo.txt",
             to: "",
@@ -50,7 +49,7 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle a deleted file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "foo.txt",
             to: "",
@@ -66,7 +65,7 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle a renamed file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "foo.txt",
             to: "bar.txt",
@@ -82,7 +81,7 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle a moved file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "foo.txt",
             to: "bar/foo.txt",
@@ -98,7 +97,7 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle a renamed and moved file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "foo.txt",
             to: "bar/buzz.txt",
@@ -116,13 +115,13 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle two created files", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "bar.txt",
             to: "",
@@ -138,13 +137,13 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle two renamed files", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "foo.txt",
             to: "bar.txt",
           },
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "bazz.txt",
             to: "buzz.txt",
@@ -160,13 +159,13 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle two created files", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "bar.txt",
             to: "",
@@ -182,19 +181,19 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle three deleted files", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "bazz.txt",
             to: "",
@@ -210,25 +209,25 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle four updated files", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "fizz.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "buzz.txt",
             to: "",
@@ -246,13 +245,13 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle one created and one updated file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
@@ -269,19 +268,19 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle one created and two updated files", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "fizz.txt",
             to: "",
@@ -298,37 +297,37 @@ describe("Aggregate counts of files as numeric data", function () {
       it("should handle one created, updated, deleted, renamed and two moved files", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "fizz.txt",
             to: "",
           },
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "abc.txt",
             to: "def.txt",
           },
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "def.txt",
             to: "xyz/def.txt",
           },
           {
-            x: ACTION.R,
+            x: "R",
             y: " ",
             from: "src/main.js",
             to: "main.js",
@@ -352,7 +351,7 @@ describe("Identify move, rename, or move and rename", function () {
   describe("#_moveOrRenameFromChange", function () {
     it("should return move", function () {
       const change = {
-        x: ACTION.R,
+        x: "R",
         y: " ",
         from: "foo.txt",
         to: "bar/foo.txt",
@@ -364,7 +363,7 @@ describe("Identify move, rename, or move and rename", function () {
 
     it("should return rename", function () {
       const change = {
-        x: ACTION.R,
+        x: "R",
         y: " ",
         from: "foo.txt",
         to: "bar.xt",
@@ -376,7 +375,7 @@ describe("Identify move, rename, or move and rename", function () {
 
     it("should return move and rename", function () {
       const change = {
-        x: ACTION.R,
+        x: "R",
         y: " ",
         from: "foo.txt",
         to: "bar/bazz.xt",
@@ -493,7 +492,7 @@ describe("Convert file changes to readable commit message of actions and counts"
       it("handles one created file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
@@ -509,7 +508,7 @@ describe("Convert file changes to readable commit message of actions and counts"
     it("handles one updated file", function () {
       const changes: FileChanges[] = [
         {
-          x: ACTION.M,
+          x: "M",
           y: " ",
           from: "foo.txt",
           to: "",
@@ -524,13 +523,13 @@ describe("Convert file changes to readable commit message of actions and counts"
     it("handles two deleted files", function () {
       const changes: FileChanges[] = [
         {
-          x: ACTION.D,
+          x: "D",
           y: " ",
           from: "foo.txt",
           to: "",
         },
         {
-          x: ACTION.D,
+          x: "D",
           y: " ",
           from: "bar.txt",
           to: "",
@@ -546,13 +545,13 @@ describe("Convert file changes to readable commit message of actions and counts"
     it("handles one created and one updated file", function () {
       const changes: FileChanges[] = [
         {
-          x: ACTION.A,
+          x: "A",
           y: " ",
           from: "foo.txt",
           to: "",
         },
         {
-          x: ACTION.M,
+          x: "M",
           y: " ",
           from: "bar.txt",
           to: "",
@@ -567,19 +566,19 @@ describe("Convert file changes to readable commit message of actions and counts"
     it("handles one created and two updated files", function () {
       const changes: FileChanges[] = [
         {
-          x: ACTION.A,
+          x: "A",
           y: " ",
           from: "foo.txt",
           to: "",
         },
         {
-          x: ACTION.M,
+          x: "M",
           y: " ",
           from: "bar.txt",
           to: "",
         },
         {
-          x: ACTION.M,
+          x: "M",
           y: " ",
           from: "bazz.txt",
           to: "",
@@ -595,19 +594,19 @@ describe("Convert file changes to readable commit message of actions and counts"
       // Same data as previous case, but with the order array changed.
       const changes: FileChanges[] = [
         {
-          x: ACTION.M,
+          x: "M",
           y: " ",
           from: "bar.txt",
           to: "",
         },
         {
-          x: ACTION.M,
+          x: "M",
           y: " ",
           from: "bazz.txt",
           to: "",
         },
         {
-          x: ACTION.A,
+          x: "A",
           y: " ",
           from: "foo.txt",
           to: "",
@@ -623,19 +622,19 @@ describe("Convert file changes to readable commit message of actions and counts"
       it("handles one created, one updated and one deleted file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "bazz.txt",
             to: "",
@@ -650,25 +649,25 @@ describe("Convert file changes to readable commit message of actions and counts"
       it("handles two created, one updated and one deleted file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "fizz.txt",
             to: "",
           },
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "bazz.txt",
             to: "",
@@ -683,25 +682,25 @@ describe("Convert file changes to readable commit message of actions and counts"
       it("handles one created, two updated and one deleted file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "fizz.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "bazz.txt",
             to: "",
@@ -716,25 +715,25 @@ describe("Convert file changes to readable commit message of actions and counts"
       it("handles one created, one updated and one deleted file", function () {
         const changes: FileChanges[] = [
           {
-            x: ACTION.A,
+            x: "A",
             y: " ",
             from: "foo.txt",
             to: "",
           },
           {
-            x: ACTION.M,
+            x: "M",
             y: " ",
             from: "bar.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "bazz.txt",
             to: "",
           },
           {
-            x: ACTION.D,
+            x: "D",
             y: " ",
             from: "fizz.txt",
             to: "",

@@ -9,10 +9,12 @@
  * e.g. 'update 16 files and delete 2 files'
  */
 import { FileChanges } from "../git/parseOutput.d";
-import { ACTION } from "../lib/constants";
 import { moveOrRenameFromPaths, splitPath, _join } from "../lib/paths";
 import { MoveOrRename } from "../lib/paths.d";
+import { lookupDiffIndexAction } from "./action";
 import { FileChangesByAction } from "./count.d";
+
+const RenameKey = "R";
 
 /**
  * Determine if a file change is for move, rename, or both.
@@ -33,7 +35,10 @@ export function _countByAction(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
 
   for (const item of changes) {
-    const action = item.x === ACTION.R ? _moveOrRenameFromChange(item) : item.x;
+    const action =
+      item.x === RenameKey
+        ? _moveOrRenameFromChange(item)
+        : lookupDiffIndexAction(item.x);
 
     result[action] = result[action] || { fileCount: 0 };
     result[action].fileCount++;
