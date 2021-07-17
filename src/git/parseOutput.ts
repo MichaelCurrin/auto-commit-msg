@@ -37,7 +37,8 @@ export function parseStatus(line: string): FileChanges {
 /**
  * Parse diff index.
  *
- * Parse a line produced by the `git diff-index` command.
+ * Expect a line produced by the `git diff-index` subcommand and parse it into an object describing the
+ * file changes.
  *
  * We keep `x` as a single letter here, even though the input might be include a percentage that we
  * ignore, as in 'R100 ...'.
