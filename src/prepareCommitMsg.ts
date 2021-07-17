@@ -51,9 +51,9 @@ export function _splitMsg(msg: string) {
 }
 
 /**
- * Determine what the type prefix should be for a file change, using Conventional Commit standard.
+ * Determine the Conventional Commit type prefix for a file change.
  */
-function _prefixFromChanges(line: string) {
+function _prefixFromChange(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
 
@@ -67,7 +67,7 @@ export function _msgOne(line: string) {
   // TODO: Pass FileChanges to one and generatePrefix instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
-  const prefix = _prefixFromChanges(line),
+  const prefix = _prefixFromChange(line),
     description = oneChange(line);
 
   return { prefix, description };
@@ -101,7 +101,7 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
  * previously.
  */
 export function _msgMulti(lines: string[]) {
-  const conventions = lines.map(_prefixFromChanges);
+  const conventions = lines.map(_prefixFromChange);
   const convention = _collapse(conventions);
 
   return { prefix: convention, description: namedFiles(lines) };
