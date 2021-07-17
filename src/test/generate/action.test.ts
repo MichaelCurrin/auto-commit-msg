@@ -25,6 +25,10 @@ describe("Desribe a file using a single path", function () {
     it("can describe a copied file", function () {
       assert.strictEqual(lookupDiffIndexAction("C"), "copy");
     });
+
+    it("can throws an error for a bad key", function () {
+      assert.throws(() => lookupDiffIndexAction("Z"));
+    });
   });
 });
 

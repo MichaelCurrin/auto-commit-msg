@@ -31,8 +31,14 @@ function _lookupStatusAction(x: string, y: string): string {
 /**
  * Lookup the action (e.g. 'modified') for a given key (e.g. 'M').
  */
-export function lookupDiffIndexAction(x: string) {
-  return ACTION[x as ActionKeys];
+export function lookupDiffIndexAction(x: string): ACTION {
+  const action = ACTION[x as ActionKeys];
+
+  if (typeof action === "undefined") {
+    throw new Error(`Unknown ACTION key: ${x}`);
+  }
+
+  return action;
 }
 
 /**
