@@ -11,16 +11,13 @@
 import { FileChanges } from "../git/parseOutput.d";
 import { ACTION } from "../lib/constants";
 import { moveOrRenameFromPaths, splitPath, _join } from "../lib/paths";
+import { MoveOrRename } from "../lib/paths.d";
 import { FileChangesByAction } from "./count.d";
 
 /**
  * Determine if a file change is for move, rename, or both.
  */
-export function _moveOrRenameFromChange(item: FileChanges): string {
-  if (item.x !== ACTION.R) {
-    return item.x;
-  }
-
+export function _moveOrRenameFromChange(item: FileChanges): MoveOrRename {
   const oldP = splitPath(item.from);
   const newP = splitPath(item.to);
 
