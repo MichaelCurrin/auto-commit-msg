@@ -192,13 +192,13 @@ export function _combineOldAndNew(
  * High-level function to process file changes and an old message, to generate a replacement commit
  * message.
  */
-export function _generateMsgWithOld(fileChangeLines: string[], oldMsg: string) {
+export function _generateMsgWithOld(lines: string[], oldMsg: string) {
   if (!oldMsg) {
     throw new Error(
       "`oldMsg` must be non-empty - or use `generateNewMsg` instead."
     );
   }
-  const { prefix, description } = _msgFromChanges(fileChangeLines);
+  const { prefix, description } = _msgFromChanges(lines);
 
   return _combineOldAndNew(prefix, description, oldMsg);
 }
@@ -211,11 +211,13 @@ export function _generateMsgWithOld(fileChangeLines: string[], oldMsg: string) {
  * Old message could be the current commit message value in the UI box (which might be a commit
  * message template that VS Code has filled in), or a commit message template read from a file in
  * the case of a hook flow without VS Code.
+ *
+ * @param lines A list of text values describing how files changes.
  */
-export function generateMsg(fileChangeLines: string[], oldMsg?: string): string {
+export function generateMsg(lines: string[], oldMsg?: string): string {
   if (!oldMsg) {
-    return _newMsg(fileChangeLines);
+    return _newMsg(lines);
   }
 
-  return _generateMsgWithOld(fileChangeLines, oldMsg);
+  return _generateMsgWithOld(lines, oldMsg);
 }
