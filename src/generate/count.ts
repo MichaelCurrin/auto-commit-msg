@@ -34,7 +34,7 @@ export function _countByAction(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
 
   for (const item of changes) {
-    const action: string = _moveOrRenameFromChange(item);
+    const action = item.x === ACTION.R ? _moveOrRenameFromChange(item) : item.x;
 
     result[action] = result[action] || { fileCount: 0 };
     result[action].fileCount++;
