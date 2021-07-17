@@ -29,7 +29,7 @@ function _lookupStatusAction(x: string, y: string): string {
 }
 
 /**
- * Lookup the action for a given key (single character).
+ * Lookup the action (e.g. 'modified') for a given key (e.g. 'M').
  */
 export function lookupDiffIndexAction(x: string) {
   return ACTION[x as ActionKeys];
