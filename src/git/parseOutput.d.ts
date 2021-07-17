@@ -13,9 +13,10 @@
  * There can also be percentage value for renaming, such 'R100' which is 100% similar. But we
  * discard any percentage value for the purposes of this project when parsing a line.
  *
- * TODO: Use `keyof typeof ACTION` for `x` and `y` to enforce 'M' etc. See action.d.ts module. And
- * consider making a second type where the `x` and `y` are ACTION types as `modified` etc. To save
- * using `lookupDiffIndexAction` call in multiple places.
+ * TODO: Use `ACTION` (fewest compile errors otherwise `keyof typeof ACTION`) for `x` and `y` to
+ * enforce 'M' etc. See action.d.ts module. And consider making a second type where the `x` and `y`
+ * are ACTION types as `modified` etc. To save using `lookupDiffIndexAction` call in multiple
+ * places.
  */
 
 export interface FileChanges {
