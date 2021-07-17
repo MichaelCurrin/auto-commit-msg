@@ -64,7 +64,7 @@ function _prefixFromChange(line: string) {
  * Generate message for a single file change.
  */
 export function _msgOne(line: string) {
-  // TODO: Pass FileChanges to one and generatePrefix instead of string.
+  // TODO: Pass FileChanges to oneChange and _prefixFromChange instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
   const prefix = _prefixFromChange(line),
