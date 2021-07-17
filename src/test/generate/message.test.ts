@@ -168,12 +168,12 @@ describe("Generate commit message for a few changed files which each get named",
     it("handles differing actions", function () {
       assert.strictEqual(
         namedFiles(["A    foo.txt", "M    bar.txt"]),
-        "Various changes to foo.txt and bar.txt"
+        "create 1 file and update 1 file"
       );
 
       assert.strictEqual(
         namedFiles(["M    foo.txt", "D    bar.txt"]),
-        "Various changes to foo.txt and bar.txt"
+        "update 1 file and delete 1 file"
       );
     });
   });

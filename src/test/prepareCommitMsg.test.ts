@@ -215,7 +215,7 @@ describe("Prepare commit message", function () {
       it("handles 2 files - one created and one modified", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          description: "Various changes to baz.txt and bar.js",
+          description: "create 1 file and update 1 file",
         };
 
         assert.deepStrictEqual(
@@ -225,15 +225,14 @@ describe("Prepare commit message", function () {
       });
 
       it("handles 3 files - with different actions", function () {
+        const lines = ["A    baz.txt", "M    bar.js", "D    README.md"];
+
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
-          description: "Various changes to baz.txt, bar.js and README.md",
+          description: "create 1 file, update 1 file and delete 1 file",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges(["A    baz.txt", "M    bar.js", "D    README.md"]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
     });
   });
