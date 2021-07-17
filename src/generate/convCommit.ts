@@ -8,9 +8,9 @@ import { splitPath } from "../lib/paths";
 
 // Package-related can be for 'build'.
 const PACKAGE_DIRS = [
-    // Rust
-    ".cargo",
-  ],
+  // Rust
+  ".cargo",
+],
   PACKAGE_NAMES = [
     // Python
     "requirements.txt",
@@ -53,29 +53,29 @@ const PACKAGE_DIRS = [
 
 // Build system (scripts, configurations or tools) and package dependencies.
 const BUILD_NAMES = [
-    // Docker
-    ".dockerignore",
-    "Dockerfile",
-    "docker-compose.yml",
+  // Docker
+  ".dockerignore",
+  "Dockerfile",
+  "docker-compose.yml",
 
-    // Make
-    "GNUmakefile",
-    "makefile",
-    "Makefile",
+  // Make
+  "GNUmakefile",
+  "makefile",
+  "Makefile",
 
-    // Ruby Rake - based on rake CLI message.
-    "rakefile",
-    "Rakefile",
-    "rakefile.rb",
-    "Rakefile.rb",
+  // Ruby Rake - based on rake CLI message.
+  "rakefile",
+  "Rakefile",
+  "rakefile.rb",
+  "Rakefile.rb",
 
-    "package.json", // Not necessarily package-related but always build-related.
+  "package.json", // Not necessarily package-related but always build-related.
 
-    // Java
-    "gradlew",
-    "grailsw",
-    "micronaut-cli.yml",
-  ],
+  // Java
+  "gradlew",
+  "grailsw",
+  "micronaut-cli.yml",
+],
   BUILD_EXTENSIONS = [
     // Ruby installation
     ".gemspec",
@@ -146,34 +146,34 @@ const CI_DIRS = [".circleci", ".github/workflows"],
 // It might be easier to leave out this list and assume everything is a script
 // unless it is a doc, markdown file or config.
 const SCRIPT_EXTENSIONS = [
-    ".html",
+  ".html",
 
-    ".css",
-    ".less",
-    ".scss",
+  ".css",
+  ".less",
+  ".scss",
 
-    ".js",
-    ".jsx",
-    ".ts",
-    ".tsx",
-    ".mjs",
+  ".js",
+  ".jsx",
+  ".ts",
+  ".tsx",
+  ".mjs",
 
-    ".py",
+  ".py",
 
-    ".rb",
+  ".rb",
 
-    ".java",
-    ".jar",
+  ".java",
+  ".jar",
 
-    ".c",
-    ".h",
+  ".c",
+  ".h",
 
-    ".rs",
+  ".rs",
 
-    ".go",
+  ".go",
 
-    ".php",
-  ],
+  ".php",
+],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = ".sh";
 
@@ -362,11 +362,11 @@ export class ConventionalCommit {
 /**
  * Get the Conventional Commit type.
  *
- * Relies on both the action type and the path-based logic.
+ * Relies on both the action performed and the path.
  *
- * Don't handle `ACTION.M` or `ACTION.C`, as it could be a fix or feature. So just use unknown/null
- * value. Though it could be set as always feature or docs as a general rule or config option on the
- * project level or extension level.
+ * Don't distiguish `ACTION.M` vs `ACTION.A`, as it could be a fix or feature. So just use
+ * unknown/null value. Though it could be set as always feature or docs as a general rule or config
+ * option on the project level or extension level.
  */
 export function getConventionType(
   action: ACTION,
