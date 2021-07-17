@@ -26,6 +26,8 @@ export function _moveOrRenameFromChange(item: FileChanges): MoveOrRename {
 
 /**
  * Group changes by action and add counts within each.
+ *
+ * TODO: ? Converts changes e.g. `x` from `'M'` to `'modified'`.
  */
 export function _countByAction(changes: FileChanges[]) {
   const result: FileChangesByAction = {};
