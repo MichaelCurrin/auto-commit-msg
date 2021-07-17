@@ -5,7 +5,7 @@
  */
 import * as path from "path";
 import { ROOT } from "../lib/constants";
-import { SplitPathResult } from "./paths.d";
+import { MoveOrRename, SplitPathResult } from "./paths.d";
 
 /**
  * Get metadata for a given path.
@@ -48,9 +48,19 @@ export function friendlyFile(filePath: string) {
   return name;
 }
 
-export function _join(paths: string[]) {
-  const firstItems = paths.slice(0, paths.length - 1);
-  const lastItem = paths.slice(-1);
+/**
+ * Join a series of items using commas and an "and".
+ *
+ * These don't have to be file paths but usually are for this project.
+ */
+export function _join(items: string[]) {
+  if (items.length === 1) {
+    return items[0];
+  }
+
+  const firstItems = items.slice(0, items.length - 1);
+  const lastItem = items.slice(-1);
+
   const start = firstItems.join(", ");
 
   return `${start} and ${lastItem}`;
@@ -76,4 +86,26 @@ export function humanList(paths: string[]) {
   }
 
   return _join(paths);
+}
+
+/**
+ * Determine if a pair of paths represents a move, rename, or both.
+ *
+ * TODO: Update to handle case modified in addition to move/rename, or make a new function.
+ */
+export function moveOrRenameFromPaths(
+  oldP: SplitPathResult,
+  newP: SplitPathResult
+) {
+  let result: MoveOrRename;
+
+  if (oldP.name === newP.name) {
+    result = "move";
+  } else if (oldP.dirPath === newP.dirPath) {
+    result = "rename";
+  } else {
+    result = "move and rename";
+  }
+
+  return result;
 }

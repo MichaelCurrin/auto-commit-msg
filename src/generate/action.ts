@@ -8,9 +8,8 @@
  * differently.
  */
 import { ACTION, ROOT } from "../lib/constants";
-import { splitPath } from "../lib/paths";
-
-export type ActionKeys = keyof typeof ACTION;
+import { moveOrRenameFromPaths, splitPath } from "../lib/paths";
+import { ActionKeys } from "./action.d";
 
 /**
  * Extract single action from given X and Y actions.
@@ -38,18 +37,18 @@ export function lookupDiffIndexAction(x: string) {
 
 /**
  * Return full message for moving and/or renaming a file.
- *
- * TODO: Update to handle case modified as well, or make a new function.
  */
-export function moveOrRenameFile(oldPath: string, newPath: string): string {
+export function moveOrRenameMsg(oldPath: string, newPath: string): string {
   const oldP = splitPath(oldPath),
     newP = splitPath(newPath);
 
+  const moveDesc = moveOrRenameFromPaths(oldP, newP);
+
   let msg;
 
-  if (oldP.name === newP.name) {
+  if (moveDesc === "move") {
     msg = `move ${oldP.name} to ${newP.dirPath}`;
-  } else if (oldP.dirPath === newP.dirPath) {
+  } else if (moveDesc === "rename") {
     msg = `rename ${oldP.name} to ${newP.name}`;
   } else {
     const target = newP.dirPath === ROOT ? `${newP.name} at ${ROOT}` : newPath;

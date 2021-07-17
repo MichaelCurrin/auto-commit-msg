@@ -5,7 +5,7 @@
  */
 import * as assert from "assert";
 import { ROOT } from "../../lib/constants";
-import { friendlyFile, humanList, splitPath } from "../../lib/paths";
+import { friendlyFile, humanList, splitPath, _join } from "../../lib/paths";
 
 describe("Path handling", function () {
   describe("#splitPath", function () {
@@ -23,6 +23,20 @@ describe("Path handling", function () {
         name: "baz.txt",
         extension: ".txt",
       });
+    });
+  });
+
+  describe("_join", function () {
+    it("returns one item", function () {
+      assert.strictEqual(_join(["foo"]), "foo");
+    });
+
+    it("returns two items joined with \"and\"", function () {
+      assert.strictEqual(_join(["foo", "bar"]), "foo and bar");
+    });
+
+    it("returns three items joined with commands and an an \"and\"", function () {
+      assert.strictEqual(_join(["foo", "bar", "bazz"]), "foo, bar and bazz");
     });
   });
 

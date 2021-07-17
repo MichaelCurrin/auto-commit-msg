@@ -4,3 +4,5 @@ export interface SplitPathResult {
   name: string;
   extension: string;
 }
+
+export type MoveOrRename = "move" | "rename" | "move and rename";
