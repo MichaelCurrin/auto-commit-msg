@@ -110,17 +110,17 @@ export function _msgMulti(lines: string[]) {
 /**
  * Generate message from changes to one or more files.
  *
- * @param diffIndexLines Lines from the `git diff-index` function, describing changes to files.
+ * @param lines Lines from the `git diff-index` function, describing changes to files.
  *
  * @returns Conventional Commit prefix and a description of changed paths.
  */
-export function _msgFromChanges(diffIndexLines: string[]) {
-  if (diffIndexLines.length === 1) {
-    const line = diffIndexLines[0];
+export function _msgFromChanges(lines: string[]) {
+  if (lines.length === 1) {
+    const line = lines[0];
     return _msgOne(line);
   }
 
-  return _msgMulti(diffIndexLines);
+  return _msgMulti(lines);
 }
 
 /**
