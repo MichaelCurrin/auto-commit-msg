@@ -45,7 +45,7 @@ export function oneChange(line: string) {
  *
  * @return A human-readable sentence decribing file changes. e.g. 'update foo.txt and bar.txt'.
  */
-export function namedFiles(lines: string[]) {
+export function namedFilesDesc(lines: string[]) {
   const changes = lines.map(line => parseDiffIndex(line));
 
   const actions = changes.map(item => item.x as ActionKeys);

@@ -12,7 +12,7 @@
 import { lookupDiffIndexAction } from "./generate/action";
 import { getConventionType } from "./generate/convCommit";
 import { countMsg } from "./generate/count";
-import { namedFiles, oneChange } from "./generate/message";
+import { namedFilesDesc, oneChange } from "./generate/message";
 import { parseDiffIndex } from "./git/parseOutput";
 import { AGGREGATE_MIN, CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
@@ -105,7 +105,7 @@ export function _msgMulti(lines: string[]) {
   if (lines.length < AGGREGATE_MIN) {
     const conventions = lines.map(_prefixFromChange);
     const prefix = _collapse(conventions);
-    const description = namedFiles(lines);
+    const description = namedFilesDesc(lines);
     return { prefix, description };
   } else {
     const prefix = CONVENTIONAL_TYPE.UNKNOWN;
