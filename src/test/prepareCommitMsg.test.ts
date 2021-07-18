@@ -13,7 +13,7 @@ import {
   _generateMsgWithOld,
   _msgFromChanges,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -240,17 +240,17 @@ describe("Prepare commit message", function () {
   describe("#_formatMsg", function () {
     it("combines a prefix and message correctly", function () {
       assert.strictEqual(
-        _formatMsg(CONVENTIONAL_TYPE.FEAT, "create foo.txt"),
+        _formatMsg({ prefix: CONVENTIONAL_TYPE.FEAT, description: "create foo.txt" }),
         "feat: create foo.txt"
       );
 
       assert.strictEqual(
-        _formatMsg(CONVENTIONAL_TYPE.BUILD, "update foo.txt"),
+        _formatMsg({ prefix: CONVENTIONAL_TYPE.BUILD, description: "update foo.txt" }),
         "build: update foo.txt"
       );
 
       assert.strictEqual(
-        _formatMsg(CONVENTIONAL_TYPE.DOCS, "update README.md"),
+        _formatMsg({ prefix: CONVENTIONAL_TYPE.DOCS, description: "update README.md" }),
         "docs: update README.md"
       );
     });

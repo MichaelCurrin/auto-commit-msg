@@ -137,20 +137,20 @@ export function _msgFromChanges(lines: string[]) {
 /**
  * Output a readable conventional commit message.
  */
-export function _formatMsg(prefix: CONVENTIONAL_TYPE, description: string) {
-  if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
-    return description;
+export function _formatMsg(convCommitMsg: ConvCommitMsg) {
+  if (convCommitMsg.prefix === CONVENTIONAL_TYPE.UNKNOWN) {
+    return convCommitMsg.description;
   }
-  return `${prefix}: ${description}`;
+  return `${convCommitMsg.prefix}: ${convCommitMsg.description}`;
 }
 
 /**
  * Generate a new commit message and format it as a string.
  */
 export function _newMsg(lines: string[]) {
-  const { prefix, description } = _msgFromChanges(lines);
+  const convCommitMsg = _msgFromChanges(lines);
 
-  return _formatMsg(prefix, description);
+  return _formatMsg(convCommitMsg);
 }
 
 /**
@@ -175,7 +175,7 @@ export function _combineOldAndNew(
   oldMsg?: string
 ) {
   if (!oldMsg) {
-    return _formatMsg(autoType, autoDesc);
+    return _formatMsg({ prefix: autoType, description: autoDesc });
   }
 
   const {
