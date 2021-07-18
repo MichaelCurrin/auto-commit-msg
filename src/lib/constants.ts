@@ -1,16 +1,17 @@
 /**
  * Map Git status short symbols to a long description.
  */
-// Human-friendly description of path,  for use in commit messages.
+// Use file names up to a point and after than using file counts.
+export const AGGREGATE_MIN = 5;
+
+// Human-friendly description of path, for use in commit messages.
 export const ROOT = "repo root";
 
 /**
  * Mapping of change descriptions.
  *
- * Based on the git docs for using `git status` or `git diff-index`. The keys are for `--short`
- * output. The values are the human-readable values from the standard long output.
- *
- * I've never noticed 'copied' in real life, but it is included anyway for completeness.
+ * See documentation:
+ *   docs/development/advanced/changes.md
  */
 export enum DESCRIPTION {
   " " = "unmodified",
@@ -27,12 +28,8 @@ export enum DESCRIPTION {
 /**
  * Describe actions in commit message sentences.
  *
- * These are based on GitHub syntax as in DESCRIPTION above, except the values are in the active
- * voice and not past tense, to fit the conventional commit style. Plus 'update' is used as a more
- * natural word than 'modify'.
- *
- * Note that 'move' will be included in 'rename', unless behavior is used later in this project to
- * determine a move with different logic.
+ * See documentation:
+ *   docs/development/advanced/changes.md
  */
 export enum ACTION {
   M = "update",
@@ -49,7 +46,8 @@ export enum ACTION {
  * The scope is mixed in here because refactoring a few modules to handle scope alone is too much
  * effort for one use-case.
  *
- * See convention-commits.md doc for more info.
+ See documentation:
+ *   docs/manual/conventional-commits.md
  */
 export enum CONVENTIONAL_TYPE {
   BUILD = "build",

@@ -3,7 +3,7 @@
  *
  * Handle text output from a `git` subcommand.
  */
-import { FileChanges } from "./parseOutput.d";
+import { FileChange } from "./parseOutput.d";
 
 // This is NOT worth moving to constants, because the space is a value, while the `DESCRIPTION`
 // enum has it as a key.
@@ -14,7 +14,7 @@ const UNMODIFIED = " ";
  *
  * Parse a line produced by the `git status --short` command.
  */
-export function parseStatus(line: string): FileChanges {
+export function parseStatus(line: string): FileChange {
   if (line.length <= 4) {
     throw new Error(
       `Input string must be at least 4 characters. Got: '${line}'`
@@ -37,7 +37,8 @@ export function parseStatus(line: string): FileChanges {
 /**
  * Parse diff index.
  *
- * Parse a line produced by the `git diff-index` command.
+ * Expect a line produced by the `git diff-index` subcommand and parse it into an object describing
+ * the file changes.
  *
  * We keep `x` as a single letter here, even though the input might be include a percentage that we
  * ignore, as in 'R100 ...'.
@@ -47,7 +48,7 @@ export function parseStatus(line: string): FileChanges {
  *
  * The `to` field will not always be set, so a null string is fine (and better than `undefined`).
  */
-export function parseDiffIndex(line: string): FileChanges {
+export function parseDiffIndex(line: string): FileChange {
   if (line.length <= 4) {
     throw new Error(
       `Invalid input. Input string must be at least 4 characters. Got: '${line}'`

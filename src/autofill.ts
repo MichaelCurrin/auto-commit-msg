@@ -7,11 +7,6 @@ import { getChanges } from "./git/cli";
 import { getCommitMsg, setCommitMsg } from "./gitExtension";
 import { generateMsg } from "./prepareCommitMsg";
 
-const MAX_CHANGES = 8;
-
-export const TOO_MANY_FILES_MSG = `\
-Max of ${MAX_CHANGES} reached. Try staging or stashing some changes`;
-
 export const NO_LINES_MSG = `\
 Unable to generate message as no changes files can be seen.
 Try saving your files or stage any new (untracked) files.\
@@ -35,10 +30,6 @@ export async function makeAndFillCommitMsg(repository: Repository) {
 
   if (!fileChanges.length) {
     vscode.window.showErrorMessage(NO_LINES_MSG);
-    return;
-  }
-  if (fileChanges.length > MAX_CHANGES) {
-    vscode.window.showErrorMessage(TOO_MANY_FILES_MSG);
     return;
   }
 

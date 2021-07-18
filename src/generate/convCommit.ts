@@ -362,11 +362,11 @@ export class ConventionalCommit {
 /**
  * Get the Conventional Commit type.
  *
- * Relies on both the action type and the path-based logic.
+ * Relies on both the action performed and the path.
  *
- * Don't handle `ACTION.M` or `ACTION.C`, as it could be a fix or feature. So just use unknown/null
- * value. Though it could be set as always feature or docs as a general rule or config option on the
- * project level or extension level.
+ * Don't distinguish `ACTION.M` vs `ACTION.A`, as it could be a fix or feature. So just use
+ * unknown/null value. Though it could be set as always feature or docs as a general rule or config
+ * option on the project level or extension level.
  */
 export function getConventionType(
   action: ACTION,

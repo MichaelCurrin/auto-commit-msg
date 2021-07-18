@@ -8,19 +8,18 @@
  * e.g. 'update 3 files in foo' (highest common directory).
  * e.g. 'update 16 files and delete 2 files'
  */
-import { FileChanges } from "../git/parseOutput.d";
-import { ACTION } from "../lib/constants";
+import { FileChange } from "../git/parseOutput.d";
 import { moveOrRenameFromPaths, splitPath, _join } from "../lib/paths";
+import { MoveOrRename } from "../lib/paths.d";
+import { lookupDiffIndexAction } from "./action";
 import { FileChangesByAction } from "./count.d";
+
+const RenameKey = "R";
 
 /**
  * Determine if a file change is for move, rename, or both.
  */
-export function _moveOrRenameFromChange(item: FileChanges): string {
-  if (item.x !== ACTION.R) {
-    return item.x;
-  }
-
+export function _moveOrRenameFromChange(item: FileChange): MoveOrRename {
   const oldP = splitPath(item.from);
   const newP = splitPath(item.to);
 
@@ -29,12 +28,17 @@ export function _moveOrRenameFromChange(item: FileChanges): string {
 
 /**
  * Group changes by action and add counts within each.
+ *
+ * TODO: ? Converts changes e.g. `x` from `'M'` to `'modified'`.
  */
-export function _countByAction(changes: FileChanges[]) {
+export function _countByAction(changes: FileChange[]) {
   const result: FileChangesByAction = {};
 
   for (const item of changes) {
-    const action: string = _moveOrRenameFromChange(item);
+    const action =
+      item.x === RenameKey
+        ? _moveOrRenameFromChange(item)
+        : lookupDiffIndexAction(item.x);
 
     result[action] = result[action] || { fileCount: 0 };
     result[action].fileCount++;
@@ -69,9 +73,9 @@ export function _formatAll(actionCounts: FileChangesByAction) {
 }
 
 /**
- * Return commit message of actions and counts for one or more file changes.
+ * Return description of actions and counts for one or more file changes.
  */
-export function countMsg(changes: FileChanges[]): string {
+export function countFilesDesc(changes: FileChange[]): string {
   const actionCounts = _countByAction(changes);
 
   return _formatAll(actionCounts);

@@ -11,10 +11,12 @@
  */
 import { lookupDiffIndexAction } from "./generate/action";
 import { getConventionType } from "./generate/convCommit";
-import { namedFiles, oneChange } from "./generate/message";
+import { countFilesDesc } from "./generate/count";
+import { namedFilesDesc, oneChange } from "./generate/message";
 import { parseDiffIndex } from "./git/parseOutput";
-import { CONVENTIONAL_TYPE } from "./lib/constants";
+import { AGGREGATE_MIN, CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
+import { ConvCommitMsg } from "./prepareCommitMsg.d";
 
 /**
  * Join two strings together with a space.
@@ -51,9 +53,9 @@ export function _splitMsg(msg: string) {
 }
 
 /**
- * Determine what the type prefix should be for a file change, using Conventional Commit standard.
+ * Determine the Conventional Commit type prefix for a file change.
  */
-function _prefixFromChanges(line: string) {
+function _prefixFromChange(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
 
@@ -64,10 +66,10 @@ function _prefixFromChanges(line: string) {
  * Generate message for a single file change.
  */
 export function _msgOne(line: string) {
-  // TODO: Pass FileChanges to one and generatePrefix instead of string.
+  // TODO: Pass FileChanges to oneChange and _prefixFromChange instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
-  const prefix = _prefixFromChanges(line),
+  const prefix = _prefixFromChange(line),
     description = oneChange(line);
 
   return { prefix, description };
@@ -92,54 +94,74 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
 }
 
 /**
- * Generate message for multiple file changes.
+ * Generate prefix and named description for multiple file changes.
  *
  * This finds a common Conventional Commit prefix if one is appropriate and returns a message
- * listing all the names.
- *
- * This was added onto this extension later in development, while `_msgOne` was the core behavior
- * previously.
+ * listing all the file names.
  */
-export function _msgMulti(lines: string[]) {
-  const conventions = lines.map(_prefixFromChanges);
-  const convention = _collapse(conventions);
+export function _msgNamed(lines: string[]): ConvCommitMsg {
+  const conventions = lines.map(_prefixFromChange);
+  const prefix = _collapse(conventions);
 
-  return { prefix: convention, description: namedFiles(lines) };
+  const changes = lines.map(parseDiffIndex);
+  const description = namedFilesDesc(changes);
+
+  return { prefix, description };
+}
+
+/**
+ * Generate prefix and count description for multiple file changes.
+ *
+ * TODO: Use prefix.
+ */
+export function _msgCount(lines: string[]): ConvCommitMsg {
+  const prefix = CONVENTIONAL_TYPE.UNKNOWN;
+
+  const changes = lines.map(parseDiffIndex);
+  const description = countFilesDesc(changes);
+
+  return { prefix, description };
 }
 
 /**
  * Generate message from changes to one or more files.
  *
- * @param diffIndexLines Lines from the `git diff-index` function, describing changes to files.
+ * @param lines Lines from the `git diff-index` function, describing changes to files.
  *
  * @returns Conventional Commit prefix and a description of changed paths.
  */
-export function _msgFromChanges(diffIndexLines: string[]) {
-  if (diffIndexLines.length === 1) {
-    const line = diffIndexLines[0];
-    return _msgOne(line);
+export function _msgFromChanges(lines: string[]) {
+  let result: ConvCommitMsg;
+
+  if (lines.length === 1) {
+    const line = lines[0];
+    result = _msgOne(line);
+  } else if (lines.length < AGGREGATE_MIN) {
+    result = _msgNamed(lines);
+  } else {
+    result = _msgCount(lines);
   }
 
-  return _msgMulti(diffIndexLines);
+  return result;
 }
 
 /**
  * Output a readable conventional commit message.
  */
-export function _formatMsg(prefix: CONVENTIONAL_TYPE, description: string) {
-  if (prefix === CONVENTIONAL_TYPE.UNKNOWN) {
-    return description;
+export function _formatMsg(convCommitMsg: ConvCommitMsg) {
+  if (convCommitMsg.prefix === CONVENTIONAL_TYPE.UNKNOWN) {
+    return convCommitMsg.description;
   }
-  return `${prefix}: ${description}`;
+  return `${convCommitMsg.prefix}: ${convCommitMsg.description}`;
 }
 
 /**
  * Generate a new commit message and format it as a string.
  */
 export function _newMsg(lines: string[]) {
-  const { prefix, description } = _msgFromChanges(lines);
+  const convCommitMsg = _msgFromChanges(lines);
 
-  return _formatMsg(prefix, description);
+  return _formatMsg(convCommitMsg);
 }
 
 /**
@@ -164,7 +186,9 @@ export function _combineOldAndNew(
   oldMsg?: string
 ) {
   if (!oldMsg) {
-    return _formatMsg(autoType, autoDesc);
+    const convCommitMsg = { prefix: autoType, description: autoDesc };
+
+    return _formatMsg(convCommitMsg);
   }
 
   const {
@@ -192,13 +216,13 @@ export function _combineOldAndNew(
  * High-level function to process file changes and an old message, to generate a replacement commit
  * message.
  */
-export function _generateMsgWithOld(fileChanges: string[], oldMsg: string) {
+export function _generateMsgWithOld(lines: string[], oldMsg: string) {
   if (!oldMsg) {
     throw new Error(
       "`oldMsg` must be non-empty - or use `generateNewMsg` instead."
     );
   }
-  const { prefix, description } = _msgFromChanges(fileChanges);
+  const { prefix, description } = _msgFromChanges(lines);
 
   return _combineOldAndNew(prefix, description, oldMsg);
 }
@@ -211,11 +235,13 @@ export function _generateMsgWithOld(fileChanges: string[], oldMsg: string) {
  * Old message could be the current commit message value in the UI box (which might be a commit
  * message template that VS Code has filled in), or a commit message template read from a file in
  * the case of a hook flow without VS Code.
+ *
+ * @param lines A list of text values describing how files changes.
  */
-export function generateMsg(fileChanges: string[], oldMsg?: string): string {
+export function generateMsg(lines: string[], oldMsg?: string): string {
   if (!oldMsg) {
-    return _newMsg(fileChanges);
+    return _newMsg(lines);
   }
 
-  return _generateMsgWithOld(fileChanges, oldMsg);
+  return _generateMsgWithOld(lines, oldMsg);
 }

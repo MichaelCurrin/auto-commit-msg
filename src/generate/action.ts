@@ -14,7 +14,7 @@ import { ActionKeys } from "./action.d";
 /**
  * Extract single action from given X and Y actions.
  *
- * NOT USED.
+ * UNUSED.
  *
  * Keep for future use with `git status` short output if needed.
  *
@@ -29,10 +29,16 @@ function _lookupStatusAction(x: string, y: string): string {
 }
 
 /**
- * Lookup the action for a given key (single character).
+ * Lookup the action (e.g. 'modified') for a given key (e.g. 'M').
  */
-export function lookupDiffIndexAction(x: string) {
-  return ACTION[x as ActionKeys];
+export function lookupDiffIndexAction(x: string): ACTION {
+  const action = ACTION[x as ActionKeys];
+
+  if (typeof action === "undefined") {
+    throw new Error(`Unknown ACTION key: ${x}`);
+  }
+
+  return action;
 }
 
 /**
