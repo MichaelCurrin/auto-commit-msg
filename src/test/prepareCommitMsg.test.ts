@@ -13,7 +13,7 @@ import {
   _generateMsgWithOld,
   _msgFromChanges,
   _newMsg,
-  _splitMsg
+  _splitMsg,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -104,126 +104,107 @@ describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {
     describe("single file changes", function () {
       it("handles a single file correctly", function () {
+        const lines = ["A    baz.txt"];
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt",
         };
 
-        assert.deepStrictEqual(_msgFromChanges(["A    baz.txt"]), expected);
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
     });
 
     describe("multiple files with the same action", function () {
       it("handles 2 created files created correctly", function () {
+        const lines = ["A    baz.txt", "A    bar.js"];
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt and bar.js",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges(["A    baz.txt", "A    bar.js"]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
 
       it("handles 2 modified files correctly", function () {
+        const lines = ["M    baz.txt", "M    bar.js"];
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
           description: "update baz.txt and bar.js",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges(["M    baz.txt", "M    bar.js"]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
 
       it("handles 3 files with the same action correctly", function () {
+        const lines = ["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"];
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt, bar.js and fuzz.md",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges(["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
 
       it("handles 4 files with the same action correctly", function () {
+        const lines = [
+          "A    baz.txt",
+          "A    bar.js",
+          "A    fuzz.md",
+          "A    fuzz.ts",
+        ];
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges([
-            "A    baz.txt",
-            "A    bar.js",
-            "A    fuzz.md",
-            "A    fuzz.ts",
-          ]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
 
       it("handles 3 files in subdirectories but does not show the directory paths", function () {
+        const lines = ["A    baz.txt", "A    fizz/bar.js", "A    fizz/fuzz.md"];
         const expected = {
           prefix: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt, bar.js and fuzz.md",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges([
-            "A    baz.txt",
-            "A    fizz/bar.js",
-            "A    fizz/fuzz.md",
-          ]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
 
       /* eslint-disable-next-line quotes */
       it('handles 2 "build(deps)" files correctly', function () {
+        const lines = ["M    package.json", "M     package-lock.json"];
         const expected = {
           prefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
           description: "update package.json and package-lock.json",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges(["M    package.json", "M     package-lock.json"]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
 
       it("handles 3 README.md files in different locations as full paths", function () {
+        const lines = [
+          "M    docs/README.md",
+          "M    bar/README.md",
+          "M    README.md",
+        ];
         const expected = {
           prefix: CONVENTIONAL_TYPE.DOCS,
           description: "update docs/README.md, bar/README.md and README.md",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges([
-            "M    docs/README.md",
-            "M    bar/README.md",
-            "M    README.md",
-          ]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
     });
 
     describe("multiple files with different actions", function () {
       it("handles 2 files - one created and one modified", function () {
+        const lines = ["A    baz.txt", "M    bar.js"];
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
           description: "create 1 file and update 1 file",
         };
 
-        assert.deepStrictEqual(
-          _msgFromChanges(["A    baz.txt", "M    bar.js"]),
-          expected
-        );
+        assert.deepStrictEqual(_msgFromChanges(lines), expected);
       });
 
       it("handles 3 files - with different actions", function () {
