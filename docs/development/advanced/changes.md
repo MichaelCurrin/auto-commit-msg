@@ -5,7 +5,7 @@ Describe how files changed.
 
 ## Git
 
-See `DESCRIPTION` enum in the [constants][] module. This is a description of _how_ a file changed - it will sometimes be used in generated description as the [Conventional Commits][] doc.
+See `DESCRIPTION` enum in the [constants.ts][] module. This is a description of _how_ a file changed - it will sometimes be used in generated description as the [Conventional Commits][] doc.
 
 This enum is a mapping of single characters keys and the verb, such as `M` for `modified`.
 
@@ -79,7 +79,7 @@ Result:
 
 ## Actions
 
-See `ACTION` in the [constants][] module.
+See `ACTION` in the [constants.ts][] module.
 
 These are based on Git syntax as in the `DESCRIPTION`. Except that values are in the _active_
 voice rather than the past tense, in order fit the Conventional Commit style. Plus, 'update' is
