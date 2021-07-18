@@ -19,9 +19,12 @@ A roadmap of features and whether done or not.
 - [x] Handle changes from a single changed file
 - [ ] Handle changes from two or more files.
     - [x] As a list of the same nature e.g. `update foo.txt and fizz/bar.txt`, `feat: create foo.txt, fizz/bar.txt and buzz.js` (including prefix) and `Various changes to foo.txt and fizz/bar.txt` (for say one updated and one new file). See [#29](https://github.com/MichaelCurrin/auto-commit-msg/pull/29).
-    - [ ] As as different verb for each change `create foo.txt and delete bar.txt`. See [#37](https://github.com/MichaelCurrin/auto-commit-msg/issues/37).
-    - [ ] As a count. e.g. `update 3 files in foo`. See [#18](https://github.com/MichaelCurrin/auto-commit-msg/issues/38).
+    - [x] As a count. e.g. `update 3 files`. See [#38](https://github.com/MichaelCurrin/auto-commit-msg/issues/38).
+    - [ ] As as different verb for each change `create foo.txt and delete bar.txt`. See [#37](https://github.com/MichaelCurrin/auto-commit-msg/issues/37) and See [#52](https://github.com/MichaelCurrin/auto-commit-msg/issues/52).
+    - [ ] As a count in directory. `update 3 files in bar`
+    - [ ] As a count with conv commit. See [#51](https://github.com/MichaelCurrin/auto-commit-msg/issues/51).
     - [ ] As a count with label. e.g. `update 3 config files`. See [#13](https://github.com/MichaelCurrin/auto-commit-msg/issues/13).
+    - [ ] As count that uses the old message. See [#55](https://github.com/MichaelCurrin/auto-commit-msg/issues/55)
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [x] Use conventional commits e.g. `chore: Update package.json`
 
