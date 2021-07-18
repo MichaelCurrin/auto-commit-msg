@@ -11,6 +11,7 @@ import {
   _combineOldAndNew,
   _formatMsg,
   _generateMsgWithOld,
+  _msgCount,
   _msgFromChanges,
   _msgNamed,
   _newMsg,
@@ -222,6 +223,121 @@ describe("Prepare commit message", function () {
           };
 
           assert.deepStrictEqual(_msgNamed(lines), expected);
+        });
+      });
+    });
+  });
+
+  describe("#_msgCount", function () {
+    describe("single file changes", function () {
+      // TODO: Use file name for single file. PR #52.
+      it("handles a single file change", function () {
+        const lines = ["A    baz.txt"];
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          description: "create 1 file",
+        };
+
+        assert.deepStrictEqual(_msgCount(lines), expected);
+      });
+    });
+
+    describe("multiple files", function () {
+      describe("multiple files with the same action", function () {
+        // Don't need to distinguish between a few or many files as as it supposed to work the
+        // same.
+
+        it("handles 2 created files created correctly", function () {
+          const lines = [
+            "A    foo.txt",
+            "A    bar.txt",
+            "A    bazz.txt",
+            "A    fizz.txt",
+            "A    buzz.txt",
+          ];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 5 files",
+          };
+
+          assert.deepStrictEqual(_msgCount(lines), expected);
+        });
+
+        it("handles 5 created files created correctly", function () {
+          const lines = [
+            "A    foo.txt",
+            "A    bar.txt",
+            "A    bazz.txt",
+            "A    fizz.txt",
+            "A    buzz.txt",
+          ];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 5 files",
+          };
+
+          assert.deepStrictEqual(_msgCount(lines), expected);
+        });
+
+        it("handles 5 modified files correctly", function () {
+          const lines = [
+            "M    foo.txt",
+            "M    bar.txt",
+            "M    bazz.txt",
+            "M    fizz.txt",
+            "M    buzz.txt",
+          ];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "update 5 files",
+          };
+
+          assert.deepStrictEqual(_msgCount(lines), expected);
+        });
+      });
+
+      describe("multiple files with different actions", function () {
+        it("handles 2 files with 2 actions", function () {
+          const lines = ["A    baz.txt", "M    bar.js"];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 1 file and update 1 file",
+          };
+
+          assert.deepStrictEqual(_msgCount(lines), expected);
+        });
+
+        it("handles 5 files with 2 actions", function () {
+          const lines = [
+            "A    baz.txt",
+            "M    bar.js",
+            "M    bazz.txt",
+            "M    fizz.txt",
+            "M    buzz.txt",
+          ];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 1 file and update 4 files",
+          };
+
+          assert.deepStrictEqual(_msgCount(lines), expected);
+        });
+
+        it("handles 5 files with 3 different actions", function () {
+          const lines = [
+            "A    baz.txt",
+            "M    bar.js",
+            "D    README.md",
+            "A    fizz.txt",
+            "D    buzz.txt",
+          ];
+
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 2 files, update 1 file and delete 2 files",
+          };
+
+          assert.deepStrictEqual(_msgCount(lines), expected);
         });
       });
     });
