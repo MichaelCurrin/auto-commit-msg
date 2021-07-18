@@ -24,22 +24,22 @@
     "sb": "bin/reset_sandbox.sh"
   },
   "engines": {
-    "vscode": "^1.57.0"
+    "vscode": "^1.58.1"
   },
   "devDependencies": {
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^14.17.3",
-    "@types/vscode": "^1.57.0",
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
-    "eslint": "^7.29.0",
+    "@types/mocha": "^8.2.3",
+    "@types/node": "^14.17.5",
+    "@types/vscode": "^1.58.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "eslint": "^7.31.0",
     "mocha": "^8.4.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.3.1",
+    "prettier": "^2.3.2",
     "source-map-support": "^0.5.12",
-    "typescript": "^4.3.4",
-    "vsce": "^1.93.0",
-    "vscode-test": "^1.5.2"
+    "typescript": "^4.3.5",
+    "vsce": "^1.95.1",
+    "vscode-test": "^1.6.1"
   },
   "displayName": "Auto Commit Message",
   "description": "Generate git commit messages automagically",
