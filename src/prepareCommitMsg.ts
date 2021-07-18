@@ -99,7 +99,7 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
  * This finds a common Conventional Commit prefix if one is appropriate and returns a message
  * listing all the file names.
  */
-export function _msgNamed(lines: string[]) {
+export function _msgNamed(lines: string[]): ConvCommitMsg {
   if (lines.length < AGGREGATE_MIN) {
     const conventions = lines.map(_prefixFromChange);
     const prefix = _collapse(conventions);
