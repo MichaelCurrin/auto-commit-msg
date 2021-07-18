@@ -18,10 +18,9 @@
  * are ACTION types as `modified` etc. To save using `lookupDiffIndexAction` call in multiple
  * places.
  */
-
-export interface FileChanges {
+export type FileChange = {
   x: string;
   y: string;
   to: string;
   from: string;
-}
+};
