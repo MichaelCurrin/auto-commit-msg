@@ -250,31 +250,38 @@ describe("Prepare commit message", function () {
 
   describe("#_newMsg", function () {
     describe("creates a new message from a prefix and message", function () {
-      it("handles a single change", function () {
-        assert.strictEqual(_newMsg(["A    baz.txt"]), "feat: create baz.txt");
+      describe("single change", function () {
+        it("handles a single created file", function () {
+          assert.strictEqual(_newMsg(["A    baz.txt"]), "feat: create baz.txt");
+        });
       });
 
-      it("handles multiple changes", function () {
+      describe("multiple changes", function () {
         // Leave the detailed cases to tests for `_msgFromChanges`.
+        const lines = ["A    baz.txt", "A    bar.js"];
+        const expected = "feat: create baz.txt and bar.js";
 
-        assert.strictEqual(
-          _newMsg(["A    baz.txt", "A    bar.js"]),
-          "feat: create baz.txt and bar.js"
-        );
+        it("handles 2 created files", function () {
+          assert.strictEqual(_newMsg(lines), expected);
+        });
 
-        assert.strictEqual(
-          _newMsg(["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"]),
-          "feat: create baz.txt, bar.js and fuzz.md"
-        );
+        it("handles 3 created files", function () {
+          const lines = ["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"];
+          const expected = "feat: create baz.txt, bar.js and fuzz.md";
 
-        assert.strictEqual(
-          _newMsg([
+          assert.strictEqual(_newMsg(lines), expected);
+        });
+
+        it("handles 3 created docs", function () {
+          const lines = [
             "M    docs/README.md",
             "M    bar/README.md",
             "M    README.md",
-          ]),
-          "docs: update docs/README.md, bar/README.md and README.md"
-        );
+          ];
+          const expected =
+            "docs: update docs/README.md, bar/README.md and README.md";
+          assert.strictEqual(_newMsg(lines), expected);
+        });
       });
     });
   });
@@ -283,6 +290,7 @@ describe("Prepare commit message", function () {
     describe("handles common scenarios correctly", function () {
       it("keeps the old message's type, if none can be inferred", function () {
         const oldMsg = "docs:";
+
         assert.strictEqual(
           _combineOldAndNew(
             CONVENTIONAL_TYPE.UNKNOWN,
@@ -299,6 +307,7 @@ describe("Prepare commit message", function () {
         // TODO: If the message is the same, don't add to it.
         // i.e. Don't want to get 'chore: update.editorconfig update .editorconfig'
         const oldMsg = "xyz";
+
         assert.strictEqual(
           _combineOldAndNew(
             CONVENTIONAL_TYPE.CHORE,
