@@ -259,6 +259,41 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
       });
+
+      describe("multiple files with different actions", function () {
+        it("handles 5 files with 2 actions", function () {
+          const lines = [
+            "A    baz.txt",
+            "M    bar.js",
+            "M    bazz.txt",
+            "M    fizz.txt",
+            "M    buzz.txt",
+          ];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 1 file and update 4 files",
+          };
+
+          assert.deepStrictEqual(_msgFromChanges(lines), expected);
+        });
+
+        it("handles 5 files with 3 different actions", function () {
+          const lines = [
+            "A    baz.txt",
+            "M    bar.js",
+            "D    README.md",
+            "A    fizz.txt",
+            "D    buzz.txt",
+          ];
+
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 2 files, update 1 file and delete 2 files",
+          };
+
+          assert.deepStrictEqual(_msgFromChanges(lines), expected);
+        });
+      });
     });
   });
 
