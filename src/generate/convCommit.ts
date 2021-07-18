@@ -364,7 +364,7 @@ export class ConventionalCommit {
  *
  * Relies on both the action performed and the path.
  *
- * Don't distiguish `ACTION.M` vs `ACTION.A`, as it could be a fix or feature. So just use
+ * Don't distinguish `ACTION.M` vs `ACTION.A`, as it could be a fix or feature. So just use
  * unknown/null value. Though it could be set as always feature or docs as a general rule or config
  * option on the project level or extension level.
  */
