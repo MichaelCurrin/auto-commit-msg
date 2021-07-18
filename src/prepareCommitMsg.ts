@@ -16,6 +16,7 @@ import { namedFilesDesc, oneChange } from "./generate/message";
 import { parseDiffIndex } from "./git/parseOutput";
 import { AGGREGATE_MIN, CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
+import { ConvCommitMsg } from "./prepareCommitMsg.d";
 
 /**
  * Join two strings together with a space.
@@ -121,7 +122,7 @@ export function _msgNamed(lines: string[]) {
  * @returns Conventional Commit prefix and a description of changed paths.
  */
 export function _msgFromChanges(lines: string[]) {
-  let result: { prefix: CONVENTIONAL_TYPE; description: string };
+  let result: ConvCommitMsg;
 
   if (lines.length === 1) {
     const line = lines[0];
