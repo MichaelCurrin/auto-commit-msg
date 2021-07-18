@@ -12,6 +12,7 @@ import {
   _formatMsg,
   _generateMsgWithOld,
   _msgFromChanges,
+  _msgNamed,
   _newMsg,
   _splitMsg,
 } from "../prepareCommitMsg";
@@ -101,6 +102,20 @@ describe("Split a message into components", function () {
 });
 
 describe("Prepare commit message", function () {
+  describe("#_msgNamed", function () {
+    describe("single file changes", function () {
+      it("handles a single file change", function () {
+        const lines = ["A    baz.txt"];
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.FEAT,
+          description: "create baz.txt",
+        };
+
+        assert.deepStrictEqual(_msgNamed(lines), expected);
+      });
+    });
+  });
+
   describe("#_msgFromChanges", function () {
     describe("single file changes", function () {
       it("handles a single file correctly", function () {
