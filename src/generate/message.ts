@@ -58,6 +58,7 @@ export function namedFiles(lines: string[]) {
 
   if (action === ACTION.UNKNOWN) {
     const changes = lines.map(line => parseDiffIndex(line));
+
     return countMsg(changes);
   }
 
