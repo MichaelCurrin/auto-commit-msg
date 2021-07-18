@@ -224,6 +224,42 @@ describe("Prepare commit message", function () {
         });
       });
     });
+
+    describe("many files", function () {
+      describe("multiple files with the same action", function () {
+        it("handles 5 created files created correctly", function () {
+          const lines = [
+            "A    foo.txt",
+            "A    bar.txt",
+            "A    bazz.txt",
+            "A    fizz.txt",
+            "A    buzz.txt",
+          ];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "create 5 files",
+          };
+
+          assert.deepStrictEqual(_msgFromChanges(lines), expected);
+        });
+
+        it("handles 5 modified files correctly", function () {
+          const lines = [
+            "M    foo.txt",
+            "M    bar.txt",
+            "M    bazz.txt",
+            "M    fizz.txt",
+            "M    buzz.txt",
+          ];
+          const expected = {
+            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            description: "update 5 files",
+          };
+
+          assert.deepStrictEqual(_msgFromChanges(lines), expected);
+        });
+      });
+    });
   });
 
   describe("#_formatMsg", function () {
