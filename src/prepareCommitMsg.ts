@@ -175,7 +175,9 @@ export function _combineOldAndNew(
   oldMsg?: string
 ) {
   if (!oldMsg) {
-    return _formatMsg({ prefix: autoType, description: autoDesc });
+    const convCommitMsg = { prefix: autoType, description: autoDesc };
+
+    return _formatMsg(convCommitMsg);
   }
 
   const {
