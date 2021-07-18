@@ -96,12 +96,9 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
  * Generate prefix and description for multiple file changes.
  *
  * This finds a common Conventional Commit prefix if one is appropriate and returns a message
- * listing all the names.
- *
- * This was added onto this extension later in development, while `_msgOne` was the core behavior
- * previously.
+ * listing all the file names.
  */
-export function _msgMulti(lines: string[]) {
+export function _msgNamed(lines: string[]) {
   if (lines.length < AGGREGATE_MIN) {
     const conventions = lines.map(_prefixFromChange);
     const prefix = _collapse(conventions);
@@ -124,12 +121,16 @@ export function _msgMulti(lines: string[]) {
  * @returns Conventional Commit prefix and a description of changed paths.
  */
 export function _msgFromChanges(lines: string[]) {
+  let result: { prefix: CONVENTIONAL_TYPE; description: string };
+
   if (lines.length === 1) {
     const line = lines[0];
-    return _msgOne(line);
+    result = _msgOne(line);
+  } else {
+    result = _msgNamed(lines);
   }
 
-  return _msgMulti(lines);
+  return result;
 }
 
 /**
