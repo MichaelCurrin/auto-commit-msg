@@ -65,8 +65,8 @@ The 'copied' case is very _rare_. I've noted here how it works.
 
 I've only come across it once using this extension and it was like this:
 
-- One file abc.txt was updated (empty content replaced with te.xt).
-- Another file def.txt was created (empty content)
+- One file `abc.txt` was updated (empty content replaced with text).
+- Another file `def.txt` was created (empty content).
 
 Both were staged and a message generated. And then `diff-index` appears like to see `def.txt` as a copy of what `abc.txt` _was_ before it was modified.
 
