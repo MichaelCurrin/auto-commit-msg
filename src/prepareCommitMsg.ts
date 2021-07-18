@@ -93,7 +93,7 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
 }
 
 /**
- * Generate message for multiple file changes.
+ * Generate prefix and description for multiple file changes.
  *
  * This finds a common Conventional Commit prefix if one is appropriate and returns a message
  * listing all the names.
