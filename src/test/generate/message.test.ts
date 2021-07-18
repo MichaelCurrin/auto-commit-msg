@@ -138,41 +138,64 @@ describe("Generate description for a few changed files which each get named", fu
   describe("#namedFilesDesc", function () {
     it("return the appropriate commit message for two files", function () {
       assert.strictEqual(
-        namedFilesDesc(["A    foo.txt", "A    bar.txt"]),
+        namedFilesDesc([
+          { x: "A", from: "foo.txt", y: " ", to: "" },
+          { x: "A", from: "bar.txt", y: " ", to: "" },
+        ]),
         "create foo.txt and bar.txt"
       );
 
       assert.strictEqual(
-        namedFilesDesc(["M    foo.txt", "M    bar.txt"]),
+        namedFilesDesc([
+          { x: "M", from: "foo.txt", y: " ", to: "" },
+          { x: "M", from: "bar.txt", y: " ", to: "" },
+        ]),
         "update foo.txt and bar.txt"
       );
 
       assert.strictEqual(
-        namedFilesDesc(["M    fizz.js", "M    buzz.ts"]),
+        namedFilesDesc([
+          { x: "M", from: "fizz.js", y: " ", to: "" },
+          { x: "M", from: "buzz.ts", y: " ", to: "" },
+        ]),
         "update fizz.js and buzz.ts"
       );
     });
 
     it("return a commit message for more than two files", function () {
       assert.strictEqual(
-        namedFilesDesc(["A    foo.txt", "A    docs/bar.txt", "A    buzz.js"]),
+        namedFilesDesc([
+          { x: "A", from: "foo.txt", y: " ", to: "" },
+          { x: "A", from: "docs/bar.txt", y: " ", to: "" },
+          { x: "A", from: "buzz.js", y: " ", to: "" },
+        ]),
         "create foo.txt, bar.txt and buzz.js"
       );
 
       assert.strictEqual(
-        namedFilesDesc(["D    foo.txt", "D    docs/bar.txt", "D    buzz.js"]),
+        namedFilesDesc([
+          { x: "D", from: "foo.txt", y: " ", to: "" },
+          { x: "D", from: "docs/bar.txt", y: " ", to: "" },
+          { x: "D", from: "buzz.js", y: " ", to: "" },
+        ]),
         "delete foo.txt, bar.txt and buzz.js"
       );
     });
 
     it("handles differing actions", function () {
       assert.strictEqual(
-        namedFilesDesc(["A    foo.txt", "M    bar.txt"]),
+        namedFilesDesc([
+          { x: "A", from: "foo.txt", y: " ", to: "" },
+          { x: "M", from: "bar.txt", y: " ", to: "" },
+        ]),
         "create 1 file and update 1 file"
       );
 
       assert.strictEqual(
-        namedFilesDesc(["M    foo.txt", "D    bar.txt"]),
+        namedFilesDesc([
+          { x: "M", from: "foo.txt", y: " ", to: "" },
+          { x: "D", from: "bar.txt", y: " ", to: "" },
+        ]),
         "update 1 file and delete 1 file"
       );
     });

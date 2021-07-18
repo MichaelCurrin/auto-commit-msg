@@ -103,7 +103,8 @@ export function _msgNamed(lines: string[]): ConvCommitMsg {
   const conventions = lines.map(_prefixFromChange);
   const prefix = _collapse(conventions);
 
-  const description = namedFilesDesc(lines);
+  const changes = lines.map(parseDiffIndex);
+  const description = namedFilesDesc(changes);
 
   return { prefix, description };
 }
