@@ -14,7 +14,7 @@ import { ActionKeys } from "./action.d";
 /**
  * Extract single action from given X and Y actions.
  *
- * NOT USED.
+ * UNUSED.
  *
  * Keep for future use with `git status` short output if needed.
  *
