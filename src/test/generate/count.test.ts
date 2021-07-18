@@ -3,11 +3,11 @@
  */
 import * as assert from "assert";
 import {
-  countMsg,
+  countFilesDesc,
   _countByAction,
   _formatAll,
   _formatOne,
-  _moveOrRenameFromChange,
+  _moveOrRenameFromChange
 } from "../../generate/count";
 import { FileChanges } from "../../git/parseOutput.d";
 
@@ -501,7 +501,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
         const expected = "create 1 file";
 
-        assert.strictEqual(countMsg(changes), expected);
+        assert.strictEqual(countFilesDesc(changes), expected);
       });
     });
 
@@ -517,7 +517,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
       const expected = "update 1 file";
 
-      assert.strictEqual(countMsg(changes), expected);
+      assert.strictEqual(countFilesDesc(changes), expected);
     });
 
     it("handles two deleted files", function () {
@@ -537,7 +537,7 @@ describe("Convert file changes to readable commit message of actions and counts"
       ];
       const expected = "delete 2 files";
 
-      assert.strictEqual(countMsg(changes), expected);
+      assert.strictEqual(countFilesDesc(changes), expected);
     });
   });
 
@@ -560,7 +560,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
       const expected = "create 1 file and update 1 file";
 
-      assert.strictEqual(countMsg(changes), expected);
+      assert.strictEqual(countFilesDesc(changes), expected);
     });
 
     it("handles one created and two updated files", function () {
@@ -587,7 +587,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
       const expected = "create 1 file and update 2 files";
 
-      assert.strictEqual(countMsg(changes), expected);
+      assert.strictEqual(countFilesDesc(changes), expected);
     });
 
     it("handles two updated files and one created file", function () {
@@ -615,7 +615,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
       const expected = "update 2 files and create 1 file";
 
-      assert.strictEqual(countMsg(changes), expected);
+      assert.strictEqual(countFilesDesc(changes), expected);
     });
 
     describe("return the action and count for more than two actions", function () {
@@ -643,7 +643,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
         const expected = "create 1 file, update 1 file and delete 1 file";
 
-        assert.strictEqual(countMsg(changes), expected);
+        assert.strictEqual(countFilesDesc(changes), expected);
       });
 
       it("handles two created, one updated and one deleted file", function () {
@@ -676,7 +676,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
         const expected = "create 2 files, update 1 file and delete 1 file";
 
-        assert.strictEqual(countMsg(changes), expected);
+        assert.strictEqual(countFilesDesc(changes), expected);
       });
 
       it("handles one created, two updated and one deleted file", function () {
@@ -709,7 +709,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
         const expected = "create 1 file, update 2 files and delete 1 file";
 
-        assert.strictEqual(countMsg(changes), expected);
+        assert.strictEqual(countFilesDesc(changes), expected);
       });
 
       it("handles one created, one updated and one deleted file", function () {
@@ -742,7 +742,7 @@ describe("Convert file changes to readable commit message of actions and counts"
 
         const expected = "create 1 file, update 1 file and delete 2 files";
 
-        assert.strictEqual(countMsg(changes), expected);
+        assert.strictEqual(countFilesDesc(changes), expected);
       });
     });
   });

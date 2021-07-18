@@ -11,7 +11,7 @@
  */
 import { lookupDiffIndexAction } from "./generate/action";
 import { getConventionType } from "./generate/convCommit";
-import { countMsg } from "./generate/count";
+import { countFilesDesc } from "./generate/count";
 import { namedFilesDesc, oneChange } from "./generate/message";
 import { parseDiffIndex } from "./git/parseOutput";
 import { AGGREGATE_MIN, CONVENTIONAL_TYPE } from "./lib/constants";
@@ -110,7 +110,7 @@ export function _msgMulti(lines: string[]) {
   } else {
     const prefix = CONVENTIONAL_TYPE.UNKNOWN;
     const changes = lines.map(line => parseDiffIndex(line));
-    const description = countMsg(changes);
+    const description = countFilesDesc(changes);
 
     return { prefix, description };
   }

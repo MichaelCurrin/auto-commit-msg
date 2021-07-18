@@ -9,7 +9,7 @@ import { friendlyFile, humanList } from "../lib/paths";
 import { equal } from "../lib/utils";
 import { lookupDiffIndexAction, moveOrRenameMsg } from "./action";
 import { ActionKeys } from "./action.d";
-import { countMsg } from "./count";
+import { countFilesDesc } from "./count";
 
 /**
  * Prepare a commit message based on a single changed file.
@@ -59,7 +59,7 @@ export function namedFilesDesc(lines: string[]) {
   if (action === ACTION.UNKNOWN) {
     const changes = lines.map(line => parseDiffIndex(line));
 
-    return countMsg(changes);
+    return countFilesDesc(changes);
   }
 
   return `${action} ${fileList}`;
