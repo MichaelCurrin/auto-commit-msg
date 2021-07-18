@@ -94,24 +94,32 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
 }
 
 /**
- * Generate prefix and description for multiple file changes.
+ * Generate prefix and named description for multiple file changes.
  *
  * This finds a common Conventional Commit prefix if one is appropriate and returns a message
  * listing all the file names.
  */
 export function _msgNamed(lines: string[]): ConvCommitMsg {
-  if (lines.length < AGGREGATE_MIN) {
-    const conventions = lines.map(_prefixFromChange);
-    const prefix = _collapse(conventions);
-    const description = namedFilesDesc(lines);
-    return { prefix, description };
-  } else {
-    const prefix = CONVENTIONAL_TYPE.UNKNOWN;
-    const changes = lines.map(line => parseDiffIndex(line));
-    const description = countFilesDesc(changes);
+  const conventions = lines.map(_prefixFromChange);
+  const prefix = _collapse(conventions);
 
-    return { prefix, description };
-  }
+  const description = namedFilesDesc(lines);
+
+  return { prefix, description };
+}
+
+/**
+ * Generate prefix and count description for multiple file changes.
+ *
+ * TODO: Use prefix.
+ */
+export function _msgCount(lines: string[]): ConvCommitMsg {
+  const prefix = CONVENTIONAL_TYPE.UNKNOWN;
+
+  const changes = lines.map(parseDiffIndex);
+  const description = countFilesDesc(changes);
+
+  return { prefix, description };
 }
 
 /**
@@ -127,8 +135,10 @@ export function _msgFromChanges(lines: string[]) {
   if (lines.length === 1) {
     const line = lines[0];
     result = _msgOne(line);
-  } else {
+  } else if (lines.length < AGGREGATE_MIN) {
     result = _msgNamed(lines);
+  } else {
+    result = _msgCount(lines);
   }
 
   return result;
