@@ -6,7 +6,7 @@ Info on how the Conventional Commits standard is applied for generating output i
 ## Resources
 
 - [Conventional Commits](https://www.conventionalcommits.org) homepage
-- [Conventionl Commits](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/other/conventional-commits.html) cheatsheets in my Dev Cheatsheets projects.
+- [Conventional Commits](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/other/conventional-commits.html) cheatsheet in my Dev Cheatsheets projects, covering parts of the standard most relevant to me and this extension project.
 
 
 ## Overview
@@ -35,6 +35,4 @@ Or
 TYPE(SCOPE): DESCRIPTION
 ```
 
-Perhaps one day some details will be added to the body.
-
-
+Perhaps one day some details will be added to the body by this extension.
