@@ -13,7 +13,7 @@ import {
   _generateMsgWithOld,
   _msgFromChanges,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -102,13 +102,15 @@ describe("Split a message into components", function () {
 
 describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {
-    it("handles a single file correctly", function () {
-      const expected = {
-        prefix: CONVENTIONAL_TYPE.FEAT,
-        description: "create baz.txt",
-      };
+    describe("single file changes", function () {
+      it("handles a single file correctly", function () {
+        const expected = {
+          prefix: CONVENTIONAL_TYPE.FEAT,
+          description: "create baz.txt",
+        };
 
-      assert.deepStrictEqual(_msgFromChanges(["A    baz.txt"]), expected);
+        assert.deepStrictEqual(_msgFromChanges(["A    baz.txt"]), expected);
+      });
     });
 
     describe("multiple files with the same action", function () {
@@ -211,7 +213,7 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("multiple files with the same action", function () {
+    describe("multiple files with different actions", function () {
       it("handles 2 files - one created and one modified", function () {
         const expected = {
           prefix: CONVENTIONAL_TYPE.UNKNOWN,
