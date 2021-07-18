@@ -8,7 +8,7 @@
 calls with data.
  */
 
-import { CONVENTIONAL_TYPE } from "../src/lib/constants";
+import { CONVENTIONAL_TYPE } from "../lib/constants";
 
 const CI_CRITERIA = {
   dirs: {
