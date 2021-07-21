@@ -16,15 +16,13 @@
 [![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
 
-
-
 <div align="center">
-
-<a href="/docs/quickstart.md">
-    <img src="/images/icon.png" alt="Logo" title="Logo" width="200" />
+    
+<a href="/docs/quickstart.md" title="Go to docs quickstart">
+    <img src="/images/icon.png" alt="Logo" width="200"  />
+    <br/>
+    <img src="https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code" alt="VS Code Extension" />
 </a>
-
-[![VS Code Extension](https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code)](https://code.visualstudio.com/)
 
 [Getting started](#getting-started) | [Features](#features) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
 
@@ -40,7 +38,9 @@
 
 ## Getting started
 
-This guide shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code (you can't find it on the extension marketplace yet).
+This is a [VS Code extension](https://code.visualstudio.com/).
+
+Thee guide here shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code (you can't find it on the extension marketplace yet).
 
 <div align="center">
 
