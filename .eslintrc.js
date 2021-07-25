@@ -8,8 +8,9 @@ module.exports = {
   rules: {
     semi: [2, "always"],
     "comma-dangle": [2, "always-multiline"],
-    quotes: [2, "double"],
+    quotes: [2, "double", { avoidEscape: true }],
     "max-len": [2, { code: 100, ignoreUrls: true }],
+
     "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
