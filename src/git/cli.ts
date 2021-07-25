@@ -82,19 +82,3 @@ export async function getChanges() {
   }
   return allChanges;
 }
-
-/**
- * Run git status short and return output.
- *
- * Ignore untracked and remove color.
- *
- * UNUSED - This was used before diffIndex was introduced to this project.
- */
-async function status(options: string[] = []) {
-  return execute(getWorkspaceFolder(), "status", [
-    "--short",
-    "-uno",
-    "--porcelain",
-    ...options,
-  ]);
-}

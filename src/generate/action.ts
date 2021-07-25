@@ -12,23 +12,6 @@ import { moveOrRenameFromPaths, splitPath } from "../lib/paths";
 import { ActionKeys } from "./action.d";
 
 /**
- * Extract single action from given X and Y actions.
- *
- * UNUSED.
- *
- * Keep for future use with `git status` short output if needed.
- *
- * "Modified" must take preference over the others. Unfortunately, there is no way here to combine
- * update and move.
- */
-function _lookupStatusAction(x: string, y: string): string {
-  if (ACTION[y as ActionKeys] === ACTION.M) {
-    return ACTION.M;
-  }
-  return ACTION[x as ActionKeys];
-}
-
-/**
  * Lookup the action (e.g. 'modified') for a given key (e.g. 'M').
  */
 export function lookupDiffIndexAction(x: string): ACTION {
