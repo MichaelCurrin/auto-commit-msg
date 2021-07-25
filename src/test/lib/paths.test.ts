@@ -31,11 +31,11 @@ describe("Path handling", function () {
       assert.strictEqual(_join(["foo"]), "foo");
     });
 
-    it("returns two items joined with \"and\"", function () {
+    it('returns two items joined with "and"', function () {
       assert.strictEqual(_join(["foo", "bar"]), "foo and bar");
     });
 
-    it("returns three items joined with commands and an an \"and\"", function () {
+    it('returns three items joined with commands and an an "and"', function () {
       assert.strictEqual(_join(["foo", "bar", "bazz"]), "foo, bar and bazz");
     });
   });
