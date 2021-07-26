@@ -40,6 +40,10 @@ tag:
 	npm version minor
 	$(MAKE) ext
 
+# Preview what will be included in the `.vsix` file.
+ls:
+	npx vsce ls
+
 # Build and install the extension globally.
 e ext:
 	npm run lint:check
