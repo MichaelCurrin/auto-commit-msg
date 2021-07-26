@@ -52,47 +52,47 @@ Thee guide here shows you how to download a _pre-built_ extension from GitHub Re
 ## Release disclaimer
 
 - This application is still in **pre-release** stage.
-- But... it is still functional and I use it daily, so please use it too if you want.
-- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace (so you can install it without downloading from releases page) and cleaning up the docs. It can become version `1.0.0` around then.
-- There are also a bunch of issues I want to work through to extend functionality to make the extension smarter.
+- But, ... it is _still_ functional, and I use it daily, so please use it too if you want.
+- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace (so you can install it without downloading from the releases page), and cleaning up the docs. It can become version `1.0.0` around then.
+- There are issues I want to work through to extend functionality to make the extension smarter.
 
 
 ## Features
 
 See more info on the [Features](/docs/features.md) page in the docs.
 
-- Simply click the extension button in the Git pane.
+- Just click the extension button in the Git pane.
 - Reads the state of files in your Git repo or staged files
 - Generates a commit message, which you can use or edit
-- Describes a variety of changes - when file is added, removed, moved, renamed...
+- Describes a variety of changes - when a file is added, removed, moved, renamed, etc.
 - Handles multiple files at once.
 - Infers a Conventional Commit category where possible - e.g. `feat`, `ci`, `build`.
-- Suitable for development in a variety of languages and tools - it can recognize a range of files based on path and extension, such as related to CI, configs, dependency or docs.
+- Suitable for development in a variety of languages and tools. It can recognize a range of files based on path and extension, such related to CI, configs, dependency, or docs.
 
 
 ## Sample usage
 
-Here are some screenshots of what messages the extension generates, based on changed files.
+Here are some screenshots of what messages the extension generates based on changed files.
 
-If you created a new file and staged it.
+If you created a new file and staged it:
 
 <div align="center">
     <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="250" />
 </div>
 
-If you updated a build-related file.
+If you updated a build-related file:
 
 <div align="center">
 <img src="/docs/_media/sample-build.png" alt="build" title="build" width="250" />
 </div>
 
-If updated a file in `docs/` or a `README.md` anywhere.
+If updated a file in `docs/` or a `README.md` anywhere:
 
 <div align="center">
 <img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="250" />
 </div>
 
-If you renamed a file.
+If you renamed a file:
 
 <div align="center">
     <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="250" />
@@ -104,13 +104,13 @@ If you renamed a file.
 
 ## About
 
-A VS Code extension which gives you smart commit message suggestions. For the times where all your need it a simple message.
+A VS Code extension that gives you smart commit message suggestions. For the times where all your need is a simple message.
 
-It looks at the path of a file that changed and how it changed, then pushes the commit message to the Git pane in VS Code. You can edit or erase the message if you don't like.
+It looks at the path of a file that changed and how it changed, then pushes the commit message to the Git pane in VS Code. You can edit or erase the message if you don't like it.
 
-It can make a message to **describe a change** for a single file to be committed. Including create, update, remove, rename and move - along with the filename. Or, the path, like for a move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
+It can make a message to **describe a change** for a single file to commit. Including "create", "update", "remove", "rename" and "move" - along with the filename. Or the path, like for a move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
 
-It many cases it can also provide an appropriate **conventional commit** prefix label for you. It can't separate features and bug fixes but it can identify changes to docs, CI files and config files.
+In many cases, it can also provide an appropriate **conventional commit** prefix label for you. It can't separate features and bug fixes, but it can identify changes to docs, CI files, and config files.
 
 Don't use this tool all the time - remember to write explanatory messages when it matters.
 

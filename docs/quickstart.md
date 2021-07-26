@@ -24,6 +24,9 @@ Then use it like this:
 
 ## Requirements
 
-You only need to have VS Code installed and the ability to run a terminal commands to install the extension.
+To install the extension, you only need:
 
+- VS Code installed
+- The ability to run terminal commands.
+-
 You do **not** need to download the repo or have Node or NPM installed.
