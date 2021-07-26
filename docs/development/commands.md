@@ -10,7 +10,8 @@ This has been done with `make` as a task runner than wraps `npm run`. These task
 
 See [package.json](/package.json) for all the underlying NPM commands. Note that `.` is better than `src`, as then the configs like `tsconfig.json` can be found - otherwise you'll get an error.
 
-See also [NPM tasks](advanced/npm-tasks.md) doc.
+
+See also the [NPM tasks](advanced/npm-tasks.md) doc.
 
 
 ## Run tasks
@@ -26,14 +27,9 @@ This will up hooks, install packages, fix and unit test tasks.
 This is useful for bootstrapping the project on a fresh clone, or before pushing commits. This task also runs as part of the `pre-push` hook after that has been set up.
 
 
-## Install
-
-See installation steps in the extension and hook docs - clone the repo and install Node.js and dependencies.
-
-
 ## Run checks
 
-Note these lint and test steps happen in the CI/CD flow - see [main.yml](/.github/workflows/main.yml).
+Note these lint and test steps happen in the CI/CD flow - see [Deploy](deploy.md).
 
 ### Format
 
@@ -55,6 +51,8 @@ Note that linting will not actually pick up on TypeScript compilation errors, bu
 
 ### Run tests
 
+See the [Tests](tests.md) doc for more.
+
 Skip clean and style steps, for even faster results such and when editing test spec files. At the risk of inconsistencies sometimes, if a file is renamed or moved.
 
 ```sh
@@ -63,10 +61,8 @@ $ make test-quick
 
 ### Run all checks
 
-Clean output, fix-up source and then run tests with code coverage.
+Clean output, format code, and then run unit tests including code coverage.
 
 ```sh
 $ make test
 ```
-
-See the [Tests](tests.md) doc for more.

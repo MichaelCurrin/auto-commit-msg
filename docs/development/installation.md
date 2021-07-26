@@ -18,7 +18,5 @@ $ cd auto-commit-msg
 ## Install project dependencies
 
 ```sh
-$ npm install
+$ make install
 ```
-
-Continue to [Usage](usage.md) doc.

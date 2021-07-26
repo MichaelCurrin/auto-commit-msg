@@ -9,8 +9,7 @@ This will clean the output directory, compile files and then run unit tests. No 
 $ npm test
 ```
 
-
-#### Integration tests
+## Integration tests
 
 There are no integration tests in this project.
 
