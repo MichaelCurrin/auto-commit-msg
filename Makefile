@@ -40,7 +40,6 @@ tag:
 	npm version minor
 	$(MAKE) ext
 
-# Preview what will be included in the `.vsix` file.
 ls:
 	npx vsce ls
 
