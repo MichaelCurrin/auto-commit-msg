@@ -1,18 +1,14 @@
-.vscode/**
-.github/**
-.vscode-test/**
-.gitignore
+# Ignoring everything initially keeps this ignore file much simpler.
+**
 
-images/examples
+# Keep files.
+# Note `package.json` and `README.md` are implied.
+!LICENSE
 
-out/test/**
-src/**
-**/*.ts
-**/*.map
+!images/
 
-**/tsconfig.json
-**/tslint.json
-
-.idea/**
-
-TODO
+!out/*.js
+# Most effective way to ignore `out/test` is to include named directories.
+!out/generate/**/*.js
+!out/git/**/*.js
+!out/lib/**/*.js
