@@ -17,7 +17,7 @@
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
 
 <div align="center">
-    
+
 <a href="/docs/quickstart.md" title="Go to docs quickstart">
     <img src="/images/icon.png" alt="Logo" width="200"  />
     <br/>
@@ -61,7 +61,7 @@ Thee guide here shows you how to download a _pre-built_ extension from GitHub Re
 
 See more info on the [Features](/docs/features.md) page in the docs.
 
-- Simmply click the extension button in the Git pane.
+- Simply click the extension button in the Git pane.
 - Reads the state of files in your Git repo or staged files
 - Generates a commit message, which you can use or edit
 - Describes a variety of changes - when file is added, removed, moved, renamed...
@@ -120,7 +120,7 @@ Don't use this tool all the time - remember to write explanatory messages when i
 <div align="center">
 
 [![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
-    
+
 </div>
 
 
