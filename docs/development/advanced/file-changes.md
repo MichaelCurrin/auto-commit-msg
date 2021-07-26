@@ -1,9 +1,9 @@
-# Changes
+# File changes
 
 Describe how files changed.
 
 
-## Git
+## Git CLI
 
 See `DESCRIPTION` enum in the [constants.ts][] module. This is a description of _how_ a file changed - it will sometimes be used in generated description as the [Conventional Commits][] doc.
 
@@ -54,7 +54,6 @@ From [git-diff-index][]:
 
 Note this extension does not care about the last 3 kinds.
 
-
 ### Create note
 
 For the `A` key of the enum, `create` was used as more natural form than `add` or `addition`.
@@ -77,7 +76,7 @@ Result:
 ```
 
 
-## Actions
+## Actions list
 
 See `ACTION` in the [constants.ts][] module.
 
