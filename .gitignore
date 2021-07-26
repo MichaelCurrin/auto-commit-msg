@@ -1,12 +1,13 @@
+.idea
+
 node_modules/
+
 .nyc_output/
 coverage/
 
-out/
 .vscode-test/
-
+out/
 build/*.vsix
-.idea
 
 # Temporary git repo in the repo, for testing the extension.
 sandbox/
