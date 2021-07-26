@@ -1,3 +1,6 @@
+PUBLISHER_NAME = MichaelCurrin
+
+
 default: install
 
 all: hooks install test
@@ -35,15 +38,20 @@ q test-quick:
 	npm run test:unit
 
 
-# Run checks, tag and push then install the tagged version as cleanup.
-tag:
-	npm version minor
-	$(MAKE) ext
-
-ls:
-	npx vsce ls
+### Deploy
 
 # Build and install the extension globally.
 e ext:
 	npm run lint:check
 	npm run ext
+
+ls:
+	npx vsce ls
+
+# Run checks, tag and push (to GitHub only) then install the tagged version as clean-up.
+tag:
+	npm version minor
+	$(MAKE) ext
+
+login:
+	npx vsce login $(PUBLISHER_NAME)
