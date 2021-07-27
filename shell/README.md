@@ -25,29 +25,58 @@ They are not complete but work as a POC for using the core logic outside project
 
 ### Dev notes
 
-Remember to compile before running this script to get latest changes.
+Remember to compile before running this script to get the latest changes.
 
 #### Purpose
 
 This script should be used as **alternative** to using VS Code itself to handle your commit messages, as VS Code does not support a hook properly when going through the UI box (it **ignores** any message you type in and uses its own generated message from the hook).
 
-But, if you don't use it as an actual hook, there an alternative flow that doesn't mess with VS Code. You can use the other script and setup a git alias (which can be used across projects without setting a hook even).
+But, if you don't use it as an actual hook, there is an alternative flow that doesn't mess with VS Code. You can use the other script and set up a git alias (which can be used across projects without setting a hook even).
+
+e.g.
+
+```console
+$ ./shell/autofill.sh
+chore: update settings.json
+```
+
+```console
+$ ./shell/autofill.sh
+update 11 files
+```
+
+Use it. This uses the tool to generate a message and pass it as the Git commit message, but forcing edit mode so you can override it.
 
 ```sh
-./shell/autofill.sh
+$ git commit --edit -m "$(shell/autofill.sh)"
 ```
+
+Move the script to a `bin` executables directory so you can run it from anywhere.
+
+```sh
+$ cp autofill.sh /usr/local/bin
+```
+
+TODO:
+
+- Where to put the Node script so it can reference to.
+- How to automated the install process for upgrades.
+- Figure out how to switch between staged and not with `--cached`. Like passing a param to the shell script and having two aliases. Or to have it as pass of the shell script to fallback to all if anything is staged. Or just control with filenames e.g. `git c .` or `git c package*` - oh wait, the shell script doesn't look at what is passed to `git commit`, only what is staged or not.
+
+#### Alias
 
 Set this up in git config aliases as `c` or something. If this was in a _bin_ directory, or used with an absolute path to the script. The
 
 ```toml
 [alias]
-    c = "! git commit --edit -m $(autofill.sh)"
+    c = '! git commit --edit -m "$(autofill.sh)"'
 ```
 
 Then instead of `git commit`, you do:
 
 ```sh
 $ git c
+
 $ git c foo.txt
 ```
 
