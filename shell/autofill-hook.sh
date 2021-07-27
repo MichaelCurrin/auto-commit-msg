@@ -20,10 +20,10 @@ COMMIT_SOURCE=$2
 
 echo 'Input values'
 echo "COMMIT_MSG_FILE = $COMMIT_MSG_FILE"
-# 'message' or 'template'
+# Either 'message' or 'template'
 echo "COMMIT_SOURCE = $COMMIT_SOURCE"
 
-# TODO this conditional is untested.
+# TODO: Test - this conditional is untested.
 if [ "$COMMIT_SOURCE" = 'template']; then
   echo "Current commit message"
   <"$COMMIT_MSG_FILE"
