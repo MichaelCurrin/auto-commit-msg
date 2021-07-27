@@ -20,13 +20,13 @@ import { generateMsg } from "./prepareCommitMsg";
  * Returns a suitable generated commit message as text.
  */
 function main(args: string[]) {
-  const linesArg = args[0]
+  const linesArg = args[0];
 
-  if (typeof linesArg === 'undefined') {
+  if (typeof linesArg === "undefined") {
     throw new Error("Exactly one argument is required - text from diff-index.");
   }
 
-  const lines = linesArg.split("\n")
+  const lines = linesArg.split("\n");
 
   if (!lines.length) {
     throw new Error("No file changes found");
