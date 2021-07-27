@@ -47,7 +47,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
   );
 
   if (stderr) {
-    console.debug("stderror for `git diff-index` command:", stderr);
+    console.debug("stderr for `git diff-index` command:", stderr);
   }
 
   const lines = stdout.split("\n");
@@ -66,6 +66,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
  */
 export async function getChanges() {
   const stagedChanges = await diffIndex(["--cached"]);
+
   if (stagedChanges.length) {
     console.debug("Found staged changes");
 
@@ -77,6 +78,7 @@ export async function getChanges() {
   );
 
   const allChanges = await diffIndex();
+
   if (!allChanges.length) {
     console.debug("No changes found");
   }
