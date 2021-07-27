@@ -47,11 +47,11 @@ D  src/test/main.test.ts
 AM src/test/single-file.test.ts
 ```
 
-But when adding first using CLI or UI, then it will be simplified. 
+But when adding first using CLI or UI, then it will be simplified.
 
 If the percent change is very small, then it will be converted to a rename.
 
-In this case the files are different enough to not be collapsed as a rename. Note that no code was changed - the add command changes from above.
+In this case, the files are different enough to not be collapsed as a rename. Note that no code was changed - the add command changes from above.
 
 ```sh
 $ git add -A

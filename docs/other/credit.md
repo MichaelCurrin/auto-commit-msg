@@ -26,16 +26,16 @@ Note that a "semantic commit" message is the same as a "conventional commit" mes
 ## Git Prefix
 
 - Repos: [srmeyers/git-prefix](https://github.com/srmeyers/git-prefix) or the fork [d3skdev/git-prefix](https://github.com/d3skdev/git-prefix).
-- I found this in the marketplace - it adds a _branch prefix_ to commit message UI box and gives the user a chance to read it and edit it. This is very close to the flow that I want and it far less code that Git Semantic Commit, so my extension is based on this. See for example the use of `repository.inputBox.value` in [extension.ts](/src/extension.ts).
+- I found this in the marketplace - it adds a _branch prefix_ to the commit message UI box and gives the user a chance to read it and edit it. This is very close to the flow that I want and it is far less code than Git Semantic Commit, so my extension is based on this. See for example the use of `repository.inputBox.value` in [extension.ts](/src/extension.ts).
 
 
 ## Parse Git Status
 
 - Repo: [jamestalmage/parse-git-status](https://github.com/jamestalmage/parse-git-status)
-- I started out parsing git status output (not diff-index), intending to use this NPM package. Unfortunately it does not come with types and I couldn't figure out how to add types, so I took the logic from it and rewrote it as my own so it is easier to manage and extend. See my [parse-git-output](/src/generate/parse-git-output) module - that based on `parse-git-status`.
+- I started out parsing git status output (not diff-index), intending to use this NPM package. Unfortunately, it does not come with types and I couldn't figure out how to add types, so I took the logic from it and rewrote it as my own so it is easier to manage and extend. See my [parse-git-output](/src/generate/parse-git-output) module - that based on `parse-git-status`.
 - My enhancements:
     - Compatible with git status `--porcelain` flag.
-        - Replaced use of `-z` mode. As I not like separating by either one _or_ two null characters and how the original package did this splitting. So I split columns by whitespace rather and had lines split by newline character (for when more than one files changes or there is a trailing line).
+        - Replaced use of `-z` mode. As I do not like separating by either one _or_ two null characters and how the original package did this splitting. So I split columns by whitespace rather and had lines split by a newline character (for when more than one files changes or there is a trailing line).
     - Cleaner `for` loop logic
         - I found the original hard to work on because of how it uses an old-style `for` loop and `i` variable.
         - I found using `.split` with a regex pattern was much simpler.
