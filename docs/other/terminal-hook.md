@@ -35,7 +35,7 @@ Here is the flow for using any `prepare-commit-msg` hook, not specific to this p
 
 ## Installation
 
-Note that, in the future, the installation steps here will change and be split into maybe a separate installation doc. One part is installing the hook in any repo using a file built with GH actions. Another is to build and use the file by hand, which is simpler to set up and will be become a development doc step once actions has been set up.
+Note that, in the future, the installation steps here will change and be split into maybe a separate installation doc. One part is installing the hook in any repo using a file built with GH actions. Another is to build and use the file by hand, which is simpler to set up and will be become a development doc step once actions have been set up.
 
 ### Install system dependencies
 

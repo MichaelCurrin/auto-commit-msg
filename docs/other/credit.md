@@ -2,7 +2,7 @@
 > Giving credit to projects which influenced this project
 
 
-The core of this project's VS Code extension logic is about creating a commit message and pushing to the _Git Extension_ input box in the UI. That comes from the _Git Prefix_ extension. Use of _Git CLI_ in the extension comes from the _Semantic Git Commit_ extension.
+The core of this project's VS Code extension logic is about creating a commit message and pushing it to the _Git Extension_ input box in the UI. That comes from the _Git Prefix_ extension. The use of _Git CLI_ in the extension comes from the _Semantic Git Commit_ extension.
 
 See more info below.
 

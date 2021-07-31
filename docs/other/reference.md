@@ -3,7 +3,7 @@
 See my [git hooks](https://github.com/MichaelCurrin/dev-cheatsheets/blob/master/cheatsheets/git/hooks.md) reference.
 
 
-## Prepare commit message
+## Prepare a commit message
 
 In `prepare-commit-msg` hook, assuming it is a Bash script.
 
