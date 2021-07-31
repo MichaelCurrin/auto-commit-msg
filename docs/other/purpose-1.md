@@ -5,7 +5,7 @@
 
 Yes, before you ask, yes I _know_ that meaningful commit messages are meaningful to future me and other developers in understanding intent or the reason for a change.
 
-But I also find that the majority of commits I make have messages that could be generated programmatically. Based on the _pareto_ principle, probably 80% of them. The messages are easy to compute, or the change is so small (a few lines changed) that it does not have much meaning on its own until the "feature" or "fix" is complete through many commits (formalized with a Pull Request or tag). And sometimes I am working on a small personal project or writing docs which are not code, so it matters to me more than I can commit frequently than every message is meaningful and handwritten.
+But I also find that the majority of commits I make have messages that could be generated programmatically. Based on the _pareto_ principle, probably 80% of them. The messages are easy to compute, or the change is so small (a few lines changed) that it does not have much meaning on its own until the "feature" or "fix" is complete through many commits (formalized with a Pull Request or tag). And sometimes I am working on a small personal project or writing docs (which are not code), so it matters to me more than I can commit frequently than every message is meaningful and handwritten.
 
 Additionally, there are some messages which are easy to figure out and write using an algorithm and not so nice to type precisely. e.g. `Update 5 files and created 2 files`. Or `Created 2 files in foo/bar`. This can be prefaced with a manual "fix: " or "feat: " to make the intent clear.
 
