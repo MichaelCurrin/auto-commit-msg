@@ -5,9 +5,9 @@ Describe how files changed.
 
 ## Git CLI
 
-See `DESCRIPTION` enum in the [constants.ts][] module. This is a description of _how_ a file changed - it will sometimes be used in generated description as the [Conventional Commits][] doc.
+See `DESCRIPTION` enum in the [constants.ts][] module. This is a description of _how_ a file changed - it will sometimes be used in a generated description as the [Conventional Commits][] doc.
 
-This enum is a mapping of single characters keys and the verb, such as `M` for `modified`.
+This enum is a mapping of single-character keys and the verb, such as `M` for `modified`.
 
 When running either subcommand, you might get the short or long form of a change.
 
@@ -56,7 +56,7 @@ Note this extension does not care about the last 3 kinds.
 
 ### Create note
 
-For the `A` key of the enum, `create` was used as more natural form than `add` or `addition`.
+For the `A` key of the enum, `create` was used as a more natural form than `add` or `addition`.
 
 ### Copy note
 
@@ -67,7 +67,7 @@ I've only come across it once using this extension and it was like this:
 - One file `abc.txt` was updated (empty content replaced with text).
 - Another file `def.txt` was created (empty content).
 
-Both were staged and a message generated. And then `diff-index` appears like to see `def.txt` as a copy of what `abc.txt` _was_ before it was modified.
+Both were staged and a message was generated. And then `diff-index` appears like to see `def.txt` as a copy of what `abc.txt` _was_ before it was modified.
 
 Result:
 

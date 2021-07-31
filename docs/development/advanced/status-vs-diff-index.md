@@ -38,7 +38,7 @@ $ git status --short
 
 ## diff-index
 
-The less-known `git diff-index` subcommand. This is not so usable for day to to day use in the CLI but is great for scripts or for a project such as this one.
+The less-known `git diff-index` subcommand. This is not so usable for day to to day use in the CLI but is great for scripts, or for a project such as this one.
 
 ```sh
 $ git diff-index [FLAGS] PATH
@@ -47,7 +47,7 @@ $ git diff-index [FLAGS] PATH
 > Compare a tree to the working tree or index
 
 - Flags must appear before the path.
-- Use `--cached` for staged changes _only_. Note that the only way to pick up new file or detect a move/rename pair properly with `diff-index` is to stage changes first and then use this flag.
+- Use `--cached` for _only_ staged changes. Note that the only way to pick up a new file or detect a move/rename pair properly with `diff-index` is to stage changes first and then use this flag.
 - The path is required - `HEAD` works fine.
 
 e.g.
@@ -69,7 +69,7 @@ I consider this is an acceptable limitation of functionality to keep the extensi
 
 #### Details
 
-The `diff-index` subcommand cannot see new or moved/renamed files, unless you stage them. Which is okay, because you just need to stage a file and then the extension can see it.
+The `diff-index` subcommand cannot see new or moved/renamed files unless you stage them. This is okay. Because you just need to stage a file and then the extension can see it.
 
 And in the case of renaming/moving files, there's a limitation of git that can't be overcome - you need to **stage** the old and new paths anyway for `git` to see them as **one file**, regardless of using `status` or `diff-index`.
 

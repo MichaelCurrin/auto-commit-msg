@@ -30,8 +30,8 @@ The code for the extension is in [src](/src/).
 
 ## Reload
 
-The `watch` task is supposed to be running in the background but I haven't actually seen it actually pick up changes and effect what I see in the debugging window.
+The `watch` task is supposed to be running in the background but I haven't actually seen it actually pick up changes and affect what I see in the debugging window.
 
-So if you make a change to your source code, in the original repo you muyst use the green _Restart_ circle in the debugger to reload the extension in the sandbox window.
+So if you make a change to your source code, in the original repo you must use the green _Restart_ circle in the debugger to reload the extension in the sandbox window.
 
 If you don't see code changes appearing, you may need to stop and start the debugger afresh.
