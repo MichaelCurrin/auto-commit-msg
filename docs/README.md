@@ -1,18 +1,17 @@
 # Auto Commit Message documentation ⚙️ 🧙‍♂️ ✉️
 
-This project servesd to prepare a smart commit message for you, to make your development flow smoother.
+This project serves to prepare a smart commit message for you, to make your development flow smoother.
 
 
 ## Overview
 
 - [Quickstart](quickstart.md)
-    - You can download and install a pre-built extension. No need to work with this repo directly or be familiar with JavaScript.
 - [Features](features.md)
-    - What it can do, upcoming features and how it works
+    - What it can do, upcoming features, and how it works
 - [User manual](manual/)
     - How to use the installed extension.
 - [Development](development/)
-    - Guide for developers to set up and run locally,  so you can contribute if you want.
+    - Guide for developers to set up and run locally, so you can contribute if you want.
 
 <!--
 
