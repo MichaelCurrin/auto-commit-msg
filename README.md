@@ -14,8 +14,10 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/MichaelCurrin/auto-commit-msg)
 [![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)](/CONTRIBUTING.md)
 
+[![Made for VS Code](https://img.shields.io/badge/Made_for-VS_Code-blue)](https://code.visualstudio.com/)
 [![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
+
 
 <div align="center">
 
@@ -39,12 +41,6 @@
 
 
 ## Getting started
-
-This is a [VS Code extension](https://code.visualstudio.com/).
-
-_I'm still streamlining the experience to download from the VS Code Marketplace. For now, use a manual approach._
-
-The guide here shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code.
 
 <div align="center">
 
