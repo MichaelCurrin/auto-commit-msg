@@ -1,5 +1,5 @@
 # Auto Commit Message ⚙️ 🧙‍♂️ ✉️
-> A VS Code extension that writes commit messages for you
+> A VS Code extension to generate a smart commit message based on file changes
 
 <!-- Badges generated with https://michaelcurrin.github.io/badge-generator/#/ -->
 
