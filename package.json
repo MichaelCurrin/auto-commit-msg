@@ -60,11 +60,14 @@
     "generate",
     "commit",
     "message",
-    "vs-code"
+    "conventional-commit",
+    "vs-code",
+    "vscode",
+    "productivity"
   ],
   "main": "out/extension.js",
   "categories": [
-    "Other"
+    "SCM Providers"
   ],
   "icon": "images/icon.png",
   "galleryBanner": {
