@@ -33,7 +33,7 @@
 ## Preview
 
 <div align="center">
-    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="400" />
+    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="300" />
 </div>
 
 
@@ -72,25 +72,25 @@ Here are some screenshots of what messages the extension generates based on chan
 If you created a new file and staged it:
 
 <div align="center">
-    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="200" />
+    <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="250" />
 </div>
 
 If you updated a build-related file:
 
 <div align="center">
-    <img src="/docs/_media/sample-build.png" alt="build" title="build" width="200" />
+    <img src="/docs/_media/sample-build.png" alt="build" title="build" width="250" />
 </div>
 
 If updated a file in `docs/` or a `README.md` anywhere:
 
 <div align="center">
-    <img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="200" />
+    <img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="250" />
 </div>
 
 If you renamed a file:
 
 <div align="center">
-    <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="200" />
+    <img src="/docs/_media/sample-rename.png" alt="rename" title="rename" width="250" />
 </div>
 
 
