@@ -3,7 +3,7 @@
 
 _This extension is not yet available through the VS Code extension marketplace._
 
-This guides covers how to get the extension installed globally in your VS Code using a downloaded file and then start using the extension.
+This guide covers how to get the extension installed globally in your VS Code using a downloaded file and then start using the extension.
 
 
 ## How to use
@@ -28,5 +28,5 @@ To install the extension, you only need:
 
 - VS Code installed
 - The ability to run terminal commands.
--
+
 You do **not** need to download the repo or have Node or NPM installed.

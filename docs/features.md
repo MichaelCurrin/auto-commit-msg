@@ -3,9 +3,8 @@
 ## What it does
 
 - Click the button in the Git pane to run the extension.
-- Reads from the status of your git repo, or staged changes
-- Generates a commit message for you, then you can edit and commit as you like
-- Installable from archive file (see _assets_ list under latest [release](https://github.com/MichaelCurrin/auto-commit-msg/releases)) - not yet available in the extension marketplace.
+- Reads from the status of your git repo, or staged changes.
+- Generates a commit message for you, then you can edit and commit as you like.
 
 
 ## Details
