@@ -1,5 +1,5 @@
 # Installation
-> Set up a dev environment
+> Install dependencies
 
 
 ## Install system dependencies
