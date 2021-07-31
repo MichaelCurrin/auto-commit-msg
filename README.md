@@ -19,7 +19,8 @@
 
 <div align="center">
 
-<a href="/docs/quickstart.md" title="Go to docs quickstart">
+<a href="https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg"
+    title="Go to Marketplace extension page">
     <img src="/images/icon.png" alt="Logo" width="200" />
     <br/>
     <img src="https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code" alt="VS Code Extension" />
