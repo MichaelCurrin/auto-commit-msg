@@ -112,7 +112,7 @@ A VS Code extension that gives you smart commit message suggestions. For the tim
 
 It looks at the path of a file that changed and how it changed, then pushes the commit message to the Git pane in VS Code. You can edit or erase the message if you don't like it.
 
-It can make a message to **describe a change** for a single file to commit. Including "create", "update", "remove", "rename" and "move" - along with the filename. Or the path, like for a move. See the [message test spec](/src/test/message.test.ts).
+It can make a message to **describe a change** for a single file to commit. Including "create", "update", "remove", "rename" and "move" - along with the filename. Or the path, like for a move. See the [message.test.ts](/src/test/generate/message.test.ts) test spec.
 
 In many cases, it can also provide an appropriate **Conventional Commit** type for you, as a commit message prefix.
 
