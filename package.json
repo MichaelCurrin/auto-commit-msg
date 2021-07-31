@@ -42,7 +42,7 @@
     "vscode-test": "^1.6.1"
   },
   "displayName": "Auto Commit Message",
-  "description": "Generate git commit messages automagically",
+  "description": "A VS Code extension to generate a smart commit message based on file changes",
   "publisher": "MichaelCurrin",
   "author": {
     "name": "MichaelCurrin"
