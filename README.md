@@ -11,7 +11,8 @@
 [![GitHub release](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/releases/)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
-![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)
+![GitHub last commit](https://img.shields.io/github/last-commit/MichaelCurrin/auto-commit-msg)
+[![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)](/CONTRIBUTING.md)
 
 [![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
@@ -19,7 +20,7 @@
 <div align="center">
 
 <a href="/docs/quickstart.md" title="Go to docs quickstart">
-    <img src="/images/icon.png" alt="Logo" width="200"  />
+    <img src="/images/icon.png" alt="Logo" width="200" />
     <br/>
     <img src="https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code" alt="VS Code Extension" />
 </a>
@@ -40,7 +41,9 @@
 
 This is a [VS Code extension](https://code.visualstudio.com/).
 
-The guide here shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code (you can't find it on the extension marketplace yet).
+_I'm still streamlining the experience to download from the VS Code Marketplace. For now, use a manual approach._
+
+The guide here shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code.
 
 <div align="center">
 
@@ -51,8 +54,6 @@ The guide here shows you how to download a _pre-built_ extension from GitHub Rel
 
 ## Features
 
-See more info on the [Features](/docs/features.md) page in the docs.
-
 - Just click the extension button in the Git pane.
 - It reads the state of files in your Git repo or staged files.
 - Generates a commit message, which you can use or edit.
@@ -60,6 +61,8 @@ See more info on the [Features](/docs/features.md) page in the docs.
 - Handles multiple files at once.
 - Infers a _Conventional Commit_ type where possible - e.g. `feat`, `ci`, `build`.
 - It can recognize a range of files based on path and extension. Such as related to config files, CI files, dependency files (for JavaScript, Python, etc.), or documentation.
+
+See more info on the [Features](/docs/features.md) page in the docs.
 
 
 ## Sample usage
@@ -94,17 +97,24 @@ If you renamed a file:
 <!-- TODO: Add GIF here -->
 
 
+## When auto-generated messages are good
+
+This is a time-saving tool. You get to spend more time writing code and solving problems. And less time on figuring out what to write for a commit message or typing the message.
+
+You can probably use this tool to generate messages for **80%** of your commits. Where the changes are rather mundane. And where the effort and time to write out a commit
+
+But remember to **manually** write explanatory messages for the other 20% of the time, where a commit message composed by a human is valuable. Or take the generated message and tweak it with more detail.
+
+
 ## About
 
 A VS Code extension that gives you smart commit message suggestions. For the times where all your need is a simple message.
 
 It looks at the path of a file that changed and how it changed, then pushes the commit message to the Git pane in VS Code. You can edit or erase the message if you don't like it.
 
-It can make a message to **describe a change** for a single file to commit. Including "create", "update", "remove", "rename" and "move" - along with the filename. Or the path, like for a move. See the [tests](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/src/test/message.test.ts).
+It can make a message to **describe a change** for a single file to commit. Including "create", "update", "remove", "rename" and "move" - along with the filename. Or the path, like for a move. See the [message test spec](/src/test/message.test.ts).
 
-In many cases, it can also provide an appropriate **conventional commit** prefix label for you. It can't separate features and bug fixes, but it can identify changes to docs, CI files, and config files.
-
-Don't use this tool all the time - remember to write explanatory messages when it matters.
+In many cases, it can also provide an appropriate **Conventional Commit** type for you, as a commit message prefix.
 
 
 ## Documentation
@@ -114,6 +124,11 @@ Don't use this tool all the time - remember to write explanatory messages when i
 [![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
 
 </div>
+
+
+## Contributing
+
+See [Contributing][/CONTRIBUTING.md] guide.
 
 
 ## License
