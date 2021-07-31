@@ -45,9 +45,6 @@ e ext:
 	npm run lint:check
 	npm run ext
 
-ls:
-	npx vsce ls
-
 # Run checks, tag and push (to GitHub only) then install the tagged version as clean-up.
 tag:
 	npm version minor
