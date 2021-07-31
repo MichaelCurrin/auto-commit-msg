@@ -40,7 +40,7 @@
 
 This is a [VS Code extension](https://code.visualstudio.com/).
 
-Thee guide here shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code (you can't find it on the extension marketplace yet).
+The guide here shows you how to download a _pre-built_ extension from GitHub Releases and then install it in VS Code (you can't find it on the extension marketplace yet).
 
 <div align="center">
 
@@ -49,25 +49,17 @@ Thee guide here shows you how to download a _pre-built_ extension from GitHub Re
 </div>
 
 
-## Release disclaimer
-
-- This application is still in **pre-release** stage.
-- But, ... it is _still_ functional, and I use it daily, so please use it too if you want.
-- There are just some finishing touches still, like making a new logo, releasing the package on the marketplace (so you can install it without downloading from the releases page), and cleaning up the docs. It can become version `1.0.0` around then.
-- There are issues I want to work through to extend functionality to make the extension smarter.
-
-
 ## Features
 
 See more info on the [Features](/docs/features.md) page in the docs.
 
 - Just click the extension button in the Git pane.
-- Reads the state of files in your Git repo or staged files
-- Generates a commit message, which you can use or edit
+- It reads the state of files in your Git repo or staged files.
+- Generates a commit message, which you can use or edit.
 - Describes a variety of changes - when a file is added, removed, moved, renamed, etc.
 - Handles multiple files at once.
-- Infers a Conventional Commit category where possible - e.g. `feat`, `ci`, `build`.
-- Suitable for development in a variety of languages and tools. It can recognize a range of files based on path and extension, such related to CI, configs, dependency, or docs.
+- Infers a _Conventional Commit_ type where possible - e.g. `feat`, `ci`, `build`.
+- It can recognize a range of files based on path and extension. Such as related to config files, CI files, dependency files (for JavaScript, Python, etc.), or documentation.
 
 
 ## Sample usage
@@ -83,13 +75,13 @@ If you created a new file and staged it:
 If you updated a build-related file:
 
 <div align="center">
-<img src="/docs/_media/sample-build.png" alt="build" title="build" width="250" />
+    <img src="/docs/_media/sample-build.png" alt="build" title="build" width="250" />
 </div>
 
 If updated a file in `docs/` or a `README.md` anywhere:
 
 <div align="center">
-<img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="250" />
+    <img src="/docs/_media/sample-docs.png" alt="docs" title="docs" width="250" />
 </div>
 
 If you renamed a file:
