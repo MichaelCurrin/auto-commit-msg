@@ -128,7 +128,7 @@ In many cases, it can also provide an appropriate **Conventional Commit** type f
 
 ## Contributing
 
-See [Contributing][/CONTRIBUTING.md] guide.
+See the [Contributing](/CONTRIBUTING.md) guide.
 
 
 ## License
