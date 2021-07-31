@@ -55,3 +55,6 @@ tag:
 
 login:
 	npx vsce login $(PUBLISHER_NAME)
+
+publish:
+	npx vsce publish minor
