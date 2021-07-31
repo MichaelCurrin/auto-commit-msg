@@ -22,7 +22,7 @@ Run major tasks to check the project for issues.
 $ make all
 ```
 
-This will up hooks, install packages, fix and unit test tasks.
+This will up hooks, install packages, fix, and unit test tasks.
 
 This is useful for bootstrapping the project on a fresh clone, or before pushing commits. This task also runs as part of the `pre-push` hook after that has been set up.
 
@@ -47,7 +47,7 @@ Run ESLint against TS files for a report and fixing problems where possible.
 $ make lint
 ```
 
-Note that linting will not actually pick up on TypeScript compilation errors, but that can be done using the `npm run compile` step. This runs as part of [Run tests](#run-tests) section.
+Note that linting will not pick up on TypeScript compilation errors, but that can be done using the `npm run compile` step. This runs as part of [Run tests](#run-tests) section.
 
 ### Run tests
 

@@ -41,7 +41,7 @@ $ npm run cover:report
 
 See the main page generated as `coverage/lcov-report/index.html`.
 
-This can viewed as using a static site server.
+This can be viewed using a static site server.
 
 ```sh
 $ cd coverage/lcov-report
@@ -52,4 +52,4 @@ Then open as:
 
 - http://localhost:8000
 
-Or set up VS Code's _Live Server_ to start on that `index.html` page. That will hot-reload the browser tab when the HTML files changes - this is useful if you are updating your tests and want to see the browser reflect changes to coverage.
+Or set up VS Code's _Live Server_ to start on that `index.html` page. That will hot-reload the browser tab when the HTML files change - this is useful if you are updating your tests and want to see the browser reflect changes to coverage.

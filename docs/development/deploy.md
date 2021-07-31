@@ -4,7 +4,7 @@
 
 ## Checks
 
-The CI/CD flow is setup on GitHub Actions to compile the app and runs checks against it. This is done on every push.
+The CI/CD flow is set up on GitHub Actions to compile the app and runs checks against it. This is done on every push.
 
 See the [main.yml](/.github/workflows/main.yml) config file.
 
@@ -42,11 +42,11 @@ Then go into the [Releases](https://github.com/MichaelCurrin/auto-commit-msg/rel
 
 Note that there is no marketplace extension yet. This section will be completed when that happens around version `1.0`.
 
-Also there is no package on NPM - this would not be useful as this is a standalone project extension and not a library.
+Also, there is no package on NPM - this would not be useful as this is a standalone project extension and not a library.
 
 
 ## Docs and versions
 
-Note that the doc badge on root `README.md` will increment to the latest tag number but not the latest release. This is okay, as tags can be regular to track progress but if there is nothing meaningful the extension doesn't have to be rebuilt. Until that flow becomes automated to upload to releases with CI, or publish to marketplace.
+Note that the doc badge on root `README.md` will increment to the latest tag number but not the latest release. This is okay, as tags can be regular to track progress but if there is nothing meaningful the extension doesn't have to be rebuilt. Until that flow becomes automated to upload to releases with CI or publish to marketplace.
 
 When it's at that point, I'll also have to be more conservative with pushing out a newer version with is unstable to be downloaded. It would be useful to use a prerelease (`-alpha`) tag or prerelease checkbox on the release and avoid have that go through publishing.
