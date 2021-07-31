@@ -135,4 +135,4 @@ See the [Contributing](/CONTRIBUTING.md) guide.
 
 Released under [MIT](/LICENSE) by [@MichaelCurrin](https://github.com/MichaelCurrin).
 
-See [Credit](/docs/other/credit.md) section the docs for more info.
+See [Credit](/docs/other/credit.md) doc for more info.
