@@ -25,7 +25,7 @@
     title="Go to Marketplace extension page">
     <img src="/images/icon.png" alt="Logo" width="200" />
     <br/>
-    <img src="https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code" alt="VS Code Extension" />
+    <img src="https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code" alt="VS Code extension" />
 </a>
 
 [Getting started](#getting-started) | [Features](#features) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
