@@ -1,13 +1,21 @@
 # Installation
 
+## Install from the Marketplace
+
 Go to the Marketplace and click the _Install_ button.
 
+<div align="center">
+    
 [![VS Code Marketplace - Auto Commit Message](https://img.shields.io/badge/VS_Code_Marketplace-Auto_Commit_Message-blue?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg)
 
+</div>
+
+Or go to the Extensions side panel and search for an install the extension by name as _Auto Commit Message_.
+    
 Continue to the [Usage](usage.md) doc.
 
 
-## Alternative install approaches
+## Manual install approaches
 
 ### Use the GUI
 
