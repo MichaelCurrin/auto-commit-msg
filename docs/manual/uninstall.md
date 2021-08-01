@@ -1,4 +1,4 @@
-# Remove
+# Uninstall
 > How to uninstall the extension if you don't want it anymore
 
 
