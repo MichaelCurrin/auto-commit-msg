@@ -39,6 +39,10 @@
     <img src="/docs/_media/sample-feat.png" alt="feat" title="feat" width="300" />
 </div>
 
+This extension takes zero parameters. Just click a button and it automagically generates a commit message for you. Based on files that changed or are staged.
+
+Unlike other extensions require some more manual input, such as selecting prefix type from a droplist or writing a commit message by hand.
+
 
 ## Getting started
 
