@@ -39,10 +39,6 @@
     <img src="/docs/_media/sample-chore.png" alt="sample screenshot of chore" width="300" />
 </div>
 
-This extension takes zero parameters. Just click a button and it _automagically_ generates a commit message for you. Based on files that changed or are staged.
-
-Unlike other extensions require some more manual input, such as selecting prefix type from a droplist or writing a commit message by hand.
-
 
 ## Getting started
 
@@ -55,15 +51,23 @@ Unlike other extensions require some more manual input, such as selecting prefix
 
 ## Features
 
-- Just click the extension button in the Git pane.
-- It reads the state of files in your Git repo or staged files.
-- Generates a commit message, which you can use or edit.
-- Describes a variety of changes - when a file is added, removed, moved, renamed, etc.
+Just click the extension **button** in the Git pane.
+
+This is what the extension will do:
+
+- Look at any **staged** changes files, otherwise falls back to all unstaged changes.
+- Generate a commit message, which you can use or edit.
+- It can describe a variety of changes - when a file is added, removed, moved, renamed, etc.
 - Handles multiple files at once.
-- Infers a _Conventional Commit_ type where possible - e.g. `feat`, `ci`, `build`.
+- Infers a **Conventional Commit** prefix type where possible - e.g. `feat`, `ci`, `build`.
 - It can recognize a range of files based on path and extension. Such as related to config files, CI files, dependency files (for JavaScript, Python, etc.), or documentation.
 
 See more info on the [Features](/docs/features.md) page in the docs.
+
+
+## Comparing with other extensions
+
+Other extensions usually require some manual input, such as selecting prefix type from a droplist or writing a commit message by hand. This extension takes _zero_ parameters. Just click a button.
 
 
 ## Sample usage
