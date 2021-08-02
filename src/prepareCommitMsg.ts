@@ -52,9 +52,11 @@ function _splitPrefixDesc(value: string) {
  * Split a prefix into a custom prefix and Conventional Commit type prefix.
  */
 function _splitPrefixes(value: string) {
-  return value.includes(" ")
+  const [customPrefix, typePrefix] = value.includes(" ")
     ? value.split(" ", 2)
     : ["", value];
+
+  return { customPrefix, typePrefix }
 }
 
 /**
@@ -62,8 +64,7 @@ function _splitPrefixes(value: string) {
  */
 export function _splitMsg(msg: string) {
   const { prefix, description } = _splitPrefixDesc(msg)
-
-  const [customPrefix, typePrefix] = _splitPrefixes(prefix)
+  const { customPrefix, typePrefix } = _splitPrefixes(prefix)
 
   return { customPrefix, typePrefix, description: description.trim() };
 }
