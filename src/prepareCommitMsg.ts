@@ -60,7 +60,7 @@ function _splitPrefixes(value: string) {
 }
 
 /**
- * Separate a message into a Conventional Commit type, if any, and the description.
+ * Separate a message prefixs if any and the description.
  */
 export function _splitMsg(msg: string) {
   const { prefix, description } = _splitPrefixDesc(msg)
