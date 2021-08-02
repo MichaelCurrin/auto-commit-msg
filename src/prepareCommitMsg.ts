@@ -45,15 +45,15 @@ export function _cleanJoin(first: string, second: string) {
  * Now also supports Jira number e.g. '[ABCD-123] my description'.
  */
 function _splitPrefixDesc(value: string) {
-  let prefix: string, description: string
+  let prefix: string, description: string;
 
   if (value.includes(":")) {
-    [prefix, description] = value.split(":", 2)
+    [prefix, description] = value.split(":", 2);
   } else {
-    [prefix, description] = ["", value]
+    [prefix, description] = ["", value];
   }
 
-  return { prefix, description }
+  return { prefix, description };
 }
 
 /**
@@ -64,15 +64,15 @@ function _splitPrefixes(value: string) {
     ? value.split(" ", 2)
     : ["", value];
 
-  return { customPrefix, typePrefix }
+  return { customPrefix, typePrefix };
 }
 
 /**
  * Separate a message prefixs if any and the description.
  */
 export function _splitMsg(msg: string) {
-  const { prefix, description } = _splitPrefixDesc(msg)
-  const { customPrefix, typePrefix } = _splitPrefixes(prefix)
+  const { prefix, description } = _splitPrefixDesc(msg);
+  const { customPrefix, typePrefix } = _splitPrefixes(prefix);
 
   return { customPrefix, typePrefix, description: description.trim() };
 }
