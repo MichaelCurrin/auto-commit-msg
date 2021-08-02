@@ -42,7 +42,8 @@ export function _cleanJoin(first: string, second: string) {
  * 'ci:' will be considered a prefix. This keeps the check simpler as we don't have to match against
  * every type and we don't have to check if we are part of a word e.g. 'circus'.
  *
- * Now also supports Jira number e.g. '[ABCD-123] my description'.
+ * TODO: also support Jira number e.g. '[ABCD-123]', '[ABCD-123] my description', and '[ABCD-123]
+ * docs: my description'.
  */
 function _splitPrefixDesc(value: string) {
   let prefix: string, description: string;
