@@ -15,7 +15,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -682,10 +682,10 @@ describe("Prepare commit message", function () {
       );
     });
 
-    describe("combines an existing message with a new message that is set", function () {
+    describe("combines an old message with a new message", function () {
       // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name works too.
 
-      describe("when convention cannot be determined from the file changes", function () {
+      describe("when convention prefix cannot be determined from the file changes", function () {
         it("combines two plain messages", function () {
           assert.strictEqual(
             _combineOldAndNew(
@@ -738,7 +738,7 @@ describe("Prepare commit message", function () {
           );
         });
 
-        describe("recognize the message is identical and does not duplicate it", function () {
+        describe("when the entire result is identical to the old message, don't duplicate", function () {
           it("adds a inferred type if it has one", function () {
             assert.strictEqual(
               _combineOldAndNew(
