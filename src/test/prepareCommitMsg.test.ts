@@ -15,7 +15,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _splitMsg
+  _splitMsg,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -738,7 +738,7 @@ describe("Prepare commit message", function () {
           );
         });
 
-        describe("when the entire result is identical to the old message, don't duplicate", function () {
+        describe("when the result is identical to the old message, don't duplicate", function () {
           it("adds a inferred type if it has one", function () {
             assert.strictEqual(
               _combineOldAndNew(
@@ -775,35 +775,47 @@ describe("Prepare commit message", function () {
       });
 
       describe("when a convention is determined from the file changes", function () {
-        it("inserts a new prefix between the old and new messages", function () {
-          assert.strictEqual(
-            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "fizz buzz"),
-            "feat: foo bar fizz buzz"
-          );
+        describe("insert a new prefix between the old and new messages", function () {
+          it("uses a plain old message", function () {
+            assert.strictEqual(
+              _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "fizz buzz"),
+              "feat: foo bar fizz buzz"
+            );
+          });
 
-          // Unfortunately if your old message doesn't look like a prefix by having a colon, it just
-          // gets treated as an old description and can't be added before the type. Maybe a future
-          // enhancement to get '[ABCD-1234] feat: foo bar'.
-          assert.strictEqual(
-            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "[ABCD-1234]"),
-            "feat: foo bar [ABCD-1234]"
-          );
+          it("uses a Jira old message", function () {
+            // Unfortunately if your old message doesn't look like a prefix by having a colon, it
+            // just gets treated as an old description and can't be added before the type. Maybe a
+            // future enhancement to get '[ABCD-1234] feat: foo bar'.
+            assert.strictEqual(
+              _combineOldAndNew(
+                CONVENTIONAL_TYPE.FEAT,
+                "foo bar",
+                "[ABCD-1234]"
+              ),
+              "feat: foo bar [ABCD-1234]"
+            );
+          });
         });
 
-        it("keeps the old type where there is an new one", function () {
-          assert.strictEqual(
-            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs:"),
-            "docs: foo bar"
-          );
+        describe("keep the old type where there is an new one", function () {
+          it("uses a plain old message", function () {
+            assert.strictEqual(
+              _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs:"),
+              "docs: foo bar"
+            );
+          });
 
-          assert.strictEqual(
-            _combineOldAndNew(
-              CONVENTIONAL_TYPE.FEAT,
-              "foo bar",
-              "[ABCD-1234] docs:"
-            ),
-            "[ABCD-1234] docs: foo bar"
-          );
+          it("uses a Jira old message", function () {
+            assert.strictEqual(
+              _combineOldAndNew(
+                CONVENTIONAL_TYPE.FEAT,
+                "foo bar",
+                "[ABCD-1234] docs:"
+              ),
+              "[ABCD-1234] docs: foo bar"
+            );
+          });
         });
 
         it("inserts replaces an old prefix with a space with a new one", function () {
