@@ -92,12 +92,33 @@ describe("Split a message into components", function () {
         typePrefix: "feat",
         description: "abc def",
       });
+    });
 
-      assert.deepStrictEqual(_splitMsg("[ABCD-1234] docs: abc def"), {
-        customPrefix: "[ABCD-1234]",
-        typePrefix: "docs",
-        description: "abc def",
+    describe("separates a custom prefix, conventional type, and description", function () {
+      it("handles a Jira number with hard brackets", function () {
+        assert.deepStrictEqual(_splitMsg("[ABCD-1234] docs: abc def"), {
+          customPrefix: "[ABCD-1234]",
+          typePrefix: "docs",
+          description: "abc def",
+        });
       });
+
+      it("handles a Jira number with no hard brackets", function () {
+        assert.deepStrictEqual(_splitMsg("ABCD-1234 docs: abc def"), {
+          customPrefix: "ABCD-1234",
+          typePrefix: "docs",
+          description: "abc def",
+        });
+      });
+
+      // TODO:
+      // it("handles a two words before the type", function () {
+      //   assert.deepStrictEqual(_splitMsg("ABCD 1234 docs: abc def"), {
+      //     customPrefix: "ABCD 1234",
+      //     typePrefix: "docs",
+      //     description: "abc def",
+      //   });
+      // });
     });
   });
 });
