@@ -35,6 +35,12 @@ export function _cleanJoin(first: string, second: string) {
   return `${first} ${second}`.trim();
 }
 
+function _splitPrefix(prefix: string) {
+  return prefix.includes(" ")
+    ? prefix.split(" ", 2)
+    : ["", prefix];
+}
+
 /**
  * Separate a message into a Conventional Commit type, if any, and the description.
  *
@@ -45,9 +51,7 @@ export function _cleanJoin(first: string, second: string) {
 export function _splitMsg(msg: string) {
   const [prefix, description] = msg.includes(":") ? msg.split(":") : ["", msg];
 
-  const [customPrefix, typePrefix] = prefix.includes(" ")
-    ? prefix.split(" ", 2)
-    : ["", prefix];
+  const [customPrefix, typePrefix] = _splitPrefix(prefix)
 
   return { customPrefix, typePrefix, description: description.trim() };
 }
