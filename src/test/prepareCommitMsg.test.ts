@@ -665,7 +665,7 @@ describe("Prepare commit message", function () {
       });
     });
 
-    it("will use only the new message, if the old message is empty", function () {
+    it("will use the new message only, if the old message is empty", function () {
       assert.strictEqual(
         _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar"),
         "foo bar"
