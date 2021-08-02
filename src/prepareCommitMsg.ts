@@ -35,6 +35,10 @@ export function _cleanJoin(first: string, second: string) {
   return `${first} ${second}`.trim();
 }
 
+function _splitPrefixDesc(value: string) {
+  return value.includes(":") ? value.split(":") : ["", value];
+}
+
 function _splitPrefixes(value: string) {
   return value.includes(" ")
     ? value.split(" ", 2)
@@ -49,7 +53,7 @@ function _splitPrefixes(value: string) {
  * every type and we don't have to check if we are part of a word e.g. 'circus'.
  */
 export function _splitMsg(msg: string) {
-  const [prefix, description] = msg.includes(":") ? msg.split(":") : ["", msg];
+  const [prefix, description] = _splitPrefixDesc(msg)
 
   const [customPrefix, typePrefix] = _splitPrefixes(prefix)
 
