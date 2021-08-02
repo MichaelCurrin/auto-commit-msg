@@ -15,7 +15,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _splitMsg,
+  _splitMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -783,7 +783,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("uses a Jira old message", function () {
+          it("uses an old message that is a Jira number only", function () {
             // Unfortunately if your old message doesn't look like a prefix by having a colon, it
             // just gets treated as an old description and can't be added before the type. Maybe a
             // future enhancement to get '[ABCD-1234] feat: foo bar'.
@@ -798,7 +798,7 @@ describe("Prepare commit message", function () {
           });
         });
 
-        describe("keep the old type where there is an new one", function () {
+        describe("keep the old type if there is one, without using a generated type", function () {
           it("uses a plain old message", function () {
             assert.strictEqual(
               _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs:"),
@@ -806,7 +806,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("uses a Jira old message", function () {
+          it("handles an old message that is Jira number plus a convention type", function () {
             assert.strictEqual(
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.FEAT,
