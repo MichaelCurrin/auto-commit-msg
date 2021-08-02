@@ -43,7 +43,9 @@ export function _cleanJoin(first: string, second: string) {
  * every type and we don't have to check if we are part of a word e.g. 'circus'.
  */
 function _splitPrefixDesc(value: string) {
-  return value.includes(":") ? value.split(":") : ["", value];
+  const [prefix, description] = value.includes(":") ? value.split(":") : ["", value];
+
+  return { prefix, description }
 }
 
 /**
@@ -59,7 +61,7 @@ function _splitPrefixes(value: string) {
  * Separate a message into a Conventional Commit type, if any, and the description.
  */
 export function _splitMsg(msg: string) {
-  const [prefix, description] = _splitPrefixDesc(msg)
+  const { prefix, description } = _splitPrefixDesc(msg)
 
   const [customPrefix, typePrefix] = _splitPrefixes(prefix)
 
