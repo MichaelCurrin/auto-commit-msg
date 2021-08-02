@@ -48,7 +48,7 @@ function _splitPrefixDesc(value: string) {
   let prefix: string, description: string
 
   if (value.includes(":")) {
-    [prefix, description] = value.split(":")
+    [prefix, description] = value.split(":", 2)
   } else {
     [prefix, description] = ["", value]
   }
@@ -57,7 +57,7 @@ function _splitPrefixDesc(value: string) {
 }
 
 /**
- * Split a prefix into a custom prefix and Conventional Commit type prefix.
+ * Split a prefix (before a colon) into a custom prefix and Conventional Commit type prefix.
  */
 function _splitPrefixes(value: string) {
   const [customPrefix, typePrefix] = value.includes(" ")
