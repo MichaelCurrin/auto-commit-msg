@@ -35,10 +35,10 @@ export function _cleanJoin(first: string, second: string) {
   return `${first} ${second}`.trim();
 }
 
-function _splitPrefix(prefix: string) {
-  return prefix.includes(" ")
-    ? prefix.split(" ", 2)
-    : ["", prefix];
+function _splitPrefixes(value: string) {
+  return value.includes(" ")
+    ? value.split(" ", 2)
+    : ["", value];
 }
 
 /**
@@ -51,7 +51,7 @@ function _splitPrefix(prefix: string) {
 export function _splitMsg(msg: string) {
   const [prefix, description] = msg.includes(":") ? msg.split(":") : ["", msg];
 
-  const [customPrefix, typePrefix] = _splitPrefix(prefix)
+  const [customPrefix, typePrefix] = _splitPrefixes(prefix)
 
   return { customPrefix, typePrefix, description: description.trim() };
 }
