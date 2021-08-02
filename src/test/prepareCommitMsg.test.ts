@@ -775,7 +775,7 @@ describe("Prepare commit message", function () {
       });
 
       describe("when a convention is determined from the file changes", function () {
-        describe("insert a new prefix between the old and new messages", function () {
+        describe("with no old type, insert a new type between the old and new msg", function () {
           it("uses a plain old message", function () {
             assert.strictEqual(
               _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "fizz buzz"),
@@ -784,9 +784,6 @@ describe("Prepare commit message", function () {
           });
 
           it("uses an old message that is a Jira number only", function () {
-            // Unfortunately if your old message doesn't look like a prefix by having a colon, it
-            // just gets treated as an old description and can't be added before the type. Maybe a
-            // future enhancement to get '[ABCD-1234] feat: foo bar'.
             assert.strictEqual(
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.FEAT,
