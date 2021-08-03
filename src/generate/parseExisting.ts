@@ -15,13 +15,12 @@
  * '[ABCD-123]', then use that as a custom prefix.
  */
 export function _splitPrefixDesc(value: string) {
-  let prefix = ''
-  let description = ''
+  let prefix = "";
+  let description = "";
 
   if (value.includes(":")) {
     [prefix, description] = value.split(":", 2);
-  }
-  else {
+  } else {
     description = value;
   }
 
@@ -32,9 +31,8 @@ export function _splitPrefixDesc(value: string) {
  * Split a prefix (before a colon) into a custom prefix and Conventional Commit type prefix.
  */
 function _splitPrefixes(value: string) {
-  const [customPrefix, typePrefix] = value !== '' && value.includes(" ")
-    ? value.split(" ", 2)
-    : ["", value];
+  const [customPrefix, typePrefix] =
+    value !== "" && value.includes(" ") ? value.split(" ", 2) : ["", value];
 
   return { customPrefix, typePrefix };
 }

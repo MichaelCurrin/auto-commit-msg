@@ -8,7 +8,7 @@ describe("Split an existing message into components", function () {
         prefix: "",
         description: "abc def",
       });
-    })
+    });
 
     it("handles a Jira prefix alone", function () {
       assert.deepStrictEqual(_splitPrefixDesc("[ABCD-1234]"), {
@@ -16,7 +16,7 @@ describe("Split an existing message into components", function () {
         description: "[ABCD-1234]",
       });
     });
-  })
+  });
 
   describe("#splitMsg", function () {
     it("handles a description alone", function () {
@@ -25,7 +25,7 @@ describe("Split an existing message into components", function () {
         typePrefix: "",
         description: "abc def",
       });
-    })
+    });
 
     it("handles a Jira prefix alone", function () {
       assert.deepStrictEqual(splitMsg("[ABCD-1234]"), {

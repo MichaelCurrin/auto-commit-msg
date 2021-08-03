@@ -36,7 +36,6 @@ export function _cleanJoin(first: string, second: string) {
   return `${first} ${second}`.trim();
 }
 
-
 /**
  * Determine the Conventional Commit type prefix for a file change.
  */
