@@ -32,7 +32,7 @@ export function _splitPrefixDesc(value: string) {
  * Split a prefix (before a colon) into a custom prefix and Conventional Commit type prefix.
  */
 function _splitPrefixes(value: string) {
-  const [customPrefix, typePrefix] = value.includes(" ")
+  const [customPrefix, typePrefix] = value !== '' && value.includes(" ")
     ? value.split(" ", 2)
     : ["", value];
 
