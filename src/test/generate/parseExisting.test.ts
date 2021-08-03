@@ -1,7 +1,23 @@
 import * as assert from "assert";
-import { splitMsg } from "../../generate/parseExisting";
+import { splitMsg, _splitPrefixDesc } from "../../generate/parseExisting";
 
-describe("Split a message into components", function () {
+describe("Split an existing message into components", function () {
+  describe("#_splitPrefixDesc", function () {
+    it("handles a description alone", function () {
+      assert.deepStrictEqual(_splitPrefixDesc("abc def"), {
+        prefix: "",
+        description: "abc def",
+      });
+    })
+
+    it("handles a Jira prefix alone", function () {
+      assert.deepStrictEqual(_splitPrefixDesc("[ABCD-1234]"), {
+        prefix: "",
+        description: "[ABCD-1234]",
+      });
+    });
+  })
+
   describe("#splitMsg", function () {
     it("handles a description alone", function () {
       assert.deepStrictEqual(splitMsg("abc def"), {
@@ -9,6 +25,9 @@ describe("Split a message into components", function () {
         typePrefix: "",
         description: "abc def",
       });
+    })
+
+    it("handles a Jira prefix alone", function () {
       assert.deepStrictEqual(splitMsg("[ABCD-1234]"), {
         customPrefix: "",
         typePrefix: "",
@@ -16,7 +35,7 @@ describe("Split a message into components", function () {
       });
     });
 
-    it("handles a prefix alone", function () {
+    it("handles a type prefix alone", function () {
       assert.deepStrictEqual(splitMsg("docs:"), {
         customPrefix: "",
         typePrefix: "docs",
