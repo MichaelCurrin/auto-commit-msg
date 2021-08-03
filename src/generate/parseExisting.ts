@@ -11,16 +11,18 @@
  * 'ci:' will be considered a prefix. This keeps the check simpler as we don't have to match against
  * every type and we don't have to check if we are part of a word e.g. 'circus'.
  *
- * TODO: also support Jira number e.g. '[ABCD-123]', '[ABCD-123] my description', and '[ABCD-123]
- * docs: my description'.
+ * If there is no colon to indicate a type prefix, but the message looks like a Jira prefix like
+ * '[ABCD-123]', then use that as a custom prefix.
  */
-function _splitPrefixDesc(value: string) {
-  let prefix: string, description: string;
+export function _splitPrefixDesc(value: string) {
+  let prefix = ''
+  let description = ''
 
   if (value.includes(":")) {
     [prefix, description] = value.split(":", 2);
-  } else {
-    [prefix, description] = ["", value];
+  }
+  else {
+    description = value;
   }
 
   return { prefix, description };
