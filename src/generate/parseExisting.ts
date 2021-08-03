@@ -17,8 +17,7 @@ export function _splitPrefixDesc(value: string) {
 
   if (value.includes(":")) {
     [prefix, description] = value.split(":", 2);
-  }
-  else {
+  } else {
     description = value;
   }
 
