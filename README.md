@@ -36,7 +36,9 @@
 ## Preview
 
 <div align="center">
-    <img src="/docs/_media/sample-chore.png" alt="sample screenshot of chore" width="300" />
+    <img src="/docs/_media/sample-chore.png" 
+        alt="sample screenshot of chore" 
+        width="300" />
 </div>
 
 
