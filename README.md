@@ -23,9 +23,9 @@
 
 <a href="https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg"
     title="Go to Marketplace extension page">
-    <img src="/images/icon.png" alt="Logo" width="200" />
-    <br/>
-    <img src="https://img.shields.io/badge/VS_Code_Extension-blue.svg?logo=visual-studio-code" alt="VS Code extension" />
+    <img src="/images/icon.png" 
+        alt="Logo" 
+        width="200" />
 </a>
 
 [Getting started](#getting-started) | [Features](#features) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
@@ -44,18 +44,37 @@
 
 ## Getting started
 
+One-click install button:
+
+<div align="center">
+    
+[![Install](https://img.shields.io/badge/Install-Auto_Commit_Message-2ea44f?style=for-the-badge&logo=visual-studio-code)](https://vscode:extension/MichaelCurrin.auto-commit-msg)
+
+</div>
+
+See more info on how to install and run.
+
 <div align="center">
 
-[![docs - getting started](https://img.shields.io/badge/docs-getting_started-2ea44f?style=for-the-badge)](https://github.com/MichaelCurrin/auto-commit-msg/blob/master/docs/quickstart.md)
+[![docs - getting started](https://img.shields.io/badge/docs-getting_started-blue?style=for-the-badge)](/docs/quickstart.md)
+
+</div>
+
+
+## Documentation
+
+<div align="center">
+
+[![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
 
 </div>
 
 
 ## Features
 
-Just click the extension **button** in the Git pane.
+Just click the extension's one **button** in the Git pane.
 
-This is what the extension will do:
+This is what the extension can do:
 
 - Look at any **staged** changes files, otherwise falls back to all unstaged changes.
 - Generate a commit message, which you can use or edit.
@@ -102,15 +121,6 @@ If you renamed a file:
 
 
 <!-- TODO: Add GIF here -->
-
-
-## Documentation
-
-<div align="center">
-
-[![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
-
-</div>
 
 
 ## Contributing
