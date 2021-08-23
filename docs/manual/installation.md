@@ -4,7 +4,7 @@
 
 ### Marketplace website
 
-Go to the Marketplace link below and click the _Install_ button.
+Go to the Marketplace link below then click the _Install_ button.
 
 <div align="center">
     
