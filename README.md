@@ -44,7 +44,7 @@
 
 ## Getting started
 
-One-click install button:
+Install in VS Code with one click:
 
 <div align="center">
     
@@ -57,15 +57,6 @@ See more info on how to install and run.
 <div align="center">
 
 [![docs - getting started](https://img.shields.io/badge/docs-getting_started-blue?style=for-the-badge)](/docs/quickstart.md)
-
-</div>
-
-
-## Documentation
-
-<div align="center">
-
-[![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
 
 </div>
 
@@ -121,6 +112,15 @@ If you renamed a file:
 
 
 <!-- TODO: Add GIF here -->
+
+
+## Documentation
+
+<div align="center">
+
+[![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
+
+</div>
 
 
 ## Contributing
