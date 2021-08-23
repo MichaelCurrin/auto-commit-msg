@@ -44,9 +44,11 @@
 
 ## Getting started
 
+How to install and run.
+
 <div align="center">
 
-[![docs - Getting started](https://img.shields.io/badge/docs-getting_started-blue?style=for-the-badge)](/docs/quickstart.md)
+[![docs - Getting started](https://img.shields.io/badge/docs-getting_started-2ea44f?style=for-the-badge)](/docs/quickstart.md)
 
 </div>
 
