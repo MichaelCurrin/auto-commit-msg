@@ -44,19 +44,9 @@
 
 ## Getting started
 
-Install in VS Code with one click:
-
-<div align="center">
-    
-[![Install](https://img.shields.io/badge/Install-Auto_Commit_Message-2ea44f?style=for-the-badge&logo=visual-studio-code)](https://vscode:extension/MichaelCurrin.auto-commit-msg)
-
-</div>
-
-See more info on how to install and run.
-
 <div align="center">
 
-[![docs - getting started](https://img.shields.io/badge/docs-getting_started-blue?style=for-the-badge)](/docs/quickstart.md)
+[![docs - Getting started](https://img.shields.io/badge/docs-getting_started-blue?style=for-the-badge)](/docs/quickstart.md)
 
 </div>
 
