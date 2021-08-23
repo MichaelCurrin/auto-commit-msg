@@ -2,7 +2,9 @@
 
 ## Install from the Marketplace
 
-Go to the Marketplace and click the _Install_ button.
+### Marketplace website
+
+Go to the Marketplace link below and click the _Install_ button.
 
 <div align="center">
     
@@ -10,8 +12,14 @@ Go to the Marketplace and click the _Install_ button.
 
 </div>
 
-Or go to the Extensions side panel and search for an install the extension by name as _Auto Commit Message_.
-    
+### Within VS Code
+
+1. Go to VS Code's Extensions side panel.
+1. Search for and install the extension by name - _Auto Commit Message_.
+1. Click _Install_.
+ 
+---
+
 Continue to the [Usage](usage.md) doc.
 
 
