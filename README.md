@@ -21,10 +21,11 @@
 
 <div align="center">
 
+<!-- To avoid error on installing extension, image URL must be HTTPS and not a local path. And also must not be SVG. -->
 <a href="https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg"
     title="Go to Marketplace extension page">
-    <img src="/images/icon.png" 
-        alt="Logo" 
+    <img src="https://github.com/MichaelCurrin/auto-commit-msg/raw/master/images/icon.png"
+        alt="Logo"
         width="200" />
 </a>
 
@@ -36,8 +37,8 @@
 ## Preview
 
 <div align="center">
-    <img src="/docs/_media/sample-chore.png" 
-        alt="sample screenshot of chore" 
+    <img src="/docs/_media/sample-chore.png"
+        alt="sample screenshot of chore"
         width="300" />
 </div>
 
