@@ -32,6 +32,8 @@ function _execute(cwd: string, subcommand: string, options: string[] = []) {
  * added still to be safe.
  */
 async function _diffIndex(options: string[] = []): Promise<Array<string>> {
+  const cmd = "diff-index";
+
   const fullOptions = [
     "--name-status",
     "--find-renames",
@@ -42,12 +44,12 @@ async function _diffIndex(options: string[] = []): Promise<Array<string>> {
   ];
   const { stdout, stderr } = await _execute(
     getWorkspaceFolder(),
-    "diff-index",
+    cmd,
     fullOptions
   );
 
   if (stderr) {
-    console.debug("stderr for `git diff-index` command:", stderr);
+    console.debug(`stderr for 'git ${cmd}' command:`, stderr);
   }
 
   const lines = stdout.split("\n");
