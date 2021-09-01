@@ -16,7 +16,9 @@ const exec = util.promisify(childProcess.exec);
 function _execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(" ")}`;
 
-  return exec(command, { cwd });
+  const result = exec(command, { cwd });
+
+  return result;
 }
 
 /**
