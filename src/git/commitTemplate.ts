@@ -11,13 +11,13 @@
  *
  * To avoid making an extra config value for the extension that one has to manage say in a Settings file or internal data, the approach is rather to use the existing commit template pattern in Git.
  */
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from "fs";
+import * as path from "path";
 import { getWorkspaceFolder } from "../workspace";
 import { execute } from "./cli";
 
-const CONFIG_SUBCOMMAND = "config"
-const COMMIT_TEMPLATE_IDENTIFIER = 'commit.template'
+const CONFIG_SUBCOMMAND = "config";
+const COMMIT_TEMPLATE_IDENTIFIER = "commit.template";
 
 /**
  * Get a value from the Git config.
@@ -25,7 +25,7 @@ const COMMIT_TEMPLATE_IDENTIFIER = 'commit.template'
  * The CLI will assume local (project) project by default.
  */
 export async function _getConfigValue(options: string[]) {
-  const workspace = getWorkspaceFolder()
+  const workspace = getWorkspaceFolder();
   const { stdout, stderr } = await execute(
     workspace,
     CONFIG_SUBCOMMAND,
@@ -36,7 +36,7 @@ export async function _getConfigValue(options: string[]) {
     console.debug(`stderr for 'git ${CONFIG_SUBCOMMAND}' command:`, stderr);
   }
 
-  return stdout
+  return stdout;
 }
 
 /**
@@ -46,10 +46,10 @@ export async function _getConfigValue(options: string[]) {
  */
 async function _getCommitTemplatePath() {
   try {
-    const options = [COMMIT_TEMPLATE_IDENTIFIER]
-    return await _getConfigValue(options)
+    const options = [COMMIT_TEMPLATE_IDENTIFIER];
+    return await _getConfigValue(options);
   } catch (_e) {
-    return null
+    return null;
   }
 }
 
@@ -59,26 +59,26 @@ async function _getCommitTemplatePath() {
  * NB. Use current workspace as the base path.
  */
 function _readFile(filePath: string) {
-  const workspace = getWorkspaceFolder()
-  const p = path.join(workspace, filePath)
+  const workspace = getWorkspaceFolder();
+  const p = path.join(workspace, filePath);
 
-  let value
+  let value;
 
   try {
-    value = fs.readFileSync(p, "utf-8")
+    value = fs.readFileSync(p, "utf-8");
   } catch (err) {
-    console.error(`Could not find template file: ${p}. ${err.toString()}`)
+    console.error(`Could not find template file: ${p}. ${err.toString()}`);
 
-    return null
+    return null;
   }
 
   if (!value) {
-    return null
+    return null;
   }
 
-  console.debug(`Read ${p} and found: ${value}`)
+  console.debug(`Read ${p} and found: ${value}`);
 
-  return value
+  return value;
 }
 
 /**
@@ -87,12 +87,12 @@ function _readFile(filePath: string) {
  * Return null if file is not configured or file is missing, without aborting.
  */
 export async function getCommitTemplateValue() {
-  const filePath = await _getCommitTemplatePath()
+  const filePath = await _getCommitTemplatePath();
 
   if (!filePath) {
-    console.error(`Could not read missing file: ${filePath}`)
-    return null
+    console.error(`Could not read missing file: ${filePath}`);
+    return null;
   }
 
-  return _readFile(filePath)
+  return _readFile(filePath);
 }

@@ -40,8 +40,8 @@ export async function makeAndFillCommitMsg(repository: Repository) {
   const newMsg = generateMsg(fileChanges, oldMsg);
   console.debug("New message: ", newMsg);
 
-  const commitMessageValue = await getCommitTemplateValue()
-  console.debug({ commitMessageValue })
+  const commitMessageValue = await getCommitTemplateValue();
+  console.debug({ commitMessageValue });
 
   setCommitMsg(repository, newMsg);
 }
