@@ -4,6 +4,7 @@
 import * as vscode from "vscode";
 import { Repository } from "./api/git";
 import { getChanges } from "./git/cli";
+import { getCommitTemplateValue } from "./git/commitTemplate";
 import { getCommitMsg, setCommitMsg } from "./gitExtension";
 import { generateMsg } from "./prepareCommitMsg";
 
@@ -38,6 +39,9 @@ export async function makeAndFillCommitMsg(repository: Repository) {
 
   const newMsg = generateMsg(fileChanges, oldMsg);
   console.debug("New message: ", newMsg);
+
+  const commitMessageValue = await getCommitTemplateValue()
+  console.debug({ commitMessageValue })
 
   setCommitMsg(repository, newMsg);
 }
