@@ -1,22 +1,13 @@
 /**
  * Extension module.
  *
- * This sets up the extension's command entry point and applies the
- * prepare commit message module to a target branch.
+ * This sets up the extension's command entry point and applies the prepare commit message module to
+ * a target branch.
  */
 import * as vscode from "vscode";
-import { API, GitExtension } from "./api/git";
+import { API } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
-
-/**
- * Return VS Code's builtin Git extension.
- */
-function getGitExtension() {
-  const vscodeGit = vscode.extensions.getExtension<GitExtension>("vscode.git");
-  const gitExtension = vscodeGit && vscodeGit.exports;
-
-  return gitExtension && gitExtension.getAPI(1);
-}
+import { getGitExtension } from "./gitExtension";
 
 /**
  * Flow for multiple repos in workspace and selecting just one. This is a rare flow.
