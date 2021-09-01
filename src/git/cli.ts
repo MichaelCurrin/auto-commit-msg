@@ -13,7 +13,7 @@ const exec = util.promisify(childProcess.exec);
 /**
  * Run a `git` subcommand with options and return output.
  */
-function _execute(cwd: string, subcommand: string, options: string[] = []) {
+export function execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(" ")}`;
 
   const result = exec(command, { cwd });
@@ -44,8 +44,10 @@ async function _diffIndex(options: string[] = []): Promise<Array<string>> {
     ...options,
     "HEAD",
   ];
-  const { stdout, stderr } = await _execute(
-    getWorkspaceFolder(),
+
+  const workspace = getWorkspaceFolder()
+  const { stdout, stderr } = await execute(
+    workspace,
     cmd,
     fullOptions
   );
@@ -87,37 +89,4 @@ export async function getChanges() {
     console.debug("No changes found");
   }
   return allChanges;
-}
-
-
-/**
- * Get a value from the Git config.
- *
- * The CLI will assume local (project) project by default.
- */
-export async function _getConfigValue(options: string[]) {
-  const cmd = "config"
-
-  const { stdout, stderr } = await _execute(
-    getWorkspaceFolder(),
-    cmd,
-    options
-  );
-
-  if (stderr) {
-    console.debug(`stderr for 'git ${cmd}' command:`, stderr);
-  }
-
-  return stdout
-}
-
-/**
- * Get the configured value for a commit template path if set, or empty string.
- */
-export async function getCommitTemplateName() {
-  try {
-    return await _getConfigValue(['commit.template'])
-  } catch (_e) {
-    return ""
-  }
 }
