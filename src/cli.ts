@@ -9,7 +9,7 @@
  * It simply receives text as an argument and prints output to `stdout` for use in a hook flow. Or
  * `stderr`, in the case of a message not appropriate for a commit message.
  *
- * See `shell/README.md` docs.
+ * See `shell/README.md` in docs.
  */
 import { generateMsg } from "./prepareCommitMsg";
 
