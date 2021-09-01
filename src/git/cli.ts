@@ -1,7 +1,7 @@
 /**
  * Git CLI module.
  *
- * Run `git` commands in the shell internally and capture the output.
+ * Run Git CLI commands within the extension and capture the text output.
  */
 import util = require("util");
 import childProcess = require("child_process");
@@ -11,9 +11,9 @@ import { getWorkspaceFolder } from "../workspace";
 const exec = util.promisify(childProcess.exec);
 
 /**
- * Run a given `git` command and return output.
+ * Run a `git` subcommand with options and return output.
  */
-function execute(cwd: string, subcommand: string, options: string[] = []) {
+function _execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(" ")}`;
 
   return exec(command, { cwd });
@@ -40,7 +40,7 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
     ...options,
     "HEAD",
   ];
-  const { stdout, stderr } = await execute(
+  const { stdout, stderr } = await _execute(
     getWorkspaceFolder(),
     "diff-index",
     fullOptions
