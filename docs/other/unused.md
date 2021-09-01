@@ -5,7 +5,7 @@ Code that is no longer needed because approach changed, but kept in case it is n
 
 ## Status
 
-These were for when `git status` was used, before `git diff-index` was used.
+These were for when the `git status` approach was used. Before the `git diff-index` approach was used.
 
 - `src/generate/action.ts`
     ```typescript
@@ -23,7 +23,6 @@ These were for when `git status` was used, before `git diff-index` was used.
       return ACTION[x as ActionKeys];
     }
     ```
-
 - `src/git/cli.ts`
     ```typescript
     /**
