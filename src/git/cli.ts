@@ -31,7 +31,7 @@ function _execute(cwd: string, subcommand: string, options: string[] = []) {
  * The output already seems to never have color info, from my testing, but the no-color flagged is
  * added still to be safe.
  */
-async function diffIndex(options: string[] = []): Promise<Array<string>> {
+async function _diffIndex(options: string[] = []): Promise<Array<string>> {
   const fullOptions = [
     "--name-status",
     "--find-renames",
@@ -62,10 +62,10 @@ async function diffIndex(options: string[] = []): Promise<Array<string>> {
  * Always excludes untracked files - make sure to stage a file so it becomes tracked, especially
  * in the case of a rename.
  *
- * Returns an array of strings, coming from the `diffIndex` function.
+ * Returns an array of strings.
  */
 export async function getChanges() {
-  const stagedChanges = await diffIndex(["--cached"]);
+  const stagedChanges = await _diffIndex(["--cached"]);
 
   if (stagedChanges.length) {
     console.debug("Found staged changes");
@@ -77,7 +77,7 @@ export async function getChanges() {
     "Staging area is empty. Using unstaged files (tracked files only still)."
   );
 
-  const allChanges = await diffIndex();
+  const allChanges = await _diffIndex();
 
   if (!allChanges.length) {
     console.debug("No changes found");
