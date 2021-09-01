@@ -1,8 +1,8 @@
 import { workspace } from "vscode";
 
-const getWorkspaceFolder = (): string => {
+export function getWorkspaceFolder(): string {
   const { workspaceFolders } = workspace;
+  console.log({ workspaceFolders })
+
   return workspaceFolders ? workspaceFolders[0].uri.fsPath : "";
 };
-
-export { getWorkspaceFolder };
