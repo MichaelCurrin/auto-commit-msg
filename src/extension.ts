@@ -7,7 +7,6 @@
 import * as vscode from "vscode";
 import { API } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
-import { getCommitTemplateName } from "./git/cli";
 import { getGitExtension } from "./gitExtension";
 
 function _validateFoundRepos(git: API) {
@@ -84,10 +83,6 @@ async function _autofill(uri?: string) {
   } else {
     _handleRepo(git);
   }
-
-  const templateName = await getCommitTemplateName()
-  console.debug(templateName)
-
 }
 
 /**
