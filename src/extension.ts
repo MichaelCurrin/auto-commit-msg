@@ -12,7 +12,7 @@ import { getGitExtension } from "./gitExtension";
 /**
  * Flow for multiple repos in workspace and selecting just one. This is a rare flow.
  */
-async function handleRepos(git: API, uri: any) {
+async function _handleRepos(git: API, uri: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find second etc.
   const selectedRepository = git.repositories.find(repository => {
     return repository.rootUri.path === uri._rootUri.path;
@@ -28,7 +28,7 @@ async function handleRepos(git: API, uri: any) {
 /**
  * Flow for a single or zero repos in the workspace.
  */
-async function handleRepo(git: API) {
+async function _handleRepo(git: API) {
   const targetRepo = git.repositories[0];
   await makeAndFillCommitMsg(targetRepo);
 }
@@ -57,9 +57,9 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.commands.executeCommand("workbench.view.scm");
 
       if (uri) {
-        handleRepos(git, uri);
+        _handleRepos(git, uri);
       } else {
-        handleRepo(git);
+        _handleRepo(git);
       }
     }
   );
@@ -68,4 +68,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export function deactivate() {}
+export function deactivate() { }
