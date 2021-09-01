@@ -7,6 +7,7 @@
 import * as vscode from "vscode";
 import { API } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
+import { getCommitTemplateName } from "./git/cli";
 import { getGitExtension } from "./gitExtension";
 
 function _validateFoundRepos(git: API) {
@@ -57,7 +58,36 @@ async function _handleRepos(git: API, sourceControl: any) {
  */
 async function _handleRepo(git: API) {
   const targetRepo = git.repositories[0];
+
   await makeAndFillCommitMsg(targetRepo);
+}
+
+async function _autofill(uri?: string) {
+  const git = getGitExtension();
+
+  if (!git) {
+    vscode.window.showErrorMessage("Unable to load Git Extension");
+    return;
+  }
+
+  if (git.repositories.length === 0) {
+    vscode.window.showErrorMessage(
+      "No repos found. Please open a repo or run git init then try this extension again."
+    );
+    return;
+  }
+
+  vscode.commands.executeCommand("workbench.view.scm");
+
+  if (uri) {
+    _handleRepos(git, uri);
+  } else {
+    _handleRepo(git);
+  }
+
+  const templateName = await getCommitTemplateName()
+  console.debug(templateName)
+
 }
 
 /**
