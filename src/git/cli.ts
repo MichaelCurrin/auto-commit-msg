@@ -88,3 +88,36 @@ export async function getChanges() {
   }
   return allChanges;
 }
+
+
+/**
+ * Get a value from the Git config.
+ *
+ * The CLI will assume local (project) project by default.
+ */
+export async function _getConfigValue(options: string[]) {
+  const cmd = "config"
+
+  const { stdout, stderr } = await _execute(
+    getWorkspaceFolder(),
+    cmd,
+    options
+  );
+
+  if (stderr) {
+    console.debug(`stderr for 'git ${cmd}' command:`, stderr);
+  }
+
+  return stdout
+}
+
+/**
+ * Get the configured value for a commit template path if set, or empty string.
+ */
+export async function getCommitTemplateName() {
+  try {
+    return await _getConfigValue(['commit.template'])
+  } catch (_e) {
+    return ""
+  }
+}
