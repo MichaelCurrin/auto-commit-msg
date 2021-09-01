@@ -31,3 +31,7 @@ mkdir -p my_subdir
 mv bazz.js my_subdir
 # Delete.
 rm buzz.js
+
+# Commit template.
+git config commit.template _COMMIT_MESSAGE
+echo 'My commit prefix' >_COMMIT_MESSAGE
