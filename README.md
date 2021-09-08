@@ -1,22 +1,22 @@
 # Auto Commit Message ⚙️ 🧙‍♂️ ✉️
 > A VS Code extension to generate a smart commit message based on file changes
 
-<!-- Badges generated with https://michaelcurrin.github.io/badge-generator/#/ -->
+<!-- Badges mostly generated with https://michaelcurrin.github.io/badge-generator/#/ -->
 
 [![Node CI](https://github.com/MichaelCurrin/auto-commit-msg/workflows/Node%20CI/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions?query=workflow:"Node+CI")
 [![CodeQL](https://github.com/MichaelCurrin/auto-commit-msg/workflows/CodeQL/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions?query=workflow%3ACodeQL)
-[![Known Vulnerabilities](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg?targetFile=package.json)
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license "Go to License section")
+[![Contributions - welcome](https://img.shields.io/badge/Contributions-welcome-blue)](/CONTRIBUTING.md "View contributing doc")
 
-
+<!--
 [![GitHub release](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/releases/)
-[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
-![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MichaelCurrin/auto-commit-msg)
-[![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)](/CONTRIBUTING.md)
+-->
 
-[![Made for VS Code](https://img.shields.io/badge/Made_for-VS_Code-blue)](https://code.visualstudio.com/)
-[![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org)
-[![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
+[![Known Vulnerabilities](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg?targetFile=package.json)
+[![Made for VS Code](https://img.shields.io/badge/Made_for-VS_Code-blue)](https://code.visualstudio.com/ "Go to VS Code homepage")
+[![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org "Go to Node.js homepage")
+[![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript "Go to TypeScript homepage")
 
 
 <div align="center">
@@ -24,11 +24,19 @@
 <!-- Must not be SVG. Also all image URLs must be full HTTPS URLs - absolute paths. -->
 <a href="https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg"
     title="Go to Marketplace extension page">
-    <img src="https://github.com/MichaelCurrin/auto-commit-msg/raw/master/images/icon.png"
-        alt="Logo"
-        width="200" />
-</a>
+    
+<img src="https://github.com/MichaelCurrin/auto-commit-msg/raw/master/images/icon.png"
+    alt="Logo"
+    width="200" />
 
+![VS Code extension marketplace version](https://img.shields.io/visual-studio-marketplace/v/MichaelCurrin.auto-commit-msg)
+![VS Code extension installs](https://img.shields.io/visual-studio-marketplace/i/MichaelCurrin.auto-commit-msg)
+![VS Code extension rating](https://img.shields.io/visual-studio-marketplace/r/MichaelCurrin.auto-commit-msg)
+![VS Code extension release date](https://img.shields.io/visual-studio-marketplace/release-date/MichaelCurrin.auto-commit-msg)
+![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
+
+</a>
+    
 [Getting started](#getting-started) | [Features](#features) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
 
 </div>
@@ -45,7 +53,7 @@
 
 ## Getting started
 
-How to install and run.
+How to install and run the extension in VS Code.
 
 <div align="center">
 
