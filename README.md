@@ -44,11 +44,15 @@
 
 ## Preview
 
+Starting from an empty commit message, the extension created a recommended message and populated it inside the Git pane of VS Code:
+
 <div align="center">
     <img src="https://github.com/MichaelCurrin/auto-commit-msg/raw/master/docs/_media/sample-chore.png"
         alt="sample screenshot of chore"
         width="300" />
 </div>
+
+<!-- TODO: Add GIF here -->
 
 
 ## Getting started
@@ -110,9 +114,6 @@ If you renamed a file:
 <div align="center">
     <img src="https://github.com/MichaelCurrin/auto-commit-msg/raw/master/docs/_media/sample-rename.png" alt="rename" title="rename" width="250" />
 </div>
-
-
-<!-- TODO: Add GIF here -->
 
 
 ## Documentation
