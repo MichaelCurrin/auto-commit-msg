@@ -14,7 +14,7 @@
 -->
 
 [![Known Vulnerabilities](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg?targetFile=package.json)
-[![Made for VS Code](https://img.shields.io/badge/Made_for-VS_Code-blue)](https://code.visualstudio.com/ "Go to VS Code homepage")
+[![Made for VS Code](https://img.shields.io/badge/Made_for-VS_Code-blue?logo=visualstudiocode&logoColor=white)](https://code.visualstudio.com/ "Go to VS Code homepage")
 [![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org "Go to Node.js homepage")
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript "Go to TypeScript homepage")
 
