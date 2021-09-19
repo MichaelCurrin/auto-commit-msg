@@ -7,6 +7,7 @@ import * as path from "path";
 import { ROOT } from "../lib/constants";
 import { MoveOrRename, SplitPathResult } from "./paths.d";
 
+const REPEAT_PATH_STARTS = ["readme", "index"];
 /**
  * Get metadata for a given path.
  *
@@ -42,8 +43,11 @@ export function friendlyFile(filePath: string) {
   const { name } = splitPath(filePath);
 
   const nameLower = name.toLowerCase();
-  if (nameLower.startsWith("readme") || nameLower.startsWith("index")) {
-    return filePath;
+
+  for (const p of REPEAT_PATH_STARTS) {
+    if (nameLower.startsWith(p)) {
+      return filePath;
+    }
   }
   return name;
 }
