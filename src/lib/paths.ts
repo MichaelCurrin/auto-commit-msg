@@ -7,7 +7,9 @@ import * as path from "path";
 import { ROOT } from "../lib/constants";
 import { MoveOrRename, SplitPathResult } from "./paths.d";
 
-const REPEAT_PATH_STARTS = ["readme", "index"];
+// The starts of filenames which could be repeated in a repo. All lowercase here.
+const REPEAT_FILENAMES = ["readme", "index", '__init__.py'];
+
 /**
  * Get metadata for a given path.
  *
@@ -44,7 +46,7 @@ export function friendlyFile(filePath: string) {
 
   const nameLower = name.toLowerCase();
 
-  for (const p of REPEAT_PATH_STARTS) {
+  for (const p of REPEAT_FILENAMES) {
     if (nameLower.startsWith(p)) {
       return filePath;
     }
