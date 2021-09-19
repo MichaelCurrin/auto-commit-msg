@@ -8,7 +8,7 @@ import { ROOT } from "../lib/constants";
 import { MoveOrRename, SplitPathResult } from "./paths.d";
 
 // The starts of filenames which could be repeated in a repo. All lowercase here.
-const REPEAT_FILENAMES = ["readme", "index", '__init__.py'];
+const REPEAT_FILENAMES = ["readme", "index", "__init__.py"];
 
 /**
  * Get metadata for a given path.
