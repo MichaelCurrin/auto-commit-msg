@@ -15,10 +15,11 @@
     "cover": "nyc npm test",
     "cover:report": "nyc report --reporter=lcov",
     "cover:check": "nyc check-coverage --lines 95",
+    "checks": "npm run fmt:check && npm run lint:check && npm test",
     "vscode:prepublish": "npm run compile",
     "build": "mkdir -p build && vsce package --out build/",
     "ext": "npm run build && code --install-extension $(ls -t build/* | head -n1) --force",
-    "preversion": "npm run fmt:check && npm run lint:check && npm test",
+    "preversion": "npm run checks",
     "version": "npm run build",
     "postversion": "git push --follow-tags",
     "sb": "bin/reset_sandbox.sh"
