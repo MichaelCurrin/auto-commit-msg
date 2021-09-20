@@ -22,7 +22,7 @@ Run major tasks to check the project for issues.
 $ make all
 ```
 
-This will up hooks, install packages, fix, and unit test tasks.
+This will update hooks, install packages, run all checks, and attempt to build the app.
 
 This is useful for bootstrapping the project on a fresh clone, or before pushing commits. This task also runs as part of the `pre-push` hook after that has been set up.
 

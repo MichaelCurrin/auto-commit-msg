@@ -3,7 +3,7 @@ PUBLISHER_NAME = MichaelCurrin
 
 default: install
 
-all: hooks install test
+all: hooks install test build
 
 h help:
 	@grep '^[a-z]' Makefile
@@ -37,13 +37,18 @@ q test-quick:
 	npx tsc -p .
 	npm run test:unit
 
+### Build
 
-### Deploy
+.PHONY: build
+build:
+	npm run build
 
 # Build and install the extension globally.
 e ext:
 	npm run lint:check
 	npm run ext
+
+### Deploy
 
 # Run checks, tag and push (to GitHub only) then install the tagged version as clean-up.
 tag:
