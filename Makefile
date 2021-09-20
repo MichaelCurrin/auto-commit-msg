@@ -43,20 +43,23 @@ q test-quick:
 build:
 	npm run build
 
-# Build and install the extension globally.
+# Global install.
 e ext:
-	npm run lint:check
+	npm run checks
 	npm run ext
 
 ### Deploy
 
-# Run checks, tag and push (to GitHub only) then install the tagged version as clean-up.
-tag:
-	npm version minor
-	$(MAKE) ext
-
 login:
 	npx vsce login $(PUBLISHER_NAME)
 
+# Increment tag, publish to Marketplace, then install globally.
 publish:
 	npx vsce publish minor
+	npm run ext
+
+# Tag and push to GitHub, then install globally. Not used so much since
+# publishing is set up.
+tag:
+	npm version minor
+	npm run ext
