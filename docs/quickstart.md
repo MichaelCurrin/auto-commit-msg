@@ -13,12 +13,6 @@ Go to the Marketplace link below, then click the _Install_ button.
 
 </div>
 
-Or enter the following in the VS Code command prompt.
-
-```sh
-$ ext install MichaelCurrin.auto-commit-msg
-```
-
 
 ## Run
 
