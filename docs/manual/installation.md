@@ -18,6 +18,12 @@ Go to the Marketplace link below then click the _Install_ button.
 1. Search for and install the extension by name - _Auto Commit Message_.
 1. Click _Install_.
  
+Or enter the following in the VS Code command prompt:
+
+```sh
+$ ext install MichaelCurrin.auto-commit-msg
+```
+
 ---
 
 Continue to the [Usage](usage.md) doc.
@@ -32,12 +38,12 @@ Continue to the [Usage](usage.md) doc.
         - [![view - releases](https://img.shields.io/badge/view-releases-2ea44f?style=for-the-badge&logo=github)](https://github.com/MichaelCurrin/auto-commit-msg/releases)
     1. Find the latest release.
     1. Expand the _Assets_ section.
-    3. Download a copy of the `.vsix` archive file by clicking on the filename.
+    1. Download a copy of the `.vsix` archive file by clicking on the filename.
 1. In VS Code
     1. Open the Command Palette (_View_ then _Command Palette_).
     1. Type `extension`, wait for the auto-complete, then select _Extension: Install from VSIX..._.
     1. Select the file downloaded earlier.f
-    3. Make sure to **restart** VS Code to get the extension loaded.
+    1. Make sure to **restart** VS Code to get the extension loaded.
 
 ### Use the terminal
 
