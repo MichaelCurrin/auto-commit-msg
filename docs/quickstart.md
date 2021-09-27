@@ -5,13 +5,19 @@ How to install and run the extension in VS Code.
 
 ## Install
 
-Go to the Marketplace link below then click the _Install_ button.
+Go to the Marketplace link below, then click the _Install_ button.
 
 <div align="center">
     
 [![VS Code Marketplace - Auto Commit Message](https://img.shields.io/badge/VS_Code_Marketplace-Auto_Commit_Message-2ea44f?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg)
 
 </div>
+
+Or enter the following in the VS Code command prompt.
+
+```sh
+$ ext install MichaelCurrin.auto-commit-msg
+```
 
 
 ## Run
