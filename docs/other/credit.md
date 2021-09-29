@@ -10,7 +10,7 @@ See more info below.
 ## Hello World sample
 
 - Source: [Hello World test sample](https://github.com/microsoft/vscode-extension-samples/tree/master/helloworld-test-sample) project
-- This project started off as an extension based on the VS Code test sample. It was just hello world and didn't help with my flow, so I got rid of the code in later tags.
+- My project started off as an extension based on this VS Code test sample. It was just hello world and didn't help with my flow, so I got rid of the code in later tags.
 
 
 ## Git Semantic Commit
@@ -39,5 +39,5 @@ Note that a "semantic commit" message is the same as a "conventional commit" mes
     - Cleaner `for` loop logic
         - I found the original hard to work on because of how it uses an old-style `for` loop and `i` variable.
         - I found using `.split` with a regex pattern was much simpler.
-    - Added TS types (essential for my project to run).
+    - Add TS types (essential for my project to run).
     - Add `git diff-index` support - see [status vs diff-index](/docs/development/status-vs-diff-index.md) doc.
