@@ -82,9 +82,11 @@ This is what the extension can do:
 See more info on the [Features](/docs/features.md) page in the docs.
 
 
-## Comparing with other extensions
+## Comparison with other extensions
 
-Other extensions usually require some manual input, such as selecting prefix type from a droplist or writing a commit message by hand. This extension takes _zero_ parameters. Just click a button.
+Other extensions usually require some manual input, such as selecting prefix type from a droplist or writing a commit message by hand.
+
+This extension takes _zero_ parameters. Just click a button.
 
 
 ## Sample usage
