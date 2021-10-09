@@ -36,7 +36,7 @@ async function _handleRepo(git: API) {
 }
 
 /**
- * Setup this extension's autofill command to run when triggered.
+ * Set up the autofill command to run when triggered.
  */
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
