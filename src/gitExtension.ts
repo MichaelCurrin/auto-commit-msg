@@ -37,5 +37,9 @@ export function getGitExtension() {
   const vscodeGit = vscode.extensions.getExtension<GitExtension>("vscode.git");
   const gitExtension = vscodeGit && vscodeGit.exports;
 
-  return gitExtension && gitExtension.getAPI(1);
+  if (gitExtension) {
+    gitExtension.getAPI(1);
+  }
+
+  throw new Error("Could not get Git extension");
 }
