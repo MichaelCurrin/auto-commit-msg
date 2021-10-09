@@ -10,8 +10,9 @@ import { makeAndFillCommitMsg } from "./autofill";
 import { getGitExtension } from "./gitExtension";
 
 /**
- * Flow for multiple repos in workspace and selecting just one. This is a rare
- * flow.
+ * Run autofill against one of multiples in the workspace.
+ *
+ * This is a rare flow.
  */
 async function _handleRepos(git: API, uri: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find
@@ -28,7 +29,7 @@ async function _handleRepos(git: API, uri: any) {
 }
 
 /**
- * Flow for a single or zero repos in the workspace.
+ * Run autofill flow for a single repo in the workspace.
  */
 async function _handleRepo(git: API) {
   const targetRepo = git.repositories[0];
