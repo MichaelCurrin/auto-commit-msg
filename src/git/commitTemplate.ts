@@ -3,13 +3,23 @@
  *
  * TODO: Move to docs and link there.
  *
- * Read the message from the a configured commit template file and use it as a prefix in the message.
+ * Read the message from the a configured commit template file and use it as a
+ * prefix in the message.
  *
- * A commit template is built-in Git behavior to see a value for the start of each commit message. This is useful if you have a ticket number, project name, or similar to add at the start of each commit.
+ * A commit template is built-in Git behavior to see a value for the start of
+ * each commit message. This is useful if you have a ticket number, project
+ * name, or similar to add at the start of each commit.
  *
- * Note that VS Code and Git CLI both automatically read from this file when generating a commit. However, the value is hard to use. There is behavior in this extension to move the old message to the end and enter a commit type prefix and commit message before it, but there is no way to know from the content of the message for sure whether the old message is a commit template value or just a hand-typed message.
+ * Note that VS Code and Git CLI both automatically read from this file when
+ * generating a commit. However, the value is hard to use. There is behavior in
+ * this extension to move the old message to the end and enter a commit type
+ * prefix and commit message before it, but there is no way to know from the
+ * content of the message for sure whether the old message is a commit template
+ * value or just a hand-typed message.
  *
- * To avoid making an extra config value for the extension that one has to manage say in a Settings file or internal data, the approach is rather to use the existing commit template pattern in Git.
+ * To avoid making an extra config value for the extension that one has to
+ * manage say in a Settings file or internal data, the approach is rather to use
+ * the existing commit template pattern in Git.
  */
 import * as fs from "fs";
 import * as path from "path";
