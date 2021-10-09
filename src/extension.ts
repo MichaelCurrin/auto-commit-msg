@@ -36,35 +36,40 @@ async function _handleRepo(git: API) {
   await makeAndFillCommitMsg(targetRepo);
 }
 
+async function _chooseRepoForAutofill(uri?: vscode.Uri): Promise<void> {
+  const git = getGitExtension();
+
+  if (!git) {
+    vscode.window.showErrorMessage("Unable to load Git Extension");
+    return;
+  }
+
+  if (git.repositories.length === 0) {
+    vscode.window.showErrorMessage(
+      "No repos found. Please open a repo or run `git init` then try this extension again."
+    );
+    return;
+  }
+
+  vscode.commands.executeCommand("workbench.view.scm");
+
+  if (uri) {
+    _handleRepos(git, uri);
+  } else {
+    _handleRepo(git);
+  }
+}
+
 /**
- * Set up the autofill command to run when triggered.
+ * Set up the extension activation.
+ *
+ * The autofill command as configured in `package.json` will be triggered
+ * and run the autofill logic for a repo.
  */
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "commitMsg.autofill",
-    async (uri?) => {
-      const git = getGitExtension();
-
-      if (!git) {
-        vscode.window.showErrorMessage("Unable to load Git Extension");
-        return;
-      }
-
-      if (git.repositories.length === 0) {
-        vscode.window.showErrorMessage(
-          "No repos found. Please open a repo or run git init then try this extension again."
-        );
-        return;
-      }
-
-      vscode.commands.executeCommand("workbench.view.scm");
-
-      if (uri) {
-        _handleRepos(git, uri);
-      } else {
-        _handleRepo(git);
-      }
-    }
+    _chooseRepoForAutofill
   );
 
   context.subscriptions.push(disposable);
