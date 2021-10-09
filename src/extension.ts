@@ -10,6 +10,24 @@ import { API } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
 import { getGitExtension } from "./gitExtension";
 
+function _validateFoundRepos(git: API) {
+  let msg = "";
+
+  if (!git) {
+    msg = "Unable to load Git Extension";
+  }
+  if (git.repositories.length === 0) {
+    msg =
+      "No repos found. Please open a repo or run `git init` then try this extension again.";
+  }
+
+  if (msg) {
+    vscode.window.showErrorMessage(msg);
+
+    throw new Error(msg);
+  }
+}
+
 /**
  * Run autofill against one of multiples in the workspace.
  *
@@ -38,19 +56,8 @@ async function _handleRepo(git: API) {
 }
 
 async function _chooseRepoForAutofill(uri?: vscode.Uri): Promise<void> {
-  const git = getGitExtension();
-
-  if (!git) {
-    vscode.window.showErrorMessage("Unable to load Git Extension");
-    return;
-  }
-
-  if (git.repositories.length === 0) {
-    vscode.window.showErrorMessage(
-      "No repos found. Please open a repo or run `git init` then try this extension again."
-    );
-    return;
-  }
+  const git = getGitExtension()!;
+  _validateFoundRepos(git);
 
   vscode.commands.executeCommand("workbench.view.scm");
 
@@ -85,4 +92,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export function deactivate() {}
+export function deactivate() { }
