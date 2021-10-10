@@ -37,6 +37,10 @@ async function _handleRepos(git: API, uri: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find
   // second, etc.
   const selectedRepository = git.repositories.find(repository => {
+    console.debug({ uri, _rootUri: uri._rootUri });
+    if (!uri._rootUri) {
+      console.warn("_rootUri not set");
+    }
     return repository.rootUri.path === uri._rootUri.path;
   });
 
