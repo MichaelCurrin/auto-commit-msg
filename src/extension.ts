@@ -31,16 +31,19 @@ function _validateFoundRepos(git: API) {
  * Run autofill against one of multiples in the workspace.
  *
  * This is a rare flow.
+ *
+ * @param sourceControl Of type `vscode.SourceControl` with public `.rootUri`
+ *   and private `.rootUri`.
  */
-async function _handleRepos(git: API, uri: any) {
+async function _handleRepos(git: API, sourceControl: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find
   // second, etc.
   const selectedRepository = git.repositories.find(repository => {
-    console.debug({ uri, _rootUri: uri._rootUri });
-    if (!uri._rootUri) {
+    const uri = sourceControl._rootUri;
+    if (!uri) {
       console.warn("_rootUri not set");
     }
-    return repository.rootUri.path === uri._rootUri.path;
+    return repository.rootUri.path === uri.path;
   });
 
   if (selectedRepository) {
@@ -92,6 +95,7 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage(
         `Generating commit message because file was saved - ${e.fileName}`
       );
+      // TODO: Handle multiple repos by passing `sourceControl` or `uri`.
       _chooseRepoForAutofill();
     })
   );
