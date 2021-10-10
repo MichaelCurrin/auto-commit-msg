@@ -57,32 +57,7 @@ async function _handleRepos(git: API, sourceControl: any) {
  */
 async function _handleRepo(git: API) {
   const targetRepo = git.repositories[0];
-
   await makeAndFillCommitMsg(targetRepo);
-}
-
-async function _autofill(uri?: string) {
-  const git = getGitExtension();
-
-  if (!git) {
-    vscode.window.showErrorMessage("Unable to load Git Extension");
-    return;
-  }
-
-  if (git.repositories.length === 0) {
-    vscode.window.showErrorMessage(
-      "No repos found. Please open a repo or run git init then try this extension again."
-    );
-    return;
-  }
-
-  vscode.commands.executeCommand("workbench.view.scm");
-
-  if (uri) {
-    _handleRepos(git, uri);
-  } else {
-    _handleRepo(git);
-  }
 }
 
 /**
