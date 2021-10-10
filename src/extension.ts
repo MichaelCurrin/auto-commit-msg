@@ -15,10 +15,9 @@ function _validateFoundRepos(git: API) {
 
   if (!git) {
     msg = "Unable to load Git Extension";
-  }
-  if (git.repositories.length === 0) {
+  } else if (git.repositories.length === 0) {
     msg =
-      "No repos found. Please open a repo or run `git init` then try this extension again.";
+      "No repos found. Please open a repo or run `git init` then try again.";
   }
 
   if (msg) {
