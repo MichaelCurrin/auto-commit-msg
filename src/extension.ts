@@ -89,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage(
         `Generating commit message because file was saved - ${e.fileName}`
       );
-      _chooseRepoForAutofill(e.uri);
+      _chooseRepoForAutofill();
     })
   );
 }
