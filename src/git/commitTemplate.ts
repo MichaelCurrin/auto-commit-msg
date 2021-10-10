@@ -76,7 +76,7 @@ function _readFile(filePath: string) {
 
   try {
     value = fs.readFileSync(p, "utf-8");
-  } catch (err) {
+  } catch (err: any) {
     console.error(`Could not find template file: ${p}. ${err.toString()}`);
 
     return null;
