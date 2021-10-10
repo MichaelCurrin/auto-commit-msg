@@ -55,7 +55,10 @@ async function _handleRepo(git: API) {
   await makeAndFillCommitMsg(targetRepo);
 }
 
-async function _chooseRepoForAutofill(uri?: vscode.Uri): Promise<void> {
+/**
+ * Choose the relevant repo and apply autofill logic on files there.
+ */
+async function _chooseRepoForAutofill(uri?: vscode.Uri) {
   const git = getGitExtension()!;
   _validateFoundRepos(git);
 
