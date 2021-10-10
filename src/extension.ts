@@ -5,6 +5,7 @@
  * the prepareCommitMsg module to a target branch.
  */
 import * as vscode from "vscode";
+import { TextDocument } from "vscode";
 import { API } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
 import { getGitExtension } from "./gitExtension";
@@ -89,6 +90,15 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(disposable);
+  context.subscriptions.push(
+    vscode.workspace.onDidSaveTextDocument((e: TextDocument) => {
+      vscode.window.showInformationMessage(
+        `Generating commit message because file was saved - ${e.fileName}`
+      );
+      // TODO: Handle multiple repos by passing `sourceControl` or `uri`.
+      _chooseRepoForAutofill();
+    })
+  );
 }
 
 // prettier-ignore
