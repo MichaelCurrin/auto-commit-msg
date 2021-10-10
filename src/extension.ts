@@ -9,16 +9,40 @@ import { API } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
 import { getGitExtension } from "./gitExtension";
 
+function _validateFoundRepos(git: API) {
+  let msg = "";
+
+  if (!git) {
+    msg = "Unable to load Git Extension";
+  } else if (git.repositories.length === 0) {
+    msg =
+      "No repos found. Please open a repo or run `git init` then try again.";
+  }
+
+  if (msg) {
+    vscode.window.showErrorMessage(msg);
+
+    throw new Error(msg);
+  }
+}
+
 /**
  * Run autofill against one of multiples in the workspace.
  *
  * This is a rare flow.
+ *
+ * @param sourceControl Of type `vscode.SourceControl` with public `.rootUri`
+ *   and private `.rootUri`.
  */
-async function _handleRepos(git: API, uri: any) {
+async function _handleRepos(git: API, sourceControl: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find
   // second, etc.
   const selectedRepository = git.repositories.find(repository => {
-    return repository.rootUri.path === uri._rootUri.path;
+    const uri = sourceControl._rootUri;
+    if (!uri) {
+      console.warn("_rootUri not set");
+    }
+    return repository.rootUri.path === uri.path;
   });
 
   if (selectedRepository) {
@@ -37,38 +61,36 @@ async function _handleRepo(git: API) {
 }
 
 /**
- * Set up the autofill command to run when triggered.
+ * Choose the relevant repo and apply autofill logic on files there.
+ */
+async function _chooseRepoForAutofill(uri?: vscode.Uri) {
+  const git = getGitExtension()!;
+  _validateFoundRepos(git);
+
+  vscode.commands.executeCommand("workbench.view.scm");
+
+  if (uri) {
+    _handleRepos(git, uri);
+  } else {
+    _handleRepo(git);
+  }
+}
+
+/**
+ * Set up the extension activation.
+ *
+ * The autofill command as configured in `package.json` will be triggered
+ * and run the autofill logic for a repo.
  */
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "commitMsg.autofill",
-    async (uri?) => {
-      const git = getGitExtension();
-
-      if (!git) {
-        vscode.window.showErrorMessage("Unable to load Git Extension");
-        return;
-      }
-
-      if (git.repositories.length === 0) {
-        vscode.window.showErrorMessage(
-          "No repos found. Please open a repo or run git init then try this extension again."
-        );
-        return;
-      }
-
-      vscode.commands.executeCommand("workbench.view.scm");
-
-      if (uri) {
-        _handleRepos(git, uri);
-      } else {
-        _handleRepo(git);
-      }
-    }
+    _chooseRepoForAutofill
   );
 
   context.subscriptions.push(disposable);
 }
 
+// prettier-ignore
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export function deactivate() { }
