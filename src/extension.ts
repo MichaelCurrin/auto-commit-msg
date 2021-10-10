@@ -37,7 +37,7 @@ function _validateFoundRepos(git: API) {
 async function _handleRepos(git: API, sourceControl: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find
   // second, etc.
-  const selectedRepository = git.repositories.find(repository => {
+  const selectedRepo = git.repositories.find(repository => {
     const uri = sourceControl._rootUri;
     if (!uri) {
       console.warn("_rootUri not set");
@@ -45,8 +45,8 @@ async function _handleRepos(git: API, sourceControl: any) {
     return repository.rootUri.path === uri.path;
   });
 
-  if (selectedRepository) {
-    await makeAndFillCommitMsg(selectedRepository);
+  if (selectedRepo) {
+    await makeAndFillCommitMsg(selectedRepo);
   } else {
     vscode.window.showErrorMessage("No repos found");
   }
