@@ -18,6 +18,23 @@ describe("Split an existing message into components", function () {
         typePrefix: "",
         description: "abc def",
       });
+
+      // Our logic can't turn the Jira number into a custom prefix if there is
+      // no type prefix in the old message, so it just goes into the
+      // description.
+      // TODO: Handle hard bracket recognition or some other pattern here, as
+      // then no logic is needed for commit message template (which VS Code can
+      // already read).
+      assert.deepStrictEqual(splitMsg("[ABCD-1234]"), {
+        customPrefix: "",
+        typePrefix: "",
+        description: "[ABCD-1234]",
+      });
+      assert.deepStrictEqual(splitMsg("[ABCD-1234] abc def"), {
+        customPrefix: "",
+        typePrefix: "",
+        description: "[ABCD-1234] abc def",
+      });
     });
 
     it("handles a type prefix alone", function () {
