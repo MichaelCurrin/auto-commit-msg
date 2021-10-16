@@ -65,7 +65,8 @@ async function _getCommitTemplatePath() {
 /**
  * Read a file.
  *
- * NB. Use current workspace as the base path.
+ * @param filePath: Path to a file to read, relative to the workspace root.
+ *   e.g. "abc.txt" or "abc/def.txt"
  */
 function _readFile(filePath: string) {
   const workspace = getWorkspaceFolder();
@@ -85,7 +86,7 @@ function _readFile(filePath: string) {
     return null;
   }
 
-  console.debug(`Read ${p} and found: ${value}`);
+  console.debug(`Found file: ${p}. Found contents: ${value}`);
 
   return value;
 }
