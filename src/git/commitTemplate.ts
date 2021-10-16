@@ -31,11 +31,10 @@ const COMMIT_TEMPLATE_IDENTIFIER = "commit.template";
 
 /**
  * Get a value from the Git config.
- *
- * The CLI will assume local (project) project by default.
  */
 export async function _getConfigValue(options: string[]) {
   const workspace = getWorkspaceFolder();
+
   const { stdout, stderr } = await execute(
     workspace,
     CONFIG_SUBCOMMAND,
@@ -101,6 +100,7 @@ export async function getCommitTemplateValue() {
 
   if (!filePath) {
     console.error(`Could not read missing file: ${filePath}`);
+
     return null;
   }
 
