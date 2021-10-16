@@ -218,7 +218,7 @@ export function _generateMsgWithOld(lines: string[], oldMsg: string) {
  *
  * Old message could be the current commit message value in the UI box (which might be a commit
  * message template that VS Code has filled in), or a commit message template read from a file in
- * the case of a hook flow without VS Code.
+ * the case of a hook flow without VS Code (built-in Git functionality).
  *
  * @param lines A list of text values describing how files changes.
  */
