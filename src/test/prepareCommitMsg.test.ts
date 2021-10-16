@@ -14,7 +14,7 @@ import {
   _msgCount,
   _msgFromChanges,
   _msgNamed,
-  _newMsg,
+  _newMsg
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -728,11 +728,18 @@ describe("Prepare commit message", function () {
           });
 
           it("uses an old message that is a Jira number only", function () {
-            const oldMsg = "[ABCD-1234]";
+            // We could put old message at the start in the result.
+            // The tricky bit is figuring out if the old message belongs after
+            // the prefix as 'feat: OLD_MESSAGE NEW_MESSAGE', or it belongs as a
+            // prefix as 'OLD_MESSAGE feat: NEW_MESSAGE'.
+            // So that's why it's easiest just to always put the old message at
+            // the end. One could look for hard brackets or all caps, but
+            // sometimes a dev might use a project name instead.
+            const oldMsg = "ABCD-1234";
 
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
-              "feat: foo bar [ABCD-1234]"
+              "feat: foo bar ABCD-1234"
             );
           });
         });
