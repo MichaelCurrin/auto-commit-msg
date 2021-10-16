@@ -714,21 +714,24 @@ describe("Prepare commit message", function () {
       });
 
       describe("when a convention is determined from the file changes", function () {
+        const autoType = CONVENTIONAL_TYPE.FEAT;
+        const autoDesc = "foo bar";
+
         describe("with no old type, insert a new type between the old and new msg", function () {
           it("uses a plain old message", function () {
+            const oldMsg = "fizz buzz";
+
             assert.strictEqual(
-              _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "fizz buzz"),
+              _combineOldAndNew(autoType, autoDesc, oldMsg),
               "feat: foo bar fizz buzz"
             );
           });
 
           it("uses an old message that is a Jira number only", function () {
+            const oldMsg = "[ABCD-1234]";
+
             assert.strictEqual(
-              _combineOldAndNew(
-                CONVENTIONAL_TYPE.FEAT,
-                "foo bar",
-                "[ABCD-1234]"
-              ),
+              _combineOldAndNew(autoType, autoDesc, oldMsg),
               "feat: foo bar [ABCD-1234]"
             );
           });
@@ -736,36 +739,34 @@ describe("Prepare commit message", function () {
 
         describe("keep the old type if there is one, without using a generated type", function () {
           it("uses a plain old message", function () {
+            const oldMsg = "docs:";
+
             assert.strictEqual(
-              _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs:"),
+              _combineOldAndNew(autoType, autoDesc, oldMsg),
               "docs: foo bar"
             );
           });
 
           it("handles an old message that is Jira number plus a convention type", function () {
+            const oldMsg = "[ABCD-1234] docs:";
             assert.strictEqual(
-              _combineOldAndNew(
-                CONVENTIONAL_TYPE.FEAT,
-                "foo bar",
-                "[ABCD-1234] docs:"
-              ),
+              _combineOldAndNew(autoType, autoDesc, oldMsg),
               "[ABCD-1234] docs: foo bar"
             );
           });
         });
 
         it("inserts replaces an old prefix with a space with a new one", function () {
+          let oldMsg = "docs:";
+
           assert.strictEqual(
-            _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", "docs: "),
+            _combineOldAndNew(autoType, autoDesc, oldMsg),
             "docs: foo bar"
           );
 
+          oldMsg = "[ABCD-1234] docs: ";
           assert.strictEqual(
-            _combineOldAndNew(
-              CONVENTIONAL_TYPE.FEAT,
-              "foo bar",
-              "[ABCD-1234] docs: "
-            ),
+            _combineOldAndNew(autoType, autoDesc, oldMsg),
             "[ABCD-1234] docs: foo bar"
           );
         });
