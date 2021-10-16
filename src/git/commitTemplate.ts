@@ -65,7 +65,7 @@ async function _getCommitTemplatePath() {
 /**
  * Read a file.
  *
- * @param filePath: Path to a file to read, relative to the workspace root.
+ * @param filePath Path to a file to read, relative to the workspace root.
  *   e.g. "abc.txt" or "abc/def.txt"
  */
 function _readFile(filePath: string) {
@@ -94,7 +94,8 @@ function _readFile(filePath: string) {
 /**
  * Get value of commit template file.
  *
- * Return null if file is not configured or file is missing, without aborting.
+ * @return Contents of a configured commit message template file, or `null` if
+ *   file is not configured or file is missing.
  */
 export async function getCommitTemplateValue() {
   const filePath = await _getCommitTemplatePath();
