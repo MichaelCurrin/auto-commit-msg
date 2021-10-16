@@ -96,7 +96,7 @@ describe("Split an existing message into components", function () {
       // description.
       // TODO: Handle hard bracket recognition or some other pattern here, as
       // then no logic is needed for commit message template (which VS Code can
-      // already read).
+      // already read). Or maybe just single word is enough.
       assert.deepStrictEqual(splitMsg("[ABCD-1234]"), {
         customPrefix: "",
         typePrefix: "",
