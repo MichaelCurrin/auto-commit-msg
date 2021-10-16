@@ -18,6 +18,11 @@ import { generateMsg } from "./prepareCommitMsg";
  *
  * Expect multi-line text from `git diff-index` command as the first item in the shell arguments.
  *
+ * TODO: How to reverse the order so reading the value and using it as old message can appear _first_.
+ * Note that, unlike the VS Code extension, the CLI logic here cannot read an
+ * "old message" from the Git pane so that is not passed to `generateMsg`.
+ * Though maybe this can be modified using `commitTemplate.ts`.
+ *
  * Returns a suitable generated commit message as text.
  */
 function main(args: string[]) {
