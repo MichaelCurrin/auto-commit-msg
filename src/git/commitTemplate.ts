@@ -30,7 +30,7 @@ const CONFIG_SUBCOMMAND = "config";
 const COMMIT_TEMPLATE_IDENTIFIER = "commit.template";
 
 /**
- * Get a value from the Git config.
+ * Get a value from the local Git config.
  */
 export async function _getConfigValue(options: string[]) {
   const workspace = getWorkspaceFolder();
@@ -56,8 +56,11 @@ export async function _getConfigValue(options: string[]) {
 async function _getCommitTemplatePath() {
   try {
     const options = [COMMIT_TEMPLATE_IDENTIFIER];
+
     return await _getConfigValue(options);
   } catch (_e) {
+    console.error(_e)
+
     return null;
   }
 }
