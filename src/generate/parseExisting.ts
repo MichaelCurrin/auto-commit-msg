@@ -7,9 +7,10 @@
 /*
  * Split message into prefix and description.
  *
- * Require a colon to exist to detect type prefix. i.e. 'ci' will be considered a description, but
- * 'ci:' will be considered a prefix. This keeps the check simpler as we don't have to match against
- * every type and we don't have to check if we are part of a word e.g. 'circus'.
+ * Require a colon to exist to detect type prefix. i.e. 'ci' will be considered
+ * a description, but 'ci:' will be considered a prefix. This keeps the check
+ * simpler as we don't have to match against every type and we don't have to
+ * check if we are part of a word e.g. 'circus'.
  */
 export function _splitPrefixDesc(value: string) {
   let prefix = "";
@@ -25,7 +26,8 @@ export function _splitPrefixDesc(value: string) {
 }
 
 /**
- * Split a prefix (before a colon) into a custom prefix and Conventional Commit type prefix.
+ * Split a prefix (before a colon) into a custom prefix and Conventional Commit
+ * type prefix.
  */
 function _splitPrefixes(value: string) {
   const [customPrefix, typePrefix] =
@@ -36,9 +38,6 @@ function _splitPrefixes(value: string) {
 
 /**
  * Separate a message into prefixes if any and the description.
- *
- * If there is no colon to indicate a type prefix, but the message looks like a Jira prefix like
- * '[ABCD-123]', then use that as a custom prefix.
  */
 export function splitMsg(msg: string) {
   const { prefix, description } = _splitPrefixDesc(msg);
