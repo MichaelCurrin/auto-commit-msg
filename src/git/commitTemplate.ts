@@ -59,7 +59,7 @@ async function _getCommitTemplatePath() {
 
     return await _getConfigValue(options);
   } catch (_e) {
-    console.error(_e)
+    console.error(_e);
 
     return null;
   }
