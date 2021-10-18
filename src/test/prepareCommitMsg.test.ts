@@ -52,6 +52,18 @@ describe("Find prefix from Git output", function () {
       it("recognizes a modified generic file as a unknown", function () {
         assert.strictEqual(_prefixFromChange("M    foo.txt"), CONVENTIONAL_TYPE.UNKNOWN)
       })
+
+      it("recognizes a deleted generic file as a chore", function () {
+        assert.strictEqual(_prefixFromChange("D    foo.txt"), CONVENTIONAL_TYPE.CHORE)
+      })
+
+      it("recognizes a renamed generic file as a chore", function () {
+        assert.strictEqual(_prefixFromChange("R    foo.txt bar.txt"), CONVENTIONAL_TYPE.CHORE)
+      })
+
+      it("recognizes a moved generic file as a chore", function () {
+        assert.strictEqual(_prefixFromChange("R    foo.txt bar/foo.txt"), CONVENTIONAL_TYPE.CHORE)
+      })
     })
 
     describe("docs", function () {
