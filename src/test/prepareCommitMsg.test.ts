@@ -67,6 +67,8 @@ describe("Find prefix from Git output", function () {
     })
 
     describe("categorized file change", function () {
+      /// Don't need to cover every type here - just docs should be fine.
+
       it("recognizes a new docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS
 
@@ -103,14 +105,28 @@ describe("Find prefix from Git output", function () {
     })
 
     describe("categorized file change with scope", function () {
-      const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
-
       it("recognizes a new build deps file change as build deps", function () {
+        const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+
         assert.strictEqual(_prefixFromChange("A    package-lock.json"), expected)
       })
 
       it("recognizes an updated build deps file change as build deps", function () {
+        const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+
         assert.strictEqual(_prefixFromChange("M    package-lock.json"), expected)
+      })
+
+      it("recognizes a renamed build deps file change as chore", function () {
+        const expected = CONVENTIONAL_TYPE.CHORE
+
+        assert.strictEqual(_prefixFromChange("R    package-lock.json foo.json"), expected)
+      })
+
+      it("recognizes a moved build deps file change as chore", function () {
+        const expected = CONVENTIONAL_TYPE.CHORE
+
+        assert.strictEqual(_prefixFromChange("R    package-lock.json foo/package-lock.json"), expected)
       })
     })
   })
