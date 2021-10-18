@@ -30,17 +30,24 @@ describe("Split an existing message into components", function () {
       });
     });
 
-    it("splits two words correctly", function () {
+    it("splits two words correctly as custom and type", function () {
       assert.deepStrictEqual(_splitPrefixes("foo bar"), {
         customPrefix: "foo",
         typePrefix: "bar",
       });
     });
 
-    it("splits three words correctly", function () {
+    it("splits three words correctly as two for custom and one for type", function () {
       assert.deepStrictEqual(_splitPrefixes("foo bar bazz"), {
-        customPrefix: "foo",
-        typePrefix: "bar",
+        customPrefix: "foo bar",
+        typePrefix: "bazz",
+      });
+    });
+
+    it("splits four words correctly as three for custom and one for type", function () {
+      assert.deepStrictEqual(_splitPrefixes("foo bar bazz buzz"), {
+        customPrefix: "foo bar bazz",
+        typePrefix: "buzz",
       });
     });
   });
