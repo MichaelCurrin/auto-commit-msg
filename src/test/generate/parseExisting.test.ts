@@ -1,5 +1,9 @@
 import * as assert from "assert";
-import { splitMsg, _splitPrefixDesc } from "../../generate/parseExisting";
+import {
+  splitMsg,
+  _splitPrefixDesc,
+  _splitPrefixes,
+} from "../../generate/parseExisting";
 
 describe("Split an existing message into components", function () {
   describe("#_splitPrefixDesc", function () {
@@ -7,6 +11,36 @@ describe("Split an existing message into components", function () {
       assert.deepStrictEqual(_splitPrefixDesc("abc def"), {
         prefix: "",
         description: "abc def",
+      });
+    });
+  });
+
+  describe("#_splitPrefixes", function () {
+    it("returns empty values for an empty string", function () {
+      assert.deepStrictEqual(_splitPrefixes(""), {
+        customPrefix: "",
+        typePrefix: "",
+      });
+    });
+
+    it("returns a single word as the type prefix", function () {
+      assert.deepStrictEqual(_splitPrefixes("foo"), {
+        customPrefix: "",
+        typePrefix: "foo",
+      });
+    });
+
+    it("splits two words correctly", function () {
+      assert.deepStrictEqual(_splitPrefixes("foo bar"), {
+        customPrefix: "foo",
+        typePrefix: "bar",
+      });
+    });
+
+    it("splits three words correctly", function () {
+      assert.deepStrictEqual(_splitPrefixes("foo bar bazz"), {
+        customPrefix: "foo",
+        typePrefix: "bar",
       });
     });
   });
