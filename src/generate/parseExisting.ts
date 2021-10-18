@@ -26,18 +26,27 @@ export function _splitPrefixDesc(value: string) {
 }
 
 /**
- * Split a prefix (before a colon) into a custom prefix and Conventional Commit
- * type prefix.
+ * Split a prefix value into more granular prefixes.
+ *
+ * Expect a value that comes before a colon in a commit message and split it
+ * into custom prefix and Conventional Commit type prefix, if available.
  */
 export function _splitPrefixes(value: string) {
-  const [customPrefix, typePrefix] =
-    value !== "" && value.includes(" ") ? value.split(" ", 2) : ["", value];
+  let customPrefix: string;
+  let typePrefix: string;
+
+  if (value && value.includes(" ")) {
+    [customPrefix, typePrefix] = value.split(" ", 2);
+  } else {
+    customPrefix = "";
+    typePrefix = value;
+  }
 
   return { customPrefix, typePrefix };
 }
 
 /**
- * Separate a message into prefixes if any and the description.
+ * Separate a message into prefixes (if any) and the description.
  */
 export function splitMsg(msg: string) {
   const { prefix, description } = _splitPrefixDesc(msg);
