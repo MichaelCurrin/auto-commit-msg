@@ -38,15 +38,14 @@ function _elAt(index: number) {
  *   [['a', 'A', 1],   ['b', 'B', 2],   ['c', 'C', 3]]
  */
 function _rotate(arr: string[][]): string[][] {
-  return arr[0]
-    .map((_el: any, index: number) => arr.map(_elAt(index)));
+  return arr[0].map((_el: any, index: number) => arr.map(_elAt(index)));
 }
 
 /**
  * Check whether all the elements in an array are the same or not.
  */
 function _allElementsEqual(arr: any[]) {
-  const firstEl = arr[0]
+  const firstEl = arr[0];
 
   return arr.every((el: any) => el === firstEl);
 }
@@ -58,12 +57,9 @@ function _allElementsEqual(arr: any[]) {
  * the top-most directory that is common to a few files that all changed.
  */
 export function commonPath(input: string[], sep = "/"): string {
-  const s = _splitStrings(input, sep)
+  const s = _splitStrings(input, sep);
 
-  const common = _rotate(s)
-    .filter(_allElementsEqual)
-    .map(_elAt(0))
-    .join(sep);
+  const common = _rotate(s).filter(_allElementsEqual).map(_elAt(0)).join(sep);
 
   return common === "" ? ROOT : common;
 }
