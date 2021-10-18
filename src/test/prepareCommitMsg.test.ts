@@ -50,7 +50,7 @@ describe("Find prefix from Git output", function () {
       })
 
       it("recognizes a modified generic file as a unknown", function () {
-        assert.strictEqual(_prefixFromChange("M    baz.txt"), CONVENTIONAL_TYPE.UNKNOWN)
+        assert.strictEqual(_prefixFromChange("M    foo.txt"), CONVENTIONAL_TYPE.UNKNOWN)
       })
     })
 
@@ -63,7 +63,7 @@ describe("Find prefix from Git output", function () {
 
       it("recognizes an updated docs file change as docs", function () {
         assert.strictEqual(_prefixFromChange("M    README.md"), expected)
-        assert.strictEqual(_prefixFromChange("M    docs/abc.md"), expected)
+        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected)
       })
     })
 
