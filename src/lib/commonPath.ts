@@ -1,19 +1,20 @@
 /**
- * Functionality to get a common path of paths and some necessary helper functions.
+ * Get a common path of paths.
  *
  * The code comes from:
  *    http://rosettacode.org/wiki/Find_common_directory_path#JavaScript
  * Since JS does not have a built-in function like Python does.
  *
- * This module is kept separate from `paths.ts` as all the code here is tightly related.
+ * This module is kept separate from `paths.ts` as all the code here is tightly
+ * related.
  */
 import { ROOT } from "../lib/constants";
 
 /**
  * Split strings.
  *
- * Given an array of strings, return a nested of array containing the strings split at the given
- * separator.
+ * Given an array of strings, return a nested of array containing the strings
+ * split at the given separator.
  */
 export function _splitStrings(items: string[], sep = "/") {
   return items.map((item: string) => item.split(sep));
@@ -50,11 +51,12 @@ function _allElementsEqual(arr: any[]) {
 /**
  * Return common directory for an array of paths.
  *
- * This can be useful for one file going from source to destination.
- * Or finding the top-most directory that is common to a few files that all changed.
+ * This can be useful for one file going from source to destination. Or finding
+ * the top-most directory that is common to a few files that all changed.
  */
-export function commonPath(input: string[], sep = "/") {
-  const common = _rotate(_splitStrings(input, sep))
+export function commonPath(input: string[], sep = "/"): string {
+  const s = _splitStrings(input, sep)
+  const common = _rotate(s)
     .filter(_allElementsEqual)
     .map(_elAt(0))
     .join(sep);
