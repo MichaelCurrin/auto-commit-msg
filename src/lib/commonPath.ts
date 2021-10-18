@@ -13,8 +13,8 @@ import { ROOT } from "../lib/constants";
 /**
  * Split strings.
  *
- * Given an array of strings, return a nested of array containing the strings
- * split at the given separator.
+ * For an array of strings, split each string into an array using the given
+ * separator.
  */
 export function _splitStrings(items: string[], sep = "/") {
   return items.map((item: string) => item.split(sep));
@@ -38,14 +38,17 @@ function _elAt(index: number) {
  *   [['a', 'A', 1],   ['b', 'B', 2],   ['c', 'C', 3]]
  */
 function _rotate(arr: any[]) {
-  return arr[0].map((_e: any, index: number) => arr.map(_elAt(index)));
+  return arr[0]
+    .map((_el: any, index: number) => arr.map(_elAt(index)));
 }
 
 /**
  * Check whether all the elements in an array are the same or not.
  */
 function _allElementsEqual(arr: any[]) {
-  return arr.every((el: any) => el === arr[0]);
+  const firstEl = arr[0]
+
+  return arr.every((el: any) => el === firstEl);
 }
 
 /**
@@ -56,6 +59,7 @@ function _allElementsEqual(arr: any[]) {
  */
 export function commonPath(input: string[], sep = "/"): string {
   const s = _splitStrings(input, sep)
+
   const common = _rotate(s)
     .filter(_allElementsEqual)
     .map(_elAt(0))
