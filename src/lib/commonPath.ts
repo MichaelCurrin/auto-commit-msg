@@ -37,7 +37,7 @@ function _elAt(index: number) {
  *   [['a', 'b', 'c'], ['A', 'B', 'C'], [1, 2, 3]] ->
  *   [['a', 'A', 1],   ['b', 'B', 2],   ['c', 'C', 3]]
  */
-function _rotate(arr: any[]) {
+function _rotate(arr: string[][]): string[][] {
   return arr[0]
     .map((_el: any, index: number) => arr.map(_elAt(index)));
 }
