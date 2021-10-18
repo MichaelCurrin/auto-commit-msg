@@ -38,8 +38,10 @@ export function _cleanJoin(first: string, second: string) {
 
 /**
  * Determine the Conventional Commit type prefix for a file change.
+ *
+ * @param line Description of a file change from Git output. e.g. "A    baz.txt"
  */
-function _prefixFromChange(line: string) {
+export function _prefixFromChange(line: string) {
   const { x: actionChar, from: filePath } = parseDiffIndex(line);
   const action = lookupDiffIndexAction(actionChar);
 
@@ -62,9 +64,10 @@ export function _msgOne(line: string) {
 /**
  * Get single Conventional Commit type prefix from multiple items given.
  *
- * If at least one item is build dependencies even if the others are different, then use that.
- * This covers the case where `package.json` may have non-package changes but you know it does
- * in this case because it changed with the lock file.
+ * If at least one item is build dependencies even if the others are different,
+ * then use that. This covers the case where `package.json` may have non-package
+ * changes but you know it does in this case because it changed with the lock
+ * file.
  */
 function _collapse(types: CONVENTIONAL_TYPE[]) {
   if (equal(types)) {
@@ -80,8 +83,8 @@ function _collapse(types: CONVENTIONAL_TYPE[]) {
 /**
  * Generate prefix and named description for multiple file changes.
  *
- * This finds a common Conventional Commit prefix if one is appropriate and returns a message
- * listing all the file names.
+ * This finds a common Conventional Commit prefix if one is appropriate and
+ * returns a message listing all the file names.
  */
 export function _msgNamed(lines: string[]): ConvCommitMsg {
   const conventions = lines.map(_prefixFromChange);

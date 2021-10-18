@@ -15,6 +15,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
+  _prefixFromChange
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -40,6 +41,45 @@ describe("Join strings cleanly", function () {
     });
   });
 });
+
+describe("Find prefix from Git output", function () {
+  describe("#_prefixFromChange", function () {
+    describe("generic file", function () {
+      it("recognizes a new generic file as a feature", function () {
+        assert.strictEqual(_prefixFromChange("A    foo.txt"), CONVENTIONAL_TYPE.FEAT)
+      })
+
+      it("recognizes a modified generic file as a unknown", function () {
+        assert.strictEqual(_prefixFromChange("M    baz.txt"), CONVENTIONAL_TYPE.UNKNOWN)
+      })
+    })
+
+    describe("docs", function () {
+      const expected = CONVENTIONAL_TYPE.DOCS
+      it("recognizes a new docs file change as docs", function () {
+        assert.strictEqual(_prefixFromChange("A    README.md"), expected)
+        assert.strictEqual(_prefixFromChange("A    docs/abc.md"), expected)
+      })
+
+      it("recognizes an updated docs file change as docs", function () {
+        assert.strictEqual(_prefixFromChange("M    README.md"), expected)
+        assert.strictEqual(_prefixFromChange("M    docs/abc.md"), expected)
+      })
+    })
+
+    describe("build dependencies", function () {
+      const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+
+      it("recognizes a new build deps file change as build deps", function () {
+        assert.strictEqual(_prefixFromChange("A    package-lock.json"), expected)
+      })
+
+      it("recognizes an updated build deps file change as build deps", function () {
+        assert.strictEqual(_prefixFromChange("M    package-lock.json"), expected)
+      })
+    })
+  })
+})
 
 describe("Prepare commit message", function () {
   describe("#_msgNamed", function () {
