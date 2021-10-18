@@ -66,20 +66,43 @@ describe("Find prefix from Git output", function () {
       })
     })
 
-    describe("docs", function () {
-      const expected = CONVENTIONAL_TYPE.DOCS
+    describe("categorized file change", function () {
       it("recognizes a new docs file change as docs", function () {
+        const expected = CONVENTIONAL_TYPE.DOCS
+
         assert.strictEqual(_prefixFromChange("A    README.md"), expected)
         assert.strictEqual(_prefixFromChange("A    docs/abc.md"), expected)
       })
 
       it("recognizes an updated docs file change as docs", function () {
+        const expected = CONVENTIONAL_TYPE.DOCS
+
         assert.strictEqual(_prefixFromChange("M    README.md"), expected)
         assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected)
       })
+
+      it("recognizes a deleted docs file change as docs", function () {
+        const expected = CONVENTIONAL_TYPE.DOCS
+
+        assert.strictEqual(_prefixFromChange("M    README.md"), expected)
+        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected)
+      })
+
+      it("recognizes a renamed docs file change as chore", function () {
+        const expected = CONVENTIONAL_TYPE.CHORE
+
+        assert.strictEqual(_prefixFromChange("R    README.md bar.md"), expected)
+        assert.strictEqual(_prefixFromChange("R    docs/foo.md docs/bar.md"), expected)
+      })
+      it("recognizes a moved docs file change as chore", function () {
+        const expected = CONVENTIONAL_TYPE.CHORE
+
+        assert.strictEqual(_prefixFromChange("R    README.md bar/README.md"), expected)
+        assert.strictEqual(_prefixFromChange("R    docs/foo.md bar/foo.md"), expected)
+      })
     })
 
-    describe("build dependencies", function () {
+    describe("categorized file change with scope", function () {
       const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
 
       it("recognizes a new build deps file change as build deps", function () {
