@@ -8,6 +8,7 @@ import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
   generateMsg,
   _cleanJoin,
+  _collapse,
   _combineOldAndNew,
   _formatMsg,
   _generateMsgWithOld,
@@ -167,6 +168,76 @@ describe("Find prefix from Git output", function () {
           expected
         );
       });
+    });
+  });
+});
+
+describe("Choose a prefix type from multiple", function () {
+  describe("#_collapse", function () {
+    it("uses unknown for zero items", function () {
+      const expected = CONVENTIONAL_TYPE.UNKNOWN;
+
+      assert.strictEqual(_collapse([]), expected);
+    });
+
+    it("gets the type of the item when there is only one", function () {
+      const expected = CONVENTIONAL_TYPE.FEAT;
+      assert.strictEqual(_collapse([CONVENTIONAL_TYPE.FEAT]), expected);
+    });
+
+    it("gets the type of the first item for identical items", function () {
+      const expected = CONVENTIONAL_TYPE.FEAT;
+
+      assert.strictEqual(
+        _collapse([CONVENTIONAL_TYPE.FEAT, CONVENTIONAL_TYPE.FEAT]),
+        expected
+      );
+
+      assert.strictEqual(
+        _collapse([
+          CONVENTIONAL_TYPE.FEAT,
+          CONVENTIONAL_TYPE.FEAT,
+          CONVENTIONAL_TYPE.FEAT,
+        ]),
+        expected
+      );
+    });
+
+    it("returns unknown when items differ", function () {
+      const expected = CONVENTIONAL_TYPE.UNKNOWN;
+
+      assert.strictEqual(
+        _collapse([CONVENTIONAL_TYPE.FEAT, CONVENTIONAL_TYPE.DOCS]),
+        expected
+      );
+
+      assert.strictEqual(
+        _collapse([
+          CONVENTIONAL_TYPE.FEAT,
+          CONVENTIONAL_TYPE.DOCS,
+          CONVENTIONAL_TYPE.CHORE,
+        ]),
+        expected
+      );
+    });
+
+    it("uses build deps change if at least one is present", function () {
+      const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
+      assert.strictEqual(
+        _collapse([
+          CONVENTIONAL_TYPE.FEAT,
+          CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
+        ]),
+        expected
+      );
+      assert.strictEqual(
+        _collapse([
+          CONVENTIONAL_TYPE.FEAT,
+          CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
+          CONVENTIONAL_TYPE.CHORE,
+        ]),
+        expected
+      );
     });
   });
 });
