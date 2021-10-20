@@ -46,25 +46,40 @@ describe("Find prefix from Git output", function () {
   describe("#_prefixFromChange", function () {
     describe("generic file", function () {
       it("recognizes a new generic file as a feature", function () {
-        assert.strictEqual(_prefixFromChange("A    foo.txt"), CONVENTIONAL_TYPE.FEAT)
-      })
+        assert.strictEqual(
+          _prefixFromChange("A    foo.txt"),
+          CONVENTIONAL_TYPE.FEAT
+        );
+      });
 
       it("recognizes a modified generic file as a unknown", function () {
-        assert.strictEqual(_prefixFromChange("M    foo.txt"), CONVENTIONAL_TYPE.UNKNOWN)
-      })
+        assert.strictEqual(
+          _prefixFromChange("M    foo.txt"),
+          CONVENTIONAL_TYPE.UNKNOWN
+        );
+      });
 
       it("recognizes a deleted generic file as a chore", function () {
-        assert.strictEqual(_prefixFromChange("D    foo.txt"), CONVENTIONAL_TYPE.CHORE)
-      })
+        assert.strictEqual(
+          _prefixFromChange("D    foo.txt"),
+          CONVENTIONAL_TYPE.CHORE
+        );
+      });
 
       it("recognizes a renamed generic file as a chore", function () {
-        assert.strictEqual(_prefixFromChange("R    foo.txt bar.txt"), CONVENTIONAL_TYPE.CHORE)
-      })
+        assert.strictEqual(
+          _prefixFromChange("R    foo.txt bar.txt"),
+          CONVENTIONAL_TYPE.CHORE
+        );
+      });
 
       it("recognizes a moved generic file as a chore", function () {
-        assert.strictEqual(_prefixFromChange("R    foo.txt bar/foo.txt"), CONVENTIONAL_TYPE.CHORE)
-      })
-    })
+        assert.strictEqual(
+          _prefixFromChange("R    foo.txt bar/foo.txt"),
+          CONVENTIONAL_TYPE.CHORE
+        );
+      });
+    });
 
     describe("categorized file change", function () {
       /// Don't need to cover every type here - just docs should be fine.
