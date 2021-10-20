@@ -12,7 +12,8 @@ This project serves to prepare a smart commit message for you, to make your deve
 - [User manual](manual/)
     - How to use the installed extension.
 - [Development](development/)
-    - Guide for developers to set up and run locally, so you can contribute if you want.
+    - Guide for developers to set up and run locally.
+    - Useful for testing your changes before contributing a PR.
 
 <!--
 
