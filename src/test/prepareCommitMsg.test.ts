@@ -15,7 +15,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange
+  _prefixFromChange,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -85,67 +85,91 @@ describe("Find prefix from Git output", function () {
       /// Don't need to cover every type here - just docs should be fine.
 
       it("recognizes a new docs file change as docs", function () {
-        const expected = CONVENTIONAL_TYPE.DOCS
+        const expected = CONVENTIONAL_TYPE.DOCS;
 
-        assert.strictEqual(_prefixFromChange("A    README.md"), expected)
-        assert.strictEqual(_prefixFromChange("A    docs/abc.md"), expected)
-      })
+        assert.strictEqual(_prefixFromChange("A    README.md"), expected);
+        assert.strictEqual(_prefixFromChange("A    docs/abc.md"), expected);
+      });
 
       it("recognizes an updated docs file change as docs", function () {
-        const expected = CONVENTIONAL_TYPE.DOCS
+        const expected = CONVENTIONAL_TYPE.DOCS;
 
-        assert.strictEqual(_prefixFromChange("M    README.md"), expected)
-        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected)
-      })
+        assert.strictEqual(_prefixFromChange("M    README.md"), expected);
+        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected);
+      });
 
       it("recognizes a deleted docs file change as docs", function () {
-        const expected = CONVENTIONAL_TYPE.DOCS
+        const expected = CONVENTIONAL_TYPE.DOCS;
 
-        assert.strictEqual(_prefixFromChange("M    README.md"), expected)
-        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected)
-      })
+        assert.strictEqual(_prefixFromChange("M    README.md"), expected);
+        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected);
+      });
 
       it("recognizes a renamed docs file change as chore", function () {
-        const expected = CONVENTIONAL_TYPE.CHORE
+        const expected = CONVENTIONAL_TYPE.CHORE;
 
-        assert.strictEqual(_prefixFromChange("R    README.md bar.md"), expected)
-        assert.strictEqual(_prefixFromChange("R    docs/foo.md docs/bar.md"), expected)
-      })
+        assert.strictEqual(
+          _prefixFromChange("R    README.md bar.md"),
+          expected
+        );
+        assert.strictEqual(
+          _prefixFromChange("R    docs/foo.md docs/bar.md"),
+          expected
+        );
+      });
       it("recognizes a moved docs file change as chore", function () {
-        const expected = CONVENTIONAL_TYPE.CHORE
+        const expected = CONVENTIONAL_TYPE.CHORE;
 
-        assert.strictEqual(_prefixFromChange("R    README.md bar/README.md"), expected)
-        assert.strictEqual(_prefixFromChange("R    docs/foo.md bar/foo.md"), expected)
-      })
-    })
+        assert.strictEqual(
+          _prefixFromChange("R    README.md bar/README.md"),
+          expected
+        );
+        assert.strictEqual(
+          _prefixFromChange("R    docs/foo.md bar/foo.md"),
+          expected
+        );
+      });
+    });
 
     describe("categorized file change with scope", function () {
       it("recognizes a new build deps file change as build deps", function () {
-        const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+        const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
 
-        assert.strictEqual(_prefixFromChange("A    package-lock.json"), expected)
-      })
+        assert.strictEqual(
+          _prefixFromChange("A    package-lock.json"),
+          expected
+        );
+      });
 
       it("recognizes an updated build deps file change as build deps", function () {
-        const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+        const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
 
-        assert.strictEqual(_prefixFromChange("M    package-lock.json"), expected)
-      })
+        assert.strictEqual(
+          _prefixFromChange("M    package-lock.json"),
+          expected
+        );
+      });
 
       it("recognizes a renamed build deps file change as chore", function () {
-        const expected = CONVENTIONAL_TYPE.CHORE
+        const expected = CONVENTIONAL_TYPE.CHORE;
 
-        assert.strictEqual(_prefixFromChange("R    package-lock.json foo.json"), expected)
-      })
+        assert.strictEqual(
+          _prefixFromChange("R    package-lock.json foo.json"),
+          expected
+        );
+      });
 
       it("recognizes a moved build deps file change as chore", function () {
-        const expected = CONVENTIONAL_TYPE.CHORE
+        const expected = CONVENTIONAL_TYPE.CHORE;
 
-        assert.strictEqual(_prefixFromChange("R    package-lock.json foo/package-lock.json"), expected)
-      })
-    })
-  })
-})
+        assert.strictEqual(
+          _prefixFromChange("R    package-lock.json foo/package-lock.json"),
+          expected
+        );
+      });
+    });
+  });
+});
 
 describe("Prepare commit message", function () {
   describe("#_msgNamed", function () {
