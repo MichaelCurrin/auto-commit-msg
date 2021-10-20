@@ -65,7 +65,8 @@ export function _msgOne(line: string) {
  * Get single Conventional Commit type prefix from multiple items.
  *
  * @returns Inferred overall prefix type.
- *   - The first item if they are equal,
+ *   - Unknown if zero items - not likely in real life but covered anyway.
+ *   - The first item if they are equal.
  *   - Use unknown if they are different.
  *   - If at least one item is build dependencies even if the others are
  *     different, then use that. This covers the case where `package.json` may
@@ -73,19 +74,19 @@ export function _msgOne(line: string) {
  *     use the deps scope.
  */
 export function _collapse(types: CONVENTIONAL_TYPE[]) {
+  let result = CONVENTIONAL_TYPE.UNKNOWN;
+
   if (!types.length) {
-    return CONVENTIONAL_TYPE.UNKNOWN;
+    return result;
   }
 
   if (equal(types)) {
-    return types[0];
+    result = types[0];
+  } else if (types.includes(CONVENTIONAL_TYPE.BUILD_DEPENDENCIES)) {
+    result = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
   }
 
-  if (types.includes(CONVENTIONAL_TYPE.BUILD_DEPENDENCIES)) {
-    return CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
-  }
-
-  return CONVENTIONAL_TYPE.UNKNOWN;
+  return result;
 }
 
 /**
