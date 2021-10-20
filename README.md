@@ -27,7 +27,7 @@
 
 </a>
 
-[Getting started](#getting-started) | [Features](#features) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
+**[Getting started](#getting-started) | [Features](#features) | [Screenshots](#sample-usage) | [Documentation](#documentation)**
 
 </div>
 
