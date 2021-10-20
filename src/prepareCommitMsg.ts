@@ -62,17 +62,25 @@ export function _msgOne(line: string) {
 }
 
 /**
- * Get single Conventional Commit type prefix from multiple items given.
+ * Get single Conventional Commit type prefix from multiple items.
  *
- * If at least one item is build dependencies even if the others are different,
- * then use that. This covers the case where `package.json` may have non-package
- * changes but you know it does in this case because it changed with the lock
- * file.
+ * @returns Inferred overall prefix type.
+ *   - The first item if they are equal,
+ *   - Use unknown if they are different.
+ *   - If at least one item is build dependencies even if the others are
+ *     different, then use that. This covers the case where `package.json` may
+ *     have non-deps changes, but the `package-lock.json` is enough to want to
+ *     use the deps scope.
  */
-function _collapse(types: CONVENTIONAL_TYPE[]) {
+export function _collapse(types: CONVENTIONAL_TYPE[]) {
+  if (!types.length) {
+    return CONVENTIONAL_TYPE.UNKNOWN;
+  }
+
   if (equal(types)) {
     return types[0];
   }
+
   if (types.includes(CONVENTIONAL_TYPE.BUILD_DEPENDENCIES)) {
     return CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
   }
