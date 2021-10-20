@@ -8,14 +8,9 @@
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license "Go to License section")
 [![Contributions - welcome](https://img.shields.io/badge/Contributions-welcome-blue)](/CONTRIBUTING.md "View contributing doc")
 
-<!--
-[![GitHub release](https://img.shields.io/github/release/MichaelCurrin/auto-commit-msg?include_prereleases&sort=semver)](https://github.com/MichaelCurrin/auto-commit-msg/releases/)
-![GitHub last commit](https://img.shields.io/github/last-commit/MichaelCurrin/auto-commit-msg)
--->
-
 [![Known Vulnerabilities](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg?targetFile=package.json)
 [![Made for VS Code](https://img.shields.io/badge/Made_for-VS_Code-blue?logo=visualstudiocode&logoColor=white)](https://code.visualstudio.com/ "Go to VS Code homepage")
-[![Made with Node.js](https://img.shields.io/badge/Node.js->=12-blue?logo=node.js&logoColor=white)](https://nodejs.org "Go to Node.js homepage")
+[![Made with Node.js](https://img.shields.io/badge/Node.js->=14-blue?logo=node.js&logoColor=white)](https://nodejs.org "Go to Node.js homepage")
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript "Go to TypeScript homepage")
 
 
@@ -24,7 +19,7 @@
 <!-- Must not be SVG. Also all image URLs must be full HTTPS URLs - absolute paths. -->
 <a href="https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg"
     title="Go to Marketplace extension page">
-    
+
 <img src="https://github.com/MichaelCurrin/auto-commit-msg/raw/master/images/icon.png"
     alt="Logo"
     width="200" />
@@ -36,7 +31,7 @@
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
 </a>
-    
+
 [Getting started](#getting-started) | [Features](#features) | [Sample screenshots](#sample-usage) | [Docs](#documentation)
 
 </div>
