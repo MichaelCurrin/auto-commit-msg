@@ -16,14 +16,34 @@ describe("Split an existing message into components", function () {
       assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
     });
 
-    it("splits with both prefixes and description set", function () {
-      const value = "feat: foo the bar";
-      const expected = {
-        prefixes: "feat",
-        description: " foo the bar",
-      };
-      assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
-    });
+    describe("splits correctly with prefix and description set", function () {
+      it("handles a type prefix", function () {
+        const value = "feat: foo the bar";
+        const expected = {
+          prefixes: "feat",
+          description: " foo the bar",
+        };
+        assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
+      });
+
+      it("handles a custom prefix", function () {
+        const value = "[ABC-123]: foo the bar";
+        const expected = {
+          prefixes: "[ABC-123]",
+          description: " foo the bar",
+        };
+        assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
+      });
+
+      it("handles a custom prefix and type prefix", function () {
+        const value = "[ABC-123] feat: foo the bar";
+        const expected = {
+          prefixes: "[ABC-123] feat",
+          description: " foo the bar",
+        };
+        assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
+      });
+    })
   });
 
   describe("#_splitPrefixes", function () {
