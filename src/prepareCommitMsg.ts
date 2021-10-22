@@ -169,19 +169,18 @@ export function _joinOldAndNew(
   autoDesc: string,
   oldMsgPieces: MsgPieces
 ): string {
-  const descResult = _cleanJoin(autoDesc, oldMsgPieces.description);
+  let typePrefix = "";
 
   if (oldMsgPieces.typePrefix) {
-    const prefix = _cleanJoin(
-      oldMsgPieces.customPrefix,
-      oldMsgPieces.typePrefix
-    );
-
-    return `${prefix}: ${descResult}`;
+    typePrefix = oldMsgPieces.typePrefix;
+  } else if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
+    typePrefix = autoType;
   }
 
-  if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
-    const prefix = _cleanJoin(oldMsgPieces.customPrefix, autoType);
+  const descResult = _cleanJoin(autoDesc, oldMsgPieces.description);
+
+  if (typePrefix) {
+    const prefix = _cleanJoin(oldMsgPieces.customPrefix, typePrefix);
 
     return `${prefix}: ${descResult}`;
   }
