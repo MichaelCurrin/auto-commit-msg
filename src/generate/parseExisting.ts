@@ -3,6 +3,7 @@
  *
  * This allows the pieces to be reused in the new message.
  */
+import { MsgPieces } from "./parseExisting.d";
 
 /*
  * Split commit message into prefixes (custom and type) and description.
@@ -58,9 +59,10 @@ export function _splitPrefixes(value: string) {
 }
 
 /**
- * Separate a commit message into prefixes  and a description.
+ * Separate a commit message into prefixes and a description.
+ * TODO: return type
  */
-export function splitMsg(msg: string) {
+export function splitMsg(msg: string): MsgPieces {
   const { prefixes, description } = _splitPrefixesAndDesc(msg);
   const { customPrefix, typePrefix } = _splitPrefixes(prefixes);
 

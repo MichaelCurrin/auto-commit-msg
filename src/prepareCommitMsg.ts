@@ -14,11 +14,11 @@ import { getConventionType } from "./generate/convCommit";
 import { countFilesDesc } from "./generate/count";
 import { namedFilesDesc, oneChange } from "./generate/message";
 import { splitMsg } from "./generate/parseExisting";
+import { MsgPieces } from "./generate/parseExisting.d";
 import { parseDiffIndex } from "./git/parseOutput";
 import { AGGREGATE_MIN, CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
 import { ConvCommitMsg } from "./prepareCommitMsg.d";
-
 /**
  * Join two strings together with a space.
  *
@@ -162,9 +162,27 @@ export function _newMsg(lines: string[]) {
 }
 
 /**
+ * Join old and inferred values as a string.
+ */
+export function _joinOldAndNew(oldMsgPieces: MsgPieces, autoDesc: string, autoType: string): string {
+  const descResult = _cleanJoin(autoDesc, oldMsgPieces.description);
+
+  if (oldMsgPieces.typePrefix) {
+    return `${_cleanJoin(oldMsgPieces.customPrefix, oldMsgPieces.typePrefix)}: ${descResult}`;
+  }
+
+  if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
+    return `${_cleanJoin(oldMsgPieces.customPrefix, autoType)}: ${descResult}`;
+  }
+
+  return descResult
+}
+
+/**
  * Create a commit message using an existing message and generated pieces.
  *
- * The point is to always use the new description, but respect the old description.
+ * The point is to always use the new description, but respect the old
+ * description.
  *
  * An old type (possibly manually generated) must take preference over a
  * generated one.
@@ -182,7 +200,7 @@ export function _combineOldAndNew(
   autoType: CONVENTIONAL_TYPE,
   autoDesc: string,
   oldMsg?: string
-) {
+): string {
   if (!oldMsg) {
     const convCommitMsg: ConvCommitMsg = {
       prefixType: autoType,
@@ -192,25 +210,9 @@ export function _combineOldAndNew(
     return _formatMsg(convCommitMsg);
   }
 
-  const {
-    customPrefix: oldCustomPrefix,
-    typePrefix: oldType,
-    description: oldDesc,
-  } = splitMsg(oldMsg);
+  const oldMsgPieces = splitMsg(oldMsg);
 
-  // TODO: Move these out to higher joining/formatting function.
-
-  const descResult = _cleanJoin(autoDesc, oldDesc);
-
-  if (oldType) {
-    return `${_cleanJoin(oldCustomPrefix, oldType)}: ${descResult}`;
-  }
-
-  if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
-    return `${_cleanJoin(oldCustomPrefix, autoType)}: ${descResult}`;
-  }
-
-  return descResult;
+  return _joinOldAndNew(oldMsgPieces, autoDesc, autoType)
 }
 
 /**
@@ -233,7 +235,8 @@ export function _generateMsgWithOld(lines: string[], oldMsg: string) {
 /**
  * Generate commit message.
  *
- * This is a public wrapper function to allow an existing message to be set or not.
+ * This is a public wrapper function to allow an existing message to be set or
+ * not.
  *
  * Old message could be the current commit message value in the UI box (which
  * might be a commit message template that VS Code has filled in), or a commit
