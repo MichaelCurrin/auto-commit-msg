@@ -806,19 +806,16 @@ describe("Prepare commit message", function () {
     });
 
     describe("use the new message only, if the old message is empty", function () {
-      it("handles implied old message", function () {
-        assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", ''),
-          "foo bar"
-        );
+      it("handles an unknown type", function () {
+        const oldMsg = "";
 
         assert.strictEqual(
-          _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", ''),
-          "feat: foo bar"
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", oldMsg),
+          "foo bar"
         );
       });
 
-      it("handles an explicit old message", function () {
+      it("handles a known type", function () {
         const oldMsg = "";
 
         assert.strictEqual(
@@ -832,7 +829,7 @@ describe("Prepare commit message", function () {
       // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name
       // works too.
 
-      describe("when convention prefix cannot be determined from the file changes", function () {
+      describe("when type prefix cannot be determined from the file changes", function () {
         it("combines two plain messages", function () {
           assert.strictEqual(
             _combineOldAndNew(
