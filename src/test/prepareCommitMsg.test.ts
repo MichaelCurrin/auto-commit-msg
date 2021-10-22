@@ -18,7 +18,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange,
+  _prefixFromChange
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
@@ -749,6 +749,8 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_joinOldAndNew", function () {
+    // Cases here are based on `_combineOldAndNew` because that function was
+    // created from a refactor.
     describe("handles common scenarios correctly", function () {
       it("keeps the old message's type, if none can be inferred", function () {
         const autoMsgPieces: ConvCommitMsg = {
@@ -818,6 +820,42 @@ describe("Prepare commit message", function () {
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
           "[abc] docs: update .editorconfig"
+        );
+      });
+    });
+
+    describe("use the new message only, if the old message is empty", function () {
+      it("handles an unknown type", function () {
+        const autoMsgPieces: ConvCommitMsg = {
+          typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+          description: "foo the bar",
+        };
+        const oldMsgPieces: MsgPieces = {
+          customPrefix: "",
+          typePrefix: "",
+          description: "",
+        };
+
+        assert.strictEqual(
+          _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+          "foo the bar"
+        );
+      });
+
+      it("handles a known type", function () {
+        const autoMsgPieces: ConvCommitMsg = {
+          typePrefix: CONVENTIONAL_TYPE.FEAT,
+          description: "foo the bar",
+        };
+        const oldMsgPieces: MsgPieces = {
+          customPrefix: "",
+          typePrefix: "",
+          description: "",
+        };
+
+        assert.strictEqual(
+          _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+          "feat: foo the bar"
         );
       });
     });
