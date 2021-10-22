@@ -11,6 +11,9 @@
  * a description, but 'ci:' will be considered a prefix. This keeps the check
  * simpler as we don't have to match against every type and we don't have to
  * check if we are part of a word e.g. 'circus'.
+ *
+ * Warning - trimming prefixes here causes issues elsewhere and I don't know
+ * why.
  */
 export function _splitPrefixesAndDesc(value: string) {
   let prefixes = "";
@@ -21,6 +24,7 @@ export function _splitPrefixesAndDesc(value: string) {
   } else {
     description = value;
   }
+  description = description.trim();
 
   return { prefixes, description };
 }

@@ -2,7 +2,7 @@ import * as assert from "assert";
 import {
   splitMsg,
   _splitPrefixes,
-  _splitPrefixesAndDesc
+  _splitPrefixesAndDesc,
 } from "../../generate/parseExisting";
 
 describe("Split an existing message into components", function () {
@@ -21,7 +21,7 @@ describe("Split an existing message into components", function () {
         const value = "feat: foo the bar";
         const expected = {
           prefixes: "feat",
-          description: " foo the bar",
+          description: "foo the bar",
         };
         assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
       });
@@ -30,7 +30,7 @@ describe("Split an existing message into components", function () {
         const value = "[ABC-123]: foo the bar";
         const expected = {
           prefixes: "[ABC-123]",
-          description: " foo the bar",
+          description: "foo the bar",
         };
         assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
       });
@@ -39,11 +39,11 @@ describe("Split an existing message into components", function () {
         const value = "[ABC-123] feat: foo the bar";
         const expected = {
           prefixes: "[ABC-123] feat",
-          description: " foo the bar",
+          description: "foo the bar",
         };
         assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
       });
-    })
+    });
   });
 
   describe("#_splitPrefixes", function () {

@@ -198,6 +198,8 @@ export function _combineOldAndNew(
     description: oldDesc,
   } = splitMsg(oldMsg);
 
+  // TODO: Move these out to higher joining/formatting function.
+
   const descResult = _cleanJoin(autoDesc, oldDesc);
 
   if (oldType) {
