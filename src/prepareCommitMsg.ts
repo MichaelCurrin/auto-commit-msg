@@ -164,18 +164,25 @@ export function _newMsg(lines: string[]) {
 /**
  * Join old and inferred values as a string.
  */
-export function _joinOldAndNew(oldMsgPieces: MsgPieces, autoDesc: string, autoType: string): string {
+export function _joinOldAndNew(
+  oldMsgPieces: MsgPieces,
+  autoDesc: string,
+  autoType: string
+): string {
   const descResult = _cleanJoin(autoDesc, oldMsgPieces.description);
 
   if (oldMsgPieces.typePrefix) {
-    return `${_cleanJoin(oldMsgPieces.customPrefix, oldMsgPieces.typePrefix)}: ${descResult}`;
+    return `${_cleanJoin(
+      oldMsgPieces.customPrefix,
+      oldMsgPieces.typePrefix
+    )}: ${descResult}`;
   }
 
   if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
     return `${_cleanJoin(oldMsgPieces.customPrefix, autoType)}: ${descResult}`;
   }
 
-  return descResult
+  return descResult;
 }
 
 /**
@@ -212,7 +219,7 @@ export function _combineOldAndNew(
 
   const oldMsgPieces = splitMsg(oldMsg);
 
-  return _joinOldAndNew(oldMsgPieces, autoDesc, autoType)
+  return _joinOldAndNew(oldMsgPieces, autoDesc, autoType);
 }
 
 /**
