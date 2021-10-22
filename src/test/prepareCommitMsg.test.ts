@@ -758,9 +758,9 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(
-            oldMsgPieces,
             CONVENTIONAL_TYPE.UNKNOWN,
             "update prepareCommitMsg.ts",
+            oldMsgPieces,
           ),
           "docs: update prepareCommitMsg.ts"
         );
@@ -775,9 +775,9 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(
-            oldMsgPieces,
             CONVENTIONAL_TYPE.CHORE,
             "update .editorconfig",
+            oldMsgPieces,
           ),
           "chore: update .editorconfig foo the bar"
         );
@@ -792,9 +792,9 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(
-            oldMsgPieces,
             CONVENTIONAL_TYPE.CHORE,
             "update .editorconfig",
+            oldMsgPieces,
           ),
           "docs: update .editorconfig"
         );
@@ -809,9 +809,9 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(
-            oldMsgPieces,
             CONVENTIONAL_TYPE.CHORE,
             "update .editorconfig",
+            oldMsgPieces,
           ),
           "[abc] docs: update .editorconfig"
         );
