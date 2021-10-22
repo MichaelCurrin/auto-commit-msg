@@ -4,6 +4,7 @@
  * Check creation of commit message.
  */
 import * as assert from "assert";
+import { MsgPieces } from "../generate/parseExisting.d";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
   generateMsg,
@@ -12,11 +13,12 @@ import {
   _combineOldAndNew,
   _formatMsg,
   _generateMsgWithOld,
+  _joinOldAndNew,
   _msgCount,
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange,
+  _prefixFromChange
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -741,6 +743,78 @@ describe("Prepare commit message", function () {
             "docs: update docs/README.md, bar/README.md and README.md";
           assert.strictEqual(_newMsg(lines), expected);
         });
+      });
+    });
+  });
+
+  describe("#_joinOldAndNew", function () {
+    describe("handles common scenarios correctly", function () {
+      it("keeps the old message's type, if none can be inferred", function () {
+        const oldMsgPieces: MsgPieces = {
+          customPrefix: '',
+          typePrefix: 'docs',
+          description: ''
+        }
+
+        assert.strictEqual(
+          _joinOldAndNew(
+            oldMsgPieces,
+            CONVENTIONAL_TYPE.UNKNOWN,
+            "update prepareCommitMsg.ts",
+          ),
+          "docs: update prepareCommitMsg.ts"
+        );
+      });
+
+      it("keeps the old description", function () {
+        const oldMsgPieces: MsgPieces = {
+          customPrefix: '',
+          typePrefix: 'chore',
+          description: 'foo the bar'
+        }
+
+        assert.strictEqual(
+          _joinOldAndNew(
+            oldMsgPieces,
+            CONVENTIONAL_TYPE.CHORE,
+            "update .editorconfig",
+          ),
+          "chore: update .editorconfig foo the bar"
+        );
+      });
+
+      it("uses a generated description, but keeps the type from the old message", function () {
+        const oldMsgPieces: MsgPieces = {
+          customPrefix: '',
+          typePrefix: 'docs',
+          description: ''
+        }
+
+        assert.strictEqual(
+          _joinOldAndNew(
+            oldMsgPieces,
+            CONVENTIONAL_TYPE.CHORE,
+            "update .editorconfig",
+          ),
+          "docs: update .editorconfig"
+        );
+      });
+
+      it("combines an old custom prefix and type with a new description", function () {
+        const oldMsgPieces: MsgPieces = {
+          customPrefix: '[abc]',
+          typePrefix: 'docs',
+          description: ''
+        }
+
+        assert.strictEqual(
+          _joinOldAndNew(
+            oldMsgPieces,
+            CONVENTIONAL_TYPE.CHORE,
+            "update .editorconfig",
+          ),
+          "[abc] docs: update .editorconfig"
+        );
       });
     });
   });
