@@ -20,6 +20,7 @@ import {
   _newMsg,
   _prefixFromChange,
 } from "../prepareCommitMsg";
+import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
 describe("Join strings cleanly", function () {
   describe("#_cleanJoin", function () {
@@ -750,6 +751,10 @@ describe("Prepare commit message", function () {
   describe("#_joinOldAndNew", function () {
     describe("handles common scenarios correctly", function () {
       it("keeps the old message's type, if none can be inferred", function () {
+        const autoMsgPieces: ConvCommitMsg = {
+          typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+          description: "update prepareCommitMsg.ts",
+        };
         const oldMsgPieces: MsgPieces = {
           customPrefix: "",
           typePrefix: "docs",
@@ -757,16 +762,17 @@ describe("Prepare commit message", function () {
         };
 
         assert.strictEqual(
-          _joinOldAndNew(
-            CONVENTIONAL_TYPE.UNKNOWN,
-            "update prepareCommitMsg.ts",
-            oldMsgPieces
-          ),
+          _joinOldAndNew(autoMsgPieces, oldMsgPieces),
           "docs: update prepareCommitMsg.ts"
         );
       });
 
       it("keeps the old description", function () {
+        const autoMsgPieces: ConvCommitMsg = {
+          typePrefix: CONVENTIONAL_TYPE.CHORE,
+          description: "update .editorconfig",
+        };
+
         const oldMsgPieces: MsgPieces = {
           customPrefix: "",
           typePrefix: "chore",
@@ -774,16 +780,17 @@ describe("Prepare commit message", function () {
         };
 
         assert.strictEqual(
-          _joinOldAndNew(
-            CONVENTIONAL_TYPE.CHORE,
-            "update .editorconfig",
-            oldMsgPieces
-          ),
+          _joinOldAndNew(autoMsgPieces, oldMsgPieces),
           "chore: update .editorconfig foo the bar"
         );
       });
 
       it("uses a generated description, but keeps the type from the old message", function () {
+        const autoMsgPieces: ConvCommitMsg = {
+          typePrefix: CONVENTIONAL_TYPE.CHORE,
+          description: "update .editorconfig",
+        };
+
         const oldMsgPieces: MsgPieces = {
           customPrefix: "",
           typePrefix: "docs",
@@ -791,16 +798,17 @@ describe("Prepare commit message", function () {
         };
 
         assert.strictEqual(
-          _joinOldAndNew(
-            CONVENTIONAL_TYPE.CHORE,
-            "update .editorconfig",
-            oldMsgPieces
-          ),
+          _joinOldAndNew(autoMsgPieces, oldMsgPieces),
           "docs: update .editorconfig"
         );
       });
 
       it("combines an old custom prefix and type with a new description", function () {
+        const autoMsgPieces: ConvCommitMsg = {
+          typePrefix: CONVENTIONAL_TYPE.CHORE,
+          description: "update .editorconfig",
+        };
+
         const oldMsgPieces: MsgPieces = {
           customPrefix: "[abc]",
           typePrefix: "docs",
@@ -808,11 +816,7 @@ describe("Prepare commit message", function () {
         };
 
         assert.strictEqual(
-          _joinOldAndNew(
-            CONVENTIONAL_TYPE.CHORE,
-            "update .editorconfig",
-            oldMsgPieces
-          ),
+          _joinOldAndNew(autoMsgPieces, oldMsgPieces),
           "[abc] docs: update .editorconfig"
         );
       });

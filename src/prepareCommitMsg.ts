@@ -162,22 +162,24 @@ export function _newMsg(lines: string[]) {
 }
 
 /**
- * Join old and inferred values as a string.
+ * Join old and automated inferred values as one commit message
  */
 export function _joinOldAndNew(
-  autoType: string,
-  autoDesc: string,
+  autoMsgPieces: ConvCommitMsg,
   oldMsgPieces: MsgPieces
 ): string {
   let typePrefix = "";
 
   if (oldMsgPieces.typePrefix) {
     typePrefix = oldMsgPieces.typePrefix;
-  } else if (autoType !== CONVENTIONAL_TYPE.UNKNOWN) {
-    typePrefix = autoType;
+  } else if (autoMsgPieces.typePrefix !== CONVENTIONAL_TYPE.UNKNOWN) {
+    typePrefix = autoMsgPieces.typePrefix;
   }
 
-  const descResult = _cleanJoin(autoDesc, oldMsgPieces.description);
+  const descResult = _cleanJoin(
+    autoMsgPieces.description,
+    oldMsgPieces.description
+  );
 
   if (typePrefix) {
     const prefix = _cleanJoin(oldMsgPieces.customPrefix, typePrefix);
@@ -213,17 +215,22 @@ export function _combineOldAndNew(
   oldMsg: string
 ): string {
   if (!oldMsg) {
-    const convCommitMsg: ConvCommitMsg = {
+    const autoCommitMsg: ConvCommitMsg = {
       typePrefix: autoType,
       description: autoDesc,
     };
 
-    return _formatMsg(convCommitMsg);
+    return _formatMsg(autoCommitMsg);
   }
 
   const oldMsgPieces = splitMsg(oldMsg);
 
-  return _joinOldAndNew(autoType, autoDesc, oldMsgPieces);
+  const autoMsgPieces: ConvCommitMsg = {
+    typePrefix: autoType,
+    description: autoDesc,
+  };
+
+  return _joinOldAndNew(autoMsgPieces, oldMsgPieces);
 }
 
 /**
