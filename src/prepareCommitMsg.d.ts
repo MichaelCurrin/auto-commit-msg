@@ -1,6 +1,6 @@
 import { CONVENTIONAL_TYPE } from "./lib/constants";
 
 export type ConvCommitMsg = {
-  prefixType: CONVENTIONAL_TYPE;
+  typePrefix: CONVENTIONAL_TYPE;
   description: string;
 };

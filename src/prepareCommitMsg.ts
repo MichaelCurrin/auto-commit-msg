@@ -55,10 +55,10 @@ export function _msgOne(line: string) {
   // TODO: Pass FileChanges to oneChange and _prefixFromChange instead of string.
   // Don't unpack as {x, y, from, to}
   // const fileChanges = parseDiffIndex(line)
-  const prefixType = _prefixFromChange(line),
+  const typePrefix = _prefixFromChange(line),
     description = oneChange(line);
 
-  return { prefixType, description };
+  return { typePrefix, description };
 }
 
 /**
@@ -97,12 +97,12 @@ export function _collapse(types: CONVENTIONAL_TYPE[]) {
  */
 export function _msgNamed(lines: string[]): ConvCommitMsg {
   const conventions = lines.map(_prefixFromChange);
-  const prefixType = _collapse(conventions);
+  const typePrefix = _collapse(conventions);
 
   const changes = lines.map(parseDiffIndex);
   const description = namedFilesDesc(changes);
 
-  return { prefixType, description };
+  return { typePrefix, description };
 }
 
 /**
@@ -116,7 +116,7 @@ export function _msgCount(lines: string[]): ConvCommitMsg {
   const changes = lines.map(parseDiffIndex);
   const description = countFilesDesc(changes);
 
-  return { prefixType: prefix, description };
+  return { typePrefix: prefix, description };
 }
 
 /**
@@ -146,10 +146,10 @@ export function _msgFromChanges(lines: string[]) {
  * Output a readable conventional commit message.
  */
 export function _formatMsg(convCommitMsg: ConvCommitMsg) {
-  if (convCommitMsg.prefixType === CONVENTIONAL_TYPE.UNKNOWN) {
+  if (convCommitMsg.typePrefix === CONVENTIONAL_TYPE.UNKNOWN) {
     return convCommitMsg.description;
   }
-  return `${convCommitMsg.prefixType}: ${convCommitMsg.description}`;
+  return `${convCommitMsg.typePrefix}: ${convCommitMsg.description}`;
 }
 
 /**
@@ -210,7 +210,7 @@ export function _combineOldAndNew(
 ): string {
   if (!oldMsg) {
     const convCommitMsg: ConvCommitMsg = {
-      prefixType: autoType,
+      typePrefix: autoType,
       description: autoDesc,
     };
 
@@ -234,9 +234,9 @@ export function _generateMsgWithOld(lines: string[], oldMsg: string) {
       "`oldMsg` must be non-empty - or use `generateNewMsg` instead."
     );
   }
-  const { prefixType, description } = _msgFromChanges(lines);
+  const { typePrefix, description } = _msgFromChanges(lines);
 
-  return _combineOldAndNew(prefixType, description, oldMsg);
+  return _combineOldAndNew(typePrefix, description, oldMsg);
 }
 
 /**
