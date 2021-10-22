@@ -877,14 +877,26 @@ describe("Prepare commit message", function () {
             // template and know for sure that the old message is a prefix
             // because of the colon, rather than a description.
 
-            it("handles with a space", function () {
-              assert.strictEqual(
-                _combineOldAndNew(CONVENTIONAL_TYPE.CHORE, "foo the bar", "[ABCD-1234] :"),
-                "[ABCD-1234] chore: foo the bar"
-              );
+            describe("with a space", function () {
+              it("handles inferred chore type", function () {
+                assert.strictEqual(
+                  _combineOldAndNew(CONVENTIONAL_TYPE.CHORE, "foo the bar", "[ABCD-1234] :"),
+                  "[ABCD-1234] chore: foo the bar"
+                );
+              })
+
+              it("handles inferred unknown type", function () {
+                // Current behavior is unfortunately to drop the old message
+                // completely, but this can be changed. One solution is
+                // to remove unknown and always use feat/fix.
+                assert.strictEqual(
+                  _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo the bar", "[ABCD-1234] :"),
+                  "foo the bar"
+                );
+              })
             })
 
-            it("handles with no space", function () {
+            describe("with no space", function () {
               // This is not an intended case so wasn't designed for, so
               // this is just a test for completeness.
               assert.strictEqual(
