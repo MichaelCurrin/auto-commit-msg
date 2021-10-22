@@ -1,8 +1,8 @@
 import * as assert from "assert";
 import {
   splitMsg,
-  _splitPrefixesAndDesc,
   _splitPrefixes,
+  _splitPrefixesAndDesc
 } from "../../generate/parseExisting";
 
 describe("Split an existing message into components", function () {
