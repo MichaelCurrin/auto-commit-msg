@@ -16,7 +16,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange
+  _prefixFromChange,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -816,16 +816,16 @@ describe("Prepare commit message", function () {
           _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar"),
           "feat: foo bar"
         );
-      })
+      });
 
       it("handles an explicit old message", function () {
-        const oldMsg = ""
+        const oldMsg = "";
 
         assert.strictEqual(
           _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", oldMsg),
           "feat: foo bar"
         );
-      })
+      });
     });
 
     describe("combines an old message with a new message", function () {
@@ -859,7 +859,7 @@ describe("Prepare commit message", function () {
               _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
               "feat: foo bar"
             );
-          })
+          });
 
           it("handles an old message that a Jira identifier and a type", function () {
             assert.strictEqual(
@@ -870,7 +870,7 @@ describe("Prepare commit message", function () {
               ),
               "[ABCD-1234] feat: foo bar"
             );
-          })
+          });
 
           describe("an old message that has a Jira identifier and no type", function () {
             // This behavior makes it easy to use the Git commit message
@@ -880,31 +880,43 @@ describe("Prepare commit message", function () {
             describe("with a space", function () {
               it("handles inferred chore type", function () {
                 assert.strictEqual(
-                  _combineOldAndNew(CONVENTIONAL_TYPE.CHORE, "foo the bar", "[ABCD-1234] :"),
+                  _combineOldAndNew(
+                    CONVENTIONAL_TYPE.CHORE,
+                    "foo the bar",
+                    "[ABCD-1234] :"
+                  ),
                   "[ABCD-1234] chore: foo the bar"
                 );
-              })
+              });
 
               it("handles inferred unknown type", function () {
                 // Current behavior is unfortunately to drop the old message
                 // completely, but this can be changed. One solution is
                 // to remove unknown and always use feat/fix.
                 assert.strictEqual(
-                  _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo the bar", "[ABCD-1234] :"),
+                  _combineOldAndNew(
+                    CONVENTIONAL_TYPE.UNKNOWN,
+                    "foo the bar",
+                    "[ABCD-1234] :"
+                  ),
                   "foo the bar"
                 );
-              })
-            })
+              });
+            });
 
             describe("with no space", function () {
               // This is not an intended case so wasn't designed for, so
               // this is just a test for completeness.
               assert.strictEqual(
-                _combineOldAndNew(CONVENTIONAL_TYPE.CHORE, "foo the bar", "[ABCD-1234]:"),
+                _combineOldAndNew(
+                  CONVENTIONAL_TYPE.CHORE,
+                  "foo the bar",
+                  "[ABCD-1234]:"
+                ),
                 "[ABCD-1234]: foo the bar"
               );
-            })
-          })
+            });
+          });
         });
 
         it("combines a plain message and an existing prefix with a space after it", function () {
