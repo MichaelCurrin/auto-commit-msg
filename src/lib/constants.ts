@@ -43,10 +43,13 @@ export enum ACTION {
 /**
  * Conventional Commit types.
  *
- * The scope is mixed in here because refactoring a few modules to handle scope alone is too much
- * effort for one use-case.
+ * This applies also for "typePrefix" variables, when "conventional" is omitted
+ * for brevity.
  *
- See documentation:
+ * The scope is mixed in here, because refactoring a few modules
+ * to handle scope alone is too much effort for one use-case of "deps".
+ *
+ * See documentation:
  *   docs/manual/conventional-commits.md
  */
 export enum CONVENTIONAL_TYPE {
