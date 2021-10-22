@@ -8,10 +8,21 @@ import {
 describe("Split an existing message into components", function () {
   describe("#_splitPrefixesAndDesc", function () {
     it("handles a description alone", function () {
-      assert.deepStrictEqual(_splitPrefixesAndDesc("abc def"), {
+      const value = "foo the bar";
+      const expected = {
         prefixes: "",
-        description: "abc def",
-      });
+        description: "foo the bar",
+      };
+      assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
+    });
+
+    it("splits with both prefixes and description set", function () {
+      const value = "feat: foo the bar";
+      const expected = {
+        prefixes: "feat",
+        description: " foo the bar",
+      };
+      assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
     });
   });
 
