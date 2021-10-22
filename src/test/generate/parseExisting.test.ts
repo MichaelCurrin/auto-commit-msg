@@ -9,7 +9,7 @@ describe("Split an existing message into components", function () {
   describe("#_splitPrefixDesc", function () {
     it("handles a description alone", function () {
       assert.deepStrictEqual(_splitPrefixDesc("abc def"), {
-        prefix: "",
+        prefixes: "",
         description: "abc def",
       });
     });

@@ -5,7 +5,7 @@
  */
 
 /*
- * Split message into prefix and description.
+ * Split commit message into prefixes (custom and type) and description.
  *
  * Require a colon to exist to detect type prefix. i.e. 'ci' will be considered
  * a description, but 'ci:' will be considered a prefix. This keeps the check
@@ -13,16 +13,16 @@
  * check if we are part of a word e.g. 'circus'.
  */
 export function _splitPrefixDesc(value: string) {
-  let prefix = "";
+  let prefixes = "";
   let description = "";
 
   if (value.includes(":")) {
-    [prefix, description] = value.split(":", 2);
+    [prefixes, description] = value.split(":", 2);
   } else {
     description = value;
   }
 
-  return { prefix, description };
+  return { prefixes, description };
 }
 
 /**
@@ -34,7 +34,8 @@ export function _splitPrefixDesc(value: string) {
  *   - The Conventional Commit type prefix is the last word. This is just kept
  *     as a string and here and not validated or with type enforce.
  *   - The custom prefix will be one or more words before the type prefix
- *     (multiple words would not be be typical though).
+ *     (multiple words would not be be typical though). This might be a Jira
+ *     identifier or project name.
  */
 export function _splitPrefixes(value: string) {
   let customPrefix: string;
@@ -56,8 +57,8 @@ export function _splitPrefixes(value: string) {
  * Separate a commit message into prefixes  and a description.
  */
 export function splitMsg(msg: string) {
-  const { prefix, description } = _splitPrefixDesc(msg);
-  const { customPrefix, typePrefix } = _splitPrefixes(prefix);
+  const { prefixes, description } = _splitPrefixDesc(msg);
+  const { customPrefix, typePrefix } = _splitPrefixes(prefixes);
 
   return { customPrefix, typePrefix, description: description.trim() };
 }

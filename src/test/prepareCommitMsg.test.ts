@@ -248,7 +248,7 @@ describe("Prepare commit message", function () {
       it("handles a single file change", function () {
         const lines = ["A    baz.txt"];
         const expected = {
-          prefix: CONVENTIONAL_TYPE.FEAT,
+          prefixType: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt",
         };
 
@@ -261,7 +261,7 @@ describe("Prepare commit message", function () {
         it("handles 2 created files created correctly", function () {
           const lines = ["A    baz.txt", "A    bar.js"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt and bar.js",
           };
 
@@ -271,7 +271,7 @@ describe("Prepare commit message", function () {
         it("handles 2 modified files correctly", function () {
           const lines = ["M    baz.txt", "M    bar.js"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "update baz.txt and bar.js",
           };
 
@@ -281,7 +281,7 @@ describe("Prepare commit message", function () {
         it("handles 3 files with the same action correctly", function () {
           const lines = ["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
           };
 
@@ -296,7 +296,7 @@ describe("Prepare commit message", function () {
             "A    fuzz.ts",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
           };
 
@@ -310,7 +310,7 @@ describe("Prepare commit message", function () {
             "A    fizz/fuzz.md",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
           };
 
@@ -321,7 +321,7 @@ describe("Prepare commit message", function () {
         it('handles 2 "build(deps)" files correctly', function () {
           const lines = ["M    package.json", "M     package-lock.json"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
+            prefixType: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
             description: "update package.json and package-lock.json",
           };
 
@@ -335,7 +335,7 @@ describe("Prepare commit message", function () {
             "M    README.md",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.DOCS,
+            prefixType: CONVENTIONAL_TYPE.DOCS,
             description: "update docs/README.md, bar/README.md and README.md",
           };
 
@@ -347,7 +347,7 @@ describe("Prepare commit message", function () {
         it("handles 2 files - one created and one modified", function () {
           const lines = ["A    baz.txt", "M    bar.js"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 1 file",
           };
 
@@ -358,7 +358,7 @@ describe("Prepare commit message", function () {
           const lines = ["A    baz.txt", "M    bar.js", "D    README.md"];
 
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file, update 1 file and delete 1 file",
           };
 
@@ -374,7 +374,7 @@ describe("Prepare commit message", function () {
       it("handles a single file change", function () {
         const lines = ["A    baz.txt"];
         const expected = {
-          prefix: CONVENTIONAL_TYPE.UNKNOWN,
+          prefixType: CONVENTIONAL_TYPE.UNKNOWN,
           description: "create 1 file",
         };
 
@@ -396,7 +396,7 @@ describe("Prepare commit message", function () {
             "A    buzz.txt",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 5 files",
           };
 
@@ -412,7 +412,7 @@ describe("Prepare commit message", function () {
             "A    buzz.txt",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 5 files",
           };
 
@@ -428,7 +428,7 @@ describe("Prepare commit message", function () {
             "M    buzz.txt",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "update 5 files",
           };
 
@@ -440,7 +440,7 @@ describe("Prepare commit message", function () {
         it("handles 2 files with 2 actions", function () {
           const lines = ["A    baz.txt", "M    bar.js"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 1 file",
           };
 
@@ -456,7 +456,7 @@ describe("Prepare commit message", function () {
             "M    buzz.txt",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 4 files",
           };
 
@@ -473,7 +473,7 @@ describe("Prepare commit message", function () {
           ];
 
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 2 files, update 1 file and delete 2 files",
           };
 
@@ -488,7 +488,7 @@ describe("Prepare commit message", function () {
       it("handles a single file correctly", function () {
         const lines = ["A    baz.txt"];
         const expected = {
-          prefix: CONVENTIONAL_TYPE.FEAT,
+          prefixType: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt",
         };
 
@@ -501,7 +501,7 @@ describe("Prepare commit message", function () {
         it("handles 2 created files created correctly", function () {
           const lines = ["A    baz.txt", "A    bar.js"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt and bar.js",
           };
 
@@ -511,7 +511,7 @@ describe("Prepare commit message", function () {
         it("handles 2 modified files correctly", function () {
           const lines = ["M    baz.txt", "M    bar.js"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "update baz.txt and bar.js",
           };
 
@@ -521,7 +521,7 @@ describe("Prepare commit message", function () {
         it("handles 3 files with the same action correctly", function () {
           const lines = ["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
           };
 
@@ -536,7 +536,7 @@ describe("Prepare commit message", function () {
             "A    fuzz.ts",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
           };
 
@@ -550,7 +550,7 @@ describe("Prepare commit message", function () {
             "A    fizz/fuzz.md",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.FEAT,
+            prefixType: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
           };
 
@@ -561,7 +561,7 @@ describe("Prepare commit message", function () {
         it('handles 2 "build(deps)" files correctly', function () {
           const lines = ["M    package.json", "M     package-lock.json"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
+            prefixType: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
             description: "update package.json and package-lock.json",
           };
 
@@ -575,7 +575,7 @@ describe("Prepare commit message", function () {
             "M    README.md",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.DOCS,
+            prefixType: CONVENTIONAL_TYPE.DOCS,
             description: "update docs/README.md, bar/README.md and README.md",
           };
 
@@ -587,7 +587,7 @@ describe("Prepare commit message", function () {
         it("handles 2 files - one created and one modified", function () {
           const lines = ["A    baz.txt", "M    bar.js"];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 1 file",
           };
 
@@ -598,7 +598,7 @@ describe("Prepare commit message", function () {
           const lines = ["A    baz.txt", "M    bar.js", "D    README.md"];
 
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file, update 1 file and delete 1 file",
           };
 
@@ -618,7 +618,7 @@ describe("Prepare commit message", function () {
             "A    buzz.txt",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 5 files",
           };
 
@@ -634,7 +634,7 @@ describe("Prepare commit message", function () {
             "M    buzz.txt",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "update 5 files",
           };
 
@@ -652,7 +652,7 @@ describe("Prepare commit message", function () {
             "M    buzz.txt",
           ];
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 4 files",
           };
 
@@ -669,7 +669,7 @@ describe("Prepare commit message", function () {
           ];
 
           const expected = {
-            prefix: CONVENTIONAL_TYPE.UNKNOWN,
+            prefixType: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 2 files, update 1 file and delete 2 files",
           };
 
@@ -683,7 +683,7 @@ describe("Prepare commit message", function () {
     it("combines a prefix and message correctly", function () {
       assert.strictEqual(
         _formatMsg({
-          prefix: CONVENTIONAL_TYPE.FEAT,
+          prefixType: CONVENTIONAL_TYPE.FEAT,
           description: "create foo.txt",
         }),
         "feat: create foo.txt"
@@ -691,7 +691,7 @@ describe("Prepare commit message", function () {
 
       assert.strictEqual(
         _formatMsg({
-          prefix: CONVENTIONAL_TYPE.BUILD,
+          prefixType: CONVENTIONAL_TYPE.BUILD,
           description: "update foo.txt",
         }),
         "build: update foo.txt"
@@ -699,7 +699,7 @@ describe("Prepare commit message", function () {
 
       assert.strictEqual(
         _formatMsg({
-          prefix: CONVENTIONAL_TYPE.DOCS,
+          prefixType: CONVENTIONAL_TYPE.DOCS,
           description: "update README.md",
         }),
         "docs: update README.md"
