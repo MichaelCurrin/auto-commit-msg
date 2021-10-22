@@ -18,7 +18,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange,
+  _prefixFromChange
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
@@ -1115,7 +1115,7 @@ describe("Prepare commit message", function () {
             });
           });
 
-          describe("keep the old type if there is one, without using a generated type", function () {
+          describe("keep the old type if there is one, without using an auto type", function () {
             it("uses a plain old message", function () {
               const oldMsgPieces = {
                 customPrefix: "",
@@ -1439,7 +1439,7 @@ describe("Prepare commit message", function () {
           });
         });
 
-        describe("keep the old type if there is one, without using a generated type", function () {
+        describe("keep the old type if there is one, without using an auto type", function () {
           it("uses a plain old message", function () {
             const oldMsg = "docs:";
 
