@@ -9,7 +9,7 @@ Info on how the Conventional Commits standard is applied for generating output i
 - [Conventional Commits](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/other/conventional-commits.html) cheatsheet in my Dev Cheatsheets projects, covering parts of the standard most relevant to me and this extension project.
 
 
-## Overview
+## The official standard
 
 Here is the full syntax for a commit message:
 
@@ -23,16 +23,16 @@ Here is the full syntax for a commit message:
 
 The standard says that description is meant to start with a _lowercase letter_, so this is applied throughout this project.
 
-This Auto Commit Extension project focuses only on the first part:
 
-```
-TYPE: DESCRIPTION
-```
+## What this project uses
 
-Or
+The body and footer are ignored in this project, to keep things simple. Perhaps, one day, some details will be added to the body by this extension.
 
-```
-TYPE(SCOPE): DESCRIPTION
-```
+So then the format of generated messages:
 
-Perhaps one day some details will be added to the body by this extension.
+- `TYPE: DESCRIPTION`
+- `TYPE(SCOPE): DESCRIPTION`
+
+Additionally, a custom message is allowed:
+
+- `CUSTOM_MESSAGE TYPE: DESCRIPTION`
