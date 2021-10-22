@@ -16,7 +16,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange,
+  _prefixFromChange
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
@@ -761,10 +761,10 @@ describe("Prepare commit message", function () {
       });
 
       it("keeps the old description", function () {
-        // TODO: Make the order of the description pieces should be switched to be more natural.
-        //    e.g. 'update .editorconfig - xyz'
-        // TODO: If the message is the same, don't add to it.
-        // i.e. Don't want to get 'chore: update.editorconfig update .editorconfig'
+        // TODO: Make the order of the description pieces should be switched to
+        //    be more natural. e.g. 'update .editorconfig - xyz'
+        // TODO: If the message is the same, don't add to it. i.e. Don't want
+        //    to get 'chore: update.editorconfig update .editorconfig'
         const oldMsg = "xyz";
 
         assert.strictEqual(
@@ -778,8 +778,8 @@ describe("Prepare commit message", function () {
       });
 
       it("uses a generated description, but keeps the type from the old message", function () {
-        // In this example, say editing a comment in a config file and entering type as docs and
-        // keeping that value instead of a generated one.
+        // In this example, say editing a comment in a config file and entering
+        // type as docs and keeping that value instead of a generated one.
         const oldMsg = "docs:";
 
         assert.strictEqual(
@@ -823,7 +823,8 @@ describe("Prepare commit message", function () {
     });
 
     describe("combines an old message with a new message", function () {
-      // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name works too.
+      // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name
+      // works too.
 
       describe("when convention prefix cannot be determined from the file changes", function () {
         it("combines two plain messages", function () {
