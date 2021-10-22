@@ -751,6 +751,7 @@ describe("Prepare commit message", function () {
   describe("#_joinOldAndNew", function () {
     // Cases here are based on `_combineOldAndNew` because that function was
     // created from a refactor.
+
     describe("handles common scenarios correctly", function () {
       it("keeps the old message's type, if none can be inferred", function () {
         const autoMsgPieces: ConvCommitMsg = {
@@ -778,12 +779,12 @@ describe("Prepare commit message", function () {
         const oldMsgPieces: MsgPieces = {
           customPrefix: "",
           typePrefix: "chore",
-          description: "foo the bar",
+          description: "foo bar",
         };
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "chore: update .editorconfig foo the bar"
+          "chore: update .editorconfig foo bar"
         );
       });
 
@@ -828,7 +829,7 @@ describe("Prepare commit message", function () {
       it("handles an unknown type", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
-          description: "foo the bar",
+          description: "foo bar",
         };
         const oldMsgPieces: MsgPieces = {
           customPrefix: "",
@@ -838,14 +839,14 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "foo the bar"
+          "foo bar"
         );
       });
 
       it("handles a known type", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.FEAT,
-          description: "foo the bar",
+          description: "foo bar",
         };
         const oldMsgPieces: MsgPieces = {
           customPrefix: "",
@@ -855,11 +856,283 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "feat: foo the bar"
+          "feat: foo bar"
         );
       });
     });
-  });
+
+    describe("combines an old message with a new message", function () {
+      describe("when type prefix cannot be determined from the file changes", function () {
+        it("combines two plain messages", function () {
+          {
+            const autoMsgPieces = {
+              typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+              description: "foo bar",
+            };
+            const oldMsgPieces = {
+              customPrefix: "",
+              typePrefix: "",
+              description: "fizz buzz",
+            };
+
+            assert.strictEqual(
+              _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+              "foo bar fizz buzz"
+            );
+          }
+
+          {
+            const autoMsgPieces = {
+              typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+              description: "foo bar",
+            };
+            const oldMsgPieces = {
+              customPrefix: "",
+              typePrefix: "",
+              description: "[ABCD-1234]",
+            };
+
+            assert.strictEqual(
+              _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+              "foo bar [ABCD-1234]"
+            );
+          }
+        });
+
+        describe("combine a plain message and an existing prefix", function () {
+          it("handles an old message that is just a type", function () {
+            const autoMsgPieces = {
+              typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+              description: "foo bar",
+            };
+            const oldMsgPieces = {
+              customPrefix: "",
+              typePrefix: "feat",
+              description: "",
+            };
+
+            assert.strictEqual(
+              _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+              "feat: foo bar"
+            );
+          });
+
+          it("handles an old message that a Jira identifier and a type", function () {
+            const autoMsgPieces = {
+              typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+              description: "foo bar",
+            };
+            const oldMsgPieces = {
+              customPrefix: "[ABCD-1234]",
+              typePrefix: "feat",
+              description: ""
+            };
+
+            assert.strictEqual(
+              _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+              "[ABCD-1234] feat: foo bar"
+            );
+          });
+
+          describe("an old message that has a Jira identifier and no type", function () {
+            describe("with a space", function () {
+              it("handles inferred chore type", function () {
+                const autoMsgPieces = {
+                  typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+                  description: "foo bar",
+                };
+                const oldMsgPieces = {
+                  customPrefix: "[ABCD-1234]",
+                  typePrefix: "feat",
+                  description: ""
+                };
+
+                assert.strictEqual(
+                  _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                  "[ABCD-1234] feat: foo bar"
+                );
+              });
+
+              it("handles inferred unknown type", function () {
+                const autoMsgPieces = {
+                  typePrefix: CONVENTIONAL_TYPE.CHORE,
+                  description: "foo bar",
+                };
+                const oldMsgPieces = {
+                  customPrefix: "[ABCD-1234] ",
+                  typePrefix: "",
+                  description: ""
+                };
+
+                assert.strictEqual(
+                  _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                  '[ABCD-1234] chore: foo bar'
+                );
+              });
+            });
+
+            describe("with no space", function () {
+              it("handles inferred chore type", function () {
+                const autoMsgPieces = {
+                  typePrefix: CONVENTIONAL_TYPE.CHORE,
+                  description: "foo bar",
+                };
+                const oldMsgPieces = {
+                  customPrefix: "[ABCD-1234]",
+                  typePrefix: "feat",
+                  description: ""
+                };
+
+                assert.strictEqual(
+                  _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                  "[ABCD-1234] feat: foo bar"
+                );
+              });
+            });
+          });
+
+          it("combines a plain message and an existing prefix with a space after it", function () {
+            {
+              const autoMsgPieces = {
+                typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+                description: "foo bar",
+              };
+              const oldMsgPieces = {
+                customPrefix: "",
+                typePrefix: "feat ",
+                description: ""
+              };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "feat: foo bar"
+              );
+            }
+
+            {
+              const autoMsgPieces = {
+                typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+                description: "foo bar",
+              };
+              const oldMsgPieces = {
+                customPrefix: "[ABCD-1234]",
+                typePrefix: "feat ",
+                description: ""
+              };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "[ABCD-1234] feat: foo bar"
+              );
+            }
+          });
+
+          describe("when the result is identical to the old message, don't duplicate", function () {
+            it("adds a inferred type if it has one", function () {
+              assert.strictEqual(
+                _joinOldAndNew(
+                  { typePrefix: CONVENTIONAL_TYPE.CHORE, description: "fizz buzz" }, { customPrefix: '', typePrefix: '', description: "fizz buzz" }),
+                "chore: fizz buzz"
+              );
+            });
+
+            it("does nothing when there are no types to work with", function () {
+              assert.strictEqual(
+                _joinOldAndNew(
+                  {
+                    typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
+                    description: "fizz buzz"
+                  },
+                  { customPrefix: '', typePrefix: '', description: "fizz buzz" }
+                ),
+                "fizz buzz"
+              );
+            });
+
+            it("ignores a new type if the old one is set", function () {
+              assert.strictEqual(
+                _joinOldAndNew(
+                  {
+                    typePrefix: CONVENTIONAL_TYPE.CHORE,
+                    description: "fizz buzz",
+                  },
+                  { customPrefix: '', typePrefix: 'docs', description: "fizz buzz" }
+                ),
+                "docs: fizz buzz"
+              );
+            });
+          });
+        });
+
+        describe("when a convention is determined from the file changes", function () {
+          const autoMsgPieces = {
+            typePrefix: CONVENTIONAL_TYPE.FEAT,
+            description: "foo bar"
+          }
+
+          describe("with no old type, insert a new type between the old and new msg", function () {
+            it("uses a plain old message", function () {
+              const oldMsgPieces = { customPrefix: '', typePrefix: '', description: "fizz buzz" };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "feat: foo bar fizz buzz"
+              );
+            });
+
+            it("uses an old message that is a Jira number only", function () {
+              const oldMsgPieces = { customPrefix: '', typePrefix: '', description: "ABCD-1234" };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "feat: foo bar ABCD-1234"
+              );
+            });
+          });
+
+          describe("keep the old type if there is one, without using a generated type", function () {
+            it("uses a plain old message", function () {
+              const oldMsgPieces = { customPrefix: '', typePrefix: 'docs', description: "" };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "docs: foo bar"
+              );
+            });
+
+            it("handles an old message that is Jira number plus a convention type", function () {
+              const oldMsgPieces = { customPrefix: '[ABCD-1234]', typePrefix: 'docs', description: "" };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "[ABCD-1234] docs: foo bar"
+              );
+            });
+          });
+
+          it("inserts replaces an old prefix with a space with a new one", function () {
+            {
+              const oldMsgPieces = { customPrefix: '', typePrefix: 'docs', description: "" };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "docs: foo bar"
+              );
+            }
+
+            {
+              const oldMsgPieces = { customPrefix: '[ABCD-1234]', typePrefix: 'docs', description: "" };
+
+              assert.strictEqual(
+                _joinOldAndNew(autoMsgPieces, oldMsgPieces),
+                "[ABCD-1234] docs: foo bar"
+              );
+            }
+          });
+        });
+      });
+    });
+  })
 
   describe("#_combineOldAndNew", function () {
     describe("handles common scenarios correctly", function () {
@@ -995,10 +1268,10 @@ describe("Prepare commit message", function () {
                 assert.strictEqual(
                   _combineOldAndNew(
                     CONVENTIONAL_TYPE.CHORE,
-                    "foo the bar",
+                    "foo bar",
                     "[ABCD-1234] :"
                   ),
-                  "[ABCD-1234] chore: foo the bar"
+                  "[ABCD-1234] chore: foo bar"
                 );
               });
 
@@ -1009,10 +1282,10 @@ describe("Prepare commit message", function () {
                 assert.strictEqual(
                   _combineOldAndNew(
                     CONVENTIONAL_TYPE.UNKNOWN,
-                    "foo the bar",
+                    "foo bar",
                     "[ABCD-1234] :"
                   ),
-                  "foo the bar"
+                  "foo bar"
                 );
               });
             });
@@ -1020,14 +1293,16 @@ describe("Prepare commit message", function () {
             describe("with no space", function () {
               // This is not an intended case so wasn't designed for, so
               // this is just a test for completeness.
-              assert.strictEqual(
-                _combineOldAndNew(
-                  CONVENTIONAL_TYPE.CHORE,
-                  "foo the bar",
-                  "[ABCD-1234]:"
-                ),
-                "[ABCD-1234]: foo the bar"
-              );
+              it("handles inferred chore type", function () {
+                assert.strictEqual(
+                  _combineOldAndNew(
+                    CONVENTIONAL_TYPE.CHORE,
+                    "foo bar",
+                    "[ABCD-1234]:"
+                  ),
+                  "[ABCD-1234]: foo bar"
+                );
+              })
             });
           });
         });
