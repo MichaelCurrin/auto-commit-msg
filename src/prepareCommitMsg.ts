@@ -167,7 +167,7 @@ export function _newMsg(lines: string[]) {
 export function _joinOldAndNew(
   oldMsgPieces: MsgPieces,
   autoType: string,
-  autoDesc: string,
+  autoDesc: string
 ): string {
   const descResult = _cleanJoin(autoDesc, oldMsgPieces.description);
 
@@ -230,7 +230,7 @@ export function _combineOldAndNew(
  * replacement commit message.
  */
 export function _generateMsgWithOld(lines: string[], oldMsg: string) {
-  if (oldMsg === '') {
+  if (oldMsg === "") {
     throw new Error(
       "`oldMsg` must be non-empty - or use `generateNewMsg` instead."
     );

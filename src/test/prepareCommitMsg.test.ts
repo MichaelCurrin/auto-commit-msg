@@ -16,7 +16,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange
+  _prefixFromChange,
 } from "../prepareCommitMsg";
 
 describe("Join strings cleanly", function () {
