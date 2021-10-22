@@ -12,7 +12,7 @@
  * simpler as we don't have to match against every type and we don't have to
  * check if we are part of a word e.g. 'circus'.
  */
-export function _splitPrefixDesc(value: string) {
+export function _splitPrefixesAndDesc(value: string) {
   let prefixes = "";
   let description = "";
 
@@ -57,7 +57,7 @@ export function _splitPrefixes(value: string) {
  * Separate a commit message into prefixes  and a description.
  */
 export function splitMsg(msg: string) {
-  const { prefixes, description } = _splitPrefixDesc(msg);
+  const { prefixes, description } = _splitPrefixesAndDesc(msg);
   const { customPrefix, typePrefix } = _splitPrefixes(prefixes);
 
   return { customPrefix, typePrefix, description: description.trim() };

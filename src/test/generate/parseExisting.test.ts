@@ -1,14 +1,14 @@
 import * as assert from "assert";
 import {
   splitMsg,
-  _splitPrefixDesc,
+  _splitPrefixesAndDesc,
   _splitPrefixes,
 } from "../../generate/parseExisting";
 
 describe("Split an existing message into components", function () {
-  describe("#_splitPrefixDesc", function () {
+  describe("#_splitPrefixesAndDesc", function () {
     it("handles a description alone", function () {
-      assert.deepStrictEqual(_splitPrefixDesc("abc def"), {
+      assert.deepStrictEqual(_splitPrefixesAndDesc("abc def"), {
         prefixes: "",
         description: "abc def",
       });
