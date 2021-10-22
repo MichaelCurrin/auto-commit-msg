@@ -805,21 +805,27 @@ describe("Prepare commit message", function () {
       });
     });
 
-    it("will use the new message only, if the old message is empty", function () {
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar"),
-        "foo bar"
-      );
+    describe("use the new message only, if the old message is empty", function () {
+      it("handles implied old message", function () {
+        assert.strictEqual(
+          _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar"),
+          "foo bar"
+        );
 
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar"),
-        "feat: foo bar"
-      );
+        assert.strictEqual(
+          _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar"),
+          "feat: foo bar"
+        );
+      })
 
-      assert.strictEqual(
-        _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", ""),
-        "feat: foo bar"
-      );
+      it("handles an explicit old message", function () {
+        const oldMsg = ""
+
+        assert.strictEqual(
+          _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo bar", oldMsg),
+          "feat: foo bar"
+        );
+      })
     });
 
     describe("combines an old message with a new message", function () {
