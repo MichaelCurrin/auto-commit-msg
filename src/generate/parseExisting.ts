@@ -29,9 +29,12 @@ export function _splitPrefixDesc(value: string) {
  * Split a prefix value into more granular prefixes.
  *
  * Expect the input value to be the part before a colon in a commit message.
- * The Conventional Commit type prefix is the last word and the custom prefix
- * will be one or more words before that (multiple words would not be be typical
- * though).
+ *
+ * Formatted as:
+ *   - The Conventional Commit type prefix is the last word. This is just kept
+ *     as a string and here and not validated or with type enforce.
+ *   - The custom prefix will be one or more words before the type prefix
+ *     (multiple words would not be be typical though).
  */
 export function _splitPrefixes(value: string) {
   let customPrefix: string;
@@ -50,7 +53,7 @@ export function _splitPrefixes(value: string) {
 }
 
 /**
- * Separate a message into prefixes (if any) and the description.
+ * Separate a commit message into prefixes  and a description.
  */
 export function splitMsg(msg: string) {
   const { prefix, description } = _splitPrefixDesc(msg);
