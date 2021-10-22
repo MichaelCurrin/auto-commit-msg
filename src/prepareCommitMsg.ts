@@ -166,8 +166,8 @@ export function _newMsg(lines: string[]) {
  */
 export function _joinOldAndNew(
   oldMsgPieces: MsgPieces,
+  autoType: string,
   autoDesc: string,
-  autoType: string
 ): string {
   const descResult = _cleanJoin(autoDesc, oldMsgPieces.description);
 
@@ -219,7 +219,7 @@ export function _combineOldAndNew(
 
   const oldMsgPieces = splitMsg(oldMsg);
 
-  return _joinOldAndNew(oldMsgPieces, autoDesc, autoType);
+  return _joinOldAndNew(oldMsgPieces, autoType, autoDesc);
 }
 
 /**
