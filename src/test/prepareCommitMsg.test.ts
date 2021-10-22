@@ -18,7 +18,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange
+  _prefixFromChange,
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
@@ -925,7 +925,7 @@ describe("Prepare commit message", function () {
             const oldMsgPieces = {
               customPrefix: "[ABCD-1234]",
               typePrefix: "feat",
-              description: ""
+              description: "",
             };
 
             assert.strictEqual(
@@ -944,7 +944,7 @@ describe("Prepare commit message", function () {
                 const oldMsgPieces = {
                   customPrefix: "[ABCD-1234]",
                   typePrefix: "feat",
-                  description: ""
+                  description: "",
                 };
 
                 assert.strictEqual(
@@ -961,12 +961,12 @@ describe("Prepare commit message", function () {
                 const oldMsgPieces = {
                   customPrefix: "[ABCD-1234] ",
                   typePrefix: "",
-                  description: ""
+                  description: "",
                 };
 
                 assert.strictEqual(
                   _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                  '[ABCD-1234] chore: foo the bar'
+                  "[ABCD-1234] chore: foo the bar"
                 );
               });
             });
@@ -980,7 +980,7 @@ describe("Prepare commit message", function () {
                 const oldMsgPieces = {
                   customPrefix: "[ABCD-1234]",
                   typePrefix: "feat",
-                  description: ""
+                  description: "",
                 };
 
                 assert.strictEqual(
@@ -1000,7 +1000,7 @@ describe("Prepare commit message", function () {
               const oldMsgPieces = {
                 customPrefix: "",
                 typePrefix: "feat ",
-                description: ""
+                description: "",
               };
 
               assert.strictEqual(
@@ -1017,7 +1017,7 @@ describe("Prepare commit message", function () {
               const oldMsgPieces = {
                 customPrefix: "[ABCD-1234]",
                 typePrefix: "feat ",
-                description: ""
+                description: "",
               };
 
               assert.strictEqual(
@@ -1031,7 +1031,16 @@ describe("Prepare commit message", function () {
             it("adds a inferred type if it has one", function () {
               assert.strictEqual(
                 _joinOldAndNew(
-                  { typePrefix: CONVENTIONAL_TYPE.CHORE, description: "fizz the buzz" }, { customPrefix: '', typePrefix: '', description: "fizz the buzz" }),
+                  {
+                    typePrefix: CONVENTIONAL_TYPE.CHORE,
+                    description: "fizz the buzz",
+                  },
+                  {
+                    customPrefix: "",
+                    typePrefix: "",
+                    description: "fizz the buzz",
+                  }
+                ),
                 "chore: fizz the buzz"
               );
             });
@@ -1041,9 +1050,13 @@ describe("Prepare commit message", function () {
                 _joinOldAndNew(
                   {
                     typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
-                    description: "fizz the buzz"
+                    description: "fizz the buzz",
                   },
-                  { customPrefix: '', typePrefix: '', description: "fizz the buzz" }
+                  {
+                    customPrefix: "",
+                    typePrefix: "",
+                    description: "fizz the buzz",
+                  }
                 ),
                 "fizz the buzz"
               );
@@ -1056,7 +1069,11 @@ describe("Prepare commit message", function () {
                     typePrefix: CONVENTIONAL_TYPE.CHORE,
                     description: "fizz the buzz",
                   },
-                  { customPrefix: '', typePrefix: 'docs', description: "fizz the buzz" }
+                  {
+                    customPrefix: "",
+                    typePrefix: "docs",
+                    description: "fizz the buzz",
+                  }
                 ),
                 "docs: fizz the buzz"
               );
@@ -1067,12 +1084,16 @@ describe("Prepare commit message", function () {
         describe("when a convention is determined from the file changes", function () {
           const autoMsgPieces = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
-            description: "foo the bar"
-          }
+            description: "foo the bar",
+          };
 
           describe("with no old type, insert a new type between the old and new msg", function () {
             it("uses a plain old message", function () {
-              const oldMsgPieces = { customPrefix: '', typePrefix: '', description: "fizz the buzz" };
+              const oldMsgPieces = {
+                customPrefix: "",
+                typePrefix: "",
+                description: "fizz the buzz",
+              };
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
@@ -1081,7 +1102,11 @@ describe("Prepare commit message", function () {
             });
 
             it("uses an old message that is a Jira number only", function () {
-              const oldMsgPieces = { customPrefix: '', typePrefix: '', description: "ABCD-1234" };
+              const oldMsgPieces = {
+                customPrefix: "",
+                typePrefix: "",
+                description: "ABCD-1234",
+              };
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
@@ -1092,7 +1117,11 @@ describe("Prepare commit message", function () {
 
           describe("keep the old type if there is one, without using a generated type", function () {
             it("uses a plain old message", function () {
-              const oldMsgPieces = { customPrefix: '', typePrefix: 'docs', description: "" };
+              const oldMsgPieces = {
+                customPrefix: "",
+                typePrefix: "docs",
+                description: "",
+              };
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
@@ -1101,7 +1130,11 @@ describe("Prepare commit message", function () {
             });
 
             it("handles an old message that is Jira number plus a convention type", function () {
-              const oldMsgPieces = { customPrefix: '[ABCD-1234]', typePrefix: 'docs', description: "" };
+              const oldMsgPieces = {
+                customPrefix: "[ABCD-1234]",
+                typePrefix: "docs",
+                description: "",
+              };
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
@@ -1112,7 +1145,11 @@ describe("Prepare commit message", function () {
 
           it("inserts replaces an old prefix with a space with a new one", function () {
             {
-              const oldMsgPieces = { customPrefix: '', typePrefix: 'docs', description: "" };
+              const oldMsgPieces = {
+                customPrefix: "",
+                typePrefix: "docs",
+                description: "",
+              };
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
@@ -1121,7 +1158,11 @@ describe("Prepare commit message", function () {
             }
 
             {
-              const oldMsgPieces = { customPrefix: '[ABCD-1234]', typePrefix: 'docs', description: "" };
+              const oldMsgPieces = {
+                customPrefix: "[ABCD-1234]",
+                typePrefix: "docs",
+                description: "",
+              };
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
@@ -1132,7 +1173,7 @@ describe("Prepare commit message", function () {
         });
       });
     });
-  })
+  });
 
   describe("#_combineOldAndNew", function () {
     describe("handles common scenarios correctly", function () {
@@ -1242,7 +1283,11 @@ describe("Prepare commit message", function () {
         describe("combine a plain message and an existing prefix", function () {
           it("handles an old message that is just a type", function () {
             assert.strictEqual(
-              _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo the bar", "feat:"),
+              _combineOldAndNew(
+                CONVENTIONAL_TYPE.UNKNOWN,
+                "foo the bar",
+                "feat:"
+              ),
               "feat: foo the bar"
             );
           });
@@ -1302,14 +1347,18 @@ describe("Prepare commit message", function () {
                   ),
                   "[ABCD-1234]: foo the bar"
                 );
-              })
+              });
             });
           });
         });
 
         it("combines a plain message and an existing prefix with a space after it", function () {
           assert.strictEqual(
-            _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo the bar", "feat: "),
+            _combineOldAndNew(
+              CONVENTIONAL_TYPE.UNKNOWN,
+              "foo the bar",
+              "feat: "
+            ),
             "feat: foo the bar"
           );
 
