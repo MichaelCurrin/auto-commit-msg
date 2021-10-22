@@ -853,20 +853,46 @@ describe("Prepare commit message", function () {
           );
         });
 
-        it("combines a plain message and an existing prefix", function () {
-          assert.strictEqual(
-            _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
-            "feat: foo bar"
-          );
+        describe("combine a plain message and an existing prefix", function () {
+          it("handles an old message that is just a type", function () {
+            assert.strictEqual(
+              _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo bar", "feat:"),
+              "feat: foo bar"
+            );
+          })
 
-          assert.strictEqual(
-            _combineOldAndNew(
-              CONVENTIONAL_TYPE.UNKNOWN,
-              "foo bar",
-              "[ABCD-1234] feat:"
-            ),
-            "[ABCD-1234] feat: foo bar"
-          );
+          it("handles an old message that a Jira identifier and a type", function () {
+            assert.strictEqual(
+              _combineOldAndNew(
+                CONVENTIONAL_TYPE.UNKNOWN,
+                "foo bar",
+                "[ABCD-1234] feat:"
+              ),
+              "[ABCD-1234] feat: foo bar"
+            );
+          })
+
+          describe("an old message that has a Jira identifier and no type", function () {
+            // This behavior makes it easy to use the Git commit message
+            // template and know for sure that the old message is a prefix
+            // because of the colon, rather than a description.
+
+            it("handles with a space", function () {
+              assert.strictEqual(
+                _combineOldAndNew(CONVENTIONAL_TYPE.CHORE, "foo the bar", "[ABCD-1234] :"),
+                "[ABCD-1234] chore: foo the bar"
+              );
+            })
+
+            it("handles with no space", function () {
+              // This is not an intended case so wasn't designed for, so
+              // this is just a test for completeness.
+              assert.strictEqual(
+                _combineOldAndNew(CONVENTIONAL_TYPE.CHORE, "foo the bar", "[ABCD-1234]:"),
+                "[ABCD-1234]: foo the bar"
+              );
+            })
+          })
         });
 
         it("combines a plain message and an existing prefix with a space after it", function () {
