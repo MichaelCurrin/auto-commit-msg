@@ -1410,18 +1410,22 @@ describe("Prepare commit message", function () {
         });
 
         it("inserts replaces an old prefix with a space with a new one", function () {
-          let oldMsg = "docs:";
+          {
+            const oldMsg = "docs:";
 
-          assert.strictEqual(
-            _combineOldAndNew(autoType, autoDesc, oldMsg),
-            "docs: foo the bar"
-          );
+            assert.strictEqual(
+              _combineOldAndNew(autoType, autoDesc, oldMsg),
+              "docs: foo the bar"
+            );
+          }
 
-          oldMsg = "[ABCD-1234] docs: ";
-          assert.strictEqual(
-            _combineOldAndNew(autoType, autoDesc, oldMsg),
-            "[ABCD-1234] docs: foo the bar"
-          );
+          {
+            const oldMsg = "[ABCD-1234] docs: ";
+            assert.strictEqual(
+              _combineOldAndNew(autoType, autoDesc, oldMsg),
+              "[ABCD-1234] docs: foo the bar"
+            );
+          }
         });
       });
     });
