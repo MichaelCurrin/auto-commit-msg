@@ -9,17 +9,17 @@
 
 ## Overview
 
-- Start with the [Installation](installation.md) doc to install it.
-- See the [Export](export.md) doc to roll your own copy and install it, using a single command.
-- The [Deploy](deploy.md) covers the deploy pipeline and releases.
+- [Installation](installation.md) - Start with this doc to install dependencies.
+- [Export](export.md) - how to build the extension locally and install it in VS Code. Just a single command is needed.
+- [Deploy](deploy.md) - this doc covers the CI/CD pipeline and publishing releases.
 
 
 ## Install extension globally
 
 ### Roll your own
 
-See the [export](export.md) doc to install a dev version of the package.
+See the [Export](export.md) doc to install a dev version of the package.
 
 ### Install pre-built extension
 
-Or see [quickstart](/docs/quickstart.md) doc to download and install a pre-built version from a GitHub release.
+See [Quickstart](/docs/quickstart.md) doc to download and install a _pre-built_ version of the extension from the Marketplace.
