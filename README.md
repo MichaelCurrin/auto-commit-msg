@@ -27,8 +27,12 @@
 
 </a>
 
+<!-- TODO: Fix in marketplace as it becomes plain text
+
 **[Getting started](#getting-started) | [Features](#features) | [Screenshots](#sample-usage) | [Documentation](#documentation)**
 
+-->
+    
 </div>
 
 
