@@ -105,6 +105,7 @@ const CONFIG_EXTENSIONS = [".yml", ".yaml", ".json", ".toml", ".ini", ".cfg"],
     ".editorconfig",
 
     // Python
+    ".pylintrc",
     "setup.cfg",
 
     // Node
