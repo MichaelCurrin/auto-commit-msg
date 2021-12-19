@@ -21,24 +21,7 @@ Preview what will be included in the `.vsix` file.
 $ make ls
 ```
 
-### Tag
-> How to create a release
-
-```sh
-$ make tag
-```
-
-That will do the following:
-
-1. Run checks.
-2. Build an extension file in the `build` directory.
-3. Increment a minor tag version.
-4. Push.
-
-Then go into the [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases) section on GitHub, create a release from the tag and upload the built extension `.vsix` file to the binaries part.
-
-
-## Publish
+### Publish
 
 This is only relevant for the maintainer of this repo, as access to publishing to VS Code Marketplace requires auth.
 
@@ -55,6 +38,24 @@ $ make publish
 ```
 
 This is done manually for now but could be automated with CI on a tag. Note that an expiring token makes it harder to maintain hands-off CI.
+
+
+### Tag
+
+How to create a Git release without publishing to the Marketplace. Rather use the [Publish](#publish) step above.
+
+```sh
+$ make tag
+```
+
+That will do the following:
+
+1. Run checks.
+2. Build an extension file in the `build` directory.
+3. Increment a minor tag version.
+4. Push.
+
+Then go into the [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases) section on GitHub, create a release from the tag and upload the built extension `.vsix` file to the binaries part.
 
 
 ## Docs and versions
