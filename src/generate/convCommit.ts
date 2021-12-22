@@ -18,7 +18,10 @@ const PACKAGE_DIRS = [
     "dev-requirements.txt",
     "requirements-test.txt",
     "test-requirements.txt",
+    
     "Pipfile",
+    "Pipefile.lock",
+    
     // Make Python package installable and manage external packages.
     "pyproject.toml",
     "setup.py",
@@ -27,7 +30,7 @@ const PACKAGE_DIRS = [
     "Gemfile",
     "Gemfile.lock",
 
-    // NPM (Exclude package.json since it can be used for metadata and not package changes.)
+    // NPM (Exclude package.json since it can be used for metadata and not package always changes.)
     "package-lock.json",
     "shrinkwrap.json",
     "yarn.lock",
