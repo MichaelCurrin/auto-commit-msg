@@ -26,7 +26,7 @@ describe("Path handling", function () {
     });
   });
 
-  describe("_join", function () {
+  describe("#_join", function () {
     it("returns one item", function () {
       assert.strictEqual(_join(["foo"]), "foo");
     });
