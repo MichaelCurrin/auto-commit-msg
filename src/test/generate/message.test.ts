@@ -24,7 +24,10 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(oneChange("A\tbar/foo.txt"), "create foo.txt");
 
       assert.strictEqual(oneChange("A\tfoo bar.txt"), "create foo bar.txt");
-      assert.strictEqual(oneChange("A\tfizz buzz/foo bar.txt"), "create foo bar.txt");
+      assert.strictEqual(
+        oneChange("A\tfizz buzz/foo bar.txt"),
+        "create foo bar.txt"
+      );
     });
 
     it("throws an error if no file path can be no generated", function () {
