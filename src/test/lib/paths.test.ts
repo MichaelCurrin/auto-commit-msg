@@ -38,6 +38,11 @@ describe("Path handling", function () {
     it('returns three items joined with commands and an an "and"', function () {
       assert.strictEqual(_join(["foo", "bar", "bazz"]), "foo, bar and bazz");
     });
+
+    it("returns empty string for now items", function () {
+      assert.strictEqual(_join([]), "");
+    });
+
   });
 
   describe("#friendlyFile", function () {
