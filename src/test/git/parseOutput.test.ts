@@ -1,7 +1,8 @@
 /**
  * Parse Git output test module.
  *
- * Check the ability to convert text output from git commands into JS objects.
+ * Check the ability to convert text output from Git subcommands into JS
+ * objects.
  */
 import * as assert from "assert";
 import { parseDiffIndex, parseStatus } from "../../git/parseOutput";
