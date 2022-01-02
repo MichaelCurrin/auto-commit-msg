@@ -62,7 +62,7 @@ export function parseDiffIndex(line: string): FileChange {
   const x = line[0];
   const y = UNMODIFIED;
 
-  const [_, from, to] = line.split(/\t/);
+  const [_, from, to] = line.split("\t");
   if (!from) {
     // Unlikely in real life, but this helps in development.
     throw new Error(`Invalid input - could not find 'from' path: ${line}`);
