@@ -10,16 +10,17 @@ import { namedFilesDesc, oneChange } from "../../generate/message";
 
 describe("Generate commit message for a single changed file", function () {
   // Notes:
-  //   - The command `git status --short` expects XY format but this is for `git diff-index` which
-  //     is only X. Also there is just spaces between - no '->' symbol.
-  //   - Impossible cases are not covered here, like renaming a file and the name and path are
-  //     unchanged, or including two file names for an add line. But validation on at least file
-  //     name is done.
+  //   - The command `git status --short` expects XY format but this is for `git
+  //     diff-index` which is only X. Also there is just spaces between - no
+  //     '->' symbol.
+  //   - Impossible cases are not covered here, like renaming a file and the
+  //     name and path are unchanged, or including two file names for an add
+  //     line. But validation on at least file name is done.
   describe("#oneChange", function () {
     it("returns the appropriate commit message for a new file", function () {
-      assert.strictEqual(oneChange("A    foo.txt"), "create foo.txt");
+      assert.strictEqual(oneChange("A\tfoo.txt"), "create foo.txt");
       // Maybe create foo.txt in bar, if the dir is not too long?
-      assert.strictEqual(oneChange("A    bar/foo.txt"), "create foo.txt");
+      assert.strictEqual(oneChange("A\tbar/foo.txt"), "create foo.txt");
     });
 
     it("throws an error if no filepath can be no generated", function () {
@@ -27,109 +28,109 @@ describe("Generate commit message for a single changed file", function () {
     });
 
     it("returns the appropriate commit message for a modified file", function () {
-      assert.strictEqual(oneChange("M    foo.txt"), "update foo.txt");
-      assert.strictEqual(oneChange("M    bar/foo.txt"), "update foo.txt");
+      assert.strictEqual(oneChange("M\tfoo.txt"), "update foo.txt");
+      assert.strictEqual(oneChange("M\tbar/foo.txt"), "update foo.txt");
     });
 
     it("returns the appropriate commit message for a deleted file", function () {
-      assert.strictEqual(oneChange("D    foo.txt"), "delete foo.txt");
-      assert.strictEqual(oneChange("D    bar/foo.txt"), "delete foo.txt");
+      assert.strictEqual(oneChange("D\tfoo.txt"), "delete foo.txt");
+      assert.strictEqual(oneChange("D\tbar/foo.txt"), "delete foo.txt");
     });
 
     it("describes a file renamed in the same directory", function () {
       assert.strictEqual(
-        oneChange("R    foo.txt          bar.txt"),
+        oneChange("R\tfoo.txt\tbar.txt"),
         "rename foo.txt to bar.txt"
       );
 
       assert.strictEqual(
-        oneChange("R    fizz/foo.txt     fizz/bar.txt"),
+        oneChange("R\tfizz/foo.txt\tfizz/bar.txt"),
         "rename foo.txt to bar.txt"
       );
     });
 
     it("ignores percentage change in a renamed file", function () {
-      // We don't care about getting the percentage out in this project. So just make sure it does
-      // get ignored.
+      // We don't care about getting the percentage out in this project. So just
+      // make sure it does get ignored.
       assert.strictEqual(
-        oneChange("R97    foo.txt    bar.txt"),
+        oneChange("R97\tfoo.txt\tbar.txt"),
         "rename foo.txt to bar.txt"
       );
     });
 
     it("describes a file moved out of the repo root", function () {
       assert.strictEqual(
-        oneChange("R    foo.txt      fizz/foo.txt"),
+        oneChange("R\tfoo.txt\tfizz/foo.txt"),
         "move foo.txt to fizz"
       );
 
       assert.strictEqual(
-        oneChange("R    foo.txt      fizz/buzz/foo.txt"),
+        oneChange("R\tfoo.txt\tfizz/buzz/foo.txt"),
         "move foo.txt to fizz/buzz"
       );
     });
 
     it("describes a file moved out of a subdirectory", function () {
       assert.strictEqual(
-        oneChange("R     fizz/buzz/foo.txt    foo.txt"),
+        oneChange("R\tfizz/buzz/foo.txt\tfoo.txt"),
         "move foo.txt to repo root"
       );
 
       assert.strictEqual(
-        oneChange("R     fizz/buzz/foo.txt    fizz/foo.txt"),
+        oneChange("R\tfizz/buzz/foo.txt\tfizz/foo.txt"),
         "move foo.txt to fizz"
       );
 
       assert.strictEqual(
-        oneChange("R     fizz/buzz/foo.txt    fizz/buzz/foo.txt"),
+        oneChange("R\tfizz/buzz/foo.txt\tfizz/buzz/foo.txt"),
         "move foo.txt to fizz/buzz"
       );
     });
 
     it("describes a file that was both moved and renamed", function () {
       assert.strictEqual(
-        oneChange("R    foo.txt       fizz/fuzz.txt"),
+        oneChange("R\tfoo.txt\tfizz/fuzz.txt"),
         "move and rename foo.txt to fizz/fuzz.txt"
       );
 
       assert.strictEqual(
-        oneChange("R    bar/foo.txt   fuzz.txt"),
+        oneChange("R\tbar/foo.txt\tfuzz.txt"),
         "move and rename foo.txt to fuzz.txt at repo root"
       );
 
       assert.strictEqual(
-        oneChange("R    bar/foo.txt   fizz/fuzz.txt"),
+        oneChange("R\tbar/foo.txt\tfizz/fuzz.txt"),
         "move and rename foo.txt to fizz/fuzz.txt"
       );
     });
 
     it("ignores percentage changed value for a file that was both moved and renamed", function () {
       assert.strictEqual(
-        oneChange("R97  foo.txt       fizz/fuzz.txt"),
+        oneChange("R97\tfoo.txt\tfizz/fuzz.txt"),
         "move and rename foo.txt to fizz/fuzz.txt"
       );
     });
 
     it("uses the full path to describe index files", function () {
-      assert.strictEqual(oneChange("A    README.md"), "create README.md");
-      assert.strictEqual(oneChange("M    README.md"), "update README.md");
-      assert.strictEqual(oneChange("D    README.md"), "delete README.md");
+      assert.strictEqual(oneChange("A\tREADME.md"), "create README.md");
+      assert.strictEqual(oneChange("M\tREADME.md"), "update README.md");
+      assert.strictEqual(oneChange("D\tREADME.md"), "delete README.md");
 
       assert.strictEqual(
-        oneChange("A    foo/README.md"),
+        oneChange("A\tfoo/README.md"),
         "create foo/README.md"
       );
       assert.strictEqual(
-        oneChange("M    bar/baz/README.md"),
+        oneChange("M\tbar/baz/README.md"),
         "update bar/baz/README.md"
       );
       assert.strictEqual(
-        oneChange("D    bar/baz/buzz/README.md"),
+        oneChange("D\tbar/baz/buzz/README.md"),
         "delete bar/baz/buzz/README.md"
       );
 
-      assert.strictEqual(oneChange("A    foo/index.md"), "create foo/index.md");
-      assert.strictEqual(oneChange("A    foo/index.js"), "create foo/index.js");
+      assert.strictEqual(oneChange("A\tfoo/index.md"), "create foo/index.md");
+      assert.strictEqual(oneChange("A\tfoo/index.js"), "create foo/index.js");
     });
   });
 });
