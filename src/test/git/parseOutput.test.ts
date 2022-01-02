@@ -8,8 +8,8 @@ import { parseDiffIndex, parseStatus } from "../../git/parseOutput";
 import { FileChange } from "../../git/parseOutput.d";
 
 describe("Split `git diff-index` output into components", function () {
-  // The 1st column to 2nd looks like constant with and then 2nd to 3rd looks
-  // like 6 chars.
+  // The 1st to 2nd column gap looks like 4 chars and then 2nd to 3rd looks like
+  // 6 chars.
   // R100    tslint.json     src/tslint.json
   // R100    vsc-extension-quickstart.md     src/vsc-extension-quickstart.md
   describe("#parseDiffIndex", function () {
