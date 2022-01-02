@@ -10,20 +10,24 @@ import { namedFilesDesc, oneChange } from "../../generate/message";
 
 describe("Generate commit message for a single changed file", function () {
   // Notes:
-  //   - The command `git status --short` expects XY format but this is for `git
-  //     diff-index` which is only X. Also there is just spaces between - no
-  //     '->' symbol.
+  //   - The command `git status --short` expects `XY` format but this is for
+  //     `git diff-index` which is only `X`. Also there is just spaces between -
+  //     no '->' symbol.
   //   - Impossible cases are not covered here, like renaming a file and the
   //     name and path are unchanged, or including two file names for an add
   //     line. But validation on at least file name is done.
   describe("#oneChange", function () {
     it("returns the appropriate commit message for a new file", function () {
       assert.strictEqual(oneChange("A\tfoo.txt"), "create foo.txt");
-      // Maybe create foo.txt in bar, if the dir is not too long?
+
+      // TODO: Maybe 'create foo.txt in bar', if the dir is not too long?
       assert.strictEqual(oneChange("A\tbar/foo.txt"), "create foo.txt");
+
+      assert.strictEqual(oneChange("A\tfoo bar.txt"), "create foo bar.txt");
+      assert.strictEqual(oneChange("A\tfizz buzz/foo bar.txt"), "create foo bar.txt");
     });
 
-    it("throws an error if no filepath can be no generated", function () {
+    it("throws an error if no file path can be no generated", function () {
       assert.throws(() => oneChange("A    "));
     });
 
@@ -58,7 +62,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("describes a file moved out of the repo root", function () {
+    it("describes a file moved out of the repo root to another directory", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/foo.txt"),
         "move foo.txt to fizz"
@@ -67,6 +71,16 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/buzz/foo.txt"),
         "move foo.txt to fizz/buzz"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tfoo.txt\tfizz buzz/foo.txt"),
+        "move foo.txt to fizz buzz"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tfoo bar.txt\tfizz/foo bar.txt"),
+        "move foo bar.txt to fizz"
       );
     });
 
