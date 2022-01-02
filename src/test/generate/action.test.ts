@@ -61,11 +61,18 @@ describe("Desribe a file using two paths", function () {
         moveOrRenameMsg("foo.txt", "fizz/bar.txt"),
         "move and rename foo.txt to fizz/bar.txt"
       );
-      // This is a rare case, so don't bother trying to handle it smarter around paths.
+
+      // This is a rare case, so don't bother trying to handle it smarter around
+      // paths.
       assert.strictEqual(
         moveOrRenameMsg("fuzz/foo.txt", "fizz/bar.txt"),
         "move and rename foo.txt to fizz/bar.txt"
       );
+      assert.strictEqual(
+        moveOrRenameMsg("fuzz/foo.txt", "fizz/bar bazz.txt"),
+        "move and rename foo.txt to 'fizz/bar bazz.txt'"
+      );
+
       assert.strictEqual(
         moveOrRenameMsg("fizz/foo.txt", "bar.txt"),
         "move and rename foo.txt to bar.txt at repo root"

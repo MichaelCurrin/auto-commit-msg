@@ -127,7 +127,7 @@ describe("Generate commit message for a single changed file", function () {
 
       assert.strictEqual(
         oneChange("R\tbar/foo.txt\tfizz/baz fuzz.txt"),
-        "move and rename foo.txt to fizz/baz fuzz.txt"
+        "move and rename foo.txt to 'fizz/baz fuzz.txt'"
       );
     });
 
