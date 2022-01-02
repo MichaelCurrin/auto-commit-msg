@@ -1,5 +1,5 @@
 /**
- * Parse `git` subcommand type defs.
+ * Parse Git output type defs.
  */
 
 /**

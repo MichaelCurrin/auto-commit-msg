@@ -1,5 +1,5 @@
 /**
- * Parse output module.
+ * Parse Git output module.
  *
  * Parse text output created by Git subcommands.
  */

@@ -1,5 +1,5 @@
 /**
- * Parse output test module.
+ * Parse Git output test module.
  *
  * Check the ability to convert text output from git commands into JS objects.
  */
@@ -8,7 +8,8 @@ import { parseDiffIndex, parseStatus } from "../../git/parseOutput";
 import { FileChange } from "../../git/parseOutput.d";
 
 describe("Split `git diff-index` output into components", function () {
-  // The 1st column to 2nd looks like constant with and then 2nd to 3rd looks like 6 chars.
+  // The 1st column to 2nd looks like constant with and then 2nd to 3rd looks
+  // like 6 chars.
   // R100    tslint.json     src/tslint.json
   // R100    vsc-extension-quickstart.md     src/vsc-extension-quickstart.md
   describe("#parseDiffIndex", function () {
@@ -102,7 +103,8 @@ describe("Split `git diff-index` output into components", function () {
   });
 });
 
-// Not a core part of this extension anymore, but the code and tests are kept anyway.
+// Not a core part of this extension anymore, but the code and tests are kept
+// anyway.
 describe("Split `git status` output into components", function () {
   describe("#parseStatus", function () {
     it("should return the appropriate commit message for a new file", function () {
