@@ -51,35 +51,35 @@ describe("Find prefix from Git output", function () {
     describe("generic file", function () {
       it("recognizes a new generic file as a feature", function () {
         assert.strictEqual(
-          _prefixFromChange("A    foo.txt"),
+          _prefixFromChange("A\tfoo.txt"),
           CONVENTIONAL_TYPE.FEAT
         );
       });
 
       it("recognizes a modified generic file as a unknown", function () {
         assert.strictEqual(
-          _prefixFromChange("M    foo.txt"),
+          _prefixFromChange("M\tfoo.txt"),
           CONVENTIONAL_TYPE.UNKNOWN
         );
       });
 
       it("recognizes a deleted generic file as a chore", function () {
         assert.strictEqual(
-          _prefixFromChange("D    foo.txt"),
+          _prefixFromChange("D\tfoo.txt"),
           CONVENTIONAL_TYPE.CHORE
         );
       });
 
       it("recognizes a renamed generic file as a chore", function () {
         assert.strictEqual(
-          _prefixFromChange("R    foo.txt bar.txt"),
+          _prefixFromChange("R\tfoo.txt bar.txt"),
           CONVENTIONAL_TYPE.CHORE
         );
       });
 
       it("recognizes a moved generic file as a chore", function () {
         assert.strictEqual(
-          _prefixFromChange("R    foo.txt bar/foo.txt"),
+          _prefixFromChange("R\tfoo.txt bar/foo.txt"),
           CONVENTIONAL_TYPE.CHORE
         );
       });
@@ -91,33 +91,30 @@ describe("Find prefix from Git output", function () {
       it("recognizes a new docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS;
 
-        assert.strictEqual(_prefixFromChange("A    README.md"), expected);
-        assert.strictEqual(_prefixFromChange("A    docs/abc.md"), expected);
+        assert.strictEqual(_prefixFromChange("A\tREADME.md"), expected);
+        assert.strictEqual(_prefixFromChange("A\tdocs/abc.md"), expected);
       });
 
       it("recognizes an updated docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS;
 
-        assert.strictEqual(_prefixFromChange("M    README.md"), expected);
-        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected);
+        assert.strictEqual(_prefixFromChange("M\tREADME.md"), expected);
+        assert.strictEqual(_prefixFromChange("M\tdocs/foo.md"), expected);
       });
 
       it("recognizes a deleted docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS;
 
-        assert.strictEqual(_prefixFromChange("M    README.md"), expected);
-        assert.strictEqual(_prefixFromChange("M    docs/foo.md"), expected);
+        assert.strictEqual(_prefixFromChange("M\tREADME.md"), expected);
+        assert.strictEqual(_prefixFromChange("M\tdocs/foo.md"), expected);
       });
 
       it("recognizes a renamed docs file change as chore", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
+        assert.strictEqual(_prefixFromChange("R\tREADME.md bar.md"), expected);
         assert.strictEqual(
-          _prefixFromChange("R    README.md bar.md"),
-          expected
-        );
-        assert.strictEqual(
-          _prefixFromChange("R    docs/foo.md docs/bar.md"),
+          _prefixFromChange("R\tdocs/foo.md docs/bar.md"),
           expected
         );
       });
@@ -125,11 +122,11 @@ describe("Find prefix from Git output", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
-          _prefixFromChange("R    README.md bar/README.md"),
+          _prefixFromChange("R\tREADME.md bar/README.md"),
           expected
         );
         assert.strictEqual(
-          _prefixFromChange("R    docs/foo.md bar/foo.md"),
+          _prefixFromChange("R\tdocs/foo.md bar/foo.md"),
           expected
         );
       });
@@ -139,26 +136,20 @@ describe("Find prefix from Git output", function () {
       it("recognizes a new build deps file change as build deps", function () {
         const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
 
-        assert.strictEqual(
-          _prefixFromChange("A    package-lock.json"),
-          expected
-        );
+        assert.strictEqual(_prefixFromChange("A\tpackage-lock.json"), expected);
       });
 
       it("recognizes an updated build deps file change as build deps", function () {
         const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
 
-        assert.strictEqual(
-          _prefixFromChange("M    package-lock.json"),
-          expected
-        );
+        assert.strictEqual(_prefixFromChange("M\tpackage-lock.json"), expected);
       });
 
       it("recognizes a renamed build deps file change as chore", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
-          _prefixFromChange("R    package-lock.json foo.json"),
+          _prefixFromChange("R\tpackage-lock.json foo.json"),
           expected
         );
       });
@@ -167,7 +158,7 @@ describe("Find prefix from Git output", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
-          _prefixFromChange("R    package-lock.json foo/package-lock.json"),
+          _prefixFromChange("R\tpackage-lock.json foo/package-lock.json"),
           expected
         );
       });
@@ -249,7 +240,7 @@ describe("Prepare commit message", function () {
   describe("#_msgNamed", function () {
     describe("single file changes", function () {
       it("handles a single file change", function () {
-        const lines = ["A    baz.txt"];
+        const lines = ["A\tbaz.txt"];
         const expected = {
           typePrefix: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt",
@@ -262,7 +253,7 @@ describe("Prepare commit message", function () {
     describe("a few files", function () {
       describe("multiple files with the same action", function () {
         it("handles 2 created files created correctly", function () {
-          const lines = ["A    baz.txt", "A    bar.js"];
+          const lines = ["A\tbaz.txt", "A\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt and bar.js",
@@ -272,7 +263,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 2 modified files correctly", function () {
-          const lines = ["M    baz.txt", "M    bar.js"];
+          const lines = ["M\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
             description: "update baz.txt and bar.js",
@@ -282,7 +273,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 files with the same action correctly", function () {
-          const lines = ["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"];
+          const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
@@ -292,12 +283,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 4 files with the same action correctly", function () {
-          const lines = [
-            "A    baz.txt",
-            "A    bar.js",
-            "A    fuzz.md",
-            "A    fuzz.ts",
-          ];
+          const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfuzz.md", "A\tfuzz.ts"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
@@ -307,11 +293,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 files in subdirectories but does not show the directory paths", function () {
-          const lines = [
-            "A    baz.txt",
-            "A    fizz/bar.js",
-            "A    fizz/fuzz.md",
-          ];
+          const lines = ["A\tbaz.txt", "A\tfizz/bar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
@@ -322,7 +304,7 @@ describe("Prepare commit message", function () {
 
         /* eslint-disable-next-line quotes */
         it('handles 2 "build(deps)" files correctly', function () {
-          const lines = ["M    package.json", "M     package-lock.json"];
+          const lines = ["M\tpackage.json", "M\tpackage-lock.json"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
             description: "update package.json and package-lock.json",
@@ -333,9 +315,9 @@ describe("Prepare commit message", function () {
 
         it("handles 3 README.md files in different locations as full paths", function () {
           const lines = [
-            "M    docs/README.md",
-            "M    bar/README.md",
-            "M    README.md",
+            "M\tdocs/README.md",
+            "M\tbar/README.md",
+            "M\tREADME.md",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.DOCS,
@@ -348,7 +330,7 @@ describe("Prepare commit message", function () {
 
       describe("multiple files with different actions", function () {
         it("handles 2 files - one created and one modified", function () {
-          const lines = ["A    baz.txt", "M    bar.js"];
+          const lines = ["A\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 1 file",
@@ -358,7 +340,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 files - with different actions", function () {
-          const lines = ["A    baz.txt", "M    bar.js", "D    README.md"];
+          const lines = ["A\tbaz.txt", "M\tbar.js", "D\tREADME.md"];
 
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -375,7 +357,7 @@ describe("Prepare commit message", function () {
     describe("single file changes", function () {
       // TODO: Use file name for single file. PR #52.
       it("handles a single file change", function () {
-        const lines = ["A    baz.txt"];
+        const lines = ["A\tbaz.txt"];
         const expected = {
           typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
           description: "create 1 file",
@@ -392,11 +374,11 @@ describe("Prepare commit message", function () {
 
         it("handles 2 created files created correctly", function () {
           const lines = [
-            "A    foo.txt",
-            "A    bar.txt",
-            "A    bazz.txt",
-            "A    fizz.txt",
-            "A    buzz.txt",
+            "A\tfoo.txt",
+            "A\tbar.txt",
+            "A\tbazz.txt",
+            "A\tfizz.txt",
+            "A\tbuzz.txt",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -408,11 +390,11 @@ describe("Prepare commit message", function () {
 
         it("handles 5 created files created correctly", function () {
           const lines = [
-            "A    foo.txt",
-            "A    bar.txt",
-            "A    bazz.txt",
-            "A    fizz.txt",
-            "A    buzz.txt",
+            "A\tfoo.txt",
+            "A\tbar.txt",
+            "A\tbazz.txt",
+            "A\tfizz.txt",
+            "A\tbuzz.txt",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -424,11 +406,11 @@ describe("Prepare commit message", function () {
 
         it("handles 5 modified files correctly", function () {
           const lines = [
-            "M    foo.txt",
-            "M    bar.txt",
-            "M    bazz.txt",
-            "M    fizz.txt",
-            "M    buzz.txt",
+            "M\tfoo.txt",
+            "M\tbar.txt",
+            "M\tbazz.txt",
+            "M\tfizz.txt",
+            "M\tbuzz.txt",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -441,7 +423,7 @@ describe("Prepare commit message", function () {
 
       describe("multiple files with different actions", function () {
         it("handles 2 files with 2 actions", function () {
-          const lines = ["A    baz.txt", "M    bar.js"];
+          const lines = ["A\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 1 file",
@@ -452,11 +434,11 @@ describe("Prepare commit message", function () {
 
         it("handles 5 files with 2 actions", function () {
           const lines = [
-            "A    baz.txt",
-            "M    bar.js",
-            "M    bazz.txt",
-            "M    fizz.txt",
-            "M    buzz.txt",
+            "A\tbaz.txt",
+            "M\tbar.js",
+            "M\tbazz.txt",
+            "M\tfizz.txt",
+            "M\tbuzz.txt",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -468,11 +450,11 @@ describe("Prepare commit message", function () {
 
         it("handles 5 files with 3 different actions", function () {
           const lines = [
-            "A    baz.txt",
-            "M    bar.js",
-            "D    README.md",
-            "A    fizz.txt",
-            "D    buzz.txt",
+            "A\tbaz.txt",
+            "M\tbar.js",
+            "D\tREADME.md",
+            "A\tfizz.txt",
+            "D\tbuzz.txt",
           ];
 
           const expected = {
@@ -489,7 +471,7 @@ describe("Prepare commit message", function () {
   describe("#_msgFromChanges", function () {
     describe("single file changes", function () {
       it("handles a single file correctly", function () {
-        const lines = ["A    baz.txt"];
+        const lines = ["A\tbaz.txt"];
         const expected = {
           typePrefix: CONVENTIONAL_TYPE.FEAT,
           description: "create baz.txt",
@@ -502,7 +484,7 @@ describe("Prepare commit message", function () {
     describe("a few files", function () {
       describe("multiple files with the same action", function () {
         it("handles 2 created files created correctly", function () {
-          const lines = ["A    baz.txt", "A    bar.js"];
+          const lines = ["A\tbaz.txt", "A\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt and bar.js",
@@ -512,7 +494,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 2 modified files correctly", function () {
-          const lines = ["M    baz.txt", "M    bar.js"];
+          const lines = ["M\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
             description: "update baz.txt and bar.js",
@@ -522,7 +504,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 files with the same action correctly", function () {
-          const lines = ["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"];
+          const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
@@ -532,12 +514,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 4 files with the same action correctly", function () {
-          const lines = [
-            "A    baz.txt",
-            "A    bar.js",
-            "A    fuzz.md",
-            "A    fuzz.ts",
-          ];
+          const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfuzz.md", "A\tfuzz.ts"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js, fuzz.md and fuzz.ts",
@@ -547,11 +524,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 files in subdirectories but does not show the directory paths", function () {
-          const lines = [
-            "A    baz.txt",
-            "A    fizz/bar.js",
-            "A    fizz/fuzz.md",
-          ];
+          const lines = ["A\tbaz.txt", "A\tfizz/bar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "create baz.txt, bar.js and fuzz.md",
@@ -562,7 +535,7 @@ describe("Prepare commit message", function () {
 
         /* eslint-disable-next-line quotes */
         it('handles 2 "build(deps)" files correctly', function () {
-          const lines = ["M    package.json", "M     package-lock.json"];
+          const lines = ["M\tpackage.json", "M\tpackage-lock.json"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
             description: "update package.json and package-lock.json",
@@ -573,9 +546,9 @@ describe("Prepare commit message", function () {
 
         it("handles 3 README.md files in different locations as full paths", function () {
           const lines = [
-            "M    docs/README.md",
-            "M    bar/README.md",
-            "M    README.md",
+            "M\tdocs/README.md",
+            "M\tbar/README.md",
+            "M\tREADME.md",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.DOCS,
@@ -588,7 +561,7 @@ describe("Prepare commit message", function () {
 
       describe("multiple files with different actions", function () {
         it("handles 2 files - one created and one modified", function () {
-          const lines = ["A    baz.txt", "M    bar.js"];
+          const lines = ["A\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
             description: "create 1 file and update 1 file",
@@ -598,7 +571,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 files - with different actions", function () {
-          const lines = ["A    baz.txt", "M    bar.js", "D    README.md"];
+          const lines = ["A\tbaz.txt", "M\tbar.js", "D\tREADME.md"];
 
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -614,11 +587,11 @@ describe("Prepare commit message", function () {
       describe("multiple files with the same action", function () {
         it("handles 5 created files created correctly", function () {
           const lines = [
-            "A    foo.txt",
-            "A    bar.txt",
-            "A    bazz.txt",
-            "A    fizz.txt",
-            "A    buzz.txt",
+            "A\tfoo.txt",
+            "A\tbar.txt",
+            "A\tbazz.txt",
+            "A\tfizz.txt",
+            "A\tbuzz.txt",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -630,11 +603,11 @@ describe("Prepare commit message", function () {
 
         it("handles 5 modified files correctly", function () {
           const lines = [
-            "M    foo.txt",
-            "M    bar.txt",
-            "M    bazz.txt",
-            "M    fizz.txt",
-            "M    buzz.txt",
+            "M\tfoo.txt",
+            "M\tbar.txt",
+            "M\tbazz.txt",
+            "M\tfizz.txt",
+            "M\tbuzz.txt",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -648,11 +621,11 @@ describe("Prepare commit message", function () {
       describe("multiple files with different actions", function () {
         it("handles 5 files with 2 actions", function () {
           const lines = [
-            "A    baz.txt",
-            "M    bar.js",
-            "M    bazz.txt",
-            "M    fizz.txt",
-            "M    buzz.txt",
+            "A\tbaz.txt",
+            "M\tbar.js",
+            "M\tbazz.txt",
+            "M\tfizz.txt",
+            "M\tbuzz.txt",
           ];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -664,11 +637,11 @@ describe("Prepare commit message", function () {
 
         it("handles 5 files with 3 different actions", function () {
           const lines = [
-            "A    baz.txt",
-            "M    bar.js",
-            "D    README.md",
-            "A    fizz.txt",
-            "D    buzz.txt",
+            "A\tbaz.txt",
+            "M\tbar.js",
+            "D\tREADME.md",
+            "A\tfizz.txt",
+            "D\tbuzz.txt",
           ];
 
           const expected = {
@@ -714,13 +687,13 @@ describe("Prepare commit message", function () {
     describe("creates a new message from a prefix and message", function () {
       describe("single change", function () {
         it("handles a single created file", function () {
-          assert.strictEqual(_newMsg(["A    baz.txt"]), "feat: create baz.txt");
+          assert.strictEqual(_newMsg(["A\tbaz.txt"]), "feat: create baz.txt");
         });
       });
 
       describe("multiple changes", function () {
         // Leave the detailed cases to tests for `_msgFromChanges`.
-        const lines = ["A    baz.txt", "A    bar.js"];
+        const lines = ["A\tbaz.txt", "A\tbar.js"];
         const expected = "feat: create baz.txt and bar.js";
 
         it("handles 2 created files", function () {
@@ -728,7 +701,7 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 created files", function () {
-          const lines = ["A    baz.txt", "A    bar.js", "A    fizz/fuzz.md"];
+          const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfizz/fuzz.md"];
           const expected = "feat: create baz.txt, bar.js and fuzz.md";
 
           assert.strictEqual(_newMsg(lines), expected);
@@ -736,9 +709,9 @@ describe("Prepare commit message", function () {
 
         it("handles 3 created docs", function () {
           const lines = [
-            "M    docs/README.md",
-            "M    bar/README.md",
-            "M    README.md",
+            "M\tdocs/README.md",
+            "M\tbar/README.md",
+            "M\tREADME.md",
           ];
           const expected =
             "docs: update docs/README.md, bar/README.md and README.md";
@@ -1481,7 +1454,7 @@ describe("Prepare commit message", function () {
   });
 
   describe("#_generateMsgWithOld", function () {
-    const fileChanges = ["M    baz.txt", "M    bar.js"];
+    const fileChanges = ["M\tbaz.txt", "M\tbar.js"];
 
     it("handles a set old message", function () {
       const oldMsg = "my old message";
@@ -1500,7 +1473,7 @@ describe("Prepare commit message", function () {
   });
 
   describe("#generateMsg", function () {
-    const fileChanges = ["M    baz.txt", "M    bar.js"];
+    const fileChanges = ["M\tbaz.txt", "M\tbar.js"];
 
     it("handles a set old message", function () {
       const oldMsg = "my old message";
