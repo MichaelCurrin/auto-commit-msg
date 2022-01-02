@@ -154,6 +154,7 @@ describe("Generate commit message for a single changed file", function () {
       );
 
       assert.strictEqual(oneChange("A\tfoo/index.md"), "create foo/index.md");
+      assert.strictEqual(oneChange("A\tfoo/index bazz.md"), "create 'foo/index bazz.md'");
       assert.strictEqual(oneChange("A\tfoo/index.js"), "create foo/index.js");
     });
   });
