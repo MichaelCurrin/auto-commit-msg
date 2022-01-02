@@ -208,6 +208,15 @@ describe("Generate description for a few changed files which each get named", fu
 
       assert.strictEqual(
         namedFilesDesc([
+          { x: "A", from: "foo.txt", y: " ", to: "" },
+          { x: "A", from: "docs/bar fuzz.txt", y: " ", to: "" },
+          { x: "A", from: "buzz.js", y: " ", to: "" },
+        ]),
+        "create foo.txt, 'bar fuzz.txt' and buzz.js"
+      );
+
+      assert.strictEqual(
+        namedFilesDesc([
           { x: "D", from: "foo.txt", y: " ", to: "" },
           { x: "D", from: "docs/bar.txt", y: " ", to: "" },
           { x: "D", from: "buzz.js", y: " ", to: "" },
