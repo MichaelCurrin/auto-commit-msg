@@ -38,11 +38,11 @@ export function splitPath(filePath: string): SplitPathResult {
 
 /** Format to add quotes if the values contains spaces. */
 export function quoteForSpaces(value: string) {
-  if (value.includes(' ') && value !== ROOT) {
-    return `'${value}'`
+  if (value.includes(" ") && value !== ROOT) {
+    return `'${value}'`;
   }
 
-  return value
+  return value;
 }
 
 /**

@@ -35,16 +35,16 @@ export function moveOrRenameMsg(oldPath: string, newPath: string): string {
 
   let msg;
 
-  const from = quoteForSpaces(oldP.name)
+  const from = quoteForSpaces(oldP.name);
 
   if (moveDesc === "move") {
-    const to = quoteForSpaces(newP.dirPath)
+    const to = quoteForSpaces(newP.dirPath);
     msg = `move ${from} to ${to}`;
   } else if (moveDesc === "rename") {
-    const to = quoteForSpaces(newP.name)
+    const to = quoteForSpaces(newP.name);
     msg = `rename ${from} to ${to}`;
   } else {
-    const to = quoteForSpaces(newP.name)
+    const to = quoteForSpaces(newP.name);
     const target = newP.dirPath === ROOT ? `${to} at ${ROOT}` : newPath;
     msg = `move and rename ${from} to ${target}`;
   }

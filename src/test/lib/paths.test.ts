@@ -5,7 +5,13 @@
  */
 import * as assert from "assert";
 import { ROOT } from "../../lib/constants";
-import { friendlyFile, humanList, quoteForSpaces, splitPath, _join } from "../../lib/paths";
+import {
+  friendlyFile,
+  humanList,
+  quoteForSpaces,
+  splitPath,
+  _join,
+} from "../../lib/paths";
 
 describe("Path handling", function () {
   describe("#splitPath", function () {
@@ -30,13 +36,19 @@ describe("Path handling", function () {
     it("add quotes for values with spaces", function () {
       assert.strictEqual(quoteForSpaces("foo bar.txt"), "'foo bar.txt'");
 
-      assert.strictEqual(quoteForSpaces("fizz buzz/foo bar.txt"), "'fizz buzz/foo bar.txt'");
+      assert.strictEqual(
+        quoteForSpaces("fizz buzz/foo bar.txt"),
+        "'fizz buzz/foo bar.txt'"
+      );
     });
 
     it("returns the original value if there are no spaces", function () {
-      assert.strictEqual(quoteForSpaces("fizz.txt"), 'fizz.txt');
+      assert.strictEqual(quoteForSpaces("fizz.txt"), "fizz.txt");
 
-      assert.strictEqual(quoteForSpaces("fizz-buzz/foo-bar.txt"), "fizz-buzz/foo-bar.txt");
+      assert.strictEqual(
+        quoteForSpaces("fizz-buzz/foo-bar.txt"),
+        "fizz-buzz/foo-bar.txt"
+      );
     });
   });
 
