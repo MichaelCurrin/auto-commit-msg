@@ -63,7 +63,7 @@ export function friendlyFile(filePath: string) {
  */
 export function _join(items: string[]) {
   if (!items.length) {
-    return ''
+    return "";
   }
 
   if (items.length === 1) {

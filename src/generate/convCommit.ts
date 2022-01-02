@@ -18,10 +18,10 @@ const PACKAGE_DIRS = [
     "dev-requirements.txt",
     "requirements-test.txt",
     "test-requirements.txt",
-    
+
     "Pipfile",
     "Pipefile.lock",
-    
+
     // Make Python package installable and manage external packages.
     "pyproject.toml",
     "setup.py",

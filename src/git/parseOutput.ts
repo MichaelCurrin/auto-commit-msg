@@ -9,7 +9,7 @@ import { FileChange } from "./parseOutput.d";
 // the `DESCRIPTION` enum has it as a key.
 const UNMODIFIED = " ";
 
-const GIT_STATUS_SPLIT = " -> "
+const GIT_STATUS_SPLIT = " -> ";
 
 /**
  * Parse Git status output.
@@ -26,7 +26,9 @@ export function parseStatus(line: string): FileChange {
   const y = line[1];
 
   const paths = line.substring(3);
-  const [from, to] = paths.includes(GIT_STATUS_SPLIT) ? paths.split(GIT_STATUS_SPLIT) : [paths, ""];
+  const [from, to] = paths.includes(GIT_STATUS_SPLIT)
+    ? paths.split(GIT_STATUS_SPLIT)
+    : [paths, ""];
 
   return {
     x,
