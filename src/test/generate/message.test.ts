@@ -23,10 +23,10 @@ describe("Generate commit message for a single changed file", function () {
       // TODO: Maybe 'create foo.txt in bar', if the dir is not too long?
       assert.strictEqual(oneChange("A\tbar/foo.txt"), "create foo.txt");
 
-      assert.strictEqual(oneChange("A\tfoo bar.txt"), "create foo bar.txt");
+      assert.strictEqual(oneChange("A\tfoo bar.txt"), "create 'foo bar.txt'");
       assert.strictEqual(
         oneChange("A\tfizz buzz/foo bar.txt"),
-        "create foo bar.txt"
+        "create 'foo bar.txt'"
       );
     });
 
