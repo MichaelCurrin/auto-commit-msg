@@ -28,21 +28,24 @@ describe("Path handling", function () {
 
   describe("#_join", function () {
     it("returns one item", function () {
-      assert.strictEqual(_join(["foo"]), "foo");
+      const result = _join(["foo"]);
+      assert.strictEqual(result, "foo");
     });
 
     it('returns two items joined with "and"', function () {
-      assert.strictEqual(_join(["foo", "bar"]), "foo and bar");
+      const result = _join(["foo", "bar"]);
+      assert.strictEqual(result, "foo and bar");
     });
 
     it('returns three items joined with commands and an an "and"', function () {
-      assert.strictEqual(_join(["foo", "bar", "bazz"]), "foo, bar and bazz");
+      const result = _join(["foo", "bar", "bazz"]);
+      assert.strictEqual(result, "foo, bar and bazz");
     });
 
     it("returns empty string for now items", function () {
-      assert.strictEqual(_join([]), "");
+      const result = _join([]);
+      assert.strictEqual(result, "");
     });
-
   });
 
   describe("#friendlyFile", function () {
