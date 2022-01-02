@@ -17,6 +17,9 @@ hooks:
 install:
 	npm install
 
+outdated:
+	npm outdated
+
 upgrade:
 	npm upgrade
 
