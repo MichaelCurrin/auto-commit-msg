@@ -102,6 +102,93 @@ describe("Split `git diff-index` output into components", function () {
       });
     });
 
+    describe("handle paths with spaces in them", function () {
+      it("should handle a single path correctly", function () {
+        {
+          const expected: FileChange = {
+            x: "A",
+            y: " ",
+            from: "foo bar.txt",
+            to: "",
+          };
+
+          assert.deepStrictEqual(parseDiffIndex("A\tfoo bar.txt"), expected);
+        }
+
+        {
+          const expected: FileChange = {
+            x: "A",
+            y: " ",
+            from: "foo bar fizz buzz.txt",
+            to: "",
+          };
+
+          assert.deepStrictEqual(
+            parseDiffIndex("A\tfoo bar fizz buzz.txt"),
+            expected
+          );
+        }
+
+        {
+          const expected: FileChange = {
+            x: "A",
+            y: " ",
+            from: "fizz/foo bar.txt",
+            to: "",
+          };
+
+          assert.deepStrictEqual(
+            parseDiffIndex("A\tfizz/foo bar.txt"),
+            expected
+          );
+        }
+
+        {
+          const expected: FileChange = {
+            x: "A",
+            y: " ",
+            from: "fizz buzz/foo bar.txt",
+            to: "",
+          };
+
+          assert.deepStrictEqual(
+            parseDiffIndex("A\tfizz buzz/foo bar.txt"),
+            expected
+          );
+        }
+      });
+    });
+
+    it("should handle a multiple paths correctly", function () {
+      {
+        const expected: FileChange = {
+          x: "R",
+          y: " ",
+          from: "foo bar.txt",
+          to: "fizz/foo bar.txt",
+        };
+
+        assert.deepStrictEqual(
+          parseDiffIndex("R100\tfoo bar.txt\tfizz/foo bar.txt"),
+          expected
+        );
+      }
+
+      {
+        const expected: FileChange = {
+          x: "R",
+          y: " ",
+          from: "foo bar.txt",
+          to: "fizz buzz/foo bar.txt",
+        };
+
+        assert.deepStrictEqual(
+          parseDiffIndex("R100\tfoo bar.txt\tfizz buzz/foo bar.txt"),
+          expected
+        );
+      }
+    });
+
     it("throws an error on input that is too short", function () {
       assert.throws(() => parseDiffIndex("abc"));
     });
