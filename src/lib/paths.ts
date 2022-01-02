@@ -7,7 +7,8 @@ import * as path from "path";
 import { ROOT } from "../lib/constants";
 import { MoveOrRename, SplitPathResult } from "./paths.d";
 
-// The starts of filenames which could be repeated in a repo. All lowercase here.
+// The starts of filenames which could be repeated in a repo. All lowercase
+// here.
 const REPEAT_FILENAMES = ["readme", "index", "__init__.py"];
 
 /**
@@ -38,9 +39,9 @@ export function splitPath(filePath: string): SplitPathResult {
 /**
  * Change file path to a more readable format.
  *
- * The idea is to show just the filename, to keep things short. README and index
- * files can be confusing as there might be be a few in a project, so those are
- * kept as paths.
+ * The idea is to show just the filename and take out the directory path, to
+ * keep things short. The README- and index-related files can be confusing as
+ * there might be be a few in a project, so those are kept as full paths.
  */
 export function friendlyFile(filePath: string) {
   const { name } = splitPath(filePath);
@@ -56,11 +57,15 @@ export function friendlyFile(filePath: string) {
 }
 
 /**
- * Join a series of items using commas and an "and".
+ * Join a list of items using commas and an "and" word.
  *
  * These don't have to be file paths but usually are for this project.
  */
 export function _join(items: string[]) {
+  if (!items.length) {
+    return ''
+  }
+
   if (items.length === 1) {
     return items[0];
   }
