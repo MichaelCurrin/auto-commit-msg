@@ -20,6 +20,7 @@ describe("Split `git diff-index` output into components", function () {
         from: "foo.txt",
         to: "",
       };
+
       assert.deepStrictEqual(parseDiffIndex("A       foo.txt"), expected);
       assert.deepStrictEqual(parseDiffIndex("A foo.txt"), expected);
       assert.deepStrictEqual(parseDiffIndex("A\tfoo.txt"), expected);
@@ -32,6 +33,7 @@ describe("Split `git diff-index` output into components", function () {
         from: "foo.txt",
         to: "",
       };
+
       assert.deepStrictEqual(parseDiffIndex("M       foo.txt"), expected);
     });
 
@@ -42,6 +44,7 @@ describe("Split `git diff-index` output into components", function () {
         from: "foo.txt",
         to: "",
       };
+
       assert.deepStrictEqual(parseDiffIndex("D       foo.txt"), expected);
     });
 
@@ -52,6 +55,7 @@ describe("Split `git diff-index` output into components", function () {
         from: "bar.txt",
         to: "foo.txt",
       };
+
       assert.deepStrictEqual(
         parseDiffIndex("R100    bar.txt       foo.txt"),
         expected
@@ -64,6 +68,7 @@ describe("Split `git diff-index` output into components", function () {
           from: "bar.txt",
           to: "fizz/foo.txt",
         };
+
         assert.deepStrictEqual(
           parseDiffIndex("R100    bar.txt       fizz/foo.txt"),
           expected
@@ -90,6 +95,7 @@ describe("Split `git diff-index` output into components", function () {
           to: "bar.txt",
           from: "fizz/foo.txt",
         };
+
         assert.deepStrictEqual(
           parseDiffIndex("R096    bar.txt       fizz/foo.txt"),
           expected
@@ -114,6 +120,7 @@ describe("Split `git status` output into components", function () {
         from: "foo.txt",
         to: "",
       };
+
       assert.deepStrictEqual(parseStatus("A  foo.txt"), expected);
     });
 
@@ -124,6 +131,7 @@ describe("Split `git status` output into components", function () {
         from: "foo.txt",
         to: "",
       };
+
       assert.deepStrictEqual(parseStatus(" M foo.txt"), expected);
     });
 
@@ -134,6 +142,7 @@ describe("Split `git status` output into components", function () {
         from: "foo.txt",
         to: "",
       };
+
       assert.deepStrictEqual(parseStatus("D  foo.txt"), expected);
     });
 
@@ -144,6 +153,7 @@ describe("Split `git status` output into components", function () {
         from: "foo.txt",
         to: "bar.txt",
       };
+
       assert.deepStrictEqual(parseStatus("R  foo.txt -> bar.txt"), expected);
 
       it("should return the appropriate commit message for a moved file", function () {
@@ -153,6 +163,7 @@ describe("Split `git status` output into components", function () {
           from: "foo.txt",
           to: "fizz/foo.txt",
         };
+
         assert.deepStrictEqual(
           parseStatus("R  foo.txt -> fizz/foo.txt"),
           expected
