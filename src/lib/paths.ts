@@ -37,7 +37,7 @@ export function splitPath(filePath: string): SplitPathResult {
 }
 
 /** Format to add quotes if the values contains spaces. */
-export function _quoteForSpaces(value: string) {
+export function quoteForSpaces(value: string) {
   if (value.includes(' ') && value !== ROOT) {
     return `'${value}'`
   }
@@ -59,10 +59,10 @@ export function friendlyFile(filePath: string) {
 
   for (const p of REPEAT_FILENAMES) {
     if (nameLower.startsWith(p)) {
-      return _quoteForSpaces(filePath);
+      return quoteForSpaces(filePath);
     }
   }
-  return _quoteForSpaces(name);
+  return quoteForSpaces(name);
 }
 
 /**
