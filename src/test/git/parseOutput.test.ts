@@ -9,98 +9,96 @@ import { parseDiffIndex, parseStatus } from "../../git/parseOutput";
 import { FileChange } from "../../git/parseOutput.d";
 
 describe("Split `git diff-index` output into components", function () {
-  // The 1st to 2nd column gap looks like 4 chars and then 2nd to 3rd looks like
-  // 6 chars.
-  // R100    tslint.json     src/tslint.json
-  // R100    vsc-extension-quickstart.md     src/vsc-extension-quickstart.md
   describe("#parseDiffIndex", function () {
-    it("should return the appropriate commit message for a new file", function () {
-      const expected: FileChange = {
-        x: "A",
-        y: " ",
-        from: "foo.txt",
-        to: "",
-      };
+    describe("states with a single path", function () {
+      it("should return the appropriate commit message for a new file", function () {
+        const expected: FileChange = {
+          x: "A",
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        };
 
-      assert.deepStrictEqual(parseDiffIndex("A       foo.txt"), expected);
-      assert.deepStrictEqual(parseDiffIndex("A foo.txt"), expected);
-      assert.deepStrictEqual(parseDiffIndex("A\tfoo.txt"), expected);
+        assert.deepStrictEqual(parseDiffIndex("A\tfoo.txt"), expected);
+      });
+
+      it("should return the appropriate commit message for a modified file", function () {
+        const expected: FileChange = {
+          x: "M",
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        };
+
+        assert.deepStrictEqual(parseDiffIndex("M\tfoo.txt"), expected);
+      });
+
+      it("should return the appropriate commit message for a deleted file", function () {
+        const expected: FileChange = {
+          x: "D",
+          y: " ",
+          from: "foo.txt",
+          to: "",
+        };
+
+        assert.deepStrictEqual(parseDiffIndex("D\tfoo.txt"), expected);
+      });
     });
 
-    it("should return the appropriate commit message for a modified file", function () {
-      const expected: FileChange = {
-        x: "M",
-        y: " ",
-        from: "foo.txt",
-        to: "",
-      };
-
-      assert.deepStrictEqual(parseDiffIndex("M       foo.txt"), expected);
-    });
-
-    it("should return the appropriate commit message for a deleted file", function () {
-      const expected: FileChange = {
-        x: "D",
-        y: " ",
-        from: "foo.txt",
-        to: "",
-      };
-
-      assert.deepStrictEqual(parseDiffIndex("D       foo.txt"), expected);
-    });
-
-    it("should return the appropriate commit message for a renamed unchanged file", function () {
-      const expected: FileChange = {
-        x: "R",
-        y: " ",
-        from: "bar.txt",
-        to: "foo.txt",
-      };
-
-      assert.deepStrictEqual(
-        parseDiffIndex("R100    bar.txt       foo.txt"),
-        expected
-      );
-
-      it("should return the appropriate commit message for a moved file", function () {
+    describe("states with two paths", function () {
+      it("should return the appropriate commit message for a renamed unchanged file", function () {
         const expected: FileChange = {
           x: "R",
           y: " ",
           from: "bar.txt",
-          to: "fizz/foo.txt",
+          to: "foo.txt",
         };
 
         assert.deepStrictEqual(
-          parseDiffIndex("R100    bar.txt       fizz/foo.txt"),
+          parseDiffIndex("R100\tbar.txt\tfoo.txt"),
           expected
         );
+
+        it("should return the appropriate commit message for a moved file", function () {
+          const expected: FileChange = {
+            x: "R",
+            y: " ",
+            from: "bar.txt",
+            to: "fizz/foo.txt",
+          };
+
+          assert.deepStrictEqual(
+            parseDiffIndex("R100\tbar.txt\tfizz/foo.txt"),
+            expected
+          );
+        });
       });
-    });
 
-    it("returns a correct commit message for a renamed modified file", function () {
-      const expected: FileChange = {
-        x: "R",
-        y: " ",
-        from: "bar.txt",
-        to: "foo.txt",
-      };
-      assert.deepStrictEqual(
-        parseDiffIndex("R096    bar.txt       foo.txt"),
-        expected
-      );
-
-      it("should return the appropriate commit message for a moved file", function () {
+      it("returns a correct commit message for a renamed modified file", function () {
         const expected: FileChange = {
           x: "R",
           y: " ",
-          to: "bar.txt",
-          from: "fizz/foo.txt",
+          from: "bar.txt",
+          to: "foo.txt",
         };
-
         assert.deepStrictEqual(
-          parseDiffIndex("R096    bar.txt       fizz/foo.txt"),
+          parseDiffIndex("R096\tbar.txt\tfoo.txt"),
           expected
         );
+
+        it("should return the appropriate commit message for a moved file", function () {
+          const expected: FileChange = {
+            x: "R",
+            y: " ",
+            to: "bar.txt",
+            from: "fizz/foo.txt",
+          };
+
+          assert.deepStrictEqual(
+            parseDiffIndex("R096\tbar.txt\tfizz/foo.txt"),
+            expected
+          );
+        });
       });
     });
 
@@ -122,7 +120,7 @@ describe("Split `git status` output into components", function () {
         to: "",
       };
 
-      assert.deepStrictEqual(parseStatus("A  foo.txt"), expected);
+      assert.deepStrictEqual(parseStatus("A \tfoo.txt"), expected);
     });
 
     it("should return the appropriate commit message for a modified file", function () {
@@ -133,7 +131,7 @@ describe("Split `git status` output into components", function () {
         to: "",
       };
 
-      assert.deepStrictEqual(parseStatus(" M foo.txt"), expected);
+      assert.deepStrictEqual(parseStatus(" M\tfoo.txt"), expected);
     });
 
     it("should return the appropriate commit message for a deleted file", function () {
