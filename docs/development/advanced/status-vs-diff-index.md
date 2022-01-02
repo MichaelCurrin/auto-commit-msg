@@ -13,7 +13,7 @@ Using `status` is friendly for everyday use as developer. The `diff-index` subco
 
 Both `status` and `diff-index` can be used to see a list of paths and how they changed, using `from` and `to` as a pair of paths when moving or renaming a file.
 
-Why use `diff-index` and not `status`? Using the former makes things more **predictable** when parsing output. Since the `from` file is always first, from left to right. While `status` has it on the right, which is hard because it is not always there. There might be other reasons I can't remember, maybe because there is a percentage similarity which shows up in `diff-index` for renames/moves.
+Why use `diff-index` and not `status`? Using the former makes things more **predictable** when parsing output. Since the `from` file is always first, from left to right. While `status` has it on the right, which is hard because it is not always there. There might be other reasons I can't remember, maybe because there is a percentage similarity that shows up in `diff-index` for renames/moves.
 
 
 ## status
@@ -35,10 +35,19 @@ $ git status --short
  M abc.txt
 ```
 
+Sample output of multiple lines. Note use of spaces not tabs.
+
+```console
+$ git status --short
+R  LICENSE -> LIC
+ M docs/development/advanced/status-vs-diff-index.md
+ M src/test/git/parseOutput.test.ts
+```
+
 
 ## diff-index
 
-The less-known `git diff-index` subcommand. This is not so usable for day to to day use in the CLI but is great for scripts, or for a project such as this one.
+The lesser-known `git diff-index` subcommand. This is not so usable for day to to day use in the CLI but is great for scripts, or a project such as this one.
 
 ```sh
 $ git diff-index [FLAGS] PATH
@@ -46,17 +55,53 @@ $ git diff-index [FLAGS] PATH
 
 > Compare a tree to the working tree or index
 
-- Flags must appear before the path.
+Notes:
+
+- Output has tab separator between columns.
 - Use `--cached` for _only_ staged changes. Note that the only way to pick up a new file or detect a move/rename pair properly with `diff-index` is to stage changes first and then use this flag.
+- Use `--name-status` to show names and status of changed files.
+- Use `-M` to detect renames (i.e. move or rename a file, stage both paths, then run the command with this flag to see it appear as `R100` or similar).
 - The path is required - `HEAD` works fine.
 
 e.g.
 
 ```console
 $ git diff-index HEAD
-$ :100644 100644 e69de29bb2d1d6434b8b29ae775ad8c2e48c5391 0000000000000000000000000000000000000000 M      abc.txt
+:100644 100644 e69de29bb2d1d6434b8b29ae775ad8c2e48c5391 0000000000000000000000000000000000000000 M      abc.txt
+```
+
+```console
 $ git diff-index --name-status HEAD
 M       abc.txt
+```
+
+Two files changed, with long paths:
+
+```console
+$ git diff-index --name-status HEAD
+M       docs/development/advanced/status-vs-diff-index.md
+M       src/test/git/parseOutput.test.ts
+```
+
+For a move or rename:
+
+```console
+$ mv LICENSE LIC
+$ git add .
+$ git diff-index  --name-status -M HEAD
+R100    LICENSE LIC
+```
+
+Even though you might be able to select the output in the console as spaces, it is actually tabs. Check with a tool that can show hidden characters.
+
+```console
+$ git diff-index  --name-status HEAD -M | bat -A
+───────┬─────────────────────────────────────────────────────────
+       │ STDIN
+───────┼─────────────────────────────────────────────────────────
+   1   │ R100├──┤LICENSE├──┤LIC␊
+   2   │ M├──┤docs/development/advanced/status-vs-diff-index.md␊
+   3   │ M├──┤src/test/git/parseOutput.test.ts␊
 ```
 
 ### Limitation of diff-index
