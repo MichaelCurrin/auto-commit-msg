@@ -1,18 +1,18 @@
 /**
  * Parse output module.
  *
- * Handle text output from a `git` subcommand.
+ * Parse text output created by Git subcommands.
  */
 import { FileChange } from "./parseOutput.d";
 
-// This is NOT worth moving to constants, because the space is a value, while the `DESCRIPTION`
-// enum has it as a key.
+// This is NOT worth moving to constants, because this space is a value, while
+// the `DESCRIPTION` enum has it as a key.
 const UNMODIFIED = " ";
 
 /**
- * Parse status.
+ * Parse Git status output.
  *
- * Parse a line produced by the `git status --short` command.
+ * Parse a line which was produced by the `git status --short` command.
  */
 export function parseStatus(line: string): FileChange {
   if (line.length <= 4) {
@@ -35,18 +35,19 @@ export function parseStatus(line: string): FileChange {
 }
 
 /**
- * Parse diff index.
+ * Parse Git diff index subcommand output.
  *
- * Expect a line produced by the `git diff-index` subcommand and parse it into an object describing
- * the file changes.
+ * Expect a line produced by the `git diff-index` subcommand and parse it into
+ * an object describing the file changes.
  *
- * We keep `x` as a single letter here, even though the input might be include a percentage that we
- * ignore, as in 'R100 ...'.
+ * We keep `x` as a single letter here, even though the input might be include a
+ * percentage that we ignore, as in 'R100 ...'.
  *
- * Unlike for `git status`, the `y` value will be missing here, so we set it to Unmodified (a
- * space).
+ * Unlike for `git status`, the `y` value will be missing here, so we set it to
+ * Unmodified (a space).
  *
- * The `to` field will not always be set, so a null string is fine (and better than `undefined`).
+ * The `to` field will not always be set, so a null string is fine (and better
+ * than `undefined`).
  */
 export function parseDiffIndex(line: string): FileChange {
   if (line.length <= 4) {
@@ -59,7 +60,7 @@ export function parseDiffIndex(line: string): FileChange {
 
   const [_, from, to] = line.split(/\s+/);
   if (!from) {
-    // Unlikely in real life but this helps in development.
+    // Unlikely in real life, but this helps in development.
     throw new Error(`Invalid input - could not find 'from' path: ${line}`);
   }
 
