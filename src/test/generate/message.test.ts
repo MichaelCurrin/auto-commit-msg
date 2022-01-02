@@ -78,12 +78,12 @@ describe("Generate commit message for a single changed file", function () {
 
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz buzz/foo.txt"),
-        "move foo.txt to fizz buzz"
+        "move foo.txt to 'fizz buzz'"
       );
 
       assert.strictEqual(
         oneChange("R\tfoo bar.txt\tfizz/foo bar.txt"),
-        "move foo bar.txt to fizz"
+        "move 'foo bar.txt' to fizz"
       );
     });
 
@@ -99,8 +99,13 @@ describe("Generate commit message for a single changed file", function () {
       );
 
       assert.strictEqual(
-        oneChange("R\tfizz/buzz/foo.txt\tfizz/buzz/foo.txt"),
+        oneChange("R\tfizz/foo.txt\tfizz/buzz/foo.txt"),
         "move foo.txt to fizz/buzz"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tfizz/foo bar.txt\tfizz/buzz baz/foo bar.txt"),
+        "move 'foo bar.txt' to 'fizz/buzz baz'"
       );
     });
 
@@ -118,6 +123,11 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(
         oneChange("R\tbar/foo.txt\tfizz/fuzz.txt"),
         "move and rename foo.txt to fizz/fuzz.txt"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tbar/foo.txt\tfizz/baz fuzz.txt"),
+        "move and rename foo.txt to fizz/baz fuzz.txt"
       );
     });
 

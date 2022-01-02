@@ -8,7 +8,7 @@
  * differently.
  */
 import { ACTION, ROOT } from "../lib/constants";
-import { moveOrRenameFromPaths, splitPath } from "../lib/paths";
+import { moveOrRenameFromPaths, splitPath, _quoteForSpaces } from "../lib/paths";
 import { ActionKeys } from "./action.d";
 
 /**
@@ -35,13 +35,18 @@ export function moveOrRenameMsg(oldPath: string, newPath: string): string {
 
   let msg;
 
+  const from = _quoteForSpaces(oldP.name)
+
   if (moveDesc === "move") {
-    msg = `move ${oldP.name} to ${newP.dirPath}`;
+    const to = _quoteForSpaces(newP.dirPath)
+    msg = `move ${from} to ${to}`;
   } else if (moveDesc === "rename") {
-    msg = `rename ${oldP.name} to ${newP.name}`;
+    const to = _quoteForSpaces(newP.name)
+    msg = `rename ${from} to ${to}`;
   } else {
-    const target = newP.dirPath === ROOT ? `${newP.name} at ${ROOT}` : newPath;
-    msg = `move and rename ${oldP.name} to ${target}`;
+    const to = _quoteForSpaces(newP.name)
+    const target = newP.dirPath === ROOT ? `${to} at ${ROOT}` : newPath;
+    msg = `move and rename ${from} to ${target}`;
   }
 
   return msg;
