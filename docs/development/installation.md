@@ -26,3 +26,15 @@ $ cd auto-commit-msg
 ```sh
 $ make install
 ```
+
+## Upgrade project dependencies
+
+For project maintainers.
+
+```sh
+$ make outdated
+```
+
+```sh
+$ make upgrade
+```
