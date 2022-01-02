@@ -116,10 +116,7 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(oneChange("M\tREADME.md"), "update README.md");
       assert.strictEqual(oneChange("D\tREADME.md"), "delete README.md");
 
-      assert.strictEqual(
-        oneChange("A\tfoo/README.md"),
-        "create foo/README.md"
-      );
+      assert.strictEqual(oneChange("A\tfoo/README.md"), "create foo/README.md");
       assert.strictEqual(
         oneChange("M\tbar/baz/README.md"),
         "update bar/baz/README.md"
