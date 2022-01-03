@@ -7,7 +7,7 @@ import {
   _countByAction,
   _formatAll,
   _formatOne,
-  _moveOrRenameFromChange,
+  _moveOrRenameFromChange
 } from "../../generate/count";
 import { FileChange } from "../../git/parseOutput.d";
 
@@ -20,6 +20,22 @@ describe("Aggregate counts of files as numeric data", function () {
             x: "A",
             y: " ",
             from: "foo.txt",
+            to: "",
+          },
+        ];
+        const expected = {
+          create: { fileCount: 1 },
+        };
+
+        assert.deepStrictEqual(_countByAction(changes), expected);
+      });
+
+      it("should handle a created file with spaces", function () {
+        const changes: FileChange[] = [
+          {
+            x: "A",
+            y: " ",
+            from: "foo bar.txt",
             to: "",
           },
         ];
