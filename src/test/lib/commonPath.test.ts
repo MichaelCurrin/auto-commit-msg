@@ -10,6 +10,7 @@ describe("Split an array of strings at a separator", function () {
   describe("#_splitStrings", function () {
     it("should split 3 strings correctly with the default separator", function () {
       const items = ["a/b/c", "ABC/DEF/GHI", "1/2/3"];
+
       const expected = [
         ["a", "b", "c"],
         ["ABC", "DEF", "GHI"],
