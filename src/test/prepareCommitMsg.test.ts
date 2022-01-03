@@ -18,7 +18,7 @@ import {
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange
+  _prefixFromChange,
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
@@ -342,7 +342,8 @@ describe("Prepare commit message", function () {
             ];
             const expected = {
               typePrefix: CONVENTIONAL_TYPE.DOCS,
-              description: "update docs/README.md, 'bar buzz/README.md' and README.md",
+              description:
+                "update docs/README.md, 'bar buzz/README.md' and README.md",
             };
 
             assert.deepStrictEqual(_msgNamed(lines), expected);

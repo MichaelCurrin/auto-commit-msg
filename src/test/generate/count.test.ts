@@ -7,7 +7,7 @@ import {
   _countByAction,
   _formatAll,
   _formatOne,
-  _moveOrRenameFromChange
+  _moveOrRenameFromChange,
 } from "../../generate/count";
 import { FileChange } from "../../git/parseOutput.d";
 
