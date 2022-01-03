@@ -6,7 +6,7 @@
 import * as assert from "assert";
 import {
   ConventionalCommit,
-  getConventionType,
+  getConventionType
 } from "../../generate/convCommit";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
@@ -81,7 +81,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
   });
 
   describe("#isBuildRelated", function () {
-    it("can recognize a build change fr a build-related filename", function () {
+    it("can recognize a build change for a build-related filename", function () {
       assert.strictEqual(
         new ConventionalCommit("Dockerfile").isBuildRelated(),
         true
@@ -186,10 +186,11 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
   });
 
   describe("#getType", function () {
-    // Rather than true and false like in above tests this actually categorizes and also it closer
-    // to the real world as it through a hierarchy (for example .yml is config-related unless it is
-    // for a CI file). But, this doesn't care what the action is like create or delete or modify, so
-    // it won't impose meaning based on that.
+    // Rather than true and false like in above tests this actually categorizes
+    // and also it closer to the real world as it through a hierarchy (for
+    // example .yml is config-related unless it is for a CI file). But, this
+    // doesn't care what the action is like create or delete or modify, so it
+    // won't impose meaning based on that.
     it("sees a build file as build", function () {
       assert.strictEqual(
         new ConventionalCommit("Makefile").getType(),
@@ -232,7 +233,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    // TODO Break into categories
+    // TODO: Break into categories
     it("can tell a type for other types", function () {
       assert.strictEqual(
         new ConventionalCommit("foo").getType(),
