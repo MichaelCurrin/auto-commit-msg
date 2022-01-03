@@ -103,6 +103,9 @@ describe("Split `git diff-index` output into components", function () {
     });
 
     describe("handle paths with spaces in them", function () {
+      // No quoting is needed here as that is only needed when formatting the
+      // final message.
+
       it("should handle a single path correctly", function () {
         {
           const expected: FileChange = {
@@ -160,7 +163,6 @@ describe("Split `git diff-index` output into components", function () {
     });
 
     it("should handle a pair of paths correctly", function () {
-      // No quoting is needed here as that is only needed when formatting the final message.
       {
         const expected: FileChange = {
           x: "R",
