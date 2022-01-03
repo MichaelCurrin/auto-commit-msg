@@ -160,7 +160,7 @@ describe("Split `git diff-index` output into components", function () {
     });
 
     it("should handle a pair of paths correctly", function () {
-      // Note that no quoting is needed here as that is only needed when formatting the final message.
+      // No quoting is needed here as that is only needed when formatting the final message.
       {
         const expected: FileChange = {
           x: "R",
