@@ -54,9 +54,14 @@ describe("Find prefix from Git output", function () {
           _prefixFromChange("A\tfoo.txt"),
           CONVENTIONAL_TYPE.FEAT
         );
+
+        assert.strictEqual(
+          _prefixFromChange("A\tfoo bar.txt"),
+          CONVENTIONAL_TYPE.FEAT
+        );
       });
 
-      it("recognizes a modified generic file as a unknown", function () {
+      it("recognizes a modified generic file as an unknown", function () {
         assert.strictEqual(
           _prefixFromChange("M\tfoo.txt"),
           CONVENTIONAL_TYPE.UNKNOWN
@@ -86,7 +91,7 @@ describe("Find prefix from Git output", function () {
     });
 
     describe("categorized file change", function () {
-      /// Don't need to cover every type here - just docs should be fine.
+      // Don't need to cover every type here - just docs should be fine.
 
       it("recognizes a new docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS;
@@ -112,9 +117,10 @@ describe("Find prefix from Git output", function () {
       it("recognizes a renamed docs file change as chore", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
-        assert.strictEqual(_prefixFromChange("R\tREADME.md bar.md"), expected);
+        assert.strictEqual(_prefixFromChange("R\tREADME.md\tbar.md"), expected);
+
         assert.strictEqual(
-          _prefixFromChange("R\tdocs/foo.md docs/bar.md"),
+          _prefixFromChange("R\tdocs/foo.md\tdocs/bar.md"),
           expected
         );
       });
@@ -122,11 +128,11 @@ describe("Find prefix from Git output", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
-          _prefixFromChange("R\tREADME.md bar/README.md"),
+          _prefixFromChange("R\tREADME.md\tbar/README.md"),
           expected
         );
         assert.strictEqual(
-          _prefixFromChange("R\tdocs/foo.md bar/foo.md"),
+          _prefixFromChange("R\tdocs/foo.md\tbar/foo.md"),
           expected
         );
       });
@@ -149,7 +155,7 @@ describe("Find prefix from Git output", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
-          _prefixFromChange("R\tpackage-lock.json foo.json"),
+          _prefixFromChange("R\tpackage-lock.json\tfoo.json"),
           expected
         );
       });
@@ -158,7 +164,7 @@ describe("Find prefix from Git output", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
-          _prefixFromChange("R\tpackage-lock.json foo/package-lock.json"),
+          _prefixFromChange("R\tpackage-lock.json\tfoo/package-lock.json"),
           expected
         );
       });
@@ -314,17 +320,34 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 README.md files in different locations as full paths", function () {
-          const lines = [
-            "M\tdocs/README.md",
-            "M\tbar/README.md",
-            "M\tREADME.md",
-          ];
-          const expected = {
-            typePrefix: CONVENTIONAL_TYPE.DOCS,
-            description: "update docs/README.md, bar/README.md and README.md",
-          };
+          {
+            const lines = [
+              "M\tdocs/README.md",
+              "M\tbar/README.md",
+              "M\tREADME.md",
+            ];
+            const expected = {
+              typePrefix: CONVENTIONAL_TYPE.DOCS,
+              description: "update docs/README.md, bar/README.md and README.md",
+            };
 
-          assert.deepStrictEqual(_msgNamed(lines), expected);
+            assert.deepStrictEqual(_msgNamed(lines), expected);
+          }
+
+          {
+            const lines = [
+              "M\tdocs/README.md",
+              "M\tbar buzz/README.md",
+              "M\tREADME.md",
+            ];
+            const expected = {
+              typePrefix: CONVENTIONAL_TYPE.DOCS,
+              description:
+                "update docs/README.md, 'bar buzz/README.md' and README.md",
+            };
+
+            assert.deepStrictEqual(_msgNamed(lines), expected);
+          }
         });
       });
 
@@ -369,8 +392,8 @@ describe("Prepare commit message", function () {
 
     describe("multiple files", function () {
       describe("multiple files with the same action", function () {
-        // Don't need to distinguish between a few or many files as as it supposed to work the
-        // same.
+        // Don't need to distinguish between a few or many files as as it
+        // supposed to work the same.
 
         it("handles 2 created files created correctly", function () {
           const lines = [
@@ -708,14 +731,29 @@ describe("Prepare commit message", function () {
         });
 
         it("handles 3 created docs", function () {
-          const lines = [
-            "M\tdocs/README.md",
-            "M\tbar/README.md",
-            "M\tREADME.md",
-          ];
-          const expected =
-            "docs: update docs/README.md, bar/README.md and README.md";
-          assert.strictEqual(_newMsg(lines), expected);
+          {
+            const lines = [
+              "M\tdocs/README.md",
+              "M\tbar/README.md",
+              "M\tREADME.md",
+            ];
+            const expected =
+              "docs: update docs/README.md, bar/README.md and README.md";
+
+            assert.strictEqual(_newMsg(lines), expected);
+          }
+
+          {
+            const lines = [
+              "M\tdocs/fizz buzz.md",
+              "M\tbar/README.md",
+              "M\tREADME.md",
+            ];
+            const expected =
+              "docs: update 'fizz buzz.md', bar/README.md and README.md";
+
+            assert.strictEqual(_newMsg(lines), expected);
+          }
         });
       });
     });

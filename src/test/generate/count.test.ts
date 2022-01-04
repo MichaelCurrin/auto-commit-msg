@@ -30,6 +30,22 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
+      it("should handle a created file with spaces", function () {
+        const changes: FileChange[] = [
+          {
+            x: "A",
+            y: " ",
+            from: "foo bar.txt",
+            to: "",
+          },
+        ];
+        const expected = {
+          create: { fileCount: 1 },
+        };
+
+        assert.deepStrictEqual(_countByAction(changes), expected);
+      });
+
       it("should handle an updated file", function () {
         const changes: FileChange[] = [
           {

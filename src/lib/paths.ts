@@ -7,8 +7,8 @@ import * as path from "path";
 import { ROOT } from "../lib/constants";
 import { MoveOrRename, SplitPathResult } from "./paths.d";
 
-// The starts of filenames which could be repeated in a repo. All lowercase
-// here.
+// The starts of filenames which might be repeated as files in a repo. Kept as
+// all lowercase here.
 const REPEAT_FILENAMES = ["readme", "index", "__init__.py"];
 
 /**
@@ -36,6 +36,15 @@ export function splitPath(filePath: string): SplitPathResult {
   };
 }
 
+/** Format to add quotes if the values contains spaces. */
+export function quoteForSpaces(value: string) {
+  if (value.includes(" ") && value !== ROOT) {
+    return `'${value}'`;
+  }
+
+  return value;
+}
+
 /**
  * Change file path to a more readable format.
  *
@@ -50,10 +59,10 @@ export function friendlyFile(filePath: string) {
 
   for (const p of REPEAT_FILENAMES) {
     if (nameLower.startsWith(p)) {
-      return filePath;
+      return quoteForSpaces(filePath);
     }
   }
-  return name;
+  return quoteForSpaces(name);
 }
 
 /**

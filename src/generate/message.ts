@@ -42,9 +42,10 @@ export function oneChange(line: string) {
 /**
  * Describe an action and paths for a set of changed files.
  *
- * @param lines Expect one or more lines that came from a `git` subcommand.
+ * @param lines Expect one or more lines that came from a Git subcommand.
  *
- * @return A human-readable sentence decribing file changes. e.g. 'update foo.txt and bar.txt'.
+ * @return A human-readable sentence decribing file changes. e.g. 'update
+ *   foo.txt and bar.txt'.
  */
 export function namedFilesDesc(changes: FileChange[]) {
   const actions = changes.map(item => item.x as ActionKeys);

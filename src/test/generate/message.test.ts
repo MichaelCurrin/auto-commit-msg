@@ -10,20 +10,27 @@ import { namedFilesDesc, oneChange } from "../../generate/message";
 
 describe("Generate commit message for a single changed file", function () {
   // Notes:
-  //   - The command `git status --short` expects XY format but this is for `git
-  //     diff-index` which is only X. Also there is just spaces between - no
-  //     '->' symbol.
+  //   - The command `git status --short` expects `XY` format but this is for
+  //     `git diff-index` which is only `X`. Also there is just spaces between -
+  //     no '->' symbol.
   //   - Impossible cases are not covered here, like renaming a file and the
   //     name and path are unchanged, or including two file names for an add
   //     line. But validation on at least file name is done.
   describe("#oneChange", function () {
     it("returns the appropriate commit message for a new file", function () {
       assert.strictEqual(oneChange("A\tfoo.txt"), "create foo.txt");
-      // Maybe create foo.txt in bar, if the dir is not too long?
+
+      // TODO: Maybe 'create foo.txt in bar', if the dir is not too long?
       assert.strictEqual(oneChange("A\tbar/foo.txt"), "create foo.txt");
+
+      assert.strictEqual(oneChange("A\tfoo bar.txt"), "create 'foo bar.txt'");
+      assert.strictEqual(
+        oneChange("A\tfizz buzz/foo bar.txt"),
+        "create 'foo bar.txt'"
+      );
     });
 
-    it("throws an error if no filepath can be no generated", function () {
+    it("throws an error if no file path can be no generated", function () {
       assert.throws(() => oneChange("A    "));
     });
 
@@ -58,7 +65,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("describes a file moved out of the repo root", function () {
+    it("describes a file moved out of the repo root to another directory", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/foo.txt"),
         "move foo.txt to fizz"
@@ -67,6 +74,16 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/buzz/foo.txt"),
         "move foo.txt to fizz/buzz"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tfoo.txt\tfizz buzz/foo.txt"),
+        "move foo.txt to 'fizz buzz'"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tfoo bar.txt\tfizz/foo bar.txt"),
+        "move 'foo bar.txt' to fizz"
       );
     });
 
@@ -82,8 +99,13 @@ describe("Generate commit message for a single changed file", function () {
       );
 
       assert.strictEqual(
-        oneChange("R\tfizz/buzz/foo.txt\tfizz/buzz/foo.txt"),
+        oneChange("R\tfizz/foo.txt\tfizz/buzz/foo.txt"),
         "move foo.txt to fizz/buzz"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tfizz/foo bar.txt\tfizz/buzz baz/foo bar.txt"),
+        "move 'foo bar.txt' to 'fizz/buzz baz'"
       );
     });
 
@@ -101,6 +123,11 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(
         oneChange("R\tbar/foo.txt\tfizz/fuzz.txt"),
         "move and rename foo.txt to fizz/fuzz.txt"
+      );
+
+      assert.strictEqual(
+        oneChange("R\tbar/foo.txt\tfizz/baz fuzz.txt"),
+        "move and rename foo.txt to 'fizz/baz fuzz.txt'"
       );
     });
 
@@ -127,6 +154,10 @@ describe("Generate commit message for a single changed file", function () {
       );
 
       assert.strictEqual(oneChange("A\tfoo/index.md"), "create foo/index.md");
+      assert.strictEqual(
+        oneChange("A\tfoo/index bazz.md"),
+        "create 'foo/index bazz.md'"
+      );
       assert.strictEqual(oneChange("A\tfoo/index.js"), "create foo/index.js");
     });
   });
@@ -141,6 +172,14 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "A", from: "bar.txt", y: " ", to: "" },
         ]),
         "create foo.txt and bar.txt"
+      );
+
+      assert.strictEqual(
+        namedFilesDesc([
+          { x: "A", from: "foo bar.txt", y: " ", to: "" },
+          { x: "A", from: "fizz buzz.txt", y: " ", to: "" },
+        ]),
+        "create 'foo bar.txt' and 'fizz buzz.txt'"
       );
 
       assert.strictEqual(
@@ -168,6 +207,15 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "A", from: "buzz.js", y: " ", to: "" },
         ]),
         "create foo.txt, bar.txt and buzz.js"
+      );
+
+      assert.strictEqual(
+        namedFilesDesc([
+          { x: "A", from: "foo.txt", y: " ", to: "" },
+          { x: "A", from: "docs/bar fuzz.txt", y: " ", to: "" },
+          { x: "A", from: "buzz.js", y: " ", to: "" },
+        ]),
+        "create foo.txt, 'bar fuzz.txt' and buzz.js"
       );
 
       assert.strictEqual(
