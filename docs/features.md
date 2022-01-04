@@ -20,13 +20,13 @@ A roadmap of features and whether done or not.
     - [x] As a list of the same nature e.g. `update foo.txt and fizz/bar.txt`, `feat: create foo.txt, fizz/bar.txt and buzz.js` (including prefix) and `Various changes to foo.txt and fizz/bar.txt` (for one updated and one new file). See [#29](https://github.com/MichaelCurrin/auto-commit-msg/pull/29).
     - [x] As a count. e.g. `update 3 files`. See [#38](https://github.com/MichaelCurrin/auto-commit-msg/issues/38).
     - [ ] As different verb for each change `create foo.txt and delete bar.txt`. See [#37](https://github.com/MichaelCurrin/auto-commit-msg/issues/37) and See [#52](https://github.com/MichaelCurrin/auto-commit-msg/issues/52).
-    - [ ] As a count in a directory. `update 3 files in bar`
+    - [ ] As a count in a directory. `update 3 files in foo`
     - [ ] As a count with a conventional commit message. See [#51](https://github.com/MichaelCurrin/auto-commit-msg/issues/51).
     - [ ] As a count with a label. e.g. `update 3 config files`. See [#13](https://github.com/MichaelCurrin/auto-commit-msg/issues/13).
     - [ ] As count that uses the old message. See [#55](https://github.com/MichaelCurrin/auto-commit-msg/issues/55)
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [x] Use conventional commits e.g. `chore: Update package.json`
-
+- [x] Support directories or filenames with spaces by adding quotes. e.g. `chore: rename foo.txt to 'foo bar.txt'`
 
 ## Topics areas
 
