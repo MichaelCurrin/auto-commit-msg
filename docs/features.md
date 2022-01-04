@@ -26,7 +26,7 @@ A roadmap of features and whether done or not.
     - [ ] As count that uses the old message. See [#55](https://github.com/MichaelCurrin/auto-commit-msg/issues/55)
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [x] Use conventional commits e.g. `chore: Update package.json`
-- [x] Support directories or filenames with spaces by adding quotes. e.g. `chore: rename foo.txt to 'foo bar.txt'`
+- [x] Support directories or filenames with spaces in them by adding quotes. e.g. `chore: rename foo.txt to 'foo bar.txt'`
 
 ## Topics areas
 
