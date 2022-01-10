@@ -1,4 +1,4 @@
-# Manual
+# User manual
 > Guides for users to install and use the extension
 
 - [Installation](installation.md)
