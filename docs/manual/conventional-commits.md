@@ -36,3 +36,14 @@ So then the format of generated messages:
 Additionally, a custom message is allowed:
 
 - `CUSTOM_MESSAGE TYPE: DESCRIPTION`
+
+Here are some sample messages that this extension creates:
+
+- `feat: create foo.txt`
+- `build: update Makefile`
+- `build(deps): update package-lock.json`
+- `docs: update README.md`
+- `test: update foo.spec.js`
+- `chore: rename fizz.txt to buzz.txt`
+
+See [Sample usage](https://github.com/MichaelCurrin/auto-commit-msg#sample-usage) for screenshots.
