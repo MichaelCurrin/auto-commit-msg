@@ -114,6 +114,8 @@ If you renamed a file:
 
 ## Documentation
 
+Guides for installing and using the pre-built extension and for developers to build from source code.
+
 <div align="center">
 
 [![view - Documentation](https://img.shields.io/badge/view-Documenation-blue?style=for-the-badge)](/docs/)
