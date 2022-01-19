@@ -1,7 +1,8 @@
 /**
  * Conventional Commit module.
  *
- * Process file paths and how they changed and generate a type like 'chore' or 'docs'.
+ * Process file paths and how they changed and generate a type like 'chore' or
+ * 'docs'.
  */
 import { ACTION, CONVENTIONAL_TYPE } from "../lib/constants";
 import { splitPath } from "../lib/paths";
@@ -30,7 +31,8 @@ const PACKAGE_DIRS = [
     "Gemfile",
     "Gemfile.lock",
 
-    // NPM (Exclude package.json since it can be used for metadata and not package always changes.)
+    // NPM (Exclude package.json since it can be used for metadata and not
+    // package always changes.)
     "package-lock.json",
     "shrinkwrap.json",
     "yarn.lock",
@@ -90,10 +92,11 @@ const BUILD_NAMES = [
     ".gradle",
   ];
 
-// This may be too broad or clash with other areas such as CI or package, unless used close to LAST
-// in the entire flow.
-// Note also that prettier and ESLint configs with various extensions are handled in isConfigRelated
-// so don't have to be listed explictly. Though those strings should be moved out of the function.
+// This may be too broad or clash with other areas such as CI or package, unless
+// used close to LAST in the entire flow.
+// Note also that prettier and ESLint configs with various extensions are
+// handled in isConfigRelated so don't have to be listed explictly. Though those
+// strings should be moved out of the function.
 const CONFIG_EXTENSIONS = [".yml", ".yaml", ".json", ".toml", ".ini", ".cfg"],
   CONFIG_DIRS = [".vscode"],
   CONFIG_NAMES = [
@@ -233,7 +236,7 @@ const DOC_NAMES = [
  *
  * This ignores the action such as create/delete file.
  *
- * For move or rename cases, the input path is assumed to be the `to` path path
+ * For move or rename cases, the input path is assumed to be the `to` path
  * as that would more useful than knowing the `from` path.
  */
 export class ConventionalCommit {
@@ -243,13 +246,16 @@ export class ConventionalCommit {
   extension: string;
 
   constructor(filePath: string) {
-    // TODO It is worth keeping splitPath on its own for separation of concerns, but
-    // could it work better as a class? And then conv commit can inherit from it.
+    // TODO It is worth keeping splitPath on its own for separation of concerns,
+    // but could it work better as a class? And then conv commit can inherit
+    // from it.
     // The properties are actually all the same her as there (duplication), only the conv commit
     // methods get added here as new.
+    //
     // Maybe a class is overkill as it is just a container of data.
-    // Maybe the {} can be stored an object here. Or maybe combine that and this at the risk
-    // of doing too much. But still easy to test attributes vs methods.
+    // Maybe the {} can be stored an object here. Or maybe combine that and this
+    // at the risk of doing too much. But still easy to test attributes vs
+    // methods.
     const { atRoot, dirPath, name, extension } = splitPath(filePath);
     this.atRoot = atRoot;
     this.dirPath = dirPath;
