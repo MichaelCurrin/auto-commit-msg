@@ -3,9 +3,9 @@
  *
  * Phrase commit changes in words.
  *
- * This follows the git style of using `x` and `y`. See this project's docs for more info. Note that
- * `first` and `second` are not appropriate names as `git status` and `git diff-index` behave
- * differently.
+ * This follows the git style of using `x` and `y`. See this project's docs for
+ * more info. Note that `first` and `second` are not appropriate names as `git
+ * status` and `git diff-index` behave differently.
  */
 import { ACTION, ROOT } from "../lib/constants";
 import { moveOrRenameFromPaths, quoteForSpaces, splitPath } from "../lib/paths";
