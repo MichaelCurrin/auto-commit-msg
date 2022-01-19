@@ -8,9 +8,9 @@ import { splitPath } from "../lib/paths";
 
 // Package-related can be for 'build'.
 const PACKAGE_DIRS = [
-    // Rust
-    ".cargo",
-  ],
+  // Rust
+  ".cargo",
+],
   PACKAGE_NAMES = [
     // Python
     "requirements.txt",
@@ -56,29 +56,29 @@ const PACKAGE_DIRS = [
 
 // Build system (scripts, configurations or tools) and package dependencies.
 const BUILD_NAMES = [
-    // Docker
-    ".dockerignore",
-    "Dockerfile",
-    "docker-compose.yml",
+  // Docker
+  ".dockerignore",
+  "Dockerfile",
+  "docker-compose.yml",
 
-    // Make
-    "GNUmakefile",
-    "makefile",
-    "Makefile",
+  // Make
+  "GNUmakefile",
+  "makefile",
+  "Makefile",
 
-    // Ruby Rake - based on rake CLI message.
-    "rakefile",
-    "Rakefile",
-    "rakefile.rb",
-    "Rakefile.rb",
+  // Ruby Rake - based on rake CLI message.
+  "rakefile",
+  "Rakefile",
+  "rakefile.rb",
+  "Rakefile.rb",
 
-    "package.json", // Not necessarily package-related but always build-related.
+  "package.json", // Not necessarily package-related but always build-related.
 
-    // Java
-    "gradlew",
-    "grailsw",
-    "micronaut-cli.yml",
-  ],
+  // Java
+  "gradlew",
+  "grailsw",
+  "micronaut-cli.yml",
+],
   BUILD_EXTENSIONS = [
     // Ruby installation
     ".gemspec",
@@ -150,34 +150,34 @@ const CI_DIRS = [".circleci", ".github/workflows"],
 // It might be easier to leave out this list and assume everything is a script
 // unless it is a doc, markdown file or config.
 const SCRIPT_EXTENSIONS = [
-    ".html",
+  ".html",
 
-    ".css",
-    ".less",
-    ".scss",
+  ".css",
+  ".less",
+  ".scss",
 
-    ".js",
-    ".jsx",
-    ".ts",
-    ".tsx",
-    ".mjs",
+  ".js",
+  ".jsx",
+  ".ts",
+  ".tsx",
+  ".mjs",
 
-    ".py",
+  ".py",
 
-    ".rb",
+  ".rb",
 
-    ".java",
-    ".jar",
+  ".java",
+  ".jar",
 
-    ".c",
-    ".h",
+  ".c",
+  ".h",
 
-    ".rs",
+  ".rs",
 
-    ".go",
+  ".go",
 
-    ".php",
-  ],
+  ".php",
+],
   // For "Update 5 shell scripts"
   SHELL_SCRIPT_EXTENSION = ".sh";
 
@@ -194,9 +194,9 @@ const DOCS_DIRS = [
   ".github/ISSUE_TEMPLATE",
   ".github/PULL_REQUEST_TEMPLATE",
 ];
-// Anything in `/docs` will be covered already so this is for the root and any subdirectories. Don't
-// worry about .rst as those are already cover as always docs. While `.md` could be content for a
-// static site or docs site.
+// Anything in `/docs` will be covered already so this is for the root and any
+// subdirectories. Don't worry about .rst as those are already cover as always
+// docs. While `.md` could be content for a static site or docs site.
 const DOC_NAMES = [
   "README",
   "README.md",
@@ -233,8 +233,8 @@ const DOC_NAMES = [
  *
  * This ignores the action such as create/delete file.
  *
- * For move or rename cases, the input path is assumed to be the `to` path path as that would more
- * useful than knowing the `from` path.
+ * For move or rename cases, the input path is assumed to be the `to` path path
+ * as that would more useful than knowing the `from` path.
  */
 export class ConventionalCommit {
   atRoot: boolean;
@@ -281,6 +281,7 @@ export class ConventionalCommit {
       dir.includes("test/") ||
       dir.includes("tests/") ||
       dir.includes("spec/") ||
+      dir.includes("__mocks__/") ||
       dir.startsWith("unit") ||
       this.name.includes(".test.") ||
       this.name.includes(".spec.") ||
@@ -368,9 +369,10 @@ export class ConventionalCommit {
  *
  * Relies on both the action performed and the path.
  *
- * Don't distinguish `ACTION.M` vs `ACTION.A`, as it could be a fix or feature. So just use
- * unknown/null value. Though it could be set as always feature or docs as a general rule or config
- * option on the project level or extension level.
+ * Don't distinguish `ACTION.M` vs `ACTION.A`, as it could be a fix or feature.
+ * So just use unknown/null value. Though it could be set as always feature or
+ * docs as a general rule or config option on the project level or extension
+ * level.
  */
 export function getConventionType(
   action: ACTION,
