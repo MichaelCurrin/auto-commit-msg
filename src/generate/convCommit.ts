@@ -16,7 +16,7 @@ import {
   CONFIG_NAMES,
   DOC_NAMES,
   LICENSE_NAMES,
-  PACKAGE_NAMES
+  PACKAGE_NAMES,
 } from "./convCommitConstants";
 
 /**
