@@ -23,9 +23,10 @@ describe("Split an array of strings at a separator", function () {
 });
 
 describe("Find the highest common parent directory for paths", function () {
-  // This is useful when building a change message about multiple files and seeing what the high
-  // common level is between them so this can be used in the message. If the parent directory is
-  // needed for that to keep it much shorter, that is easy from the std lib.
+  // This is useful when building a change message about multiple files and
+  // seeing what the high common level is between them so this can be used in
+  // the message. If the parent directory is needed for that to keep it much
+  // shorter, that is easy from the std lib.
   describe("#commonPath", function () {
     it("should give the common path for 3 root repo paths", function () {
       const paths = ["foo", "bar", "fizz/buzz"];

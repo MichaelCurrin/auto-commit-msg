@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 # CLI test.
 #
-# This script is *not* ready to be used in other projects. See shell/README.md for dev notes.
+# This script is *not* ready to be used in other projects. See shell/README.md
+# for dev notes.
 #
-# This is a pure CLI that script bypasses using VS Code or an extension. It will get output from
-# git, send it to Node CLI entry-point tool and print it. This can be used as part of git commit
-# message hook flow.
+# This is a pure CLI that script bypasses using VS Code or an extension. It will
+# get output from git, send it to Node CLI entry-point tool and print it. This
+# can be used as part of git commit message hook flow.
 #
-# Optionally add a `-d` debug flag to print without writing to a file. This makes it easy to debug
-# the script outside a git commit hook flow.
+# Optionally add a `-d` debug flag to print without writing to a file. This
+# makes it easy to debug the script outside a git commit hook flow.
 #  ./autofill-hook.sh -p
 #
 # See shell/README.md doc.

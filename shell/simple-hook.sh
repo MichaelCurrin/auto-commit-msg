@@ -3,13 +3,16 @@
 #
 # Usage:
 #   ./simple-hook.sh MSG SRC SHA [-d]
-# The last part is an optional non-standard flag, allowing this to be run directly without writing out.
+# The last part is an optional non-standard flag, allowing this to be run
+# directly without writing out.
 #
-# This uses a call to `git status`, processes the text, writes out to a commit message file.
+# This uses a call to `git status`, processes the text, writes out to a commit
+# message file.
 
 set -e
 
-# These are the 3 standard prepare-commit-msg args as per the hooks example and git hook docs.
+# These are the 3 standard prepare-commit-msg args as per the hooks example and
+# git hook docs.
 COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
 SHA1=$3

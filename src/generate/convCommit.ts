@@ -37,8 +37,8 @@ export class ConventionalCommit {
     // TODO It is worth keeping splitPath on its own for separation of concerns,
     // but could it work better as a class? And then conv commit can inherit
     // from it.
-    // The properties are actually all the same her as there (duplication), only the conv commit
-    // methods get added here as new.
+    // The properties are actually all the same her as there (duplication), only
+    // the conv commit methods get added here as new.
     //
     // Maybe a class is overkill as it is just a container of data.
     // Maybe the {} can be stored an object here. Or maybe combine that and this

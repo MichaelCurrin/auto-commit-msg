@@ -1,8 +1,8 @@
 /**
  * Count module.
  *
- * Rather than dealing with individual file names, this module deals with grouping files by actions
- * and showing a count for each.
+ * Rather than dealing with individual file names, this module deals with
+ * grouping files by actions and showing a count for each.
  *
  * e.g. 'create 5 files' (in different directories).
  * e.g. 'update 3 files in foo' (highest common directory).
@@ -54,7 +54,8 @@ export function _pluralS(count: number) {
 /**
  * Return a human-readable message a single action and count value.
  *
- * Anything works for action - it is not enforced to be one of ACTION or the MoveOrRename type.
+ * Anything works for action - it is not enforced to be one of ACTION or the
+ * MoveOrRename type.
  */
 export function _formatOne(action: string, count: number) {
   return `${action} ${count} file${_pluralS(count)}`;

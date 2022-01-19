@@ -1,13 +1,14 @@
 /**
  * Prepare commit message.
  *
- * This module ties together logic from independent modules in the `generate` module. So it is best
- * kept on the outside here.
+ * This module ties together logic from independent modules in the `generate`
+ * module. So it is best kept on the outside here.
  *
- * The "message" is the full commit message. The "file change description" is the description
- * portion, which describes how the files changed.
+ * The "message" is the full commit message. The "file change description" is
+ * the description portion, which describes how the files changed.
  *
- * This module doesn't interact with the git CLI or the extension. It just deals with text.
+ * This module doesn't interact with the git CLI or the extension. It just deals
+ * with text.
  */
 import { lookupDiffIndexAction } from "./generate/action";
 import { getConventionType } from "./generate/convCommit";

@@ -1,13 +1,14 @@
 /**
  * CLI module.
  *
- * This is the entry-point for the Auto Commit Message tool when running as a STANDALONE
- * command-line script i.e. without VS Code.
+ * This is the entry-point for the Auto Commit Message tool when running as a
+ * STANDALONE command-line script i.e. without VS Code.
  *
  * This script does NOT interact with VS Code or the Git.
  *
- * It simply receives text as an argument and prints output to `stdout` for use in a hook flow. Or
- * `stderr`, in the case of a message not appropriate for a commit message.
+ * It simply receives text as an argument and prints output to `stdout` for use
+ * in a hook flow. Or `stderr`, in the case of a message not appropriate for a
+ * commit message.
  *
  * See `shell/README.md` in docs.
  */

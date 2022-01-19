@@ -11,7 +11,8 @@ fi
 git init "$DIR" --quiet
 cd "$DIR"
 
-# Create a commit, so that the extension can run diff-index, which requires an initial commit.
+# Create a commit, so that the extension can run diff-index, which requires an
+# initial commit.
 echo "# Sandbox\n" >'README.md'
 echo 'console.log("Hello, Foo!");' >foo.js
 echo 'console.log("Hello, Fizz!");' >fizz.js

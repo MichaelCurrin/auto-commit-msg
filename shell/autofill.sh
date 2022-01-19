@@ -3,7 +3,8 @@
 #
 # Produce a commit message from changed files and print to stdout.
 
-# This works similar to a Git hook, but is intended to be used alone or in a Git alias.
+# This works similar to a Git hook, but is intended to be used alone or in a Git
+# alias.
 #
 # See shell/README.md doc.
 # See src/git/cli.ts for flags.
