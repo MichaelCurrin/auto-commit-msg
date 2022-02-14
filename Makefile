@@ -1,5 +1,4 @@
 PUBLISHER_NAME = MichaelCurrin
-INCREMENT ?= minor
 
 
 default: install
@@ -58,12 +57,14 @@ login:
 	npx vsce login $(PUBLISHER_NAME)
 
 # Increment tag, publish to Marketplace, then install globally.
-publish:
-	npx vsce publish $(INCREMENT)
+publish-M:
+	npx vsce publish major
 	npm run ext
 
-# Tag and push to GitHub, then install globally. Not used so much since
-# publishing is set up.
-tag:
-	npm version $(INCREMENT)
+publish-m:
+	npx vsce publish minor
+	npm run ext
+
+publish-b:
+	npx vsce publish patch
 	npm run ext
