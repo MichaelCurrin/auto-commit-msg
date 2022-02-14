@@ -21,37 +21,22 @@ $ make ls
 
 ### Publish
 
-This is only relevant for the maintainer of this repo, as access to publishing to VS Code Marketplace requires auth.
+_This section is only relevant for the **maintainer** of this repo, as access to publishing to VS Code Marketplace requires authorization._
 
 See [Publish recipe][] for more detailed steps.
 
-Store a token for Azure DevOps (for accessing VS Code Marketplace).
+Store a token for Azure DevOps - this only needs to be done once and grants access to publishing to VS Code Marketplace.
 
 ```sh
 $ make login
 ```
 
-Tag and push to GitHub and VS Code Marketplace.
+Tag and push to GitHub and VS Code Marketplace. For major, minor, or bug/patch levels respectively.
 
 ```sh
-$ make publish
+$ make publish-M
+$ make publish-m
+$ make publish-b
 ```
 
 [Publish recipe]: https://michaelcurrin.github.io/code-cookbook/recipes/other/vs-code-extensions/publish.html
-
-### Tag
-
-How to create a Git release without publishing to the Marketplace. Rather use the [Publish](#publish) step above.
-
-```sh
-$ make tag
-```
-
-That will do the following:
-
-1. Run checks.
-2. Build an extension file in the `build` directory.
-3. Increment a minor tag version.
-4. Push.
-
-Then go into the [Releases](https://github.com/MichaelCurrin/auto-commit-msg/releases) section on GitHub, create a release from the tag and upload the built extension `.vsix` file to the binaries part.
