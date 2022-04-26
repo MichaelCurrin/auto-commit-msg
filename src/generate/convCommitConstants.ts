@@ -100,6 +100,7 @@ export const CONFIG_EXTENSIONS = [
   ".toml",
   ".ini",
   ".cfg",
+  ".config.js", // e.g. for jest and commitlint
 ];
 export const CONFIG_DIRS = [".vscode"];
 export const CONFIG_NAMES = [
@@ -120,7 +121,6 @@ export const CONFIG_NAMES = [
   // Node
   ".browserslistrc",
   "browserslist",
-  "commitlint.config.js",
 
   // TypeScript
   "tsconfig.json",
@@ -145,7 +145,7 @@ export const CI_NAMES = [
   ".codecov.yml",
   ".codeclimate.yml",
 
-  // Zeit
+  // Zeit / Vercel
   "now.json",
   ".nowignore",
   "vercel.json",
