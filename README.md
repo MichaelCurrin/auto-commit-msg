@@ -22,7 +22,6 @@
 ![VS Code extension marketplace version](https://img.shields.io/visual-studio-marketplace/v/MichaelCurrin.auto-commit-msg)
 ![VS Code extension installs](https://img.shields.io/visual-studio-marketplace/i/MichaelCurrin.auto-commit-msg)
 ![VS Code extension rating](https://img.shields.io/visual-studio-marketplace/r/MichaelCurrin.auto-commit-msg)
-![VS Code extension release date](https://img.shields.io/visual-studio-marketplace/release-date/MichaelCurrin.auto-commit-msg)
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
 </a>
