@@ -256,11 +256,16 @@ export function _combineOldAndNew(
  *
  * High-level function to process file changes and an old message, to generate a
  * replacement commit message.
+ *
+ * @param lines An array of values describing file change from Git output.
+ *   e.g. ["A    baz.txt"]
+ * @param oldMsg The commit message that was in UI box before running the
+ *   extension's command.
  */
 export function _generateMsgWithOld(lines: string[], oldMsg: string) {
   if (oldMsg === "") {
     throw new Error(
-      "`oldMsg` must be non-empty - or use `generateNewMsg` instead."
+      "`oldMsg` must be non-empty here, or use `generateNewMsg` instead."
     );
   }
   const { typePrefix, description } = _msgFromChanges(lines);
@@ -278,7 +283,10 @@ export function _generateMsgWithOld(lines: string[], oldMsg: string) {
  * might be a commit message template that VS Code has filled in), or a commit
  * message template read from a file in the case of a hook flow without VS Code.
  *
- * @param lines A list of text values describing how files changes.
+ * @param lines An array of values describing file change from Git output.
+ *   e.g. ["A    baz.txt"]
+ * @param oldMsg The commit message that was in UI box before running the
+ *   extension's command.
  */
 export function generateMsg(lines: string[], oldMsg?: string): string {
   if (!oldMsg) {
