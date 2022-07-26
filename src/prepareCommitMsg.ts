@@ -20,12 +20,13 @@ import { parseDiffIndex } from "./git/parseOutput";
 import { AGGREGATE_MIN, CONVENTIONAL_TYPE } from "./lib/constants";
 import { equal } from "./lib/utils";
 import { ConvCommitMsg } from "./prepareCommitMsg.d";
+
 /**
  * Join two strings together with a space.
  *
- * Use only one string if only one is set, or if they are identical.
+ * Use only one string if only one is set or if they are identical.
  *
- * Trimming on the outside is necessary, in case only one item is set.
+ * Trimming on the outside is necessary here, in case only one item is set.
  */
 export function _cleanJoin(first: string, second: string) {
   first = first.trim();
@@ -35,6 +36,13 @@ export function _cleanJoin(first: string, second: string) {
     return first;
   }
   return `${first} ${second}`.trim();
+}
+
+/**
+ * Join two strings using a colon and space.
+ */
+export function _colonJoin(first: string, second: string): string {
+  return `${first}: ${second}`;
 }
 
 /**
@@ -162,7 +170,7 @@ export function _formatMsg(convCommitMsg: ConvCommitMsg) {
   if (convCommitMsg.typePrefix === CONVENTIONAL_TYPE.UNKNOWN) {
     return convCommitMsg.description;
   }
-  return `${convCommitMsg.typePrefix}: ${convCommitMsg.description}`;
+  return _colonJoin(convCommitMsg.typePrefix, convCommitMsg.description);
 }
 
 /**
@@ -203,7 +211,7 @@ export function _joinOldAndNew(
   if (typePrefix) {
     const prefix = _cleanJoin(oldMsgPieces.customPrefix, typePrefix);
 
-    return `${prefix}: ${descResult}`;
+    return _colonJoin(prefix, descResult);
   }
 
   return descResult;
