@@ -134,7 +134,8 @@ export function _msgCount(lines: string[]): ConvCommitMsg {
  * @param lines An array of values describing file change from Git output.
  *   e.g. ["A    baz.txt"]
  *
- * @returns Conventional Commit prefix and a description of changed paths.
+ * @returns Commit message containing a type prefix and a description of changed
+ *   paths.
  */
 export function _msgFromChanges(lines: string[]) {
   let result: ConvCommitMsg;
@@ -165,7 +166,7 @@ export function _formatMsg(convCommitMsg: ConvCommitMsg) {
 }
 
 /**
- * Generate a new commit message and format it as a string.\
+ * Generate a new commit message and format it as a string.
  *
  * @param lines An array of values describing file change from Git output.
  *   e.g. ["A    baz.txt"]
