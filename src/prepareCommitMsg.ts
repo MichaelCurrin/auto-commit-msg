@@ -99,6 +99,9 @@ export function _collapse(types: CONVENTIONAL_TYPE[]) {
  *
  * This finds a common Conventional Commit prefix if one is appropriate and
  * returns a message listing all the file names.
+ *
+ * @param lines An array of values describing file change from Git output.
+ *   e.g. ["A    baz.txt"]
  */
 export function _msgNamed(lines: string[]): ConvCommitMsg {
   const conventions = lines.map(_prefixFromChange);
@@ -113,7 +116,8 @@ export function _msgNamed(lines: string[]): ConvCommitMsg {
 /**
  * Generate prefix and count description for multiple file changes.
  *
- * TODO: Use prefix.
+ * @param lines An array of values describing file change from Git output.
+ *   e.g. ["A    baz.txt"]
  */
 export function _msgCount(lines: string[]): ConvCommitMsg {
   const prefix = CONVENTIONAL_TYPE.UNKNOWN;
@@ -127,8 +131,8 @@ export function _msgCount(lines: string[]): ConvCommitMsg {
 /**
  * Generate message from changes to one or more files.
  *
- * @param lines Lines from the `git diff-index` function, describing changes to
- * files.
+ * @param lines An array of values describing file change from Git output.
+ *   e.g. ["A    baz.txt"]
  *
  * @returns Conventional Commit prefix and a description of changed paths.
  */
@@ -149,6 +153,9 @@ export function _msgFromChanges(lines: string[]) {
 
 /**
  * Output a readable conventional commit message.
+ *
+ * Use the Conventional Commit type as the prefix if it is known, otherwise
+ * just use the description.
  */
 export function _formatMsg(convCommitMsg: ConvCommitMsg) {
   if (convCommitMsg.typePrefix === CONVENTIONAL_TYPE.UNKNOWN) {
@@ -158,7 +165,10 @@ export function _formatMsg(convCommitMsg: ConvCommitMsg) {
 }
 
 /**
- * Generate a new commit message and format it as a string.
+ * Generate a new commit message and format it as a string.\
+ *
+ * @param lines An array of values describing file change from Git output.
+ *   e.g. ["A    baz.txt"]
  */
 export function _newMsg(lines: string[]) {
   const convCommitMsg = _msgFromChanges(lines);
@@ -167,7 +177,10 @@ export function _newMsg(lines: string[]) {
 }
 
 /**
- * Join old and automated inferred values as one commit message
+ * Combine old and generated values as a single commit message.
+ *
+ * @param autoMsgPieces Auto-generated new commit message pieces.
+ * @param oldMsgPieces The original commit message pieces.
  */
 export function _joinOldAndNew(
   autoMsgPieces: ConvCommitMsg,
