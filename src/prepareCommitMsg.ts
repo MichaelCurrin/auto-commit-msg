@@ -51,6 +51,8 @@ export function _prefixFromChange(line: string) {
 
 /**
  * Generate message for a single file change.
+ *
+ * @param line Description of a file change from Git output. e.g. "A    baz.txt"
  */
 export function _msgOne(line: string) {
   // TODO: Pass FileChanges to oneChange and _prefixFromChange instead of string.
@@ -63,9 +65,11 @@ export function _msgOne(line: string) {
 }
 
 /**
- * Get single Conventional Commit type prefix from multiple items.
+ * Determine a single type prefix from multiple values given.
  *
- * @returns Inferred overall prefix type.
+ * @param types An array of Convention Commit type prefixes.
+ *
+ * @returns A single prefix type.
  *   - Unknown if zero items - not likely in real life but covered anyway.
  *   - The first item if they are equal.
  *   - Use unknown if they are different.
