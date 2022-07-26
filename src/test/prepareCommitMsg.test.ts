@@ -7,15 +7,18 @@ import * as assert from "assert";
 import { MsgPieces } from "../generate/parseExisting.d";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
-  generateMsg, _collapse,
+  generateMsg,
+  _collapse,
   _combineOldAndNew,
   _formatMsg,
   _generateMsgWithOld,
-  _joinOldAndNew, _joinWithSpace, _msgCount,
+  _joinOldAndNew,
+  _joinWithSpace,
+  _msgCount,
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange
+  _prefixFromChange,
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
