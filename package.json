@@ -99,6 +99,16 @@
           "group": "navigation"
         }
       ]
+    },
+    "configuration": {
+      "title": "Auto Commit Msg",
+      "properties": {
+        "autoCommitMsg.useTitlecaseDescription": {
+          "type": "boolean",
+          "default": false,
+          "description": "Convert description to start with a capital letter"
+        }
+      }
     }
   }
 }
