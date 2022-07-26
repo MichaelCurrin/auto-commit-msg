@@ -7,41 +7,38 @@ import * as assert from "assert";
 import { MsgPieces } from "../generate/parseExisting.d";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
-  generateMsg,
-  _cleanJoin,
-  _collapse,
+  generateMsg, _collapse,
   _combineOldAndNew,
   _formatMsg,
   _generateMsgWithOld,
-  _joinOldAndNew,
-  _msgCount,
+  _joinOldAndNew, _joinWithSpace, _msgCount,
   _msgFromChanges,
   _msgNamed,
   _newMsg,
-  _prefixFromChange,
+  _prefixFromChange
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
 describe("Join strings cleanly", function () {
-  describe("#_cleanJoin", function () {
+  describe("#_joinWithSpace", function () {
     it("joins two set strings", function () {
-      assert.strictEqual(_cleanJoin("abc", "def"), "abc def");
-      assert.strictEqual(_cleanJoin(" abc", "def "), "abc def");
+      assert.strictEqual(_joinWithSpace("abc", "def"), "abc def");
+      assert.strictEqual(_joinWithSpace(" abc", "def "), "abc def");
     });
 
     it("uses the first string if the second is not set", function () {
-      assert.strictEqual(_cleanJoin("abc", ""), "abc");
-      assert.strictEqual(_cleanJoin("abc ", ""), "abc");
+      assert.strictEqual(_joinWithSpace("abc", ""), "abc");
+      assert.strictEqual(_joinWithSpace("abc ", ""), "abc");
     });
 
     it("uses the second string if the first is not set", function () {
-      assert.strictEqual(_cleanJoin("", "abc def"), "abc def");
-      assert.strictEqual(_cleanJoin("", "abc def "), "abc def");
+      assert.strictEqual(_joinWithSpace("", "abc def"), "abc def");
+      assert.strictEqual(_joinWithSpace("", "abc def "), "abc def");
     });
 
     it("returns the first string if they are identical, ignoring spaces", function () {
-      assert.strictEqual(_cleanJoin("abc def", "abc def"), "abc def");
-      assert.strictEqual(_cleanJoin("abc def", " abc def "), "abc def");
+      assert.strictEqual(_joinWithSpace("abc def", "abc def"), "abc def");
+      assert.strictEqual(_joinWithSpace("abc def", " abc def "), "abc def");
     });
   });
 });

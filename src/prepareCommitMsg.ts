@@ -28,7 +28,7 @@ import { ConvCommitMsg } from "./prepareCommitMsg.d";
  *
  * Trimming on the outside is necessary here, in case only one item is set.
  */
-export function _cleanJoin(first: string, second: string) {
+export function _joinWithSpace(first: string, second: string) {
   first = first.trim();
   second = second.trim();
 
@@ -203,13 +203,13 @@ export function _joinOldAndNew(
     typePrefix = autoMsgPieces.typePrefix;
   }
 
-  const descResult = _cleanJoin(
+  const descResult = _joinWithSpace(
     autoMsgPieces.description,
     oldMsgPieces.description
   );
 
   if (typePrefix) {
-    const prefix = _cleanJoin(oldMsgPieces.customPrefix, typePrefix);
+    const prefix = _joinWithSpace(oldMsgPieces.customPrefix, typePrefix);
 
     return _colonJoin(prefix, descResult);
   }
