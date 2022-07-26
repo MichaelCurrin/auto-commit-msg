@@ -41,7 +41,7 @@ export function _joinWithSpace(first: string, second: string) {
 /**
  * Join two strings using a colon and space.
  */
-export function _colonJoin(first: string, second: string): string {
+export function _joinWithColon(first: string, second: string): string {
   return `${first}: ${second}`;
 }
 
@@ -170,7 +170,7 @@ export function _formatMsg(convCommitMsg: ConvCommitMsg) {
   if (convCommitMsg.typePrefix === CONVENTIONAL_TYPE.UNKNOWN) {
     return convCommitMsg.description;
   }
-  return _colonJoin(convCommitMsg.typePrefix, convCommitMsg.description);
+  return _joinWithColon(convCommitMsg.typePrefix, convCommitMsg.description);
 }
 
 /**
@@ -211,7 +211,7 @@ export function _joinOldAndNew(
   if (typePrefix) {
     const prefix = _joinWithSpace(oldMsgPieces.customPrefix, typePrefix);
 
-    return _colonJoin(prefix, descResult);
+    return _joinWithColon(prefix, descResult);
   }
 
   return descResult;
