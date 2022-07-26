@@ -259,8 +259,7 @@ export function _combineOldAndNew(
  *
  * @param lines An array of values describing file change from Git output.
  *   e.g. ["A    baz.txt"]
- * @param oldMsg The commit message that was in UI box before running the
- *   extension's command.
+ * @param oldMsg Existing commit message.
  */
 export function _generateMsgWithOld(lines: string[], oldMsg: string) {
   if (oldMsg === "") {
@@ -276,17 +275,14 @@ export function _generateMsgWithOld(lines: string[], oldMsg: string) {
 /**
  * Generate commit message.
  *
- * This is a public wrapper function to allow an existing message to be set or
- * not.
- *
- * Old message could be the current commit message value in the UI box (which
- * might be a commit message template that VS Code has filled in), or a commit
- * message template read from a file in the case of a hook flow without VS Code.
+ * A public wrapper function to allow an existing message to be set.
  *
  * @param lines An array of values describing file change from Git output.
  *   e.g. ["A    baz.txt"]
- * @param oldMsg The commit message that was in UI box before running the
- *   extension's command.
+ * @param oldMsg Existing commit message.This could be the current commit
+ *   message value in the UI box (which might be a commit message template that
+ *   VS Code has filled in), or a commit message template read from a file in
+ *   the case of a hook flow without VS Code.
  */
 export function generateMsg(lines: string[], oldMsg?: string): string {
   if (!oldMsg) {
