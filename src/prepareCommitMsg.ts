@@ -10,6 +10,7 @@
  * This module doesn't interact with the git CLI or the extension. It just deals
  * with text.
  */
+import * as vscode from "vscode";
 import { lookupDiffIndexAction } from "./generate/action";
 import { getConventionType } from "./generate/convCommit";
 import { countFilesDesc } from "./generate/count";
@@ -38,27 +39,32 @@ export function _joinWithSpace(first: string, second: string) {
   return `${first} ${second}`.trim();
 }
 
+/** Return configuration value for whether titlecase must be used. */
+export function _mustUseTitlecase(): boolean {
+  const ws = vscode.workspace.getConfiguration('autoCommitMsg')
+
+  return ws.get('useTitlecaseDescription') ?? false
+}
+
+/**
+ * Capitalize first letter.
+ */
+export function _titlecase(value: string): string {
+  return `${value[0].toUpperCase()}${value.slice(1)}`
+}
+
 /**
  * Join two strings using a colon and a space.
  *
  * @returns Value like 'abc: def'.
  */
 export function _joinWithColon(first: string, second: string): string {
+  const useTitlecase = _mustUseTitlecase()
+  if (useTitlecase) {
+    second = _titlecase(second)
+  }
+
   return `${first}: ${second}`;
-}
-
-/**
- * Join two strings using a colon and a space and the second as titlecase.
- *
- * Using titlecase is not standard in the Conventional Commit convention, but
- * some users will prefer this style.
- *
- * @returns Value like 'abc: Def'.
- */
-export function _joinWithColonTitlecase(first: string, second: string): string {
-  second = `${second[0].toUpperCase()}${second.slice(1)}`
-
-  return _joinWithColon(first, second)
 }
 
 /**
