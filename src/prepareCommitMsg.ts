@@ -208,13 +208,13 @@ export function _joinOldAndNew(
     oldMsgPieces.description
   );
 
-  if (typePrefix) {
-    const prefix = _joinWithSpace(oldMsgPieces.customPrefix, typePrefix);
-
-    return _joinWithColon(prefix, descResult);
+  if (!typePrefix) {
+    return descResult;
   }
 
-  return descResult;
+  const prefix = _joinWithSpace(oldMsgPieces.customPrefix, typePrefix);
+
+  return _joinWithColon(prefix, descResult);
 }
 
 /**
