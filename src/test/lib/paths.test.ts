@@ -13,9 +13,9 @@ import {
   _join,
 } from "../../lib/paths";
 
-describe("Path handling", function () {
-  describe("#splitPath", function () {
-    it("splits a path correctly", function () {
+test("Path handling", function () {
+  test("#splitPath", function () {
+    test("splits a path correctly", function () {
       assert.deepStrictEqual(splitPath("baz.txt"), {
         atRoot: true,
         dirPath: ROOT,
@@ -32,8 +32,8 @@ describe("Path handling", function () {
     });
   });
 
-  describe("#quoteForSpaces", function () {
-    it("add quotes for values with spaces", function () {
+  test("#quoteForSpaces", function () {
+    test("add quotes for values with spaces", function () {
       assert.strictEqual(quoteForSpaces("foo bar.txt"), "'foo bar.txt'");
 
       assert.strictEqual(
@@ -42,7 +42,7 @@ describe("Path handling", function () {
       );
     });
 
-    it("returns the original value if there are no spaces", function () {
+    test("returns the original value if there are no spaces", function () {
       assert.strictEqual(quoteForSpaces("fizz.txt"), "fizz.txt");
 
       assert.strictEqual(
@@ -52,74 +52,74 @@ describe("Path handling", function () {
     });
   });
 
-  describe("#_join", function () {
-    it("returns one item", function () {
+  test("#_join", function () {
+    test("returns one item", function () {
       const result = _join(["foo"]);
       assert.strictEqual(result, "foo");
     });
 
-    it('returns two items joined with "and"', function () {
+    test('returns two items joined with "and"', function () {
       const result = _join(["foo", "bar"]);
       assert.strictEqual(result, "foo and bar");
     });
 
-    it('returns three items joined with commands and an an "and"', function () {
+    test('returns three items joined with commands and an an "and"', function () {
       const result = _join(["foo", "bar", "bazz"]);
       assert.strictEqual(result, "foo, bar and bazz");
     });
 
-    it("returns empty string for now items", function () {
+    test("returns empty string for now items", function () {
       const result = _join([]);
       assert.strictEqual(result, "");
     });
   });
 
-  describe("#friendlyFile", function () {
-    it("formats a long path as a filename only", function () {
+  test("#friendlyFile", function () {
+    test("formats a long path as a filename only", function () {
       assert.strictEqual(friendlyFile("Baz.txt"), "Baz.txt");
       assert.strictEqual(friendlyFile("bazz/Baz.txt"), "Baz.txt");
     });
 
-    it("formats a README file as a full path", function () {
+    test("formats a README file as a full path", function () {
       assert.strictEqual(friendlyFile("README.md"), "README.md");
       assert.strictEqual(friendlyFile("foo/README.md"), "foo/README.md");
       assert.strictEqual(friendlyFile("bar/readme.txt"), "bar/readme.txt");
     });
 
-    it("formats an index file as a full path", function () {
+    test("formats an index file as a full path", function () {
       assert.strictEqual(friendlyFile("Foo/index.md"), "Foo/index.md");
       assert.strictEqual(friendlyFile("Foo/index.html"), "Foo/index.html");
       assert.strictEqual(friendlyFile("Foo/index.js"), "Foo/index.js");
     });
   });
 
-  describe("#humanList", function () {
-    it("returns a path for a single file", function () {
+  test("#humanList", function () {
+    test("returns a path for a single file", function () {
       assert.strictEqual(humanList(["foo.txt"]), "foo.txt");
     });
 
-    it("returns a sentence for two files", function () {
+    test("returns a sentence for two files", function () {
       assert.strictEqual(
         humanList(["foo.txt", "bar.txt"]),
         "foo.txt and bar.txt"
       );
     });
 
-    it("returns a sentence for three files", function () {
+    test("returns a sentence for three files", function () {
       assert.strictEqual(
         humanList(["foo.txt", "bar.txt", "bazz.js"]),
         "foo.txt, bar.txt and bazz.js"
       );
     });
 
-    it("returns a sentence for four files", function () {
+    test("returns a sentence for four files", function () {
       assert.strictEqual(
         humanList(["foo.txt", "bar.txt", "bazz.js", "buzz.ts"]),
         "foo.txt, bar.txt, bazz.js and buzz.ts"
       );
     });
 
-    it("returns a sentence for four longer paths", function () {
+    test("returns a sentence for four longer paths", function () {
       const input = [
         "foo.txt",
         "docs/README.md",
@@ -132,7 +132,7 @@ describe("Path handling", function () {
       );
     });
 
-    it("throws an error for zero files", function () {
+    test("throws an error for zero files", function () {
       assert.throws(() => humanList([]));
     });
   });

@@ -8,7 +8,7 @@
 import * as assert from "assert";
 import { namedFilesDesc, oneChange } from "../../generate/message";
 
-describe("Generate commit message for a single changed file", function () {
+test("Generate commit message for a single changed file", function () {
   // Notes:
   //   - The command `git status --short` expects `XY` format but this is for
   //     `git diff-index` which is only `X`. Also there is just spaces between -
@@ -16,8 +16,8 @@ describe("Generate commit message for a single changed file", function () {
   //   - Impossible cases are not covered here, like renaming a file and the
   //     name and path are unchanged, or including two file names for an add
   //     line. But validation on at least file name is done.
-  describe("#oneChange", function () {
-    it("returns the appropriate commit message for a new file", function () {
+  test("#oneChange", function () {
+    test("returns the appropriate commit message for a new file", function () {
       assert.strictEqual(oneChange("A\tfoo.txt"), "create foo.txt");
 
       // TODO: Maybe 'create foo.txt in bar', if the dir is not too long?
@@ -30,21 +30,21 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("throws an error if no file path can be no generated", function () {
+    test("throws an error if no file path can be no generated", function () {
       assert.throws(() => oneChange("A    "));
     });
 
-    it("returns the appropriate commit message for a modified file", function () {
+    test("returns the appropriate commit message for a modified file", function () {
       assert.strictEqual(oneChange("M\tfoo.txt"), "update foo.txt");
       assert.strictEqual(oneChange("M\tbar/foo.txt"), "update foo.txt");
     });
 
-    it("returns the appropriate commit message for a deleted file", function () {
+    test("returns the appropriate commit message for a deleted file", function () {
       assert.strictEqual(oneChange("D\tfoo.txt"), "delete foo.txt");
       assert.strictEqual(oneChange("D\tbar/foo.txt"), "delete foo.txt");
     });
 
-    it("describes a file renamed in the same directory", function () {
+    test("describes a file renamed in the same directory", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tbar.txt"),
         "rename foo.txt to bar.txt"
@@ -56,7 +56,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("ignores percentage change in a renamed file", function () {
+    test("ignores percentage change in a renamed file", function () {
       // We don't care about getting the percentage out in this project. So just
       // make sure it does get ignored.
       assert.strictEqual(
@@ -65,7 +65,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("describes a file moved out of the repo root to another directory", function () {
+    test("describes a file moved out of the repo root to another directory", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/foo.txt"),
         "move foo.txt to fizz"
@@ -87,7 +87,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("describes a file moved out of a subdirectory", function () {
+    test("describes a file moved out of a subdirectory", function () {
       assert.strictEqual(
         oneChange("R\tfizz/buzz/foo.txt\tfoo.txt"),
         "move foo.txt to repo root"
@@ -109,7 +109,7 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("describes a file that was both moved and renamed", function () {
+    test("describes a file that was both moved and renamed", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/fuzz.txt"),
         "move and rename foo.txt to fizz/fuzz.txt"
@@ -131,14 +131,14 @@ describe("Generate commit message for a single changed file", function () {
       );
     });
 
-    it("ignores percentage changed value for a file that was both moved and renamed", function () {
+    test("ignores percentage changed value for a file that was moved and renamed", function () {
       assert.strictEqual(
         oneChange("R97\tfoo.txt\tfizz/fuzz.txt"),
         "move and rename foo.txt to fizz/fuzz.txt"
       );
     });
 
-    it("uses the full path to describe index files", function () {
+    test("uses the full path to describe index files", function () {
       assert.strictEqual(oneChange("A\tREADME.md"), "create README.md");
       assert.strictEqual(oneChange("M\tREADME.md"), "update README.md");
       assert.strictEqual(oneChange("D\tREADME.md"), "delete README.md");
@@ -163,9 +163,9 @@ describe("Generate commit message for a single changed file", function () {
   });
 });
 
-describe("Generate description for a few changed files which each get named", function () {
-  describe("#namedFilesDesc", function () {
-    it("return the appropriate commit message for two files", function () {
+test("Generate description for a few changed files which each get named", function () {
+  test("#namedFilesDesc", function () {
+    test("return the appropriate commit message for two files", function () {
       assert.strictEqual(
         namedFilesDesc([
           { x: "A", from: "foo.txt", y: " ", to: "" },
@@ -199,7 +199,7 @@ describe("Generate description for a few changed files which each get named", fu
       );
     });
 
-    it("return a commit message for more than two files", function () {
+    test("return a commit message for more than two files", function () {
       assert.strictEqual(
         namedFilesDesc([
           { x: "A", from: "foo.txt", y: " ", to: "" },
@@ -228,7 +228,7 @@ describe("Generate description for a few changed files which each get named", fu
       );
     });
 
-    it("handles differing actions", function () {
+    test("handles differing actions", function () {
       assert.strictEqual(
         namedFilesDesc([
           { x: "A", from: "foo.txt", y: " ", to: "" },

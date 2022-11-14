@@ -5,9 +5,9 @@ import {
   _splitPrefixesAndDesc,
 } from "../../generate/parseExisting";
 
-describe("Split an existing message into components", function () {
-  describe("#_splitPrefixesAndDesc", function () {
-    it("handles a description alone", function () {
+test("Split an existing message into components", function () {
+  test("#_splitPrefixesAndDesc", function () {
+    test("handles a description alone", function () {
       const value = "foo the bar";
       const expected = {
         prefixes: "",
@@ -16,8 +16,8 @@ describe("Split an existing message into components", function () {
       assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
     });
 
-    describe("splits correctly with prefix and description set", function () {
-      it("handles a type prefix", function () {
+    test("splits correctly with prefix and description set", function () {
+      test("handles a type prefix", function () {
         const value = "feat: foo the bar";
         const expected = {
           prefixes: "feat",
@@ -26,7 +26,7 @@ describe("Split an existing message into components", function () {
         assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
       });
 
-      it("handles a custom prefix", function () {
+      test("handles a custom prefix", function () {
         const value = "[ABC-123]: foo the bar";
         const expected = {
           prefixes: "[ABC-123]",
@@ -35,7 +35,7 @@ describe("Split an existing message into components", function () {
         assert.deepStrictEqual(_splitPrefixesAndDesc(value), expected);
       });
 
-      it("handles a custom prefix and type prefix", function () {
+      test("handles a custom prefix and type prefix", function () {
         const value = "[ABC-123] feat: foo the bar";
         const expected = {
           prefixes: "[ABC-123] feat",
@@ -46,36 +46,36 @@ describe("Split an existing message into components", function () {
     });
   });
 
-  describe("#_splitPrefixes", function () {
-    it("returns empty values for an empty string", function () {
+  test("#_splitPrefixes", function () {
+    test("returns empty values for an empty string", function () {
       assert.deepStrictEqual(_splitPrefixes(""), {
         customPrefix: "",
         typePrefix: "",
       });
     });
 
-    it("returns a single word as the type prefix", function () {
+    test("returns a single word as the type prefix", function () {
       assert.deepStrictEqual(_splitPrefixes("foo"), {
         customPrefix: "",
         typePrefix: "foo",
       });
     });
 
-    it("splits two words correctly as custom and type", function () {
+    test("splits two words correctly as custom and type", function () {
       assert.deepStrictEqual(_splitPrefixes("foo bar"), {
         customPrefix: "foo",
         typePrefix: "bar",
       });
     });
 
-    it("splits three words correctly as two for custom and one for type", function () {
+    test("splits three words correctly as two for custom and one for type", function () {
       assert.deepStrictEqual(_splitPrefixes("foo bar bazz"), {
         customPrefix: "foo bar",
         typePrefix: "bazz",
       });
     });
 
-    it("splits four words correctly as three for custom and one for type", function () {
+    test("splits four words correctly as three for custom and one for type", function () {
       assert.deepStrictEqual(_splitPrefixes("foo bar bazz buzz"), {
         customPrefix: "foo bar bazz",
         typePrefix: "buzz",
@@ -83,8 +83,8 @@ describe("Split an existing message into components", function () {
     });
   });
 
-  describe("#splitMsg", function () {
-    it("handles a description alone", function () {
+  test("#splitMsg", function () {
+    test("handles a description alone", function () {
       assert.deepStrictEqual(splitMsg("abc def"), {
         customPrefix: "",
         typePrefix: "",
@@ -109,7 +109,7 @@ describe("Split an existing message into components", function () {
       });
     });
 
-    it("handles a type prefix alone", function () {
+    test("handles a type prefix alone", function () {
       assert.deepStrictEqual(splitMsg("docs:"), {
         customPrefix: "",
         typePrefix: "docs",
@@ -128,7 +128,7 @@ describe("Split an existing message into components", function () {
       });
     });
 
-    it("separates a prefix and description", function () {
+    test("separates a prefix and description", function () {
       assert.deepStrictEqual(splitMsg("docs: abc"), {
         customPrefix: "",
         typePrefix: "docs",
@@ -146,8 +146,8 @@ describe("Split an existing message into components", function () {
       });
     });
 
-    describe("separates a custom prefix, conventional type, and description", function () {
-      it("handles a Jira number with hard brackets", function () {
+    test("separates a custom prefix, conventional type, and description", function () {
+      test("handles a Jira number with hard brackets", function () {
         assert.deepStrictEqual(splitMsg("[ABCD-1234] docs: abc def"), {
           customPrefix: "[ABCD-1234]",
           typePrefix: "docs",
@@ -155,7 +155,7 @@ describe("Split an existing message into components", function () {
         });
       });
 
-      it("handles a Jira number with no hard brackets", function () {
+      test("handles a Jira number with no hard brackets", function () {
         assert.deepStrictEqual(splitMsg("ABCD-1234 docs: abc def"), {
           customPrefix: "ABCD-1234",
           typePrefix: "docs",
@@ -164,7 +164,7 @@ describe("Split an existing message into components", function () {
       });
 
       // TODO:
-      // it("handles a two words before the type", function () {
+      // test("handles a two words before the type", function () {
       //   assert.deepStrictEqual(splitMsg("ABCD 1234 docs: abc def"), {
       //     customPrefix: "ABCD 1234",
       //     typePrefix: "docs",

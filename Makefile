@@ -38,7 +38,7 @@ t test: fix
 
 q test-quick:
 	npx tsc -p .
-	npm run test:unit
+	npm run test:vscode
 
 ### Build
 

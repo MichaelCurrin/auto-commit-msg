@@ -22,34 +22,34 @@ import {
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
-describe("Join strings cleanly", function () {
-  describe("#_joinWithSpace", function () {
-    it("joins two set strings", function () {
+test("Join strings cleanly", function () {
+  test("#_joinWithSpace", function () {
+    test("joins two set strings", function () {
       assert.strictEqual(_joinWithSpace("abc", "def"), "abc def");
       assert.strictEqual(_joinWithSpace(" abc", "def "), "abc def");
     });
 
-    it("uses the first string if the second is not set", function () {
+    test("uses the first string if the second is not set", function () {
       assert.strictEqual(_joinWithSpace("abc", ""), "abc");
       assert.strictEqual(_joinWithSpace("abc ", ""), "abc");
     });
 
-    it("uses the second string if the first is not set", function () {
+    test("uses the second string if the first is not set", function () {
       assert.strictEqual(_joinWithSpace("", "abc def"), "abc def");
       assert.strictEqual(_joinWithSpace("", "abc def "), "abc def");
     });
 
-    it("returns the first string if they are identical, ignoring spaces", function () {
+    test("returns the first string if they are identical, ignoring spaces", function () {
       assert.strictEqual(_joinWithSpace("abc def", "abc def"), "abc def");
       assert.strictEqual(_joinWithSpace("abc def", " abc def "), "abc def");
     });
   });
 });
 
-describe("Find prefix from Git output", function () {
-  describe("#_prefixFromChange", function () {
-    describe("generic file", function () {
-      it("recognizes a new generic file as a feature", function () {
+test("Find prefix from Git output", function () {
+  test("#_prefixFromChange", function () {
+    test("generic file", function () {
+      test("recognizes a new generic file as a feature", function () {
         assert.strictEqual(
           _prefixFromChange("A\tfoo.txt"),
           CONVENTIONAL_TYPE.FEAT
@@ -61,28 +61,28 @@ describe("Find prefix from Git output", function () {
         );
       });
 
-      it("recognizes a modified generic file as an unknown", function () {
+      test("recognizes a modified generic file as an unknown", function () {
         assert.strictEqual(
           _prefixFromChange("M\tfoo.txt"),
           CONVENTIONAL_TYPE.UNKNOWN
         );
       });
 
-      it("recognizes a deleted generic file as a chore", function () {
+      test("recognizes a deleted generic file as a chore", function () {
         assert.strictEqual(
           _prefixFromChange("D\tfoo.txt"),
           CONVENTIONAL_TYPE.CHORE
         );
       });
 
-      it("recognizes a renamed generic file as a chore", function () {
+      test("recognizes a renamed generic file as a chore", function () {
         assert.strictEqual(
           _prefixFromChange("R\tfoo.txt bar.txt"),
           CONVENTIONAL_TYPE.CHORE
         );
       });
 
-      it("recognizes a moved generic file as a chore", function () {
+      test("recognizes a moved generic file as a chore", function () {
         assert.strictEqual(
           _prefixFromChange("R\tfoo.txt bar/foo.txt"),
           CONVENTIONAL_TYPE.CHORE
@@ -90,31 +90,31 @@ describe("Find prefix from Git output", function () {
       });
     });
 
-    describe("categorized file change", function () {
+    test("categorized file change", function () {
       // Don't need to cover every type here - just docs should be fine.
 
-      it("recognizes a new docs file change as docs", function () {
+      test("recognizes a new docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS;
 
         assert.strictEqual(_prefixFromChange("A\tREADME.md"), expected);
         assert.strictEqual(_prefixFromChange("A\tdocs/abc.md"), expected);
       });
 
-      it("recognizes an updated docs file change as docs", function () {
+      test("recognizes an updated docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS;
 
         assert.strictEqual(_prefixFromChange("M\tREADME.md"), expected);
         assert.strictEqual(_prefixFromChange("M\tdocs/foo.md"), expected);
       });
 
-      it("recognizes a deleted docs file change as docs", function () {
+      test("recognizes a deleted docs file change as docs", function () {
         const expected = CONVENTIONAL_TYPE.DOCS;
 
         assert.strictEqual(_prefixFromChange("M\tREADME.md"), expected);
         assert.strictEqual(_prefixFromChange("M\tdocs/foo.md"), expected);
       });
 
-      it("recognizes a renamed docs file change as chore", function () {
+      test("recognizes a renamed docs file change as chore", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(_prefixFromChange("R\tREADME.md\tbar.md"), expected);
@@ -124,7 +124,7 @@ describe("Find prefix from Git output", function () {
           expected
         );
       });
-      it("recognizes a moved docs file change as chore", function () {
+      test("recognizes a moved docs file change as chore", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
@@ -138,20 +138,20 @@ describe("Find prefix from Git output", function () {
       });
     });
 
-    describe("categorized file change with scope", function () {
-      it("recognizes a new build deps file change as build deps", function () {
+    test("categorized file change with scope", function () {
+      test("recognizes a new build deps file change as build deps", function () {
         const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
 
         assert.strictEqual(_prefixFromChange("A\tpackage-lock.json"), expected);
       });
 
-      it("recognizes an updated build deps file change as build deps", function () {
+      test("recognizes an updated build deps file change as build deps", function () {
         const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
 
         assert.strictEqual(_prefixFromChange("M\tpackage-lock.json"), expected);
       });
 
-      it("recognizes a renamed build deps file change as chore", function () {
+      test("recognizes a renamed build deps file change as chore", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
@@ -160,7 +160,7 @@ describe("Find prefix from Git output", function () {
         );
       });
 
-      it("recognizes a moved build deps file change as chore", function () {
+      test("recognizes a moved build deps file change as chore", function () {
         const expected = CONVENTIONAL_TYPE.CHORE;
 
         assert.strictEqual(
@@ -172,20 +172,20 @@ describe("Find prefix from Git output", function () {
   });
 });
 
-describe("Choose a prefix type from multiple", function () {
-  describe("#_collapse", function () {
-    it("uses unknown for zero items", function () {
+test("Choose a prefix type from multiple", function () {
+  test("#_collapse", function () {
+    test("uses unknown for zero items", function () {
       const expected = CONVENTIONAL_TYPE.UNKNOWN;
 
       assert.strictEqual(_collapse([]), expected);
     });
 
-    it("gets the type of the item when there is only one", function () {
+    test("gets the type of the item when there is only one", function () {
       const expected = CONVENTIONAL_TYPE.FEAT;
       assert.strictEqual(_collapse([CONVENTIONAL_TYPE.FEAT]), expected);
     });
 
-    it("gets the type of the first item for identical items", function () {
+    test("gets the type of the first item for identical items", function () {
       const expected = CONVENTIONAL_TYPE.FEAT;
 
       assert.strictEqual(
@@ -203,7 +203,7 @@ describe("Choose a prefix type from multiple", function () {
       );
     });
 
-    it("returns unknown when items differ", function () {
+    test("returns unknown when items differ", function () {
       const expected = CONVENTIONAL_TYPE.UNKNOWN;
 
       assert.strictEqual(
@@ -221,7 +221,7 @@ describe("Choose a prefix type from multiple", function () {
       );
     });
 
-    it("uses build deps change if at least one is present", function () {
+    test("uses build deps change if at least one is present", function () {
       const expected = CONVENTIONAL_TYPE.BUILD_DEPENDENCIES;
       assert.strictEqual(
         _collapse([
@@ -242,10 +242,10 @@ describe("Choose a prefix type from multiple", function () {
   });
 });
 
-describe("Prepare commit message", function () {
-  describe("#_msgNamed", function () {
-    describe("single file changes", function () {
-      it("handles a single file change", function () {
+test("Prepare commit message", function () {
+  test("#_msgNamed", function () {
+    test("single file changes", function () {
+      test("handles a single file change", function () {
         const lines = ["A\tbaz.txt"];
         const expected = {
           typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -256,9 +256,9 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("a few files", function () {
-      describe("multiple files with the same action", function () {
-        it("handles 2 created files created correctly", function () {
+    test("a few files", function () {
+      test("multiple files with the same action", function () {
+        test("handles 2 created files created correctly", function () {
           const lines = ["A\tbaz.txt", "A\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -268,7 +268,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
 
-        it("handles 2 modified files correctly", function () {
+        test("handles 2 modified files correctly", function () {
           const lines = ["M\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -278,7 +278,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
 
-        it("handles 3 files with the same action correctly", function () {
+        test("handles 3 files with the same action correctly", function () {
           const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -288,7 +288,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
 
-        it("handles 4 files with the same action correctly", function () {
+        test("handles 4 files with the same action correctly", function () {
           const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfuzz.md", "A\tfuzz.ts"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -298,7 +298,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
 
-        it("handles 3 files in subdirectories but does not show the directory paths", function () {
+        test("handles 3 files in subdirectories but does not show the directories", function () {
           const lines = ["A\tbaz.txt", "A\tfizz/bar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -309,7 +309,7 @@ describe("Prepare commit message", function () {
         });
 
         /* eslint-disable-next-line quotes */
-        it('handles 2 "build(deps)" files correctly', function () {
+        test('handles 2 "build(deps)" files correctly', function () {
           const lines = ["M\tpackage.json", "M\tpackage-lock.json"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
@@ -319,7 +319,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
 
-        it("handles 3 README.md files in different locations as full paths", function () {
+        test("handles 3 README.md files in different locations as full paths", function () {
           {
             const lines = [
               "M\tdocs/README.md",
@@ -351,8 +351,8 @@ describe("Prepare commit message", function () {
         });
       });
 
-      describe("multiple files with different actions", function () {
-        it("handles 2 files - one created and one modified", function () {
+      test("multiple files with different actions", function () {
+        test("handles 2 files - one created and one modified", function () {
           const lines = ["A\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -362,7 +362,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
 
-        it("handles 3 files - with different actions", function () {
+        test("handles 3 files - with different actions", function () {
           const lines = ["A\tbaz.txt", "M\tbar.js", "D\tREADME.md"];
 
           const expected = {
@@ -376,10 +376,10 @@ describe("Prepare commit message", function () {
     });
   });
 
-  describe("#_msgCount", function () {
-    describe("single file changes", function () {
+  test("#_msgCount", function () {
+    test("single file changes", function () {
       // TODO: Use file name for single file. PR #52.
-      it("handles a single file change", function () {
+      test("handles a single file change", function () {
         const lines = ["A\tbaz.txt"];
         const expected = {
           typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -390,12 +390,12 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("multiple files", function () {
-      describe("multiple files with the same action", function () {
+    test("multiple files", function () {
+      test("multiple files with the same action", function () {
         // Don't need to distinguish between a few or many files as as it
         // supposed to work the same.
 
-        it("handles 2 created files created correctly", function () {
+        test("handles 2 created files created correctly", function () {
           const lines = [
             "A\tfoo.txt",
             "A\tbar.txt",
@@ -411,7 +411,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgCount(lines), expected);
         });
 
-        it("handles 5 created files created correctly", function () {
+        test("handles 5 created files created correctly", function () {
           const lines = [
             "A\tfoo.txt",
             "A\tbar.txt",
@@ -427,7 +427,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgCount(lines), expected);
         });
 
-        it("handles 5 modified files correctly", function () {
+        test("handles 5 modified files correctly", function () {
           const lines = [
             "M\tfoo.txt",
             "M\tbar.txt",
@@ -444,8 +444,8 @@ describe("Prepare commit message", function () {
         });
       });
 
-      describe("multiple files with different actions", function () {
-        it("handles 2 files with 2 actions", function () {
+      test("multiple files with different actions", function () {
+        test("handles 2 files with 2 actions", function () {
           const lines = ["A\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -455,7 +455,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgCount(lines), expected);
         });
 
-        it("handles 5 files with 2 actions", function () {
+        test("handles 5 files with 2 actions", function () {
           const lines = [
             "A\tbaz.txt",
             "M\tbar.js",
@@ -471,7 +471,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgCount(lines), expected);
         });
 
-        it("handles 5 files with 3 different actions", function () {
+        test("handles 5 files with 3 different actions", function () {
           const lines = [
             "A\tbaz.txt",
             "M\tbar.js",
@@ -491,9 +491,9 @@ describe("Prepare commit message", function () {
     });
   });
 
-  describe("#_msgFromChanges", function () {
-    describe("single file changes", function () {
-      it("handles a single file correctly", function () {
+  test("#_msgFromChanges", function () {
+    test("single file changes", function () {
+      test("handles a single file correctly", function () {
         const lines = ["A\tbaz.txt"];
         const expected = {
           typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -504,9 +504,9 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("a few files", function () {
-      describe("multiple files with the same action", function () {
-        it("handles 2 created files created correctly", function () {
+    test("a few files", function () {
+      test("multiple files with the same action", function () {
+        test("handles 2 created files created correctly", function () {
           const lines = ["A\tbaz.txt", "A\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -516,7 +516,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 2 modified files correctly", function () {
+        test("handles 2 modified files correctly", function () {
           const lines = ["M\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -526,7 +526,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 3 files with the same action correctly", function () {
+        test("handles 3 files with the same action correctly", function () {
           const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -536,7 +536,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 4 files with the same action correctly", function () {
+        test("handles 4 files with the same action correctly", function () {
           const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfuzz.md", "A\tfuzz.ts"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -546,7 +546,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 3 files in subdirectories but does not show the directory paths", function () {
+        test("handles 3 files in subdirectories but does not show the directories", function () {
           const lines = ["A\tbaz.txt", "A\tfizz/bar.js", "A\tfizz/fuzz.md"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -557,7 +557,7 @@ describe("Prepare commit message", function () {
         });
 
         /* eslint-disable-next-line quotes */
-        it('handles 2 "build(deps)" files correctly', function () {
+        test('handles 2 "build(deps)" files correctly', function () {
           const lines = ["M\tpackage.json", "M\tpackage-lock.json"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
@@ -567,7 +567,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 3 README.md files in different locations as full paths", function () {
+        test("handles 3 README.md files in different locations as full paths", function () {
           const lines = [
             "M\tdocs/README.md",
             "M\tbar/README.md",
@@ -582,8 +582,8 @@ describe("Prepare commit message", function () {
         });
       });
 
-      describe("multiple files with different actions", function () {
-        it("handles 2 files - one created and one modified", function () {
+      test("multiple files with different actions", function () {
+        test("handles 2 files - one created and one modified", function () {
           const lines = ["A\tbaz.txt", "M\tbar.js"];
           const expected = {
             typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -593,7 +593,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 3 files - with different actions", function () {
+        test("handles 3 files - with different actions", function () {
           const lines = ["A\tbaz.txt", "M\tbar.js", "D\tREADME.md"];
 
           const expected = {
@@ -606,9 +606,9 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("many files", function () {
-      describe("multiple files with the same action", function () {
-        it("handles 5 created files created correctly", function () {
+    test("many files", function () {
+      test("multiple files with the same action", function () {
+        test("handles 5 created files created correctly", function () {
           const lines = [
             "A\tfoo.txt",
             "A\tbar.txt",
@@ -624,7 +624,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 5 modified files correctly", function () {
+        test("handles 5 modified files correctly", function () {
           const lines = [
             "M\tfoo.txt",
             "M\tbar.txt",
@@ -641,8 +641,8 @@ describe("Prepare commit message", function () {
         });
       });
 
-      describe("multiple files with different actions", function () {
-        it("handles 5 files with 2 actions", function () {
+      test("multiple files with different actions", function () {
+        test("handles 5 files with 2 actions", function () {
           const lines = [
             "A\tbaz.txt",
             "M\tbar.js",
@@ -658,7 +658,7 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgFromChanges(lines), expected);
         });
 
-        it("handles 5 files with 3 different actions", function () {
+        test("handles 5 files with 3 different actions", function () {
           const lines = [
             "A\tbaz.txt",
             "M\tbar.js",
@@ -678,8 +678,8 @@ describe("Prepare commit message", function () {
     });
   });
 
-  describe("#_formatMsg", function () {
-    it("combines a prefix and message correctly", function () {
+  test("#_formatMsg", function () {
+    test("combines a prefix and message correctly", function () {
       assert.strictEqual(
         _formatMsg({
           typePrefix: CONVENTIONAL_TYPE.FEAT,
@@ -706,31 +706,31 @@ describe("Prepare commit message", function () {
     });
   });
 
-  describe("#_newMsg", function () {
-    describe("creates a new message from a prefix and message", function () {
-      describe("single change", function () {
-        it("handles a single created file", function () {
+  test("#_newMsg", function () {
+    test("creates a new message from a prefix and message", function () {
+      test("single change", function () {
+        test("handles a single created file", function () {
           assert.strictEqual(_newMsg(["A\tbaz.txt"]), "feat: create baz.txt");
         });
       });
 
-      describe("multiple changes", function () {
+      test("multiple changes", function () {
         // Leave the detailed cases to tests for `_msgFromChanges`.
         const lines = ["A\tbaz.txt", "A\tbar.js"];
         const expected = "feat: create baz.txt and bar.js";
 
-        it("handles 2 created files", function () {
+        test("handles 2 created files", function () {
           assert.strictEqual(_newMsg(lines), expected);
         });
 
-        it("handles 3 created files", function () {
+        test("handles 3 created files", function () {
           const lines = ["A\tbaz.txt", "A\tbar.js", "A\tfizz/fuzz.md"];
           const expected = "feat: create baz.txt, bar.js and fuzz.md";
 
           assert.strictEqual(_newMsg(lines), expected);
         });
 
-        it("handles 3 created docs", function () {
+        test("handles 3 created docs", function () {
           {
             const lines = [
               "M\tdocs/README.md",
@@ -759,12 +759,12 @@ describe("Prepare commit message", function () {
     });
   });
 
-  describe("#_joinOldAndNew", function () {
+  test("#_joinOldAndNew", function () {
     // Cases here are based on `_combineOldAndNew` because that function was
     // created from a refactor.
 
-    describe("handles common scenarios correctly", function () {
-      it("keeps the old message's type, if none can be inferred", function () {
+    test("handles common scenarios correctly", function () {
+      test("keeps the old message's type, if none can be inferred", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
           description: "update prepareCommitMsg.ts",
@@ -781,7 +781,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("keeps the old description", function () {
+      test("keeps the old description", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.CHORE,
           description: "update .editorconfig",
@@ -799,7 +799,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("uses a generated description, but keeps the type from the old message", function () {
+      test("uses a generated description, but keeps the type from the old message", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.CHORE,
           description: "update .editorconfig",
@@ -817,7 +817,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("combines an old custom prefix and type with a new description", function () {
+      test("combines an old custom prefix and type with a new description", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.CHORE,
           description: "update .editorconfig",
@@ -836,8 +836,8 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("use the new message only, if the old message is empty", function () {
-      it("handles an unknown type", function () {
+    test("use the new message only, if the old message is empty", function () {
+      test("handles an unknown type", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
           description: "foo the bar",
@@ -854,7 +854,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("handles a known type", function () {
+      test("handles a known type", function () {
         const autoMsgPieces: ConvCommitMsg = {
           typePrefix: CONVENTIONAL_TYPE.FEAT,
           description: "foo the bar",
@@ -872,9 +872,9 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("combines an old message with a new message", function () {
-      describe("when type prefix cannot be determined from the file changes", function () {
-        it("combines two plain messages", function () {
+    test("combines an old message with a new message", function () {
+      test("when type prefix cannot be determined from the file changes", function () {
+        test("combines two plain messages", function () {
           {
             const autoMsgPieces = {
               typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -910,8 +910,8 @@ describe("Prepare commit message", function () {
           }
         });
 
-        describe("combine a plain message and an existing prefix", function () {
-          it("handles an old message that is just a type", function () {
+        test("combine a plain message and an existing prefix", function () {
+          test("handles an old message that is just a type", function () {
             const autoMsgPieces = {
               typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
               description: "foo the bar",
@@ -928,7 +928,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("handles an old message that a Jira identifier and a type", function () {
+          test("handles an old message that a Jira identifier and a type", function () {
             const autoMsgPieces = {
               typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
               description: "foo the bar",
@@ -945,9 +945,9 @@ describe("Prepare commit message", function () {
             );
           });
 
-          describe("an old message that has a Jira identifier and no type", function () {
-            describe("with a space", function () {
-              it("handles inferred chore type", function () {
+          test("an old message that has a Jira identifier and no type", function () {
+            test("with a space", function () {
+              test("handles inferred chore type", function () {
                 const autoMsgPieces = {
                   typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
                   description: "foo the bar",
@@ -964,7 +964,7 @@ describe("Prepare commit message", function () {
                 );
               });
 
-              it("handles inferred unknown type", function () {
+              test("handles inferred unknown type", function () {
                 const autoMsgPieces = {
                   typePrefix: CONVENTIONAL_TYPE.CHORE,
                   description: "foo the bar",
@@ -982,8 +982,8 @@ describe("Prepare commit message", function () {
               });
             });
 
-            describe("with no space", function () {
-              it("handles inferred chore type", function () {
+            test("with no space", function () {
+              test("handles inferred chore type", function () {
                 const autoMsgPieces = {
                   typePrefix: CONVENTIONAL_TYPE.CHORE,
                   description: "foo the bar",
@@ -1002,7 +1002,7 @@ describe("Prepare commit message", function () {
             });
           });
 
-          it("combines a plain message and an existing prefix with a space after it", function () {
+          test("combines a plain message and existing prefix with a space after it", function () {
             {
               const autoMsgPieces = {
                 typePrefix: CONVENTIONAL_TYPE.UNKNOWN,
@@ -1038,8 +1038,8 @@ describe("Prepare commit message", function () {
             }
           });
 
-          describe("when the result is identical to the old message, don't duplicate", function () {
-            it("adds a inferred type if it has one", function () {
+          test("when the result is identical to the old message, don't duplicate", function () {
+            test("adds a inferred type if it has one", function () {
               assert.strictEqual(
                 _joinOldAndNew(
                   {
@@ -1056,7 +1056,7 @@ describe("Prepare commit message", function () {
               );
             });
 
-            it("does nothing when there are no types to work with", function () {
+            test("does nothing when there are no types to work with", function () {
               assert.strictEqual(
                 _joinOldAndNew(
                   {
@@ -1073,7 +1073,7 @@ describe("Prepare commit message", function () {
               );
             });
 
-            it("ignores a new type if the old one is set", function () {
+            test("ignores a new type if the old one is set", function () {
               assert.strictEqual(
                 _joinOldAndNew(
                   {
@@ -1092,14 +1092,14 @@ describe("Prepare commit message", function () {
           });
         });
 
-        describe("when a convention is determined from the file changes", function () {
+        test("when a convention is determined from the file changes", function () {
           const autoMsgPieces = {
             typePrefix: CONVENTIONAL_TYPE.FEAT,
             description: "foo the bar",
           };
 
-          describe("with no old type, insert a new type between the old and new msg", function () {
-            it("uses a plain old message", function () {
+          test("with no old type, insert a new type between the old and new msg", function () {
+            test("uses a plain old message", function () {
               const oldMsgPieces = {
                 customPrefix: "",
                 typePrefix: "",
@@ -1112,7 +1112,7 @@ describe("Prepare commit message", function () {
               );
             });
 
-            it("uses an old message that is a Jira number only", function () {
+            test("uses an old message that is a Jira number only", function () {
               const oldMsgPieces = {
                 customPrefix: "",
                 typePrefix: "",
@@ -1126,8 +1126,8 @@ describe("Prepare commit message", function () {
             });
           });
 
-          describe("keep the old type if there is one, without using an auto type", function () {
-            it("uses a plain old message", function () {
+          test("keep the old type if there is one, without using an auto type", function () {
+            test("uses a plain old message", function () {
               const oldMsgPieces = {
                 customPrefix: "",
                 typePrefix: "docs",
@@ -1140,7 +1140,7 @@ describe("Prepare commit message", function () {
               );
             });
 
-            it("handles an old message that is Jira number plus a convention type", function () {
+            test("handles an old message that is Jira number plus a convention type", function () {
               const oldMsgPieces = {
                 customPrefix: "[ABCD-1234]",
                 typePrefix: "docs",
@@ -1154,7 +1154,7 @@ describe("Prepare commit message", function () {
             });
           });
 
-          it("inserts replaces an old prefix with a space with a new one", function () {
+          test("inserts replaces an old prefix with a space with a new one", function () {
             {
               const oldMsgPieces = {
                 customPrefix: "",
@@ -1186,9 +1186,9 @@ describe("Prepare commit message", function () {
     });
   });
 
-  describe("#_combineOldAndNew", function () {
-    describe("handles common scenarios correctly", function () {
-      it("keeps the old message's type, if none can be inferred", function () {
+  test("#_combineOldAndNew", function () {
+    test("handles common scenarios correctly", function () {
+      test("keeps the old message's type, if none can be inferred", function () {
         const oldMsg = "docs:";
 
         assert.strictEqual(
@@ -1201,7 +1201,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("keeps the old description", function () {
+      test("keeps the old description", function () {
         // TODO: Make the order of the description pieces should be switched to
         //    be more natural. e.g. 'update .editorconfig - xyz'
         // TODO: If the message is the same, don't add to it. i.e. Don't want
@@ -1218,7 +1218,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("uses a generated description, but keeps the type from the old message", function () {
+      test("uses a generated description, but keeps the type from the old message", function () {
         // In this example, say editing a comment in a config file and entering
         // type as docs and keeping that value instead of a generated one.
         const oldMsg = "docs:";
@@ -1233,7 +1233,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("combines an old custom prefix and type with a new description", function () {
+      test("combines an old custom prefix and type with a new description", function () {
         const oldMsg = "[abc] docs:";
         assert.strictEqual(
           _combineOldAndNew(
@@ -1246,8 +1246,8 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("use the new message only, if the old message is empty", function () {
-      it("handles an unknown type", function () {
+    test("use the new message only, if the old message is empty", function () {
+      test("handles an unknown type", function () {
         const oldMsg = "";
 
         assert.strictEqual(
@@ -1256,7 +1256,7 @@ describe("Prepare commit message", function () {
         );
       });
 
-      it("handles a known type", function () {
+      test("handles a known type", function () {
         const oldMsg = "";
 
         assert.strictEqual(
@@ -1266,12 +1266,12 @@ describe("Prepare commit message", function () {
       });
     });
 
-    describe("combines an old message with a new message", function () {
+    test("combines an old message with a new message", function () {
       // Using '[ABCD-1234]' as a Jira ticket number. A branch or project name
       // works too.
 
-      describe("when type prefix cannot be determined from the file changes", function () {
-        it("combines two plain messages", function () {
+      test("when type prefix cannot be determined from the file changes", function () {
+        test("combines two plain messages", function () {
           assert.strictEqual(
             _combineOldAndNew(
               CONVENTIONAL_TYPE.UNKNOWN,
@@ -1291,8 +1291,8 @@ describe("Prepare commit message", function () {
           );
         });
 
-        describe("combine a plain message and an existing prefix", function () {
-          it("handles an old message that is just a type", function () {
+        test("combine a plain message and an existing prefix", function () {
+          test("handles an old message that is just a type", function () {
             assert.strictEqual(
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.UNKNOWN,
@@ -1303,7 +1303,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("handles an old message that a Jira identifier and a type", function () {
+          test("handles an old message that a Jira identifier and a type", function () {
             assert.strictEqual(
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.UNKNOWN,
@@ -1314,13 +1314,13 @@ describe("Prepare commit message", function () {
             );
           });
 
-          describe("an old message that has a Jira identifier and no type", function () {
+          test("an old message that has a Jira identifier and no type", function () {
             // This behavior makes it easy to use the Git commit message
             // template and know for sure that the old message is a prefix
             // because of the colon, rather than a description.
 
-            describe("with a space", function () {
-              it("handles inferred chore type", function () {
+            test("with a space", function () {
+              test("handles inferred chore type", function () {
                 assert.strictEqual(
                   _combineOldAndNew(
                     CONVENTIONAL_TYPE.CHORE,
@@ -1331,7 +1331,7 @@ describe("Prepare commit message", function () {
                 );
               });
 
-              it("handles inferred unknown type", function () {
+              test("handles inferred unknown type", function () {
                 // Current behavior is unfortunately to drop the old message
                 // completely, but this can be changed. One solution is
                 // to remove unknown and always use feat/fix.
@@ -1346,10 +1346,10 @@ describe("Prepare commit message", function () {
               });
             });
 
-            describe("with no space", function () {
+            test("with no space", function () {
               // This is not an intended case so wasn't designed for, so
               // this is just a test for completeness.
-              it("handles inferred chore type", function () {
+              test("handles inferred chore type", function () {
                 assert.strictEqual(
                   _combineOldAndNew(
                     CONVENTIONAL_TYPE.CHORE,
@@ -1363,7 +1363,7 @@ describe("Prepare commit message", function () {
           });
         });
 
-        it("combines a plain message and an existing prefix with a space after it", function () {
+        test("combines a plain message and an existing prefix with a space after it", function () {
           assert.strictEqual(
             _combineOldAndNew(
               CONVENTIONAL_TYPE.UNKNOWN,
@@ -1383,8 +1383,8 @@ describe("Prepare commit message", function () {
           );
         });
 
-        describe("when the result is identical to the old message, don't duplicate", function () {
-          it("adds a inferred type if it has one", function () {
+        test("when the result is identical to the old message, don't duplicate", function () {
+          test("adds a inferred type if it has one", function () {
             assert.strictEqual(
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.CHORE,
@@ -1395,7 +1395,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("does nothing when there are no types to work with", function () {
+          test("does nothing when there are no types to work with", function () {
             assert.strictEqual(
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.UNKNOWN,
@@ -1406,7 +1406,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("ignores a new type if the old one is set", function () {
+          test("ignores a new type if the old one is set", function () {
             assert.strictEqual(
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.CHORE,
@@ -1419,12 +1419,12 @@ describe("Prepare commit message", function () {
         });
       });
 
-      describe("when a convention is determined from the file changes", function () {
+      test("when a convention is determined from the file changes", function () {
         const autoType = CONVENTIONAL_TYPE.FEAT;
         const autoDesc = "foo the bar";
 
-        describe("with no old type, insert a new type between the old and new msg", function () {
-          it("uses a plain old message", function () {
+        test("with no old type, insert a new type between the old and new msg", function () {
+          test("uses a plain old message", function () {
             const oldMsg = "fizz the buzz";
 
             assert.strictEqual(
@@ -1433,7 +1433,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("uses an old message that is a Jira number only", function () {
+          test("uses an old message that is a Jira number only", function () {
             // We could put old message at the start in the result.
             // The tricky bit is figuring out if the old message belongs after
             // the prefix as 'feat: OLD_MESSAGE NEW_MESSAGE', or it belongs as a
@@ -1450,8 +1450,8 @@ describe("Prepare commit message", function () {
           });
         });
 
-        describe("keep the old type if there is one, without using an auto type", function () {
-          it("uses a plain old message", function () {
+        test("keep the old type if there is one, without using an auto type", function () {
+          test("uses a plain old message", function () {
             const oldMsg = "docs:";
 
             assert.strictEqual(
@@ -1460,7 +1460,7 @@ describe("Prepare commit message", function () {
             );
           });
 
-          it("handles an old message that is Jira number plus a convention type", function () {
+          test("handles an old message that is Jira number plus a convention type", function () {
             const oldMsg = "[ABCD-1234] docs:";
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
@@ -1469,7 +1469,7 @@ describe("Prepare commit message", function () {
           });
         });
 
-        it("inserts replaces an old prefix with a space with a new one", function () {
+        test("inserts replaces an old prefix with a space with a new one", function () {
           {
             const oldMsg = "docs:";
 
@@ -1491,10 +1491,10 @@ describe("Prepare commit message", function () {
     });
   });
 
-  describe("#_generateMsgWithOld", function () {
+  test("#_generateMsgWithOld", function () {
     const fileChanges = ["M\tbaz.txt", "M\tbar.js"];
 
-    it("handles a set old message", function () {
+    test("handles a set old message", function () {
       const oldMsg = "my old message";
 
       assert.strictEqual(
@@ -1503,17 +1503,17 @@ describe("Prepare commit message", function () {
       );
     });
 
-    it("handles an empty old message", function () {
+    test("handles an empty old message", function () {
       const oldMsg = "";
 
       assert.throws(() => _generateMsgWithOld(fileChanges, oldMsg));
     });
   });
 
-  describe("#generateMsg", function () {
+  test("#generateMsg", function () {
     const fileChanges = ["M\tbaz.txt", "M\tbar.js"];
 
-    it("handles a set old message", function () {
+    test("handles a set old message", function () {
       const oldMsg = "my old message";
 
       assert.strictEqual(
@@ -1522,7 +1522,7 @@ describe("Prepare commit message", function () {
       );
     });
 
-    it("handles an empty old message", function () {
+    test("handles an empty old message", function () {
       const oldMsg = "";
 
       assert.strictEqual(

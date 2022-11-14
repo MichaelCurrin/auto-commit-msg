@@ -4,37 +4,37 @@
 import * as assert from "assert";
 import { lookupDiffIndexAction, moveOrRenameMsg } from "../../generate/action";
 
-describe("Desribe a file using a single path", function () {
-  describe("#lookupDiffIndexAction", function () {
-    it("can describe an updated file", function () {
+test("Desribe a file using a single path", function () {
+  test("#lookupDiffIndexAction", function () {
+    test("can describe an updated file", function () {
       assert.strictEqual(lookupDiffIndexAction("M"), "update");
     });
 
-    it("can describe a created file", function () {
+    test("can describe a created file", function () {
       assert.strictEqual(lookupDiffIndexAction("A"), "create");
     });
 
-    it("can describe a deleted file", function () {
+    test("can describe a deleted file", function () {
       assert.strictEqual(lookupDiffIndexAction("D"), "delete");
     });
 
-    it("can describe a renamed file", function () {
+    test("can describe a renamed file", function () {
       assert.strictEqual(lookupDiffIndexAction("R"), "rename");
     });
 
-    it("can describe a copied file", function () {
+    test("can describe a copied file", function () {
       assert.strictEqual(lookupDiffIndexAction("C"), "copy");
     });
 
-    it("can throws an error for a bad key", function () {
+    test("can throws an error for a bad key", function () {
       assert.throws(() => lookupDiffIndexAction("Z"));
     });
   });
 });
 
-describe("Desribe a file using two paths", function () {
-  describe("#moveOrRenameFile", function () {
-    it("can describe a renamed file", function () {
+test("Desribe a file using two paths", function () {
+  test("#moveOrRenameFile", function () {
+    test("can describe a renamed file", function () {
       assert.strictEqual(
         moveOrRenameMsg("foo.txt", "bar.txt"),
         "rename foo.txt to bar.txt"
@@ -51,7 +51,7 @@ describe("Desribe a file using two paths", function () {
       );
     });
 
-    it("can describe a moved file", function () {
+    test("can describe a moved file", function () {
       assert.strictEqual(
         moveOrRenameMsg("buzz/foo.txt", "fizz/foo.txt"),
         "move foo.txt to fizz"
@@ -73,7 +73,7 @@ describe("Desribe a file using two paths", function () {
       );
     });
 
-    it("can describe a remamed and moved file", function () {
+    test("can describe a remamed and moved file", function () {
       assert.strictEqual(
         moveOrRenameMsg("foo.txt", "fizz/bar.txt"),
         "move and rename foo.txt to fizz/bar.txt"

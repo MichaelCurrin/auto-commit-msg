@@ -8,10 +8,10 @@ import * as assert from "assert";
 import { parseDiffIndex, parseStatus } from "../../git/parseOutput";
 import { FileChange } from "../../git/parseOutput.d";
 
-describe("Split `git diff-index` output into components", function () {
-  describe("#parseDiffIndex", function () {
-    describe("states with a single path", function () {
-      it("should return the appropriate commit message for a new file", function () {
+test("Split `git diff-index` output into components", function () {
+  test("#parseDiffIndex", function () {
+    test("states with a single path", function () {
+      test("should return the appropriate commit message for a new file", function () {
         const expected: FileChange = {
           x: "A",
           y: " ",
@@ -22,7 +22,7 @@ describe("Split `git diff-index` output into components", function () {
         assert.deepStrictEqual(parseDiffIndex("A\tfoo.txt"), expected);
       });
 
-      it("should return the appropriate commit message for a modified file", function () {
+      test("should return the appropriate commit message for a modified file", function () {
         const expected: FileChange = {
           x: "M",
           y: " ",
@@ -33,7 +33,7 @@ describe("Split `git diff-index` output into components", function () {
         assert.deepStrictEqual(parseDiffIndex("M\tfoo.txt"), expected);
       });
 
-      it("should return the appropriate commit message for a deleted file", function () {
+      test("should return the appropriate commit message for a deleted file", function () {
         const expected: FileChange = {
           x: "D",
           y: " ",
@@ -45,8 +45,8 @@ describe("Split `git diff-index` output into components", function () {
       });
     });
 
-    describe("states with two paths", function () {
-      it("should return the appropriate commit message for a renamed unchanged file", function () {
+    test("states with two paths", function () {
+      test("should return the correct commit message for a renamed unchanged file", function () {
         const expected: FileChange = {
           x: "R",
           y: " ",
@@ -59,7 +59,7 @@ describe("Split `git diff-index` output into components", function () {
           expected
         );
 
-        it("should return the appropriate commit message for a moved file", function () {
+        test("should return the appropriate commit message for a moved file", function () {
           const expected: FileChange = {
             x: "R",
             y: " ",
@@ -74,7 +74,7 @@ describe("Split `git diff-index` output into components", function () {
         });
       });
 
-      it("returns a correct commit message for a renamed modified file", function () {
+      test("returns a correct commit message for a renamed modified file", function () {
         const expected: FileChange = {
           x: "R",
           y: " ",
@@ -86,7 +86,7 @@ describe("Split `git diff-index` output into components", function () {
           expected
         );
 
-        it("should return the appropriate commit message for a moved file", function () {
+        test("should return the appropriate commit message for a moved file", function () {
           const expected: FileChange = {
             x: "R",
             y: " ",
@@ -102,11 +102,11 @@ describe("Split `git diff-index` output into components", function () {
       });
     });
 
-    describe("handle paths with spaces in them", function () {
+    test("handle paths with spaces in them", function () {
       // No quoting is needed here as that is only needed when formatting the
       // final message.
 
-      it("should handle a single path correctly", function () {
+      test("should handle a single path correctly", function () {
         {
           const expected: FileChange = {
             x: "A",
@@ -162,7 +162,7 @@ describe("Split `git diff-index` output into components", function () {
       });
     });
 
-    it("should handle a pair of paths correctly", function () {
+    test("should handle a pair of paths correctly", function () {
       {
         const expected: FileChange = {
           x: "R",
@@ -192,7 +192,7 @@ describe("Split `git diff-index` output into components", function () {
       }
     });
 
-    it("throws an error on input that is too short", function () {
+    test("throws an error on input that is too short", function () {
       assert.throws(() => parseDiffIndex("abc"));
     });
   });
@@ -200,9 +200,9 @@ describe("Split `git diff-index` output into components", function () {
 
 // Not a core part of this extension anymore, but the code and tests are kept
 // anyway.
-describe("Split `git status` output into components", function () {
-  describe("#parseStatus", function () {
-    it("should return the appropriate commit message for a new file", function () {
+test("Split `git status` output into components", function () {
+  test("#parseStatus", function () {
+    test("should return the appropriate commit message for a new file", function () {
       const expected: FileChange = {
         x: "A",
         y: " ",
@@ -213,7 +213,7 @@ describe("Split `git status` output into components", function () {
       assert.deepStrictEqual(parseStatus("A \tfoo.txt"), expected);
     });
 
-    it("should return the appropriate commit message for a modified file", function () {
+    test("should return the appropriate commit message for a modified file", function () {
       const expected: FileChange = {
         x: " ",
         y: "M",
@@ -224,7 +224,7 @@ describe("Split `git status` output into components", function () {
       assert.deepStrictEqual(parseStatus(" M\tfoo.txt"), expected);
     });
 
-    it("should return the appropriate commit message for a deleted file", function () {
+    test("should return the appropriate commit message for a deleted file", function () {
       const expected: FileChange = {
         x: "D",
         y: " ",
@@ -235,7 +235,7 @@ describe("Split `git status` output into components", function () {
       assert.deepStrictEqual(parseStatus("D  foo.txt"), expected);
     });
 
-    it("should return the appropriate commit message for a renamed file", function () {
+    test("should return the appropriate commit message for a renamed file", function () {
       const expected: FileChange = {
         x: "R",
         y: " ",
@@ -245,7 +245,7 @@ describe("Split `git status` output into components", function () {
 
       assert.deepStrictEqual(parseStatus("R  foo.txt -> bar.txt"), expected);
 
-      it("should return the appropriate commit message for a moved file", function () {
+      test("should return the appropriate commit message for a moved file", function () {
         const expected: FileChange = {
           x: "R",
           y: " ",
@@ -260,7 +260,7 @@ describe("Split `git status` output into components", function () {
       });
     });
 
-    it("throws an error on input that is too short", function () {
+    test("throws an error on input that is too short", function () {
       assert.throws(() => parseStatus("abc"));
     });
   });
