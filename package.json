@@ -111,6 +111,11 @@
           "type": "boolean",
           "default": false,
           "description": "Convert description to start with a capital letter"
+        },
+        "autoCommitMsg.usePrefix": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to use commit type prefix or not (e.g. chore, build, etc)"
         }
       }
     }

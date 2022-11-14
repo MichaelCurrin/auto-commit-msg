@@ -46,6 +46,13 @@ export function _mustUseTitlecase(): boolean {
   return ws.get("useTitlecaseDescription") ?? false;
 }
 
+/** Return configuration value for whether to use commit type prefix or not. */
+export function _mustNotUsePrefix(): boolean {
+  const ws = vscode.workspace.getConfiguration("autoCommitMsg");
+
+  return ws.get("usePrefix") != true;
+}
+
 /**
  * Capitalize first letter.
  */
@@ -62,6 +69,10 @@ export function _joinWithColon(first: string, second: string): string {
   const useTitlecase = _mustUseTitlecase();
   if (useTitlecase) {
     second = _titlecase(second);
+  }
+
+  if (_mustNotUsePrefix()) {
+    return second;
   }
 
   return `${first}: ${second}`;
