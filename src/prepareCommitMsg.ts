@@ -41,16 +41,16 @@ export function _joinWithSpace(first: string, second: string) {
 
 /** Return configuration value for whether titlecase must be used. */
 export function _mustUseTitlecase(): boolean {
-  const ws = vscode.workspace.getConfiguration('autoCommitMsg')
+  const ws = vscode.workspace.getConfiguration("autoCommitMsg");
 
-  return ws.get('useTitlecaseDescription') ?? false
+  return ws.get("useTitlecaseDescription") ?? false;
 }
 
 /**
  * Capitalize first letter.
  */
 export function _titlecase(value: string): string {
-  return `${value[0].toUpperCase()}${value.slice(1)}`
+  return `${value[0].toUpperCase()}${value.slice(1)}`;
 }
 
 /**
@@ -59,9 +59,9 @@ export function _titlecase(value: string): string {
  * @returns Value like 'abc: def'.
  */
 export function _joinWithColon(first: string, second: string): string {
-  const useTitlecase = _mustUseTitlecase()
+  const useTitlecase = _mustUseTitlecase();
   if (useTitlecase) {
-    second = _titlecase(second)
+    second = _titlecase(second);
   }
 
   return `${first}: ${second}`;
