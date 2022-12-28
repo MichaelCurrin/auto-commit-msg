@@ -3,7 +3,7 @@
 How to install and run the extension in VS Code.
 
 
-## Install
+##  Install
 
 Go to the Marketplace link below, then click the _Install_ button.
 
