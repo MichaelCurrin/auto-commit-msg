@@ -27,20 +27,18 @@ function _validateFoundRepos(git: API) {
 }
 
 /**
- * Run autofill against one of multiples in the workspace.
- *
- * This is a rare flow.
+ * Run autofill against one of multiples in the workspace or when using GitLens on a single repo.
  *
  * @param sourceControl Of type `vscode.SourceControl` with public `.rootUri`
- *   and private `.rootUri`.
+ *   and private `._rootUri` (the latter is not set when using GitLens).
  */
 async function _handleRepos(git: API, sourceControl: any) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find
   // second, etc.
   const selectedRepo = git.repositories.find(repository => {
-    const uri = sourceControl._rootUri;
+    const uri = sourceControl.rootUri;
     if (!uri) {
-      console.warn("_rootUri not set");
+      console.warn("rootUri not set on VS Code source control");
     }
     return repository.rootUri.path === uri.path;
   });
