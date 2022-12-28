@@ -28,17 +28,16 @@ function _validateFoundRepos(git: API) {
 
 /**
  * Run autofill against one of multiples in the workspace or when using GitLens on a single repo.
- *
- * @param sourceControl Of type `vscode.SourceControl` with public `.rootUri`
- *   and private `._rootUri` (the latter is not set when using GitLens).
  */
-async function _handleRepos(git: API, sourceControl: any) {
+async function _handleRepos(git: API, sourceControl: vscode.SourceControl) {
   // FIXME: Unfortunately this seems to only pick up the first repo and not find
-  // second, etc.
+  // second, etc. If you repository through to makeAndFillCommitMsg, getChanges
+  // and diffIndex etc. and replace "getWorkspaceFolder" usage then that will work.
   const selectedRepo = git.repositories.find(repository => {
     const uri = sourceControl.rootUri;
     if (!uri) {
-      console.warn("rootUri not set on VS Code source control");
+      console.warn("rootUri not set for current repo");
+      return false;
     }
     return repository.rootUri.path === uri.path;
   });
@@ -61,14 +60,14 @@ async function _handleRepo(git: API) {
 /**
  * Choose the relevant repo and apply autofill logic on files there.
  */
-async function _chooseRepoForAutofill(uri?: vscode.Uri) {
+async function _chooseRepoForAutofill(sourceControl?: vscode.SourceControl) {
   const git = getGitExtension()!;
   _validateFoundRepos(git);
 
   vscode.commands.executeCommand("workbench.view.scm");
 
-  if (uri) {
-    _handleRepos(git, uri);
+  if (sourceControl) {
+    _handleRepos(git, sourceControl);
   } else {
     _handleRepo(git);
   }
