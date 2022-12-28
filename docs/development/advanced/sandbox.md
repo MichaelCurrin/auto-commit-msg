@@ -9,7 +9,7 @@ If you prefer not use this approach, you can just compile and install the extens
 
 ## Start sandbox
 
-These are configured in the `.vscode` directory of the repo.
+These are configured in the `.vscode/launch.json` config.
 
 Follow these steps:
 
@@ -25,7 +25,7 @@ Follow these steps:
         - NB. You'll must run `npm run sb` **first** to ensure this directory exists and then run the debug action. Run that NPM command again whenever you want to clear the space and start over.
 1. Click the run button.
 
-That will start a new sandboxed VS Code session which has the extension built using the local code and _enabled_, and all other extensions _disabled_. At a lower level, it runs `npm compile` and `npm watch`.
+That will start a new sandboxed VS Code session which has the extension built using the local code and _enabled_, and all other extensions _disabled_. At a lower level, it runs `npm compile` and `npm watch`. If you want to keep extensions enabled, remove the `--disable-extensions` flag in the launch config.
 
 What is especially useful about this is that whenever an extension action is performed in the sandboxed VS Code window, if there are any logs for that then those will appear in the Debug Console of the _original_ VS Code window.
 
