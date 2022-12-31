@@ -5,7 +5,7 @@
  * the prepareCommitMsg module to a target branch.
  */
 import * as vscode from "vscode";
-import { API } from "./api/git";
+import { API, Repository } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
 import { getGitExtension } from "./gitExtension";
 
@@ -27,9 +27,12 @@ function _validateFoundRepos(git: API) {
 }
 
 /**
- * Run autofill against one of multiples in the workspace or when using GitLens on a single repo.
+ * Get current repo when using multiples in the workspace (or when using GitLens on a single repo).
  */
-async function _handleRepos(git: API, sourceControl: vscode.SourceControl) {
+async function _handleRepos(
+  git: API,
+  sourceControl: vscode.SourceControl
+): Promise<Repository | undefined> {
   const selectedRepo = git.repositories.find(repository => {
     const uri = sourceControl.rootUri;
     if (!uri) {
@@ -41,19 +44,14 @@ async function _handleRepos(git: API, sourceControl: vscode.SourceControl) {
     return repoPath === uri.path;
   });
 
-  if (selectedRepo) {
-    await makeAndFillCommitMsg(selectedRepo);
-  } else {
-    vscode.window.showErrorMessage("No repos found");
-  }
+  return selectedRepo;
 }
 
 /**
- * Run autofill flow for a single repo in the workspace.
+ * Return a repo for single repo in the workspace.
  */
-async function _handleRepo(git: API) {
-  const targetRepo = git.repositories[0];
-  await makeAndFillCommitMsg(targetRepo);
+async function _handleRepo(git: API): Promise<Repository> {
+  return git.repositories[0];
 }
 
 /**
@@ -65,11 +63,17 @@ async function _chooseRepoForAutofill(sourceControl?: vscode.SourceControl) {
 
   vscode.commands.executeCommand("workbench.view.scm");
 
-  if (sourceControl) {
-    _handleRepos(git, sourceControl);
-  } else {
-    _handleRepo(git);
+  const selectedRepo = sourceControl
+    ? await _handleRepos(git, sourceControl)
+    : await _handleRepo(git);
+
+  if (!selectedRepo) {
+    const msg = "No repos found";
+    vscode.window.showErrorMessage(msg);
+    throw new Error(msg);
   }
+
+  await makeAndFillCommitMsg(selectedRepo);
 }
 
 /**
