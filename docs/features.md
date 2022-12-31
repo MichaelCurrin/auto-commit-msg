@@ -15,7 +15,7 @@ A roadmap of features and whether done or not.
     - Handle **staged** files if there are any, so you can change a few files and then generate messages for those. But if there are zero staged changes, the extension will fall back to the working tree of unstaged changes.
     - Note that **new** files (including when doing a rename) should **always** be staged so that the extension can pick them up and so git can see that two paths for a renamed file are the same file.
 - [x] Generate a single-line commit message for a file to be committed, using action verbs (e.g. `Create`, `Update`, `Delete`)
-- [x] Handle changes from a single changed file
+- [x] Handle changes from a single changed file.
 - [ ] Handle changes from two or more files.
     - [x] As a list of the same nature e.g. `update foo.txt and fizz/bar.txt`, `feat: create foo.txt, fizz/bar.txt and buzz.js` (including prefix) and `Various changes to foo.txt and fizz/bar.txt` (for one updated and one new file). See [#29](https://github.com/MichaelCurrin/auto-commit-msg/pull/29).
     - [x] As a count. e.g. `update 3 files`. See [#38](https://github.com/MichaelCurrin/auto-commit-msg/issues/38).
@@ -24,6 +24,7 @@ A roadmap of features and whether done or not.
     - [ ] As a count with a conventional commit message. See [#51](https://github.com/MichaelCurrin/auto-commit-msg/issues/51).
     - [ ] As a count with a label. e.g. `update 3 config files`. See [#13](https://github.com/MichaelCurrin/auto-commit-msg/issues/13).
     - [ ] As count that uses the old message. See [#55](https://github.com/MichaelCurrin/auto-commit-msg/issues/55)
+- [x] Support using multiple repos in one VS Code window.
 - [x] Keep user-entered value as a prefix e.g. Keep `docs:` (or ticket number) so message becomes `docs: Update README.md`
 - [x] Use conventional commits e.g. `chore: Update package.json`
 - [x] Support directories or filenames with spaces in them by adding quotes. e.g. `chore: rename foo.txt to 'foo bar.txt'`

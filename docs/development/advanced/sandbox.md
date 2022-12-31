@@ -17,8 +17,8 @@ Follow these steps:
 1. Go to the _Debug_ tab.
 1. Select one of two tasks:
     - _Run Extension_ task.
-        - This will start in a default directory such as your user's home directory.
-        - You might want to use File / Open to change the sandbox window to a repo what has more content to play with. This will be remembered on later runs. Unfortunately if you changed your VS Code settings to open in a new window on Open, then the extension setup will be undone.
+        - This will start in a default directory - such as your user's home directory.
+        - You might want to use _File_ / _Open_ to change the sandbox window to a repo what has more content to play with. This will be _remembered_ on later runs. Unfortunately if you changed your VS Code settings to open in a new window on Open, then the extension setup will be undone.
     - _Start in Sandbox repo_ task.
         - For more reliable and consistent behavior.
         - This will run against `sandbox` directory in the project, which is a Git repo where you can make files and commits as you like. 

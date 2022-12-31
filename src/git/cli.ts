@@ -5,20 +5,19 @@
  */
 import util = require("util");
 import childProcess = require("child_process");
-
-import { getWorkspaceFolder } from "../workspace";
+import { Repository } from "../api/git";
 
 const exec = util.promisify(childProcess.exec);
 
 /**
- * Run a `git` subcommand with options and return output.
+ * Run a `git` subcommand and return output.
  */
 function _execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(" ")}`;
 
-  const result = exec(command, { cwd });
+  console.debug(`Running command: ${command}, cwd: ${cwd}`);
 
-  return result;
+  return exec(command, { cwd });
 }
 
 /**
@@ -33,9 +32,12 @@ function _execute(cwd: string, subcommand: string, options: string[] = []) {
  * The output already seems to never have color info, from my testing, but the
  * no-color flagged is added still to be safe.
  */
-async function _diffIndex(options: string[] = []): Promise<Array<string>> {
+async function _diffIndex(
+  repository: Repository,
+  options: string[] = []
+): Promise<Array<string>> {
+  const cwd = repository.rootUri.path;
   const cmd = "diff-index";
-
   const fullOptions = [
     "--name-status",
     "--find-renames",
@@ -44,11 +46,8 @@ async function _diffIndex(options: string[] = []): Promise<Array<string>> {
     ...options,
     "HEAD",
   ];
-  const { stdout, stderr } = await _execute(
-    getWorkspaceFolder(),
-    cmd,
-    fullOptions
-  );
+
+  const { stdout, stderr } = await _execute(cwd, cmd, fullOptions);
 
   if (stderr) {
     console.debug(`stderr for 'git ${cmd}' command:`, stderr);
@@ -68,8 +67,8 @@ async function _diffIndex(options: string[] = []): Promise<Array<string>> {
  *
  * Returns an array of strings.
  */
-export async function getChanges() {
-  const stagedChanges = await _diffIndex(["--cached"]);
+export async function getChanges(repository: Repository) {
+  const stagedChanges = await _diffIndex(repository, ["--cached"]);
 
   if (stagedChanges.length) {
     console.debug("Found staged changes");
@@ -81,7 +80,7 @@ export async function getChanges() {
     "Staging area is empty. Using unstaged files (tracked files only still)."
   );
 
-  const allChanges = await _diffIndex();
+  const allChanges = await _diffIndex(repository);
 
   if (!allChanges.length) {
     console.debug("No changes found");
