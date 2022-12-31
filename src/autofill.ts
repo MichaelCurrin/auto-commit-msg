@@ -17,7 +17,7 @@ Try saving your files or stage any new (untracked) files.\
  *
  * Steps:
  *
- *   1. Read git command output and the message in the Git Extension commit message box.
+ *   1. Read Git command output and the message in the Git Extension commit message box.
  *   2. Generate a message.
  *   3. Push message value to the commit message box.
  *
