@@ -30,16 +30,15 @@ function _validateFoundRepos(git: API) {
  * Run autofill against one of multiples in the workspace or when using GitLens on a single repo.
  */
 async function _handleRepos(git: API, sourceControl: vscode.SourceControl) {
-  // FIXME: Unfortunately this seems to only pick up the first repo and not find
-  // second, etc. If you repository through to makeAndFillCommitMsg, getChanges
-  // and diffIndex etc. and replace "getWorkspaceFolder" usage then that will work.
   const selectedRepo = git.repositories.find(repository => {
     const uri = sourceControl.rootUri;
     if (!uri) {
       console.warn("rootUri not set for current repo");
       return false;
     }
-    return repository.rootUri.path === uri.path;
+    const repoPath = repository.rootUri.path;
+
+    return repoPath === uri.path;
   });
 
   if (selectedRepo) {
