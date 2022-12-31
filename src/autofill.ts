@@ -24,7 +24,7 @@ Try saving your files or stage any new (untracked) files.\
  * This is based on `prefixCommit` from the `git-prefix` extension.
  */
 export async function makeAndFillCommitMsg(repository: Repository) {
-  const fileChanges = await getChanges();
+  const fileChanges = await getChanges(repository);
 
   console.debug("diff-index:", fileChanges);
 
