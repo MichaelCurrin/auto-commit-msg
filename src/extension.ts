@@ -2,7 +2,7 @@
  * Extension module.
  *
  * This sets up the VS Code extension's command entry-point and applies logic in
- * the prepareCommitMsg module to a target branch.
+ * the `prepareCommitMsg` module to a target branch.
  */
 import * as vscode from "vscode";
 import { API, Repository } from "./api/git";
@@ -79,7 +79,7 @@ async function _chooseRepoForAutofill(sourceControl?: vscode.SourceControl) {
 /**
  * Set up the extension activation.
  *
- * The autofill command as configured in `package.json` will be triggered
+ * The `autofill` command as configured in `package.json` will be triggered
  * and run the autofill logic for a repo.
  */
 export function activate(context: vscode.ExtensionContext) {
