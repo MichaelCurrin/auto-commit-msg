@@ -32,7 +32,7 @@ function _validateFoundRepos(git: API) {
 async function _handleRepos(
   git: API,
   sourceControl: vscode.SourceControl
-): Promise<Repository | undefined> {
+): Promise<Repository | false> {
   const selectedRepo = git.repositories.find(repository => {
     const uri = sourceControl.rootUri;
     if (!uri) {
@@ -44,7 +44,7 @@ async function _handleRepos(
     return repoPath === uri.path;
   });
 
-  return selectedRepo;
+  return selectedRepo ?? false;
 }
 
 /**
