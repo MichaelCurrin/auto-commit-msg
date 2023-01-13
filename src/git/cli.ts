@@ -36,10 +36,7 @@ async function _diffIndex(
   repository: Repository,
   options: string[] = []
 ): Promise<Array<string>> {
-  let cwd = repository.rootUri.path;
-  // Hack to make handle Windows path from rootUri, since it should not appear as a root path.
-  cwd = cwd.replace("/c:/", "c:/");
-
+  let cwd = repository.rootUri.fspath;
   const cmd = "diff-index";
   const fullOptions = [
     "--name-status",
