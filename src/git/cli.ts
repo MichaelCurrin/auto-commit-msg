@@ -10,7 +10,7 @@ import { Repository } from "../api/git";
 const exec = util.promisify(childProcess.exec);
 
 /**
- * Run a `git` subcommand and return output.
+ * Run a `git` subcommand and return result with stdout and stderr available.
  */
 function _execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(" ")}`;
