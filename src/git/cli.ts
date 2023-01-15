@@ -36,7 +36,7 @@ async function _diffIndex(
   repository: Repository,
   options: string[] = []
 ): Promise<Array<string>> {
-  const cwd = repository.rootUri.path;
+  const cwd = repository.rootUri.fsPath;
   const cmd = "diff-index";
   const fullOptions = [
     "--name-status",
