@@ -9,21 +9,25 @@ If you prefer not use this approach, you can just compile and install the extens
 
 ## Start sandbox
 
+These are configured in the `.vscode/launch.json` config.
+
 Follow these steps:
 
 1. Open VS Code at this repo if you haven't already.
-2. Go to the _Debug_ tab.
-3. Select one of two tasks:
+1. Go to the _Debug_ tab.
+1. Select one of two tasks:
     - _Run Extension_ task.
-        - This will start in a default directory such as your user's home directory.
-        - You might want to use File / Open to change the sandbox window to a repo what has more content to play with. This will be remembered on later runs. Unfortunately if you changed your VS Code settings to open in a new window on Open, then the extension setup will be undone.
-    - Start in Sandbox repo_ task.
+        - This will start in a default directory - such as your user's home directory.
+        - You might want to use _File_ / _Open_ to change the sandbox window to a repo what has more content to play with. This will be _remembered_ on later runs. Unfortunately if you changed your VS Code settings to open in a new window on Open, then the extension setup will be undone.
+    - _Start in Sandbox repo_ task.
         - For more reliable and consistent behavior.
-        - This will run against `sandbox` directory in the project, which is a git repo where you can make files and commits as you like. Y
-        - NB. You'll need to run `npm run sb` first to ensure this directory exists and then run the debug action. Run that NPM command again to clear the space and start over.
-4. Click the play arrow.
+        - This will run against `sandbox` directory in the project, which is a Git repo where you can make files and commits as you like. 
+        - NB. You'll must run `npm run sb` **first** to ensure this directory exists and then run the debug action. Run that NPM command again whenever you want to clear the space and start over.
+1. Click the run button.
 
-That will start a new sandboxed VS Code session which has the extension active and all others inactive. At a lower level, it runs `npm compile` and `npm watch`.
+That will start a new sandboxed VS Code session which has the extension built using the local code and _enabled_, and all other extensions _disabled_. At a lower level, it runs `npm compile` and `npm watch`. If you want to keep extensions enabled, remove the `--disable-extensions` flag in the launch config.
+
+What is especially useful about this is that whenever an extension action is performed in the sandboxed VS Code window, if there are any logs for that then those will appear in the Debug Console of the _original_ VS Code window.
 
 The code for the extension is in [src](/src/).
 

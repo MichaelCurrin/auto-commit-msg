@@ -6,7 +6,7 @@ default: install
 all: hooks install test build
 
 h help:
-	@grep '^[a-z]' Makefile
+	@grep '^[a-z#]' Makefile
 
 
 .PHONY: hooks
