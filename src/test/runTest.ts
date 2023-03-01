@@ -23,7 +23,6 @@ async function main() {
 
     const vscodeExecutablePath = vscodePaths[0];
 
-    // Download VS Code, unzip it and run the integration test
     await runTests({
       extensionDevelopmentPath,
       extensionTestsPath,
