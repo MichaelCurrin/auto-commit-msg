@@ -3,8 +3,11 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/MichaelCurrin/auto-commit-msg?targetFile=package.json)
 [![Made with Node.js](https://img.shields.io/badge/dynamic/json?label=node&query=%24.engines%5B%22node%22%5D&url=https%3A%2F%2Fraw.githubusercontent.com%2FMichaelCurrin%2Fauto-commit-msg%2Fmaster%2Fpackage.json&logo=node.js&logoColor=white)](https://nodejs.org "Go to Node.js homepage")
-[![Made for VS Code](https://img.shields.io/badge/dynamic/json?label=vscode&query=%24.engines.vscode&url=https%3A%2F%2Fraw.githubusercontent.com%2FMichaelCurrin%2Fauto-commit-msg%2Fmaster%2Fpackage.json&logo=visualstudiocode&logoColor=white)](https://code.visualstudio.com/ "Go to VS Code homepage")
 [![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/MichaelCurrin/auto-commit-msg/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript "Go to TypeScript homepage")
+
+Requires VS Code version: [![Made for VS Code](https://img.shields.io/badge/dynamic/json?label=vscode&query=%24.engines.vscode&url=https%3A%2F%2Fraw.githubusercontent.com%2FMichaelCurrin%2Fauto-commit-msg%2Fmaster%2Fpackage.json&logo=visualstudiocode&logoColor=white)](https://code.visualstudio.com/ "Go to VS Code homepage")
+
+This guide is for anyone who wants to contribute to this repo or who just wants to explore this extension's code and how it works in VS Code.
 
 
 ## Overview
