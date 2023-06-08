@@ -11,10 +11,10 @@ import {
 } from "../../generate/count";
 import { FileChange } from "../../git/parseOutput.d";
 
-describe("Aggregate counts of files as numeric data", function () {
-  describe("#_countByAction", function () {
-    describe("should return the correct action and count for one file", function () {
-      it("should handle a created file", function () {
+test("Aggregate counts of files as numeric data", function () {
+  test("#_countByAction", function () {
+    test("should return the correct action and count for one file", function () {
+      test("should handle a created file", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -30,7 +30,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle a created file with spaces", function () {
+      test("should handle a created file with spaces", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -46,7 +46,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle an updated file", function () {
+      test("should handle an updated file", function () {
         const changes: FileChange[] = [
           {
             x: "M",
@@ -62,7 +62,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle a deleted file", function () {
+      test("should handle a deleted file", function () {
         const changes: FileChange[] = [
           {
             x: "D",
@@ -78,7 +78,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle a renamed file", function () {
+      test("should handle a renamed file", function () {
         const changes: FileChange[] = [
           {
             x: "R",
@@ -94,7 +94,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle a moved file", function () {
+      test("should handle a moved file", function () {
         const changes: FileChange[] = [
           {
             x: "R",
@@ -110,7 +110,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle a renamed and moved file", function () {
+      test("should handle a renamed and moved file", function () {
         const changes: FileChange[] = [
           {
             x: "R",
@@ -127,8 +127,8 @@ describe("Aggregate counts of files as numeric data", function () {
       });
     });
 
-    describe("give correct action and count for files of the same action", function () {
-      it("should handle two created files", function () {
+    test("give correct action and count for files of the same action", function () {
+      test("should handle two created files", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -150,7 +150,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle two renamed files", function () {
+      test("should handle two renamed files", function () {
         const changes: FileChange[] = [
           {
             x: "R",
@@ -172,7 +172,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle two created files", function () {
+      test("should handle two created files", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -194,7 +194,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle three deleted files", function () {
+      test("should handle three deleted files", function () {
         const changes: FileChange[] = [
           {
             x: "D",
@@ -222,7 +222,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle four updated files", function () {
+      test("should handle four updated files", function () {
         const changes: FileChange[] = [
           {
             x: "M",
@@ -257,8 +257,8 @@ describe("Aggregate counts of files as numeric data", function () {
       });
     });
 
-    describe("give correct actionsand counts for files with different actions", function () {
-      it("should handle one created and one updated file", function () {
+    test("give correct actionsand counts for files with different actions", function () {
+      test("should handle one created and one updated file", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -281,7 +281,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle one created and two updated files", function () {
+      test("should handle one created and two updated files", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -310,7 +310,7 @@ describe("Aggregate counts of files as numeric data", function () {
         assert.deepStrictEqual(_countByAction(changes), expected);
       });
 
-      it("should handle one created, updated, deleted, renamed and two moved files", function () {
+      test("should handle one created, updated, deleted, renamed and two moved files", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -363,9 +363,9 @@ describe("Aggregate counts of files as numeric data", function () {
   });
 });
 
-describe("Identify move, rename, or move and rename", function () {
-  describe("#_moveOrRenameFromChange", function () {
-    it("should return move", function () {
+test("Identify move, rename, or move and rename", function () {
+  test("#_moveOrRenameFromChange", function () {
+    test("should return move", function () {
       const change = {
         x: "R",
         y: " ",
@@ -377,7 +377,7 @@ describe("Identify move, rename, or move and rename", function () {
       assert.strictEqual(_moveOrRenameFromChange(change), expected);
     });
 
-    it("should return rename", function () {
+    test("should return rename", function () {
       const change = {
         x: "R",
         y: " ",
@@ -389,7 +389,7 @@ describe("Identify move, rename, or move and rename", function () {
       assert.strictEqual(_moveOrRenameFromChange(change), expected);
     });
 
-    it("should return move and rename", function () {
+    test("should return move and rename", function () {
       const change = {
         x: "R",
         y: " ",
@@ -403,42 +403,42 @@ describe("Identify move, rename, or move and rename", function () {
   });
 });
 
-describe("Format a single action and count value as text", function () {
-  describe("#_formatOne", function () {
-    describe("should handle one file", function () {
-      it("should handle one created file", function () {
+test("Format a single action and count value as text", function () {
+  test("#_formatOne", function () {
+    test("should handle one file", function () {
+      test("should handle one created file", function () {
         assert.strictEqual(_formatOne("create", 1), "create 1 file");
       });
 
-      it("should handle one updated file", function () {
+      test("should handle one updated file", function () {
         assert.strictEqual(_formatOne("update", 1), "update 1 file");
       });
 
-      it("should handle one moved file", function () {
+      test("should handle one moved file", function () {
         assert.strictEqual(_formatOne("move", 1), "move 1 file");
       });
 
-      it("should handle one renamed file", function () {
+      test("should handle one renamed file", function () {
         assert.strictEqual(_formatOne("rename", 1), "rename 1 file");
       });
     });
 
-    describe("should handle multiple files", function () {
-      it("should handle two created files", function () {
+    test("should handle multiple files", function () {
+      test("should handle two created files", function () {
         assert.strictEqual(_formatOne("create", 2), "create 2 files");
       });
 
-      it("should handle three deleted files", function () {
+      test("should handle three deleted files", function () {
         assert.strictEqual(_formatOne("delete", 3), "delete 3 files");
       });
     });
   });
 });
 
-describe("Convert action and counts to a readable commit message", function () {
-  describe("#countByActionMsg", function () {
-    describe("one file", function () {
-      it("should handle a created file", function () {
+test("Convert action and counts to a readable commit message", function () {
+  test("#countByActionMsg", function () {
+    test("one file", function () {
+      test("should handle a created file", function () {
         const actionCounts = {
           create: { fileCount: 1 },
         };
@@ -447,7 +447,7 @@ describe("Convert action and counts to a readable commit message", function () {
         assert.strictEqual(_formatAll(actionCounts), expected);
       });
 
-      it("should handle a deleted file", function () {
+      test("should handle a deleted file", function () {
         const actionCounts = {
           delete: { fileCount: 1 },
         };
@@ -457,8 +457,8 @@ describe("Convert action and counts to a readable commit message", function () {
       });
     });
 
-    describe("multiples files", function () {
-      it("should handle one created file and one updated file", function () {
+    test("multiples files", function () {
+      test("should handle one created file and one updated file", function () {
         const actionCounts = {
           create: { fileCount: 1 },
           update: { fileCount: 1 },
@@ -468,7 +468,7 @@ describe("Convert action and counts to a readable commit message", function () {
         assert.strictEqual(_formatAll(actionCounts), expected);
       });
 
-      it("should handle one created, updated and deleted", function () {
+      test("should handle one created, updated and deleted", function () {
         const actionCounts = {
           create: { fileCount: 1 },
           update: { fileCount: 1 },
@@ -479,7 +479,7 @@ describe("Convert action and counts to a readable commit message", function () {
         assert.strictEqual(_formatAll(actionCounts), expected);
       });
 
-      it("should handle one created file and two updated files", function () {
+      test("should handle one created file and two updated files", function () {
         const actionCounts = {
           create: { fileCount: 1 },
           update: { fileCount: 2 },
@@ -489,7 +489,7 @@ describe("Convert action and counts to a readable commit message", function () {
         assert.strictEqual(_formatAll(actionCounts), expected);
       });
 
-      it("should handle two updated file and three deleted files", function () {
+      test("should handle two updated file and three deleted files", function () {
         const actionCounts = {
           update: { fileCount: 2 },
           delete: { fileCount: 3 },
@@ -502,10 +502,10 @@ describe("Convert action and counts to a readable commit message", function () {
   });
 });
 
-describe("Convert file changes to readable commit message of actions and counts", function () {
-  describe("#countMsg", function () {
-    describe("return the action and count for one kind of action", function () {
-      it("handles one created file", function () {
+test("Convert file changes to readable commit message of actions and counts", function () {
+  test("#countMsg", function () {
+    test("return the action and count for one kind of action", function () {
+      test("handles one created file", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -521,7 +521,7 @@ describe("Convert file changes to readable commit message of actions and counts"
       });
     });
 
-    it("handles one updated file", function () {
+    test("handles one updated file", function () {
       const changes: FileChange[] = [
         {
           x: "M",
@@ -536,7 +536,7 @@ describe("Convert file changes to readable commit message of actions and counts"
       assert.strictEqual(countFilesDesc(changes), expected);
     });
 
-    it("handles two deleted files", function () {
+    test("handles two deleted files", function () {
       const changes: FileChange[] = [
         {
           x: "D",
@@ -557,8 +557,8 @@ describe("Convert file changes to readable commit message of actions and counts"
     });
   });
 
-  describe("return the action and count for two actions", function () {
-    it("handles one created and one updated file", function () {
+  test("return the action and count for two actions", function () {
+    test("handles one created and one updated file", function () {
       const changes: FileChange[] = [
         {
           x: "A",
@@ -579,7 +579,7 @@ describe("Convert file changes to readable commit message of actions and counts"
       assert.strictEqual(countFilesDesc(changes), expected);
     });
 
-    it("handles one created and two updated files", function () {
+    test("handles one created and two updated files", function () {
       const changes: FileChange[] = [
         {
           x: "A",
@@ -606,7 +606,7 @@ describe("Convert file changes to readable commit message of actions and counts"
       assert.strictEqual(countFilesDesc(changes), expected);
     });
 
-    it("handles two updated files and one created file", function () {
+    test("handles two updated files and one created file", function () {
       // Same data as previous case, but with the order array changed.
       const changes: FileChange[] = [
         {
@@ -634,8 +634,8 @@ describe("Convert file changes to readable commit message of actions and counts"
       assert.strictEqual(countFilesDesc(changes), expected);
     });
 
-    describe("return the action and count for more than two actions", function () {
-      it("handles one created, one updated and one deleted file", function () {
+    test("return the action and count for more than two actions", function () {
+      test("handles one created, one updated and one deleted file", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -662,7 +662,7 @@ describe("Convert file changes to readable commit message of actions and counts"
         assert.strictEqual(countFilesDesc(changes), expected);
       });
 
-      it("handles two created, one updated and one deleted file", function () {
+      test("handles two created, one updated and one deleted file", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -695,7 +695,7 @@ describe("Convert file changes to readable commit message of actions and counts"
         assert.strictEqual(countFilesDesc(changes), expected);
       });
 
-      it("handles one created, two updated and one deleted file", function () {
+      test("handles one created, two updated and one deleted file", function () {
         const changes: FileChange[] = [
           {
             x: "A",
@@ -728,7 +728,7 @@ describe("Convert file changes to readable commit message of actions and counts"
         assert.strictEqual(countFilesDesc(changes), expected);
       });
 
-      it("handles one created, one updated and one deleted file", function () {
+      test("handles one created, one updated and one deleted file", function () {
         const changes: FileChange[] = [
           {
             x: "A",

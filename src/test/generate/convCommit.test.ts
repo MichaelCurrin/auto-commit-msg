@@ -10,9 +10,9 @@ import {
 } from "../../generate/convCommit";
 import { ACTION, CONVENTIONAL_TYPE } from "../../lib/constants";
 
-describe("Test #ConventionalCommit class for path-based conventional commit logic", function () {
-  describe("#isDocsRelated", function () {
-    it("determines that a README file is a doc", function () {
+test("Test #ConventionalCommit class for path-based conventional commit logic", function () {
+  test("#isDocsRelated", function () {
+    test("determines that a README file is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("README.md").isDocsRelated(),
         true
@@ -36,7 +36,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    it("determines that a CONTRIBUTING file is a doc", function () {
+    test("determines that a CONTRIBUTING file is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("CONTRIBUTING.md").isDocsRelated(),
         true
@@ -47,7 +47,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    it("determines that a `.rst` file is a doc", function () {
+    test("determines that a `.rst` file is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("README.rst").isDocsRelated(),
         true
@@ -58,7 +58,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    it("determines a file in the docs directory is a doc", function () {
+    test("determines a file in the docs directory is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("docs/fizz.md").isDocsRelated(),
         true
@@ -80,8 +80,8 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     });
   });
 
-  describe("#isBuildRelated", function () {
-    it("can recognize a build change for a build-related filename", function () {
+  test("#isBuildRelated", function () {
+    test("can recognize a build change for a build-related filename", function () {
       assert.strictEqual(
         new ConventionalCommit("Dockerfile").isBuildRelated(),
         true
@@ -102,8 +102,8 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     });
   });
 
-  describe("#isCIRelated", function () {
-    it("can tell a CI change is in a CircleCI directory", function () {
+  test("#isCIRelated", function () {
+    test("can tell a CI change is in a CircleCI directory", function () {
       assert.strictEqual(
         new ConventionalCommit(".circleci/foo.txt").isCIRelated(),
         true
@@ -119,7 +119,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    it("can tell a CI change is in a workflows directory", function () {
+    test("can tell a CI change is in a workflows directory", function () {
       assert.strictEqual(
         new ConventionalCommit(".github/workflows/foo.txt").isCIRelated(),
         true
@@ -135,7 +135,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    it("can tell a CI change for a CI filename", function () {
+    test("can tell a CI change for a CI filename", function () {
       assert.strictEqual(
         new ConventionalCommit("netlify.toml").isCIRelated(),
         true
@@ -152,8 +152,8 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     });
   });
 
-  describe("#isTestRelated", function () {
-    it("can tell a test directory is for tests", function () {
+  test("#isTestRelated", function () {
+    test("can tell a test directory is for tests", function () {
       assert.strictEqual(
         new ConventionalCommit("test/foo.js").isTestRelated(),
         true
@@ -173,7 +173,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    it("can tell a test file is for tests", function () {
+    test("can tell a test file is for tests", function () {
       assert.strictEqual(
         new ConventionalCommit("foo/bar.test.js").isTestRelated(),
         true
@@ -185,13 +185,13 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     });
   });
 
-  describe("#getType", function () {
+  test("#getType", function () {
     // Rather than true and false like in above tests this actually categorizes
     // and also it closer to the real world as it through a hierarchy (for
     // example .yml is config-related unless it is for a CI file). But, this
     // doesn't care what the action is like create or delete or modify, so it
     // won't impose meaning based on that.
-    it("sees a build file as build", function () {
+    test("sees a build file as build", function () {
       assert.strictEqual(
         new ConventionalCommit("Makefile").getType(),
         CONVENTIONAL_TYPE.BUILD
@@ -212,7 +212,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       );
     });
 
-    it("sees a dependency-related file as 'build' and with dependency scope", function () {
+    test("sees a dependency-related file as 'build' and with dependency scope", function () {
       assert.strictEqual(
         new ConventionalCommit("Gemfile").getType(),
         CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
@@ -234,7 +234,7 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     });
 
     // TODO: Break into categories
-    it("can tell a type for other types", function () {
+    test("can tell a type for other types", function () {
       assert.strictEqual(
         new ConventionalCommit("foo").getType(),
         CONVENTIONAL_TYPE.UNKNOWN
@@ -263,8 +263,8 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
   });
 });
 
-describe("#getConventionType", function () {
-  it("uses feat for a new file if no other match is found", function () {
+test("#getConventionType", function () {
+  test("uses feat for a new file if no other match is found", function () {
     const add = ACTION.A;
 
     assert.strictEqual(
@@ -281,7 +281,7 @@ describe("#getConventionType", function () {
       CONVENTIONAL_TYPE.FEAT
     );
   });
-  it("knows a deleted file is always a chore", function () {
+  test("knows a deleted file is always a chore", function () {
     const del = ACTION.D;
 
     assert.strictEqual(
@@ -299,7 +299,7 @@ describe("#getConventionType", function () {
     );
   });
 
-  it("knows a renamed or moved file is always chore", function () {
+  test("knows a renamed or moved file is always chore", function () {
     const renameOrMove = ACTION.R;
 
     assert.strictEqual(
@@ -326,7 +326,7 @@ describe("#getConventionType", function () {
     );
   });
 
-  it("uses conventional commit type from path for a modified file, or leaves not set", function () {
+  test("uses conventional commit type from path for a modified file, or leaves unset", function () {
     const modified = ACTION.M;
 
     assert.strictEqual(

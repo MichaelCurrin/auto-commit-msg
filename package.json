@@ -11,7 +11,9 @@
     "compile": "npm run clean && tsc -p .",
     "pretest": "npm run compile",
     "test:unit": "cd out && mocha --recursive",
-    "test": "npm run test:unit",
+    "vscode:download": "node out/test/vscodeDownload",
+    "test:vscode": "npm run vscode:download && cd out && node test/runTest",
+    "test": "npm run test:vscode",
     "cover": "nyc npm test",
     "cover:report": "nyc report --reporter=lcov",
     "cover:check": "nyc check-coverage --lines 95",
@@ -30,6 +32,9 @@
     "vscode": "^1.74.0"
   },
   "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@vscode/test-electron": "^2.2.0",
+    "glob": "^8.0.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "^16.11.1",
     "@types/vscode": "^1.74.0",
