@@ -25,23 +25,23 @@
     "sb": "bin/reset_sandbox.sh"
   },
   "engines": {
-    "node": ">=16",
-    "npm": ">=8",
-    "vscode": "^1.74.0"
+    "node": ">=20",
+    "npm": ">=9",
+    "vscode": "^1.81.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
-    "@types/node": "^16.11.1",
+    "@types/node": "^20.5.4",
     "@types/vscode": "^1.74.0",
-    "@typescript-eslint/eslint-plugin": "^5.48.0",
-    "@typescript-eslint/parser": "^5.48.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
     "@vscode/vsce": "^2.19.0",
     "eslint": "^8.31.0",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.7.0",
+    "prettier": "^3.0.2",
     "source-map-support": "^0.5.20",
-    "typescript": "^4.7.2",
+    "typescript": "^5.1.6",
     "vscode-test": "^1.6.1"
   },
   "displayName": "Auto Commit Message",
@@ -77,9 +77,6 @@
     "color": "#f0efe7",
     "theme": "light"
   },
-  "activationEvents": [
-    "onCommand:commitMsg.autofill"
-  ],
   "contributes": {
     "commands": [
       {

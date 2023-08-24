@@ -46,7 +46,7 @@ q test-quick:
 build:
 	npm run build
 
-# Global install.
+# Build then install in VS Code.
 e ext:
 	npm run checks
 	npm run ext

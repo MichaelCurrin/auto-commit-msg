@@ -171,7 +171,7 @@ export class ConventionalCommit {
  */
 export function getConventionType(
   action: ACTION,
-  filePath: string
+  filePath: string,
 ): CONVENTIONAL_TYPE {
   if (action === ACTION.R || action === ACTION.D) {
     return CONVENTIONAL_TYPE.CHORE;

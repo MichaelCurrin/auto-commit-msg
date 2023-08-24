@@ -56,7 +56,7 @@ describe("Split `git diff-index` output into components", function () {
 
         assert.deepStrictEqual(
           parseDiffIndex("R100\tbar.txt\tfoo.txt"),
-          expected
+          expected,
         );
 
         it("should return the appropriate commit message for a moved file", function () {
@@ -69,7 +69,7 @@ describe("Split `git diff-index` output into components", function () {
 
           assert.deepStrictEqual(
             parseDiffIndex("R100\tbar.txt\tfizz/foo.txt"),
-            expected
+            expected,
           );
         });
       });
@@ -83,7 +83,7 @@ describe("Split `git diff-index` output into components", function () {
         };
         assert.deepStrictEqual(
           parseDiffIndex("R096\tbar.txt\tfoo.txt"),
-          expected
+          expected,
         );
 
         it("should return the appropriate commit message for a moved file", function () {
@@ -96,7 +96,7 @@ describe("Split `git diff-index` output into components", function () {
 
           assert.deepStrictEqual(
             parseDiffIndex("R096\tbar.txt\tfizz/foo.txt"),
-            expected
+            expected,
           );
         });
       });
@@ -128,7 +128,7 @@ describe("Split `git diff-index` output into components", function () {
 
           assert.deepStrictEqual(
             parseDiffIndex("A\tfoo bar fizz buzz.txt"),
-            expected
+            expected,
           );
         }
 
@@ -142,7 +142,7 @@ describe("Split `git diff-index` output into components", function () {
 
           assert.deepStrictEqual(
             parseDiffIndex("A\tfizz/foo bar.txt"),
-            expected
+            expected,
           );
         }
 
@@ -156,7 +156,7 @@ describe("Split `git diff-index` output into components", function () {
 
           assert.deepStrictEqual(
             parseDiffIndex("A\tfizz buzz/foo bar.txt"),
-            expected
+            expected,
           );
         }
       });
@@ -173,7 +173,7 @@ describe("Split `git diff-index` output into components", function () {
 
         assert.deepStrictEqual(
           parseDiffIndex("R100\tfoo bar.txt\tfizz/foo bar.txt"),
-          expected
+          expected,
         );
       }
 
@@ -187,7 +187,7 @@ describe("Split `git diff-index` output into components", function () {
 
         assert.deepStrictEqual(
           parseDiffIndex("R100\tfoo bar.txt\tfizz buzz/foo bar.txt"),
-          expected
+          expected,
         );
       }
     });
@@ -255,7 +255,7 @@ describe("Split `git status` output into components", function () {
 
         assert.deepStrictEqual(
           parseStatus("R  foo.txt -> fizz/foo.txt"),
-          expected
+          expected,
         );
       });
     });

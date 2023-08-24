@@ -34,7 +34,7 @@ function _execute(cwd: string, subcommand: string, options: string[] = []) {
  */
 async function _diffIndex(
   repository: Repository,
-  options: string[] = []
+  options: string[] = [],
 ): Promise<Array<string>> {
   const cwd = repository.rootUri.fsPath;
   const cmd = "diff-index";
@@ -77,7 +77,7 @@ export async function getChanges(repository: Repository) {
   }
 
   console.debug(
-    "Staging area is empty. Using unstaged files (tracked files only still)."
+    "Staging area is empty. Using unstaged files (tracked files only still).",
   );
 
   const allChanges = await _diffIndex(repository);

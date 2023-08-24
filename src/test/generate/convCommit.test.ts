@@ -15,67 +15,67 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     it("determines that a README file is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("README.md").isDocsRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("README.rst").isDocsRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("Readme.txt").isDocsRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("readme").isDocsRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("FEEDME.md").isDocsRelated(),
-        false
+        false,
       );
     });
 
     it("determines that a CONTRIBUTING file is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("CONTRIBUTING.md").isDocsRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("contributing.md").isDocsRelated(),
-        true
+        true,
       );
     });
 
     it("determines that a `.rst` file is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("README.rst").isDocsRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("foo.rst").isDocsRelated(),
-        true
+        true,
       );
     });
 
     it("determines a file in the docs directory is a doc", function () {
       assert.strictEqual(
         new ConventionalCommit("docs/fizz.md").isDocsRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("docs/foo.img").isDocsRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("docs/fizz/foo.img").isDocsRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("fuzz/fizz.md").isDocsRelated(),
-        false
+        false,
       );
     });
   });
@@ -84,20 +84,20 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     it("can recognize a build change for a build-related filename", function () {
       assert.strictEqual(
         new ConventionalCommit("Dockerfile").isBuildRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("foo/Dockerfile").isBuildRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("foo.txt").isBuildRelated(),
-        false
+        false,
       );
       assert.strictEqual(
         new ConventionalCommit("fizz/foo.txt").isBuildRelated(),
-        false
+        false,
       );
     });
   });
@@ -106,48 +106,48 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     it("can tell a CI change is in a CircleCI directory", function () {
       assert.strictEqual(
         new ConventionalCommit(".circleci/foo.txt").isCIRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("foo.txt").isCIRelated(),
-        false
+        false,
       );
       assert.strictEqual(
         new ConventionalCommit("fizz/foo.txt").isCIRelated(),
-        false
+        false,
       );
     });
 
     it("can tell a CI change is in a workflows directory", function () {
       assert.strictEqual(
         new ConventionalCommit(".github/workflows/foo.txt").isCIRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("foo.txt").isCIRelated(),
-        false
+        false,
       );
       assert.strictEqual(
         new ConventionalCommit(".github/foo.txt").isCIRelated(),
-        false
+        false,
       );
     });
 
     it("can tell a CI change for a CI filename", function () {
       assert.strictEqual(
         new ConventionalCommit("netlify.toml").isCIRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("foo/netlify.toml").isCIRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("foo.txt").isCIRelated(),
-        false
+        false,
       );
     });
   });
@@ -156,31 +156,31 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     it("can tell a test directory is for tests", function () {
       assert.strictEqual(
         new ConventionalCommit("test/foo.js").isTestRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("tests/foo.js").isTestRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("spec/foo.js").isTestRelated(),
-        true
+        true,
       );
 
       assert.strictEqual(
         new ConventionalCommit("unit_tests/foo.js").isTestRelated(),
-        true
+        true,
       );
     });
 
     it("can tell a test file is for tests", function () {
       assert.strictEqual(
         new ConventionalCommit("foo/bar.test.js").isTestRelated(),
-        true
+        true,
       );
       assert.strictEqual(
         new ConventionalCommit("foo/test_bar.js").isTestRelated(),
-        true
+        true,
       );
     });
   });
@@ -194,42 +194,42 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     it("sees a build file as build", function () {
       assert.strictEqual(
         new ConventionalCommit("Makefile").getType(),
-        CONVENTIONAL_TYPE.BUILD
+        CONVENTIONAL_TYPE.BUILD,
       );
       assert.strictEqual(
         new ConventionalCommit("Dockerfile").getType(),
-        CONVENTIONAL_TYPE.BUILD
+        CONVENTIONAL_TYPE.BUILD,
       );
 
       assert.strictEqual(
         new ConventionalCommit("foo.gemspec").getType(),
-        CONVENTIONAL_TYPE.BUILD
+        CONVENTIONAL_TYPE.BUILD,
       );
 
       assert.strictEqual(
         new ConventionalCommit("package.json").getType(),
-        CONVENTIONAL_TYPE.BUILD
+        CONVENTIONAL_TYPE.BUILD,
       );
     });
 
     it("sees a dependency-related file as 'build' and with dependency scope", function () {
       assert.strictEqual(
         new ConventionalCommit("Gemfile").getType(),
-        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
       );
 
       assert.strictEqual(
         new ConventionalCommit("package-lock.json").getType(),
-        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
       );
 
       assert.strictEqual(
         new ConventionalCommit("requirements.txt").getType(),
-        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
       );
       assert.strictEqual(
         new ConventionalCommit("requirements-dev.txt").getType(),
-        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES
+        CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
       );
     });
 
@@ -237,27 +237,27 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
     it("can tell a type for other types", function () {
       assert.strictEqual(
         new ConventionalCommit("foo").getType(),
-        CONVENTIONAL_TYPE.UNKNOWN
+        CONVENTIONAL_TYPE.UNKNOWN,
       );
 
       assert.strictEqual(
         new ConventionalCommit("test/foo.js").getType(),
-        CONVENTIONAL_TYPE.TEST
+        CONVENTIONAL_TYPE.TEST,
       );
 
       assert.strictEqual(
         new ConventionalCommit(".github/workflows/foo.yml").getType(),
-        CONVENTIONAL_TYPE.CI
+        CONVENTIONAL_TYPE.CI,
       );
 
       assert.strictEqual(
         new ConventionalCommit("README.md").getType(),
-        CONVENTIONAL_TYPE.DOCS
+        CONVENTIONAL_TYPE.DOCS,
       );
 
       assert.strictEqual(
         new ConventionalCommit("LICENSE").getType(),
-        CONVENTIONAL_TYPE.CHORE
+        CONVENTIONAL_TYPE.CHORE,
       );
     });
   });
@@ -269,16 +269,16 @@ describe("#getConventionType", function () {
 
     assert.strictEqual(
       getConventionType(add, "README.md"),
-      CONVENTIONAL_TYPE.DOCS
+      CONVENTIONAL_TYPE.DOCS,
     );
     assert.strictEqual(
       getConventionType(add, "tests/foo.js"),
-      CONVENTIONAL_TYPE.TEST
+      CONVENTIONAL_TYPE.TEST,
     );
 
     assert.strictEqual(
       getConventionType(add, "foo.txt"),
-      CONVENTIONAL_TYPE.FEAT
+      CONVENTIONAL_TYPE.FEAT,
     );
   });
   it("knows a deleted file is always a chore", function () {
@@ -286,16 +286,16 @@ describe("#getConventionType", function () {
 
     assert.strictEqual(
       getConventionType(del, "foo.txt"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
     assert.strictEqual(
       getConventionType(del, "README.md"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
 
     assert.strictEqual(
       getConventionType(del, "tests/foo.js"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
   });
 
@@ -304,25 +304,25 @@ describe("#getConventionType", function () {
 
     assert.strictEqual(
       getConventionType(renameOrMove, "foo.txt"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
     assert.strictEqual(
       getConventionType(renameOrMove, "fuzz/foo.txt"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
 
     assert.strictEqual(
       getConventionType(renameOrMove, "README.md"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
     assert.strictEqual(
       getConventionType(renameOrMove, "docs/foo.txt"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
 
     assert.strictEqual(
       getConventionType(renameOrMove, "tests/foo.js"),
-      CONVENTIONAL_TYPE.CHORE
+      CONVENTIONAL_TYPE.CHORE,
     );
   });
 
@@ -331,20 +331,20 @@ describe("#getConventionType", function () {
 
     assert.strictEqual(
       getConventionType(modified, "foo.txt"),
-      CONVENTIONAL_TYPE.UNKNOWN
+      CONVENTIONAL_TYPE.UNKNOWN,
     );
     assert.strictEqual(
       getConventionType(modified, "fizz/foo.txt"),
-      CONVENTIONAL_TYPE.UNKNOWN
+      CONVENTIONAL_TYPE.UNKNOWN,
     );
 
     assert.strictEqual(
       getConventionType(modified, "README.md"),
-      CONVENTIONAL_TYPE.DOCS
+      CONVENTIONAL_TYPE.DOCS,
     );
     assert.strictEqual(
       getConventionType(modified, "tests/foo.js"),
-      CONVENTIONAL_TYPE.TEST
+      CONVENTIONAL_TYPE.TEST,
     );
   });
 });

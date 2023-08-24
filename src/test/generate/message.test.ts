@@ -26,7 +26,7 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(oneChange("A\tfoo bar.txt"), "create 'foo bar.txt'");
       assert.strictEqual(
         oneChange("A\tfizz buzz/foo bar.txt"),
-        "create 'foo bar.txt'"
+        "create 'foo bar.txt'",
       );
     });
 
@@ -47,12 +47,12 @@ describe("Generate commit message for a single changed file", function () {
     it("describes a file renamed in the same directory", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tbar.txt"),
-        "rename foo.txt to bar.txt"
+        "rename foo.txt to bar.txt",
       );
 
       assert.strictEqual(
         oneChange("R\tfizz/foo.txt\tfizz/bar.txt"),
-        "rename foo.txt to bar.txt"
+        "rename foo.txt to bar.txt",
       );
     });
 
@@ -61,80 +61,80 @@ describe("Generate commit message for a single changed file", function () {
       // make sure it does get ignored.
       assert.strictEqual(
         oneChange("R97\tfoo.txt\tbar.txt"),
-        "rename foo.txt to bar.txt"
+        "rename foo.txt to bar.txt",
       );
     });
 
     it("describes a file moved out of the repo root to another directory", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/foo.txt"),
-        "move foo.txt to fizz"
+        "move foo.txt to fizz",
       );
 
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/buzz/foo.txt"),
-        "move foo.txt to fizz/buzz"
+        "move foo.txt to fizz/buzz",
       );
 
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz buzz/foo.txt"),
-        "move foo.txt to 'fizz buzz'"
+        "move foo.txt to 'fizz buzz'",
       );
 
       assert.strictEqual(
         oneChange("R\tfoo bar.txt\tfizz/foo bar.txt"),
-        "move 'foo bar.txt' to fizz"
+        "move 'foo bar.txt' to fizz",
       );
     });
 
     it("describes a file moved out of a subdirectory", function () {
       assert.strictEqual(
         oneChange("R\tfizz/buzz/foo.txt\tfoo.txt"),
-        "move foo.txt to repo root"
+        "move foo.txt to repo root",
       );
 
       assert.strictEqual(
         oneChange("R\tfizz/buzz/foo.txt\tfizz/foo.txt"),
-        "move foo.txt to fizz"
+        "move foo.txt to fizz",
       );
 
       assert.strictEqual(
         oneChange("R\tfizz/foo.txt\tfizz/buzz/foo.txt"),
-        "move foo.txt to fizz/buzz"
+        "move foo.txt to fizz/buzz",
       );
 
       assert.strictEqual(
         oneChange("R\tfizz/foo bar.txt\tfizz/buzz baz/foo bar.txt"),
-        "move 'foo bar.txt' to 'fizz/buzz baz'"
+        "move 'foo bar.txt' to 'fizz/buzz baz'",
       );
     });
 
     it("describes a file that was both moved and renamed", function () {
       assert.strictEqual(
         oneChange("R\tfoo.txt\tfizz/fuzz.txt"),
-        "move and rename foo.txt to fizz/fuzz.txt"
+        "move and rename foo.txt to fizz/fuzz.txt",
       );
 
       assert.strictEqual(
         oneChange("R\tbar/foo.txt\tfuzz.txt"),
-        "move and rename foo.txt to fuzz.txt at repo root"
+        "move and rename foo.txt to fuzz.txt at repo root",
       );
 
       assert.strictEqual(
         oneChange("R\tbar/foo.txt\tfizz/fuzz.txt"),
-        "move and rename foo.txt to fizz/fuzz.txt"
+        "move and rename foo.txt to fizz/fuzz.txt",
       );
 
       assert.strictEqual(
         oneChange("R\tbar/foo.txt\tfizz/baz fuzz.txt"),
-        "move and rename foo.txt to 'fizz/baz fuzz.txt'"
+        "move and rename foo.txt to 'fizz/baz fuzz.txt'",
       );
     });
 
     it("ignores percentage changed value for a file that was both moved and renamed", function () {
       assert.strictEqual(
         oneChange("R97\tfoo.txt\tfizz/fuzz.txt"),
-        "move and rename foo.txt to fizz/fuzz.txt"
+        "move and rename foo.txt to fizz/fuzz.txt",
       );
     });
 
@@ -146,17 +146,17 @@ describe("Generate commit message for a single changed file", function () {
       assert.strictEqual(oneChange("A\tfoo/README.md"), "create foo/README.md");
       assert.strictEqual(
         oneChange("M\tbar/baz/README.md"),
-        "update bar/baz/README.md"
+        "update bar/baz/README.md",
       );
       assert.strictEqual(
         oneChange("D\tbar/baz/buzz/README.md"),
-        "delete bar/baz/buzz/README.md"
+        "delete bar/baz/buzz/README.md",
       );
 
       assert.strictEqual(oneChange("A\tfoo/index.md"), "create foo/index.md");
       assert.strictEqual(
         oneChange("A\tfoo/index bazz.md"),
-        "create 'foo/index bazz.md'"
+        "create 'foo/index bazz.md'",
       );
       assert.strictEqual(oneChange("A\tfoo/index.js"), "create foo/index.js");
     });
@@ -171,7 +171,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "A", from: "foo.txt", y: " ", to: "" },
           { x: "A", from: "bar.txt", y: " ", to: "" },
         ]),
-        "create foo.txt and bar.txt"
+        "create foo.txt and bar.txt",
       );
 
       assert.strictEqual(
@@ -179,7 +179,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "A", from: "foo bar.txt", y: " ", to: "" },
           { x: "A", from: "fizz buzz.txt", y: " ", to: "" },
         ]),
-        "create 'foo bar.txt' and 'fizz buzz.txt'"
+        "create 'foo bar.txt' and 'fizz buzz.txt'",
       );
 
       assert.strictEqual(
@@ -187,7 +187,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "M", from: "foo.txt", y: " ", to: "" },
           { x: "M", from: "bar.txt", y: " ", to: "" },
         ]),
-        "update foo.txt and bar.txt"
+        "update foo.txt and bar.txt",
       );
 
       assert.strictEqual(
@@ -195,7 +195,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "M", from: "fizz.js", y: " ", to: "" },
           { x: "M", from: "buzz.ts", y: " ", to: "" },
         ]),
-        "update fizz.js and buzz.ts"
+        "update fizz.js and buzz.ts",
       );
     });
 
@@ -206,7 +206,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "A", from: "docs/bar.txt", y: " ", to: "" },
           { x: "A", from: "buzz.js", y: " ", to: "" },
         ]),
-        "create foo.txt, bar.txt and buzz.js"
+        "create foo.txt, bar.txt and buzz.js",
       );
 
       assert.strictEqual(
@@ -215,7 +215,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "A", from: "docs/bar fuzz.txt", y: " ", to: "" },
           { x: "A", from: "buzz.js", y: " ", to: "" },
         ]),
-        "create foo.txt, 'bar fuzz.txt' and buzz.js"
+        "create foo.txt, 'bar fuzz.txt' and buzz.js",
       );
 
       assert.strictEqual(
@@ -224,7 +224,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "D", from: "docs/bar.txt", y: " ", to: "" },
           { x: "D", from: "buzz.js", y: " ", to: "" },
         ]),
-        "delete foo.txt, bar.txt and buzz.js"
+        "delete foo.txt, bar.txt and buzz.js",
       );
     });
 
@@ -234,7 +234,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "A", from: "foo.txt", y: " ", to: "" },
           { x: "M", from: "bar.txt", y: " ", to: "" },
         ]),
-        "create 1 file and update 1 file"
+        "create 1 file and update 1 file",
       );
 
       assert.strictEqual(
@@ -242,7 +242,7 @@ describe("Generate description for a few changed files which each get named", fu
           { x: "M", from: "foo.txt", y: " ", to: "" },
           { x: "D", from: "bar.txt", y: " ", to: "" },
         ]),
-        "update 1 file and delete 1 file"
+        "update 1 file and delete 1 file",
       );
     });
   });

@@ -31,7 +31,7 @@ function _validateFoundRepos(git: API) {
  */
 async function _handleRepos(
   git: API,
-  sourceControl: vscode.SourceControl
+  sourceControl: vscode.SourceControl,
 ): Promise<Repository | false> {
   const selectedRepo = git.repositories.find(repository => {
     const uri = sourceControl.rootUri;
@@ -85,7 +85,7 @@ async function _chooseRepoForAutofill(sourceControl?: vscode.SourceControl) {
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "commitMsg.autofill",
-    _chooseRepoForAutofill
+    _chooseRepoForAutofill,
   );
 
   context.subscriptions.push(disposable);

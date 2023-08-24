@@ -197,10 +197,10 @@ export interface Repository {
 
   getObjectDetails(
     treeish: string,
-    path: string
+    path: string,
   ): Promise<{ mode: string; object: string; size: number }>;
   detectObjectType(
-    object: string
+    object: string,
   ): Promise<{ mimetype: string; encoding?: string }>;
   buffer(ref: string, path: string): Promise<Buffer>;
   show(ref: string, path: string): Promise<string>;
@@ -231,13 +231,13 @@ export interface Repository {
   getBranch(name: string): Promise<Branch>;
   getBranches(
     query: BranchQuery,
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Ref[]>;
   setBranchUpstream(name: string, upstream: string): Promise<void>;
 
   getRefs(
     query: RefQuery,
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Ref[]>;
 
   getMergeBase(ref1: string, ref2: string): Promise<string>;
@@ -259,7 +259,7 @@ export interface Repository {
     remoteName?: string,
     branchName?: string,
     setUpstream?: boolean,
-    force?: ForcePushMode
+    force?: ForcePushMode,
   ): Promise<void>;
 
   blame(path: string): Promise<string>;
@@ -307,7 +307,7 @@ export interface PushErrorHandler {
     repository: Repository,
     remote: Remote,
     refspec: string,
-    error: Error & { gitErrorCode: GitErrorCodes }
+    error: Error & { gitErrorCode: GitErrorCodes },
   ): Promise<boolean>;
 }
 
@@ -336,7 +336,7 @@ export interface API {
   registerRemoteSourceProvider(provider: RemoteSourceProvider): Disposable;
   registerCredentialsProvider(provider: CredentialsProvider): Disposable;
   registerPostCommitCommandsProvider(
-    provider: PostCommitCommandsProvider
+    provider: PostCommitCommandsProvider,
   ): Disposable;
   registerPushErrorHandler(handler: PushErrorHandler): Disposable;
 }
