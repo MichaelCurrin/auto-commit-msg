@@ -38,7 +38,7 @@ describe("Path handling", function () {
 
       assert.strictEqual(
         quoteForSpaces("fizz buzz/foo bar.txt"),
-        "'fizz buzz/foo bar.txt'"
+        "'fizz buzz/foo bar.txt'",
       );
     });
 
@@ -47,7 +47,7 @@ describe("Path handling", function () {
 
       assert.strictEqual(
         quoteForSpaces("fizz-buzz/foo-bar.txt"),
-        "fizz-buzz/foo-bar.txt"
+        "fizz-buzz/foo-bar.txt",
       );
     });
   });
@@ -101,21 +101,21 @@ describe("Path handling", function () {
     it("returns a sentence for two files", function () {
       assert.strictEqual(
         humanList(["foo.txt", "bar.txt"]),
-        "foo.txt and bar.txt"
+        "foo.txt and bar.txt",
       );
     });
 
     it("returns a sentence for three files", function () {
       assert.strictEqual(
         humanList(["foo.txt", "bar.txt", "bazz.js"]),
-        "foo.txt, bar.txt and bazz.js"
+        "foo.txt, bar.txt and bazz.js",
       );
     });
 
     it("returns a sentence for four files", function () {
       assert.strictEqual(
         humanList(["foo.txt", "bar.txt", "bazz.js", "buzz.ts"]),
-        "foo.txt, bar.txt, bazz.js and buzz.ts"
+        "foo.txt, bar.txt, bazz.js and buzz.ts",
       );
     });
 
@@ -128,7 +128,7 @@ describe("Path handling", function () {
       ];
       assert.strictEqual(
         humanList(input),
-        "foo.txt, docs/README.md, bazz.js and buzz.ts"
+        "foo.txt, docs/README.md, bazz.js and buzz.ts",
       );
     });
 

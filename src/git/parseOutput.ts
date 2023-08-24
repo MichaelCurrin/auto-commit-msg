@@ -19,7 +19,7 @@ const GIT_STATUS_SPLIT = " -> ";
 export function parseStatus(line: string): FileChange {
   if (line.length <= 4) {
     throw new Error(
-      `Input string must be at least 4 characters. Got: '${line}'`
+      `Input string must be at least 4 characters. Got: '${line}'`,
     );
   }
   const x = line[0];
@@ -56,7 +56,7 @@ export function parseStatus(line: string): FileChange {
 export function parseDiffIndex(line: string): FileChange {
   if (line.length <= 4) {
     throw new Error(
-      `Invalid input. Input string must be at least 4 characters. Got: '${line}'`
+      `Invalid input. Input string must be at least 4 characters. Got: '${line}'`,
     );
   }
   const x = line[0];

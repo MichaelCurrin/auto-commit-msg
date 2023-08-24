@@ -117,7 +117,7 @@ export function humanList(paths: string[]) {
  */
 export function moveOrRenameFromPaths(
   oldP: SplitPathResult,
-  newP: SplitPathResult
+  newP: SplitPathResult,
 ) {
   let result: MoveOrRename;
 

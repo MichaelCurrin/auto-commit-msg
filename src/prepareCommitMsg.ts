@@ -193,7 +193,7 @@ export function _newMsg(lines: string[]) {
  */
 export function _joinOldAndNew(
   autoMsgPieces: ConvCommitMsg,
-  oldMsgPieces: MsgPieces
+  oldMsgPieces: MsgPieces,
 ): string {
   let typePrefix = "";
 
@@ -205,7 +205,7 @@ export function _joinOldAndNew(
 
   const descResult = _joinWithSpace(
     autoMsgPieces.description,
-    oldMsgPieces.description
+    oldMsgPieces.description,
   );
 
   if (!typePrefix) {
@@ -239,7 +239,7 @@ export function _joinOldAndNew(
 export function _combineOldAndNew(
   autoType: CONVENTIONAL_TYPE,
   autoDesc: string,
-  oldMsg: string
+  oldMsg: string,
 ): string {
   if (!oldMsg) {
     const autoCommitMsg: ConvCommitMsg = {
@@ -273,7 +273,7 @@ export function _combineOldAndNew(
 export function _generateMsgWithOld(lines: string[], oldMsg: string) {
   if (oldMsg === "") {
     throw new Error(
-      "`oldMsg` must be non-empty here, or use `generateNewMsg` instead."
+      "`oldMsg` must be non-empty here, or use `generateNewMsg` instead.",
     );
   }
   const { typePrefix, description } = _msgFromChanges(lines);

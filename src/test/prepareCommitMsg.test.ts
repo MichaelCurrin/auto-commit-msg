@@ -52,40 +52,40 @@ describe("Find prefix from Git output", function () {
       it("recognizes a new generic file as a feature", function () {
         assert.strictEqual(
           _prefixFromChange("A\tfoo.txt"),
-          CONVENTIONAL_TYPE.FEAT
+          CONVENTIONAL_TYPE.FEAT,
         );
 
         assert.strictEqual(
           _prefixFromChange("A\tfoo bar.txt"),
-          CONVENTIONAL_TYPE.FEAT
+          CONVENTIONAL_TYPE.FEAT,
         );
       });
 
       it("recognizes a modified generic file as an unknown", function () {
         assert.strictEqual(
           _prefixFromChange("M\tfoo.txt"),
-          CONVENTIONAL_TYPE.UNKNOWN
+          CONVENTIONAL_TYPE.UNKNOWN,
         );
       });
 
       it("recognizes a deleted generic file as a chore", function () {
         assert.strictEqual(
           _prefixFromChange("D\tfoo.txt"),
-          CONVENTIONAL_TYPE.CHORE
+          CONVENTIONAL_TYPE.CHORE,
         );
       });
 
       it("recognizes a renamed generic file as a chore", function () {
         assert.strictEqual(
           _prefixFromChange("R\tfoo.txt bar.txt"),
-          CONVENTIONAL_TYPE.CHORE
+          CONVENTIONAL_TYPE.CHORE,
         );
       });
 
       it("recognizes a moved generic file as a chore", function () {
         assert.strictEqual(
           _prefixFromChange("R\tfoo.txt bar/foo.txt"),
-          CONVENTIONAL_TYPE.CHORE
+          CONVENTIONAL_TYPE.CHORE,
         );
       });
     });
@@ -121,7 +121,7 @@ describe("Find prefix from Git output", function () {
 
         assert.strictEqual(
           _prefixFromChange("R\tdocs/foo.md\tdocs/bar.md"),
-          expected
+          expected,
         );
       });
       it("recognizes a moved docs file change as chore", function () {
@@ -129,11 +129,11 @@ describe("Find prefix from Git output", function () {
 
         assert.strictEqual(
           _prefixFromChange("R\tREADME.md\tbar/README.md"),
-          expected
+          expected,
         );
         assert.strictEqual(
           _prefixFromChange("R\tdocs/foo.md\tbar/foo.md"),
-          expected
+          expected,
         );
       });
     });
@@ -156,7 +156,7 @@ describe("Find prefix from Git output", function () {
 
         assert.strictEqual(
           _prefixFromChange("R\tpackage-lock.json\tfoo.json"),
-          expected
+          expected,
         );
       });
 
@@ -165,7 +165,7 @@ describe("Find prefix from Git output", function () {
 
         assert.strictEqual(
           _prefixFromChange("R\tpackage-lock.json\tfoo/package-lock.json"),
-          expected
+          expected,
         );
       });
     });
@@ -190,7 +190,7 @@ describe("Choose a prefix type from multiple", function () {
 
       assert.strictEqual(
         _collapse([CONVENTIONAL_TYPE.FEAT, CONVENTIONAL_TYPE.FEAT]),
-        expected
+        expected,
       );
 
       assert.strictEqual(
@@ -199,7 +199,7 @@ describe("Choose a prefix type from multiple", function () {
           CONVENTIONAL_TYPE.FEAT,
           CONVENTIONAL_TYPE.FEAT,
         ]),
-        expected
+        expected,
       );
     });
 
@@ -208,7 +208,7 @@ describe("Choose a prefix type from multiple", function () {
 
       assert.strictEqual(
         _collapse([CONVENTIONAL_TYPE.FEAT, CONVENTIONAL_TYPE.DOCS]),
-        expected
+        expected,
       );
 
       assert.strictEqual(
@@ -217,7 +217,7 @@ describe("Choose a prefix type from multiple", function () {
           CONVENTIONAL_TYPE.DOCS,
           CONVENTIONAL_TYPE.CHORE,
         ]),
-        expected
+        expected,
       );
     });
 
@@ -228,7 +228,7 @@ describe("Choose a prefix type from multiple", function () {
           CONVENTIONAL_TYPE.FEAT,
           CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
         ]),
-        expected
+        expected,
       );
       assert.strictEqual(
         _collapse([
@@ -236,7 +236,7 @@ describe("Choose a prefix type from multiple", function () {
           CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
           CONVENTIONAL_TYPE.CHORE,
         ]),
-        expected
+        expected,
       );
     });
   });
@@ -685,7 +685,7 @@ describe("Prepare commit message", function () {
           typePrefix: CONVENTIONAL_TYPE.FEAT,
           description: "create foo.txt",
         }),
-        "feat: create foo.txt"
+        "feat: create foo.txt",
       );
 
       assert.strictEqual(
@@ -693,7 +693,7 @@ describe("Prepare commit message", function () {
           typePrefix: CONVENTIONAL_TYPE.BUILD,
           description: "update foo.txt",
         }),
-        "build: update foo.txt"
+        "build: update foo.txt",
       );
 
       assert.strictEqual(
@@ -701,7 +701,7 @@ describe("Prepare commit message", function () {
           typePrefix: CONVENTIONAL_TYPE.DOCS,
           description: "update README.md",
         }),
-        "docs: update README.md"
+        "docs: update README.md",
       );
     });
   });
@@ -777,7 +777,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "docs: update prepareCommitMsg.ts"
+          "docs: update prepareCommitMsg.ts",
         );
       });
 
@@ -795,7 +795,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "chore: update .editorconfig foo the bar"
+          "chore: update .editorconfig foo the bar",
         );
       });
 
@@ -813,7 +813,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "docs: update .editorconfig"
+          "docs: update .editorconfig",
         );
       });
 
@@ -831,7 +831,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "[abc] docs: update .editorconfig"
+          "[abc] docs: update .editorconfig",
         );
       });
     });
@@ -850,7 +850,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "foo the bar"
+          "foo the bar",
         );
       });
 
@@ -867,7 +867,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-          "feat: foo the bar"
+          "feat: foo the bar",
         );
       });
     });
@@ -888,7 +888,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-              "foo the bar fizz the buzz"
+              "foo the bar fizz the buzz",
             );
           }
 
@@ -905,7 +905,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-              "foo the bar [ABCD-1234]"
+              "foo the bar [ABCD-1234]",
             );
           }
         });
@@ -924,7 +924,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-              "feat: foo the bar"
+              "feat: foo the bar",
             );
           });
 
@@ -941,7 +941,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-              "[ABCD-1234] feat: foo the bar"
+              "[ABCD-1234] feat: foo the bar",
             );
           });
 
@@ -960,7 +960,7 @@ describe("Prepare commit message", function () {
 
                 assert.strictEqual(
                   _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                  "[ABCD-1234] feat: foo the bar"
+                  "[ABCD-1234] feat: foo the bar",
                 );
               });
 
@@ -977,7 +977,7 @@ describe("Prepare commit message", function () {
 
                 assert.strictEqual(
                   _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                  "[ABCD-1234] chore: foo the bar"
+                  "[ABCD-1234] chore: foo the bar",
                 );
               });
             });
@@ -996,7 +996,7 @@ describe("Prepare commit message", function () {
 
                 assert.strictEqual(
                   _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                  "[ABCD-1234] feat: foo the bar"
+                  "[ABCD-1234] feat: foo the bar",
                 );
               });
             });
@@ -1016,7 +1016,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "feat: foo the bar"
+                "feat: foo the bar",
               );
             }
 
@@ -1033,7 +1033,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "[ABCD-1234] feat: foo the bar"
+                "[ABCD-1234] feat: foo the bar",
               );
             }
           });
@@ -1050,9 +1050,9 @@ describe("Prepare commit message", function () {
                     customPrefix: "",
                     typePrefix: "",
                     description: "fizz the buzz",
-                  }
+                  },
                 ),
-                "chore: fizz the buzz"
+                "chore: fizz the buzz",
               );
             });
 
@@ -1067,9 +1067,9 @@ describe("Prepare commit message", function () {
                     customPrefix: "",
                     typePrefix: "",
                     description: "fizz the buzz",
-                  }
+                  },
                 ),
-                "fizz the buzz"
+                "fizz the buzz",
               );
             });
 
@@ -1084,9 +1084,9 @@ describe("Prepare commit message", function () {
                     customPrefix: "",
                     typePrefix: "docs",
                     description: "fizz the buzz",
-                  }
+                  },
                 ),
-                "docs: fizz the buzz"
+                "docs: fizz the buzz",
               );
             });
           });
@@ -1108,7 +1108,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "feat: foo the bar fizz the buzz"
+                "feat: foo the bar fizz the buzz",
               );
             });
 
@@ -1121,7 +1121,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "feat: foo the bar ABCD-1234"
+                "feat: foo the bar ABCD-1234",
               );
             });
           });
@@ -1136,7 +1136,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "docs: foo the bar"
+                "docs: foo the bar",
               );
             });
 
@@ -1149,7 +1149,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "[ABCD-1234] docs: foo the bar"
+                "[ABCD-1234] docs: foo the bar",
               );
             });
           });
@@ -1164,7 +1164,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "docs: foo the bar"
+                "docs: foo the bar",
               );
             }
 
@@ -1177,7 +1177,7 @@ describe("Prepare commit message", function () {
 
               assert.strictEqual(
                 _joinOldAndNew(autoMsgPieces, oldMsgPieces),
-                "[ABCD-1234] docs: foo the bar"
+                "[ABCD-1234] docs: foo the bar",
               );
             }
           });
@@ -1195,9 +1195,9 @@ describe("Prepare commit message", function () {
           _combineOldAndNew(
             CONVENTIONAL_TYPE.UNKNOWN,
             "update prepareCommitMsg.ts",
-            oldMsg
+            oldMsg,
           ),
-          "docs: update prepareCommitMsg.ts"
+          "docs: update prepareCommitMsg.ts",
         );
       });
 
@@ -1212,9 +1212,9 @@ describe("Prepare commit message", function () {
           _combineOldAndNew(
             CONVENTIONAL_TYPE.CHORE,
             "update .editorconfig",
-            oldMsg
+            oldMsg,
           ),
-          "chore: update .editorconfig xyz"
+          "chore: update .editorconfig xyz",
         );
       });
 
@@ -1227,9 +1227,9 @@ describe("Prepare commit message", function () {
           _combineOldAndNew(
             CONVENTIONAL_TYPE.CHORE,
             "update .editorconfig",
-            oldMsg
+            oldMsg,
           ),
-          "docs: update .editorconfig"
+          "docs: update .editorconfig",
         );
       });
 
@@ -1239,9 +1239,9 @@ describe("Prepare commit message", function () {
           _combineOldAndNew(
             CONVENTIONAL_TYPE.CHORE,
             "update .editorconfig",
-            oldMsg
+            oldMsg,
           ),
-          "[abc] docs: update .editorconfig"
+          "[abc] docs: update .editorconfig",
         );
       });
     });
@@ -1252,7 +1252,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _combineOldAndNew(CONVENTIONAL_TYPE.UNKNOWN, "foo the bar", oldMsg),
-          "foo the bar"
+          "foo the bar",
         );
       });
 
@@ -1261,7 +1261,7 @@ describe("Prepare commit message", function () {
 
         assert.strictEqual(
           _combineOldAndNew(CONVENTIONAL_TYPE.FEAT, "foo the bar", oldMsg),
-          "feat: foo the bar"
+          "feat: foo the bar",
         );
       });
     });
@@ -1276,18 +1276,18 @@ describe("Prepare commit message", function () {
             _combineOldAndNew(
               CONVENTIONAL_TYPE.UNKNOWN,
               "foo the bar",
-              "fizz the buzz"
+              "fizz the buzz",
             ),
-            "foo the bar fizz the buzz"
+            "foo the bar fizz the buzz",
           );
 
           assert.strictEqual(
             _combineOldAndNew(
               CONVENTIONAL_TYPE.UNKNOWN,
               "foo the bar",
-              "[ABCD-1234]"
+              "[ABCD-1234]",
             ),
-            "foo the bar [ABCD-1234]"
+            "foo the bar [ABCD-1234]",
           );
         });
 
@@ -1297,9 +1297,9 @@ describe("Prepare commit message", function () {
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.UNKNOWN,
                 "foo the bar",
-                "feat:"
+                "feat:",
               ),
-              "feat: foo the bar"
+              "feat: foo the bar",
             );
           });
 
@@ -1308,9 +1308,9 @@ describe("Prepare commit message", function () {
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.UNKNOWN,
                 "foo the bar",
-                "[ABCD-1234] feat:"
+                "[ABCD-1234] feat:",
               ),
-              "[ABCD-1234] feat: foo the bar"
+              "[ABCD-1234] feat: foo the bar",
             );
           });
 
@@ -1325,9 +1325,9 @@ describe("Prepare commit message", function () {
                   _combineOldAndNew(
                     CONVENTIONAL_TYPE.CHORE,
                     "foo the bar",
-                    "[ABCD-1234] :"
+                    "[ABCD-1234] :",
                   ),
-                  "[ABCD-1234] chore: foo the bar"
+                  "[ABCD-1234] chore: foo the bar",
                 );
               });
 
@@ -1339,9 +1339,9 @@ describe("Prepare commit message", function () {
                   _combineOldAndNew(
                     CONVENTIONAL_TYPE.UNKNOWN,
                     "foo the bar",
-                    "[ABCD-1234] :"
+                    "[ABCD-1234] :",
                   ),
-                  "foo the bar"
+                  "foo the bar",
                 );
               });
             });
@@ -1354,9 +1354,9 @@ describe("Prepare commit message", function () {
                   _combineOldAndNew(
                     CONVENTIONAL_TYPE.CHORE,
                     "foo the bar",
-                    "[ABCD-1234]:"
+                    "[ABCD-1234]:",
                   ),
-                  "[ABCD-1234]: foo the bar"
+                  "[ABCD-1234]: foo the bar",
                 );
               });
             });
@@ -1368,18 +1368,18 @@ describe("Prepare commit message", function () {
             _combineOldAndNew(
               CONVENTIONAL_TYPE.UNKNOWN,
               "foo the bar",
-              "feat: "
+              "feat: ",
             ),
-            "feat: foo the bar"
+            "feat: foo the bar",
           );
 
           assert.strictEqual(
             _combineOldAndNew(
               CONVENTIONAL_TYPE.UNKNOWN,
               "foo the bar",
-              "[ABCD-1234] feat: "
+              "[ABCD-1234] feat: ",
             ),
-            "[ABCD-1234] feat: foo the bar"
+            "[ABCD-1234] feat: foo the bar",
           );
         });
 
@@ -1389,9 +1389,9 @@ describe("Prepare commit message", function () {
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.CHORE,
                 "fizz the buzz",
-                "fizz the buzz"
+                "fizz the buzz",
               ),
-              "chore: fizz the buzz"
+              "chore: fizz the buzz",
             );
           });
 
@@ -1400,9 +1400,9 @@ describe("Prepare commit message", function () {
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.UNKNOWN,
                 "fizz the buzz",
-                "fizz the buzz"
+                "fizz the buzz",
               ),
-              "fizz the buzz"
+              "fizz the buzz",
             );
           });
 
@@ -1411,9 +1411,9 @@ describe("Prepare commit message", function () {
               _combineOldAndNew(
                 CONVENTIONAL_TYPE.CHORE,
                 "fizz the buzz",
-                "docs: fizz the buzz"
+                "docs: fizz the buzz",
               ),
-              "docs: fizz the buzz"
+              "docs: fizz the buzz",
             );
           });
         });
@@ -1429,7 +1429,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
-              "feat: foo the bar fizz the buzz"
+              "feat: foo the bar fizz the buzz",
             );
           });
 
@@ -1445,7 +1445,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
-              "feat: foo the bar ABCD-1234"
+              "feat: foo the bar ABCD-1234",
             );
           });
         });
@@ -1456,7 +1456,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
-              "docs: foo the bar"
+              "docs: foo the bar",
             );
           });
 
@@ -1464,7 +1464,7 @@ describe("Prepare commit message", function () {
             const oldMsg = "[ABCD-1234] docs:";
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
-              "[ABCD-1234] docs: foo the bar"
+              "[ABCD-1234] docs: foo the bar",
             );
           });
         });
@@ -1475,7 +1475,7 @@ describe("Prepare commit message", function () {
 
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
-              "docs: foo the bar"
+              "docs: foo the bar",
             );
           }
 
@@ -1483,7 +1483,7 @@ describe("Prepare commit message", function () {
             const oldMsg = "[ABCD-1234] docs: ";
             assert.strictEqual(
               _combineOldAndNew(autoType, autoDesc, oldMsg),
-              "[ABCD-1234] docs: foo the bar"
+              "[ABCD-1234] docs: foo the bar",
             );
           }
         });
@@ -1499,7 +1499,7 @@ describe("Prepare commit message", function () {
 
       assert.strictEqual(
         _generateMsgWithOld(fileChanges, oldMsg),
-        "update baz.txt and bar.js my old message"
+        "update baz.txt and bar.js my old message",
       );
     });
 
@@ -1518,7 +1518,7 @@ describe("Prepare commit message", function () {
 
       assert.strictEqual(
         generateMsg(fileChanges, oldMsg),
-        "update baz.txt and bar.js my old message"
+        "update baz.txt and bar.js my old message",
       );
     });
 
@@ -1527,7 +1527,7 @@ describe("Prepare commit message", function () {
 
       assert.strictEqual(
         generateMsg(fileChanges, oldMsg),
-        "update baz.txt and bar.js"
+        "update baz.txt and bar.js",
       );
     });
   });
