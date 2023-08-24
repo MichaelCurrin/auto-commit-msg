@@ -27,7 +27,7 @@
   "engines": {
     "node": ">=16",
     "npm": ">=8",
-    "vscode": "^1.74.0"
+    "vscode": "^1.81.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
@@ -77,9 +77,6 @@
     "color": "#f0efe7",
     "theme": "light"
   },
-  "activationEvents": [
-    "onCommand:commitMsg.autofill"
-  ],
   "contributes": {
     "commands": [
       {
