@@ -19,6 +19,9 @@ export const PACKAGE_NAMES = [
   "Pipfile",
   "Pipefile.lock",
 
+  "poetry.toml",
+  "poetry.lock",
+
   // Make Python package installable and manage external packages.
   "pyproject.toml",
   "setup.py",
@@ -117,6 +120,9 @@ export const CONFIG_NAMES = [
   // Python
   ".pylintrc",
   "setup.cfg",
+  ".isort.cfg",
+  ".flake8",
+  "pytest.ini",
 
   // Node
   ".browserslistrc",
