@@ -22,6 +22,11 @@ outdated:
 upgrade:
 	npm upgrade
 
+# Upgrade vscode types package and use it to set the engine version.
+upgrade-engine:
+	npm install @types/vscode@latest
+	VS_CODE_VERSION=$$(npm view @types/vscode version) && \
+		sed -i "s/\"vscode\": \"\^.*\"/\"vscode\": \"^$$VS_CODE_VERSION\"/" package.json
 
 fmt:
 	npm run fmt:fix
