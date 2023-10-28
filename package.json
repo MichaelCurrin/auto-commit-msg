@@ -27,12 +27,12 @@
   "engines": {
     "node": ">=20",
     "npm": ">=9",
-    "vscode": "^1.81.0"
+    "vscode": "^1.83.1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.5.4",
-    "@types/vscode": "^1.74.0",
+    "@types/vscode": "^1.83.1",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
     "@vscode/vsce": "^2.19.0",
