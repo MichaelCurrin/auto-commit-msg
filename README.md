@@ -31,7 +31,7 @@
 **[Getting started](#getting-started) | [Features](#features) | [Screenshots](#sample-usage) | [Documentation](#documentation)**
 
 -->
-    
+
 </div>
 
 
@@ -76,9 +76,11 @@ See more info on the [Features](/docs/features.md) page in the docs.
 
 ## Comparison with other extensions
 
-Other extensions usually require some manual input, such as selecting prefix type from a droplist or writing a commit message by hand.
+Other extensions usually require some manual input, such as selecting prefix type from a droplist or writing a commit message by hand along with other form parameters.
 
 This extension takes _zero_ parameters. Just click a button.
+
+With the explosion of AI tools, you can find alternatives to this extension which use AI - see [AI tools](/docs/other/ai-tools.md)
 
 
 ## Sample usage
