@@ -26,7 +26,8 @@ upgrade:
 upgrade-engine:
 	npm install @types/vscode@latest
 	VS_CODE_VERSION=$$(npm view @types/vscode version) && \
-		sed -i "s/\"vscode\": \"\^.*\"/\"vscode\": \"^$$VS_CODE_VERSION\"/" package.json
+		sed -i "s/\"vscode\": \"\^.*\"/\"vscode\": \"^$$VS_CODE_VERSION\"/" \
+			package.json package-lock.json
 
 fmt:
 	npm run fmt:fix
