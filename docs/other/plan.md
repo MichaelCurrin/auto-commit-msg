@@ -13,8 +13,8 @@ Roadmap of things to do to get this to v1 release.
 - [x] Tests - Unit tests that are run with GitHub Actions CI
 - [x] Test coverage report.
 - [ ] Update logo.
-- [ ] Available in VS Code marketplace.
-- [ ] CI to build the package archive on tag (so it easily available outside the marketplace).
+- [x] Available in VS Code marketplace.
+- [ ] CI to build the package archive on tag.
 - [ ] Clean up docs and Wiki.
 
 See [Issues](https://github.com/MichaelCurrin/auto-commit-msg/issues) on the repo.
