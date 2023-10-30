@@ -21,8 +21,8 @@ Follow these steps:
         - You might want to use _File_ / _Open_ to change the sandbox window to a repo what has more content to play with. This will be _remembered_ on later runs. Unfortunately if you changed your VS Code settings to open in a new window on Open, then the extension setup will be undone.
     - _Start in Sandbox repo_ task.
         - For more reliable and consistent behavior.
-        - This will run against `sandbox` directory in the project, which is a Git repo where you can make files and commits as you like. 
-        - NB. You'll must run `npm run sb` **first** to ensure this directory exists and then run the debug action. Run that NPM command again whenever you want to clear the space and start over.
+        - This will run against the `sandbox` directory in the project, which is a separate Git repo where you can make files and commits as you like.
+        - NB. You must run `npm run sb` command **first** to ensure this directory exists, then run the debug action. You can also this NPM command again whenever you want to clear the space and start over.
 1. Click the run button.
 
 That will start a new sandboxed VS Code session which has the extension built using the local code and _enabled_, and all other extensions _disabled_. At a lower level, it runs `npm compile` and `npm watch`. If you want to keep extensions enabled, remove the `--disable-extensions` flag in the launch config.
