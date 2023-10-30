@@ -1,5 +1,5 @@
-#!/bin/sh
-# Set up the sandbox directory.
+#!/bin/bash
+# Set up the sandbox directory as a repo with some sample activity.
 set -e
 
 DIR='sandbox'
