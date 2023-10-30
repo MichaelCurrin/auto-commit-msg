@@ -27,7 +27,9 @@ function _validateFoundRepos(git: API) {
 }
 
 /**
- * Get current repo when using multiples in the workspace (or when using GitLens on a single repo).
+ * Get current repo when using multiple repos in the workspace.
+ *
+ * Or when using GitLens on a single repo, based on a reported issue.
  */
 async function _handleRepos(
   git: API,
