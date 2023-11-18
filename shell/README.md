@@ -1,8 +1,8 @@
 # Shell
 
-Git hook test scripts.
+Bash scripts around this project.
 
-All the scripts in this directory are named with dashes not underscores, to match the git hook filenames convention.
+All the scripts in this directory are named with dashes and not underscores, to match the Git hook filenames convention.
 
 
 ## Samples
@@ -16,22 +16,22 @@ Archive of shell scripts for reference. These are used in the early development 
 
 ## Autofill scripts
 
-These integrate with the JS scripts in this project, as an alternative to VS Code so I can use it any terminal and in other IDEs with terminals. And if I stop using VS Code completely I can keep the core use at least in a terminal.
+These are shell scripts to integrate with the JS scripts in this project, as an alternative to using, VS Code so I can use it any terminal and in other IDEs with their terminals. And if I stop using VS Code completely I can keep using the core at least in a terminal.
 
 - [autofill-hook.sh](autofill-hook.sh)
 - [autofill.sh](autofill.sh)
 
-They are not complete but work as a POC for using the core logic outside project outside of VS Code as git hook.
+They are not complete but work as a POC for using the core logic outside project outside of VS Code as Git hook.
 
 ### Dev notes
 
-Remember to compile before running this script to get the latest changes.
+Remember to **compile** before running this script to get the latest changes.
 
 #### Purpose
 
-This script should be used as **alternative** to using VS Code itself to handle your commit messages, as VS Code does not support a hook properly when going through the UI box (it **ignores** any message you type in and uses its own generated message from the hook).
+This script should be used as an **alternative** to using VS Code itself to handle your commit messages, as VS Code does not support a hook properly when going through the UI box (it actually **ignores** any message you type in and uses its own generated message from the hook).
 
-But, if you don't use it as an actual hook, there is an alternative flow that doesn't mess with VS Code. You can use the other script and set up a git alias (which can be used across projects without setting a hook even).
+But, if you don't use it as an actual hook, there is an alternative flow that doesn't mess with VS Code. You can use the other script and set up a Git alias (which can be used across projects without setting a hook even).
 
 e.g.
 
@@ -59,9 +59,9 @@ $ cp autofill.sh /usr/local/bin
 
 TODO:
 
-- Where to put the Node script so it can reference to.
-- How to automated the install process for upgrades.
-- Figure out how to switch between staged and not with `--cached`. Like passing a param to the shell script and having two aliases. Or to have it as pass of the shell script to fallback to all if anything is staged. Or just control with filenames e.g. `git c .` or `git c package*` - oh wait, the shell script doesn't look at what is passed to `git commit`, only what is staged or not.
+- Where to put the Node script so it can reference it.
+- How to automated the install process for upgrades. Maybe the JS + shell script as NPM package or at least on GitHub with cURL install.
+- Figure out how to switch between staged and not, with `--cached`. Like passing a param to the shell script and having two aliases. Or to have it as pass of the shell script to fallback to all if anything is staged. Or just control with filenames e.g. `git c .` or `git c package*` - oh wait, the shell script doesn't look at what is passed to `git commit`, only what is staged or not.
 
 #### Alias
 
@@ -82,9 +82,8 @@ $ git c foo.txt
 
 #### TODO
 
-**TODO** For now this points to the output directory so it limited in real world use. This is stepping
+- For now this points to the output directory so it limited in real world use. This is a stepping
 stone. But ideally the JS files can be copied outside of this project to a central location (maybe
-with a bin entry point). And the SH script can be added to an individual project in .git/hooks dir as `prepare-commit-msg`.
-
-**TODO** When using this as a hook, consider reading from the existing commit message file in the case
+with a `bin` entry point). And the SH script can be added to an individual project in `.git/hooks` dir as `prepare-commit-msg`.
+- When using this as a hook, consider reading from the **existing** commit message file in the case
 of template, so it that can be passed on.
