@@ -22,8 +22,8 @@ SHA1=$3
 
 ###
 
-# Show files change.
-# (It will uncomment files changed in the message - which is maybe less
+# Show files changed.
+# (It will uncomment files changed in the message, which is maybe less
 # efficient than just running git status but this is what git comes with.)
 case "$COMMIT_SOURCE,$SHA1" in
 , | template,)
