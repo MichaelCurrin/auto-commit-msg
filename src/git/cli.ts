@@ -10,7 +10,7 @@ import { Repository } from "../api/git";
 const exec = util.promisify(childProcess.exec);
 
 /**
- * Run a `git` subcommand and return result with stdout and stderr available.
+ * Run a `git` subcommand and return the result, with stdout and stderr available.
  */
 function _execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${subcommand} ${options.join(" ")}`;
@@ -21,15 +21,15 @@ function _execute(cwd: string, subcommand: string, options: string[] = []) {
 }
 
 /**
- * Run `git diff-index` with given flags and return output.
+ * Run `git diff-index` with given flags and return the output.
  *
- * This will return both staged and unstaged changes. Pass '--cached' to use
- * staged changes only. Always excludes untracked files.
+ * This will return both staged and unstaged changes. Pass '--cached' in
+ * `options` param to use staged changes only. Always excludes untracked files.
  *
- * Empty lines will be dropped - because of no changes or just the way the
+ * Empty lines will be dropped, because of no changes or just the way the
  * command-line data comes in or got split.
  *
- * The output already seems to never have color info, from my testing, but the
+ * The output already seems to never have color info, from testing, but the
  * no-color flagged is added still to be safe.
  */
 async function _diffIndex(
