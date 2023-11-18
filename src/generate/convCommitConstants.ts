@@ -119,19 +119,19 @@ export const CONFIG_NAMES = [
   ".isort.cfg",
   ".flake8",
   "pytest.ini",
-  '.coveragerc',
-  '.pylintrc',
+  ".coveragerc",
+  ".pylintrc",
 
   // Node
   ".npmignore",
   ".npmrc",
-  '.babelrc',
-  '.eslintrc',
+  ".babelrc",
+  ".eslintrc",
   ".browserslistrc",
   "browserslist",
   "rollup.config.js",
-  'webpack.config.js',
-  'npm-shrinkwrap.json',
+  "webpack.config.js",
+  "npm-shrinkwrap.json",
   "tsconfig.json",
   "tslint.json",
 
@@ -160,7 +160,7 @@ export const CI_NAMES = [
   "vercel.json",
   ".vercelignore",
 
-  'Procfile',
+  "Procfile",
 ];
 
 // This can be useful for multi-file changes e.g. "Create 5 scripts"
