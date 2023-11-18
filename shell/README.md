@@ -33,19 +33,16 @@ This script should be used as an **alternative** to using VS Code itself to hand
 
 But, if you don't use it as an actual hook, there is an alternative flow that doesn't mess with VS Code. You can use the other script and set up a Git alias (which can be used across projects without setting a hook even).
 
-e.g.
+Sample output:
 
 ```console
 $ ./shell/autofill.sh
 chore: update settings.json
-```
-
-```console
 $ ./shell/autofill.sh
 update 11 files
 ```
 
-Use it. This uses the tool to generate a message and pass it as the Git commit message, but forcing edit mode so you can override it.
+Use it with Git. This uses the tool to generate a message and pass it as the Git commit message, but forcing edit mode so you can override it.
 
 ```sh
 $ git commit --edit -m "$(shell/autofill.sh)"
@@ -65,14 +62,14 @@ TODO:
 
 #### Alias
 
-Set this up in git config aliases as `c` or something. If this was in a _bin_ directory, or used with an absolute path to the script. The
+Set this up in git config aliases as `c` or something. If this was in a _bin_ directory, or used with an absolute path to the script.
 
 ```toml
 [alias]
     c = '! git commit --edit -m "$(autofill.sh)"'
 ```
 
-Then instead of `git commit`, you do:
+Then instead of `git commit`, you  cando:
 
 ```sh
 $ git c
@@ -87,3 +84,4 @@ stone. But ideally the JS files can be copied outside of this project to a centr
 with a `bin` entry point). And the SH script can be added to an individual project in `.git/hooks` dir as `prepare-commit-msg`.
 - When using this as a hook, consider reading from the **existing** commit message file in the case
 of template, so it that can be passed on.
+- Add a flag for staged to get `--cached` flag.
