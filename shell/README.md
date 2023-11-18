@@ -25,7 +25,7 @@ They are not complete but work as a POC for using the core logic outside project
 
 ### Dev notes
 
-Remember to **compile** before running this script to get the latest changes.
+Remember to **compile** the TS to JS before running this script to get the latest changes. Or use a pre-compiled script.
 
 #### Purpose
 
