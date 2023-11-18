@@ -3,11 +3,11 @@
  *
  * Run Git CLI commands within the extension and capture the text output.
  */
-import util = require("util");
-import childProcess = require("child_process");
+import { exec as _exec } from "child_process";
+import * as util from "util";
 import { Repository } from "../api/git";
 
-const exec = util.promisify(childProcess.exec);
+const exec = util.promisify(_exec);
 
 /**
  * Run a `git` subcommand and return the result, with stdout and stderr available.
