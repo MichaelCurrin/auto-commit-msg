@@ -25,6 +25,7 @@ export const PACKAGE_NAMES = [
   // Make Python package installable and manage external packages.
   "pyproject.toml",
   "setup.py",
+  "setup.cfg",
 
   // Ruby
   "Gemfile",
@@ -103,14 +104,10 @@ export const CONFIG_EXTENSIONS = [
   ".toml",
   ".ini",
   ".cfg",
-  ".config.js", // e.g. for jest and commitlint
+  ".config.js", // e.g. for rollup, jest and commitlint
 ];
 export const CONFIG_DIRS = [".vscode"];
 export const CONFIG_NAMES = [
-  // Node
-  ".npmignore",
-  ".npmrc",
-
   // Git
   ".gitignore",
 
@@ -119,16 +116,22 @@ export const CONFIG_NAMES = [
 
   // Python
   ".pylintrc",
-  "setup.cfg",
   ".isort.cfg",
   ".flake8",
   "pytest.ini",
+  '.coveragerc',
+  '.pylintrc',
 
   // Node
+  ".npmignore",
+  ".npmrc",
+  '.babelrc',
+  '.eslintrc',
   ".browserslistrc",
   "browserslist",
-
-  // TypeScript
+  "rollup.config.js",
+  'webpack.config.js',
+  'npm-shrinkwrap.json',
   "tsconfig.json",
   "tslint.json",
 
@@ -156,6 +159,8 @@ export const CI_NAMES = [
   ".nowignore",
   "vercel.json",
   ".vercelignore",
+
+  'Procfile',
 ];
 
 // This can be useful for multi-file changes e.g. "Create 5 scripts"
