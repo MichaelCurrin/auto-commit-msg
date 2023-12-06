@@ -1,7 +1,8 @@
 # AI tools
-> Using AI to generate commit messages
+> Recommended tools to use AI to generate your commit message
 
-## AI-based extensions
+## VS Code extensions
+> Using AI to generate commit messages
 
 Search for "gpt commit" in the extensions marketplace and you'll see plenty of extensions that use GPT to write your commit message.
 
@@ -18,6 +19,12 @@ You can also try [Codeium](https://codeium.com/download) extension which has a l
 - Your code is shared across the internet with OpenAI etc., which can cause issues for private and company projects.
 - You need to a ChatGPT API key and to pay for a premium subscription.
 - Limited acccuracy - I don't know if GPT is powerful enough to figure out the context of what you are doing and intend to write based on a diff only, as some of the reasoning for a change won't be covered by code itself but by real world events and requirements. You can pass more unchanged files from you codebase in an extension to the AI but this costs more money and won't always help.
+
+## CLI tool
+
+See this Rust-based tool which runs on the command-line.
+
+- [gptcommit](https://github.com/zurawiki/gptcommit)
 
 ## Local LLMs
 
