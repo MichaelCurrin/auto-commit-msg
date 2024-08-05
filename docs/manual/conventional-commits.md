@@ -5,8 +5,8 @@ Info on how the Conventional Commits standard is applied for generating output i
 
 ## Resources
 
-- [Conventional Commits](https://www.conventionalcommits.org) homepage
-- [Conventional Commits](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/other/conventional-commits.html) cheatsheet in my Dev Cheatsheets projects, covering parts of the standard most relevant to me and this extension project.
+- The official [Conventional Commits](https://www.conventionalcommits.org) homepage
+- My [Conventional Commits cheatsheet](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/other/conventional-commits.html) in my Dev Cheatsheets projects, covering parts of the standard most relevant to me and this extension project.
 
 
 ## The official standard
