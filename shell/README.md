@@ -69,7 +69,7 @@ Set this up in git config aliases as `c` or something. If this was in a _bin_ di
     c = '! git commit --edit -m "$(autofill.sh)"'
 ```
 
-Then instead of `git commit`, you  cando:
+Then instead of `git commit`, you can do:
 
 ```sh
 $ git c
