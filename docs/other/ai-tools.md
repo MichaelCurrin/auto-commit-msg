@@ -4,7 +4,7 @@ Search for "gpt commit" in the extensions marketplace and you'll see plenty of e
 
 e.g. [GPT Commit](https://marketplace.visualstudio.com/items?itemName=DmytroBaida.gpt-commit)
 
-If done well, this could be even more flexible and natural than rgis Auto Commit Msg which has no AI (but at least handles basic messages for a variety of cases based on the files that changed rather than the contents).
+If done well, this could be even more flexible and natural than this Auto Commit Msg which has no AI (but at least handles basic messages for a variety of cases based on the paths of the files that changed rather than the contents).
 
 Downsides:
 
