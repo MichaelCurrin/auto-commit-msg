@@ -7,7 +7,6 @@ import * as assert from "assert";
 import { MsgPieces } from "../generate/parseExisting.d";
 import { CONVENTIONAL_TYPE } from "../lib/constants";
 import {
-  generateMsg,
   _collapse,
   _combineOldAndNew,
   _formatMsg,
@@ -19,6 +18,7 @@ import {
   _msgNamed,
   _newMsg,
   _prefixFromChange,
+  generateMsg,
 } from "../prepareCommitMsg";
 import { ConvCommitMsg } from "../prepareCommitMsg.d";
 
@@ -711,6 +711,10 @@ describe("Prepare commit message", function () {
       describe("single change", function () {
         it("handles a single created file", function () {
           assert.strictEqual(_newMsg(["A\tbaz.txt"]), "feat: create baz.txt");
+        });
+
+        it("handles a single created file with special characters", function () {
+          assert.strictEqual(_newMsg(["A\tspëcial châracters.md"]), "feat: create 'spëcial châracters.md'");
         });
       });
 
@@ -1528,6 +1532,56 @@ describe("Prepare commit message", function () {
       assert.strictEqual(
         generateMsg(fileChanges, oldMsg),
         "update baz.txt and bar.js",
+      );
+    });
+
+    it("handles a single file change with a set old message", function () {
+      const singleFileChange = ["M\tbaz.txt"];
+      const oldMsg = "my old message";
+
+      assert.strictEqual(
+        generateMsg(singleFileChange, oldMsg),
+        "update baz.txt my old message",
+      );
+    });
+
+    it("handles a single file change with an empty old message", function () {
+      const singleFileChange = ["M\tbaz.txt"];
+      const oldMsg = "";
+
+      assert.strictEqual(
+        generateMsg(singleFileChange, oldMsg),
+        "update baz.txt",
+      );
+    });
+
+    it("handles multiple file changes with a set old message", function () {
+      const multipleFileChanges = ["M\tbaz.txt", "M\tbar.js", "M\tfoo.txt"];
+      const oldMsg = "my old message";
+
+      assert.strictEqual(
+        generateMsg(multipleFileChanges, oldMsg),
+        "update baz.txt, bar.js and foo.txt my old message",
+      );
+    });
+
+    it("handles multiple file changes with an empty old message", function () {
+      const multipleFileChanges = ["M\tbaz.txt", "M\tbar.js", "M\tfoo.txt"];
+      const oldMsg = "";
+
+      assert.strictEqual(
+        generateMsg(multipleFileChanges, oldMsg),
+        "update baz.txt, bar.js and foo.txt",
+      );
+    });
+
+    it("handles a single file change with special characters", function () {
+      const singleFileChange = ["M\tspëcial châracters.md"];
+      const oldMsg = "";
+
+      assert.strictEqual(
+        generateMsg(singleFileChange, oldMsg),
+        "update 'spëcial châracters.md'",
       );
     });
   });

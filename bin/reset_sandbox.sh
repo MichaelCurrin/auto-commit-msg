@@ -13,7 +13,7 @@ cd "$DIR"
 
 # Create a commit, so that the extension can run diff-index, which requires an
 # initial commit.
-echo "# Sandbox\n" >'README.md'
+echo '# Sandbox' >'README.md'
 echo 'console.log("Hello, Foo!");' >foo.js
 echo 'console.log("Hello, Fizz!");' >fizz.js
 echo 'console.log("Hello, Buzz!");' >buzz.js
@@ -32,3 +32,6 @@ mkdir -p my_subdir
 mv bazz.js my_subdir
 # Delete.
 rm buzz.js
+
+# Special characters.
+echo '# Special characters' >'spëcial châracters.md'
