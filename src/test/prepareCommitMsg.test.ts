@@ -714,7 +714,10 @@ describe("Prepare commit message", function () {
         });
 
         it("handles a single created file with special characters", function () {
-          assert.strictEqual(_newMsg(["A\tspëcial châracters.md"]), "feat: create 'spëcial châracters.md'");
+          assert.strictEqual(
+            _newMsg(["A\tspëcial châracters.md"]),
+            "feat: create 'spëcial châracters.md'",
+          );
         });
       });
 
