@@ -162,6 +162,19 @@ describe("Split `git diff-index` output into components", function () {
       });
     });
 
+    describe("handle special characters in filenames", function () {
+      it("should correctly parse a filename with special characters", function () {
+        const expected: FileChange = {
+          x: "A",
+          y: " ",
+          from: "abcëxyz.md",
+          to: "",
+        };
+
+        assert.deepStrictEqual(parseDiffIndex("A\tabcëxyz.md"), expected);
+      });
+    });
+
     it("should handle a pair of paths correctly", function () {
       {
         const expected: FileChange = {
