@@ -28,7 +28,7 @@
   "engines": {
     "node": ">=20",
     "npm": ">=9",
-    "vscode": "^1.83.1"
+    "vscode": "^3.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.3",
@@ -36,7 +36,7 @@
     "@types/vscode": "^1.83.1",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
-    "@vscode/vsce": "^2.21.1",
+    "@vscode/vsce": "^3.0.0",
     "eslint": "^8.52.0",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
