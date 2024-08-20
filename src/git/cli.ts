@@ -13,7 +13,7 @@ const exec = util.promisify(_exec);
  * Run a `git` subcommand and return the result, with stdout and stderr available.
  */
 function _execute(cwd: string, subcommand: string, options: string[] = []) {
-  const command = `git ${subcommand} ${options.join(" ")}`;
+  const command = `git -c 'core.quotePath=false' ${subcommand} ${options.join(" ")}`;
 
   console.debug(`Running command: ${command}, cwd: ${cwd}`);
 
