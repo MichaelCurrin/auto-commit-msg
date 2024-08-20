@@ -55,9 +55,9 @@ export function parseStatus(line: string): FileChange {
  */
 export function parseDiffIndex(line: string): FileChange {
   if (line.length <= 4) {
-    throw new Error(
-      `Invalid input. Input string must be at least 4 characters. Got: '${line}'`,
-    );
+    const errorMsg = `Invalid input. Input string must be at least 4 characters. Got: '${line}'`;
+    console.error(errorMsg);
+    throw new Error(errorMsg);
   }
   const x = line[0];
   const y = UNMODIFIED;
