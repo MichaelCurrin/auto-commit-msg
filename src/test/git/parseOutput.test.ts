@@ -74,7 +74,7 @@ describe("Split `git diff-index` output into components", function () {
         });
       });
 
-      it("returns a correct commit message for a renamed modified file", function () {
+      it("returns a correct commit message for a renamed and modified file", function () {
         const expected: FileChange = {
           x: "R",
           y: " ",
