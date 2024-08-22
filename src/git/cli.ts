@@ -9,6 +9,9 @@ import { Repository } from "../api/git";
 
 const exec = util.promisify(_exec);
 
+// Ensure Git will show special characters literally without quoting the string and escaping characters.
+const QUOTE_PATH = "-c 'core.quotePath=false'"
+
 const DIFF_INDEX_CMD = "diff-index";
 const DIFF_INDEX_OPTIONS = [
   "--name-status",
@@ -21,7 +24,7 @@ const DIFF_INDEX_OPTIONS = [
  * Run a `git` subcommand and return the result, with stdout and stderr available.
  */
 function _execute(cwd: string, subcommand: string, options: string[] = []) {
-  const command = `git -c 'core.quotePath=false' ${subcommand} ${options.join(" ")}`;
+  const command = `git ${QUOTE_PATH} ${subcommand} ${options.join(" ")}`;
 
   console.debug(`Running command: ${command}, cwd: ${cwd}`);
 
