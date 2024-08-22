@@ -114,7 +114,7 @@ I consider this is an acceptable limitation of functionality to keep the extensi
 
 #### Details
 
-The `diff-index` subcommand cannot see new or moved/renamed files unless you stage them. This is okay. Because you just need to stage a file and then the extension can see it.
+The `diff-index` subcommand **cannot** see new or moved/renamed files unless you **stage** them. This is okay. Because you just need to stage a file and then the extension can see it.
 
 And in the case of renaming/moving files, there's a limitation of git that can't be overcome - you need to **stage** the old and new paths anyway for `git` to see them as **one file**, regardless of using `status` or `diff-index`.
 
@@ -123,3 +123,17 @@ The `git status` subcommand _can_ handle new _untracked_ files. But the effort t
 So we just keep things simple to avoid bloating the codebase (adding the ability to use two similar subcommands and handle them both well is not sensible when one subcommand works great for most things).
 
 You can still do what you need to - just remember to stage files if you need the extension to recognize them.
+
+
+## Find renames
+
+If you move/rename a file and stage that and you also change the contents, you can get `git diff-index` to recognise that as a rename with modification.
+
+This is possible using the `-M` or `--find-renames` flag, which uses the default 50% similarity.
+
+```console
+$ git diff-index HEAD --name-status -M
+R099    package.json    shell/package.json
+```
+
+This flag also works for `git status`.
