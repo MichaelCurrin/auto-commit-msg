@@ -9,6 +9,14 @@ import { Repository } from "../api/git";
 
 const exec = util.promisify(_exec);
 
+const DIFF_INDEX_CMD = "diff-index";
+const DIFF_INDEX_OPTIONS = [
+  "--name-status",
+  "--find-renames",
+  "--find-copies",
+  "--no-color",
+];
+
 /**
  * Run a `git` subcommand and return the result, with stdout and stderr available.
  */
@@ -37,20 +45,12 @@ async function _diffIndex(
   options: string[] = [],
 ): Promise<Array<string>> {
   const cwd = repository.rootUri.fsPath;
-  const cmd = "diff-index";
-  const fullOptions = [
-    "--name-status",
-    "--find-renames",
-    "--find-copies",
-    "--no-color",
-    ...options,
-    "HEAD",
-  ];
+  const fullOptions = [...DIFF_INDEX_OPTIONS, ...options, "HEAD"];
 
-  const { stdout, stderr } = await _execute(cwd, cmd, fullOptions);
+  const { stdout, stderr } = await _execute(cwd, DIFF_INDEX_CMD, fullOptions);
 
   if (stderr) {
-    console.debug(`stderr for 'git ${cmd}' command:`, stderr);
+    console.debug(`stderr for 'git ${DIFF_INDEX_CMD}' command:`, stderr);
   }
 
   const lines = stdout.split("\n");
