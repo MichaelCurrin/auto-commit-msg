@@ -35,3 +35,8 @@ rm buzz.js
 
 # Special characters.
 echo '# Special characters' >'spëcial châracters.md'
+
+echo '---'
+git -c 'core.quotePath=false' status --short
+echo '---'
+git -c 'core.quotePath=false' diff-index --name-status --find-renames --find-copies --no-color HEAD
