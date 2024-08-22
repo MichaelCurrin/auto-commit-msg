@@ -308,17 +308,6 @@ describe("Prepare commit message", function () {
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
 
-        /* eslint-disable-next-line quotes */
-        it('handles 2 "build(deps)" files correctly', function () {
-          const lines = ["M\tpackage.json", "M\tpackage-lock.json"];
-          const expected = {
-            typePrefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
-            description: "update package.json and package-lock.json",
-          };
-
-          assert.deepStrictEqual(_msgNamed(lines), expected);
-        });
-
         it("handles 3 README.md files in different locations as full paths", function () {
           {
             const lines = [
@@ -349,6 +338,18 @@ describe("Prepare commit message", function () {
             assert.deepStrictEqual(_msgNamed(lines), expected);
           }
         });
+
+        /* eslint-disable-next-line quotes */
+        it('handles 2 "build(deps)" files correctly', function () {
+          const lines = ["M\tpackage.json", "M\tpackage-lock.json"];
+          const expected = {
+            typePrefix: CONVENTIONAL_TYPE.BUILD_DEPENDENCIES,
+            description: "update package.json and package-lock.json",
+          };
+
+          assert.deepStrictEqual(_msgNamed(lines), expected);
+        });
+
       });
 
       describe("multiple files with different actions", function () {
