@@ -111,9 +111,6 @@ export function humanList(paths: string[]) {
 
 /**
  * Determine if a pair of paths represents a move, rename, or both.
- *
- * TODO: Update to handle case modified in addition to move/rename, or make a
- * new function.
  */
 export function moveOrRenameFromPaths(
   oldP: SplitPathResult,
