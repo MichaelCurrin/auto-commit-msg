@@ -1,6 +1,5 @@
 # Conventional Commits
-
-Info on how the Conventional Commits standard is applied for generating output in this project.
+> Info on how the Conventional Commits standard is applied for generating output in this project.
 
 
 ## Resources
