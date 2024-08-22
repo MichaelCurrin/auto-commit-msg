@@ -349,7 +349,6 @@ describe("Prepare commit message", function () {
 
           assert.deepStrictEqual(_msgNamed(lines), expected);
         });
-
       });
 
       describe("multiple files with different actions", function () {

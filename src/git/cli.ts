@@ -9,8 +9,9 @@ import { Repository } from "../api/git";
 
 const exec = util.promisify(_exec);
 
-// Ensure Git will show special characters literally without quoting the string and escaping characters.
-const QUOTE_PATH = "-c 'core.quotePath=false'"
+// Ensure Git will show special characters literally without quoting the string
+// and escaping characters.
+const QUOTE_PATH = "-c 'core.quotePath=false'";
 
 const DIFF_INDEX_CMD = "diff-index";
 const DIFF_INDEX_OPTIONS = [
