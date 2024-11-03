@@ -26,8 +26,8 @@
     "sb": "bin/reset_sandbox.sh"
   },
   "engines": {
-    "node": ">=20",
-    "npm": ">=9",
+    "node": ">=22",
+    "npm": ">=10",
     "vscode": "^1.92.0"
   },
   "devDependencies": {
