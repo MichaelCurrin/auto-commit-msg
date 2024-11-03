@@ -1,7 +1,7 @@
 {
   "name": "auto-commit-msg",
   "type": "commonjs",
-  "version": "0.27.0",
+  "version": "0.27.1",
   "scripts": {
     "fmt:check": "prettier -c src",
     "fmt:fix": "prettier -w src",
