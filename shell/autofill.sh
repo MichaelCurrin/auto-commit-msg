@@ -6,8 +6,8 @@
 # This works similar to a Git hook, but is intended to be used alone or in a Git
 # alias.
 #
-# See shell/README.md doc.
-# See src/git/cli.ts for details on flags. Note `--cached` can be added
+# See `shell/README.md` doc.
+# See `src/git/cli.ts` for details on flags. Note `--cached` can be added
 # if you want to use staged changes only.
 set -e
 
