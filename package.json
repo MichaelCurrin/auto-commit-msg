@@ -38,6 +38,7 @@
     "@typescript-eslint/parser": "^8.12.2",
     "@vscode/vsce": "^3.0.0",
     "eslint": "^8.57.1",
+    "execa": "^9.5.1",
     "mocha": "^10.0.0",
     "nyc": "^17.1.0",
     "prettier": "^3.0.3",
@@ -98,8 +99,5 @@
         }
       ]
     }
-  },
-  "dependencies": {
-    "execa": "^9.5.1"
   }
 }
