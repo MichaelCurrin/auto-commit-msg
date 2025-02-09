@@ -80,7 +80,9 @@ Other extensions usually require some manual input, such as selecting prefix typ
 
 This extension takes _zero_ parameters. Just click a button.
 
-With the explosion of AI tools, you can find alternatives to this extension which use AI - see [AI tools](/docs/other/ai-tools.md)
+## Why not generate a commit message with AI?
+
+This extension does not use AI. With the explosion of AI tools, you can find alternatives to this extension which use do AI - see notes here under [AI tools](/docs/other/ai-tools.md).
 
 
 ## Sample usage
