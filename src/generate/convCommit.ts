@@ -69,19 +69,37 @@ export class ConventionalCommit {
   }
 
   isTestRelated(): boolean {
-    const dir = `${this.dirPath}/`;
+    const dir = this.dirPath;
+    const name = this.name;
+    const segments = dir.split("/");
 
-    return (
-      dir.includes("test/") ||
-      dir.includes("tests/") ||
-      dir.includes("spec/") ||
-      dir.includes("__mocks__/") ||
-      dir.startsWith("unit") ||
-      this.name.includes(".test.") ||
-      this.name.includes(".spec.") ||
-      this.name.startsWith("test_") ||
-      this.name === ".coveragerc"
-    );
+    // Check for test-related directories at any level.
+    const testDirs = [
+      "test",
+      "tests",
+      "spec",
+      "unit",
+      "unit_tests",
+      "__mocks__",
+    ];
+    if (segments.some(seg => testDirs.includes(seg))) {
+      return true;
+    }
+
+    // Check for test-related file patterns using regex.
+    if (name === ".coveragerc") {
+      return true;
+    }
+    if (
+      /^test_.*\.[^.]+$/.test(name) ||
+      /^spec_.*\.[^.]+$/.test(name) ||
+      /^.*\.test\.[^.]+$/.test(name) ||
+      /^.*\.spec\.[^.]+$/.test(name)
+    ) {
+      return true;
+    }
+
+    return false;
   }
 
   isCIRelated(): boolean {

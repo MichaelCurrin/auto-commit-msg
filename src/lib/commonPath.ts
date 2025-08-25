@@ -44,7 +44,7 @@ function _rotate(arr: string[][]): string[][] {
 /**
  * Check whether all the elements in an array are the same or not.
  */
-function _allElementsEqual(arr: any[]) {
+export function _allElementsEqual(arr: any[]) {
   const firstEl = arr[0];
 
   return arr.every((el: any) => el === firstEl);
