@@ -1,8 +1,8 @@
 # Shell
 
-Bash scripts around this project.
+Bash scripts around this project, to be used instead of as a VS Code extension. **This area is not complete and is still experimental.**
 
-All the scripts in this directory are named with dashes and not underscores, to match the Git hook filenames convention.
+Note: All the scripts in this directory are named with dashes and not underscores, to match the Git hook filenames convention.
 
 
 ## Samples
@@ -56,10 +56,10 @@ $ cp autofill.sh /usr/local/bin
 
 TODO:
 
-- [] Where to put the Node script so it can reference it.
-- [] Windows support
-- [] How to automated the install process for upgrades. Maybe the JS + shell script as NPM package or at least on GitHub with cURL install.
-- [] Figure out how to switch between staged and not, with `--cached`. Like passing a param to the shell script and having two aliases. Or to have it as pass of the shell script to fallback to all if anything is staged. Or just control with filenames e.g. `git c .` or `git c package*` - oh wait, the shell script doesn't look at what is passed to `git commit`, only what is staged or not.
+- [ ] Where to put the Node script so it can reference it.
+- [ ] Windows support
+- [ ] How to automated the install process for upgrades. Maybe the JS + shell script as NPM package or at least on GitHub with cURL install.
+- [ ] Figure out how to switch between staged and not, with `--cached`. Like passing a param to the shell script and having two aliases. Or to have it as pass of the shell script to fallback to all if anything is staged. Or just control with filenames e.g. `git c .` or `git c package*` - oh wait, the shell script doesn't look at what is passed to `git commit`, only what is staged or not.
 
 #### Alias
 
@@ -80,9 +80,9 @@ $ git c foo.txt
 
 #### TODO
 
-- [] For now this points to the output directory so it limited in real world use. This is a stepping
+- [ ] For now this points to the output directory so it limited in real world use. This is a stepping
 stone. But ideally the JS files can be copied outside of this project to a central location (maybe
 with a `bin` entry point). And the SH script can be added to an individual project in `.git/hooks` dir as `prepare-commit-msg`.
-- [] When using this as a hook, consider reading from the **existing** commit message file in the case
+- [ ] When using this as a hook, consider reading from the **existing** commit message file in the case
 of template, so it that can be passed on.
-- [] Add a flag for staged to get `--cached` flag.
+- [ ] Add a flag for staged to get `--cached` flag.
