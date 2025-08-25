@@ -4,7 +4,11 @@
  * Check that a common path can be found for paths.
  */
 import * as assert from "assert";
-import { commonPath, _splitStrings } from "../../lib/commonPath";
+import {
+  _allElementsEqual,
+  _splitStrings,
+  commonPath,
+} from "../../lib/commonPath";
 
 describe("Split an array of strings at a separator", function () {
   describe("#_splitStrings", function () {
@@ -18,6 +22,31 @@ describe("Split an array of strings at a separator", function () {
       ];
 
       assert.deepStrictEqual(_splitStrings(items), expected);
+    });
+  });
+});
+
+describe("Check if all elements in an array are equal", function () {
+  describe("#_allElementsEqual", function () {
+    it("should return true for array with all equal elements", function () {
+      assert.strictEqual(_allElementsEqual([1, 1, 1]), true);
+      assert.strictEqual(_allElementsEqual(["a", "a", "a"]), true);
+      assert.strictEqual(_allElementsEqual([true, true, true]), true);
+    });
+
+    it("should return false for array with different elements", function () {
+      assert.strictEqual(_allElementsEqual([1, 2, 1]), false);
+      assert.strictEqual(_allElementsEqual(["a", "b", "a"]), false);
+      assert.strictEqual(_allElementsEqual([true, false, true]), false);
+    });
+
+    it("should handle empty array", function () {
+      assert.strictEqual(_allElementsEqual([]), true);
+    });
+
+    it("should handle array with single element", function () {
+      assert.strictEqual(_allElementsEqual([1]), true);
+      assert.strictEqual(_allElementsEqual(["a"]), true);
     });
   });
 });

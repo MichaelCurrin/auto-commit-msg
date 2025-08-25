@@ -166,7 +166,6 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
         new ConventionalCommit("spec/foo.js").isTestRelated(),
         true,
       );
-
       assert.strictEqual(
         new ConventionalCommit("unit_tests/foo.js").isTestRelated(),
         true,
@@ -181,6 +180,62 @@ describe("Test #ConventionalCommit class for path-based conventional commit logi
       assert.strictEqual(
         new ConventionalCommit("foo/test_bar.js").isTestRelated(),
         true,
+      );
+      assert.strictEqual(
+        new ConventionalCommit("foo/bar.spec.js").isTestRelated(),
+        true,
+      );
+      assert.strictEqual(
+        new ConventionalCommit("foo/spec_bar.js").isTestRelated(),
+        true,
+      );
+    });
+
+    it("can identify test configuration files", function () {
+      assert.strictEqual(
+        new ConventionalCommit(".coveragerc").isTestRelated(),
+        true,
+      );
+      assert.strictEqual(
+        new ConventionalCommit("test/.coveragerc").isTestRelated(),
+        true,
+      );
+    });
+
+    it("can identify mock directories", function () {
+      assert.strictEqual(
+        new ConventionalCommit("__mocks__/foo.js").isTestRelated(),
+        true,
+      );
+      assert.strictEqual(
+        new ConventionalCommit("src/__mocks__/foo.js").isTestRelated(),
+        true,
+      );
+    });
+
+    it("can identify unit test directories", function () {
+      assert.strictEqual(
+        new ConventionalCommit("unit/foo.js").isTestRelated(),
+        true,
+      );
+      assert.strictEqual(
+        new ConventionalCommit("unit_tests/foo.js").isTestRelated(),
+        true,
+      );
+      assert.strictEqual(
+        new ConventionalCommit("test_foo.js").isTestRelated(),
+        true,
+      );
+    });
+
+    it("returns false for non-test files", function () {
+      assert.strictEqual(
+        new ConventionalCommit("src/foo.js").isTestRelated(),
+        false,
+      );
+      assert.strictEqual(
+        new ConventionalCommit("lib/bar.js").isTestRelated(),
+        false,
       );
     });
   });

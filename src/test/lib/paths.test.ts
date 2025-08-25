@@ -6,11 +6,11 @@
 import * as assert from "assert";
 import { ROOT } from "../../lib/constants";
 import {
+  _join,
   friendlyFile,
   humanList,
   quoteForSpaces,
   splitPath,
-  _join,
 } from "../../lib/paths";
 
 describe("Path handling", function () {
@@ -29,6 +29,62 @@ describe("Path handling", function () {
         name: "baz.txt",
         extension: ".txt",
       });
+    });
+
+    it("handles file at root level", function () {
+      const result = splitPath("foo.txt");
+      assert.strictEqual(result.atRoot, true);
+      assert.strictEqual(result.dirPath, ROOT);
+      assert.strictEqual(result.name, "foo.txt");
+      assert.strictEqual(result.extension, ".txt");
+    });
+
+    it("handles file in subdirectory", function () {
+      const result = splitPath("src/foo.txt");
+      assert.strictEqual(result.atRoot, false);
+      assert.strictEqual(result.dirPath, "src");
+      assert.strictEqual(result.name, "foo.txt");
+      assert.strictEqual(result.extension, ".txt");
+    });
+
+    it("handles file in nested subdirectory", function () {
+      const result = splitPath("src/lib/foo.txt");
+      assert.strictEqual(result.atRoot, false);
+      assert.strictEqual(result.dirPath, "src/lib");
+      assert.strictEqual(result.name, "foo.txt");
+      assert.strictEqual(result.extension, ".txt");
+    });
+
+    it("handles file with no extension", function () {
+      const result = splitPath("src/foo");
+      assert.strictEqual(result.atRoot, false);
+      assert.strictEqual(result.dirPath, "src");
+      assert.strictEqual(result.name, "foo");
+      assert.strictEqual(result.extension, "");
+    });
+
+    it("handles file with multiple dots", function () {
+      const result = splitPath("src/foo.bar.txt");
+      assert.strictEqual(result.atRoot, false);
+      assert.strictEqual(result.dirPath, "src");
+      assert.strictEqual(result.name, "foo.bar.txt");
+      assert.strictEqual(result.extension, ".txt");
+    });
+
+    it("handles file starting with dot", function () {
+      const result = splitPath("src/.env");
+      assert.strictEqual(result.atRoot, false);
+      assert.strictEqual(result.dirPath, "src");
+      assert.strictEqual(result.name, ".env");
+      assert.strictEqual(result.extension, "");
+    });
+
+    it("handles file with spaces", function () {
+      const result = splitPath("src/my file.txt");
+      assert.strictEqual(result.atRoot, false);
+      assert.strictEqual(result.dirPath, "src");
+      assert.strictEqual(result.name, "my file.txt");
+      assert.strictEqual(result.extension, ".txt");
     });
   });
 
