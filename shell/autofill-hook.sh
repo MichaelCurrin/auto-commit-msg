@@ -30,6 +30,7 @@ if [ "$COMMIT_SOURCE" = 'template']; then
 fi
 
 CHANGES=$(git diff-index --name-status HEAD)
+# TODO: Make this a global bin path and a bundled file.
 MESSAGE=$(node out/cli.js "$CHANGES")
 
 if [ "$1" = '-p' ]; then
