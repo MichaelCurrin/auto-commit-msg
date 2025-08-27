@@ -4,6 +4,15 @@ Bash scripts around this project, to be used instead of as a VS Code extension. 
 
 Note: All the scripts in this directory are named with dashes and not underscores, to match the Git hook filenames convention.
 
+<!--
+
+Approaches
+
+- Make installable via repo with cp or npm link (better with esbuild for support of any module not just amd and system)
+- Or with GH URL for repo
+- Or with binary which is more effort and not needed for everyone
+
+-->
 
 ## Samples
 
@@ -14,12 +23,12 @@ Archive of shell scripts for reference. These are used in the early development 
 - [simple-hook.sh](simple-hook.sh)
 
 
-## Autofill scripts
+## acm scripts
 
 These are shell scripts to integrate with the JS scripts in this project, as an alternative to using, VS Code so I can use it any terminal and in other IDEs with their terminals. And if I stop using VS Code completely I can keep using the core at least in a terminal.
 
-- [autofill-hook.sh](autofill-hook.sh)
-- [autofill.sh](autofill.sh)
+- [acm-hook.sh](acm-hook.sh)
+- [acm.sh](acm.sh)
 
 They are not complete but work as a POC for using the core logic outside project outside of VS Code as Git hook.
 
@@ -36,22 +45,24 @@ But, if you don't use it as an actual hook, there is an alternative flow that do
 Sample output:
 
 ```console
-$ ./shell/autofill.sh
+$ ./shell/acm.sh
 chore: update settings.json
-$ ./shell/autofill.sh
+$ ./shell/acm.sh
 update 11 files
 ```
 
 Use it with Git. This uses the tool to generate a message and pass it as the Git commit message, but forcing edit mode so you can override it.
 
 ```sh
-$ git commit --edit -m "$(shell/autofill.sh)"
+$ git commit --edit -m "$(shell/acm.sh)"
 ```
+
+This can be done easier using the bin and alias steps below.
 
 Move the script to a `bin` executables directory so you can run it from anywhere.
 
 ```sh
-$ cp autofill.sh /usr/local/bin
+$ cp acm.sh /usr/local/bin
 ```
 
 TODO:
@@ -67,7 +78,7 @@ Set this up in git config aliases as `c` or something. If this was in a _bin_ di
 
 ```toml
 [alias]
-    c = '! git commit --edit -m "$(autofill.sh)"'
+    c = '! git commit --edit -m "$(acm.sh)"'
 ```
 
 Then instead of `git commit`, you can do:

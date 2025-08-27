@@ -14,6 +14,5 @@ set -e
 DIFF_FLAGS='--name-status --find-renames --find-copies --no-color'
 CHANGES=$(git diff-index $DIFF_FLAGS HEAD)
 
-# TODO: Make this a global bin path and a bundled file.
-MESSAGE=$(node out/cli.js "$CHANGES")
+MESSAGE=$(acm "$CHANGES")
 echo "$MESSAGE"
