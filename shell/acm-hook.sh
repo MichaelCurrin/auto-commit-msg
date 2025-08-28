@@ -6,7 +6,7 @@
 #
 # This is a pure CLI script that bypasses using VS Code or an extension.
 # It will get output from Git, send it to Node CLI entry-point tool and print
-# it. This can be used as part of Git commit message hook flow.
+# it. This can be used as part of Git commit message hook flow (pre-commit hook).
 #
 # Optionally add a `-d` debug flag to print without writing to a file. This
 # makes it easy to debug the script outside a Git commit hook flow.
@@ -14,6 +14,11 @@
 #
 # See shell/README.md doc.
 set -e
+
+if ! command -v acm &> /dev/null; then
+  echo "Error: `acm` could not be found"
+  exit 1
+fi
 
 COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
@@ -30,7 +35,7 @@ if [ "$COMMIT_SOURCE" = 'template']; then
 fi
 
 CHANGES=$(git diff-index --name-status HEAD)
-MESSAGE=$(node acm "$CHANGES")
+MESSAGE=$(acm "$CHANGES")
 
 if [ "$1" = '-p' ]; then
   echo "$MESSAGE"
