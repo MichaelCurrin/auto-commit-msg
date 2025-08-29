@@ -23,20 +23,22 @@ Options:
  * Command-line entry-point.
  */
 function main(argv: string[]): void {
-    if (shouldShowHelp(argv)) {
-        console.log(HELP_TEXT);
-        return;
-    }
+  if (shouldShowHelp(argv)) {
+    console.log(HELP_TEXT);
+    return;
+  }
 
-    const useCached: boolean = argv.includes("--cached");
-    const passthrough: string[] = argv.filter((arg: string) => arg !== "--cached");
+  const useCached: boolean = argv.includes("--cached");
+  const passthrough: string[] = argv.filter(
+    (arg: string) => arg !== "--cached",
+  );
 
-    const msg: string = generateCommitMessage(useCached);
+  const msg: string = generateCommitMessage(useCached);
 
-    const commitArgs: string[] = ["commit", "--edit", "-m", msg, ...passthrough];
-    execFileSync("git", commitArgs, { stdio: "inherit" });
+  const commitArgs: string[] = ["commit", "--edit", "-m", msg, ...passthrough];
+  execFileSync("git", commitArgs, { stdio: "inherit" });
 }
 
 if (require.main === module) {
-    main(process.argv.slice(2));
+  main(process.argv.slice(2));
 }

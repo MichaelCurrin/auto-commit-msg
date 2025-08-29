@@ -28,26 +28,26 @@ Options:
  * @returns output Diff output from git.
  */
 function runGitDiff(useCached: boolean): string {
-    const flags: string[] = [
-        "diff-index",
-        "--name-status",
-        "--find-renames",
-        "--find-copies",
-        "--no-color",
-    ];
+  const flags: string[] = [
+    "diff-index",
+    "--name-status",
+    "--find-renames",
+    "--find-copies",
+    "--no-color",
+  ];
 
-    if (useCached) {
-        flags.push("--cached");
-    }
+  if (useCached) {
+    flags.push("--cached");
+  }
 
-    flags.push("HEAD");
+  flags.push("HEAD");
 
-    const output: string = execFileSync("git", flags, {
-        encoding: "utf8",
-        stdio: ["ignore", "pipe", "pipe"],
-    });
+  const output: string = execFileSync("git", flags, {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
 
-    return output.trim();
+  return output.trim();
 }
 
 /**
@@ -57,13 +57,13 @@ function runGitDiff(useCached: boolean): string {
  * @returns Generated commit message text.
  */
 export function generateCommitMessage(useCached: boolean): string {
-    const diffOutput: string = runGitDiff(useCached);
-    if (!diffOutput) {
-        throw new Error("No file changes found");
-    }
+  const diffOutput: string = runGitDiff(useCached);
+  if (!diffOutput) {
+    throw new Error("No file changes found");
+  }
 
-    const lines: string[] = diffOutput.split("\n");
-    return generateMsg(lines);
+  const lines: string[] = diffOutput.split("\n");
+  return generateMsg(lines);
 }
 
 /**
@@ -73,15 +73,15 @@ export function generateCommitMessage(useCached: boolean): string {
  * Prints the generated commit message to stdout.
  */
 function main(argv: string[]): void {
-    if (shouldShowHelp(argv)) {
-        console.log(HELP_TEXT);
-        return;
-    }
-    const useCached: boolean = argv.includes("--cached");
-    const msg: string = generateCommitMessage(useCached);
-    console.log(msg);
+  if (shouldShowHelp(argv)) {
+    console.log(HELP_TEXT);
+    return;
+  }
+  const useCached: boolean = argv.includes("--cached");
+  const msg: string = generateCommitMessage(useCached);
+  console.log(msg);
 }
 
 if (require.main === module) {
-    main(process.argv.slice(2));
+  main(process.argv.slice(2));
 }

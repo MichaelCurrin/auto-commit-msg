@@ -20,7 +20,6 @@ Arguments:
 Options:
   --help, -h            Show this help and exit.`;
 
-
 /**
  * Command-line entry-point.
  *
@@ -39,7 +38,9 @@ function main(args: string[]): void {
   const linesArg = args[0];
 
   if (typeof linesArg === "undefined") {
-    throw new Error("Exactly one argument is required - text output from diff-index command.");
+    throw new Error(
+      "Exactly one argument is required - text output from diff-index command.",
+    );
   }
 
   const lines = linesArg.split("\n");
