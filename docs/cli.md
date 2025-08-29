@@ -45,9 +45,9 @@ $ gacm -h
 Use the `-h` or `--help` flags with any of these to avoid making changes.
 
 <!--
-TODO consolidate to one command with commit flag?
+TODO consolidate to one command with commit flag or dry run?
 TODO pass params like file names through for either command. For message and committing. The downside is for new files - even if git commit would pick them up by name, diff-index would not. You can also use whatever IDE to stage and still generate+commit with the CLI.
-TODO -c not just --cached
+TODO -c not just --cached but pass through as --cached.
 -->
 
 ### Generate a message from changes and commit
