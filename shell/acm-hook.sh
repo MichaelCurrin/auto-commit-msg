@@ -15,8 +15,10 @@
 # See shell/README.md doc.
 set -e
 
-if ! command -v acm &> /dev/null; then
-  echo "Error: `acm` could not be found"
+GENERATE_CMD='auto_commit_msg_generate'
+
+if ! command -v "$GENERATE_CMD" &> /dev/null; then
+  echo "Error: $GENERATE_CMD could not be found"
   exit 1
 fi
 
@@ -35,7 +37,7 @@ if [ "$COMMIT_SOURCE" = 'template']; then
 fi
 
 CHANGES=$(git diff-index --name-status HEAD)
-MESSAGE=$(auto_commit_msg_generate "$CHANGES")
+MESSAGE=$($GENERATE_CMD "$CHANGES")
 
 if [ "$1" = '-p' ]; then
   echo "$MESSAGE"
