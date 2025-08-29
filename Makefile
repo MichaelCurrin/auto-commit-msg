@@ -59,6 +59,7 @@ e ext:
 
 # Build and install the CLI tools only.
 cli:
+	npm run checks
 	npm run cli:install
 
 
