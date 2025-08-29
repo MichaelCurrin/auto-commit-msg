@@ -14,7 +14,7 @@ hooks:
 	cd .git/hooks && ln -s -f ../../hooks/pre-push pre-push
 
 install:
-	npm install
+	npm ci
 
 outdated:
 	npm outdated
@@ -51,6 +51,7 @@ q test-quick:
 .PHONY: build
 build:
 	npm run build
+
 # Build then install in VS Code.
 e ext:
 	npm run checks
