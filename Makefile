@@ -51,11 +51,15 @@ q test-quick:
 .PHONY: build
 build:
 	npm run build
-
 # Build then install in VS Code.
 e ext:
 	npm run checks
 	npm run ext
+
+# Build and install the CLI tools only.
+cli:
+	npm run cli:install
+
 
 ### Deploy
 
