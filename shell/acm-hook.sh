@@ -35,7 +35,7 @@ if [ "$COMMIT_SOURCE" = 'template']; then
 fi
 
 CHANGES=$(git diff-index --name-status HEAD)
-MESSAGE=$(acm "$CHANGES")
+MESSAGE=$(auto_commit_msg_generate "$CHANGES")
 
 if [ "$1" = '-p' ]; then
   echo "$MESSAGE"

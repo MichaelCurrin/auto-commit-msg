@@ -3,16 +3,13 @@
 #
 # Produce a commit message from changed files and print to stdout.
 #
-# This works similar to a Git hook, but is intended to be used alone or in a Git
-# alias.
-#
-# See `shell/README.md` doc.
-# See `src/git/cli.ts` for details on flags. Note `--cached` can be added
-# if you want to use staged changes only.
+# The preferred way is to use a TS command in `src/bin` instead, to avoid
+# having to put this .sh script in a bin directory when npm link works.
+ # But this was the original way.`
 set -e
 
 DIFF_FLAGS='--name-status --find-renames --find-copies --no-color'
 CHANGES=$(git diff-index $DIFF_FLAGS HEAD)
 
-MESSAGE=$(acm "$CHANGES")
+MESSAGE=$(auto_commit_msg_generate "$CHANGES")
 echo "$MESSAGE"
