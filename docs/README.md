@@ -6,6 +6,7 @@ This project serves to prepare a smart commit message for you, to make your deve
 ## Overview
 
 - [Quickstart](quickstart.md)
+- [ClI](cli.md)
 - [About](about.md)
 - [Features](features.md)
     - What it can do, upcoming features, and how it works
@@ -14,17 +15,3 @@ This project serves to prepare a smart commit message for you, to make your deve
 - [Development](development/)
     - Guide for developers to set up and run locally.
     - Useful for testing your changes before contributing a PR.
-
-<!--
-
-The docs are split into two features:
-
-- [Extension](extension.md)
-- [Terminal hook](terminal-hook.md)
-
-Part ideas:
-
-- A shell script in a repo
-- References a concatenated JS script from this repo (just the text handling and not the full extension), which is in a bin directory.
-
--->
