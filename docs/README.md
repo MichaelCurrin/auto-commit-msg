@@ -6,7 +6,7 @@ This project serves to prepare a smart commit message for you, to make your deve
 ## Overview
 
 - [Quickstart](quickstart.md)
-- [ClI](cli.md)
+- [CLI](cli.md)
 - [About](about.md)
 - [Features](features.md)
     - What it can do, upcoming features, and how it works
