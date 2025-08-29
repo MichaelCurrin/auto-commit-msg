@@ -7,7 +7,6 @@ coverage/
 
 .vscode-test/
 out/
-dist/
 build/*.vsix
 
 # Temporary git repo in the repo, for testing the extension.
