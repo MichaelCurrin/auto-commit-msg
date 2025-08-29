@@ -4,7 +4,7 @@
 import * as assert from "assert";
 import { lookupDiffIndexAction, moveOrRenameMsg } from "../../generate/action";
 
-describe("Desribe a file using a single path", function () {
+describe("Describe a file using a single path", function () {
   describe("#lookupDiffIndexAction", function () {
     it("can describe an updated file", function () {
       assert.strictEqual(lookupDiffIndexAction("M"), "update");
@@ -32,7 +32,7 @@ describe("Desribe a file using a single path", function () {
   });
 });
 
-describe("Desribe a file using two paths", function () {
+describe("Describe a file using two paths", function () {
   describe("#moveOrRenameFile", function () {
     it("can describe a renamed file", function () {
       assert.strictEqual(
@@ -73,7 +73,7 @@ describe("Desribe a file using two paths", function () {
       );
     });
 
-    it("can describe a remamed and moved file", function () {
+    it("can describe a renamed and moved file", function () {
       assert.strictEqual(
         moveOrRenameMsg("foo.txt", "fizz/bar.txt"),
         "move and rename foo.txt to fizz/bar.txt",
