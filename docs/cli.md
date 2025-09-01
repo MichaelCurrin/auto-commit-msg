@@ -30,7 +30,7 @@ $ npm ci
 ### Build and link the CLI tools
 
 ```sh
-$ npm run cli:install
+$ npm run cli
 ```
 
 Verify installation:
@@ -91,6 +91,8 @@ The behavior depends on how Git treats files, so you should know these points:
 - If you want to target only select changes for smaller commit, then stage stages and use the `--cached` flag to ignored unstaged changes.
 
 ## Uninstall the linked CLI (optional)
+
+If you get permission denied error, you can do this and then go back to the install step.
 
 ```sh
 $ npm unlink -g auto-commit-msg
