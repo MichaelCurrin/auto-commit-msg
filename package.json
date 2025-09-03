@@ -20,7 +20,7 @@
     "vscode:prepublish": "npm run compile",
     "build": "mkdir -p build && vsce package --out build/",
     "ext": "npm run build && code --install-extension $(ls -t build/* | head -n1) --force",
-    "cli": "npm run compile && npm link",
+    "cli": "npm run compile && npm unlink auto-commit-msg && npm link auto-commit-msg",
     "preversion": "npm run checks",
     "version": "npm run build",
     "postversion": "git push --follow-tags",
