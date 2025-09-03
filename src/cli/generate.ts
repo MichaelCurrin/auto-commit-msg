@@ -54,4 +54,10 @@ function main(args: string[]): void {
 }
 
 const args = process.argv.slice(2);
+try {
 main(args);
+} catch (err) {
+  const message: string = err instanceof Error ? err.message : String(err);
+  console.error(message);
+  process.exit(1);
+}

@@ -40,5 +40,11 @@ function main(argv: string[]): void {
 }
 
 if (require.main === module) {
+  try {
   main(process.argv.slice(2));
+  } catch (err) {
+    const message: string = err instanceof Error ? err.message : String(err);
+    console.error(`Error: ${message}`);
+    process.exit(1);
+  }
 }
