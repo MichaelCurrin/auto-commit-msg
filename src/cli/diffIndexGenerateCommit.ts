@@ -1,16 +1,11 @@
 #!/usr/bin/env node
 /**
  * Git commit AutoCommitMsg script.
- *
- * Wrapper around acm.ts to generate a message and commit it in edit mode.
  */
 import { execFileSync } from "child_process";
 import { generateCommitMessage } from "./diffIndexGenerate";
 import { shouldShowHelp } from "./utils";
 
-/**
- * CLI usage help text.
- */
 const HELP_TEXT: string = `Usage: gacm [--cached] [--help|-h]
 
 Check Git changes, generate a commit message, and run Git commit.
@@ -41,7 +36,7 @@ function main(argv: string[]): void {
 
 if (require.main === module) {
   try {
-  main(process.argv.slice(2));
+    main(process.argv.slice(2));
   } catch (err) {
     const message: string = err instanceof Error ? err.message : String(err);
     console.error(`Error: ${message}`);

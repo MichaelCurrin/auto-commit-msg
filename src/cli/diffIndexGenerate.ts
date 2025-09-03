@@ -1,16 +1,11 @@
 #!/usr/bin/env node
 /**
- * AutoCommitMsg CLI scirpt.
- *
- * Mirrors the behavior of `shell/acm.sh` in TypeScript.
+ * AutoCommitMsg CLI script.
  */
 import { execFileSync } from "child_process";
 import { generateMsg } from "../prepareCommitMsg";
 import { shouldShowHelp } from "./utils";
 
-/**
- * CLI usage help text.
- */
 const HELP_TEXT: string = `Usage: acm [--cached] [--help|-h]
 
 Check Git changes and generate a commit message.
@@ -18,6 +13,14 @@ Check Git changes and generate a commit message.
 Options:
   --cached        Use only staged changes (equivalent to git --cached).
   --help, -h      Show this help and exit.`;
+
+const DIFF_FLAGS = [
+  "diff-index",
+  "--name-status",
+  "--find-renames",
+  "--find-copies",
+  "--no-color",
+];
 
 /**
  * Run `git diff-index` and return its stdout as a string.
@@ -28,18 +31,11 @@ Options:
  * @returns output Diff output from git.
  */
 function runGitDiff(useCached: boolean): string {
-  const flags: string[] = [
-    "diff-index",
-    "--name-status",
-    "--find-renames",
-    "--find-copies",
-    "--no-color",
-  ];
+  const flags: string[] = [...DIFF_FLAGS];
 
   if (useCached) {
     flags.push("--cached");
   }
-
   flags.push("HEAD");
 
   const output: string = execFileSync("git", flags, {
@@ -84,7 +80,7 @@ function main(argv: string[]): void {
 
 if (require.main === module) {
   try {
-  main(process.argv.slice(2));
+    main(process.argv.slice(2));
   } catch (err) {
     const message: string = err instanceof Error ? err.message : String(err);
     console.error(`Error: ${message}`);

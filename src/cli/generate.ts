@@ -3,6 +3,7 @@
  * CLI module to generate a commit message using given input.
  *
  * This script does not interact with VS Code or Git, it only processes text.
+ * This works as a Git hook. See shell/README.md for hook usage.
  *
  * It simply receives text as an argument and prints output to `stdout` for use
  * in a hook flow. Or to `stderr`, in the case of a message not appropriate for
@@ -55,7 +56,7 @@ function main(args: string[]): void {
 
 const args = process.argv.slice(2);
 try {
-main(args);
+  main(args);
 } catch (err) {
   const message: string = err instanceof Error ? err.message : String(err);
   console.error(message);
