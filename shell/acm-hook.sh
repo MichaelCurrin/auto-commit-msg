@@ -1,17 +1,6 @@
 #!/usr/bin/env bash
 # CLI test for autofill hook.
 #
-# This script is *not* ready to be used in other projects. See shell/README.md
-# for dev notes.
-#
-# This is a pure CLI script that bypasses using VS Code or an extension.
-# It will get output from Git, send it to Node CLI entry-point tool and print
-# it. This can be used as part of Git commit message hook flow (pre-commit hook).
-#
-# Optionally add a `-d` debug flag to print without writing to a file. This
-# makes it easy to debug the script outside a Git commit hook flow.
-#  ./autofill-hook.sh -p
-#
 # See shell/README.md doc.
 set -e
 
