@@ -20,10 +20,16 @@
     "vscode:prepublish": "npm run compile",
     "build": "mkdir -p build && vsce package --out build/",
     "ext": "npm run build && code --install-extension $(ls -t build/* | head -n1) --force",
+    "cli": "npm run compile && npm unlink auto-commit-msg && npm link auto-commit-msg",
     "preversion": "npm run checks",
     "version": "npm run build",
     "postversion": "git push --follow-tags",
     "sb": "bin/reset_sandbox.sh"
+  },
+  "bin": {
+    "acm": "out/cli/diffIndexGenerate.js",
+    "gacm": "out/cli/diffIndexGenerateCommit.js",
+    "auto_commit_msg_generate": "out/cli/generate.js"
   },
   "engines": {
     "node": ">=22",

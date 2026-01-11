@@ -3,11 +3,11 @@
  */
 import * as assert from "assert";
 import {
-  countFilesDesc,
   _countByAction,
   _formatAll,
   _formatOne,
   _moveOrRenameFromChange,
+  countFilesDesc,
 } from "../../generate/count";
 import { FileChange } from "../../git/parseOutput.d";
 
@@ -257,7 +257,7 @@ describe("Aggregate counts of files as numeric data", function () {
       });
     });
 
-    describe("give correct actionsand counts for files with different actions", function () {
+    describe("give correct actions and counts for files with different actions", function () {
       it("should handle one created and one updated file", function () {
         const changes: FileChange[] = [
           {
@@ -457,7 +457,7 @@ describe("Convert action and counts to a readable commit message", function () {
       });
     });
 
-    describe("multiples files", function () {
+    describe("multiple files", function () {
       it("should handle one created file and one updated file", function () {
         const actionCounts = {
           create: { fileCount: 1 },

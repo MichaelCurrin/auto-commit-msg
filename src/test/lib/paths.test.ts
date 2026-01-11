@@ -119,7 +119,7 @@ describe("Path handling", function () {
       assert.strictEqual(result, "foo and bar");
     });
 
-    it('returns three items joined with commands and an an "and"', function () {
+    it('returns three items joined with commas and an "and"', function () {
       const result = _join(["foo", "bar", "bazz"]);
       assert.strictEqual(result, "foo, bar and bazz");
     });

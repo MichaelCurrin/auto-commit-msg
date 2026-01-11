@@ -17,7 +17,7 @@ const GIT_STATUS_SPLIT = " -> ";
  * Parse a line which was produced by the `git status --short` command.
  */
 export function parseStatus(line: string): FileChange {
-  if (line.length <= 4) {
+  if (line.length < 4) {
     throw new Error(
       `Input string must be at least 4 characters. Got: '${line}'`,
     );
@@ -54,7 +54,7 @@ export function parseStatus(line: string): FileChange {
  * than `undefined`).
  */
 export function parseDiffIndex(line: string): FileChange {
-  if (line.length <= 4) {
+  if (line.length < 4) {
     const errorMsg = `Invalid input. Input string must be at least 4 characters. Got: '${line}'`;
     console.error(errorMsg);
     throw new Error(errorMsg);
