@@ -1,8 +1,18 @@
 # AI tools
 > Recommended tools to use AI to generate your commit message
 
+## My own projects
+
+I created this project to use a local LLM or an OpenAI-compatible API to generate commit messages as a CLI tool:
+
+- [MichaelCurrin/llm-commit-msg-py](https://github.com/MichaelCurrin/llm-commit-msg-py)
+
+And as a VS Code extension but still experimental:
+
+- [llm-commit-msg-vs-code](https://github.com/MichaelCurrin/llm-commit-msg-vs-code)
+
+
 ## VS Code extensions
-> Using AI to generate commit messages
 
 Search for "gpt commit" in the extensions marketplace and you'll see plenty of extensions that use GPT to write your commit message.
 
@@ -26,6 +36,7 @@ See this Rust-based tool which runs on the command-line.
 
 - [gptcommit](https://github.com/zurawiki/gptcommit)
 
+
 ## Local LLMs
 
-To get around the limitations of the above, especially for private codebases, you could use a locally run LLM (like Ollama) instead of ChatGPT. Perhaps there are extensions which support this.
+To get around the limitations of the above, especially for private codebases, you could use a locally run LLM (like Ollama) instead of ChatGPT. The VS Code extensions I looked at don't support a custom OpenAI URL like a local URL, but they could be modified for this or maybe so other extensions do cover it.
