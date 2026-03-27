@@ -13,7 +13,7 @@ Try saving your files or stage any new (untracked) files.\
 `;
 
 /**
- * Generate and fill a commit message in the Git extenside sidebar.
+ * Generate and fill a commit message in the Git extension sidebar.
  *
  * Steps:
  *
