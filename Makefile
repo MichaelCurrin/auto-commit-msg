@@ -14,7 +14,7 @@ hooks:
 	cd .git/hooks && ln -s -f ../../hooks/pre-push pre-push
 
 install:
-	npm install
+	npm ci
 
 outdated:
 	npm outdated
@@ -56,6 +56,12 @@ build:
 e ext:
 	npm run checks
 	npm run ext
+
+# Build and install the CLI tools only.
+cli:
+	npm run checks
+	npm run cli:install
+
 
 ### Deploy
 
