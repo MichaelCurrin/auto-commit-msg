@@ -66,10 +66,10 @@ Just click the extension's one **button** in the Git pane.
 This is what the extension can do:
 
 - Look at any **staged** changes files, otherwise falls back to all unstaged changes.
-- Generate a commit message, which you can use or edit.
-- It can describe a variety of changes - when a file is added, removed, moved, renamed, etc.
-- Can handle multiple files at once.
-- Based on paths and extensions, infers a **Conventional Commit** prefix type e.g. `feat`, `chore`, `ci`, `build`, `build(deps)`, `docs`.
+- Generate a commit message (based on rules and templates, no AI). You edit the message before comitting.
+    - It can describe a variety of changes - when a file is added, removed, moved, renamed, etc. , 
+    - Can handle multiple files at once and count the files.
+    - Based on paths and extensions, infers a **Conventional Commit** prefix type e.g. `feat`, `chore`, `ci`, `build`, `build(deps)`, `docs`.
 
 See more info on the [Features](/docs/features.md) page in the docs.
 
