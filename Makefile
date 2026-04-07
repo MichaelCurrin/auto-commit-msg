@@ -1,5 +1,5 @@
 PUBLISHER_NAME = MichaelCurrin
-
+CLI_BUILD_DIR = build-cli
 
 default: install
 
@@ -61,6 +61,13 @@ e ext:
 cli:
 	npm run checks
 	npm run cli:install
+
+# Build CLI tools for distribution.
+cli-build:
+	rm -f $(CLI_BUILD_DIR)/*
+	npx --yes pkg out/cli/diffIndexGenerateCommit.js \
+		--targets node18-linux,node18-macos,node18-win \
+		--output $(CLI_BUILD_DIR)/acm
 
 
 ### Deploy
