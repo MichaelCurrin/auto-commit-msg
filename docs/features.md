@@ -2,9 +2,9 @@
 
 ## What it does
 
-- Click the button in the Git pane to run the extension.
-- Reads from the status of your git repo, or staged changes.
-- Generates a commit message for you, then you can edit and commit as you like.
+1. Click the button in the Git pane to run the extension.
+1. It reads changes in your Git repo (using `git diff-index` on staged changes and falls back to changes which are not staged).
+1. Generates a commit message for you, then you can edit and commit as you like.
 
 
 ## Details
