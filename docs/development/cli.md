@@ -14,11 +14,16 @@ $ npx ts-node src/cli/diffIndexGenerate.ts
 
 ## Package as a binary
 
-To send to someone so they can use it without having Node installed or running a build step on their machine.
+Build the CLI as a binary so you send to someone so they can use it without having Node installed or running a build step on their machine.
 
 ```sh
-$ npx --yes pkg out/cli/diffIndexGenerateCommit.js -t node18-macos
+$ make cli-build
 ```
+
+Check the [build-cli](/build-cli/) directory once it is created.
+
+_Note: Node 18 is set to avoid erros, even though 22 is set in package.json and is active with NVM._
+
 
 ## Troubleshooting
 
