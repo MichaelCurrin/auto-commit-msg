@@ -1,5 +1,5 @@
 PUBLISHER_NAME = MichaelCurrin
-
+CLI_BUILD_DIR = build-cli
 
 default: install
 
@@ -14,7 +14,7 @@ hooks:
 	cd .git/hooks && ln -s -f ../../hooks/pre-push pre-push
 
 install:
-	npm install
+	npm ci
 
 outdated:
 	npm outdated
@@ -56,6 +56,19 @@ build:
 e ext:
 	npm run checks
 	npm run ext
+
+# Build and install the CLI tools only.
+cli:
+	npm run checks
+	npm run cli:install
+
+# Build CLI tools for distribution.
+cli-build:
+	rm -f $(CLI_BUILD_DIR)/*
+	npx --yes pkg out/cli/diffIndexGenerateCommit.js \
+		--targets node18-linux,node18-macos,node18-win \
+		--output $(CLI_BUILD_DIR)/acm
+
 
 ### Deploy
 
