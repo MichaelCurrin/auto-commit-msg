@@ -7,7 +7,7 @@
 [![CodeQL](https://github.com/MichaelCurrin/auto-commit-msg/workflows/CodeQL/badge.svg)](https://github.com/MichaelCurrin/auto-commit-msg/actions?query=workflow%3ACodeQL)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license "Go to License section")
 [![Contributions - welcome](https://img.shields.io/badge/Contributions-welcome-blue)](/CONTRIBUTING.md "View contributing doc")
-
+![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
 <div align="center">
 
@@ -19,18 +19,13 @@
     alt="Logo"
     width="200" />
 
-![VS Code extension marketplace version](https://img.shields.io/visual-studio-marketplace/v/MichaelCurrin.auto-commit-msg)
-![VS Code extension installs](https://img.shields.io/visual-studio-marketplace/i/MichaelCurrin.auto-commit-msg)
-![VS Code extension rating](https://img.shields.io/visual-studio-marketplace/r/MichaelCurrin.auto-commit-msg)
-![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
-
 </a>
 
-<!-- TODO: Fix in marketplace as it becomes plain text
-
-**[Getting started](#getting-started) | [Features](#features) | [Screenshots](#sample-usage) | [Documentation](#documentation)**
-
--->
+<p>
+    <strong>
+        <a href="#getting-started">Getting started</a> | <a href="#features">Features</a> | <a href="#sample-usage">Screenshots</a> | <a href="#documentation">Documentation</a>
+    </strong>
+</p>
 
 </div>
 
