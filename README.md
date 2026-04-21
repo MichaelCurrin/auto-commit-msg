@@ -1,5 +1,5 @@
 # Auto Commit Message ⚙️ 🧙‍♂️ ✉️
-> A VS Code extension to generate a smart commit message based on file changes (without AI)
+> A VS Code extension and CLI tool to generate a smart commit message based on file changes (without AI)
 
 <!-- Badges mostly generated with https://michaelcurrin.github.io/badge-generator/#/ -->
 
@@ -11,6 +11,7 @@
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
 <div align="center">
+
 
 <!-- Must not be SVG. Also all image URLs must be full HTTPS URLs - absolute paths. -->
 <a href="https://marketplace.visualstudio.com/items?itemName=MichaelCurrin.auto-commit-msg"
@@ -54,6 +55,8 @@ How to install and run the extension in VS Code.
 
 </div>
 
+If you want to install and run as a CLI tool, see [CLI docs](/docs/cli.md).
+
 
 ## Features
 
@@ -63,7 +66,7 @@ This is what the extension can do:
 
 - Look at any **staged** changes files, otherwise falls back to all unstaged changes.
 - Generate a commit message (based on rules and templates, no AI). You edit the message before comitting.
-    - It can describe a variety of changes - when a file is added, removed, moved, renamed, etc. , 
+    - It can describe a variety of changes - when a file is added, removed, moved, renamed, etc. ,
     - Can handle multiple files at once and count the files.
     - Based on paths and extensions, infers a **Conventional Commit** prefix type e.g. `feat`, `chore`, `ci`, `build`, `build(deps)`, `docs`.
 

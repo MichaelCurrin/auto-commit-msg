@@ -4,7 +4,7 @@
 The code is in [src/cli/](/src/cli). The CLI commands are built using steps set in [package.json](/package.json).
 
 - See `cli:install` and `bin` section, which are both related and work with `npm link`.
-- See `make cli-build` which is for building binaries with `pkg` for distribution.
+- See `make cli-build` which is for building binaries with `pkg` for distribution. See [pkg](https://www.npmjs.com/package/pkg) page on NPM docs.
 
 ## Run directly
 
@@ -14,16 +14,25 @@ For testing:
 $ npx ts-node src/cli/diffIndexGenerate.ts
 ```
 
+## Install globally
+
+```sh
+$ npm install
+$ npm run cli:install
+```
+
 
 ## Package as a binary
 
-Build the CLI as a binary so you send to someone so they can use it without having Node installed or running a build step on their machine.
+See [Releases](/docs/development/releases.md) for info on the release pipeline to publish the binaries.
+
+Build the CLI as a binary which can be installed without the source code or Node.
 
 ```sh
 $ make cli-build
 ```
 
-Check the [build-cli](/build-cli/) directory once it is created.
+Check the [dist](/dist/) directory once it is created.
 
 _Note: Node 18 is set to avoid erros, even though 22 is set in package.json and is active with NVM._
 

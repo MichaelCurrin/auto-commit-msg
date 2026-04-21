@@ -8,7 +8,7 @@ coverage/
 .vscode-test/
 out/
 build/*.vsix
-build-cli/*
+dist/*
 
 # Temporary git repo in the repo, for testing the extension.
 sandbox/

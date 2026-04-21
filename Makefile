@@ -1,5 +1,5 @@
 PUBLISHER_NAME = MichaelCurrin
-CLI_BUILD_DIR ?= build-cli
+CLI_BUILD_DIR ?= dist
 
 PKG_NODE_VERSION ?= node18
 TARGETS ?= $(PKG_NODE_VERSION)-linux,$(PKG_NODE_VERSION)-macos,$(PKG_NODE_VERSION)-win

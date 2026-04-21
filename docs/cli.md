@@ -1,38 +1,31 @@
 # CLI
 > How to use AutoCommitMsg in the terminal instead of as an extension
 
-See steps below to setup and run the tool in the CLI. VS Code is not needed.
+This gives flexibility so you don't want to use VS Code or if you want to use the terminal inside sidepanel for your commit workflow.
 
-For development, see [CLI Development](development/cli.md).
+See steps below to setup and run the tool in the CLI.
 
-_This should work on Windows too but has not been tested yet._
-
+> [!NOTE]
+> For development, see [CLI Development](/docs/development/cli.md).
 
 ## Install
 
-Requires Git and Node.
+The pre-built binaries are added to releases on GitHub so you can install them without needing the project or Node.
 
-<!-- TODO replace with instructions for **downloading** from a release using manual steps and install with curl or npm
-Note you do not need Git or Node, you can download the pre-packaged CLI tool as a binary.
-
-For now:
-
-npm run cli:build
-command cp -f build-cli/acm-macos ~/.local/bin/acm
-command cp -f build-cli/gacm-macos ~/.local/bin/gacm
-
-And then make this part of manual workflow or use the cli:install ones as long as they don't get deleted.
-And setup pipeline too.
--->
+macOS and Linux:
 
 ```sh
-$ git clone git@github.com:MichaelCurrin/auto-commit-msg.git
-$ cd auto-commit-msg
-$ npm install
-$ npm run cli:install
+curl -fsSL https://raw.githubusercontent.com/MichaelCurrin/auto-commit-msg/refs/heads/master/bin/install_cli.sh | bash
 ```
 
-To setup as a pre-commit hook, see [Shell](/shell/)
+**Warning this is experimental** Windows PowerShell:
+
+```powershell
+iwr https://github.com/username/repo/releases/latest/download/install.ps1 -useb | iex
+```
+
+> [!TIP]
+> To setup as a **pre-commit hook**, see [Shell](/shell/)
 
 ## Usage
 
