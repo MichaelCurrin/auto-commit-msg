@@ -21,6 +21,8 @@ npm run cli:build
 command cp -f build-cli/acm-macos ~/.local/bin/acm
 command cp -f build-cli/gacm-macos ~/.local/bin/gacm
 
+And then make this part of manual workflow or use the cli:install ones as long as they don't get deleted.
+And setup pipeline too.
 -->
 
 ```sh
