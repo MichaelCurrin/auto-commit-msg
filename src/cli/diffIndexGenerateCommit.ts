@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Git commit AutoCommitMsg script.
+ * Git commit AutoCommitMsg script - to generate a commit message and commit it.
  */
 import { execFileSync } from "child_process";
 import { generateCommitMessage } from "./diffIndexGenerate";

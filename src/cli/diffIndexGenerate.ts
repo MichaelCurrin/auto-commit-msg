@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * AutoCommitMsg CLI script.
+ * AutoCommitMsg CLI script - to check Git changes and generate a commit message.
  */
 import { execFileSync } from "child_process";
 import { generateMsg } from "../prepareCommitMsg";
