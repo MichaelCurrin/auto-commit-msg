@@ -21,7 +21,6 @@
     "build": "mkdir -p build && vsce package --out build/",
     "ext": "npm run build && code --install-extension $(ls -t build/* | head -n1) --force",
     "cli:install": "npm run compile && (npm unlink -g auto-commit-msg || true) && npm link",
-    "cli:build": "pkg out/cli/diffIndexGenerateCommit.js --targets node18-linux,node18-macos,node18-win --output build-cli/acm",
     "preversion": "npm run checks",
     "version": "npm run build",
     "postversion": "git push --follow-tags",
