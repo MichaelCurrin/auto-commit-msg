@@ -5,39 +5,22 @@ See steps below to setup and run the tool in the CLI. VS Code is not needed.
 
 For development, see [CLI Development](development/cli.md).
 
-## Requirements
-
-- Node (see version in [package.json](/package.json))
-- Git
-
 _This should work on Windows too but has not been tested yet._
 
-## Setup
 
-### Clone the repo
+## Install
+
+Requires Git and Node.
+
+<!-- TODO replace with instructions for downloading from a release using manual steps and install with curl or npm
+Note you do not need Git or Node, you can download the pre-packaged CLI tool as a binary.
+-->
 
 ```sh
 $ git clone git@github.com:MichaelCurrin/auto-commit-msg.git
 $ cd auto-commit-msg
-```
-
-### Install dependencies
-
-```sh
-$ npm ci
-```
-
-### Build and link the CLI tools
-
-```sh
-$ npm run cli
-```
-
-Verify installation:
-
-```sh
-$ acm -h
-$ gacm -h
+$ npm install
+$ npm run cli:install
 ```
 
 ## Usage
@@ -55,12 +38,12 @@ TODO -c not just --cached but pass through as --cached.
 
 This is the **main** command you should use.
 
-Note this actually **commit**, so if you want to experiment with commit output **without** committing, use the command below instead.
+Note this will **commit**, so if you want to experiment with commit output **without** committing, use the command below instead.
 
 No flags are needed.
 
 ```sh
-$ gacm
+$ gacm --help
 ```
 
 ### Check Git changes and generate commit message
@@ -70,14 +53,12 @@ This will **not** commit.
 No flags are needed.
 
 ```sh
-$ acm
+$ acm --help
 ```
 
 ### Generate a message from staged changes
 
 This is a simpler command which does not interact with Git, intended for integrating with the Bash shell.
-
-See [shell/acm.sh](/shell/acm.sh) if you want to use that script or write your own shell script. That relies on using this executable Node script
 
 ```sh
 $ auto_commit_message_generate "$CHANGES"
