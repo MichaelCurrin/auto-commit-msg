@@ -23,6 +23,8 @@ $ npm install
 $ npm run cli:install
 ```
 
+To setup as a pre-commit hook, see [Shell](/shell/)
+
 ## Usage
 
 Use the `-h` or `--help` flags with any of these to avoid making changes.

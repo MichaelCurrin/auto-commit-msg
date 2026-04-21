@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# AutoCommit Messsage CLI script for autofill hook.
-#
-# See shell/README.md doc.
+# AutoCommit Messsage hook.
+# Generate a commit message and enter it as the pre-filled message when committing.
 set -e
 
 GENERATE_CMD='auto_commit_msg_generate'
@@ -19,7 +18,6 @@ echo "COMMIT_MSG_FILE = $COMMIT_MSG_FILE"
 # Either 'message' or 'template'
 echo "COMMIT_SOURCE = $COMMIT_SOURCE"
 
-# TODO: Test this - this conditional is untested.
 if [ "$COMMIT_SOURCE" = 'template' ]; then
   echo "Current commit message"
   cat "$COMMIT_MSG_FILE"

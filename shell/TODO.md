@@ -14,3 +14,4 @@ of template, so it that can be passed on.
     BUT could look at advanced mode of pass through names of files to commit IF they are handled by status and commit, but using manual git add is good enough probably. esp for untracked files which need add anyway.
 - [ ] See if it is possible to make the shell script here shorter and use the logic in acm instead and a minimal .sh hook file.
 - [ ] Fix issue where if using the `cli:install` command then doing a build that removes everything means the commands don't work. Perhaps a **different output directory**.
+- [ ] Rename - this doesn't have to be shell anymore. Like `hooks`. Just fix any references to shell directory.
