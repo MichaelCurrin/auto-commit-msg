@@ -1,11 +1,14 @@
 # CLI Development
 > Maintaining code around the CLI tool
 
-The code is in [src/cli/](/src/cli). The CLI commands are built using steps set in [package.json](/package.json) - see the `cli` command and `bin` section.
+The code is in [src/cli/](/src/cli). The CLI commands are built using steps set in [package.json](/package.json).
 
-
+- See `cli:install` and `bin` section, which are both related and work with `npm link`.
+- See `make cli-build` which is for building binaries with `pkg` for distribution.
 
 ## Run directly
+
+For testing:
 
 ```sh
 $ npx ts-node src/cli/diffIndexGenerate.ts
@@ -45,4 +48,6 @@ Check:
 ls -l $(realpath /opt/homebrew/bin/acm)
 ```
 
-See [package.json](/package.json). Supposedly you should be able to leave out the project name when running `npm link` via an `npm run ...` command but I found this causes issues, so decided to always use the full name in the configuration. And to _always_ unlink then link in one go because of permissions issues.
+See [package.json](/package.json).
+
+Supposedly you should be able to leave out the project name when running `npm link` via an `npm run ...` command but I found this causes issues, so decided to always use the full name in the configuration. But removed it later . And to _always_ unlink then link in one go because of permissions issues.

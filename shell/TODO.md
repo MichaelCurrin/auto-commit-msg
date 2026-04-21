@@ -13,5 +13,6 @@ of template, so it that can be passed on.
     there's a problem - commit does not take cached flag - but it will use implied staged or not. so do not pass through.
     BUT could look at advanced mode of pass through names of files to commit IF they are handled by status and commit, but using manual git add is good enough probably. esp for untracked files which need add anyway.
 - [ ] See if it is possible to make the shell script here shorter and use the logic in acm instead and a minimal .sh hook file.
-- [ ] Fix issue where if using the `cli:install` command then doing a build that removes everything means the commands don't work. Perhaps a **different output directory**.
+- [ ] Fix issue where if using the `cli:install` command then doing a build that removes everything means the commands don't work. Perhaps a **different output directory**. Note `cli-build` can work though it is used pkg and renames (sometimes locally and also on CLI), so maybe different.
 - [ ] Rename - this doesn't have to be shell anymore. Like `hooks`. Just fix any references to shell directory.
+- [ ] Build all scripts.

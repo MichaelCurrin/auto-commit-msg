@@ -12,8 +12,14 @@ _This should work on Windows too but has not been tested yet._
 
 Requires Git and Node.
 
-<!-- TODO replace with instructions for downloading from a release using manual steps and install with curl or npm
+<!-- TODO replace with instructions for **downloading** from a release using manual steps and install with curl or npm
 Note you do not need Git or Node, you can download the pre-packaged CLI tool as a binary.
+
+For now:
+
+npm run build:install
+cp build-cli/acm-macos ~/.local/bin/acm
+
 -->
 
 ```sh
