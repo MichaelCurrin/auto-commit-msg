@@ -1,5 +1,5 @@
 PUBLISHER_NAME = MichaelCurrin
-
+CLI_BUILD_DIR = build-cli
 
 default: install
 
@@ -14,7 +14,7 @@ hooks:
 	cd .git/hooks && ln -s -f ../../hooks/pre-push pre-push
 
 install:
-	npm install
+	npm ci
 
 outdated:
 	npm outdated
@@ -56,6 +56,17 @@ build:
 e ext:
 	npm run checks
 	npm run ext
+
+# Build and install only the CLI tools.
+cli-install:
+	npm run checks
+	npm run cli:install
+
+# Build CLI tools for distribution.
+cli-build:
+	rm -f $(CLI_BUILD_DIR)/*
+	npm run cli:build
+
 
 ### Deploy
 
