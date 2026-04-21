@@ -20,7 +20,7 @@
     "vscode:prepublish": "npm run compile",
     "build": "mkdir -p build && vsce package --out build/",
     "ext": "npm run build && code --install-extension $(ls -t build/* | head -n1) --force",
-    "cli": "npm run compile && npm unlink auto-commit-msg && npm link auto-commit-msg",
+    "cli": "npm run compile && (npm unlink -g auto-commit-msg || true) && npm link",
     "preversion": "npm run checks",
     "version": "npm run build",
     "postversion": "git push --follow-tags",
@@ -34,12 +34,12 @@
   "engines": {
     "node": ">=22",
     "npm": ">=10",
-    "vscode": "^1.92.0"
+    "vscode": "^1.116.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.3",
     "@types/node": "^22.4.1",
-    "@types/vscode": "^1.92.0",
+    "@types/vscode": "^1.116.0",
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
     "@vscode/vsce": "^3.0.0",
