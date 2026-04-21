@@ -57,10 +57,10 @@ e ext:
 	npm run checks
 	npm run ext
 
-# Build and install the CLI tools only.
+# Build and install only the CLI tools.
 cli:
 	npm run checks
-	npm run cli:install
+	npm run cli
 
 # Build CLI tools for distribution.
 cli-build:
