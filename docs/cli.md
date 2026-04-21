@@ -17,7 +17,7 @@ Note you do not need Git or Node, you can download the pre-packaged CLI tool as 
 
 For now:
 
-npm run build:install
+npm run cli:build
 cp build-cli/acm-macos ~/.local/bin/acm
 
 -->
