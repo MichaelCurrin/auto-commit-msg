@@ -58,16 +58,14 @@ e ext:
 	npm run ext
 
 # Build and install only the CLI tools.
-cli:
+cli-install:
 	npm run checks
-	npm run cli
+	npm run cli:install
 
 # Build CLI tools for distribution.
 cli-build:
 	rm -f $(CLI_BUILD_DIR)/*
-	npx --yes pkg out/cli/diffIndexGenerateCommit.js \
-		--targets node18-linux,node18-macos,node18-win \
-		--output $(CLI_BUILD_DIR)/acm
+	npm run cli:build
 
 
 ### Deploy
