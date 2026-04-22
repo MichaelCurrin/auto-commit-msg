@@ -32,7 +32,8 @@ function main(argv: string[]): void {
 
   const msg: string = generateCommitMessage(useCached);
 
-  // FIXME: there is a bug when using changes that are not staged and without --cached flag, so the message is unquoted.
+  // FIXME: there is a bug when using changes that are not staged and without
+  // --cached flag, so the message is unquoted.
   const commitArgs: string[] = ["commit", "--edit", "-m", msg, ...passthrough];
   execFileSync("git", commitArgs, { stdio: "inherit" });
 }
