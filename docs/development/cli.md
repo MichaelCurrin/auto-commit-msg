@@ -8,10 +8,12 @@ The code is in [src/cli/](/src/cli). The CLI commands are built using steps set 
 
 ## Run directly
 
-For testing:
+Run a script directly without compiling:
 
 ```sh
 $ npx ts-node src/cli/diffIndexGenerate.ts
+$ npx ts-node src/cli/diffIndexGenerateCommit.ts
+$ npx ts-node src/cli/generate.ts
 ```
 
 ## Install globally
