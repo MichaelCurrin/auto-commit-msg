@@ -32,10 +32,10 @@ Build the CLI as a binary which can be installed without the source code or Node
 $ make cli-build
 ```
 
-Check the [dist](/dist/) directory once it is created.
+> [!NOTE]
+> In [Makefile](/Makefile), Node **18** is set to avoid errors from `pkg`. Even though 22 is set in package.json and is active with NVM. Check the [pkg docs](https://www.npmjs.com/package/pkg) for more info on available versions.
 
-_Note: Node 18 is set to avoid erros, even though 22 is set in package.json and is active with NVM._
-
+Check the [dist](/dist/) directory once it is created. These are added to a release.
 
 ## Troubleshooting
 
