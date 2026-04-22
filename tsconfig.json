@@ -6,7 +6,8 @@
       "ES2019"
     ],
     "types": [
-      "node"
+      "node",
+      "mocha"
     ],
     "sourceMap": true,
     "strict": true,
