@@ -15,4 +15,4 @@ of template, so it that can be passed on.
 - [ ] See if it is possible to make the shell script here shorter and use the logic in acm instead and a minimal .sh hook file.
 - [ ] Fix issue where if using the `cli:install` command then doing a build that removes everything means the commands don't work. Perhaps a **different output directory**. Note `cli-build` can work though it is used pkg and renames (sometimes locally and also on CLI), so maybe different.
 - [ ] Rename - this doesn't have to be shell anymore. Like `hooks`. Just fix any references to shell directory.
-- [ ] Build all scripts.
+- [ ] Regular command for me to run manually for CLI. Whether GH release part or just with the link command which as long as path means not deleted. As part of make ext or one of the publish commands or version command.
