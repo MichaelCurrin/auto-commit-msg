@@ -11,8 +11,8 @@ const HELP_TEXT: string = `Usage: acm [--cached] [--help|-h]
 Check Git changes and generate a commit message.
 
 Options:
-  --cached        Use only staged changes (equivalent to git --cached).
-    If the flag is omitted, then the standard \`git status\` logic is followed:
+  --cached        Use only staged changes (equivalent to \`git --cached\`).
+                  If the flag is omitted, then the standard \`git commit\` logic is followed:
     look for staged changes and use them, otherwise use unstaged changes.
   --help, -h      Show this help and exit.`;
 

@@ -16,7 +16,7 @@ const HELP_TEXT: string = `Usage: auto_commit_msg_generate DIFF_INDEX_OUTPUT
 Generate a commit message from given input.
 
 Arguments:
-  DIFF_INDEX_OUTPUT   Text output from 'git diff-index --name-status HEAD'.
+  DIFF_INDEX_OUTPUT   Text output from command like 'git diff-index --name-status HEAD'.
 
 Options:
   --help, -h            Show this help and exit.`;
