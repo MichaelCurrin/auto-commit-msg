@@ -32,7 +32,7 @@
     "auto_commit_msg_generate": "out/cli/generate.js"
   },
   "engines": {
-    "node": ">=22",
+    "node": "^22",
     "npm": ">=10",
     "vscode": "^1.116.0"
   },
