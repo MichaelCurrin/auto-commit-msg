@@ -9,7 +9,7 @@
  * e.g. 'update 16 files and delete 2 files'
  */
 import { FileChange } from "../git/parseOutput.d";
-import { moveOrRenameFromPaths, splitPath, _join } from "../lib/paths";
+import { _join, moveOrRenameFromPaths, splitPath } from "../lib/paths";
 import { MoveOrRename } from "../lib/paths.d";
 import { lookupDiffIndexAction } from "./action";
 import { FileChangesByAction } from "./count.d";
