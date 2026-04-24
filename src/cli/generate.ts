@@ -11,6 +11,8 @@
  */
 import { generateMsg } from "../prepareCommitMsg";
 
+import { shouldShowHelp } from "./utils";
+
 const HELP_TEXT: string = `Usage: auto_commit_msg_generate DIFF_INDEX_OUTPUT
 
 Generate a commit message from given input.
@@ -22,14 +24,15 @@ Options:
   --help, -h            Show this help and exit.`;
 
 /**
- * Command-line entry-point.
+ * Generate a commit message from Git diff-index output.
  *
- * Returns a suitable generated commit message as text.
- */
-import { shouldShowHelp } from "./utils";
-
-/**
- * Entry-point for the CLI. Handles help flag and input validation.
+ * Parses the provided diff-index output and generates a suitable commit message.
+ * Throws an error if no arguments or no changes are found.
+ *
+ * @param args Command-line arguments. First argument should be the diff-index
+ *   output.
+ * @throws Error if no arguments provided or no file changes found in the
+ *   output.
  */
 function main(args: string[]): void {
   if (shouldShowHelp(args)) {

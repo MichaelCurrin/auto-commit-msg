@@ -36,7 +36,13 @@ export function splitPath(filePath: string): SplitPathResult {
   };
 }
 
-/** Format to add quotes if the values contains spaces. */
+/**
+ * Format to add quotes if the value contains spaces.
+ *
+ * @param value The string value to format.
+ * @returns The value wrapped in single quotes if it contains spaces and is not
+ *   the root directory, otherwise the value unchanged.
+ */
 export function quoteForSpaces(value: string) {
   if (value.includes(" ") && value !== ROOT) {
     return `'${value}'`;
@@ -68,7 +74,12 @@ export function friendlyFile(filePath: string) {
 /**
  * Join a list of items using commas and an "and" word.
  *
+ * For example: ['a', 'b', 'c'] becomes 'a, b and c'.
  * These don't have to be file paths but usually are for this project.
+ *
+ * @param items An array of strings to join.
+ * @returns A formatted string with items joined by commas and "and", or an
+ *   empty string if the array is empty.
  */
 export function _join(items: string[]) {
   if (!items.length) {

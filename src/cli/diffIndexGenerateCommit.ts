@@ -21,7 +21,14 @@ Options:
 `;
 
 /**
- * Command-line entry-point.
+ * Generate a commit message and execute a Git commit with that message.
+ *
+ * Steps:
+ *   1. Check Git changes and generate a commit message.
+ *   2. Run `git commit` with the generated message.
+ *   3. On failure, retry with current directory specified.
+ *
+ * @param argv Command-line arguments.
  */
 async function main(argv: string[]): Promise<void> {
   if (shouldShowHelp(argv)) {

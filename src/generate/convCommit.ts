@@ -52,12 +52,15 @@ export class ConventionalCommit {
   }
 
   /**
-   * Check if doc-related.
+   * Check if a file is documentation-related.
    *
-   * Return true for `.rst`, README files, and anything in the docs directory.
+   * Return true for `.rst` files, README files, and anything in the docs
+   * directory.
    *
    * TODO: For static sites, not all `.md` files are docs but that could be
    * configured with a global flag. Or recognize presence of Jekyll config file.
+   *
+   * @returns True if the file is documentation-related, false otherwise.
    */
   isDocsRelated(): boolean {
     if (this.extension === ".rst") {
@@ -68,6 +71,14 @@ export class ConventionalCommit {
     return DOC_NAMES.includes(lowerName) || this.dirPath.startsWith("docs");
   }
 
+  /**
+   * Check if a file is test-related.
+   *
+   * Returns true for files in test directories (at any nesting level) or
+   * matching test-related file patterns.
+   *
+   * @returns True if the file is test-related, false otherwise.
+   */
   isTestRelated(): boolean {
     const dir = this.dirPath;
     const name = this.name;
@@ -102,17 +113,29 @@ export class ConventionalCommit {
     return false;
   }
 
+  /**
+   * Check if a file is CI/CD configuration-related.
+   *
+   * Returns true for files in CI directories or matching CI configuration file
+   * names.
+   *
+   * @returns True if the file is CI/CD related, false otherwise.
+   */
   isCIRelated(): boolean {
     // Assume flat structure and don't check for nesting in subdirs of
     // `CI_DIRS`.
     return CI_DIRS.includes(this.dirPath) || CI_NAMES.includes(this.name);
   }
 
-  // Broadly match eslint configs with any extension e.g. `.json` or `.yml`.
-  // See https://eslint.org/docs/user-guide/configuring
-  // Same for prettier configs https://prettier.io/docs/en/configuration.html
-  // And `tslint*` as JSON or YAML and `webpack*`.
-  // See https://github.com/vscode-icons/vscode-icons/blob/master/src/iconsManifest/supportedExtensions.ts
+  /**
+   * Check if a file is configuration-related.
+   *
+   * Matches ESLint, Prettier, TSLint, Webpack configs and other configuration
+   * files with various extensions. See https://eslint.org/docs/user-guide/configuring
+   * and https://prettier.io/docs/en/configuration.html for more details.
+   *
+   * @returns True if the file is configuration-related, false otherwise.
+   */
   isConfigRelated(): boolean {
     return (
       CONFIG_EXTENSIONS.includes(this.extension) ||
@@ -127,10 +150,21 @@ export class ConventionalCommit {
     );
   }
 
+  /**
+   * Check if a file is package management-related.
+   *
+   * @returns True if the file is a package manifest file, false otherwise.
+   */
   isPackageRelated(): boolean {
     return PACKAGE_NAMES.includes(this.name);
   }
 
+  /**
+   * Check if a file is build-related.
+   *
+   * @returns True if the file is a build tool configuration or artifact, false
+   *   otherwise.
+   */
   isBuildRelated(): boolean {
     return (
       BUILD_NAMES.includes(this.name) ||
@@ -138,20 +172,32 @@ export class ConventionalCommit {
     );
   }
 
+  /**
+   * Check if a file is license-related.
+   *
+   * @returns True if the file is a license file, false otherwise.
+   */
   isLicenseRelated(): boolean {
     return LICENSE_NAMES.includes(this.name);
   }
 
+  /**
+   * Check if a file is chore-related (license or configuration files).
+   *
+   * @returns True if the file is license or configuration-related, false
+   *   otherwise.
+   */
   isChoreRelated(): boolean {
     return this.isLicenseRelated() || this.isConfigRelated();
   }
 
   /**
-   * Return Conventional Commit type.
+   * Determine the Conventional Commit type for this file based on its path and content.
    *
-   * Order of checks is important here.
+   * Order of checks is important here: CI, package management, build, chore,
+   * documentation, and test-related files are checked in that order.
    *
-   * Return the unknown/null value if no rule matches.
+   * @returns A CONVENTIONAL_TYPE value. Returns UNKNOWN if no rule matches.
    */
   getType() {
     if (this.isCIRelated()) {

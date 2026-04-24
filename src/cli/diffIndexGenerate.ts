@@ -18,6 +18,15 @@ Options:
   --verbose       Show debug output for this run.
 `;
 
+/**
+ * Get the current repository by running git command.
+ *
+ * Executes git command to determine the root directory of the current Git
+ * repository.
+ *
+ * @returns A Repository object with the root URI of the current Git repository.
+ * @throws Error if not in a Git repository or if the git command fails.
+ */
 function _getCurrentRepository(): Repository {
   return {
     rootUri: {

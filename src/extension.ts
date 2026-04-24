@@ -9,6 +9,12 @@ import { API, Repository } from "./api/git";
 import { makeAndFillCommitMsg } from "./autofill";
 import { getGitExtension } from "./gitExtension";
 
+/**
+ * Validate that the Git extension is available and at least one repository is open.
+ *
+ * @param git The Git extension API object.
+ * @throws Error if Git extension is not available or no repositories are found.
+ */
 function _validateFoundRepos(git: API) {
   let msg = "";
 

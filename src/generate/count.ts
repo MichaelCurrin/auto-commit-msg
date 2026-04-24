@@ -47,6 +47,12 @@ export function _countByAction(changes: FileChange[]) {
   return result;
 }
 
+/**
+ * Return the appropriate plural suffix based on a count.
+ *
+ * @param count The count value.
+ * @returns An empty string if count is 1, otherwise 's' for plural.
+ */
 export function _pluralS(count: number) {
   return count === 1 ? "" : "s";
 }
