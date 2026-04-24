@@ -23,6 +23,8 @@ $ npm install
 $ npm run cli:install
 ```
 
+> [!WARNING]
+> The files will be symlinked in a bin directory but those links can break if you run the clean and compile steps again for other development. So then installing using the binaries below (and a copy step) or the install script in [Releases](releases.md) is safer.
 
 ## Package as a binary
 
