@@ -46,7 +46,6 @@ export async function generateCommitMessage(): Promise<string> {
   const repo = _getCurrentRepository();
   const fileChanges: string[] = await getChanges(repo);
   if (!fileChanges.length) {
-    // todo how to handle elegantly at next level here and other script
     throw new Error(NO_LINES_MSG);
   }
 
