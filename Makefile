@@ -49,6 +49,12 @@ q test-quick:
 	npx tsc -p .
 	npm run test:unit
 
+# Test the CLI tools and their help output.
+cli-help:
+	npx ts-node src/cli/diffIndexGenerate.ts --help
+	npx ts-node src/cli/diffIndexGenerateCommit.ts --help
+	npx ts-node src/cli/generate.ts --help
+
 ### Build
 
 .PHONY: build

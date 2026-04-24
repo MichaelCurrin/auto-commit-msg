@@ -5,19 +5,16 @@ import * as vscode from "vscode";
 import { Repository } from "./api/git";
 import { getChanges } from "./git/cli";
 import { getCommitMsg, setCommitMsg } from "./gitExtension";
+import { NO_LINES_MSG } from "./lib/constants";
 import { generateMsg } from "./prepareCommitMsg";
-
-export const NO_LINES_MSG = `\
-Unable to generate message as no changes files can be seen.
-Try saving your files or stage any new (untracked) files.\
-`;
 
 /**
  * Generate and fill a commit message in the Git extension sidebar.
  *
  * Steps:
  *
- *   1. Read Git command output and the message in the Git Extension commit message box.
+ *   1. Read Git command output and the message in the Git Extension commit
+ *      message box.
  *   2. Generate a message.
  *   3. Push message value to the commit message box.
  *

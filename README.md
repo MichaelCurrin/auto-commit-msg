@@ -55,7 +55,7 @@ How to install and run the extension in VS Code.
 
 </div>
 
-If you want to install and run as a CLI tool, see [CLI docs](/docs/cli.md).
+Install the CLI tool quick and easy so you are not tied to the IDE - see [CLI docs](/docs/cli.md).
 
 
 ## Features

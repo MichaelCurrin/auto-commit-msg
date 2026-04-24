@@ -7,6 +7,11 @@ export const AGGREGATE_MIN = 5;
 // Human-friendly description of path, for use in commit messages.
 export const ROOT = "repo root";
 
+export const NO_LINES_MSG = `\
+Unable to generate message as no changes files can be seen.
+Try saving your files or stage any new (untracked) files.\
+`;
+
 /**
  * Mapping of change descriptions.
  *

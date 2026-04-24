@@ -36,14 +36,14 @@ function main(args: string[]): void {
     console.log(HELP_TEXT);
     return;
   }
-  const linesArg = args[0];
 
-  if (typeof linesArg === "undefined") {
+  if (!args.length) {
     throw new Error(
       "Exactly one argument is required - text output from diff-index command.",
     );
   }
 
+  const linesArg = args[0];
   const lines = linesArg.split("\n");
 
   if (!lines.length) {

@@ -12,20 +12,31 @@ See steps below to setup and run the tool in the CLI.
 
 The pre-built binaries are added to releases on GitHub so you can install them without needing the project or Node.
 
-macOS and Linux:
+Run the command below to install (or update to the latest).
+
+### macOS and Linux
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/MichaelCurrin/auto-commit-msg/refs/heads/master/bin/install_cli.sh | bash
 ```
 
-**Warning this is experimental** Windows PowerShell:
+Uninstall:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/MichaelCurrin/auto-commit-msg/refs/heads/master/bin/uninstall_cli.sh | bash
+```
+
+### Windows PowerShell
+
+**Warning this is untested**
 
 ```powershell
 iwr https://github.com/username/repo/releases/latest/download/install.ps1 -useb | iex
 ```
 
-> [!TIP]
-> To setup as a **pre-commit hook**, see [Shell](/shell/)
+## Setup as a hook
+
+To setup as a **pre-commit hook**, see [Shell](/shell/)
 
 ## Usage
 

@@ -21,13 +21,20 @@ const DIFF_INDEX_OPTIONS = [
   "--no-color",
 ];
 
+// Allow debug messages to be shown (VS Code extension) or hidden (CLI tool).
+function debug(...args: unknown[]): void {
+  if (process.env.ACM_DEBUG === "1") {
+    console.debug(...args);
+  }
+}
+
 /**
  * Run a `git` subcommand and return the result, with stdout and stderr available.
  */
 function _execute(cwd: string, subcommand: string, options: string[] = []) {
   const command = `git ${QUOTE_PATH} ${subcommand} ${options.join(" ")}`;
 
-  console.debug(`Running command: ${command}, cwd: ${cwd}`);
+  debug(`Running command: ${command}, cwd: ${cwd}`);
 
   return exec(command, { cwd });
 }
@@ -54,7 +61,7 @@ async function _diffIndex(
   const { stdout, stderr } = await _execute(cwd, DIFF_INDEX_CMD, fullOptions);
 
   if (stderr) {
-    console.debug(`stderr for 'git ${DIFF_INDEX_CMD}' command:`, stderr);
+    debug(`stderr for 'git ${DIFF_INDEX_CMD}' command:`, stderr);
   }
 
   const lines = stdout.split("\n");
@@ -75,19 +82,19 @@ export async function getChanges(repository: Repository) {
   const stagedChanges = await _diffIndex(repository, ["--cached"]);
 
   if (stagedChanges.length) {
-    console.debug("Found staged changes");
+    debug("Found staged changes");
 
     return stagedChanges;
   }
 
-  console.debug(
+  debug(
     "Staging area is empty. Using unstaged files (tracked files only still).",
   );
 
   const allChanges = await _diffIndex(repository);
 
   if (!allChanges.length) {
-    console.debug("No changes found");
+    debug("No changes found");
   }
   return allChanges;
 }

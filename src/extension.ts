@@ -60,14 +60,14 @@ async function _handleRepo(git: API): Promise<Repository> {
  * Choose the relevant repo and apply autofill logic on files there.
  */
 async function _chooseRepoForAutofill(sourceControl?: vscode.SourceControl) {
-  const git = getGitExtension()!;
-  _validateFoundRepos(git);
+  const gitExtension = getGitExtension()!;
+  _validateFoundRepos(gitExtension);
 
   vscode.commands.executeCommand("workbench.view.scm");
 
   const selectedRepo = sourceControl
-    ? await _handleRepos(git, sourceControl)
-    : await _handleRepo(git);
+    ? await _handleRepos(gitExtension, sourceControl)
+    : await _handleRepo(gitExtension);
 
   if (!selectedRepo) {
     const msg = "No repos found";
