@@ -2,3 +2,4 @@
 
 git pull --rebase || git pull --rebase origin master
 make all
+make cli-install
